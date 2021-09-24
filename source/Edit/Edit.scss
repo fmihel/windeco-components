@@ -1,0 +1,91 @@
+@import '../../style/default.vars.scss';
+
+
+$wd-bg:$wd-field !default;
+
+
+@each $name in $wd-themes{
+    .#{$name} {
+        .wd-edit-frame{
+            background-color: map-get($wd-bg,#{$name});
+            //border:1px dashed red;
+            .wd-edit{
+                border:1px solid gray;
+            }
+            .wd-edit-input{
+                background-color: map-get($wd-field,#{$name});
+                border: 1px solid map-get($wd-border,#{$name});
+                color: map-get($wd-color,#{$name});
+    
+                &:focus { 
+                    border-color: rgba(255, 0, 0, 0); 
+                    //box-shadow: 0 0 0px 2px rgba(59, 153, 252, .7);
+                    //box-shadow: 0 0 0 2px -moz-mac-focusring; 
+                    outline: none; 
+                } 
+            }
+            .wd-edit-disabled{
+                border-top:0px;
+                border-left:0px;
+                border-right:0px;
+                border-bottom:1px solid rgb(46, 46, 46);
+                background-color: rgba(151, 109, 109, 0);
+                border-radius: 0em;
+                color:gray;
+            }
+            .wd-edit-dim{
+
+            }
+        }
+    }
+}
+
+@each $name in $wd-sizes{
+    $size:map-get($wd-size,#{$name});
+    $fat:map-get($wd-fat,#{$name});
+    .#{$name}{
+        .wd-edit-frame{
+            box-sizing: border-box;
+
+            height:($size+$fat*2);
+            padding-left:$fat;
+            padding-right:$fat;
+            padding-top:$fat;
+            padding-bottom: $fat;
+            display: flex; 
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-content: stretch;
+            align-items: stretch;
+            
+            .wd-edit{
+                border:0px;
+                &>div{
+                    order: 0;
+                    flex: 0 1 auto;
+                    align-self: auto;
+                }
+            }
+          
+            .wd-edit-input{
+                flex: 1 1 auto;
+                margin: 0px;
+                padding: 0px;
+                text-indent:5px;
+                
+            }
+            .wd-edit-disabled{
+
+            }
+            .wd-edit-dim{
+                max-width: $size;
+                min-width: $size;
+                line-height: $size;
+                text-align: center;
+                border:0px;
+            }
+        }     
+    }
+}
+

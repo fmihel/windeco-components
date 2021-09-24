@@ -1,0 +1,46 @@
+@import './custom.scss';
+@import '../../style/default.vars.scss';
+@import '../../source/Edit/Edit.scss';
+
+
+*{
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body{
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+}
+#app{
+    position: absolute;
+    margin:0px;
+    padding:0px;
+    width:100%;
+    height:100%;
+    border:1px solid rgba(0,0,0,0);
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+
+    &>div{
+        order: 0;
+        flex: 0 1 auto;
+        align-self: auto;
+    }
+    .panel{
+        border:1px solid green;
+    }
+    .content{
+        flex: 1 1 auto;
+        overflow: auto; 
+        border:1px solid red;
+    }
+}
+
