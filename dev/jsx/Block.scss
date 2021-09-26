@@ -1,0 +1,19 @@
+.block{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+    margin-bottom: 2px;
+    >div{
+        order: 0;
+        flex: 0 1 auto;
+        align-self: auto;
+        min-width: 32px;
+
+    }
+    :nth-child(2){
+        flex: 1 1 auto;
+    }
+}

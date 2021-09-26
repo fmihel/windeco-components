@@ -29,7 +29,7 @@ body{
     align-content: stretch;
     align-items: stretch;
 
-    &>div{
+    >div{
         order: 0;
         flex: 0 1 auto;
         align-self: auto;
@@ -41,6 +41,14 @@ body{
         flex: 1 1 auto;
         overflow: auto; 
         border:1px solid red;
+        
     }
 }
 
+
+@each $name in $wd-themes{
+    .#{$name} {
+        background-color: map-get($wd-bg,#{$name});
+        color: map-get($wd-color,#{$name});
+    }
+}

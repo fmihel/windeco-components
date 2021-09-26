@@ -1,11 +1,23 @@
 $wd-themes:('light','dark') !default;
 $wd-sizes:('normal','small') !default;
 
-$wd-background:('light':#DEE2E6,'dark':#454D55) !default;
-$wd-field:('light':#DEE2E6,'dark':#6c6e70) !default;
-$wd-color:('light':#000000,'dark':#fcfcfc) !default;
-$wd-border:('light':#3d3d3d,'dark':#696969) !default;
+$wd-bg:('light':#ffffff,'dark':#242424) !default;
+$wd-color:('light':#000000,'dark':#646464) !default;
+$wd-border:('light':#353535,'dark':#353535) !default;
+$wd-border-focus:('light':#353535,'dark':#353535) !default;
+
+
+$wd-edit-bg:('light':#cfcfcf,'dark':#808080) !default;
+$wd-edit-color:('light':#000000,'dark':#000000) !default;
+$wd-edit-border:('light':#353535,'dark':#3476BC) !default;
+
+$wd-btn-bg:('light':#cfcfcf,'dark':#808080) !default;
+$wd-btn-color:('light':#000000,'dark':#000000) !default;
+$wd-btn-border:$wd-border !default;
+$wd-btn-border-focus:('light':#353535,'dark':#3476BC) !default;
+
+
 
 $wd-size:('small':24px,'normal':32px) !default;
 $wd-scale:('small':0.5,'normal':1) !default;
-$wd-fat:('small':2px,'normal':5px) !default;
+$wd-gap:('small':2px,'normal':5px) !default;

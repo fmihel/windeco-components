@@ -1,0 +1,27 @@
+@import '../../style/default.vars.scss';
+
+
+@each $name in $wd-themes{
+    .#{$name} {
+        .wd-btn{
+            background-color: map-get($wd-btn-bg,#{$name});
+            border:1px solid map-get($wd-btn-border,#{$name});
+            outline: none;
+            &:focus { 
+                outline: 2px solid map-get($wd-btn-border-focus,#{$name});
+            }
+        }
+    }
+}
+
+@each $name in $wd-sizes{
+    $size:map-get($wd-size,#{$name});
+    .#{$name}{
+        .wd-btn{
+            box-sizing: border-box;
+            height:$size;
+            min-width:$size;
+        }     
+    }
+}
+

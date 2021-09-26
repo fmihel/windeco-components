@@ -6,6 +6,10 @@ import { connect } from 'react-redux';
 import redux from 'REDUX';
 import React from 'react';
 import Edit from '../source/Edit/Edit.jsx';
+import Btn from '../source/Btn/Btn.jsx';
+
+import Head from './jsx/Head.jsx';
+import Block from './jsx/Block.jsx';
 
 class App extends React.Component {
     constructor(p) {
@@ -36,7 +40,11 @@ class App extends React.Component {
                     <input id="normal" type="button" value="normal" onClick={this.onSize}/>
                 </div>
                 <div className={`content ${this.state.theme} ${this.state.size}`}>
-                    <Edit/>
+                    <Head>Edit</Head>
+                    <Block> <Edit value="text"/></Block>
+                    <Block> <Edit/></Block>
+                    <Head>Btn</Head>
+                    <Block> <Btn>button</Btn></Block>
                 </div>
             </>
         );

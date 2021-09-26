@@ -1,0 +1,53 @@
+@import '../../styles/define.scss';
+
+//$min-width:100px;
+@each $theme in $themes{
+    .#{$theme}{
+        .table-container{
+            width: 100%;
+            overflow: auto;
+            // position: absolute;
+            .table{
+                width: 100%;
+                thead{
+                    tr{
+                        background-color: silver;
+                        border:1px solid gray;
+                    }
+                    th{
+                        border-left:1px solid gray;
+                    }
+                }
+                tbody{
+                    tr{
+                        border-bottom:1px solid rgb(92, 92, 92);
+                        color:map-get($color,#{$theme});
+                        height:20px;
+                        td{
+                            border-left:1px solid  rgb(92, 92, 92);
+                            padding-left:5px;
+                        }
+                        &:nth-child(2n){
+                            background-color: rgb(61, 61, 61);
+                        }
+                        &:hover{
+                            background-color:#616161;
+                            text-shadow: 0 0 0.7px black;
+                            color:white;
+                        }
+                        &:active{
+                            background-color:#007BFF !important;
+                            color:white !important;
+                            
+                        }
+                    }
+                    .row-selected{
+                        background-color:#007BFF !important;
+                        color:white !important;
+                    }
+
+                }
+            }
+        }
+    }
+}

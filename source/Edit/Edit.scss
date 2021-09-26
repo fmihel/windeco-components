@@ -1,27 +1,22 @@
 @import '../../style/default.vars.scss';
 
 
-$wd-bg:$wd-field !default;
+$wd-ed-bg:$wd-edit-bg !default;
+$wd-ed-color:$wd-edit-color !default;
+$wd-ed-border:$wd-edit-border !default;
 
 
 @each $name in $wd-themes{
     .#{$name} {
         .wd-edit-frame{
             background-color: map-get($wd-bg,#{$name});
-            //border:1px dashed red;
-            .wd-edit{
-                border:1px solid gray;
-            }
             .wd-edit-input{
-                background-color: map-get($wd-field,#{$name});
-                border: 1px solid map-get($wd-border,#{$name});
-                color: map-get($wd-color,#{$name});
-    
+                background-color: map-get($wd-ed-bg,#{$name});
+                border: 1px solid rgba(0,0,0,0);
+                color: map-get($wd-ed-color,#{$name});
+                outline: none;
                 &:focus { 
-                    border-color: rgba(255, 0, 0, 0); 
-                    //box-shadow: 0 0 0px 2px rgba(59, 153, 252, .7);
-                    //box-shadow: 0 0 0 2px -moz-mac-focusring; 
-                    outline: none; 
+                    border: 1px solid map-get($wd-ed-border,#{$name});
                 } 
             }
             .wd-edit-disabled{
@@ -42,16 +37,12 @@ $wd-bg:$wd-field !default;
 
 @each $name in $wd-sizes{
     $size:map-get($wd-size,#{$name});
-    $fat:map-get($wd-fat,#{$name});
     .#{$name}{
         .wd-edit-frame{
             box-sizing: border-box;
 
-            height:($size+$fat*2);
-            padding-left:$fat;
-            padding-right:$fat;
-            padding-top:$fat;
-            padding-bottom: $fat;
+            height:($size);
+            
             display: flex; 
             flex-direction: row;
             flex-wrap: nowrap;
