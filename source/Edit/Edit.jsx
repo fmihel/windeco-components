@@ -47,13 +47,11 @@ Edit.defaultProps = {
     id: undefined,
     disabled: 0,
     onChange: undefined,
-    caption: undefined,
     dim: 'm',
     value: undefined,
     visible: 1,
     placeholder: '',
     disable: {
-        caption: false,
         dim: false,
     },
 };

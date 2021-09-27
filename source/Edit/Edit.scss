@@ -1,23 +1,21 @@
 @import '../../style/default.vars.scss';
 
 
-$wd-ed-bg:$wd-edit-bg !default;
-$wd-ed-color:$wd-edit-color !default;
-$wd-ed-border:$wd-edit-border !default;
-
-
 @each $name in $wd-themes{
     .#{$name} {
         .wd-edit-frame{
-            background-color: map-get($wd-bg,#{$name});
+            
             .wd-edit-input{
-                background-color: map-get($wd-ed-bg,#{$name});
-                border: 1px solid rgba(0,0,0,0);
-                color: map-get($wd-ed-color,#{$name});
+                background-color: map-get($wd-edit-bg,#{$name});
+                color: map-get($wd-edit-color,#{$name});
+                @include transparent-border();
                 outline: none;
                 &:focus { 
-                    border: 1px solid map-get($wd-ed-border,#{$name});
-                } 
+                    border: 1px solid map-get($wd-edit-border-focus,#{$name});
+                }
+                &:hover { 
+                    background-color: map-get($wd-edit-bg-hover,#{$name}); 
+                }  
             }
             .wd-edit-disabled{
                 border-top:0px;
@@ -27,6 +25,7 @@ $wd-ed-border:$wd-edit-border !default;
                 background-color: rgba(151, 109, 109, 0);
                 border-radius: 0em;
                 color:gray;
+                background-color: map-get($wd-bg,#{$name}) !important;
             }
             .wd-edit-dim{
 
@@ -40,9 +39,9 @@ $wd-ed-border:$wd-edit-border !default;
     .#{$name}{
         .wd-edit-frame{
             box-sizing: border-box;
-
-            height:($size);
+            height:$size;
             
+            margin: 0; 
             display: flex; 
             flex-direction: row;
             flex-wrap: nowrap;
@@ -50,16 +49,8 @@ $wd-ed-border:$wd-edit-border !default;
             align-content: stretch;
             align-items: stretch;
             
-            .wd-edit{
-                border:0px;
-                &>div{
-                    order: 0;
-                    flex: 0 1 auto;
-                    align-self: auto;
-                }
-            }
-          
             .wd-edit-input{
+                border-radius: .3em;                
                 flex: 1 1 auto;
                 margin: 0px;
                 padding: 0px;

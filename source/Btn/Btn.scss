@@ -8,7 +8,7 @@
             border:1px solid map-get($wd-btn-border,#{$name});
             outline: none;
             &:focus { 
-                outline: 2px solid map-get($wd-btn-border-focus,#{$name});
+                outline: 1px solid map-get($wd-btn-border-focus,#{$name});
             }
         }
     }

@@ -35,9 +35,13 @@ body{
         align-self: auto;
     }
     .panel{
-        border:1px solid green;
+        border-bottom:1px solid green;
+        height:32px;
+        padding-top:5px;
+        padding-left:5px;
     }
     .content{
+        padding:5px;
         flex: 1 1 auto;
         overflow: auto; 
         border:1px solid red;

@@ -1,12 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import {
-    binds,
+    binds, storage,
 } from 'fmihel-browser-lib';
 import { connect } from 'react-redux';
-import redux from 'REDUX';
 import React from 'react';
 import Edit from '../source/Edit/Edit.jsx';
 import Btn from '../source/Btn/Btn.jsx';
+import ComboBox from '../source/ComboBox/ComboBox.jsx';
 
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
@@ -16,16 +16,18 @@ class App extends React.Component {
         super(p);
         binds(this, 'onTheme', 'onSize');
         this.state = {
-            theme: 'dark',
-            size: 'normal',
+            theme: storage.get('theme-style', { default: 'dark' }),
+            size: storage.get('theme-size', { default: 'normal' }),
         };
     }
 
     onTheme(o) {
+        storage.set('theme-style', o.currentTarget.id);
         this.setState({ theme: o.currentTarget.id });
     }
 
     onSize(o) {
+        storage.set('theme-size', o.currentTarget.id);
         this.setState({ size: o.currentTarget.id });
     }
 
@@ -42,9 +44,13 @@ class App extends React.Component {
                 <div className={`content ${this.state.theme} ${this.state.size}`}>
                     <Head>Edit</Head>
                     <Block> <Edit value="text"/></Block>
-                    <Block> <Edit/></Block>
+                    <Block> <Edit value="disabled" disabled={1} /></Block>
+                    <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
                     <Head>Btn</Head>
                     <Block> <Btn>button</Btn></Block>
+                    <Head>ComboBox</Head>
+                    <Block> <ComboBox/></Block>
+                    <Block> <ComboBox disable={{ dim: false }}/></Block>
                 </div>
             </>
         );

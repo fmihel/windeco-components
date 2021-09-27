@@ -11,9 +11,9 @@
         flex: 0 1 auto;
         align-self: auto;
         min-width: 32px;
-
+        &:nth-child(2){
+            flex: 1 1 auto;
+        }
     }
-    :nth-child(2){
-        flex: 1 1 auto;
-    }
+    
 }

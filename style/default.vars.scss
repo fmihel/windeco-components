@@ -1,23 +1,47 @@
 $wd-themes:('light','dark') !default;
 $wd-sizes:('normal','small') !default;
 
+
+
 $wd-bg:('light':#ffffff,'dark':#242424) !default;
 $wd-color:('light':#000000,'dark':#646464) !default;
 $wd-border:('light':#353535,'dark':#353535) !default;
-$wd-border-focus:('light':#353535,'dark':#353535) !default;
+$wd-border-focus:('light':#fc0000,'dark':#3476BC) !default;
+
+$wd-ctrl-bg:('light':#cfcfcf,'dark':#a0a0a0) !default;
+$wd-ctrl-color:('light':#000000,'dark':#000000) !default;
+$wd-ctrl-border:('light':#353535,'dark':#3476BC) !default;
+$wd-ctrl-border-focus:$wd-border-focus !default;
+
+$wd-ctrl-bg-hover:('light':#cfcfcf,'dark':#b3b3b3) !default;
+$wd-ctrl-color-hover:('light':#000000,'dark':#646464) !default;
+$wd-ctrl-border-hover:$wd-border !default;
 
 
-$wd-edit-bg:('light':#cfcfcf,'dark':#808080) !default;
-$wd-edit-color:('light':#000000,'dark':#000000) !default;
-$wd-edit-border:('light':#353535,'dark':#3476BC) !default;
+$wd-edit-bg:$wd-ctrl-bg !default;
+$wd-edit-color:$wd-ctrl-color !default;
+$wd-edit-border:$wd-ctrl-border !default;
+$wd-edit-border-focus:$wd-ctrl-border-focus !default;
+$wd-edit-bg-hover:$wd-ctrl-bg-hover !default;
 
-$wd-btn-bg:('light':#cfcfcf,'dark':#808080) !default;
-$wd-btn-color:('light':#000000,'dark':#000000) !default;
-$wd-btn-border:$wd-border !default;
-$wd-btn-border-focus:('light':#353535,'dark':#3476BC) !default;
+$wd-btn-bg:$wd-ctrl-bg !default;
+$wd-btn-color:$wd-ctrl-color !default;
+$wd-btn-border:$wd-ctrl-border !default;
+$wd-btn-border-focus:$wd-ctrl-border-focus !default;
 
+
+$wd-cb-bg:$wd-ctrl-bg !default;
+$wd-cb-bg-hover:$wd-ctrl-bg-hover !default;
+$wd-cb-color:$wd-ctrl-color !default;
+$wd-cb-border:$wd-ctrl-border !default;
+$wd-cb-border-focus:$wd-ctrl-border-focus !default;
 
 
 $wd-size:('small':24px,'normal':32px) !default;
 $wd-scale:('small':0.5,'normal':1) !default;
 $wd-gap:('small':2px,'normal':5px) !default;
+
+// to use: @include transparent-border();
+@mixin transparent-border{
+    border:1px solid rgba(0,0,0,0); 
+}
