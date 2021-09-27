@@ -10,10 +10,10 @@ const remotePath = path.resolve('C:/work/offline/node_modules/fmihel-react-boots
 module.exports = {
   mode: toProduction?'production':'development',
   devtool: toProduction?'':'inline-source-map',
-  entry: './source/Table.jsx',
+  entry: './source/index.js',
   output: {
     path: toRemotePath?remotePath:path.resolve(__dirname, 'dist'),
-    filename: 'react-bootstrap-table'+((toProduction||toRemotePath)?'.min':'')+'.js',
+    filename: 'windeco-components'+((toProduction||toRemotePath)?'.min':'')+'.js',
     libraryTarget: 'commonjs2' // THIS IS THE MOST IMPORTANT LINE! :mindblow: I wasted more than 2 days until realize this was the line most important in all this guide.
   },
   externals: {      
