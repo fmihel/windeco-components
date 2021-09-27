@@ -6,7 +6,7 @@
   "scripts": {
     "run-dev-server": "webpack-dev-server --config webpack.config.dev.js",
     "build": "webpack && webpack --prod",
-    "git-push": "git push windeco-components && git windeco-components --tag",
+    "git-push": "git push windeco-components && git push windeco-components --tag",
     "npm-publish-patch": "npm run build && npm version patch && npm publish && npm run git-push",
     "npm-publish-minor": "npm run build && npm version minor && npm publish && npm run git-push",
     "npm-publish-major": "npm run build && npm version major && npm publish && npm run git-push"
