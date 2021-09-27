@@ -1,6 +1,6 @@
 {
   "name": "fmihel-windeco-components",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "components for orders windeco",
   "main": "source/index.js",
   "scripts": {
