@@ -43,12 +43,12 @@ export default class ComboBox extends React.Component {
 
     render() {
         const {
-            idFieldName, visible, placeholder, disable, dim,
+            idFieldName, visible, placeholder, disable, dim, labelName,
         } = this.props;
         const { id } = this.state;
         const display = (visible ? 'flex' : 'none');
         const list = this._normalizeData(this.props.list, idFieldName);
-
+        const name = (labelName ? { id: labelName } : {});
         const { select } = this.state;
 
         return (
@@ -57,6 +57,7 @@ export default class ComboBox extends React.Component {
                     className = 'wd-combobox'
                     value={select}
                     onChange ={this.onChange}
+                    {...name}
                 >
                     { typeof placeholder === 'string' && <option disabled value={-1}> {placeholder} </option>}
                     {Array.isArray(list) && list.map((item) => <ComboBoxItem
@@ -72,6 +73,7 @@ export default class ComboBox extends React.Component {
     }
 }
 ComboBox.defaultProps = {
+    labelName: undefined,
     id: '',
     select: -1, // id of selected
     idFieldName: 'id',

@@ -7,27 +7,29 @@ export default class Edit extends React.Component {
         super(p);
         binds(this, 'onChange');
         this.state = {
-            value: this.props.value,
+            value: '',
         };
     }
 
     onChange(e) {
         if (this.props.onChange) {
             this.props.onChange({ id: this.props.id, value: e.target.value });
-        }/* else {
-            this.setState({ id: this.props.id, value: e.target.value });
-        } */
+        } else {
+            this.setState({ value: e.target.value });
+        }
     }
 
     render() {
         const {
-            dim, disabled, visible, placeholder, disable,
+            dim, disabled, visible, placeholder, disable, labelName,
         } = this.props;
-        // const value = this.props.onChange ? this.props.value : this.state.value;
-        // const { value } = this.props;
-        const value = this.props.value !== undefined ? this.props.value : this.props.children;
+
+        const propsValue = (this.props.value !== undefined ? this.props.value : this.props.children);
+        const value = (this.props.onChange ? propsValue : this.state.value);
+
         const editInputClass = `wd-edit-input${disabled ? ' wd-edit-disabled' : ''}`;
         const display = (visible ? 'flex' : 'none');
+        const name = (labelName ? { id: labelName } : {});
         return (
             <div className='wd-edit-frame' style={{ display }}>
                 <input
@@ -37,6 +39,7 @@ export default class Edit extends React.Component {
                     value={value}
                     disabled={!!disabled}
                     placeholder={placeholder}
+                    {...name}
                 />
                 {!disable.dim && <div className="wd-edit-dim">{dim}</div>}
             </div>

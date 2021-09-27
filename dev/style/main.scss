@@ -56,3 +56,13 @@ body{
         color: map-get($wd-color,#{$name});
     }
 }
+
+@each $name in $wd-sizes{
+    $size:map-get($wd-size,#{$name});
+    .#{$name} {
+        .wd-label{
+            min-width:$size*10 !important;
+        }
+        
+    }
+}

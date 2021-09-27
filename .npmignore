@@ -6,3 +6,4 @@ test
 .gitignore
 .eslintrs.js
 webpack.config.js
+webpack.config.dev.js

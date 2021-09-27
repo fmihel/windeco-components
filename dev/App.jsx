@@ -7,6 +7,8 @@ import React from 'react';
 import Edit from '../source/Edit/Edit.jsx';
 import Btn from '../source/Btn/Btn.jsx';
 import ComboBox from '../source/ComboBox/ComboBox.jsx';
+import CheckBox from '../source/CheckBox/CheckBox.jsx';
+import Label from '../source/Label/Label.jsx';
 
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
@@ -46,11 +48,16 @@ class App extends React.Component {
                     <Block> <Edit value="text"/></Block>
                     <Block> <Edit value="disabled" disabled={1} /></Block>
                     <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
+                    <Block> <Label caption="label"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
                     <Head>Btn</Head>
                     <Block> <Btn>button</Btn></Block>
                     <Head>ComboBox</Head>
                     <Block> <ComboBox/></Block>
-                    <Block> <ComboBox disable={{ dim: false }}/></Block>
+                    <Block> <Label caption="combobox"><ComboBox disable={{ dim: false }}/></Label></Block>
+                    <Head>CheckBox</Head>
+                    <Block> <CheckBox/></Block>
+                    <Block> <Label caption='check'><CheckBox /></Label></Block>
+
                 </div>
             </>
         );

@@ -2,7 +2,7 @@
   "name": "fmihel-windeco-components",
   "version": "0.0.1",
   "description": "components for orders windeco",
-  "main": "dist/windeco-components.min.js",
+  "main": "source/index.js",
   "scripts": {
     "run-dev-server": "webpack-dev-server --config webpack.config.dev.js",
     "build": "webpack && webpack --prod",
@@ -16,7 +16,9 @@
     "url": "git+https://github.com/fmihel/windeco-components.git"
   },
   "keywords": [
-    "react"
+    "react",
+    "components",
+    "javascript"
   ],
   "author": "fmihel76@gmail.com",
   "license": "MIT",
@@ -26,8 +28,8 @@
   "homepage": "https://github.com/fmihel/windeco-components#readme",
   "peerDependencies": {
     "fmihel-polyfills": ">=0.2.0",
+    "fmihel-browser-lib": "^1.14.0",
     "jquery": "^3.4.1",
-    "popper.js": "^1.16.1",
     "react": ">=16.13.1",
     "react-dom": ">=16.13.1",
     "prop-types": "^15.7.2"
@@ -51,7 +53,6 @@
     "eslint-plugin-react": "^7.20.3",
     "exports-loader": "^0.7.0",
     "fmihel-polyfills": "^0.3.0",
-    "fmihel-redux-wrapper": "^1.2.0",
     "fmihel-server-lib": "^0.1.0",
     "html-webpack-plugin": "^4.3.0",
     "jquery": "^3.5.1",

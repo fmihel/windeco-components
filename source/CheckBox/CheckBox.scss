@@ -1,0 +1,27 @@
+@import '../../style/default.vars.scss';
+
+
+@each $name in $wd-themes{
+    
+    .#{$name} {
+        .ch-frame{
+            input[type=checkbox] {
+
+            }
+                
+        }
+}}
+
+@each $name in $wd-sizes{
+    $size:map-get($wd-size,#{$name});
+    .#{$name} {
+        .ch-frame{
+            width: $size;
+            height:$size;
+            input[type=checkbox] {
+                width: $size;
+                height: $size;
+            }
+                
+        }
+}}
