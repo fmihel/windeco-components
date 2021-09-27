@@ -2,7 +2,7 @@
   "name": "fmihel-windeco-components",
   "version": "0.0.3",
   "description": "components for orders windeco",
-  "main": "source/index.js",
+  "main": "dist/windeco-components.min.js",
   "scripts": {
     "run-dev-server": "webpack-dev-server --config webpack.config.dev.js",
     "build": "webpack && webpack --prod",
