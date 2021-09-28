@@ -1,9 +1,15 @@
-import Edit from './Edit/Edit.jsx';
-import Btn from './Btn/Btn.jsx';
-import CheckBox from './CheckBox/CheckBox.jsx';
-import Label from './Label/Label.jsx';
-import ComboBox from './ComboBox/ComboBox.jsx';
+import REdit from './Edit/Edit.jsx';
+import RBtn from './Btn/Btn.jsx';
+import RCheckBox from './CheckBox/CheckBox.jsx';
+import RLabel from './Label/Label.jsx';
+import RComboBox from './ComboBox/ComboBox.jsx';
 
 export default {
-    Edit, Btn, CheckBox, Label, ComboBox,
+    Edit: REdit, Btn: RBtn, CheckBox: RCheckBox, Label: RLabel, ComboBox: RComboBox,
 };
+
+export const ComboBox = RComboBox;
+export const Btn = RBtn;
+export const CheckBox = RCheckBox;
+export const Edit = REdit;
+export const Label = RLabel;

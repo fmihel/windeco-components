@@ -10,17 +10,23 @@
             &:focus { 
                 outline: 1px solid map-get($wd-btn-border-focus,#{$name});
             }
+            &:hover{
+               background-color:map-get($wd-ctrl-bg-hover,#{$name});
+            }
         }
     }
 }
 
 @each $name in $wd-sizes{
     $size:map-get($wd-size,#{$name});
+    $font-size:map-get($wd-font-size,#{$name});
     .#{$name}{
         .wd-btn{
             box-sizing: border-box;
             height:$size;
             min-width:$size;
+            border-radius: 3px;
+            font-size: $font-size;
         }     
     }
 }

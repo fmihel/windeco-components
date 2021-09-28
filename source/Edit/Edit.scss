@@ -22,10 +22,9 @@
                 border-left:0px;
                 border-right:0px;
                 border-bottom:1px solid rgb(46, 46, 46);
-                background-color: rgba(151, 109, 109, 0);
                 border-radius: 0em;
                 color:gray;
-                background-color: map-get($wd-bg,#{$name}) !important;
+                background-color: rgba(0,0,0,0) !important;
             }
             .wd-edit-dim{
 
