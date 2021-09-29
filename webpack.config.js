@@ -4,7 +4,7 @@ const {defArg} = require('fmihel-server-lib');
 
 const toRemotePath = defArg('topath');
 const toProduction = !toRemotePath && defArg('prod');
-const remotePath = path.resolve('E:/work/windeco/order-karniz/node_modules/fmihel-windeco-components/','dist');
+const remotePath = path.resolve('E:/work/windeco/order-header/node_modules/fmihel-windeco-components/','dist');
 
 
 module.exports = {

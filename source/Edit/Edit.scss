@@ -26,6 +26,10 @@
                 color:gray;
                 background-color: rgba(0,0,0,0) !important;
             }
+            .wd-edit-readonly{
+                background-color: rgba(0,0,0,0) !important;
+                color: map-get($wd-edit-color,#{$name})!important;
+            }
             .wd-edit-dim{
 
             }

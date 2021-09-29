@@ -22,15 +22,18 @@ export default class Edit extends React.Component {
 
     render() {
         const {
-            dim, disabled, visible, placeholder, disable, labelName,
+            dim, disabled, visible, placeholder, disable, labelName, readonly,
         } = this.props;
 
         const propsValue = (this.props.value !== undefined ? this.props.value : this.props.children);
-        const value = (this.props.onChange ? propsValue : this.state.value);
+        const value = ((this.props.onChange || readonly) ? propsValue : this.state.value);
 
-        const editInputClass = `wd-edit-input${disabled ? ' wd-edit-disabled' : ''}`;
+        let editInputClass = `wd-edit-input${disabled ? ' wd-edit-disabled' : ''}`;
+        editInputClass += (readonly ? ' wd-edit-readonly' : '');
+
         const display = (visible ? 'flex' : 'none');
         const name = (labelName ? { id: labelName } : {});
+        const readonlyProp = (readonly ? { readOnly: 'readonly' } : {});
         return (
             <div className='wd-edit-frame' style={{ display }}>
                 <input
@@ -40,6 +43,7 @@ export default class Edit extends React.Component {
                     value={value}
                     disabled={!!disabled}
                     placeholder={placeholder}
+                    {...readonlyProp}
                     {...name}
                 />
                 {!disable.dim && <div className="wd-edit-dim">{dim}</div>}
@@ -55,6 +59,7 @@ Edit.defaultProps = {
     value: undefined,
     visible: 1,
     placeholder: '',
+    readonly: false,
     disable: {
         dim: false,
     },
