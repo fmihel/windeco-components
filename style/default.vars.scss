@@ -2,31 +2,34 @@ $wd-themes:('light','dark') !default;
 $wd-sizes:('normal','small') !default;
 
 
-$wd-font-size:('small':9px,'normal':10px) !default;
+$wd-font-size:('small':9px,'normal':12px) !default;
 
 
-$wd-bg:('light':#ffffff,'dark':#242424) !default;
-$wd-color:('light':#000000,'dark':#646464) !default;
-$wd-border:('light':#353535,'dark':#353535) !default;
-$wd-border-focus:('light':#fc0000,'dark':#3476BC) !default;
+$wd-bg:('light':#F7F7F7,'dark':#1F201C) !default;
+$wd-color:('light':#696969,'dark':#646464) !default;
+$wd-border:('light':#DCDCDC,'dark':#3D3E38) !default;
+$wd-border-focus:('light':#92BCD8,'dark':#3476BC) !default;
 
-$wd-ctrl-bg:('light':#cfcfcf,'dark':#a0a0a0) !default;
-$wd-ctrl-color:('light':#000000,'dark':#000000) !default;
+$wd-ctrl-bg:('light':#FDFDFD,'dark':#343530) !default;
+$wd-ctrl-bg-hover:$wd-ctrl-bg !default;
+$wd-ctrl-color:('light':#000000,'dark':#cfcfcf) !default;
+$wd-ctrl-color-readonly:('light':#000000,'dark':#cfcfcf) !default;
+$wd-ctrl-color-disable:('light':#797979,'dark':#cfcfcf) !default;
+$wd-ctrl-color-hover:('light':#000000,'dark':#646464) !default;
 $wd-ctrl-border:$wd-border !default;
 $wd-ctrl-border-focus:$wd-border-focus !default;
-
-$wd-ctrl-bg-hover:('light':#cfcfcf,'dark':#b3b3b3) !default;
-$wd-ctrl-color-hover:('light':#000000,'dark':#646464) !default;
 $wd-ctrl-border-hover:$wd-border !default;
 
 
 $wd-edit-bg:$wd-ctrl-bg !default;
+$wd-edit-bg-hover:$wd-ctrl-bg-hover !default;
 $wd-edit-color:$wd-ctrl-color !default;
+$wd-edit-color-readonly:$wd-ctrl-color-readonly !default;
+$wd-edit-color-disable:$wd-ctrl-color-disable !default;
 $wd-edit-border:$wd-ctrl-border !default;
 $wd-edit-border-focus:$wd-ctrl-border-focus !default;
-$wd-edit-bg-hover:$wd-ctrl-bg-hover !default;
 
-$wd-btn-bg:$wd-ctrl-bg !default;
+$wd-btn-bg:('light':#E2E2E2,'dark':#343530) !default;
 $wd-btn-color:$wd-ctrl-color !default;
 $wd-btn-border:$wd-ctrl-border !default;
 $wd-btn-border-focus:$wd-ctrl-border-focus !default;

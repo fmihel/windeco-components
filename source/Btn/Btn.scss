@@ -5,6 +5,7 @@
     .#{$name} {
         .wd-btn{
             background-color: map-get($wd-btn-bg,#{$name});
+            color: map-get($wd-ctrl-color,#{$name});
             border:1px solid map-get($wd-btn-border,#{$name});
             outline: none;
             &:focus { 

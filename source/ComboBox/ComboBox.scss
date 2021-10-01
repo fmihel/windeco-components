@@ -17,7 +17,9 @@ select,option{
             background-color: map-get($wd-cb-bg,#{$name});
             background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAATklEQVR4nO3OMQoAIAwEwXtn/uV7tVFIocRCI8JOHbInAQDwkSrJNu6s3x41nkYjdu+ujLgajyIp8VUsNT4bkR4fiouX7Lgf8SwOADiiAWpFIUWn1ypTAAAAAElFTkSuQmCC'); 
             background-repeat: no-repeat, repeat;
-            
+            border: 1px solid map-get($wd-edit-border,#{$name});
+
+            color: map-get($wd-cb-color,#{$name});
                 &::-ms-expand { 
                     display: none; 
                 } 
@@ -59,6 +61,8 @@ select,option{
             align-items: stretch;            
 
         .wd-combobox{ 
+            font-size: map-get($wd-font-size,#{$name});
+
             box-sizing: border-box; 
             height: $size;
 
@@ -67,7 +71,6 @@ select,option{
             padding-left:5px;
             margin: 0; 
             
-            border-radius: .3em;
             -moz-appearance: none;
             -webkit-appearance: none;
             appearance: none;

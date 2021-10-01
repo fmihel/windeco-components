@@ -10,6 +10,8 @@
                 color: map-get($wd-edit-color,#{$name});
                 @include transparent-border();
                 outline: none;
+                border: 1px solid map-get($wd-edit-border,#{$name});
+
                 &:focus { 
                     border: 1px solid map-get($wd-edit-border-focus,#{$name});
                 }
@@ -21,14 +23,19 @@
                 border-top:0px;
                 border-left:0px;
                 border-right:0px;
-                border-bottom:1px solid rgb(46, 46, 46);
-                border-radius: 0em;
-                color:gray;
+                border-bottom: 1px solid map-get($wd-edit-border,#{$name});
+                color: map-get($wd-edit-color-disable,#{$name});
+                //color:gray;
                 background-color: rgba(0,0,0,0) !important;
             }
             .wd-edit-readonly{
+                border-top:1px solid rgba(0,0,0,0);
+                border-left:1px solid rgba(0,0,0,0);
+                border-right:1px solid rgba(0,0,0,0);
+                border-bottom: 1px solid map-get($wd-edit-border,#{$name});
+
                 background-color: rgba(0,0,0,0) !important;
-                color: map-get($wd-edit-color,#{$name})!important;
+                color: map-get($wd-edit-color-readonly,#{$name})!important;
             }
             .wd-edit-dim{
 
@@ -53,11 +60,12 @@
             align-items: stretch;
             
             .wd-edit-input{
-                border-radius: .3em;                
                 flex: 1 1 auto;
                 margin: 0px;
                 padding: 0px;
                 text-indent:5px;
+
+                font-size: map-get($wd-font-size,#{$name});
                 
             }
             .wd-edit-disabled{

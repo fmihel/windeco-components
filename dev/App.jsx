@@ -45,10 +45,11 @@ class App extends React.Component {
                 </div>
                 <div className={`content ${this.state.theme} ${this.state.size}`}>
                     <Head>Edit</Head>
-                    <Block> <Edit value="text"/></Block>
+                    <Block> <Edit> text from child</Edit></Block>
                     <Block> <Edit value="disabled" disabled={1} /></Block>
                     <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
                     <Block> <Label caption="label"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
+                    <Block> <Label caption="readonly"><Edit value="eadonly text in edit" dim={''} readonly={true}/></Label></Block>
                     <Head>Btn</Head>
                     <Block> <Btn>button</Btn></Block>
                     <Head>ComboBox</Head>

@@ -8,7 +8,7 @@ export default class Edit extends React.Component {
         super(p);
         binds(this, 'onChange');
         this.state = {
-            value: '',
+            value: (this.props.value !== undefined ? this.props.value : this.props.children),
         };
     }
 
