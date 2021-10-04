@@ -2,9 +2,15 @@ const path = require('path');
 const {defArg} = require('fmihel-server-lib');
 //const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const toRemotePath = defArg('topath');
+const toRemotePath = defArg('tooh') || defArg('took') || defArg('too');
 const toProduction = !toRemotePath && defArg('prod');
-const remotePath = path.resolve('E:/work/windeco/order-header/node_modules/fmihel-windeco-components/','dist');
+let remotePath;
+if (defArg('tooh'))
+  remotePath = path.resolve('E:/work/windeco/order-header/node_modules/fmihel-windeco-components/','dist');
+else if (defArg('took'))
+  remotePath = path.resolve('E:/work/windeco/order-karniz/node_modules/fmihel-windeco-components/','dist');
+else if (defArg('too'))
+  remotePath = path.resolve('E:/work/windeco/order/node_modules/fmihel-windeco-components/','dist');
 
 
 module.exports = {

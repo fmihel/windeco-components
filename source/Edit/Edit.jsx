@@ -8,8 +8,13 @@ export default class Edit extends React.Component {
         super(p);
         binds(this, 'onChange');
         this.state = {
-            value: (this.props.value !== undefined ? this.props.value : this.props.children),
+            value: this.getValue(),
         };
+    }
+
+    getValue() {
+        const value = this.props.value !== undefined ? this.props.value : this.props.children;
+        return value === undefined ? '' : value;
     }
 
     onChange(e) {
@@ -25,8 +30,7 @@ export default class Edit extends React.Component {
             dim, disabled, visible, placeholder, disable, labelName, readonly,
         } = this.props;
 
-        const propsValue = (this.props.value !== undefined ? this.props.value : this.props.children);
-        const value = ((this.props.onChange || readonly) ? propsValue : this.state.value);
+        const value = ((this.props.onChange || readonly) ? this.getValue() : this.state.value);
 
         let editInputClass = `wd-edit-input${disabled ? ' wd-edit-disabled' : ''}`;
         editInputClass += (readonly ? ' wd-edit-readonly' : '');
@@ -56,7 +60,7 @@ Edit.defaultProps = {
     disabled: 0,
     onChange: undefined,
     dim: 'm',
-    value: undefined,
+    value: '',
     visible: 1,
     placeholder: '',
     readonly: false,
