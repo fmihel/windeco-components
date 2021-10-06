@@ -14,7 +14,7 @@ export default class CheckBox extends React.Component {
 
     onChange(o) {
         if (this.props.onChange) {
-            if (!this.props.asRadio || o.target.checked) {
+            if (!ut.toBool(this.props.asRadio) || o.target.checked) {
                 this.props.onChange({ id: this.props.id, checked: (o.target.checked ? 1 : 0) });
             }
         } else {
