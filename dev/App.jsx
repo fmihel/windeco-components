@@ -20,6 +20,7 @@ class App extends React.Component {
         this.state = {
             theme: storage.get('theme-style', { default: 'dark' }),
             size: storage.get('theme-size', { default: 'normal' }),
+            checked: 0,
         };
     }
 
@@ -58,6 +59,8 @@ class App extends React.Component {
                     <Head>CheckBox</Head>
                     <Block> <CheckBox/></Block>
                     <Block> <Label caption='check'><CheckBox /></Label></Block>
+                    <Block> <Label caption='on change'><Btn onClick={() => { this.setState({ checked: 0 }); }} >on change false</Btn></Label></Block>
+                    <Block> <Label caption='on change'><CheckBox checked={this.state.checked} asRadio={1} onChange={() => { this.setState({ checked: 1 }); }}/></Label></Block>
 
                 </div>
             </>
