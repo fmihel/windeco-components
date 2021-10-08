@@ -1,51 +1,90 @@
-@import '../../styles/define.scss';
+@import '../../style/default.vars.scss';
+
 
 //$min-width:100px;
-@each $theme in $themes{
+@each $theme in $wd-themes{
     .#{$theme}{
-        .table-container{
-            width: 100%;
-            overflow: auto;
-            // position: absolute;
-            .table{
+        .wd-table-container{
+            color:map-get($wd-tab-color,#{$theme});
+            .wd-table{
                 width: 100%;
+                border:1px solid map-get($wd-tab-border,#{$theme});
+                
                 thead{
                     tr{
-                        background-color: silver;
-                        border:1px solid gray;
+                        background-color:map-get($wd-tab-head-bg,#{$theme});
+                        color:map-get($wd-tab-head-color,#{$theme});
+                        border:1px solid map-get($wd-tab-head-border,#{$theme});
+                        
                     }
                     th{
-                        border-left:1px solid gray;
+                        border-left:map-get($wd-tab-head-border-vert-fat,#{$theme}) solid map-get($wd-tab-head-border-vert,#{$theme});
+                        &:nth-child(1){
+                            border-left:1px solid map-get($wd-tab-head-border,#{$theme});
+                        }
                     }
                 }
                 tbody{
                     tr{
-                        border-bottom:1px solid rgb(92, 92, 92);
-                        color:map-get($color,#{$theme});
-                        height:20px;
+                        border-bottom:1px solid map-get($wd-tab-row-border-bottom,#{$theme});
+                        
                         td{
-                            border-left:1px solid  rgb(92, 92, 92);
+                            border-left:1px solid  map-get($wd-tab-row-border-vert,#{$theme});;
                             padding-left:5px;
+                            &:nth-child(1){
+                                border-left:1px solid map-get($wd-tab-border,#{$theme});
+                            }
                         }
+
                         &:nth-child(2n){
-                            background-color: rgb(61, 61, 61);
+                            background-color:map-get($wd-tab-bg2,#{$theme});
                         }
-                        &:hover{
-                            background-color:#616161;
-                            text-shadow: 0 0 0.7px black;
-                            color:white;
-                        }
-                        &:active{
-                            background-color:#007BFF !important;
-                            color:white !important;
+                        &:last-child{
+                            border-bottom:1px solid map-get($wd-tab-border,#{$theme});
                             
                         }
+                        &:hover{
+                            background-color:map-get($wd-tab-hover-bg,#{$theme});
+                            color:map-get($wd-tab-hover-color,#{$theme});
+                            text-shadow: 0 0 0.7px black;
+                        }
+                        &:active{
+                            background-color:map-get($wd-tab-row-active-bg,#{$theme}) !important;
+                            color:map-get($wd-tab-row-active-color,#{$theme}) !important;
+                                
+                        }
                     }
-                    .row-selected{
-                        background-color:#007BFF !important;
-                        color:white !important;
+                    .wd-row-selected{
+                        background-color:map-get($wd-tab-row-active-bg,#{$theme}) !important;
+                        color:map-get($wd-tab-row-active-color,#{$theme}) !important;
+                        border-color: 1px solid map-get($wd-tab-row-active-bg,#{$theme});
                     }
 
+                }
+            }
+        }
+    }
+}
+
+@each $name in $wd-sizes{
+    $size:map-get($wd-size,#{$name});
+    .#{$name}{
+        .wd-table-container{
+            width:100%;
+            overflow: auto;
+            font-size:  map-get($wd-font-size,#{$name});
+            thead{
+                tr{
+                    min-height: map-get($wd-tab-row-height,#{$name})*1.5;
+                    height: map-get($wd-tab-row-height,#{$name})*1.5;
+                }
+            }
+            tbody{
+                tr{
+                    height:map-get($wd-tab-row-height,#{$name});
+                    td{
+                        padding-left: map-get($wd-gap,#{$name})*1.5;
+                    }
                 }
             }
         }

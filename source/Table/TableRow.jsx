@@ -15,7 +15,7 @@ export default class TableRow extends React.Component {
     render() {
         const { row, fields, selected } = this.props;
         return (
-            <tr className={`row${selected ? ' row-selected' : ''}`} onClick={this.onClick}>
+            <tr className={`wd-row${selected ? ' wd-row-selected' : ''}`} onClick={this.onClick}>
                 {fields.map((field) => <TableCol key={field.name} {...field} value={row[field.name]}/>)}
             </tr>
         );

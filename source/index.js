@@ -5,6 +5,7 @@ import RLabel from './Label/Label.jsx';
 import RComboBox from './ComboBox/ComboBox.jsx';
 import RWaiter from './Waiter/Waiter.jsx';
 import RModal from './Modal/Modal.jsx';
+import RTable from './Table/Table.jsx';
 
 export default {
     Edit: REdit,
@@ -14,6 +15,7 @@ export default {
     ComboBox: RComboBox,
     Waiter: RWaiter,
     Modal: RModal,
+    Table: RTable,
 };
 
 export const ComboBox = RComboBox;
@@ -23,3 +25,4 @@ export const Edit = REdit;
 export const Label = RLabel;
 export const Waiter = RWaiter;
 export const Modal = RModal;
+export const Table = RTable;

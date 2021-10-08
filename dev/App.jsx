@@ -9,6 +9,7 @@ import Btn from '../source/Btn/Btn.jsx';
 import ComboBox from '../source/ComboBox/ComboBox.jsx';
 import CheckBox from '../source/CheckBox/CheckBox.jsx';
 import Label from '../source/Label/Label.jsx';
+import Table from '../source/Table/Table.jsx';
 
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
@@ -16,7 +17,7 @@ import Block from './jsx/Block.jsx';
 class App extends React.Component {
     constructor(p) {
         super(p);
-        binds(this, 'onTheme', 'onSize');
+        binds(this, 'onTheme', 'onSize', 'onClickTable');
         this.state = {
             theme: storage.get('theme-style', { default: 'dark' }),
             size: storage.get('theme-size', { default: 'normal' }),
@@ -32,6 +33,11 @@ class App extends React.Component {
     onSize(o) {
         storage.set('theme-size', o.currentTarget.id);
         this.setState({ size: o.currentTarget.id });
+    }
+
+    onClickTable(o) {
+        console.log(o);
+        o.sender.select(o.row);
     }
 
     render() {
@@ -50,7 +56,7 @@ class App extends React.Component {
                     <Block> <Edit value="disabled" disabled={1} /></Block>
                     <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
                     <Block> <Label caption="label"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
-                    <Block> <Label caption="readonly"><Edit value="eadonly text in edit" dim={''} readonly={true}/></Label></Block>
+                    <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
                     <Head>Btn</Head>
                     <Block> <Btn>button</Btn></Block>
                     <Head>ComboBox</Head>
@@ -61,6 +67,7 @@ class App extends React.Component {
                     <Block> <Label caption='check'><CheckBox /></Label></Block>
                     <Block> <Label caption='on change'><Btn onClick={() => { this.setState({ checked: 0 }); }} >on change false</Btn></Label></Block>
                     <Block> <Label caption='on change'><CheckBox checked={this.state.checked} asRadio={1} onChange={() => { this.setState({ checked: 1 }); }}/></Label></Block>
+                    <Block> <Table onClick={this.onClickTable}/></Block>
 
                 </div>
             </>

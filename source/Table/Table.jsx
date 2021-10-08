@@ -5,13 +5,13 @@ import TableRow from './TableRow.jsx';
 import TableHead from './TableHead.jsx';
 import './Table.scss';
 import {
-    flex, binds, ut, JX,
+    binds, ut, JX,
 } from 'fmihel-browser-lib';
 
 export default class Table extends React.Component {
     constructor(p) {
         super(p);
-        binds(this, 'onResize', 'onClick');
+        binds(this, 'onResize', 'onClick', 'onDblClick');
 
         this.$parent = undefined;
         this.id = undefined;
@@ -49,6 +49,10 @@ export default class Table extends React.Component {
         if (this.props.onClick) this.props.onClick({ sender: this, row: o });
     }
 
+    onDblClick(o) {
+        if (this.props.onDblClick) this.props.onDblClick({ sender: this, row: o });
+    }
+
     select(row) {
         this.setState({
             selected: row[this.props.id],
@@ -74,7 +78,7 @@ export default class Table extends React.Component {
 
     render() {
         const {
-            css, data, id, fields, stretch,
+            data, id, fields, stretch, addClass,
         } = this.props;
         if (this.id === undefined) this.id = `table-${ut.random_str(5)}`;
         const valid = this._valid(this.props);
@@ -83,9 +87,9 @@ export default class Table extends React.Component {
             style = { height: `${this.state.height}px` };
         }
         return (
-            <div id={this.id} className="table-container" style={style}>
+            <div id={this.id} className={`wd-table-container ${addClass}`} style={style}>
                 { valid
-                && <table className={css.table} style={{ borderCollapse: 'collapse' }}>
+                && <table className='wd-table' style={{ borderCollapse: 'collapse' }}>
                     <thead>
                         <TableHead fields={fields}/>
                     </thead>
@@ -95,6 +99,7 @@ export default class Table extends React.Component {
                             {...this.props}
                             row={row}
                             onClick={this.onClick}
+                            onDblClick={this.onDblClick}
                             selected={(id in row ? row[id] : i) === this.state.selected}
                         />)}
                     </tbody>
@@ -124,10 +129,9 @@ Table.defaultProps = {
         { ID: 4, NAME: 'tori', AGE: 17 },
         { ID: 5, NAME: 'fri', AGE: 42 },
     ],
+    addClass: '',
     stretch: true,
-    css: {
-        table: 'table',
-    },
     onClick: undefined,
+    onDblClick: undefined,
     onMount: undefined,
 };

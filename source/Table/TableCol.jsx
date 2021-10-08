@@ -8,7 +8,7 @@ export default class TableCol extends React.Component {
     render() {
         const { value } = this.props;
         return (
-            <td className="col">{value}</td>
+            <td className="wd-col">{value}</td>
         );
     }
 }
