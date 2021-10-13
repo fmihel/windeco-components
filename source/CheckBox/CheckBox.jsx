@@ -1,5 +1,4 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import './CheckBox.scss';
 import React from 'react';
 import { binds, ut } from 'fmihel-browser-lib';
 

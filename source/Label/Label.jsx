@@ -1,6 +1,5 @@
 /* eslint-disable camelcase */
 /* eslint-disable import/no-extraneous-dependencies */
-import './Label.scss';
 import { ut } from 'fmihel-browser-lib';
 import React from 'react';
 // import { flex, binds } from 'fmihel-browser-lib'

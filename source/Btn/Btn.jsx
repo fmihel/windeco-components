@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { binds } from 'fmihel-browser-lib';
 import React from 'react';
-import './Btn.scss';
 
 export default class Btn extends React.Component {
     constructor(p) {

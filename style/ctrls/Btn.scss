@@ -1,4 +1,10 @@
-@import '../../style/default.vars.scss';
+@import '../vars.scss';
+
+
+$wd-btn-bg:('light':#ff0101,'dark':#343530) !default;
+$wd-btn-color:$wd-ctrl-color !default;
+$wd-btn-border:$wd-ctrl-border !default;
+$wd-btn-border-focus:$wd-ctrl-border-focus !default;
 
 
 @each $name in $wd-themes{

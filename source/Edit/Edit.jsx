@@ -1,5 +1,4 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import './Edit.scss';
 import React from 'react';
 import { binds } from 'fmihel-browser-lib';
 

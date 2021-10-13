@@ -1,4 +1,12 @@
-@import '../../style/default.vars.scss';
+@import '../vars.scss';
+
+$wd-edit-bg:$wd-ctrl-bg !default;
+$wd-edit-bg-hover:$wd-ctrl-bg-hover !default;
+$wd-edit-color:$wd-ctrl-color !default;
+$wd-edit-color-readonly:$wd-ctrl-color-readonly !default;
+$wd-edit-color-disable:$wd-ctrl-color-disable !default;
+$wd-edit-border:$wd-ctrl-border !default;
+$wd-edit-border-focus:$wd-ctrl-border-focus !default;
 
 
 @each $name in $wd-themes{

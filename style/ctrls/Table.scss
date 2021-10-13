@@ -1,4 +1,27 @@
-@import '../../style/default.vars.scss';
+@import '../vars.scss';
+
+
+$wd-tab-bg:$wd-ctrl-bg !default;
+$wd-tab-bg2:('light':#ECECEC,'dark':#292929) !default;
+$wd-tab-color:$wd-ctrl-color !default;
+$wd-tab-border:('light':#DCDCDC,'dark':#3D3E38) !default;
+
+$wd-tab-hover-bg:('light':#DCDCDC,'dark':#2e2e2e) !default;
+$wd-tab-hover-color:('light':#000000,'dark':#ffffff) !default;
+
+
+$wd-tab-head-bg:('light':#E2E2E2,'dark':#1A1B19) !default;
+$wd-tab-head-color:('light':#020202,'dark':#8f8f8f) !default;
+$wd-tab-head-border:$wd-tab-border !default;
+$wd-tab-head-border-vert:('light':#bdbdbd,'dark':#00000000) !default;
+$wd-tab-head-border-vert-fat:('light':0px,'dark':0px) !default;
+
+$wd-tab-row-height:$wd-size !default;
+$wd-tab-row-border-bottom:('light':#FDFDFD,'dark':#3a3a3a48) !default;
+$wd-tab-row-border-vert:('light':#DCDCDC,'dark':#3a3a3a) !default;
+
+$wd-tab-row-active-bg:('light':#1E90FF,'dark':#1e8fff5d) !default;
+$wd-tab-row-active-color:('light':#ffffff,'dark':#ffffff) !default;
 
 
 //$min-width:100px;

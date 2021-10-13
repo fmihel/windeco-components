@@ -3,9 +3,8 @@
 import React from 'react';
 import TableRow from './TableRow.jsx';
 import TableHead from './TableHead.jsx';
-import './Table.scss';
 import {
-    binds, ut, JX,
+    binds, ut,
 } from 'fmihel-browser-lib';
 
 export default class Table extends React.Component {

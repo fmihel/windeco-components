@@ -1,6 +1,13 @@
 //@import '../../styles/define.scss';
-@import '../../style/default.vars.scss';
+@import '../vars.scss';
 
+
+
+$wd-cb-bg:$wd-ctrl-bg !default;
+$wd-cb-bg-hover:$wd-ctrl-bg-hover !default;
+$wd-cb-color:$wd-ctrl-color !default;
+$wd-cb-border:$wd-ctrl-border !default;
+$wd-cb-border-focus:$wd-ctrl-border-focus !default;
 
 select,option{
     //font-size:8pt;
@@ -17,7 +24,7 @@ select,option{
             background-color: map-get($wd-cb-bg,#{$name});
             background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAATklEQVR4nO3OMQoAIAwEwXtn/uV7tVFIocRCI8JOHbInAQDwkSrJNu6s3x41nkYjdu+ujLgajyIp8VUsNT4bkR4fiouX7Lgf8SwOADiiAWpFIUWn1ypTAAAAAElFTkSuQmCC'); 
             background-repeat: no-repeat, repeat;
-            border: 1px solid map-get($wd-edit-border,#{$name});
+            border: 1px solid map-get($wd-cb-border,#{$name});
 
             color: map-get($wd-cb-color,#{$name});
                 &::-ms-expand { 
@@ -31,7 +38,7 @@ select,option{
                     //box-shadow: 0 0 0px 1px rgba(59, 153, 252, .7);
                     //box-shadow: 0 0 0 1px -moz-mac-focusring; 
                     outline: none; 
-                    border: 1px solid map-get($wd-edit-border-focus,#{$name});
+                    border: 1px solid map-get($wd-cb-border-focus,#{$name});
                 } 
                 option { 
                     font-weight:normal; 
