@@ -26,7 +26,7 @@ export default class Edit extends React.Component {
 
     render() {
         const {
-            dim, disabled, visible, placeholder, disable, labelName, readonly,
+            dim, disabled, visible, placeholder, disable, labelName, readonly, addClass,
         } = this.props;
 
         const value = ((this.props.onChange || readonly) ? this.getValue() : this.state.value);
@@ -42,7 +42,7 @@ export default class Edit extends React.Component {
                 <input
                     type='text'
                     onChange = {this.onChange}
-                    className={editInputClass}
+                    className={`${editInputClass} ${addClass}`}
                     value={value}
                     disabled={!!disabled}
                     placeholder={placeholder}
@@ -66,4 +66,5 @@ Edit.defaultProps = {
     disable: {
         dim: false,
     },
+    addClass: '',
 };

@@ -1,7 +1,7 @@
 @import '../vars.scss';
 
 
-$wd-btn-bg:('light':#ff0101,'dark':#343530) !default;
+$wd-btn-bg:('light':#c4c4c4,'dark':#343530) !default;
 $wd-btn-color:$wd-ctrl-color !default;
 $wd-btn-border:$wd-ctrl-border !default;
 $wd-btn-border-focus:$wd-ctrl-border-focus !default;
@@ -18,7 +18,11 @@ $wd-btn-border-focus:$wd-ctrl-border-focus !default;
                 outline: 1px solid map-get($wd-btn-border-focus,#{$name});
             }
             &:hover{
-               background-color:map-get($wd-ctrl-bg-hover,#{$name});
+                background-color:darken(map-get($wd-btn-bg,#{$name}), 5%);
+
+               //background-color:map-get($wd-ctrl-bg-hover,#{$name});
+               //filter: brightness(85%);
+               //color: map-get($wd-ctrl-color,#{$name});
             }
         }
     }

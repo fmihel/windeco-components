@@ -13,12 +13,12 @@ export default class Label extends React.Component {
     }
 
     render() {
-        const { caption } = this.props;
+        const { caption, addClass } = this.props;
         const { labelName } = this.state;
         return (
             <div className="wd-label-frame">
 
-                <label htmlFor={labelName} className="wd-label">{caption}</label>
+                <label htmlFor={labelName} className={`wd-label ${addClass}`}>{caption}</label>
 
                 <div>
                     {React.cloneElement(this.props.children, { labelName })}
@@ -29,4 +29,5 @@ export default class Label extends React.Component {
 }
 Label.defaultProps = {
     caption: '',
+    addClass: '',
 };

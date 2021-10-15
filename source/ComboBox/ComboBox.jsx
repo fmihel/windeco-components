@@ -42,7 +42,7 @@ export default class ComboBox extends React.Component {
 
     render() {
         const {
-            idFieldName, visible, placeholder, disable, dim, labelName,
+            idFieldName, visible, placeholder, disable, dim, labelName, addClass,
         } = this.props;
         const { id } = this.state;
         const display = (visible ? 'flex' : 'none');
@@ -53,7 +53,7 @@ export default class ComboBox extends React.Component {
         return (
             <div className='wd-combobox-frame' id={id} style={{ display }}>
                 <select
-                    className = 'wd-combobox'
+                    className = {`wd-combobox ${addClass}`}
                     value={select}
                     onChange ={this.onChange}
                     {...name}
@@ -89,5 +89,6 @@ ComboBox.defaultProps = {
     disable: {
         dim: false,
     },
+    addClass: '',
 
 };

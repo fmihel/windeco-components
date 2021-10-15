@@ -22,7 +22,7 @@ export default class CheckBox extends React.Component {
     }
 
     render() {
-        const { visible, labelName } = this.props;
+        const { visible, labelName, addClass } = this.props;
         const checked = ut.toBool((this.props.onChange ? this.props.checked : this.state.checked));
         const display = (visible ? 'flex' : 'none');
         const name = (labelName ? { id: labelName, name: labelName } : {});
@@ -30,7 +30,7 @@ export default class CheckBox extends React.Component {
         return (
             <div style={{ display }} className="ch-frame">
                 <input
-                    className="checkbox"
+                    className={`checkbox ${addClass}`}
                     type="checkbox"
                     onChange = {this.onChange}
                     checked = {checked}
@@ -48,5 +48,6 @@ CheckBox.defaultProps = {
     visible: 1,
     disable: 0,
     onChange: undefined,
+    addClass: '',
 
 };
