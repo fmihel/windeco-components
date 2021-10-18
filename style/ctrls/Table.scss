@@ -1,5 +1,5 @@
 @import '../vars.scss';
-
+@import './ScrollBar.scss';
 
 $wd-tab-bg:$wd-ctrl-bg !default;
 $wd-tab-bg2:('light':#ECECEC,'dark':#292929) !default;
@@ -23,93 +23,111 @@ $wd-tab-row-border-vert:('light':#DCDCDC,'dark':#3a3a3a) !default;
 $wd-tab-row-active-bg:('light':#1E90FF,'dark':#1e8fff5d) !default;
 $wd-tab-row-active-color:('light':#ffffff,'dark':#ffffff) !default;
 
+@mixin wd-table-container-theme($theme){
+        color:map-get($wd-tab-color,#{$theme});
+        @include wd-scrollbar-theme($theme); 
+        .wd-table{
+            width: 100%;
+            border:1px solid map-get($wd-tab-border,#{$theme});
+            
+            thead{
+                tr{
+                    background-color:map-get($wd-tab-head-bg,#{$theme});
+                    color:map-get($wd-tab-head-color,#{$theme});
+                    border:1px solid map-get($wd-tab-head-border,#{$theme});
+                    
+                }
+                th{
+                    border-left:map-get($wd-tab-head-border-vert-fat,#{$theme}) solid map-get($wd-tab-head-border-vert,#{$theme});
+                    &:nth-child(1){
+                        border-left:1px solid map-get($wd-tab-head-border,#{$theme});
+                    }
+                }
+            }
+            tbody{
+                tr{
+                    border-bottom:1px solid map-get($wd-tab-row-border-bottom,#{$theme});
+                    
+                    td{
+                        border-left:1px solid  map-get($wd-tab-row-border-vert,#{$theme});;
+                        padding-left:5px;
+                        &:nth-child(1){
+                            border-left:1px solid map-get($wd-tab-border,#{$theme});
+                        }
+                    }
+
+                    &:nth-child(2n){
+                        background-color:map-get($wd-tab-bg2,#{$theme});
+                    }
+                    &:last-child{
+                        border-bottom:1px solid map-get($wd-tab-border,#{$theme});
+                        
+                    }
+                    &:hover{
+                        background-color:map-get($wd-tab-hover-bg,#{$theme});
+                        color:map-get($wd-tab-hover-color,#{$theme});
+                        text-shadow: 0 0 0.7px black;
+                    }
+                    &:active{
+                        background-color:map-get($wd-tab-row-active-bg,#{$theme}) !important;
+                        color:map-get($wd-tab-row-active-color,#{$theme}) !important;
+                            
+                    }
+                }
+                .wd-row-selected{
+                    background-color:map-get($wd-tab-row-active-bg,#{$theme}) !important;
+                    color:map-get($wd-tab-row-active-color,#{$theme}) !important;
+                    border-color: 1px solid map-get($wd-tab-row-active-bg,#{$theme});
+                }
+
+            }
+        }
+}
+
+@mixin wd-table-container-theme-size($name){
+
+    $size:map-get($wd-size,#{$name});
+    width:100%;
+    overflow: auto;
+    font-size:  map-get($wd-font-size,#{$name});
+    @include wd-scrollbar-theme-size($name);
+    thead{
+        tr{
+            min-height: map-get($wd-tab-row-height,#{$name})*1.5;
+            height: map-get($wd-tab-row-height,#{$name})*1.5;
+        }
+    }
+    tbody{
+        tr{
+            height:map-get($wd-tab-row-height,#{$name});
+            td{
+                padding-left: map-get($wd-gap,#{$name})*1.5;
+            }
+        }
+    }
+
+}
+
+.wd-table-container{
+    @include wd-table-container-theme($wd-default-theme);
+    @include wd-table-container-theme-size($wd-default-theme-size);
+}
+
+
 
 //$min-width:100px;
 @each $theme in $wd-themes{
     .#{$theme}{
         .wd-table-container{
-            color:map-get($wd-tab-color,#{$theme});
-            .wd-table{
-                width: 100%;
-                border:1px solid map-get($wd-tab-border,#{$theme});
-                
-                thead{
-                    tr{
-                        background-color:map-get($wd-tab-head-bg,#{$theme});
-                        color:map-get($wd-tab-head-color,#{$theme});
-                        border:1px solid map-get($wd-tab-head-border,#{$theme});
-                        
-                    }
-                    th{
-                        border-left:map-get($wd-tab-head-border-vert-fat,#{$theme}) solid map-get($wd-tab-head-border-vert,#{$theme});
-                        &:nth-child(1){
-                            border-left:1px solid map-get($wd-tab-head-border,#{$theme});
-                        }
-                    }
-                }
-                tbody{
-                    tr{
-                        border-bottom:1px solid map-get($wd-tab-row-border-bottom,#{$theme});
-                        
-                        td{
-                            border-left:1px solid  map-get($wd-tab-row-border-vert,#{$theme});;
-                            padding-left:5px;
-                            &:nth-child(1){
-                                border-left:1px solid map-get($wd-tab-border,#{$theme});
-                            }
-                        }
-
-                        &:nth-child(2n){
-                            background-color:map-get($wd-tab-bg2,#{$theme});
-                        }
-                        &:last-child{
-                            border-bottom:1px solid map-get($wd-tab-border,#{$theme});
-                            
-                        }
-                        &:hover{
-                            background-color:map-get($wd-tab-hover-bg,#{$theme});
-                            color:map-get($wd-tab-hover-color,#{$theme});
-                            text-shadow: 0 0 0.7px black;
-                        }
-                        &:active{
-                            background-color:map-get($wd-tab-row-active-bg,#{$theme}) !important;
-                            color:map-get($wd-tab-row-active-color,#{$theme}) !important;
-                                
-                        }
-                    }
-                    .wd-row-selected{
-                        background-color:map-get($wd-tab-row-active-bg,#{$theme}) !important;
-                        color:map-get($wd-tab-row-active-color,#{$theme}) !important;
-                        border-color: 1px solid map-get($wd-tab-row-active-bg,#{$theme});
-                    }
-
-                }
-            }
+            @include wd-table-container-theme($theme);
         }
     }
 }
 
 @each $name in $wd-sizes{
-    $size:map-get($wd-size,#{$name});
     .#{$name}{
         .wd-table-container{
-            width:100%;
-            overflow: auto;
-            font-size:  map-get($wd-font-size,#{$name});
-            thead{
-                tr{
-                    min-height: map-get($wd-tab-row-height,#{$name})*1.5;
-                    height: map-get($wd-tab-row-height,#{$name})*1.5;
-                }
-            }
-            tbody{
-                tr{
-                    height:map-get($wd-tab-row-height,#{$name});
-                    td{
-                        padding-left: map-get($wd-gap,#{$name})*1.5;
-                    }
-                }
-            }
+            @include wd-table-container-theme-size($name);
         }
     }
 }

@@ -42,7 +42,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <>
+            <div className={`${this.state.theme} ${this.state.size}`}>
                 <div className="panel">
                     <span>{`${this.state.theme}/${this.state.size}`} </span>
                     <input id="light" type="button" value="light" onClick={this.onTheme}/>
@@ -50,9 +50,10 @@ class App extends React.Component {
                     <input id="small" type="button" value="small" onClick={this.onSize}/>
                     <input id="normal" type="button" value="normal" onClick={this.onSize}/>
                 </div>
-                <div className={`content ${this.state.theme} ${this.state.size}`}>
+                <div className='content wd-scrollbar'>
                     <Head>Edit</Head>
                     <Block> <Edit> text from child</Edit></Block>
+                    <Block> <Edit value="text from value"/></Block>
                     <Block> <Edit value="disabled" disabled={1} /></Block>
                     <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
                     <Block> <Label caption="label"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
@@ -67,10 +68,11 @@ class App extends React.Component {
                     <Block> <Label caption='check'><CheckBox /></Label></Block>
                     <Block> <Label caption='on change'><Btn onClick={() => { this.setState({ checked: 0 }); }} >on change false</Btn></Label></Block>
                     <Block> <Label caption='on change'><CheckBox checked={this.state.checked} asRadio={1} onChange={() => { this.setState({ checked: 1 }); }}/></Label></Block>
+                    <Head>Table</Head>
                     <Block> <Table onClick={this.onClickTable}/></Block>
 
                 </div>
-            </>
+            </div>
         );
     }
 }

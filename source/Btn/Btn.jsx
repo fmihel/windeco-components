@@ -15,14 +15,15 @@ export default class Btn extends React.Component {
     }
 
     render() {
-        const value = this.props.children;
-        const { addClass } = this.props;
+        const value = this.props.value || this.props.children;
+        const { addClass, id } = this.props;
         return (
-            <input type="button" value={value} onClick={this.onClick} className={`wd-btn ${addClass}`}/>
+            <input type="button" value={value} onClick={this.onClick} className={`wd-btn ${addClass}`} id={id}/>
         );
     }
 }
 Btn.defaultProps = {
     onClick: undefined,
     addClass: '',
+    id: undefined,
 };

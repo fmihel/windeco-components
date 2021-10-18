@@ -1,5 +1,8 @@
 $wd-themes:('light','dark') !default;
 $wd-sizes:('normal','small') !default;
+$wd-default-theme:'light';
+$wd-default-theme-size:'normal';
+
 
 
 $wd-font-size:('small':9px,'normal':12px) !default;
@@ -34,7 +37,23 @@ $wd-size:('small':20px,'normal':32px) !default;
 $wd-scale:('small':0.5,'normal':1) !default;
 $wd-gap:('small':2px,'normal':5px) !default;
 
+// альтернатива map-get но в случе отсуствия индекса вернет default
+@function wd-get($map,$key,$default){
 
+    @if map-has-key($map,$key) == true {
+        @return map-get($map,$key);
+    } @else {
+        @return $default;
+    }
+}
+
+@function wd-get-theme($map,$key){
+    @return wd-get($map,$key,$wd-default-theme);
+}
+
+@function wd-get-size($map,$key){
+    @return wd-get($map,$key,$wd-default-theme-size);
+}
 
 
 @each $name in $wd-themes{

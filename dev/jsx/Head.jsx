@@ -1,4 +1,5 @@
 import React from 'react';
+import './Head.scss';
 // import { flex, binds } from 'fmihel-browser-lib'
 export default class Head extends React.Component {
     constructor(p) {
@@ -7,7 +8,7 @@ export default class Head extends React.Component {
 
     render() {
         return (
-            <div>{this.props.children}</div>
+            <div className="block-head">{this.props.children}</div>
         );
     }
 }

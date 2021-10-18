@@ -18,15 +18,15 @@ select,option{
     .#{$name}{
         .wd-combobox-frame{
         
-        .wd-combobox{ 
-            display: block; 
-            @include transparent-border();
-            background-color: map-get($wd-cb-bg,#{$name});
-            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAATklEQVR4nO3OMQoAIAwEwXtn/uV7tVFIocRCI8JOHbInAQDwkSrJNu6s3x41nkYjdu+ujLgajyIp8VUsNT4bkR4fiouX7Lgf8SwOADiiAWpFIUWn1ypTAAAAAElFTkSuQmCC'); 
-            background-repeat: no-repeat, repeat;
-            border: 1px solid map-get($wd-cb-border,#{$name});
-
-            color: map-get($wd-cb-color,#{$name});
+            .wd-combobox{ 
+                display: block; 
+                @include transparent-border();
+                background-color: map-get($wd-cb-bg,#{$name});
+                background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAATklEQVR4nO3OMQoAIAwEwXtn/uV7tVFIocRCI8JOHbInAQDwkSrJNu6s3x41nkYjdu+ujLgajyIp8VUsNT4bkR4fiouX7Lgf8SwOADiiAWpFIUWn1ypTAAAAAElFTkSuQmCC'); 
+                background-repeat: no-repeat, repeat;
+                border: 1px solid map-get($wd-cb-border,#{$name});
+    
+                color: map-get($wd-cb-color,#{$name});
                 &::-ms-expand { 
                     display: none; 
                 } 
@@ -54,6 +54,7 @@ select,option{
 }
 @each $name in $wd-sizes{
     $size:map-get($wd-size,#{$name});
+    $gap:map-get($wd-gap,#{$name});
     
     .#{$name}{
         .wd-combobox-frame{
@@ -81,7 +82,7 @@ select,option{
             -moz-appearance: none;
             -webkit-appearance: none;
             appearance: none;
-            background-position: right .7em top 50%, 0 0;
+            background-position: right 0 top 50%, 0 0;
             background-size: $size; 
             
                 &::-ms-expand { 

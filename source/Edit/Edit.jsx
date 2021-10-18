@@ -12,7 +12,7 @@ export default class Edit extends React.Component {
     }
 
     getValue() {
-        const value = this.props.value !== undefined ? this.props.value : this.props.children;
+        const value = this.props.value || this.props.children;
         return value === undefined ? '' : value;
     }
 
@@ -59,7 +59,7 @@ Edit.defaultProps = {
     disabled: 0,
     onChange: undefined,
     dim: 'm',
-    value: '',
+    value: undefined,
     visible: 1,
     placeholder: '',
     readonly: false,
