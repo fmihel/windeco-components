@@ -8,7 +8,7 @@ $wd-scb-thumb:('light':#aaaaaa,'dark':#5f5f5f) !default;   // цвет курс�
 $wd-scb-hover:('light':#636363,'dark':#696969) !default;   // цвет курсора при hover
 $wd-scb-w:$wd-size;
 $wd-scb-h:$wd-size;
-$wd-scb-size-k:0.35;
+$wd-scb-size-k:0.3;
 
 @mixin wd-scrollbar-theme($name){
     &::-webkit-scrollbar-track{
@@ -29,7 +29,7 @@ $wd-scb-size-k:0.35;
         background-color:wd-get-theme($wd-scb-thumb,#{$name});
         border:1px solid wd-get-theme($wd-scb-thumb,#{$name});
         cursor:	pointer;
-        border-radius: 5px;
+        //border-radius: 5px;
         //border-radius: 5px;
         //border-top:5px solid #7E7E7E;
         //border-bottom:5px solid #7E7E7E;

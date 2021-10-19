@@ -79,7 +79,18 @@ body{
             flex: 1 1 auto;
             align-self: auto;
             overflow: auto; 
-            //border:1px solid red;
+            
+            .table-fixed-height{
+                max-height: 200px;
+                height: 200px;
+                >div{
+                    &:nth-child(2){
+                        max-height: 200px;
+                        height: 200px;
+        
+                    }
+                }
+            }
             
         }
     

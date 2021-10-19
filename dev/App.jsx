@@ -10,6 +10,7 @@ import ComboBox from '../source/ComboBox/ComboBox.jsx';
 import CheckBox from '../source/CheckBox/CheckBox.jsx';
 import Label from '../source/Label/Label.jsx';
 import Table from '../source/Table/Table.jsx';
+import TableFixed from '../source/TableFixed/TableFixed.jsx';
 
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
@@ -17,7 +18,7 @@ import Block from './jsx/Block.jsx';
 class App extends React.Component {
     constructor(p) {
         super(p);
-        binds(this, 'onTheme', 'onSize', 'onClickTable');
+        binds(this, 'onTheme', 'onSize', 'onClickTable', 'onClickTableFixed');
         this.state = {
             theme: storage.get('theme-style', { default: 'dark' }),
             size: storage.get('theme-size', { default: 'normal' }),
@@ -37,6 +38,11 @@ class App extends React.Component {
 
     onClickTable(o) {
         console.log(o);
+        o.sender.select(o.row);
+    }
+
+    onClickTableFixed(o) {
+        console.log(o.row);
         o.sender.select(o.row);
     }
 
@@ -63,6 +69,10 @@ class App extends React.Component {
                         <Btn>button</Btn>
                         <Btn addClass="wd-danger">wd-danger</Btn>
                         <Btn addClass="wd-primary">wd-primary</Btn>
+                    </Block>
+                    <Head>TableFixed</Head>
+                    <Block addClass="table-fixed-height">
+                        <TableFixed onClick={this.onClickTableFixed}/>
                     </Block>
                     <Head>ComboBox</Head>
                     <Block> <ComboBox/></Block>

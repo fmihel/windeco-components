@@ -7,8 +7,9 @@ export default class Block extends React.Component {
     }
 
     render() {
+        const { addClass } = this.props;
         return (
-            <div className="block">
+            <div className={`block ${addClass}`}>
                 <div></div>
                 <div>{this.props.children}</div>
                 <div></div>
@@ -17,5 +18,5 @@ export default class Block extends React.Component {
     }
 }
 Block.defaultProps = {
-// default
+    addClass: '',
 };
