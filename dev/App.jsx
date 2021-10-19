@@ -44,7 +44,7 @@ class App extends React.Component {
         return (
             <div className={`${this.state.theme} ${this.state.size}`}>
                 <div className="panel">
-                    <span>{`${this.state.theme}/${this.state.size}`} </span>
+                    <span>{`${this.state.theme} / ${this.state.size}`} </span>
                     <input id="light" type="button" value="light" onClick={this.onTheme}/>
                     <input id="dark" type="button" value="dark" onClick={this.onTheme}/>
                     <input id="small" type="button" value="small" onClick={this.onSize}/>
@@ -59,7 +59,11 @@ class App extends React.Component {
                     <Block> <Label caption="label"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
                     <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
                     <Head>Btn</Head>
-                    <Block> <Btn>button</Btn></Block>
+                    <Block>
+                        <Btn>button</Btn>
+                        <Btn addClass="wd-danger">wd-danger</Btn>
+                        <Btn addClass="wd-primary">wd-primary</Btn>
+                    </Block>
                     <Head>ComboBox</Head>
                     <Block> <ComboBox/></Block>
                     <Block> <Label caption="combobox"><ComboBox disable={{ dim: false }}/></Label></Block>
