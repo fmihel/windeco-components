@@ -44,6 +44,7 @@ $wd-tf-row-active-color:('light':#ffffff,'dark':#ffffff) !default;
             }
         }
     }
+
     .wd-table-fixed-frame-rows{
         
         @include wd-scrollbar-theme($theme);
@@ -87,10 +88,17 @@ $wd-tf-row-active-color:('light':#ffffff,'dark':#ffffff) !default;
         color: wd-get-theme($wd-tf-head-color,$theme);
         border-bottom:1px solid wd-get-theme($wd-tf-head-border,$theme);  
     }
+
+    .wd-table-fixed-bottom{
+
+    }
+    .wd-table-fixed-nodata{
+    }
+
 }
 
 @mixin wd-table-fixed-frame-theme-size($name){
-    
+    $size:  wd-get-size($wd-size,#{$name});  
     $gap:wd-get-size($wd-gap,$name);
     font-size:  wd-get-size($wd-font-size,#{$name});  
     //height:100%;
@@ -140,6 +148,18 @@ $wd-tf-row-active-color:('light':#ffffff,'dark':#ffffff) !default;
         line-height:wd-get-size($wd-tf-head-height,$name);
         padding-left: $gap;
          
+    }
+    
+    .wd-table-fixed-bottom{
+        text-align: center;
+        height:$size;
+        line-height: $size;
+    }
+    .wd-table-fixed-nodata{
+        text-align: center;
+        height:$size;
+        line-height: $size;
+        width:100%;
     }
 
 }

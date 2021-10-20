@@ -13,7 +13,6 @@ export default class TableFixedRows extends React.Component {
     }
 
     select(row) {
-        console.log('selected', row, this.props);
         this.setState({ selected: row });
     }
 

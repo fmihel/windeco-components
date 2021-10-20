@@ -1,4 +1,6 @@
-import { binds } from 'fmihel-browser-lib';
+import {
+    binds, DOM, childDOM, parentDOM,
+} from 'fmihel-browser-lib';
 import React from 'react';
 import TableFixedHead from './TableFixedHead.jsx';
 import TableFixedRows from './TableFixedRows.jsx';
@@ -24,11 +26,15 @@ export default class TableFixed extends React.Component {
     }
 
     onClick(o) {
-        if (this.props.onClick) this.props.onClick(o);
+        if (this.props.onClick) {
+            this.props.onClick({ ...o, sender: this, data: this.props.data });
+        }
     }
 
     onDblClick(o) {
-        if (this.props.onDblClick) this.props.onDblClick(o);
+        if (this.props.onDblClick) {
+            this.props.onDblClick({ ...o, sender: this, data: this.props.data });
+        }
     }
 
     onMountHead(o) {
@@ -40,7 +46,7 @@ export default class TableFixed extends React.Component {
     }
 
     reCulcColWidthHead() {
-        if (this.props.header === 'fields' && this.TableFixedHead) {
+        if (this.props.headerType === 'fields' && this.TableFixedHead) {
             this.TableFixedHead.reCulcColWidth({ parent: this, rows: this.TableFixedRows });
         }
     }
@@ -55,8 +61,8 @@ export default class TableFixed extends React.Component {
     componentDidMount() {
         // разовый вызов после первого рендеринга
         this.observer = new ResizeObserver(() => {
-            this.reCulcColWidthHead();
             this.stretch();
+            this.reCulcColWidthHead();
         });
         this.observer.observe(this.ref.current);
     }
@@ -68,45 +74,85 @@ export default class TableFixed extends React.Component {
 
     componentDidUpdate(prevProps, prevState, prevContext) {
         // каждый раз после рендеринга (кроме первого раза !)
-        // this.reCulcColWidthHead();
-        if (prevProps.fields.length !== this.props.length || prevProps.data.length !== this.props.data.length || this.TableFixedHead.colWidthIsChange({ rows: this.TableFixedRows })) {
+        if (prevProps.fields.length !== this.props.length
+                || prevProps.data.length !== this.props.data.length
+                || this.TableFixedHead.colWidthIsChange({ parent: this, rows: this.TableFixedRows })) {
             this.reCulcColWidthHead();
         }
     }
 
+    /** проврека на целостность данных */
+    validData() {
+        const { data, fields } = this.props;
+        if (!data) {
+            console.warn('TableFixed.data = undefined');
+            return false;
+        }
+        if (!fields) {
+            console.warn('TableFixed.fields = undefined');
+            return false;
+        }
+
+        if (!(data.length)) {
+            return false;
+        }
+
+        if (!(fields.length)) {
+            console.warn('TableFixed.fields.length = 0');
+            return false;
+        }
+
+        return true;
+    }
+
+    /** признак что scrollbar виден */
+    haveScrollBar() {
+        if (this.TableFixedRows) {
+            const table = this.TableFixedRows.ref.current;
+            const parent = parentDOM(this.TableFixedRows.ref.current);
+            return parent.clientHeight < table.clientHeight;
+        }
+        return false;
+    }
+
     render() {
         const {
-            fields, data, header, caption, id,
+            fields, data, headerType, caption, id, bottomShow: _bottomShow, bottomText, nodataShow, nodataText,
         } = this.props;
         let style = {};
         if (this.props.stretch) {
             style = { height: this.state.height };
         }
-
+        const valid = this.validData();
+        const bottomShow = !_bottomShow ? _bottomShow : this.haveScrollBar();
         return (
             <div
                 className="wd-table-fixed-frame"
-                onClick={this.reCulcColWidthHead}
                 ref = {this.ref}
                 style={style}
             >
-
-                { header === 'fields'
+                {valid && <>
+                    { headerType === 'fields'
                 && <TableFixedHead onMount={this.onMountHead} fields={fields} />
-                }
-                { header === 'caption'
+                    }
+                    { headerType === 'caption'
                 && <div className="wd-table-fixed-caption">{caption}</div>
+                    }
+                    <div className="wd-table-fixed-frame-rows">
+                        <TableFixedRows
+                            onMount={this.onMountRows}
+                            data={data}
+                            fields={fields}
+                            id={id}
+                            onClick={this.onClick}
+                            onDblClick={this.onDblClick}
+                        />
+                        {bottomShow && <div className="wd-table-fixed-bottom">{bottomText}</div>}
+                    </div>
+                </>}
+                {(!valid && nodataShow)
+                && <div className="wd-table-fixed-nodata"> {nodataText}</div>
                 }
-                <div className="wd-table-fixed-frame-rows">
-                    <TableFixedRows
-                        onMount={this.onMountRows}
-                        data={data}
-                        fields={fields}
-                        id={id}
-                        onClick={this.onClick}
-                        onDblClick={this.onDblClick}
-                    />
-                </div>
             </div>
         );
     }
@@ -115,37 +161,31 @@ export default class TableFixed extends React.Component {
 TableFixed.defaultProps = {
     id: 'ID',
     fields: [
+        /*
         { name: 'ID', caption: 'id', width: 50 },
         { name: 'NAME', caption: 'name webfjhwb jhwbhwebjr bj jhwfwjerfjh' },
         { name: 'AGE', caption: 'age' },
+        ...
+        */
     ],
-    data: [
+    data: [/*
         { ID: 0, NAME: 'mike no sommatik boran', AGE: 10 },
         { ID: 1, NAME: 'some', AGE: 3494 },
-        { ID: 2, NAME: 'kurt', AGE: 23 },
-        { ID: 3, NAME: 'doni jqwehjh jh wejfg jwheg jhgj jhg jhwgefjgwejhrfgjwhegrfj jhwfhge jhg jre wjhfwjhegfjh jhgjhg wjehgf whgjh gwjehgf jwhegf wkjefkj kjwhe rfkjhekfjhwe fjkw hrfkjh kjh jkj hwkjrhf kjeh rfkjh kj jwhre fkjhwer kfjkjh kwejhrf kjwehkfjhwekjrh fkwejhrfkwjhrkjjhwgefjgwefg jhwgfjhwe', AGE: 74 },
-
-        { ID: 4, NAME: 'tori', AGE: 17 },
-        { ID: 5, NAME: 'fri', AGE: 42 },
-        { ID: 6, NAME: 'doni', AGE: 74 },
-        { ID: 7, NAME: 'tori', AGE: 17 },
-        { ID: 8, NAME: 'fri', AGE: 42 },
-        { ID: 9, NAME: 'doni', AGE: 74 },
-        { ID: 10, NAME: 'tori', AGE: 17 },
-        { ID: 11, NAME: 'fri', AGE: 42 },
-        { ID: 12, NAME: 'some', AGE: 34 },
-        { ID: 13, NAME: 'kurt', AGE: 23 },
-        { ID: 14, NAME: 'doni', AGE: 74 },
-        { ID: 15, NAME: 'tori', AGE: 17 },
-        { ID: 16, NAME: 'fri', AGE: 42 },
-        { ID: 17, NAME: 'doni', AGE: 74 },
-
+        ...
+        */
     ],
     addClass: '',
     onClick: undefined,
     onDblClick: undefined,
     onMount: undefined,
-    header: 'fields', // fields,caption, none
-    caption: 'text',
-    stretch: true,
+    stretch: true, // включает мехаизм растягивания по высоте таблицы до размеров родителя( с помощью js)
+
+    headerType: 'fields', // fields,caption, none
+    caption: 'Caption',
+
+    bottomShow: true,
+    bottomText: 'конец',
+
+    nodataShow: true,
+    nodataText: 'нет данных',
 };

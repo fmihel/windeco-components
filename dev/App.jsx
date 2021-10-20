@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable import/no-extraneous-dependencies */
 import {
     binds, storage,
@@ -14,6 +15,7 @@ import TableFixed from '../source/TableFixed/TableFixed.jsx';
 
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
+import { table_long } from './data.js';
 
 class App extends React.Component {
     constructor(p) {
@@ -72,7 +74,9 @@ class App extends React.Component {
                     </Block>
                     <Head>TableFixed</Head>
                     <Block addClass="table-fixed-height">
-                        <TableFixed onClick={this.onClickTableFixed} />
+                        <TableFixed {...table_long}
+                            onClick={this.onClickTableFixed}
+                        />
                     </Block>
                     <Head>ComboBox</Head>
                     <Block> <ComboBox/></Block>
