@@ -10,12 +10,13 @@ export default class TableFixedHead extends React.Component {
         };
     }
 
-    reCulcColWidth(o) {
-        // console.log('reculc');
+    /** возвращает расчитанные длины как массив, на вход */
+    culcColWidths(o) {
         const $row = $(o.rows.ref.current).find('tr:first:visible');
         const $cols = $row.find('td');
         const widths = [];
         let sum = 0;
+
         $.each($cols, (i, col) => {
             const $col = $(col);
             const padLeft = parseInt($col.css('paddingLeft'), 10);
@@ -25,9 +26,24 @@ export default class TableFixedHead extends React.Component {
             sum += w;
         });
 
-        if (widths.length > 0) widths[widths.length - 1] = widths[widths.length - 1] + (parseInt($(o.parent.ref.current).width(), 10) - sum);
+        if (widths.length > 0) {
+            widths[widths.length - 1] = widths[widths.length - 1] + (parseInt($(o.parent.ref.current).width(), 10) - sum);
+        }
+        return widths;
+    }
 
-        this.setState({ widths });
+    // пересчитывает ширину колонок
+    reCulcColWidth(o) {
+        this.setState({ widths: this.culcColWidths(o) });
+    }
+
+    // выдает признак, что ширина колонок изменилась
+    colWidthIsChange(o) {
+        const cnew = this.culcColWidths(o);
+        const cold = this.state.widths;
+        if (cnew.length !== cold.length) { return true; }
+        for (let i = 0; i < cnew.length; i++) if (cnew[i] !== cold[i]) return true;
+        return false;
     }
 
     componentDidMount() {

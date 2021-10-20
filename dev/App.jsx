@@ -72,7 +72,7 @@ class App extends React.Component {
                     </Block>
                     <Head>TableFixed</Head>
                     <Block addClass="table-fixed-height">
-                        <TableFixed onClick={this.onClickTableFixed}/>
+                        <TableFixed onClick={this.onClickTableFixed} />
                     </Block>
                     <Head>ComboBox</Head>
                     <Block> <ComboBox/></Block>

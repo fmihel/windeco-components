@@ -10,12 +10,17 @@ export default class TableFixed extends React.Component {
         this.TableFixedRows = undefined;
         this.observer = undefined;
         this.ref = React.createRef();
-        binds(this, 'onMountHead', 'onMountRows');
+
+        this.state = {
+            height: 0,
+        };
+
+        binds(this, 'onMountHead', 'onMountRows', 'reCulcColWidthHead');
         binds(this, 'onClick', 'onDblClick');
     }
 
     select(row) {
-        this.TableFixedRoww.select(row);
+        this.TableFixedRows.select(row);
     }
 
     onClick(o) {
@@ -40,10 +45,18 @@ export default class TableFixed extends React.Component {
         }
     }
 
+    stretch() {
+        if (this.props.stretch) {
+            const $parent = $(this.ref.current).parent();
+            this.setState({ height: $parent.height() });
+        }
+    }
+
     componentDidMount() {
         // разовый вызов после первого рендеринга
         this.observer = new ResizeObserver(() => {
             this.reCulcColWidthHead();
+            this.stretch();
         });
         this.observer.observe(this.ref.current);
     }
@@ -56,14 +69,28 @@ export default class TableFixed extends React.Component {
     componentDidUpdate(prevProps, prevState, prevContext) {
         // каждый раз после рендеринга (кроме первого раза !)
         // this.reCulcColWidthHead();
+        if (prevProps.fields.length !== this.props.length || prevProps.data.length !== this.props.data.length || this.TableFixedHead.colWidthIsChange({ rows: this.TableFixedRows })) {
+            this.reCulcColWidthHead();
+        }
     }
 
     render() {
         const {
-            fields, data, header, caption,
+            fields, data, header, caption, id,
         } = this.props;
+        let style = {};
+        if (this.props.stretch) {
+            style = { height: this.state.height };
+        }
+
         return (
-            <div className="wd-table-fixed-frame" onClick={() => { this.reCulcColWidthHead(); }} ref = {this.ref}>
+            <div
+                className="wd-table-fixed-frame"
+                onClick={this.reCulcColWidthHead}
+                ref = {this.ref}
+                style={style}
+            >
+
                 { header === 'fields'
                 && <TableFixedHead onMount={this.onMountHead} fields={fields} />
                 }
@@ -75,6 +102,7 @@ export default class TableFixed extends React.Component {
                         onMount={this.onMountRows}
                         data={data}
                         fields={fields}
+                        id={id}
                         onClick={this.onClick}
                         onDblClick={this.onDblClick}
                     />
@@ -117,6 +145,7 @@ TableFixed.defaultProps = {
     onClick: undefined,
     onDblClick: undefined,
     onMount: undefined,
-    header: 'caption', // caption, none
+    header: 'fields', // fields,caption, none
     caption: 'text',
+    stretch: true,
 };

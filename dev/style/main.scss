@@ -81,8 +81,12 @@ body{
             overflow: auto; 
             
             .table-fixed-height{
-                max-height: 200px;
                 height: 200px;
+                overflow: hidden;
+                .wd-table-fixed-frame{
+                    
+                }
+                /*
                 >div{
                     &:nth-child(2){
                         max-height: 200px;
@@ -90,6 +94,7 @@ body{
         
                     }
                 }
+                */
             }
             
         }
