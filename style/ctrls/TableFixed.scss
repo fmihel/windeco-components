@@ -101,8 +101,7 @@ $wd-tf-row-active-color:('light':#ffffff,'dark':#ffffff) !default;
     $size:  wd-get-size($wd-size,#{$name});  
     $gap:wd-get-size($wd-gap,$name);
     font-size:  wd-get-size($wd-font-size,#{$name});  
-    //height:100%;
-    //width:100%;
+    //width: 200px;
     
     overflow: hidden;
 

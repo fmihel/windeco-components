@@ -64,6 +64,7 @@ export default class TableFixed extends React.Component {
             this.stretch();
             this.reCulcColWidthHead();
         });
+        this.observer.observe(parentDOM(this.ref.current));
         this.observer.observe(this.ref.current);
     }
 
@@ -178,7 +179,10 @@ TableFixed.defaultProps = {
     onClick: undefined,
     onDblClick: undefined,
     onMount: undefined,
+    //---------------------------------------------------------------------------------------------------
+    // ВНИМАНИЕ! у родительского фрейма, в случае stretch=true добавить overflow:hidden
     stretch: true, // включает мехаизм растягивания по высоте таблицы до размеров родителя( с помощью js)
+    //---------------------------------------------------------------------------------------------------
 
     headerType: 'fields', // fields,caption, none
     caption: 'Caption',
