@@ -1,6 +1,6 @@
-import { binds, JX } from 'fmihel-browser-lib';
+/* eslint-disable camelcase */
+import { binds, DOM, JX } from 'fmihel-browser-lib';
 import React from 'react';
-import './Modal.scss';
 import Btn from '../Btn/Btn.jsx';
 
 export default class Modal extends React.Component {
@@ -11,7 +11,7 @@ export default class Modal extends React.Component {
                 left: 0, top: 0, width: 0, height: 0,
             },
             modalPos: {
-                left: 50, top: 50, width: 0, height: 0,
+                left: 0, top: 0, width: 0, height: 0,
             },
 
         };
@@ -26,16 +26,55 @@ export default class Modal extends React.Component {
                 width: s.w,
                 height: s.h,
             },
-            modalPos: this.getModalPos(state.modalPos),
+            modalPos: this.getModalPos(),
         }));
     }
 
-    getModalPos(currentPos) {
-        const s = JX.screen();
+    _margin() {
+        const { margin } = this.props;
+        const isObject = (typeof (margin) === 'object');
         return {
-            ...currentPos,
-            width: s.w - currentPos.left * 2,
-            height: s.h - currentPos.top * 2,
+            left: isObject ? (margin.left || 0) : margin,
+            right: isObject ? (margin.right || 0) : margin,
+            top: isObject ? (margin.top || 0) : margin,
+            bottom: isObject ? (margin.bottom || 0) : margin,
+
+        };
+    }
+
+    getModalPos() {
+        const screen = JX.screen();
+        if (this.props.align === 'stretch') {
+            const margin = this._margin();
+            return {
+                left: margin.left,
+                top: margin.top,
+                width: screen.w - (margin.left + margin.right),
+                height: screen.h - (margin.top + margin.bottom),
+            };
+        } if (this.props.align === 'custom') {
+            return {
+                left: this.props.left,
+                top: this.props.top,
+                width: this.props.width,
+                height: this.props.height,
+            };
+        } if (this.props.align === 'stickTo') {
+            const stickTo = typeof this.props.stickTo === 'string' ? DOM(this.props.stickTo) : this.props.stickTo;
+            const abs = JX.abs(stickTo);
+            const pos = {
+                left: abs.x + abs.w / 2 - this.props.width / 2,
+                top: abs.y + abs.h,
+                width: this.props.width,
+                height: this.props.height,
+            };
+            if (pos.left + pos.width > screen.w) pos.left = screen.w - pos.width;
+            if (pos.left < 0) pos.left = 0;
+            if (pos.top + pos.height > screen.h) pos.top = abs.y - pos.height;
+            return pos;
+        }
+        return {
+            left: 10, top: 10, width: 100, height: 100,
         };
     }
 
@@ -56,8 +95,27 @@ export default class Modal extends React.Component {
         if (this.props.onClickShadow) this.props.onClickShadow({ sender: this });
     }
 
+    _get_footer_param(key, paramName) {
+        let param = {
+            key,
+            id: undefined,
+            caption: key,
+            callback: undefined,
+            addClass: '',
+        };
+        if (!Array.isArray(this.props.footer)) {
+            if (typeof this.props.footer[key] === 'function') {
+                param.callback = this.props.footer[key];
+            } else {
+                param = { ...param, ...this.props.footer[key] };
+            }
+        }
+        return param[paramName];
+    }
+
     onClickFooterBtn(key) {
-        if (this.props.footer[key]) this.props.footer[key]({ sender: this });
+        const callback = this._get_footer_param(key, 'callback');
+        if (callback) callback({ sender: this });
         if (this.props.onClickFooterBtn) this.props.onClickFooterBtn({ sender: this, key });
     }
 
@@ -80,7 +138,7 @@ export default class Modal extends React.Component {
             <>
                 <div
                     style={{ ...shadowPos, display: displayShadow }}
-                    className='modal-shadow'
+                    className='wd-modal-shadow'
                     onClick={this.onClickShadow}
 
                 >
@@ -88,22 +146,29 @@ export default class Modal extends React.Component {
 
                 <div
                     style={{ ...modalPos, display: displayModal }}
-                    className="modal"
+                    className="wd-modal"
                 >
-                    {header && <div className="modal-header">
-                        <div className="modal-header-caption">
+                    {header && <div className="wd-modal-header">
+                        <div className="wd-modal-header-caption">
                             {header}
                         </div>
-                        {onClickHeaderClose && <div className="modal-header-close" onClick={this.onClickHeaderClose}>&#215;</div>}
+                        {onClickHeaderClose && <div className="wd-modal-header-close" onClick={this.onClickHeaderClose}>&#10060;</div>}
 
                     </div>}
-                    <div className="modal-content">
+                    <div className="wd-modal-content">
                         {children}
                     </div>
 
                     {footers.length > 0
-                        && <div className="modal-footer">
-                            {footers.map((key) => <Btn key={key} onClick={() => this.onClickFooterBtn(key)}>{key}</Btn>)}
+                        && <div className="wd-modal-footer">
+                            {footers.map((key) => <Btn
+                                id={this._get_footer_param(key, 'id')}
+                                key={key} onClick={() => this.onClickFooterBtn(key)}
+                                addClass={this._get_footer_param(key, 'addClass')}
+                            >
+                                {this._get_footer_param(key, 'caption')}
+                            </Btn>)
+                            }
                         </div>
                     }
                 </div>
@@ -125,5 +190,17 @@ Modal.defaultProps = {
     footer_example2: [
         'ok', 'cancel',
     ],
+    footer_example3: {
+        key: {
+            addClass: 'wd-primary',
+        },
+    },
+    align: 'stretch', // stretch, custom,stickTo
+    stickTo: undefined, // DOM
+    margin: 50, // for align = stretch
+    left: 50, // for align = custom
+    top: 50, // for align = custom
+    width: 300, // for align = custom,stickTo
+    height: 100, // for align = custom,stickTo
 
 };
