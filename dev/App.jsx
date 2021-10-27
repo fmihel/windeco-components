@@ -12,6 +12,7 @@ import CheckBox from '../source/CheckBox/CheckBox.jsx';
 import Label from '../source/Label/Label.jsx';
 import Table from '../source/Table/Table.jsx';
 import TableFixed from '../source/TableFixed/TableFixed.jsx';
+import ModalDialog from '../source/ModalDialog/ModalDialog.jsx';
 import Modal from '../source/Modal/Modal.jsx';
 
 import Head from './jsx/Head.jsx';
@@ -26,7 +27,8 @@ class App extends React.Component {
             theme: storage.get('theme-style', { default: 'dark' }),
             size: storage.get('theme-size', { default: 'normal' }),
             checked: 0,
-            dialog: 'extend',
+            dialog: false,
+            modalShow: false,
         };
 
         // общие параметры для диалогов
@@ -162,13 +164,38 @@ class App extends React.Component {
                     <Block> <Label caption='on change'><CheckBox checked={this.state.checked} asRadio={1} onChange={() => { this.setState({ checked: 1 }); }}/></Label></Block>
                     <Head>Table</Head>
                     <Block> <Table onClick={this.onClickTable}/></Block>
+                    <Head>Modal</Head>
+                    <Block>
+                        <Btn onClick={() => { this.setState({ modalShow: true }); }} >show</Btn>
+                        {this.state.modalShow
+                        && <Modal
+                            onClickShadow={() => {
+                                this.setState({ modalShow: false });
+                            }}
+                        >
+                            <div
+                                style={{
+                                    position: 'absolute',
+                                    left: 100,
+                                    top: 100,
+                                    width: 200,
+                                    height: 200,
+                                    border: '1px solid navy',
+                                    background: 'gray',
+                                }}>
+                                <Btn >btn on modal 1</Btn>
+                                <Btn >btn on modal 2</Btn>
+                            </div>
+                        </Modal>
+                        }
+                    </Block>
                 </div>
                 { this.state.dialog
-                    && <Modal {...this.dialogs[this.state.dialog]}>
+                    && <ModalDialog {...this.dialogs[this.state.dialog]}>
                         {this.dialogs[this.state.dialog].msg}
-                    </Modal>
+                    </ModalDialog>
                 }
-
+                <div id="wd-modal" ></div>
             </div>
         );
     }

@@ -1,0 +1,167 @@
+@import '../vars.scss';
+
+$wd-modal-dialog-gap-k:('small':2,'normal':1) !default;
+$wd-modal-dialog-bg:$wd-bg !default;
+$wd-modal-dialog-border:('light':#c9c9c9,'dark':#4d4e49) !default;
+$wd-modal-dialog-color:('light':#000000,'dark':#c7c7c7)  !default;
+
+.wd-modal-dialog-shadow{
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+} 
+
+@mixin  wd-modal-dialog-theme($name) {
+ 
+
+    border:1px solid wd-get-theme($wd-modal-dialog-border,#{$name});;
+    border-radius: 3px;
+    @if $name=='dark'{
+        background-color:lighten( wd-get-theme($wd-modal-dialog-bg,#{$name}),5%);
+    }@else{
+        background-color:darken( wd-get-theme($wd-modal-dialog-bg,#{$name}),0%);
+    }
+
+    color:wd-get-theme($wd-modal-dialog-color,#{$name});
+    @if $name=='dark'{
+        box-shadow: 0px 0px 5px  black;
+    }
+
+    .wd-modal-dialog-header{
+
+        .wd-modal-dialog-header-caption{
+            font-size: 1.3em;
+            font-weight: bold;
+            
+        }
+        .wd-modal-dialog-header-close{
+            border-radius: 12px;
+            &:hover{
+                color:rgb(165, 139, 139);
+            }
+        }
+    }
+    .wd-modal-dialog-content{
+        
+    }
+    .wd-modal-dialog-footer{
+    }
+
+}
+
+@mixin  wd-modal-dialog-theme-size($name) {
+
+    $size:wd-get-size($wd-size,#{$name});
+    $gap:wd-get-size($wd-gap,#{$name});
+    $font-size:wd-get-size($wd-font-size,#{$name});
+
+
+    position: absolute;
+    font-size:$font-size;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+
+    >div{
+        order: 0;
+        flex: 0 1 auto;
+        align-self: auto;
+    }
+
+    .wd-modal-dialog-header{
+        height: $size;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: center; 
+
+        padding-left:$gap*wd-get-size($wd-modal-dialog-gap-k,#{$name});
+        padding-right:$gap*wd-get-size($wd-modal-dialog-gap-k,#{$name});
+
+        >div{
+            order: 0;
+            flex: 0 1 auto;
+            align-self: auto;
+        }
+
+        .wd-modal-dialog-header-caption{
+            flex: 1 1 auto;
+            height: $size;
+            line-height: $size;
+        }
+        
+        .wd-modal-dialog-header-close{
+            height: $size*0.8;
+            width:$size*0.8;
+            min-width: $size*0.8;
+            line-height: $size*0.8;
+            text-align: center;
+
+            //font-size:1.5em;
+
+            &:hover{
+            }
+        }
+    }
+    .wd-modal-dialog-content{
+        padding: $gap*wd-get-size($wd-modal-dialog-gap-k,#{$name});
+
+        flex: 1 1 auto;
+        overflow: auto;
+    }
+    .wd-modal-dialog-footer{
+        height: $size*1.2;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        align-content: stretch;
+        align-items: center;
+
+        margin-left:$gap;
+        margin-right:$gap;
+
+        input{
+            margin-right: $gap;
+            min-width: $size*2;
+            &:last-child{
+                margin-right: 0px;
+            }
+        }
+        
+    }
+}
+
+@mixin wd-modal-dialog-default(){
+    @include wd-modal-dialog-theme($wd-default-theme);
+    @include wd-modal-dialog-theme-size($wd-default-theme-size);
+}
+
+.wd-modal{
+    @include wd-modal-dialog-default();
+}
+
+
+@each $name in $wd-themes{
+    .#{$name} {
+        .wd-modal{
+            @include wd-modal-dialog-theme($name);
+        }
+    }
+}
+
+@each $name in $wd-sizes{
+    .#{$name} {
+        .wd-modal{
+            @include wd-modal-dialog-theme-size($name);
+        }
+        
+    }
+}
