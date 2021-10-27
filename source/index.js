@@ -8,6 +8,7 @@ import RModalDialog from './ModalDialog/ModalDialog.jsx';
 import RTable from './Table/Table.jsx';
 import RTableFixed from './TableFixed/TableFixed.jsx';
 import RModal from './Modal/Modal.jsx';
+import RComboBoxEx from './ComboBoxEx/ComboBoxEx.jsx';
 
 export default {
     Edit: REdit,
@@ -15,6 +16,7 @@ export default {
     CheckBox: RCheckBox,
     Label: RLabel,
     ComboBox: RComboBox,
+    ComboBoxEx: RComboBoxEx,
     Waiter: RWaiter,
     ModalDialog: RModalDialog,
     Modal: RModal,
@@ -23,6 +25,7 @@ export default {
 };
 
 export const ComboBox = RComboBox;
+export const ComboBoxEx = RComboBoxEx;
 export const Btn = RBtn;
 export const CheckBox = RCheckBox;
 export const Edit = REdit;

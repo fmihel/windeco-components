@@ -9,9 +9,6 @@ $wd-cb-color:$wd-ctrl-color !default;
 $wd-cb-border:$wd-ctrl-border !default;
 $wd-cb-border-focus:$wd-ctrl-border-focus !default;
 
-select,option{
-    //font-size:8pt;
-}
 
 
 @each $name in $wd-themes{
@@ -42,7 +39,8 @@ select,option{
                 } 
                 option { 
                     font-weight:normal; 
-                } 
+                    
+                }
             } 
              
              //*[dir="rtl"] .select-css, :root:lang(ar) .select-css, :root:lang(iw) .select-css { 

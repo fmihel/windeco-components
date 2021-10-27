@@ -64,6 +64,7 @@ export default class ComboBox extends React.Component {
                         id={item[idFieldName]}
                         current={this.props.current == item[idFieldName]}
                         disabled={item._disabled_}
+                        caption={item.caption}
                     >{item.caption}</ComboBoxItem>)}
                 </select>
                 {!disable.dim && <div className="wd-cb-dim">{dim}</div>}

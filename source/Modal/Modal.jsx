@@ -48,7 +48,6 @@ export default class Modal extends React.Component {
     }
 
     componentWillUnmount() {
-        console.log('del');
         $(window).off('resize', this.resize);
         this.modalRoot.removeChild(this.el);
     }

@@ -8,6 +8,7 @@ import React from 'react';
 import Edit from '../source/Edit/Edit.jsx';
 import Btn from '../source/Btn/Btn.jsx';
 import ComboBox from '../source/ComboBox/ComboBox.jsx';
+import ComboBoxEx from '../source/ComboBoxEx/ComboBoxEx.jsx';
 import CheckBox from '../source/CheckBox/CheckBox.jsx';
 import Label from '../source/Label/Label.jsx';
 import Table from '../source/Table/Table.jsx';
@@ -135,6 +136,13 @@ class App extends React.Component {
                     <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
                     <Block> <Label caption="label"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
                     <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
+                    <Head>ComboBox</Head>
+                    <Block> <ComboBox/></Block>
+                    <Block> <Label caption="combobox"><ComboBox disable={{ dim: false }}/></Label></Block>
+                    <Head>ComboBoxEx</Head>
+                    <Block> <ComboBoxEx/></Block>
+                    {/* <Block> <Label caption="comboboxex"><ComboBoxEx disable={{ dim: false }}/></Label></Block> */}
+
                     <Head>Btn</Head>
                     <Block>
                         <Btn>button</Btn>
@@ -154,9 +162,7 @@ class App extends React.Component {
                             onClick={this.onClickTableFixed}
                         />
                     </Block>
-                    <Head>ComboBox</Head>
-                    <Block> <ComboBox/></Block>
-                    <Block> <Label caption="combobox"><ComboBox disable={{ dim: false }}/></Label></Block>
+
                     <Head>CheckBox</Head>
                     <Block> <CheckBox/></Block>
                     <Block> <Label caption='check'><CheckBox /></Label></Block>
