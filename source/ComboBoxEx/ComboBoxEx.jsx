@@ -22,6 +22,7 @@ export default class ComboBoxEx extends React.Component {
 
     openList() {
         this.setState({ visibleList: true });
+        this.defineListPosition();
     }
 
     defineListPosition() {
@@ -68,6 +69,7 @@ export default class ComboBoxEx extends React.Component {
     }
 
     render() {
+        console.log('render');
         const {
             select, idFieldName, visible, placeholder, disable, dim, labelName, addClass, list,
         } = this.props;
@@ -81,7 +83,6 @@ export default class ComboBoxEx extends React.Component {
             value = placeholder;
         } else {
             const selected = list.find((item) => ut.eq(item[idFieldName], select));
-            console.log('selected', selected);
             if (selected) {
                 addClassValue += ` ${selected.addClass}`;
                 value = selected.caption;
