@@ -192,8 +192,9 @@ ComboBoxEx.defaultProps = {
     dim: '',
     onChange: undefined,
     placeholder: '-выбрать-',
-    listHeight: 100,
-    list: [
+    listHeight: 300,
+    list: [],
+    list_example: [
         { id: 1, caption: 'text1', addClass: 'wd-cbex-icon3' },
         {
             id: 2, caption: 'text2', _disabled_: 1, addClass: 'wd-cbex-icon2',
