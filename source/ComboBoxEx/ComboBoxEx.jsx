@@ -7,7 +7,7 @@ export default class ComboBoxEx extends React.Component {
     constructor(p) {
         super(p);
         this.state = {
-            visibleList: true,
+            visibleList: false,
             posList: {
                 left: 0,
                 top: 0,
@@ -18,27 +18,50 @@ export default class ComboBoxEx extends React.Component {
         binds(this, 'openList', 'closeList', 'onChange');
         this.ref = React.createRef();
         this.observer = undefined;
+        this.timer = undefined;
     }
 
     openList() {
         this.setState({ visibleList: true });
         this.defineListPosition();
+        this.createTimer();
+    }
+
+    createTimer() {
+        if (!this.timer && this.props._forcedPosition) {
+            this.timer = setInterval(() => {
+                this.defineListPosition();
+            }, 10);
+        }
+    }
+
+    destroyTimer() {
+        if (this.timer) {
+            clearInterval(this.timer);
+            this.timer = undefined;
+        }
     }
 
     defineListPosition() {
+        const oldPos = this.state.posList;
         const pos = JX.abs(this.ref.current);
-        this.setState((state) => ({
-            posList: {
-                ...state.posList,
-                width: pos.w,
-                left: pos.x - 2,
-                top: pos.y + pos.h - 2,
-            },
-        }));
+        const newPos = {
+            ...oldPos,
+            width: pos.w,
+            left: pos.x - 2,
+            top: pos.y + pos.h - 2,
+        };
+        if (
+            (newPos.left !== oldPos.left)
+            || (newPos.top !== oldPos.top)
+            || (newPos.height !== oldPos.height)
+            || (newPos.width !== oldPos.width)
+        ) this.setState({ posList: newPos });
     }
 
     closeList() {
         this.setState({ visibleList: false });
+        this.destroyTimer();
     }
 
     onChange(o) {
@@ -53,6 +76,7 @@ export default class ComboBoxEx extends React.Component {
 
     componentDidMount() {
         // разовый вызов после первого рендеринга
+
         this.observer = new ResizeObserver(() => {
             this.defineListPosition();
         });
@@ -62,6 +86,7 @@ export default class ComboBoxEx extends React.Component {
     componentWillUnmount() {
         // разовый после последнего рендеринга\
         if (this.observer) this.observer.disconnect();
+        this.destroyTimer();
     }
 
     componentDidUpdate(prevProps, prevState, prevContext) {
@@ -69,7 +94,6 @@ export default class ComboBoxEx extends React.Component {
     }
 
     render() {
-        console.log('render');
         const {
             select, idFieldName, visible, placeholder, disable, dim, labelName, addClass, list,
         } = this.props;
@@ -127,13 +151,14 @@ ComboBoxEx.defaultProps = {
     dim: '',
     onChange: undefined,
     placeholder: '-выбрать-',
+
     list: [
         { id: 1, caption: 'text1', addClass: 'wd-cbex-icon3' },
         {
             id: 2, caption: 'text2', _disabled_: 1, addClass: 'wd-cbex-icon2',
         },
         { id: 3, caption: 'text3', addClass: 'wd-cbex-icon1' },
-        { id: 4, caption: 'text3', addClass: 'wd-cbex-iconno' },
+        { id: 4, caption: 'text4', addClass: 'wd-cbex-iconno' },
 
     ],
     disabled: 0,
@@ -141,4 +166,6 @@ ComboBoxEx.defaultProps = {
         dim: false,
     },
     addClass: '',
+    _forcedSelect: true,
+    _forcedPosition: false, // включает режим доп проверки позиции выпадающего списка
 };
