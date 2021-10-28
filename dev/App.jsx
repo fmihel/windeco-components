@@ -137,10 +137,10 @@ class App extends React.Component {
                     <Block> <Label caption="label"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
                     <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
                     <Head>ComboBox</Head>
-                    <Block> <ComboBox/></Block>
+                    <Block> <ComboBox /></Block>
                     <Block> <Label caption="combobox"><ComboBox disable={{ dim: false }}/></Label></Block>
                     <Head>ComboBoxEx</Head>
-                    <Block> <ComboBoxEx/></Block>
+                    <Block> <ComboBoxEx onChange={(o) => { console.log(o); }}/></Block>
                     {/* <Block> <Label caption="comboboxex"><ComboBoxEx disable={{ dim: false }}/></Label></Block> */}
 
                     <Head>Btn</Head>

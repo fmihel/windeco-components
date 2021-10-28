@@ -14,11 +14,15 @@ export default class ComboBoxEx extends React.Component {
                 width: 100,
                 height: 100,
             },
+            select: this.props.select,
         };
         binds(this, 'openList', 'closeList', 'onChange');
         this.ref = React.createRef();
         this.observer = undefined;
         this.timer = undefined;
+        this.story = {
+            select: this.props.select,
+        };
     }
 
     openList() {
@@ -65,11 +69,16 @@ export default class ComboBoxEx extends React.Component {
     }
 
     onChange(o) {
-        console.log(o);
         if (this.props.onChange) {
-            this.props.onChange({
-                ...o, sender: this,
-            });
+            const select = o.data[this.props.idFieldName];
+            if (!ut.eq(select, this._getSelect())) {
+                this.props.onChange({
+                    ...o,
+                    sender: this,
+                    select,
+                });
+                this.setState({ select });
+            }
         }
         this.closeList();
     }
@@ -91,17 +100,28 @@ export default class ComboBoxEx extends React.Component {
 
     componentDidUpdate(prevProps, prevState, prevContext) {
         // каждый раз после рендеринга (кроме первого раза !)
+        if (this.props._forcedSelect && this.story.select !== this.props.select) {
+            this.story.select = this.props.select;
+            this.setState({
+                select: this.props.select,
+            });
+        }
+    }
+
+    _getSelect() {
+        return this.props._forcedSelect ? this.state.select : this.props.select;
     }
 
     render() {
         const {
-            select, idFieldName, visible, placeholder, disable, dim, labelName, addClass, list,
+            idFieldName, visible, placeholder, disable, dim, labelName, addClass, list,
         } = this.props;
         const { visibleList, posList } = this.state;
         const name = (labelName ? { id: labelName } : {});
-        const display = (visible ? 'flex' : 'none');
+        // const display = (visible ? 'flex' : 'none');
         let value = '';
         let addClassValue = '';
+        const select = this._getSelect();
 
         if (ut.eq(select, -1)) {
             value = placeholder;
@@ -116,6 +136,7 @@ export default class ComboBoxEx extends React.Component {
             <div
                 className={`wd-combobox-ex ${addClass}`}
                 ref={this.ref}
+                {...name}
             >
                 <div
                     className={`wd-combobox-ex-value ${addClassValue}`}
@@ -166,6 +187,6 @@ ComboBoxEx.defaultProps = {
         dim: false,
     },
     addClass: '',
-    _forcedSelect: true,
+    _forcedSelect: true, // если true то выбранный элемент в списке будет сразу отображаться в поле, false - необходимо передать props.select
     _forcedPosition: false, // включает режим доп проверки позиции выпадающего списка
 };
