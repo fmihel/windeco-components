@@ -114,7 +114,7 @@ body{
     $size:map-get($wd-size,#{$name});
     .#{$name} {
         .wd-label{
-            min-width:$size*10 !important;
+            min-width:$size*5 !important;
         }
         
     }

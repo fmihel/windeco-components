@@ -1,4 +1,6 @@
-import { binds, JX, ut } from 'fmihel-browser-lib';
+import {
+    binds, JX, ut, dvc,
+} from 'fmihel-browser-lib';
 import React from 'react';
 import Modal from '../Modal/Modal.jsx';
 import ComboBoxListEx from './ComboBoxListEx.jsx';
@@ -12,7 +14,7 @@ export default class ComboBoxEx extends React.Component {
                 left: 0,
                 top: 0,
                 width: 100,
-                height: 100,
+                height: this.props.listHeight,
             },
             select: this.props.select,
         };
@@ -49,18 +51,35 @@ export default class ComboBoxEx extends React.Component {
     defineListPosition() {
         const oldPos = this.state.posList;
         const pos = JX.abs(this.ref.current);
-        const newPos = {
-            ...oldPos,
-            width: pos.w,
-            left: pos.x - 2,
-            top: pos.y + pos.h - 2,
-        };
+        const screen = JX.screen();
+        let newPos;
+        if (dvc.mobile) {
+            newPos = {
+                left: screen.w * 0.1,
+                top: screen.h * 0.1,
+                width: screen.w - screen.w * 0.2,
+                height: screen.h - screen.h * 0.2,
+
+            };
+        } else {
+            newPos = {
+                height: this.props.listHeight,
+                width: pos.w,
+                left: pos.x - 2,
+                top: pos.y + pos.h - 2,
+            };
+            if (newPos.top + newPos.height > screen.h) {
+                newPos.top = pos.y - newPos.height - 2;
+            }
+        }
         if (
             (newPos.left !== oldPos.left)
             || (newPos.top !== oldPos.top)
             || (newPos.height !== oldPos.height)
             || (newPos.width !== oldPos.width)
-        ) this.setState({ posList: newPos });
+        ) {
+            this.setState({ posList: newPos });
+        }
     }
 
     closeList() {
@@ -69,17 +88,17 @@ export default class ComboBoxEx extends React.Component {
     }
 
     onChange(o) {
+        const select = o.data[this.props.idFieldName];
         if (this.props.onChange) {
-            const select = o.data[this.props.idFieldName];
             if (!ut.eq(select, this._getSelect())) {
                 this.props.onChange({
                     ...o,
                     sender: this,
                     select,
                 });
-                this.setState({ select });
             }
         }
+        this.setState({ select });
         this.closeList();
     }
 
@@ -137,6 +156,7 @@ export default class ComboBoxEx extends React.Component {
                 className={`wd-combobox-ex ${addClass}`}
                 ref={this.ref}
                 {...name}
+                tabIndex="0"
             >
                 <div
                     className={`wd-combobox-ex-value ${addClassValue}`}
@@ -167,12 +187,12 @@ export default class ComboBoxEx extends React.Component {
 ComboBoxEx.defaultProps = {
     labelName: undefined,
     id: '',
-    select: 1, // id of selected
+    select: -1, // id of selected
     idFieldName: 'id',
     dim: '',
     onChange: undefined,
     placeholder: '-выбрать-',
-
+    listHeight: 100,
     list: [
         { id: 1, caption: 'text1', addClass: 'wd-cbex-icon3' },
         {
@@ -188,5 +208,5 @@ ComboBoxEx.defaultProps = {
     },
     addClass: '',
     _forcedSelect: true, // если true то выбранный элемент в списке будет сразу отображаться в поле, false - необходимо передать props.select
-    _forcedPosition: false, // включает режим доп проверки позиции выпадающего списка
+    _forcedPosition: true, // включает режим доп проверки позиции выпадающего списка
 };

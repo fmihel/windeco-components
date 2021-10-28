@@ -31,3 +31,22 @@ export const table_long = {
         { ID: 21, NAME: 'doni', AGE: 74 },
     ],
 };
+
+export const combo_list1 = [
+    { id: 1, caption: 'text1' },
+    { id: 2, caption: 'text2', _disabled_: 1 },
+    { id: 3, caption: 'text3', _disabled_: 1 },
+    { id: 4, caption: 'text4' },
+
+];
+export const combo_list2 = [
+    { id: 1, caption: 'text1', addClass: 'wd-cbex-icon3' },
+    {
+        id: 2, caption: 'text2', _disabled_: 1, addClass: 'wd-cbex-icon2',
+    },
+    { id: 3, caption: 'text3', addClass: 'wd-cbex-icon1' },
+    { id: 4, caption: 'text4', addClass: 'wd-cbex-iconno' },
+    { id: 5, caption: 'text5', addClass: 'wd-cbex-iconno' },
+    { id: 6, caption: 'text6', addClass: 'wd-cbex-iconno' },
+
+];

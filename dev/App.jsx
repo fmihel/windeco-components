@@ -18,7 +18,7 @@ import Modal from '../source/Modal/Modal.jsx';
 
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
-import { table_long } from './data.js';
+import { table_long, combo_list1, combo_list2 } from './data.js';
 
 class App extends React.Component {
     constructor(p) {
@@ -140,8 +140,13 @@ class App extends React.Component {
                     <Block> <ComboBox /></Block>
                     <Block> <Label caption="combobox"><ComboBox disable={{ dim: false }}/></Label></Block>
                     <Head>ComboBoxEx</Head>
-                    <Block> <ComboBoxEx onChange={(o) => { console.log(o); }}/></Block>
-                    {/* <Block> <Label caption="comboboxex"><ComboBoxEx disable={{ dim: false }}/></Label></Block> */}
+                    <Block> <ComboBoxEx
+                        onChange={(o) => { console.log(o); }}
+                        list = {combo_list1}
+                    />
+                    </Block>
+                    <Block>
+                        <Label caption="comboboxex"><ComboBoxEx list = {combo_list2} disable={{ dim: false }}/></Label></Block>
 
                     <Head>Btn</Head>
                     <Block>
