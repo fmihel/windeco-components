@@ -1,7 +1,8 @@
 import React from 'react';
 import {
-    ut, binds, childDOM, JX, dvc,
+    ut, binds, JX, dvc,
 } from 'fmihel-browser-lib';
+import { compose } from 'redux';
 import ComboBoxItemEx from './ComboBoxItemEx.jsx';
 
 export default class ComboBoxListEx extends React.Component {
@@ -16,6 +17,7 @@ export default class ComboBoxListEx extends React.Component {
                 top: 0,
                 width: 0,
             },
+            mark: -1,
         };
         this.$childs = undefined;
     }
@@ -23,6 +25,51 @@ export default class ComboBoxListEx extends React.Component {
     onSelect(o) {
         if (this.props.onSelect) {
             this.props.onSelect({ ...o, sender: this });
+        }
+    }
+
+    KeyHandle(o) {
+        if (o.keyCode === 38) {
+            this.setState((state) => {
+                let mark = state.mark - 1;
+                mark = (mark < 0 ? 0 : mark);
+
+                const target = $(this.ref.current).children().eq(mark)[0];
+
+                JX.scroll(this.ref.current,
+                    target,
+                    {
+                        off: 10,
+                        animate: 100,
+                    });
+
+                return { mark };
+            });
+        }
+        if (o.keyCode === 40) {
+            this.setState((state) => {
+                let mark = state.mark + 1;
+                mark = (mark > this.props.list.length - 1 ? this.props.list.length - 1 : mark);
+
+                const target = $(this.ref.current).children().eq(mark)[0];
+
+                JX.scroll(this.ref.current,
+                    target,
+                    {
+                        off: 10,
+                        animate: 100,
+                    });
+
+                return { mark };
+            });
+        }
+        if (o.keyCode === 13) {
+            if (this.state.mark >= 0 && this.state.mark < this.props.list.length) {
+                const data = this.props.list[this.state.mark];
+                if (!data._disabled_) {
+                    this.onSelect({ data });
+                }
+            }
         }
     }
 
@@ -65,6 +112,7 @@ export default class ComboBoxListEx extends React.Component {
     componentDidMount() {
         // разовый вызов после первого рендеринга
         this.definePosition();
+        if (this.props.onCreate) this.props.onCreate({ sender: this });
     }
 
     componentWillUnmount() {
@@ -81,9 +129,10 @@ export default class ComboBoxListEx extends React.Component {
 
             idFieldName, list,
         } = this.props;
+        const { mark, pos } = this.state;
         const style = {
             position: 'absolute',
-            ...this.state.pos,
+            ...pos,
         };
         return (
             <div
@@ -91,7 +140,7 @@ export default class ComboBoxListEx extends React.Component {
                 style={style}
                 ref = {this.ref}
             >
-                {list.map((item) => <ComboBoxItemEx
+                {list.map((item, i) => <ComboBoxItemEx
                     key={item[idFieldName]}
                     id={item[idFieldName]}
                     caption={item.caption}
@@ -100,6 +149,7 @@ export default class ComboBoxListEx extends React.Component {
                     disabled={ut.eq(item._disabled_, 1)}
                     data={item}
                     onClick={this.onSelect}
+                    mark={mark === i}
                 />)}
             </div>
         );
@@ -120,4 +170,5 @@ ComboBoxListEx.defaultProps = {
         { id: 3, caption: 'text3', addClass: 'wd-cbex-icon1' },
     ],
     onSelect: undefined,
+    onCreate: undefined,
 };

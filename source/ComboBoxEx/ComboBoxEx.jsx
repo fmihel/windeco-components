@@ -18,10 +18,11 @@ export default class ComboBoxEx extends React.Component {
             },
             select: this.props.select,
         };
-        binds(this, 'openList', 'closeList', 'onChange');
+        binds(this, 'openList', 'closeList', 'onChange', 'onKeyDown', 'onFocusOut', 'onCreateList');
         this.ref = React.createRef();
         this.observer = undefined;
         this.timer = undefined;
+        this.list = undefined;
         this.story = {
             select: this.props.select,
         };
@@ -70,6 +71,27 @@ export default class ComboBoxEx extends React.Component {
         this.destroyTimer();
     }
 
+    onKeyDown(o) {
+        if (o.keyCode === 27) {
+            this.closeList();
+            o.preventDefault();
+        }
+        if (o.keyCode === 40 || o.keyCode === 38 || o.keyCode === 13) {
+            if (!this.state.visibleList) {
+                this.openList();
+            } else {
+                this.list.KeyHandle({ keyCode: o.keyCode });
+            }
+            o.preventDefault();
+        }
+    }
+
+    onFocusOut() {
+        setTimeout(() => {
+            this.closeList();
+        }, 100);
+    }
+
     onChange(o) {
         const select = o.data[this.props.idFieldName];
         if (this.props.onChange) {
@@ -83,6 +105,10 @@ export default class ComboBoxEx extends React.Component {
         }
         this.setState({ select });
         this.closeList();
+    }
+
+    onCreateList(o) {
+        this.list = o.sender;
     }
 
     componentDidMount() {
@@ -118,9 +144,8 @@ export default class ComboBoxEx extends React.Component {
         const {
             idFieldName, placeholder, disable, dim, labelName, addClass, list, maxListHeight,
         } = this.props;
-        const { visibleList, posList, pos } = this.state;
+        const { visibleList, pos } = this.state;
         const name = (labelName ? { id: labelName } : {});
-        // const display = (visible ? 'flex' : 'none');
         let value = '';
         let addClassValue = '';
         const select = this._getSelect();
@@ -140,6 +165,8 @@ export default class ComboBoxEx extends React.Component {
                 ref={this.ref}
                 {...name}
                 tabIndex="0"
+                onKeyDown={this.onKeyDown}
+                onBlur={this.onFocusOut}
             >
                 <div
                     className={`wd-combobox-ex-value ${addClassValue}`}
@@ -161,6 +188,7 @@ export default class ComboBoxEx extends React.Component {
                         idFieldName={idFieldName}
                         list={list}
                         onSelect={this.onChange}
+                        onCreate={this.onCreateList}
                     />
                 </Modal>}
 

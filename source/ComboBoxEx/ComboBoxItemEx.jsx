@@ -15,13 +15,14 @@ export default class ComboBoxItemEx extends React.Component {
 
     render() {
         const {
-            caption, id, content, addClass, disabled,
+            caption, id, content, addClass, disabled, mark,
         } = this.props;
         return (
             <div
-                className={`wd-combobox-ex-item${disabled ? ' wd-combobox-ex-item-disabled' : ''} ${addClass}`}
+                className={`wd-combobox-ex-item ${mark ? ' wd-combobox-ex-item-mark' : ''} ${disabled ? ' wd-combobox-ex-item-disabled' : ''} ${addClass}`}
                 id={id}
                 onClick={this.onClick}
+
             >
                 {caption}
             </div>
@@ -36,4 +37,5 @@ ComboBoxItemEx.defaultProps = {
     id: undefined,
     onClick: undefined,
     data: undefined,
+    mark: false,
 };
