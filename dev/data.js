@@ -35,7 +35,7 @@ export const table_long = {
 export const combo_list1 = [
     { id: 1, caption: 'text1' },
     { id: 2, caption: 'text2', _disabled_: 1 },
-    { id: 3, caption: 'text3', _disabled_: 1 },
+    { id: 3, caption: 'text3' },
     { id: 4, caption: 'text4' },
 
 ];

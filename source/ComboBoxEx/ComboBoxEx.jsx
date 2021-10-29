@@ -10,11 +10,11 @@ export default class ComboBoxEx extends React.Component {
         super(p);
         this.state = {
             visibleList: false,
-            posList: {
+            pos: {
                 left: 0,
                 top: 0,
-                width: 100,
-                height: this.props.listHeight,
+                width: 0,
+                height: 0,
             },
             select: this.props.select,
         };
@@ -29,14 +29,14 @@ export default class ComboBoxEx extends React.Component {
 
     openList() {
         this.setState({ visibleList: true });
-        this.defineListPosition();
+        this.definePosition();
         this.createTimer();
     }
 
     createTimer() {
         if (!this.timer && this.props._forcedPosition) {
             this.timer = setInterval(() => {
-                this.defineListPosition();
+                this.definePosition();
             }, 10);
         }
     }
@@ -48,37 +48,20 @@ export default class ComboBoxEx extends React.Component {
         }
     }
 
-    defineListPosition() {
-        const oldPos = this.state.posList;
-        const pos = JX.abs(this.ref.current);
-        const screen = JX.screen();
-        let newPos;
-        if (dvc.mobile) {
-            newPos = {
-                left: screen.w * 0.1,
-                top: screen.h * 0.1,
-                width: screen.w - screen.w * 0.2,
-                height: screen.h - screen.h * 0.2,
-
-            };
-        } else {
-            newPos = {
-                height: this.props.listHeight,
-                width: pos.w,
-                left: pos.x - 2,
-                top: pos.y + pos.h - 2,
-            };
-            if (newPos.top + newPos.height > screen.h) {
-                newPos.top = pos.y - newPos.height - 2;
-            }
-        }
+    definePosition() {
+        const oldPos = this.state.pos;
+        const newPos = JX.abs(this.ref.current);
         if (
             (newPos.left !== oldPos.left)
             || (newPos.top !== oldPos.top)
             || (newPos.height !== oldPos.height)
             || (newPos.width !== oldPos.width)
         ) {
-            this.setState({ posList: newPos });
+            this.setState({
+                pos: {
+                    left: newPos.x - 2, top: newPos.y, width: newPos.w, height: newPos.h,
+                },
+            });
         }
     }
 
@@ -106,7 +89,7 @@ export default class ComboBoxEx extends React.Component {
         // разовый вызов после первого рендеринга
 
         this.observer = new ResizeObserver(() => {
-            this.defineListPosition();
+            this.definePosition();
         });
         this.observer.observe(this.ref.current);
     }
@@ -133,9 +116,9 @@ export default class ComboBoxEx extends React.Component {
 
     render() {
         const {
-            idFieldName, visible, placeholder, disable, dim, labelName, addClass, list,
+            idFieldName, placeholder, disable, dim, labelName, addClass, list, maxListHeight,
         } = this.props;
-        const { visibleList, posList } = this.state;
+        const { visibleList, posList, pos } = this.state;
         const name = (labelName ? { id: labelName } : {});
         // const display = (visible ? 'flex' : 'none');
         let value = '';
@@ -173,7 +156,8 @@ export default class ComboBoxEx extends React.Component {
                 {visibleList
                 && <Modal onClickShadow={this.closeList}>
                     <ComboBoxListEx
-                        {...posList}
+                        parentPos={pos}
+                        maxListHeight = {maxListHeight}
                         idFieldName={idFieldName}
                         list={list}
                         onSelect={this.onChange}
@@ -192,7 +176,7 @@ ComboBoxEx.defaultProps = {
     dim: '',
     onChange: undefined,
     placeholder: '-выбрать-',
-    listHeight: 300,
+    maxListHeight: 100,
     list: [],
     list_example: [
         { id: 1, caption: 'text1', addClass: 'wd-cbex-icon3' },
