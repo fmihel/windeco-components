@@ -18,7 +18,9 @@ import Modal from '../source/Modal/Modal.jsx';
 
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
-import { table_long, combo_list1, combo_list2 } from './data.js';
+import {
+    table_long, combo_list1, combo_list2, combo_list3, listClasses3,
+} from './data.js';
 
 class App extends React.Component {
     constructor(p) {
@@ -140,14 +142,25 @@ class App extends React.Component {
                     <Block> <ComboBox /></Block>
                     <Block> <Label caption="combobox"><ComboBox disable={{ dim: false }}/></Label></Block>
                     <Head>ComboBoxEx</Head>
-                    <Block> <ComboBoxEx
-                        onChange={(o) => { console.log(o); }}
-                        list = {combo_list1}
-                    />
+                    <Block>
+                        <ComboBoxEx
+                            onChange={(o) => { console.log(o); }}
+                            list = {combo_list1}
+                        />
                     </Block>
                     <Block>
-                        <Label caption="comboboxex"><ComboBoxEx list = {combo_list2} disable={{ dim: false }}/></Label></Block>
-
+                        <ComboBoxEx
+                            onChange={(o) => { console.log(o); }}
+                            list = {combo_list3}
+                            listClasses={listClasses3}
+                            disable={{ dim: true }}
+                            select={3}
+                        />
+                    </Block>
+                    <Block>
+                        <Label caption="comboboxex">
+                            <ComboBoxEx list = {combo_list2} disable={{ dim: false }}/>
+                        </Label></Block>
                     <Head>Btn</Head>
                     <Block>
                         <Btn>button</Btn>

@@ -2,7 +2,6 @@ import React from 'react';
 import {
     ut, binds, JX, dvc,
 } from 'fmihel-browser-lib';
-import { compose } from 'redux';
 import ComboBoxItemEx from './ComboBoxItemEx.jsx';
 
 export default class ComboBoxListEx extends React.Component {
@@ -109,6 +108,20 @@ export default class ComboBoxListEx extends React.Component {
         }
     }
 
+    static getAddClass(item, listClasses) {
+        if ('addClass' in item) {
+            return item.addClass;
+        }
+        const listClassesIndexs = Object.keys(listClasses);
+        if (listClassesIndexs.length) {
+            if ('_indexClass_' in item) {
+                return listClasses[item._indexClass_];
+            }
+            return listClasses.default;
+        }
+        return undefined;
+    }
+
     componentDidMount() {
         // разовый вызов после первого рендеринга
         this.definePosition();
@@ -127,13 +140,14 @@ export default class ComboBoxListEx extends React.Component {
     render() {
         const {
 
-            idFieldName, list,
+            idFieldName, list, listClasses,
         } = this.props;
         const { mark, pos } = this.state;
         const style = {
             position: 'absolute',
             ...pos,
         };
+
         return (
             <div
                 className="wd-combobox-ex-list"
@@ -145,11 +159,12 @@ export default class ComboBoxListEx extends React.Component {
                     id={item[idFieldName]}
                     caption={item.caption}
                     content={item.content}
-                    addClass={item.addClass}
+                    addClass={ComboBoxListEx.getAddClass(item, listClasses)}
                     disabled={ut.eq(item._disabled_, 1)}
                     data={item}
                     onClick={this.onSelect}
                     mark={mark === i}
+
                 />)}
             </div>
         );
@@ -164,11 +179,13 @@ ComboBoxListEx.defaultProps = {
     },
     maxListHeight: 100,
     idFieldName: 'id',
-    list: [
-        { id: 1, content: '<span>text</span>' },
+    list: [],
+    list_example: [
+        { id: 1, caption: 'text' },
         { id: 2, caption: 'text2', _disabled_: 1 },
         { id: 3, caption: 'text3', addClass: 'wd-cbex-icon1' },
     ],
     onSelect: undefined,
     onCreate: undefined,
+    listClasses: {},
 };

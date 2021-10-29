@@ -1,5 +1,5 @@
 import {
-    binds, JX, ut, dvc,
+    binds, JX, ut, dvc, DOM,
 } from 'fmihel-browser-lib';
 import React from 'react';
 import Modal from '../Modal/Modal.jsx';
@@ -51,7 +51,9 @@ export default class ComboBoxEx extends React.Component {
 
     definePosition() {
         const oldPos = this.state.pos;
-        const newPos = JX.abs(this.ref.current);
+
+        // console.log(DOM('.wd-combobox-ex-value', this.ref.current));
+        const newPos = JX.abs(DOM('.wd-combobox-ex-focus', this.ref.current));
         if (
             (newPos.left !== oldPos.left)
             || (newPos.top !== oldPos.top)
@@ -142,7 +144,7 @@ export default class ComboBoxEx extends React.Component {
 
     render() {
         const {
-            idFieldName, placeholder, disable, dim, labelName, addClass, list, maxListHeight,
+            idFieldName, placeholder, disable, dim, labelName, addClass, list, maxListHeight, listClasses,
         } = this.props;
         const { visibleList, pos } = this.state;
         const name = (labelName ? { id: labelName } : {});
@@ -155,7 +157,8 @@ export default class ComboBoxEx extends React.Component {
         } else {
             const selected = list.find((item) => ut.eq(item[idFieldName], select));
             if (selected) {
-                addClassValue += ` ${selected.addClass}`;
+                // addClassValue += ` ${selected.addClass}`;
+                addClassValue += ` ${ComboBoxListEx.getAddClass(selected, listClasses)}`;
                 value = selected.caption;
             }
         }
@@ -164,22 +167,35 @@ export default class ComboBoxEx extends React.Component {
                 className={`wd-combobox-ex ${addClass}`}
                 ref={this.ref}
                 {...name}
-                tabIndex="0"
-                onKeyDown={this.onKeyDown}
-                onBlur={this.onFocusOut}
+
             >
                 <div
-                    className={`wd-combobox-ex-value ${addClassValue}`}
-                    onClick={this.openList}
-                >
-                    {value}
-                </div>
-                <div
-                    className="wd-combobox-ex-btn"
-                    onClick={this.openList}
+                    className={'wd-combobox-ex-focus'}
+                    tabIndex="0"
+                    onKeyDown={this.onKeyDown}
+                    onBlur={this.onFocusOut}
                 >
 
+                    <div
+                        className={`wd-combobox-ex-value ${addClassValue}`}
+                        onClick={this.openList}
+                    >
+                        {value}
+                    </div>
+                    <div
+                        className="wd-combobox-ex-btn"
+                        onClick={this.openList}
+                    >
+                    </div>
                 </div>
+
+                {!disable.dim
+                && <div
+                    className="wd-combobox-ex-dim"
+                >
+                    {dim}
+                </div>
+                }
                 {visibleList
                 && <Modal onClickShadow={this.closeList}>
                     <ComboBoxListEx
@@ -189,6 +205,7 @@ export default class ComboBoxEx extends React.Component {
                         list={list}
                         onSelect={this.onChange}
                         onCreate={this.onCreateList}
+                        listClasses={listClasses}
                     />
                 </Modal>}
 
@@ -201,7 +218,7 @@ ComboBoxEx.defaultProps = {
     id: '',
     select: -1, // id of selected
     idFieldName: 'id',
-    dim: '',
+    dim: 'm',
     onChange: undefined,
     placeholder: '-выбрать-',
     maxListHeight: 100,
@@ -213,8 +230,24 @@ ComboBoxEx.defaultProps = {
         },
         { id: 3, caption: 'text3', addClass: 'wd-cbex-icon1' },
         { id: 4, caption: 'text4', addClass: 'wd-cbex-iconno' },
+    ],
+    list_example2: [
+        { id: 1, caption: 'text1', _indexClass_: '2' },
+        { id: 2, caption: 'text2', _disabled_: 1 },
+        { id: 3, caption: 'text3', _indexClass_: '3' },
+        { id: 4, caption: 'text4', _indexClass_: 'none' },
+        { id: 5, caption: 'text5' },
+        { id: 6, caption: 'text6' },
 
     ],
+    listClasses: {},
+    listClasses_example: {
+        default: 'wd-cbex-iconno',
+        1: 'wd-cbex-icon1',
+        2: 'wd-cbex-icon2',
+        3: 'wd-cbex-icon3',
+        none: 'wd-cbex-iconno',
+    },
     disabled: 0,
     disable: {
         dim: false,

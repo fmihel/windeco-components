@@ -50,3 +50,21 @@ export const combo_list2 = [
     { id: 6, caption: 'text6', addClass: 'wd-cbex-iconno' },
 
 ];
+
+export const combo_list3 = [
+    { id: 1, caption: 'text1', _indexClass_: '2' },
+    { id: 2, caption: 'text2', _disabled_: 1 },
+    { id: 3, caption: 'text3', _indexClass_: 3 },
+    { id: 4, caption: 'text4', _indexClass_: 'none' },
+    { id: 5, caption: 'text5' },
+    { id: 6, caption: 'text6' },
+
+];
+
+export const listClasses3 = {
+    default: 'wd-cbex-icon1',
+    1: 'wd-cbex-icon1',
+    2: 'wd-cbex-icon2',
+    3: 'wd-cbex-icon3',
+    none: 'wd-cbex-iconno',
+};
