@@ -62,7 +62,7 @@ export default class ComboBoxEx extends React.Component {
         ) {
             this.setState({
                 pos: {
-                    left: newPos.x - 2, top: newPos.y, width: newPos.w, height: newPos.h,
+                    left: newPos.x - 1, top: newPos.y, width: newPos.w, height: newPos.h,
                 },
             });
         }
