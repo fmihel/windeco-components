@@ -139,19 +139,16 @@ $wd-modal-dialog-color:('light':#000000,'dark':#c7c7c7)  !default;
     }
 }
 
-@mixin wd-modal-dialog-default(){
+
+.wd-modal-dialog{
     @include wd-modal-dialog-theme($wd-default-theme);
     @include wd-modal-dialog-theme-size($wd-default-theme-size);
-}
-
-.wd-modal{
-    @include wd-modal-dialog-default();
 }
 
 
 @each $name in $wd-themes{
     .#{$name} {
-        .wd-modal{
+        .wd-modal-dialog{
             @include wd-modal-dialog-theme($name);
         }
     }
@@ -159,7 +156,7 @@ $wd-modal-dialog-color:('light':#000000,'dark':#c7c7c7)  !default;
 
 @each $name in $wd-sizes{
     .#{$name} {
-        .wd-modal{
+        .wd-modal-dialog{
             @include wd-modal-dialog-theme-size($name);
         }
         

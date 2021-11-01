@@ -146,7 +146,7 @@ export default class ModalDialog extends React.Component {
 
                 <div
                     style={{ ...modalPos, display: displayModal }}
-                    className="wd-modal"
+                    className="wd-modal-dialog"
                 >
                     {header && <div className="wd-modal-dialog-header">
                         <div className="wd-modal-dialog-header-caption">
