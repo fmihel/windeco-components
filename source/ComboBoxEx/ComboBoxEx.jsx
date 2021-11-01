@@ -17,6 +17,7 @@ export default class ComboBoxEx extends React.Component {
                 height: 0,
             },
             select: this.props.select,
+            id: (this.props.id === '' ? `cbex-${ut.random_str(5)}` : this.props.id),
         };
         binds(this, 'openList', 'closeList', 'onChange', 'onKeyDown', 'onFocusOut', 'onCreateList');
         this.ref = React.createRef();
@@ -74,6 +75,9 @@ export default class ComboBoxEx extends React.Component {
     }
 
     onKeyDown(o) {
+        if (o.keyCode === 9) {
+            this.closeList();
+        }
         if (o.keyCode === 27) {
             this.closeList();
             o.preventDefault();
@@ -89,9 +93,7 @@ export default class ComboBoxEx extends React.Component {
     }
 
     onFocusOut() {
-        setTimeout(() => {
-            this.closeList();
-        }, 100);
+
     }
 
     onChange(o) {
@@ -99,8 +101,9 @@ export default class ComboBoxEx extends React.Component {
         if (this.props.onChange) {
             if (!ut.eq(select, this._getSelect())) {
                 this.props.onChange({
-                    ...o,
-                    sender: this,
+                    // ...o,
+                    // sender: this,
+                    id: this.props.id,
                     select,
                 });
             }

@@ -108,6 +108,14 @@ export default class ComboBoxListEx extends React.Component {
         }
     }
 
+    /** признак, что курсор внутри списка */
+    mouseOnList() {
+        const mouse = JX.mouse();
+        const list = this.state.pos;
+        return (((mouse.x >= list.left) && (mouse.x <= list.left + list.width))
+        && ((mouse.y >= list.top) && (mouse.y <= list.top + list.height)));
+    }
+
     static getAddClass(item, listClasses) {
         if ('addClass' in item) {
             return item.addClass;
