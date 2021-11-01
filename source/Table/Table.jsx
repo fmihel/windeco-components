@@ -13,8 +13,8 @@ export default class Table extends React.Component {
         binds(this, 'onResize', 'onClick', 'onDblClick');
 
         this.$parent = undefined;
-        this.id = undefined;
 
+        this.id = `table-${ut.random_str(5)}`;
         this.state = {
             height: 200,
             selected: undefined,
@@ -79,7 +79,7 @@ export default class Table extends React.Component {
         const {
             data, id, fields, stretch, addClass,
         } = this.props;
-        if (this.id === undefined) this.id = `table-${ut.random_str(5)}`;
+
         const valid = this._valid(this.props);
         let style = {};
         if (stretch) {
