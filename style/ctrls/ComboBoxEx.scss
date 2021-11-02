@@ -53,7 +53,7 @@ $wd-cbex-border-focus:$wd-ctrl-border-focus !default;
     align-items: stretch;
     
     height:$size;
-    min-width: $size*5;
+    min-width: $size*3;
     .wd-combobox-ex-focus{
         flex: 1 1 auto;
 
@@ -92,14 +92,17 @@ $wd-cbex-border-focus:$wd-ctrl-border-focus !default;
 
 @mixin wd-combobox-ex-list-theme($theme){
     @include wd-scrollbar-theme($theme);
-    border:1px solid wd-get-theme($wd-cbex-border,#{$theme});
+    border:1px solid wd-get-theme($wd-cbex-border-focus,#{$theme});
     background-color: wd-get-theme($wd-cbex-bg,#{$theme});
+    color:wd-get-theme($wd-cbex-color,#{$theme});
+
     .wd-combobox-ex-item{
         border-bottom:1px solid  wd-get-theme($wd-cbex-border,#{$theme});
         border-top:1px solid  wd-get-theme($wd-cbex-border,#{$theme});
         overflow: hidden;
         white-space: nowrap;
-         
+        
+        
         &:nth-child(1){
             border-top:1px solid  rgba(0,0,0,0);//wd-get-theme($wd-cbex-border,#{$theme}); 
         }         
@@ -118,6 +121,7 @@ $wd-cbex-border-focus:$wd-ctrl-border-focus !default;
 
         &:hover{
             background-color: wd-get-theme($wd-cbex-bg,#{$theme});
+            color:wd-get-theme($wd-cbex-color,#{$theme});
         }
     }
 

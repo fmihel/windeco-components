@@ -42,6 +42,13 @@ export default class Modal extends React.Component {
         элементы, после того, как Modal будет вставлен в DOM дерево.
         */
         this.modalRoot = DOM(this.props.modalRoot);
+        if (!this.modalRoot || this.modalRoot.length === 0) {
+            const msg = `Cant find modal root for Modal component ! (finded by this.props.modalRoot="${this.props.modalRoot}")`;
+            console.log('------------------------------------');
+            console.log(msg);
+            console.log('------------------------------------');
+            throw new Error(msg);
+        }
         this.modalRoot.appendChild(this.el);
         $(window).on('resize', this.resize);
         this.resize();

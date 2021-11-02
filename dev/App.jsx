@@ -148,7 +148,8 @@ class App extends React.Component {
                             list = {combo_list1}
                         />
                     </Block>
-                    <Block>
+                    {
+                    /* <Block>
                         <ComboBoxEx
                             onChange={(o) => { console.log(o); }}
                             list = {combo_list3}
@@ -161,6 +162,7 @@ class App extends React.Component {
                         <Label caption="comboboxex">
                             <ComboBoxEx list = {combo_list2} disable={{ dim: false }}/>
                         </Label></Block>
+                    */}
                     <Head>Btn</Head>
                     <Block>
                         <Btn>button</Btn>

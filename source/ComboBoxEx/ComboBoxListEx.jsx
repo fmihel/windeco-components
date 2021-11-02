@@ -92,7 +92,7 @@ export default class ComboBoxListEx extends React.Component {
             newPos.height = newPos.height > this.props.maxListHeight ? this.props.maxListHeight : newPos.height;
 
             if (parent.top + parent.height + newPos.height > screen.h) {
-                newPos.top = parent.top - newPos.height - 2;
+                newPos.top = parent.top - newPos.height - 0;
             } else {
                 newPos.top = parent.top + parent.height - 2;
             }

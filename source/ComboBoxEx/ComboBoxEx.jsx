@@ -1,11 +1,21 @@
 import {
-    binds, JX, ut, dvc, DOM,
+    binds, JX, ut,
 } from 'fmihel-browser-lib';
 import React from 'react';
+import _ from 'lodash';
 import Modal from '../Modal/Modal.jsx';
 import ComboBoxListEx from './ComboBoxListEx.jsx';
 // import { flex, binds } from 'fmihel-browser-lib'
 export default class ComboBoxEx extends React.Component {
+    static _global={
+        off: {
+            left: -1,
+            top: 0,
+            width: 0,
+            height: 0,
+        },
+    };
+
     constructor(p) {
         super(p);
         this.state = {
@@ -21,6 +31,8 @@ export default class ComboBoxEx extends React.Component {
         };
         binds(this, 'openList', 'closeList', 'onChange', 'onKeyDown', 'onFocusOut', 'onCreateList');
         this.ref = React.createRef();
+        this.refFocus = React.createRef();
+
         this.observer = undefined;
         this.timer = undefined;
         this.list = undefined;
@@ -29,17 +41,29 @@ export default class ComboBoxEx extends React.Component {
         };
     }
 
+    /** установка глобальных настроек для обьекта */
+    static global(o) {
+        if (o) {
+            ComboBoxEx._global = _.defaultsDeep(o, ComboBoxEx._global);
+            console.log('global', ComboBoxEx._global);
+        }
+        return _.cloneDeep(ComboBoxEx._global);
+    }
+
     openList() {
         this.setState({ visibleList: true });
-        this.definePosition();
+        this.definePosition(true);
         this.createTimer();
     }
 
     createTimer() {
         if (!this.timer && this.props._forcedPosition) {
             this.timer = setInterval(() => {
-                this.definePosition();
-            }, 10);
+                // если произошло изменение размеров или позиции
+                if (this.definePosition(false, false)) {
+                    this.closeList();
+                }
+            }, 200);
         }
     }
 
@@ -50,26 +74,43 @@ export default class ComboBoxEx extends React.Component {
         }
     }
 
-    definePosition() {
-        const oldPos = this.state.pos;
+    definePosition(forced = false, setState = true) {
+        if (forced || this.state.visibleList) {
+            const oldPos = this.state.pos;
+            // const abs = JX.abs(DOM('.wd-combobox-ex-focus', this.ref.current));
+            const abs = JX.abs(this.refFocus.current);
+            const newPos = { ...abs };
+            newPos.x += ComboBoxEx._global.off.left;
+            newPos.y += ComboBoxEx._global.off.top;
+            newPos.w += ComboBoxEx._global.off.width;
+            newPos.h += ComboBoxEx._global.off.height;
 
-        // console.log(DOM('.wd-combobox-ex-value', this.ref.current));
-        const newPos = JX.abs(DOM('.wd-combobox-ex-focus', this.ref.current));
-        if (
-            (newPos.left !== oldPos.left)
-            || (newPos.top !== oldPos.top)
-            || (newPos.height !== oldPos.height)
-            || (newPos.width !== oldPos.width)
-        ) {
-            this.setState({
-                pos: {
-                    left: newPos.x - 1, top: newPos.y, width: newPos.w, height: newPos.h,
-                },
-            });
+            // newPos.x = Math.floor(newPos.x);
+            // newPos.y = Math.floor(newPos.y);
+            // newPos.w = Math.floor(newPos.w);
+            // newPos.h = Math.floor(newPos.h);
+
+            if (
+                (newPos.x !== oldPos.left)
+            || (newPos.y !== oldPos.top)
+            || (newPos.h !== oldPos.height)
+            || (newPos.w !== oldPos.width)
+            ) {
+                if (setState) {
+                    this.setState({
+                        pos: {
+                            left: newPos.x, top: newPos.y, width: newPos.w, height: newPos.h,
+                        },
+                    });
+                }
+                return true;
+            }
         }
+        return false;
     }
 
     closeList() {
+        this.story.visibleList = false;
         this.setState({ visibleList: false });
         this.destroyTimer();
     }
@@ -82,7 +123,7 @@ export default class ComboBoxEx extends React.Component {
             this.closeList();
             o.preventDefault();
         }
-        if (o.keyCode === 40 || o.keyCode === 38 || o.keyCode === 13) {
+        if ([34, 33, 40, 38, 13].indexOf(o.keyCode) >= 0) {
             if (!this.state.visibleList) {
                 this.openList();
             } else {
@@ -119,15 +160,15 @@ export default class ComboBoxEx extends React.Component {
     componentDidMount() {
         // разовый вызов после первого рендеринга
 
-        this.observer = new ResizeObserver(() => {
-            this.definePosition();
-        });
-        this.observer.observe(this.ref.current);
+        // this.observer = new ResizeObserver(() => {
+        // this.definePosition();
+        // });
+        // this.observer.observe(this.ref.current);
     }
 
     componentWillUnmount() {
         // разовый после последнего рендеринга\
-        if (this.observer) this.observer.disconnect();
+        // if (this.observer) this.observer.disconnect();
         this.destroyTimer();
     }
 
@@ -177,6 +218,7 @@ export default class ComboBoxEx extends React.Component {
                     tabIndex="0"
                     onKeyDown={this.onKeyDown}
                     onBlur={this.onFocusOut}
+                    ref={this.refFocus}
                 >
 
                     <div
@@ -224,7 +266,7 @@ ComboBoxEx.defaultProps = {
     dim: 'm',
     onChange: undefined,
     placeholder: '-выбрать-',
-    maxListHeight: 100,
+    maxListHeight: 300,
     list: [],
     list_example: [
         { id: 1, caption: 'text1', addClass: 'wd-cbex-icon3' },
