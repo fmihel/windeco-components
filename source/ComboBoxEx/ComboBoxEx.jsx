@@ -14,6 +14,7 @@ export default class ComboBoxEx extends React.Component {
             width: 0,
             height: 0,
         },
+        listClasses: {},
     };
 
     constructor(p) {
@@ -29,6 +30,7 @@ export default class ComboBoxEx extends React.Component {
             select: this.props.select,
             id: (this.props.id === '' ? `cbex-${ut.random_str(5)}` : this.props.id),
         };
+
         binds(this, 'openList', 'closeList', 'onChange', 'onKeyDown', 'onFocusOut', 'onCreateList');
         this.ref = React.createRef();
         this.refFocus = React.createRef();
@@ -38,6 +40,7 @@ export default class ComboBoxEx extends React.Component {
         this.list = undefined;
         this.story = {
             select: this.props.select,
+            hash: undefined,
         };
     }
 
@@ -110,7 +113,6 @@ export default class ComboBoxEx extends React.Component {
     }
 
     closeList() {
-        this.story.visibleList = false;
         this.setState({ visibleList: false });
         this.destroyTimer();
     }
@@ -174,11 +176,16 @@ export default class ComboBoxEx extends React.Component {
 
     componentDidUpdate(prevProps, prevState, prevContext) {
         // каждый раз после рендеринга (кроме первого раза !)
-        if (this.props._forcedSelect && this.story.select !== this.props.select) {
-            this.story.select = this.props.select;
-            this.setState({
-                select: this.props.select,
-            });
+        if (this.props._forcedSelect) {
+            const { story } = this;
+            const { props } = this;
+            if ((story.select !== props.select) || (props.hash && story.hash !== props.hash)) {
+                story.select = props.select;
+                story.hash = props.hash;
+                this.setState({
+                    select: this.props.select,
+                });
+            }
         }
     }
 
@@ -188,20 +195,20 @@ export default class ComboBoxEx extends React.Component {
 
     render() {
         const {
-            idFieldName, placeholder, disable, dim, labelName, addClass, list, maxListHeight, listClasses,
+            idFieldName, placeholder, disable, dim, labelName, addClass, list, maxListHeight, listClasses: listClassesProps,
         } = this.props;
         const { visibleList, pos } = this.state;
         const name = (labelName ? { id: labelName } : {});
         let value = '';
         let addClassValue = '';
         const select = this._getSelect();
-
+        const listClasses = { ...ComboBoxEx._global.listClasses, ...listClassesProps };
+        console.log('list', listClasses);
         if (ut.eq(select, -1)) {
             value = placeholder;
         } else {
             const selected = list.find((item) => ut.eq(item[idFieldName], select));
             if (selected) {
-                // addClassValue += ` ${selected.addClass}`;
                 addClassValue += ` ${ComboBoxListEx.getAddClass(selected, listClasses)}`;
                 value = selected.caption;
             }
@@ -259,6 +266,7 @@ export default class ComboBoxEx extends React.Component {
     }
 }
 ComboBoxEx.defaultProps = {
+    hash: undefined,
     labelName: undefined,
     id: '',
     select: -1, // id of selected

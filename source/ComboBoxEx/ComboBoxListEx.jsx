@@ -120,14 +120,14 @@ export default class ComboBoxListEx extends React.Component {
         if ('addClass' in item) {
             return item.addClass;
         }
-        const listClassesIndexs = Object.keys(listClasses);
-        if (listClassesIndexs.length) {
-            if ('_indexClass_' in item) {
-                return listClasses[item._indexClass_];
-            }
-            return listClasses.default;
+        // const listClassesIndexs = Object.keys(listClasses);
+        // if (listClassesIndexs.length) {
+        if (('_indexClass_' in item) && (item._indexClass_ in listClasses)) {
+            return listClasses[item._indexClass_];
         }
-        return undefined;
+        if ('default' in listClasses) return listClasses.default;
+        // }
+        return '';
     }
 
     componentDidMount() {
@@ -168,7 +168,7 @@ export default class ComboBoxListEx extends React.Component {
                     caption={item.caption}
                     content={item.content}
                     addClass={ComboBoxListEx.getAddClass(item, listClasses)}
-                    disabled={ut.eq(item._disabled_, 1)}
+                    disabled={ut.True(item._disabled_)}
                     data={item}
                     onClick={this.onSelect}
                     mark={mark === i}

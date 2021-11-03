@@ -22,6 +22,10 @@ import {
     table_long, combo_list1, combo_list2, combo_list3, listClasses3,
 } from './data.js';
 
+ComboBoxEx.global({
+    // listClasses: listClasses3,
+});
+
 class App extends React.Component {
     constructor(p) {
         super(p);
@@ -148,8 +152,7 @@ class App extends React.Component {
                             list = {combo_list1}
                         />
                     </Block>
-                    {
-                    /* <Block>
+                    <Block>
                         <ComboBoxEx
                             onChange={(o) => { console.log(o); }}
                             list = {combo_list3}
@@ -162,7 +165,6 @@ class App extends React.Component {
                         <Label caption="comboboxex">
                             <ComboBoxEx list = {combo_list2} disable={{ dim: false }}/>
                         </Label></Block>
-                    */}
                     <Head>Btn</Head>
                     <Block>
                         <Btn>button</Btn>
