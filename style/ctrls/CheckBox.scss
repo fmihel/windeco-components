@@ -1,42 +1,52 @@
 @import '../vars.scss';
 
 
+@mixin wd-checkbox-theme($theme){
+    input[type=checkbox] {
+    }
+    .checkbox{
+    }
+}
+
+@mixin wd-checkbox-theme-size($name){
+    $size:map-get($wd-size,#{$name});
+    width: $size;
+    height:$size;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;    
+
+    .checkbox{
+
+    }
+    input[type=checkbox] {
+        width: $size*0.7;
+        height: $size*0.7;
+        margin:0px;
+    }
+}
+
+.ch-frame{
+    @include wd-checkbox-theme($wd-default-theme);
+    @include wd-checkbox-theme-size($wd-default-theme-size);
+}
+
 @each $name in $wd-themes{
-    
     .#{$name} {
         .ch-frame{
-            input[type=checkbox] {
-
-            }
-            .checkbox{
-                
-            }
-                
+            @include wd-checkbox-theme($name);
         }
-}}
+    }
+}
 
 @each $name in $wd-sizes{
-    $size:map-get($wd-size,#{$name});
     .#{$name} {
         .ch-frame{
-            width: $size;
-            height:$size;
-
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            justify-content: flex-start;
-            align-content: center;
-            align-items: center;    
-        
-            .checkbox{
-
-            }
-            input[type=checkbox] {
-                width: $size*0.7;
-                height: $size*0.7;
-                margin:0px;
-            }
-                
+            @include wd-checkbox-theme-size($name);
         }
-}}
+    }
+}

@@ -9,103 +9,107 @@ $wd-cb-color:$wd-ctrl-color !default;
 $wd-cb-border:$wd-ctrl-border !default;
 $wd-cb-border-focus:$wd-ctrl-border-focus !default;
 
+@mixin wd-combobox-theme($name){
+    .wd-combobox{ 
+        display: block; 
+        @include transparent-border();
+        background-color: map-get($wd-cb-bg,#{$name});
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAATklEQVR4nO3OMQoAIAwEwXtn/uV7tVFIocRCI8JOHbInAQDwkSrJNu6s3x41nkYjdu+ujLgajyIp8VUsNT4bkR4fiouX7Lgf8SwOADiiAWpFIUWn1ypTAAAAAElFTkSuQmCC'); 
+        background-repeat: no-repeat, repeat;
+        border: 1px solid map-get($wd-cb-border,#{$name});
 
+        color: map-get($wd-cb-color,#{$name});
+        &::-ms-expand { 
+            display: none; 
+        } 
+        &:hover { 
+            background-color: map-get($wd-cb-bg-hover,#{$name}); 
+        } 
+        &:focus { 
+            //border-color: #aaa; 
+            //box-shadow: 0 0 0px 1px rgba(59, 153, 252, .7);
+            //box-shadow: 0 0 0 1px -moz-mac-focusring; 
+            outline: none; 
+            border: 1px solid map-get($wd-cb-border-focus,#{$name});
+        } 
+        option { 
+            font-weight:normal; 
+            
+        }
+    } 
+}
+
+@mixin wd-combobox-theme-size($name){
+    $size:map-get($wd-size,#{$name});
+    $gap:map-get($wd-gap,#{$name});
+    min-width: $size*5;
+    height: $size;
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;            
+
+    .wd-combobox{ 
+        font-size: map-get($wd-font-size,#{$name});
+
+        box-sizing: border-box; 
+        height: $size;
+
+        flex: 1 1 auto;
+
+        padding-left:5px;
+        margin: 0; 
+    
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        background-position: right 0 top 50%, 0 0;
+        background-size: $size; 
+    
+        &::-ms-expand { 
+            display: none; 
+        } 
+        &:hover { 
+            //background: linear-gradient(0deg,rgb(248, 248, 248), transparent);
+            //border:1px solid rgba(0,0,0,0);
+            //border-bottom:1px solid rgb(0, 0, 0);
+            //background-color: rgb(240, 240, 240); 
+        } 
+        &:focus { 
+            //border-color: #aaa; 
+            //color: #222;
+            outline: none; 
+        } 
+        option { 
+            font-weight:normal; 
+        } 
+    } 
+     
+     //*[dir="rtl"] .select-css, :root:lang(ar) .select-css, :root:lang(iw) .select-css { 
+    //background-position: left .7em top 50%, 0 0; 
+    //padding: .6em .8em .5em 1.4em; 
+    //}
+}
+.wd-combobox-frame{
+    @include wd-combobox-theme($wd-default-theme);
+    @include wd-combobox-theme-size($wd-default-theme-size);
+ 
+}
 
 @each $name in $wd-themes{
     .#{$name}{
         .wd-combobox-frame{
-        
-            .wd-combobox{ 
-                display: block; 
-                @include transparent-border();
-                background-color: map-get($wd-cb-bg,#{$name});
-                background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAATklEQVR4nO3OMQoAIAwEwXtn/uV7tVFIocRCI8JOHbInAQDwkSrJNu6s3x41nkYjdu+ujLgajyIp8VUsNT4bkR4fiouX7Lgf8SwOADiiAWpFIUWn1ypTAAAAAElFTkSuQmCC'); 
-                background-repeat: no-repeat, repeat;
-                border: 1px solid map-get($wd-cb-border,#{$name});
-    
-                color: map-get($wd-cb-color,#{$name});
-                &::-ms-expand { 
-                    display: none; 
-                } 
-                &:hover { 
-                    background-color: map-get($wd-cb-bg-hover,#{$name}); 
-                } 
-                &:focus { 
-                    //border-color: #aaa; 
-                    //box-shadow: 0 0 0px 1px rgba(59, 153, 252, .7);
-                    //box-shadow: 0 0 0 1px -moz-mac-focusring; 
-                    outline: none; 
-                    border: 1px solid map-get($wd-cb-border-focus,#{$name});
-                } 
-                option { 
-                    font-weight:normal; 
-                    
-                }
-            } 
-             
-             //*[dir="rtl"] .select-css, :root:lang(ar) .select-css, :root:lang(iw) .select-css { 
-            //background-position: left .7em top 50%, 0 0; 
-            //padding: .6em .8em .5em 1.4em; 
-            //}
+           @include wd-combobox-theme($name);
         }
     }
 }
 @each $name in $wd-sizes{
-    $size:map-get($wd-size,#{$name});
-    $gap:map-get($wd-gap,#{$name});
-    
     .#{$name}{
         .wd-combobox-frame{
-            min-width: $size*5;
-            height: $size;
-            
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            justify-content: flex-start;
-            align-content: stretch;
-            align-items: stretch;            
-
-        .wd-combobox{ 
-            font-size: map-get($wd-font-size,#{$name});
-
-            box-sizing: border-box; 
-            height: $size;
-
-            flex: 1 1 auto;
-
-            padding-left:5px;
-            margin: 0; 
-            
-            -moz-appearance: none;
-            -webkit-appearance: none;
-            appearance: none;
-            background-position: right 0 top 50%, 0 0;
-            background-size: $size; 
-            
-                &::-ms-expand { 
-                    display: none; 
-                } 
-                &:hover { 
-                    //background: linear-gradient(0deg,rgb(248, 248, 248), transparent);
-                    //border:1px solid rgba(0,0,0,0);
-                    //border-bottom:1px solid rgb(0, 0, 0);
-                    //background-color: rgb(240, 240, 240); 
-                } 
-                &:focus { 
-                    //border-color: #aaa; 
-                    //color: #222;
-                    outline: none; 
-                } 
-                option { 
-                    font-weight:normal; 
-                } 
-            } 
-             
-             //*[dir="rtl"] .select-css, :root:lang(ar) .select-css, :root:lang(iw) .select-css { 
-            //background-position: left .7em top 50%, 0 0; 
-            //padding: .6em .8em .5em 1.4em; 
-            //}
+            @include wd-combobox-theme-size($name);
         }
     }
 }

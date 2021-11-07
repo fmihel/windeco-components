@@ -16,7 +16,7 @@ export default class ComboBox extends React.Component {
 
     onChange(a) {
         this.hash = this.props.hash;
-        console.log('combobox change', { id: this.state.id, select: a.currentTarget.value });
+        // console.log('combobox change', { id: this.state.id, select: a.currentTarget.value });
         this.setState({
             select: a.currentTarget.value,
         });

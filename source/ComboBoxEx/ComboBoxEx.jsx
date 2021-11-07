@@ -48,7 +48,7 @@ export default class ComboBoxEx extends React.Component {
     static global(o) {
         if (o) {
             ComboBoxEx._global = _.defaultsDeep(o, ComboBoxEx._global);
-            console.log('global', ComboBoxEx._global);
+            // console.log('global', ComboBoxEx._global);
         }
         return _.cloneDeep(ComboBoxEx._global);
     }
@@ -203,7 +203,7 @@ export default class ComboBoxEx extends React.Component {
         let addClassValue = '';
         const select = this._getSelect();
         const listClasses = { ...ComboBoxEx._global.listClasses, ...listClassesProps };
-        console.log('list', listClasses);
+        // console.log('list', listClasses);
         if (ut.eq(select, -1)) {
             value = placeholder;
         } else {

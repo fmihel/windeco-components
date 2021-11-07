@@ -8,55 +8,47 @@ $wd-edit-color-disable:$wd-ctrl-color-disable !default;
 $wd-edit-border:$wd-ctrl-border !default;
 $wd-edit-border-focus:$wd-ctrl-border-focus !default;
 
+@mixin wd-edit-theme($name){
+    .wd-edit-input{
+        background-color: map-get($wd-edit-bg,#{$name});
+        color: map-get($wd-edit-color,#{$name});
+        @include transparent-border();
+        outline: none;
+        border: 1px solid map-get($wd-edit-border,#{$name});
 
-@each $name in $wd-themes{
-    .#{$name} {
-        .wd-edit-frame{
-            
-            .wd-edit-input{
-                background-color: map-get($wd-edit-bg,#{$name});
-                color: map-get($wd-edit-color,#{$name});
-                @include transparent-border();
-                outline: none;
-                border: 1px solid map-get($wd-edit-border,#{$name});
-
-                &:focus { 
-                    border: 1px solid map-get($wd-edit-border-focus,#{$name});
-                }
-                &:hover { 
-                    background-color: map-get($wd-edit-bg-hover,#{$name}); 
-                }  
-            }
-            .wd-edit-disabled{
-                border-top:0px;
-                border-left:0px;
-                border-right:0px;
-                border-bottom: 1px solid map-get($wd-edit-border,#{$name});
-                color: map-get($wd-edit-color-disable,#{$name});
-                //color:gray;
-                background-color: rgba(0,0,0,0) !important;
-            }
-            .wd-edit-readonly{
-                border-top:1px solid rgba(0,0,0,0);
-                border-left:1px solid rgba(0,0,0,0);
-                border-right:1px solid rgba(0,0,0,0);
-                border-bottom: 1px solid map-get($wd-edit-border,#{$name});
-
-                background-color: rgba(0,0,0,0) !important;
-                color: map-get($wd-edit-color-readonly,#{$name})!important;
-            }
-            .wd-edit-dim{
-
-            }
+        &:focus { 
+            border: 1px solid map-get($wd-edit-border-focus,#{$name});
         }
+        &:hover { 
+            background-color: map-get($wd-edit-bg-hover,#{$name}); 
+        }  
+    }
+    .wd-edit-disabled{
+        border-top:0px;
+        border-left:0px;
+        border-right:0px;
+        border-bottom: 1px solid map-get($wd-edit-border,#{$name});
+        color: map-get($wd-edit-color-disable,#{$name});
+        //color:gray;
+        background-color: rgba(0,0,0,0) !important;
+    }
+    .wd-edit-readonly{
+        border-top:1px solid rgba(0,0,0,0);
+        border-left:1px solid rgba(0,0,0,0);
+        border-right:1px solid rgba(0,0,0,0);
+        border-bottom: 1px solid map-get($wd-edit-border,#{$name});
+
+        background-color: rgba(0,0,0,0) !important;
+        color: map-get($wd-edit-color-readonly,#{$name})!important;
+    }
+    .wd-edit-dim{
+
     }
 }
 
-@each $name in $wd-sizes{
+@mixin wd-edit-theme-size($name){
     $size:map-get($wd-size,#{$name});
-    .#{$name}{
-        .wd-edit-frame{
-            box-sizing: border-box;
+    box-sizing: border-box;
             height:$size;
             
             margin: 0; 
@@ -86,6 +78,26 @@ $wd-edit-border-focus:$wd-ctrl-border-focus !default;
                 text-align: center;
                 border:0px;
             }
+}
+
+.wd-edit-frame{
+    @include wd-edit-theme($wd-default-theme);
+    @include wd-edit-theme-size($wd-default-theme-size);
+}
+
+@each $name in $wd-themes{
+    .#{$name} {
+        .wd-edit-frame{
+            @include wd-edit-theme($name);
+        }
+    }
+}
+
+@each $name in $wd-sizes{
+    $size:map-get($wd-size,#{$name});
+    .#{$name}{
+        .wd-edit-frame{
+            @include wd-edit-theme-size($name);
         }     
     }
 }

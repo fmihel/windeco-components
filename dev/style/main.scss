@@ -71,6 +71,8 @@ body{
 
         }
         .content{
+            //background-color: rgb(2, 2, 49);            
+
             padding-left:100px;
             padding-right:100px;
             padding-top: 20px;
@@ -105,13 +107,13 @@ body{
 
 @each $name in $wd-themes{
     .#{$name} {
-        background-color: map-get($wd-bg,#{$name});
-        color: map-get($wd-color,#{$name});
+        background-color: wd-get-theme($wd-bg,#{$name});
+        color: wd-get-theme($wd-color,#{$name});
     }
 }
 
 @each $name in $wd-sizes{
-    $size:map-get($wd-size,#{$name});
+    $size:wd-get-size($wd-size,#{$name});
     .#{$name} {
         .wd-label{
             min-width:$size*5 !important;

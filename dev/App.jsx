@@ -29,7 +29,7 @@ ComboBoxEx.global({
 class App extends React.Component {
     constructor(p) {
         super(p);
-        binds(this, 'onTheme', 'onSize', 'onClickTable', 'onClickTableFixed', 'OpenDialog', 'CloseDialog');
+        binds(this, 'onTheme', 'onSize', 'onClickTable', 'onClickTableFixed', 'OpenDialog', 'CloseDialog', 'undefTheme');
         this.state = {
             theme: storage.get('theme-style', { default: 'dark' }),
             size: storage.get('theme-size', { default: 'normal' }),
@@ -113,6 +113,12 @@ class App extends React.Component {
         this.setState({ size: o.currentTarget.id });
     }
 
+    undefTheme(o) {
+        storage.set('theme-style', o.currentTarget.id);
+        storage.set('theme-size', o.currentTarget.id);
+        this.setState({ theme: o.currentTarget.id, size: o.currentTarget.id });
+    }
+
     onClickTable(o) {
         console.log(o);
         o.sender.select(o.row);
@@ -133,6 +139,7 @@ class App extends React.Component {
                     <input id="dark" type="button" value="dark" onClick={this.onTheme}/>
                     <input id="small" type="button" value="small" onClick={this.onSize}/>
                     <input id="normal" type="button" value="normal" onClick={this.onSize}/>
+                    <input id="undef-theme" type="button" value="undef-theme" onClick={this.undefTheme}/>
                 </div>
                 <div className='content wd-scrollbar'>
                     <Head>Edit</Head>
