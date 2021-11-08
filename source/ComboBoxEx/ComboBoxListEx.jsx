@@ -96,6 +96,12 @@ export default class ComboBoxListEx extends React.Component {
             } else {
                 newPos.top = parent.top + parent.height - 2;
             }
+            if (newPos.width > screen.w) {
+                newPos.width = screen.w - 10;
+            }
+            if (newPos.left + newPos.width > screen.w) {
+                newPos.left = screen.w - newPos.width - 5;
+            }
         }
 
         if (

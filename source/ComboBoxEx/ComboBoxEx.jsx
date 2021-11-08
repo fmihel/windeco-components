@@ -34,10 +34,12 @@ export default class ComboBoxEx extends React.Component {
         binds(this, 'openList', 'closeList', 'onChange', 'onKeyDown', 'onFocusOut', 'onCreateList');
         this.ref = React.createRef();
         this.refFocus = React.createRef();
+        this.refValue = React.createRef();
 
         this.observer = undefined;
         this.timer = undefined;
         this.list = undefined;
+        this.WordWidth = 0;
         this.story = {
             select: this.props.select,
             hash: undefined,
@@ -55,8 +57,14 @@ export default class ComboBoxEx extends React.Component {
 
     openList() {
         this.setState({ visibleList: true });
+        this._reculcWordWidth();
         this.definePosition(true);
         this.createTimer();
+    }
+
+    closeList() {
+        this.setState({ visibleList: false });
+        this.destroyTimer();
     }
 
     createTimer() {
@@ -77,27 +85,34 @@ export default class ComboBoxEx extends React.Component {
         }
     }
 
+    /* расчет ширины по тексту */
+    _reculcWordWidth() {
+        this.WordWidth = 0;
+        if (this.props.maxListWidth === 'auto') {
+            this.props.list.map((it) => { this.WordWidth = Math.max(this.WordWidth, JX.textSize(`${it.caption}w`, { parentDom: this.refValue.current }).w); });
+        }
+    }
+
     definePosition(forced = false, setState = true) {
         if (forced || this.state.visibleList) {
             const oldPos = this.state.pos;
-            // const abs = JX.abs(DOM('.wd-combobox-ex-focus', this.ref.current));
             const abs = JX.abs(this.refFocus.current);
             const newPos = { ...abs };
+
             newPos.x += ComboBoxEx._global.off.left;
             newPos.y += ComboBoxEx._global.off.top;
             newPos.w += ComboBoxEx._global.off.width;
             newPos.h += ComboBoxEx._global.off.height;
 
-            // newPos.x = Math.floor(newPos.x);
-            // newPos.y = Math.floor(newPos.y);
-            // newPos.w = Math.floor(newPos.w);
-            // newPos.h = Math.floor(newPos.h);
+            if (this.WordWidth > newPos.w) {
+                newPos.w = Math.min(this.WordWidth, JX.screen().w - 10);
+            }
 
             if (
                 (newPos.x !== oldPos.left)
-            || (newPos.y !== oldPos.top)
-            || (newPos.h !== oldPos.height)
-            || (newPos.w !== oldPos.width)
+                || (newPos.y !== oldPos.top)
+                || (newPos.h !== oldPos.height)
+                || (newPos.w !== oldPos.width)
             ) {
                 if (setState) {
                     this.setState({
@@ -110,11 +125,6 @@ export default class ComboBoxEx extends React.Component {
             }
         }
         return false;
-    }
-
-    closeList() {
-        this.setState({ visibleList: false });
-        this.destroyTimer();
     }
 
     onKeyDown(o) {
@@ -231,6 +241,8 @@ export default class ComboBoxEx extends React.Component {
                     <div
                         className={`wd-combobox-ex-value ${addClassValue}`}
                         onClick={this.openList}
+                        title={value}
+                        ref={this.refValue}
                     >
                         {value}
                     </div>
@@ -275,6 +287,7 @@ ComboBoxEx.defaultProps = {
     onChange: undefined,
     placeholder: '-выбрать-',
     maxListHeight: 300,
+    maxListWidth: 'auto', // 'fixed' || 'auto'
     list: [],
     list_example: [
         { id: 1, caption: 'text1', addClass: 'wd-cbex-icon3' },

@@ -22,7 +22,7 @@ export default class ComboBoxItemEx extends React.Component {
                 className={`wd-combobox-ex-item ${mark ? ' wd-combobox-ex-item-mark' : ''} ${disabled ? ' wd-combobox-ex-item-disabled' : ''} ${addClass}`}
                 id={id}
                 onClick={this.onClick}
-
+                title={caption}
             >
                 {caption}
             </div>
