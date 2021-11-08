@@ -213,9 +213,9 @@ export default class ComboBoxEx extends React.Component {
         let addClassValue = '';
         const select = this._getSelect();
         const listClasses = { ...ComboBoxEx._global.listClasses, ...listClassesProps };
-        // console.log('list', listClasses);
         if (ut.eq(select, -1)) {
             value = placeholder;
+            addClassValue += ' wd-combobox-ex-placeholder';
         } else {
             const selected = list.find((item) => ut.eq(item[idFieldName], select));
             if (selected) {

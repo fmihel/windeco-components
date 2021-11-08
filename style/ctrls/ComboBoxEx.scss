@@ -26,6 +26,11 @@ $wd-cbex-border-focus:$wd-ctrl-border-focus !default;
             overflow: hidden;        
             background-color: wd-get-theme($wd-cbex-bg,#{$theme});
         }
+        .wd-combobox-ex-placeholder{
+            overflow: hidden;        
+            background-color: wd-get-theme($wd-cbex-bg,#{$theme});
+            color:wd-get-theme($wd-ctrl-color-disable,#{$theme});
+        }
         .wd-combobox-ex-btn{
             background-color: wd-get-theme($wd-cbex-bg,#{$theme});
             background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAATklEQVR4nO3OMQoAIAwEwXtn/uV7tVFIocRCI8JOHbInAQDwkSrJNu6s3x41nkYjdu+ujLgajyIp8VUsNT4bkR4fiouX7Lgf8SwOADiiAWpFIUWn1ypTAAAAAElFTkSuQmCC'); 
