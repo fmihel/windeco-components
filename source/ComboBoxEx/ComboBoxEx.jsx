@@ -342,7 +342,7 @@ ComboBoxEx.defaultProps = {
     },
     disabled: 0,
     disable: {
-        dim: false,
+        dim: true,
     },
     addClass: '',
     _forcedSelect: true, // если true то выбранный элемент в списке будет сразу отображаться в поле, false - необходимо передать props.select
