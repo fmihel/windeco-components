@@ -1,5 +1,5 @@
 import {
-    binds, JX, ut,
+    binds, JX, ut, dvc,
 } from 'fmihel-browser-lib';
 import React from 'react';
 import _ from 'lodash';
@@ -88,8 +88,34 @@ export default class ComboBoxEx extends React.Component {
     /* расчет ширины по тексту */
     _reculcWordWidth() {
         this.WordWidth = 0;
-        if (this.props.maxListWidth === 'auto') {
-            this.props.list.map((it) => { this.WordWidth = Math.max(this.WordWidth, JX.textSize(`${it.caption}w`, { parentDom: this.refValue.current }).w); });
+
+        if (this.props.maxListWidth === 'auto' && !dvc.mobile) {
+            // в случае если еще не было выбрано ни одного пункта (isPlaceholder===true), то компонент refValue не содержит
+            // класс с оформлением, поэтому необходимо определить класс первого пугкта и подставить его в refValue
+            const isPlaceholder = this.refValue.current.classList.contains('wd-combobox-ex-placeholder');
+            let addClass = false;
+            if (isPlaceholder && this.props.list.length) {
+                addClass = ComboBoxListEx.getAddClass(this.props.list[0], { ...ComboBoxEx._global.listClasses, ...this.props.listClasses });
+                if (addClass && !this.refValue.current.classList.contains(addClass)) {
+                    this.refValue.current.classList.add(addClass);
+                } else {
+                    addClass = false;
+                }
+            }
+
+            this.props.list.map((it) => {
+                this.WordWidth = Math.max(
+                    this.WordWidth,
+                    JX.textSize(`${it.caption}w`, {
+                        parentDom: this.refValue.current,
+                        attr: { padding: true },
+                    }).w,
+                );
+            });
+
+            if (addClass) {
+                this.refValue.current.classList.remove(addClass);
+            }
         }
     }
 

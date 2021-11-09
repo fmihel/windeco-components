@@ -35,17 +35,16 @@ export const table_long = {
 export const combo_list1 = [
     { id: 1, caption: 'text1' },
     { id: 2, caption: 'text2', _disabled_: 1 },
-    { id: 3, caption: 'text3 long of text in comboboxEx set more symbols down tree' },
+    { id: 3, caption: 'text3 long of text in comboboxEx set more symbols down tree qkejfkewf kqwe fkqwe fkj k wke fwkjer fkj wke fkwjerfkj kfjwkejr fkwejr ' },
     { id: 4, caption: 'text4' },
 
 ];
 export const combo_list2 = [
-    { id: 1, caption: 'text1', addClass: 'wd-cbex-icon3' },
+    { id: 1, caption: 'text1 wefierlf werf kwejrlw efkerj  qefqef w wfr AAA', addClass: 'wd-cbex-icon3' },
     {
         id: 2, caption: 'text2', _disabled_: 1, addClass: 'wd-cbex-icon2',
     },
     { id: 3, caption: 'text3', addClass: 'wd-cbex-icon1' },
-    { id: 4, caption: 'text4', addClass: 'wd-cbex-iconno' },
     { id: 5, caption: 'text5', addClass: 'wd-cbex-iconno' },
     { id: 6, caption: 'text6', addClass: 'wd-cbex-iconno' },
 

@@ -159,6 +159,7 @@ class App extends React.Component {
                             list = {combo_list1}
                         />
                     </Block>
+
                     <Block>
                         <ComboBoxEx
                             onChange={(o) => { console.log(o); }}
