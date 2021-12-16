@@ -1,3 +1,7 @@
-
-//
-// $wd-bg:('light':#e7e7e7,'dark':#3a3a3a);
+.abs-pos{
+    color:red !important;
+    position: absolute;
+    .wd-edit-frame{
+        //position: absolute;
+    }
+}

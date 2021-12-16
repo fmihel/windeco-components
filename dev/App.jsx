@@ -149,6 +149,45 @@ class App extends React.Component {
                     <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
                     <Block> <Label caption="label"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
                     <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
+                    <Head>Abs position</Head>
+                    <Block addClass="abs-pos"> <Edit
+                        disable={{ dim: true }}
+                        style={
+                            {
+                                position: 'absolute',
+                                left: 80,
+                                top: -23,
+                                // border: '1px dashed lime',
+                                width: 57,
+                                height: 14,
+                            }
+                        }>abs position</Edit></Block>
+                    <Block addClass="abs-pos"> <CheckBox style={
+                        {
+                            position: 'absolute',
+                            left: 150,
+                            top: -23,
+                            // border: '1px dashed lime',
+                            width: 14,
+                            height: 14,
+                        }
+                    }/></Block>
+                    <Block addClass="abs-pos"> <ComboBoxEx
+                        list = {combo_list3}
+                        listClasses={listClasses3}
+                        disable={{ dim: true }}
+                        select={3}
+                        style={
+                            {
+                                position: 'absolute',
+                                left: 170,
+                                top: -23,
+                                // border: '1px dashed lime',
+                                height: 46,
+                                width: 250,
+
+                            }
+                        }/></Block>
                     <Head>ComboBox</Head>
                     <Block> <ComboBox /></Block>
                     <Block> <Label caption="combobox"><ComboBox disable={{ dim: false }}/></Label></Block>

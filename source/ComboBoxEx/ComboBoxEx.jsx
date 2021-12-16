@@ -231,7 +231,7 @@ export default class ComboBoxEx extends React.Component {
 
     render() {
         const {
-            idFieldName, placeholder, disable, dim, labelName, addClass, list, maxListHeight, listClasses: listClassesProps,
+            idFieldName, placeholder, disable, dim, labelName, addClass, list, maxListHeight, listClasses: listClassesProps, style,
         } = this.props;
         const { visibleList, pos } = this.state;
         const name = (labelName ? { id: labelName } : {});
@@ -249,11 +249,32 @@ export default class ComboBoxEx extends React.Component {
                 value = selected.caption;
             }
         }
+
+        let valueStyle = {};
+        if ('height' in style) {
+            valueStyle = {
+                ...valueStyle,
+                // height: style.height,
+                lineHeight: `${parseInt(style.height, 10) - 4}px`,
+            };
+        }
+        let btnStyle = {};
+        if ('height' in style) {
+            const bgSize = `${parseInt(style.height, 10) - 4}px`;
+            btnStyle = {
+                ...btnStyle,
+                backgroundSize: bgSize,
+                width: bgSize,
+                minWidth: bgSize,
+            };
+        }
+
         return (
             <div
                 className={`wd-combobox-ex ${addClass}`}
                 ref={this.ref}
                 {...name}
+                style={style}
 
             >
                 <div
@@ -269,12 +290,14 @@ export default class ComboBoxEx extends React.Component {
                         onClick={this.openList}
                         title={value}
                         ref={this.refValue}
+                        style={valueStyle}
                     >
                         {value}
                     </div>
                     <div
                         className="wd-combobox-ex-btn"
                         onClick={this.openList}
+                        style={btnStyle}
                     >
                     </div>
                 </div>
@@ -347,4 +370,5 @@ ComboBoxEx.defaultProps = {
     addClass: '',
     _forcedSelect: true, // если true то выбранный элемент в списке будет сразу отображаться в поле, false - необходимо передать props.select
     _forcedPosition: true, // включает режим доп проверки позиции выпадающего списка
+    style: {},
 };
