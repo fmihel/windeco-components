@@ -92,6 +92,15 @@ class App extends React.Component {
                 height: 150,
                 width: 300,
             },
+            custom: {
+                ...defaultDialogParam,
+                align: 'custom',
+                msg: 'custom',
+                left: 100,
+                top: 100,
+                width: 200,
+                height: 200,
+            },
         };
     }
 

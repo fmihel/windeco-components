@@ -11,11 +11,13 @@ export default class ModalDialog extends React.Component {
                 left: 0, top: 0, width: 0, height: 0,
             },
             modalPos: {
-                left: 0, top: 0, width: 0, height: 0,
+                left: 0, top: 0, width: -1, height: -1,
             },
 
         };
-        binds(this, 'resize', 'onClickFooterBtn', 'onClickShadow', 'onClickHeaderClose');
+
+        binds(this, 'resize', 'onClickFooterBtn', 'onClickShadow', 'onClickHeaderClose',
+            'onMouseDown', 'onMouseUp', 'onMouseLeave', 'onMouseMove');
     }
 
     resize() {
@@ -53,12 +55,12 @@ export default class ModalDialog extends React.Component {
                 height: screen.h - (margin.top + margin.bottom),
             };
         } if (this.props.align === 'custom') {
-            return {
+            return this.state.modalPos.width === -1 ? {
                 left: this.props.left,
                 top: this.props.top,
                 width: this.props.width,
                 height: this.props.height,
-            };
+            } : this.state.modalPos;
         } if (this.props.align === 'stickTo') {
             const stickTo = typeof this.props.stickTo === 'string' ? DOM(this.props.stickTo) : this.props.stickTo;
             const abs = JX.abs(stickTo);
@@ -119,6 +121,40 @@ export default class ModalDialog extends React.Component {
         if (this.props.onClickFooterBtn) this.props.onClickFooterBtn({ sender: this, key });
     }
 
+    onMouseDown(o) {
+        if (this.props.align === 'custom' && this.props.draggable && o.button === 0) {
+            this.pressed = 0;
+            this.coord = JX.mouse();
+        }
+    }
+
+    onMouseMove(o) {
+        if (this.props.align === 'custom' && this.props.draggable && this.pressed === 0) {
+            const current = JX.mouse();
+            const pos = this.state.modalPos;
+            if ((current.x - this.coord.x !== 0) || (current.y - this.coord.y !== 0)) {
+                this.culcPos = false;
+            }
+            this.setState({
+                modalPos: {
+                    ...pos,
+                    left: pos.left + current.x - this.coord.x,
+                    top: pos.top + current.y - this.coord.y,
+                },
+            });
+
+            this.coord = current;
+        }
+    }
+
+    onMouseUp() {
+        this.pressed = undefined;
+    }
+
+    onMouseLeave() {
+        this.onMouseUp();
+    }
+
     render() {
         const {
             visible, children, header, footer, onClickHeaderClose, shadowEnable, shadowOpacity,
@@ -149,6 +185,10 @@ export default class ModalDialog extends React.Component {
                 <div
                     style={{ ...modalPos, display: displayModal }}
                     className="wd-modal-dialog"
+                    onMouseDown={this.onMouseDown}
+                    onMouseUp={this.onMouseUp}
+                    onMouseLeave={this.onMouseLeave}
+                    onMouseMove={this.onMouseMove}
                 >
                     {header && <div className="wd-modal-dialog-header">
                         <div className="wd-modal-dialog-header-caption">
@@ -206,5 +246,6 @@ ModalDialog.defaultProps = {
     height: 100, // for align = custom,stickTo
     shadowOpacity: 0.1, // num or 'css' if shadowOpacity === 'css'  opacity defined in wd-modal-dialog-shadow class
     shadowEnable: true,
+    draggable: true,
 
 };
