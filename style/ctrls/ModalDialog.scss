@@ -6,7 +6,8 @@ $wd-modal-dialog-border:('light':#c9c9c9,'dark':#4d4e49) !default;
 $wd-modal-dialog-color:('light':#000000,'dark':#c7c7c7)  !default;
 
 .wd-modal-dialog-shadow{
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgb(0, 0, 0);
+    //background-color: rgba(0, 0, 0,0.2);  set if shadowOpacity === 'css' (by default)
     position: absolute;
 } 
 

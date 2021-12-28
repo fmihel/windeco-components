@@ -121,7 +121,7 @@ export default class ModalDialog extends React.Component {
 
     render() {
         const {
-            visible, children, header, footer, onClickHeaderClose,
+            visible, children, header, footer, onClickHeaderClose, shadowEnable, shadowOpacity,
         } = this.props;
         const { shadowPos, modalPos } = this.state;
 
@@ -133,16 +133,18 @@ export default class ModalDialog extends React.Component {
         }
         const displayShadow = visible ? 'block' : 'none';
         const displayModal = visible ? 'flex' : 'none';
-
+        const opacityShadow = shadowOpacity !== 'css' ? { opacity: shadowOpacity } : {};
         return (
             <>
-                <div
-                    style={{ ...shadowPos, display: displayShadow }}
+                {shadowEnable
+                && <div
+                    style={{ ...shadowPos, display: displayShadow, ...opacityShadow }}
                     className='wd-modal-dialog-shadow'
                     onClick={this.onClickShadow}
 
                 >
                 </div>
+                }
 
                 <div
                     style={{ ...modalPos, display: displayModal }}
@@ -202,5 +204,7 @@ ModalDialog.defaultProps = {
     top: 50, // for align = custom
     width: 300, // for align = custom,stickTo
     height: 100, // for align = custom,stickTo
+    shadowOpacity: 0.1, // num or 'css' if shadowOpacity === 'css'  opacity defined in wd-modal-dialog-shadow class
+    shadowEnable: true,
 
 };
