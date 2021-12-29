@@ -2,7 +2,7 @@
 @import '../../style/vars.scss';
 @import './custom.scss';
 @import '../../style/ctrls.scss';
-
+@import './pics.scss';
 
 
 *{
@@ -122,4 +122,12 @@ body{
         }
         
     }
+    
+    .pic-bag{
+        background-image: url($pic-bag);
+        background-position: 2px center;
+        background-repeat: no-repeat;
+        padding-left:$size+2px;
+    }
 }
+

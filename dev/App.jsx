@@ -224,9 +224,10 @@ class App extends React.Component {
                     <Head>Btn</Head>
                     <Block>
                         <Btn>button</Btn>
-                        <Btn addClass="wd-danger">wd-danger</Btn>
+                        <Btn addClass="wd-danger" hint="wd-danger hint">wd-danger</Btn>
                         <Btn addClass="wd-primary">wd-primary</Btn>
                         <Btn addClass="wd-transparent">wd-transparent</Btn>
+                        <Btn addClass="wd-primary pic-bag">pic</Btn>
                     </Block>
                     <Head>Dialog</Head>
                     <Block>
