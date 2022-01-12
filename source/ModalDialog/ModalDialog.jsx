@@ -2,6 +2,7 @@
 import { binds, DOM, JX } from 'fmihel-browser-lib';
 import React from 'react';
 import Btn from '../Btn/Btn.jsx';
+import Modal from '../Modal/Modal.jsx';
 
 export default class ModalDialog extends React.Component {
     constructor(p) {
@@ -157,7 +158,8 @@ export default class ModalDialog extends React.Component {
 
     render() {
         const {
-            visible, children, header, footer, onClickHeaderClose, shadowEnable, shadowOpacity,
+            visible, children, header, footer, onClickHeaderClose, shadowEnable,
+            shadowOpacity, addShadowClass,
         } = this.props;
         const { shadowPos, modalPos } = this.state;
 
@@ -167,10 +169,10 @@ export default class ModalDialog extends React.Component {
         } else if (typeof footer === 'object') {
             footers = Object.keys(footer);
         }
-        const displayShadow = visible ? 'block' : 'none';
+        // const displayShadow = visible ? 'block' : 'none';
         const displayModal = visible ? 'flex' : 'none';
-        const opacityShadow = shadowOpacity !== 'css' ? { opacity: shadowOpacity } : {};
-        return (
+        // const opacityShadow = shadowOpacity !== 'css' ? { opacity: shadowOpacity } : {};
+        /* return (
             <>
                 {shadowEnable
                 && <div
@@ -215,7 +217,48 @@ export default class ModalDialog extends React.Component {
                     }
                 </div>
             </>
-        );
+        ); */
+        return (
+            <Modal
+                enableShadow={shadowEnable}
+                onClickShadow={this.onClickShadow}
+                shadowOpacity={shadowOpacity}
+                addShadowClass={addShadowClass}
+            >
+                <div
+                    style={{ ...modalPos, display: displayModal }}
+                    className="wd-modal-dialog"
+                    onMouseDown={this.onMouseDown}
+                    onMouseUp={this.onMouseUp}
+                    onMouseLeave={this.onMouseLeave}
+                    onMouseMove={this.onMouseMove}
+                >
+                    {header && <div className="wd-modal-dialog-header">
+                        <div className="wd-modal-dialog-header-caption">
+                            {header}
+                        </div>
+                        {onClickHeaderClose && <div className="wd-modal-dialog-header-close" onClick={this.onClickHeaderClose}>&#10060;</div>}
+
+                    </div>}
+                    <div className="wd-modal-dialog-content">
+                        {children}
+                    </div>
+
+                    {footers.length > 0
+                        && <div className="wd-modal-dialog-footer">
+                            {footers.map((key) => <Btn
+                                id={this._get_footer_param(key, 'id')}
+                                key={key} onClick={() => this.onClickFooterBtn(key)}
+                                addClass={this._get_footer_param(key, 'addClass')}
+                            >
+                                {this._get_footer_param(key, 'caption')}
+                            </Btn>)
+                            }
+                        </div>
+                    }
+                </div>
+
+            </Modal>);
     }
 }
 ModalDialog.defaultProps = {
@@ -244,7 +287,8 @@ ModalDialog.defaultProps = {
     top: 50, // for align = custom
     width: 300, // for align = custom,stickTo
     height: 100, // for align = custom,stickTo
-    shadowOpacity: 0.1, // num or 'css' if shadowOpacity === 'css'  opacity defined in wd-modal-dialog-shadow class
+    addShadowClass: '',
+    shadowOpacity: 0.1, // num or 'css' if shadowOpacity === 'css'  opacity defined in wd-modal class
     shadowEnable: true,
     draggable: true,
 
