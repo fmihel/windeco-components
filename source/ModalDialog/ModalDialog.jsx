@@ -47,14 +47,14 @@ export default class ModalDialog extends React.Component {
                 width: screen.w - (margin.left + margin.right),
                 height: screen.h - (margin.top + margin.bottom),
             };
-        } if (this.props.align === 'custom') {
+        } if (this.props.align === 'custom' || (this.props.align === 'stickTo' && this.props.draggable && this.state.modalPos.width !== -1)) {
             return this.state.modalPos.width === -1 ? {
                 left: this.props.left,
                 top: this.props.top,
                 width: this.props.width,
                 height: this.props.height,
             } : this.state.modalPos;
-        } if (this.props.align === 'stickTo') {
+        } if (this.props.align === 'stickTo' && (!this.props.draggable || this.state.modalPos.width === -1)) {
             const stickTo = typeof this.props.stickTo === 'string' ? DOM(this.props.stickTo) : this.props.stickTo;
             const abs = JX.abs(stickTo);
             const pos = {
@@ -66,6 +66,8 @@ export default class ModalDialog extends React.Component {
             if (pos.left + pos.width > screen.w) pos.left = screen.w - pos.width;
             if (pos.left < 0) pos.left = 0;
             if (pos.top + pos.height > screen.h) pos.top = abs.y - pos.height;
+            if (pos.top < 0) pos.top = 0;
+
             return pos;
         }
         return {
@@ -115,14 +117,14 @@ export default class ModalDialog extends React.Component {
     }
 
     onMouseDown(o) {
-        if (this.props.align === 'custom' && this.props.draggable && o.button === 0) {
+        if ((this.props.align === 'custom' || this.props.align === 'stickTo') && this.props.draggable && o.button === 0) {
             this.pressed = 0;
             this.coord = JX.mouse();
         }
     }
 
     onMouseMove(o) {
-        if (this.props.align === 'custom' && this.props.draggable && this.pressed === 0) {
+        if ((this.props.align === 'custom' || this.props.align === 'stickTo') && this.props.draggable && this.pressed === 0) {
             const current = JX.mouse();
             const pos = this.state.modalPos;
             if ((current.x - this.coord.x !== 0) || (current.y - this.coord.y !== 0)) {
@@ -282,6 +284,6 @@ ModalDialog.defaultProps = {
     addShadowClass: '',
     shadowOpacity: 0.1, // num or 'css' if shadowOpacity === 'css'  opacity defined in wd-modal class
     shadowEnable: true,
-    draggable: true,
+    draggable: true, // work with align = custom || stickTo
 
 };

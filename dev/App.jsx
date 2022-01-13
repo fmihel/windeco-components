@@ -60,15 +60,28 @@ class App extends React.Component {
                 msg: 'common simple dialog',
                 footer: ['ok', 'cancel'],
             },
-            'stick-to': {
+            stickTo: {
                 ...defaultDialogParam,
                 header: 'text in header',
                 msg: 'common simple dialog',
                 footer: ['ok', 'cancel'],
                 align: 'stickTo',
-                stickTo: '#dialog-btn-stick-to',
+                stickTo: '#dialog-btn-stickTo',
                 height: 150,
                 width: 300,
+                draggable: false,
+            },
+            stickAndDragg: {
+                ...defaultDialogParam,
+                header: 'text in header',
+                msg: 'common simple dialog',
+                footer: ['ok', 'cancel'],
+                align: 'stickTo',
+                stickTo: '#dialog-btn-stickAndDragg',
+                height: 150,
+                width: 300,
+                draggable: true, // by default true
+
             },
             extend: {
                 ...defaultDialogParam,
@@ -79,7 +92,6 @@ class App extends React.Component {
                         id: 'ok-btn',
                         addClass: 'wd-primary',
                         caption: 'ввести',
-
                     },
                     cancel: {
                         id: 'cancel-btn',
@@ -151,6 +163,11 @@ class App extends React.Component {
                     <input id="undef-theme" type="button" value="undef-theme" onClick={this.undefTheme}/>
                 </div>
                 <div className='content wd-scrollbar'>
+                    <Head>Dialog</Head>
+                    <Block>
+                        {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
+
+                    </Block>
                     <Head>Edit</Head>
                     <Block> <Edit> text from child</Edit></Block>
                     <Block> <Edit value="text from value"/></Block>
@@ -228,11 +245,6 @@ class App extends React.Component {
                         <Btn addClass="wd-primary">wd-primary</Btn>
                         <Btn addClass="wd-transparent">wd-transparent</Btn>
                         <Btn addClass="wd-primary pic-bag">pic</Btn>
-                    </Block>
-                    <Head>Dialog</Head>
-                    <Block>
-                        {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
-
                     </Block>
 
                     <Head>TableFixed</Head>
