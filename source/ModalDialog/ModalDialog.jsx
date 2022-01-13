@@ -8,9 +8,6 @@ export default class ModalDialog extends React.Component {
     constructor(p) {
         super(p);
         this.state = {
-            shadowPos: {
-                left: 0, top: 0, width: 0, height: 0,
-            },
             modalPos: {
                 left: 0, top: 0, width: -1, height: -1,
             },
@@ -24,11 +21,6 @@ export default class ModalDialog extends React.Component {
     resize() {
         const s = JX.screen();
         this.setState((state) => ({
-            shadowPos: {
-                ...state.shadowPos,
-                width: s.w,
-                height: s.h,
-            },
             modalPos: this.getModalPos(),
         }));
     }
@@ -161,7 +153,7 @@ export default class ModalDialog extends React.Component {
             visible, children, header, footer, onClickHeaderClose, shadowEnable,
             shadowOpacity, addShadowClass,
         } = this.props;
-        const { shadowPos, modalPos } = this.state;
+        const { modalPos } = this.state;
 
         let footers = [];
         if (Array.isArray(footer)) {
@@ -218,33 +210,33 @@ export default class ModalDialog extends React.Component {
                 </div>
             </>
         ); */
-        return (
-            <Modal
-                enableShadow={shadowEnable}
-                onClickShadow={this.onClickShadow}
-                shadowOpacity={shadowOpacity}
-                addShadowClass={addShadowClass}
+
+        return <Modal
+            enableShadow={visible && shadowEnable}
+            onClickShadow={this.onClickShadow}
+            shadowOpacity={shadowOpacity}
+            addShadowClass={addShadowClass}
+        >
+            <div
+                style={{ ...modalPos, display: displayModal }}
+                className="wd-modal-dialog"
+                onMouseDown={this.onMouseDown}
+                onMouseUp={this.onMouseUp}
+                onMouseLeave={this.onMouseLeave}
+                onMouseMove={this.onMouseMove}
             >
-                <div
-                    style={{ ...modalPos, display: displayModal }}
-                    className="wd-modal-dialog"
-                    onMouseDown={this.onMouseDown}
-                    onMouseUp={this.onMouseUp}
-                    onMouseLeave={this.onMouseLeave}
-                    onMouseMove={this.onMouseMove}
-                >
-                    {header && <div className="wd-modal-dialog-header">
-                        <div className="wd-modal-dialog-header-caption">
-                            {header}
-                        </div>
-                        {onClickHeaderClose && <div className="wd-modal-dialog-header-close" onClick={this.onClickHeaderClose}>&#10060;</div>}
-
-                    </div>}
-                    <div className="wd-modal-dialog-content">
-                        {children}
+                {header && <div className="wd-modal-dialog-header">
+                    <div className="wd-modal-dialog-header-caption">
+                        {header}
                     </div>
+                    {onClickHeaderClose && <div className="wd-modal-dialog-header-close" onClick={this.onClickHeaderClose}>&#10060;</div>}
 
-                    {footers.length > 0
+                </div>}
+                <div className="wd-modal-dialog-content">
+                    {children}
+                </div>
+
+                {footers.length > 0
                         && <div className="wd-modal-dialog-footer">
                             {footers.map((key) => <Btn
                                 id={this._get_footer_param(key, 'id')}
@@ -255,14 +247,14 @@ export default class ModalDialog extends React.Component {
                             </Btn>)
                             }
                         </div>
-                    }
-                </div>
+                }
+            </div>
 
-            </Modal>);
+        </Modal>;
     }
 }
 ModalDialog.defaultProps = {
-    visible: true,
+    visible: true, // сурывает (НЕ УДАЛЯЕТ) объект
     onClickHeaderClose: undefined,
     onClickShadow: undefined,
     onClickFooterBtn: undefined,
