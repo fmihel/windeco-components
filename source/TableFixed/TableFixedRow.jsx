@@ -37,7 +37,7 @@ export default class TableFixedRow extends React.Component {
                 onClick={this.onClick}
                 onDoubleClick={this.onDblClick}
             >
-                {fields.map((field) => <TableFixedCol key={field.name} width={field.width} value={row[field.name]}/>)}
+                {fields.map((field, i) => <TableFixedCol key={`${field.name}-${i}`} width={field.width} value={row[field.name]} />)}
             </tr>
         );
     }
