@@ -89,9 +89,9 @@ class App extends React.Component {
                 msg: 'common simple dialog',
                 footer: {
                     ok: {
-                        id: 'ok-btn',
+                        // id: 'ok-btn',
                         addClass: 'wd-primary',
-                        caption: 'ввести',
+                        // caption: 'ввести',
                     },
                     cancel: {
                         id: 'cancel-btn',

@@ -24,7 +24,7 @@ react components for windeco
 <Btn>name</Btn>
 <Btn value="name"/>
 ``` 
-### Btn property
+### property
 |prop|type|default|notes|
 |----|----|-----|-----|
 |id|any|undefined|идентификатор|
@@ -46,8 +46,67 @@ react components for windeco
 ## Table
 ---
 ## TableFixed
+```js
+const prop = {
+    id:'ID_ROW',
+    fields:[
+        {name:'ID_ROW',caption:'id',width:50},
+        {name:'TEXT',caption:'notes'},
+        {name:'DATA',caption:'data'}
+    ],
+    data:[
+        {ID_ROW:1,TEXT:'some',DATA:'12/12/20',COST:234},
+        {ID_ROW:2,TEXT:'any',DATA:'10/09/20',COST:443},
+        {ID_ROW:3,TEXT:'more',DATA:'04/11/20',COST:394.3},
+    ],
+
+}; 
+```
+```html
+<TableFixed {...prop}/>
+
+```
+### property
+|prop|type|default|notes|
+|----|----|-----|-----|
+|id|string|ID|имя поля которое используется как уникальный идентификатор строки|
+|fields|array|undefined|описание столбцов|
+|data|array|[ ]|строки данных|
+|onClick|function|undefined||
+|onDblClick|function|undefined||
+|onMount|function|undefined||
+|stretch|bool|true|включает мехаизм растягивания по высоте таблицы до размеров родителя( с помощью js) <br> `ВНИМАНИЕ! у родительского фрейма, в случае stretch=true добавить overflow:hidden`|
+|headerType|string|fields|тип заголовка - fields,caption,none|
+|caption|string|Caption| загодловок если `headerType === 'caption'`|
+|bottomShow|bool|true|отображать или нет подвал в конце таблицы|
+|bottomText|string|конец|подпись в подвале|
+|nodataShow|bool|true| отображать текст когда нет данных|
+|nodataText|bool|нет данных||
+
+### methods
+|method|notes|
+|----|----|
+|select(o)||
 ---
 ## ModalDialog
+```html
+<ModalDialog
+    footer:['ok','cancel']
+    onClickHeaderClose:{this.onClose}
+    onClickShadow:{this.onClose}
+    onClickFooterBtn:{this.onClose}
+
+>
+</ModalDialog>
+```
+|prop|type|default|notes|
+|----|----|-----|-----|
+|visible|bool|true|сурывает (`НЕ УДАЛЯЕТ`) объект|
+|onClickHeaderClose|function|undefined||
+|onClickShadow|function|undefined||
+|onClickFooterBtn|function|undefined||
+|header|any|false|заголовок|
+|footer|object|undefined|кнопки внизу панели Ex:<br> ['ok','cancel']<br>{ok:{}} |
 ---
 ## Modal
 ---
