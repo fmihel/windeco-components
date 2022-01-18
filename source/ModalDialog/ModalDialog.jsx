@@ -97,12 +97,12 @@ export default class ModalDialog extends React.Component {
             key,
             id: undefined,
             caption: key,
-            callback: undefined,
+            onClick: undefined,
             addClass: '',
         };
         if (!Array.isArray(this.props.footer)) {
             if (typeof this.props.footer[key] === 'function') {
-                param.callback = this.props.footer[key];
+                param.onClick = this.props.footer[key];
             } else {
                 param = { ...param, ...this.props.footer[key] };
             }
@@ -111,9 +111,12 @@ export default class ModalDialog extends React.Component {
     }
 
     onClickFooterBtn(key) {
-        const callback = this._get_footer_param(key, 'callback');
-        if (callback) callback({ sender: this });
-        if (this.props.onClickFooterBtn) this.props.onClickFooterBtn({ sender: this, key });
+        const onClick = this._get_footer_param(key, 'onClick');
+        if (onClick) {
+            onClick({ sender: this, key });
+        } else if (this.props.onClickFooterBtn) {
+            this.props.onClickFooterBtn({ sender: this, key });
+        }
     }
 
     onMouseDown(o) {
@@ -270,8 +273,12 @@ ModalDialog.defaultProps = {
         'ok', 'cancel',
     ],
     footer_example3: {
-        key: {
+        ok: {
             addClass: 'wd-primary',
+        },
+        cancel: {
+            id: 'btn-cancel',
+            onClick(o) { console.log(o); },
         },
     },
     align: 'stretch', // stretch, custom,stickTo

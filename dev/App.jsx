@@ -88,10 +88,14 @@ class App extends React.Component {
                 header: 'text in header',
                 msg: 'common simple dialog',
                 footer: {
+                    add(o) {
+                        console.log('press add', o);
+                    },
                     ok: {
-                        id: 'ok-btn',
                         addClass: 'wd-primary',
-                        caption: 'ввести',
+                        onClick(o) {
+                            console.log(o);
+                        },
                     },
                     cancel: {
                         id: 'cancel-btn',
