@@ -70,8 +70,8 @@ const prop = {
 |prop|type|default|notes|
 |----|----|-----|-----|
 |id|string|ID|имя поля которое используется как уникальный идентификатор строки|
-|fields|array|undefined|описание столбцов|
-|data|array|[ ]|строки данных|
+|fields|array|undefined|описание столбцов<br>[{name:FieldName,caption:ColumnCaption,width?:int},<br>...]|
+|data|array|[ ]|строки данных<br|
 |onClick|function|undefined||
 |onDblClick|function|undefined||
 |onMount|function|undefined||
@@ -91,22 +91,35 @@ const prop = {
 ## ModalDialog
 ```html
 <ModalDialog
-    footer:['ok','cancel']
+    header='Dialog'
+    footer={['ok','cancel']}
     onClickHeaderClose:{this.onClose}
     onClickShadow:{this.onClose}
     onClickFooterBtn:{this.onClose}
-
 >
+content..
 </ModalDialog>
 ```
 |prop|type|default|notes|
 |----|----|-----|-----|
-|visible|bool|true|сурывает (`НЕ УДАЛЯЕТ`) объект|
+|visible|bool|true|скрывает (`НЕ УДАЛЯЕТ`) объект|
 |onClickHeaderClose|function|undefined||
 |onClickShadow|function|undefined||
 |onClickFooterBtn|function|undefined||
-|header|any|false|заголовок|
-|footer|object|undefined|кнопки внизу панели Ex:<br> ['ok','cancel']<br>{ok:{}} |
+|header|string|false|заголовок|
+|footer|object|undefined|кнопки внизу панели <br>Ex1: ['ok','cancel']<br>Ex2: {ok(o){ console.log(o);}}<br>Ex3: {ok:{ <br>id:'ok-id',<br>caption:'enter',<br>addClass:'wd-primary'}} |
+|align|string|stretch|stretch,custom,stickTo|
+|stickTo|DOM or string|undefined| ссылка на DOM объект или id <br>Ex: stickTo = "#btn-1"|
+|margin|int|50| отступ для align = 'stretch'|
+|left|int|50| отступ слева для align = 'custom'|
+|top|int|50| отступ сверху для align = 'custom'|
+|width|int|300| ширина для align = 'custom' or 'stickTo'|
+|height|int|100| высота для align = 'custom' or 'stickTo'|
+|addShadowClass|string||класс для модификации shadow|
+|shadowOpacity|float or string|0.1|коеффициент прозрачности тени <br>num or 'css' if shadowOpacity === 'css'  opacity defined in wd-shadow class|
+|shadowEnable|bool|true|включить модальность|
+|draggable|bool|true| перемещаемая форма, только для align = custom or stickTo|
+
 ---
 ## Modal
 ---
