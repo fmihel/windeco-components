@@ -92,10 +92,10 @@ class App extends React.Component {
                         console.log('press add', o);
                     },
                     ok: {
-                        addClass: 'wd-primary',
                         onClick(o) {
                             console.log(o);
                         },
+                        addClass: 'wd-primary',
                     },
                     cancel: {
                         id: 'cancel-btn',
