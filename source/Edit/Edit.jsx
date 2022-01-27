@@ -42,6 +42,8 @@ export default class Edit extends React.Component {
         const readonlyProp = (readonly ? { readOnly: 'readonly' } : {});
         const inputStyle = {};
         if ('width' in style) inputStyle.width = style.width;
+        if ('textAlign' in style) inputStyle.textAlign = style.textAlign;
+
         return (
             <div className='wd-edit-frame' style={{ display, ...style }}>
                 <input

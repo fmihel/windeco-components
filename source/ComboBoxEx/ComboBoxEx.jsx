@@ -268,6 +268,12 @@ export default class ComboBoxEx extends React.Component {
                 minWidth: bgSize,
             };
         }
+        let focusStyle = {};
+        if ('width' in style) {
+            focusStyle = {
+                width: style.width,
+            };
+        }
 
         return (
             <div
@@ -283,6 +289,7 @@ export default class ComboBoxEx extends React.Component {
                     onKeyDown={this.onKeyDown}
                     onBlur={this.onFocusOut}
                     ref={this.refFocus}
+                    style={focusStyle}
                 >
 
                     <div

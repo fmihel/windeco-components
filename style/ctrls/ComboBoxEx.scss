@@ -77,6 +77,7 @@ $wd-cbex-border-focus:$wd-ctrl-border-focus !default;
             line-height:$size;
             padding-left:$gap;
             overflow: hidden;
+            white-space: nowrap;
         }
         .wd-combobox-ex-btn{
         width:$size;
