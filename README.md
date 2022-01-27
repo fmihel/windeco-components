@@ -34,6 +34,25 @@ react components for windeco
 |hint|string||подсказка title|
 ---
 ## Edit
+```html
+<Edit>name</Edit>
+<Edit value="name" />
+``` 
+### property
+|prop|type|default|notes|
+|----|----|-----|-----|
+|id|any|undefined|идентификатор|
+|value|string|undefined|значение отображаемое в поле|
+|onChange|function({id,value})|undefined|событие на изменение |
+|addClass|string||добавить класс к input для стилизации,верхний класс wd-btn|
+|dim|string||размерность|
+|disable|{dim:bool}|{dim:false}|включить тот или иной признак|
+|dim|string||размерность|
+|placeholder|string||текст в незаполненном поле|
+|visible|bool|true|признак display|
+|readonly|bool|false|только для чтения|
+|style|{}|{}|стиль css|
+|hint|string||подсказка title|
 ---
 ## Label
 ---

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import { binds } from 'fmihel-browser-lib';
+import { binds, ut } from 'fmihel-browser-lib';
 
 export default class Edit extends React.Component {
     constructor(p) {
@@ -26,8 +26,11 @@ export default class Edit extends React.Component {
 
     render() {
         const {
-            dim, disabled, visible, placeholder, disable, labelName, readonly, addClass, style, hint,
+            dim, placeholder, disable, labelName, addClass, style, hint,
         } = this.props;
+        const disabled = ut.toBool(this.props.disabled);
+        const visible = ut.toBool(this.props.visible);
+        const readonly = ut.toBool(this.props.readonly);
 
         const value = ((this.props.onChange || readonly) ? this.getValue() : this.state.value);
 
