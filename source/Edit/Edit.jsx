@@ -26,7 +26,7 @@ export default class Edit extends React.Component {
 
     render() {
         const {
-            dim, disabled, visible, placeholder, disable, labelName, readonly, addClass, style,
+            dim, disabled, visible, placeholder, disable, labelName, readonly, addClass, style, hint,
         } = this.props;
 
         const value = ((this.props.onChange || readonly) ? this.getValue() : this.state.value);
@@ -51,6 +51,7 @@ export default class Edit extends React.Component {
                     {...readonlyProp}
                     {...name}
                     style={inputStyle}
+                    title={hint}
                 />
                 {!disable.dim && <div className="wd-edit-dim">{dim}</div>}
             </div>
@@ -71,4 +72,5 @@ Edit.defaultProps = {
         dim: false,
     },
     addClass: '',
+    hint: '',
 };

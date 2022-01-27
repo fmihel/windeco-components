@@ -172,36 +172,24 @@ class App extends React.Component {
                     <input id="undef-theme" type="button" value="undef-theme" onClick={this.undefTheme}/>
                 </div>
                 <div className='content wd-scrollbar'>
-                    <Head>Dialog</Head>
-                    <Block>
-                        {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
-
-                    </Block>
-                    <Head>Edit</Head>
-                    <Block> <Edit> text from child</Edit></Block>
-                    <Block> <Edit value="text from value"/></Block>
-                    <Block> <Edit value="disabled" disabled={1} /></Block>
-                    <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
-                    <Block> <Label caption="label"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
-                    <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
                     <Head>Abs position</Head>
                     <Block addClass="abs-pos"> <Edit
                         disable={{ dim: true }}
                         style={
                             {
                                 position: 'absolute',
-                                left: 80,
-                                top: -23,
+                                left: 540,
+                                top: -75,
                                 // border: '1px dashed lime',
                                 width: 57,
-                                height: 14,
+                                height: 16,
                             }
                         }>abs position</Edit></Block>
                     <Block addClass="abs-pos"> <CheckBox style={
                         {
                             position: 'absolute',
-                            left: 150,
-                            top: -23,
+                            left: 350,
+                            top: -75,
                             // border: '1px dashed lime',
                             width: 14,
                             height: 14,
@@ -215,14 +203,27 @@ class App extends React.Component {
                         style={
                             {
                                 position: 'absolute',
-                                left: 170,
-                                top: -23,
+                                left: 380,
+                                top: -75,
                                 // border: '1px dashed lime',
-                                height: 46,
-                                width: 250,
+                                height: 16,
+                                width: 150,
 
                             }
                         }/></Block>
+                    <Head>Dialog</Head>
+                    <Block>
+                        {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
+
+                    </Block>
+                    <Head>Edit</Head>
+                    <Block> <Edit> text from child</Edit></Block>
+                    <Block> <Edit value="text from value, and hint" hint="hint prop"/></Block>
+                    <Block> <Edit value="disabled" disabled={1} /></Block>
+                    <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
+                    <Block> <Label caption="label"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
+                    <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
+
                     <Head>ComboBox</Head>
                     <Block> <ComboBox /></Block>
                     <Block> <Label caption="combobox"><ComboBox disable={{ dim: false }}/></Label></Block>
