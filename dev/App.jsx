@@ -19,7 +19,7 @@ import Modal from '../source/Modal/Modal.jsx';
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
 import {
-    table_long, combo_list1, combo_list2, combo_list3, listClasses3,
+    table_long2, table_long, combo_list1, combo_list2, combo_list3, listClasses3,
 } from './data.js';
 
 ComboBoxEx.global({
@@ -53,6 +53,11 @@ class App extends React.Component {
                 ...defaultDialogParam,
                 header: 'text in header',
                 msg: 'common simple dialog',
+            },
+            table: {
+                ...defaultDialogParam,
+                header: 'table',
+                msg: '|--|',
             },
             'with btns': {
                 ...defaultDialogParam,
@@ -293,7 +298,12 @@ class App extends React.Component {
                 </div>
                 { this.state.dialog
                     && <ModalDialog {...this.dialogs[this.state.dialog]}>
-                        {this.dialogs[this.state.dialog].msg}
+                        {this.state.dialog === 'table'
+                        && <TableFixed {...table_long2}
+                            onClick={this.onClickTableFixed}
+                        />
+                        }
+                        {this.state.dialog !== 'table' && this.dialogs[this.state.dialog].msg}
                     </ModalDialog>
                 }
                 <div id="wd-modal" ></div>
