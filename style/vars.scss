@@ -7,22 +7,6 @@ $wd-default-theme-size:'small';
 $wd-font-size:('small':9px,'normal':12px) !default;
 
 
-$wd-bg:('light':#F7F7F7,'dark':#1F201C) !default;
-$wd-color:('light':#696969,'dark':#646464) !default;
-$wd-border:('light':#DCDCDC,'dark':#3D3E38) !default;
-$wd-border-focus:('light':#92BCD8,'dark':#3476BC) !default;
-
-$wd-ctrl-bg:('light':#FDFDFD,'dark':#343530) !default;
-$wd-ctrl-bg-hover:$wd-ctrl-bg !default;
-$wd-ctrl-color:('light':#000000,'dark':#cfcfcf) !default;
-$wd-ctrl-color-readonly:('light':#000000,'dark':#cfcfcf) !default;
-$wd-ctrl-color-disable:('light':#797979,'dark':#757575) !default;
-$wd-ctrl-color-hover:('light':#000000,'dark':#646464) !default;
-$wd-ctrl-border:$wd-border !default;
-$wd-ctrl-border-focus:$wd-border-focus !default;
-$wd-ctrl-border-hover:$wd-border !default;
-
-
 $wd-ctrl-bg-primary:('light':#0D6EFD,'dark':#0E639C) !default;
 $wd-ctrl-color-primary:('light':#FDFDFD,'dark':white) !default;
 $wd-ctrl-border-primary:('light':#0D6EFD,'dark':#0E639C) !default;
@@ -37,12 +21,32 @@ $wd-ctrl-color-transparent:('light':#535353,'dark':#a1a1a19d) !default;
 $wd-ctrl-color-transparent-hover:('light':#222222,'dark':#d4d4d4) !default;
 $wd-ctrl-border-transparent:('light':#8080802d,'dark':#4242424f) !default;
 
- 
-
 $wd-color-red:('light':#ff0000,'dark':#ff0000) !default;
 $wd-color-orange:('light':#FF8A00,'dark':#FF8A00) !default;
 $wd-color-url:('light':#169bb9,'dark':#194d8f) !default;
 $wd-color-url-hover:('light':#0014ff,'dark':#0c5ae3) !default;
+
+
+$wd-bg:('light':#F7F7F7,'dark':#1F201C) !default;
+$wd-color:('light':#696969,'dark':#646464) !default;
+$wd-border:('light':#DCDCDC,'dark':#3D3E38) !default;
+$wd-border-focus:('light':#92BCD8,'dark':#3476BC) !default;
+
+$wd-ctrl-bg:('light':#FDFDFD,'dark':#343530) !default;
+$wd-ctrl-bg-hover:$wd-ctrl-bg !default;
+$wd-ctrl-bg-select:$wd-ctrl-bg-primary !default;
+
+$wd-ctrl-color:('light':#000000,'dark':#cfcfcf) !default;
+$wd-ctrl-color-readonly:('light':#000000,'dark':#cfcfcf) !default;
+$wd-ctrl-color-disable:('light':#797979,'dark':#757575) !default;
+$wd-ctrl-color-hover:('light':#000000,'dark':#646464) !default;
+$wd-ctrl-color-select:$wd-ctrl-color-primary !default;
+
+$wd-ctrl-border:$wd-border !default;
+$wd-ctrl-border-focus:$wd-border-focus !default;
+$wd-ctrl-border-hover:$wd-border !default;
+
+
 
 
 

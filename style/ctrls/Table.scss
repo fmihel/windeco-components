@@ -20,8 +20,8 @@ $wd-tab-row-height:$wd-size !default;
 $wd-tab-row-border-bottom:('light':#FDFDFD,'dark':#3a3a3a48) !default;
 $wd-tab-row-border-vert:('light':#DCDCDC,'dark':#3a3a3a) !default;
 
-$wd-tab-row-active-bg:('light':#1E90FF,'dark':#1e8fff5d) !default;
-$wd-tab-row-active-color:('light':#ffffff,'dark':#ffffff) !default;
+$wd-tab-row-active-bg:$wd-ctrl-bg-select !default;
+$wd-tab-row-active-color:$wd-ctrl-color-select !default;
 
 @mixin wd-table-container-theme($theme){
         color:map-get($wd-tab-color,#{$theme});
