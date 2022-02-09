@@ -72,26 +72,26 @@ $wd-gap:('small':2px,'normal':5px) !default;
 @each $name in $wd-themes{
     .#{$name} {
         .wd-primary{
-            background-color: map-get($wd-ctrl-bg-primary,#{$name});
-            color: map-get($wd-ctrl-color-primary,#{$name});
-            border-color: map-get($wd-ctrl-border-primary,#{$name});
+            background-color: map-get($wd-ctrl-bg-primary,#{$name}) !important;
+            color: map-get($wd-ctrl-color-primary,#{$name}) !important;
+            border-color: map-get($wd-ctrl-border-primary,#{$name}) !important;
             &:hover{
                 background-color:darken(map-get($wd-ctrl-bg-primary,#{$name}), 10%) !important;
 
              }
         }
         .wd-danger{
-            background-color: map-get($wd-ctrl-bg-danger,#{$name});
-            color: map-get($wd-ctrl-color-danger,#{$name});
-            border-color: map-get($wd-ctrl-border-danger,#{$name});
+            background-color: map-get($wd-ctrl-bg-danger,#{$name}) !important;
+            color: map-get($wd-ctrl-color-danger,#{$name}) !important;
+            border-color: map-get($wd-ctrl-border-danger,#{$name}) !important;
             &:hover{
                 background-color:darken(map-get($wd-ctrl-bg-danger,#{$name}), 10%) !important;
              }
         }
         .wd-transparent{
-            background-color: map-get($wd-ctrl-bg-transparent,#{$name});
-            color: map-get($wd-ctrl-color-transparent,#{$name});
-            border-color: map-get($wd-ctrl-border-transparent,#{$name});
+            background-color: map-get($wd-ctrl-bg-transparent,#{$name}) !important;
+            color: map-get($wd-ctrl-color-transparent,#{$name}) !important;
+            border-color: map-get($wd-ctrl-border-transparent,#{$name}) !important;
             &:hover{
                 background-color:map-get($wd-ctrl-bg-transparent-hover,#{$name}) !important;
                 color:map-get($wd-ctrl-color-transparent-hover,#{$name}) !important;

@@ -9,6 +9,7 @@ import RTable from './Table/Table.jsx';
 import RTableFixed from './TableFixed/TableFixed.jsx';
 import RModal from './Modal/Modal.jsx';
 import RComboBoxEx from './ComboBoxEx/ComboBoxEx.jsx';
+import RBtnIcon from './BtnIcon/BtnIcon.jsx';
 
 export default {
     Edit: REdit,
@@ -22,6 +23,7 @@ export default {
     Modal: RModal,
     Table: RTable,
     TableFixed: RTableFixed,
+    BtnIcon: RBtnIcon,
 };
 
 export const ComboBox = RComboBox;
@@ -35,3 +37,4 @@ export const ModalDialog = RModalDialog;
 export const Modal = RModal;
 export const Table = RTable;
 export const TableFixed = RTableFixed;
+export const BtnIcon = RBtnIcon;

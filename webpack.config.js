@@ -4,7 +4,7 @@ const config = require('./webpack.local');
 const {defArg} = require('fmihel-server-lib');
 //const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const toRemotePath = defArg('tooh') || defArg('took') || defArg('too') || defArg('toob');
+const toRemotePath = defArg('tooh') || defArg('took') || defArg('too') || defArg('toobe') || defArg('toob');
 const toProduction = !toRemotePath && defArg('prod');
 let remotePath;
 if (defArg('tooh'))
@@ -13,6 +13,8 @@ else if (defArg('took'))
   remotePath = config.REMOTE_ORDER_PATHS_BY_ARGS.took;
 else if (defArg('too'))
   remotePath = config.REMOTE_ORDER_PATHS_BY_ARGS.too;
+else if (defArg('toobe'))
+  remotePath = config.REMOTE_ORDER_PATHS_BY_ARGS.toobe;
 else if (defArg('toob'))
   remotePath = config.REMOTE_ORDER_PATHS_BY_ARGS.toob;
 

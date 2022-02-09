@@ -5,8 +5,13 @@ import {
 } from 'fmihel-browser-lib';
 import { connect } from 'react-redux';
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faFile, faFolder, faFolderOpen, faCoffeCup, faFileCode, faAddressBook,
+} from '@fortawesome/free-solid-svg-icons';
 import Edit from '../source/Edit/Edit.jsx';
 import Btn from '../source/Btn/Btn.jsx';
+import BtnIcon from '../source/BtnIcon/BtnIcon.jsx';
 import ComboBox from '../source/ComboBox/ComboBox.jsx';
 import ComboBoxEx from '../source/ComboBoxEx/ComboBoxEx.jsx';
 import CheckBox from '../source/CheckBox/CheckBox.jsx';
@@ -185,6 +190,7 @@ class App extends React.Component {
                                 height: 16,
                             }
                         }>abs position</Edit></Block>
+
                     <Block addClass="abs-pos"> <CheckBox style={
                         {
                             position: 'absolute',
@@ -211,6 +217,22 @@ class App extends React.Component {
 
                             }
                         }/></Block>
+                    <Head>BtnIcon</Head>
+                    <Block>
+
+                        <Btn>left</Btn>
+                        <BtnIcon>button presed test</BtnIcon>
+                        <BtnIcon
+                            IconComponent={FontAwesomeIcon}
+                            icon={faAddressBook}
+                            addClass="wd-danger"
+                            iconClass="demo-bi-color"
+                        >ok</BtnIcon>
+                        <Btn>standart</Btn>
+                        <BtnIcon addClass="wd-primary">cancel</BtnIcon>
+                        <BtnIcon>story</BtnIcon>
+                    </Block>
+
                     <Head>Dialog</Head>
                     <Block>
                         {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
