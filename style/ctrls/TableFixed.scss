@@ -21,8 +21,10 @@ $wd-tf-row-height:$wd-size !default;
 $wd-tf-row-border-bottom:('light':#FDFDFD,'dark':#3a3a3a) !default;
 $wd-tf-row-border-vert:('light':#DCDCDC,'dark':#282924) !default;
 
-$wd-tf-row-active-bg:('light':#0D6EFD,'dark':#0E639C) !default;
-$wd-tf-row-active-color:('light':#ffffff,'dark':#ffffff) !default;
+//$wd-tf-row-active-bg:('light':#0D6EFD,'dark':#0E639C) !default;
+//$wd-tf-row-active-color:('light':#ffffff,'dark':#ffffff) !default;
+$wd-tf-row-active-bg:$wd-ctrl-bg-select !default;
+$wd-tf-row-active-color:$wd-ctrl-color-select !default;
 
 
 @mixin wd-table-fixed-frame-theme($theme){
