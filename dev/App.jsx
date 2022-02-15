@@ -223,6 +223,7 @@ class App extends React.Component {
                         <Btn>left</Btn>
                         <BtnIcon>button presed test</BtnIcon>
                         <BtnIcon
+                            hint = "icon"
                             IconComponent={FontAwesomeIcon}
                             icon={faAddressBook}
                             addClass="wd-danger"

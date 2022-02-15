@@ -12,6 +12,7 @@ react components for windeco
 [9. ModalDialog - Модальный диалог](#ModalDialog)<br/>
 [10. Modal - обертка для модальных диалогов](#Modal)<br/>
 [11. Waiter - блокиратор экрана на ввод](#Waiter)<br/>
+[12. BtnIcon - кнопка c иконкой](#BtnIcon)<br/>
 
 
 
@@ -108,13 +109,13 @@ const prop = {
 |select(o)||
 ---
 ## ModalDialog
-```html
+```javascript
 <ModalDialog
     header='Dialog'
     footer={['ok','cancel']}
-    onClickHeaderClose:{this.onClose}
-    onClickShadow:{this.onClose}
-    onClickFooterBtn:{this.onClose}
+    onClickHeaderClose={this.onClose}
+    onClickShadow={this.onClose}
+    onClickFooterBtn={this.onClose}
 >
 content..
 </ModalDialog>
@@ -143,9 +144,38 @@ content..
 ## Modal
 ---
 ## Waiter
+---
+## BtnIcon
+### need install 
+```
+ npm i @fortawesome/fontawesome-free@5.15.4 @fortawesome/fontawesome-svg-core@1.2.28 @fortawesome/free-solid-svg-icons@5.13.0 @fortawesome/react-fontawesome@0.1.9
+```
+### Examle:
+```javascript
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faFile} from '@fortawesome/free-solid-svg-icons';
+...
+<BtnIcon
+    IconComponent={FontAwesomeIcon}
+    icon={faFile}
+    addClass="wd-danger"
+    iconClass="demo-bi-color"
+>ok</BtnIcon>
 
-
-
+<BtnIcon addClass="wd-primary">cancel</BtnIcon>
+``` 
+### property
+|prop|type|default|notes|
+|----|----|-----|-----|
+|id|any|undefined|идентификатор|
+|value|string|undefined|надпись на кнопке, можно задать через props.children|
+|onClick|function|undefined|onclick событие|
+|addClass|string||добавить класс к кнопке для стилизации,верхний класс wd-btn-icon|
+|IconComponent|object|Компонент вывадящий иконку|
+|icon|any|константа иконки|
+|iconClass|string|дополнительный класс для иконки| 
+|hint|string||подсказка title|
+---
 
 
 

@@ -3,7 +3,7 @@ import React from 'react';
 export default function BtnIcon({
     id, value, onClick, children,
     addClass,
-    iconClass, IconComponent, icon,
+    iconClass, IconComponent, icon, hint,
 }) {
     return (
         <div
@@ -11,6 +11,7 @@ export default function BtnIcon({
             onClick={onClick}
             className={`wd-btn-icon${addClass ? ` ${addClass}` : ''}`}
             tabIndex={0}
+            title = {hint || ''}
         >
             { (iconClass || (IconComponent && icon))
             && <div className={`wd-bi-icon ${iconClass}`}>
