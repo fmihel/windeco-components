@@ -15,6 +15,10 @@ $wd-ctrl-bg-danger:('light':#C32F3D,'dark':#632323) !default;
 $wd-ctrl-color-danger:('light':#FDFDFD,'dark':#bdb9b9) !default;
 $wd-ctrl-border-danger:('light':#C32F3D,'dark':#632323) !default;
 
+$wd-ctrl-bg-green:('light':#008b14,'dark':#017711) !default;
+$wd-ctrl-color-green:('light':white,'dark':white) !default;
+$wd-ctrl-border-green:('light':#32a815,'dark':#005f08) !default;
+
 $wd-ctrl-bg-transparent:('light':#80808013,'dark':rgba(0,0,0,0)) !default;
 $wd-ctrl-bg-transparent-hover:('light':#8080801f,'dark':rgba(0, 0, 0, 0.05)) !default;
 $wd-ctrl-color-transparent:('light':#535353,'dark':#a1a1a19d) !default;
@@ -90,6 +94,15 @@ $wd-gap:('small':2px,'normal':5px) !default;
             border-color: map-get($wd-ctrl-border-danger,#{$name}) !important;
             &:hover{
                 background-color:darken(map-get($wd-ctrl-bg-danger,#{$name}), 10%) !important;
+             }
+        }
+        .wd-green{
+            background-color: map-get($wd-ctrl-bg-green,#{$name}) !important;
+            color: map-get($wd-ctrl-color-green,#{$name}) !important;
+            border-color: map-get($wd-ctrl-border-green,#{$name}) !important;
+            &:hover{
+                background-color:darken(map-get($wd-ctrl-bg-green,#{$name}), 10%) !important;
+
              }
         }
         .wd-transparent{

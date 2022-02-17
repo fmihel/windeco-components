@@ -232,6 +232,7 @@ class App extends React.Component {
                         <Btn>standart</Btn>
                         <BtnIcon addClass="wd-primary">cancel</BtnIcon>
                         <BtnIcon>story</BtnIcon>
+                        <BtnIcon addClass="wd-green">save</BtnIcon>
                     </Block>
 
                     <Head>Dialog</Head>
