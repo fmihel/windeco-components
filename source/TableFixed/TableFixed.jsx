@@ -66,6 +66,7 @@ export default class TableFixed extends React.Component {
         });
         this.observer.observe(parentDOM(this.ref.current));
         this.observer.observe(this.ref.current);
+        if (this.props.onMount) this.props.onMount({ sender: this });
     }
 
     componentWillUnmount() {
