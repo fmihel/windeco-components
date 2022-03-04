@@ -242,6 +242,7 @@ class App extends React.Component {
                     </Block>
                     <Head>Edit</Head>
                     <Block> <Edit> text from child</Edit></Block>
+                    <Block> <Edit type="password" placeholder="set password" disable={{ dim: true }}/></Block>
                     <Block> <Edit value="text from value, and hint" hint="hint prop"/></Block>
                     <Block> <Edit value="disabled" disabled={1} /></Block>
                     <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
@@ -290,7 +291,7 @@ class App extends React.Component {
 
                     <Head>CheckBox</Head>
                     <Block> <CheckBox/></Block>
-                    <Block> <Label caption='check'><CheckBox /></Label></Block>
+                    <Block> <Label caption='check'><CheckBox id="ckb1" onChange={(o) => { console.log(o); }}/></Label></Block>
                     <Block> <Label caption='on change'><Btn onClick={() => { this.setState({ checked: 0 }); }} >on change false</Btn></Label></Block>
                     <Block> <Label caption='on change'><CheckBox checked={this.state.checked} asRadio={1} onChange={() => { this.setState({ checked: 1 }); }}/></Label></Block>
                     <Head>Table</Head>

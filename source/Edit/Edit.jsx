@@ -26,7 +26,7 @@ export default class Edit extends React.Component {
 
     render() {
         const {
-            dim, placeholder, disable, labelName, addClass, style, hint,
+            dim, placeholder, disable, labelName, addClass, style, hint, type,
         } = this.props;
         const disabled = ut.toBool(this.props.disabled);
         const visible = ut.toBool(this.props.visible);
@@ -47,7 +47,7 @@ export default class Edit extends React.Component {
         return (
             <div className='wd-edit-frame' style={{ display, ...style }}>
                 <input
-                    type='text'
+                    type={type || 'text'}
                     onChange = {this.onChange}
                     className={`${editInputClass} ${addClass}`}
                     value={value}
@@ -65,6 +65,7 @@ export default class Edit extends React.Component {
 }
 Edit.defaultProps = {
     id: undefined,
+    type: 'text',
     disabled: 0,
     onChange: undefined,
     dim: 'm',

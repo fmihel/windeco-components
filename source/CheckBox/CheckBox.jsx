@@ -47,6 +47,7 @@ export default class CheckBox extends React.Component {
     }
 }
 CheckBox.defaultProps = {
+    id: undefined,
     labelName: undefined,
     caption: undefined,
     checked: false,

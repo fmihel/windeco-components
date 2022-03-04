@@ -16,9 +16,6 @@ react components for windeco
 
 
 
-
-
-
 ---
 ## Btn
 ```html
@@ -43,6 +40,7 @@ react components for windeco
 |prop|type|default|notes|
 |----|----|-----|-----|
 |id|any|undefined|идентификатор|
+|type|string|text|тип поля text,password |
 |value|string|undefined|значение отображаемое в поле|
 |onChange|function({id,value})|undefined|событие на изменение |
 |addClass|string||добавить класс к input для стилизации,верхний класс wd-btn|
@@ -58,6 +56,22 @@ react components for windeco
 ## Label
 ---
 ## CheckBox
+```html
+<Checkbox checked={true} onChange={this.onChange}/>
+``` 
+### property
+|prop|type|default|notes|
+|----|----|-----|-----|
+|id|any|undefined|идентификатор|
+|checked|boolean|false|нажата или нет |
+|value|string|undefined|значение отображаемое в поле|
+|asRadio|boolean|false|если true то снятие галки возможно только через props и формироваться onChange при нажатии на галку не будет|
+|onChange|function({id,checked})|undefined|событие на изменение |
+|addClass|string||добавить класс к input для стилизации,верхний класс wd-btn|
+|disable|num|0|блокировка на ввод|
+|visible|bool|true|признак display|
+|style|{}|{}|стиль css|
+|hint|string||подсказка title|
 ---
 ## ComboBox
 ---
