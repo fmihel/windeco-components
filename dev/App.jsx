@@ -20,6 +20,7 @@ import Table from '../source/Table/Table.jsx';
 import TableFixed from '../source/TableFixed/TableFixed.jsx';
 import ModalDialog from '../source/ModalDialog/ModalDialog.jsx';
 import Modal from '../source/Modal/Modal.jsx';
+import Text from '../source/Text/Text.jsx';
 
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
@@ -217,6 +218,28 @@ class App extends React.Component {
 
                             }
                         }/></Block>
+                    <Head>Text</Head>
+                    <Block>
+                        <Text
+                            style={{ height: 100 }}
+                            maxLength={20}
+                            placeholder="set text, max 20 len.."
+                            hint="hint"
+                        />
+                    </Block>
+                    <Block>
+                        <Text
+                            readonly={1}
+                            value="readonly"
+                        />
+                    </Block>
+                    <Block>
+                        <Text
+                            disabled={1}
+                            value="disabled"
+                            resize={true}
+                        />
+                    </Block>
                     <Head>BtnIcon</Head>
                     <Block>
 

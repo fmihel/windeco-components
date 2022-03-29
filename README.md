@@ -13,6 +13,7 @@ react components for windeco
 [10. Modal - обертка для модальных диалогов](#Modal)<br/>
 [11. Waiter - блокиратор экрана на ввод](#Waiter)<br/>
 [12. BtnIcon - кнопка c иконкой](#BtnIcon)<br/>
+[13. Text - многострочный текст](#Text)<br/>
 
 
 
@@ -185,10 +186,37 @@ import {faFile} from '@fortawesome/free-solid-svg-icons';
 |value|string|undefined|надпись на кнопке, можно задать через props.children|
 |onClick|function|undefined|onclick событие|
 |addClass|string||добавить класс к кнопке для стилизации,верхний класс wd-btn-icon|
-|IconComponent|object|Компонент вывадящий иконку|
-|icon|any|константа иконки|
-|iconClass|string|дополнительный класс для иконки| 
+|IconComponent|object||Компонент вывадящий иконку|
+|icon|any||константа иконки|
+|iconClass|string||дополнительный класс для иконки| 
 |hint|string||подсказка title|
+---
+## Text
+### Examle:
+```javascript
+<Text
+    id={"text-1"}
+    style={{ height: 100 }}
+    maxLength={20}
+    value={"init data"}
+    hint="hint"
+/>
+
+``` 
+### property
+|prop|type|default|notes|
+|----|----|-----|-----|
+|id|any|undefined|идентификатор|
+|value|string|undefined|начальные данные, можно задать через props.children|
+|onChange|function|undefined|onchange = function({id,value,sender}) |
+|addClass|string||добавить класс к компоненту|
+|placeholder|string||надпись в пустом компоненте|
+|hint|string||подсказка title|
+|readonly|bool|false|только для чтения| 
+|disabled|num|0|неактивен|
+|resize|bool|false|разрешить изменять размеры|
+|maxLength|num|0|максимальная длина, если 0 то без ограничений|
+
 ---
 
 
