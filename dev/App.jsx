@@ -265,7 +265,7 @@ class App extends React.Component {
                     </Block>
                     <Head>Edit</Head>
                     <Block> <Edit> text from child</Edit></Block>
-                    <Block> <Edit type="password" placeholder="set password" disable={{ dim: true }}/></Block>
+                    <Block> <Edit type="password" placeholder="set password" disable={{ dim: true }} style={{ height: 18 }}/></Block>
                     <Block> <Edit value="text from value, and hint" hint="hint prop"/></Block>
                     <Block> <Edit value="disabled" disabled={1} /></Block>
                     <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
@@ -278,6 +278,7 @@ class App extends React.Component {
                     <Head>ComboBoxEx</Head>
                     <Block>
                         <ComboBoxEx
+                            style={{ height: 18 }}
                             onChange={(o) => { console.log(o); }}
                             list = {combo_list1}
                         />
