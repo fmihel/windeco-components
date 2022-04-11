@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import { binds, ut } from 'fmihel-browser-lib';
+import { binds, ut, JX } from 'fmihel-browser-lib';
 
 export default class Edit extends React.Component {
     constructor(p) {
@@ -26,7 +26,7 @@ export default class Edit extends React.Component {
 
     render() {
         const {
-            dim, placeholder, disable, labelName, addClass, style, hint, type,
+            dim, placeholder, disable, labelName, addClass, style, hint, type, required,
         } = this.props;
         const disabled = ut.toBool(this.props.disabled);
         const visible = ut.toBool(this.props.visible);
@@ -36,6 +36,7 @@ export default class Edit extends React.Component {
 
         let editInputClass = `wd-edit-input${disabled ? ' wd-edit-disabled' : ''}`;
         editInputClass += (readonly ? ' wd-edit-readonly' : '');
+        if (required && (`${value}`).length === 0) editInputClass += ' wd-edit-require ';
 
         const display = (visible ? 'flex' : 'none');
         const name = (labelName ? { id: labelName } : {});
@@ -47,6 +48,7 @@ export default class Edit extends React.Component {
         return (
             <div className='wd-edit-frame' style={{ display, ...style }}>
                 <input
+                    ref = {this.inputRef}
                     type={type || 'text'}
                     onChange = {this.onChange}
                     className={`${editInputClass} ${addClass}`}
@@ -57,8 +59,10 @@ export default class Edit extends React.Component {
                     {...name}
                     style={inputStyle}
                     title={hint}
+
                 />
                 {!disable.dim && <div className="wd-edit-dim">{dim}</div>}
+
             </div>
         );
     }
@@ -73,6 +77,7 @@ Edit.defaultProps = {
     visible: 1,
     placeholder: '',
     readonly: false,
+    required: false,
     style: {},
     disable: {
         dim: false,

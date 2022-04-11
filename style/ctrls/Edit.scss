@@ -7,6 +7,7 @@ $wd-edit-color-readonly:$wd-ctrl-color-readonly !default;
 $wd-edit-color-disable:$wd-ctrl-color-disable !default;
 $wd-edit-border:$wd-ctrl-border !default;
 $wd-edit-border-focus:$wd-ctrl-border-focus !default;
+$wd-edit-color-require: #B22D1C !default;
 
 @mixin wd-edit-theme($name){
     .wd-edit-input{
@@ -66,8 +67,6 @@ $wd-edit-border-focus:$wd-ctrl-border-focus !default;
                 text-indent:5px;
 
                 font-size: map-get($wd-font-size,#{$name});
-                
-                
             }
             .wd-edit-disabled{
 
@@ -79,6 +78,15 @@ $wd-edit-border-focus:$wd-ctrl-border-focus !default;
                 text-align: center;
                 border:0px;
             }
+            .wd-edit-require{
+                background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAA5xJREFUaEPtWEtsTGEUPuefaUgkRCg6t5WKR8o86pGoViRobDCuNmKBnYWdkLAVjx0hLCXYeKzQ6R0sRFWIRxeCuW0qkRA6M00REiIRnXuP809TmSmT+O+DTHL/VXvnP+d83/m+/79nBqHKF1Y5fggI/G8FAwUCBVx2ILCQywa6Dg8UcN1Clwl8VaC7ObJM4tNf5J+5xFkx3DcC6Vh9ByFcl5URsCNpDqX8IOEbASMauQxC7JCgCezLupnfVTUEiJtuxCN5BDFnDDSNJM1cHXeLP/J2+aJAOqo1k8DnpVCJoFnvz2a8hS/t6cMyYg0HAOlEOQE8oPcPnfS6nDIBI6ZtZ2/vBdsaJBHqATvcq/e/GSkFZsS129ybDaXP+CDf4YNc9qw7Nm82iMI6tK12EKHFCPbpZCZ3VYWkOoG4lmdwdeNF2NTEayAE2ENAj0DAAiA8xp+LMgWk/xGO8u4BQbjaAmpHxCgD+IWB41/rZm6+vwQS2j4iPFVaWKVgpb2yEUxlv57JnlHJp6yATJ5OaNtsgotsi8kqxSrvpR/clN18yC+p5nNEQBZJxSJtfE12I8JM1aLl1qLPbKnOZH/2npM8jgkUSUTnLhFg3QSBjU6K89nJCYJNyYHcCyfxMsYVAZmga2ljoygUXrESYSUQRKMhy164aXD4rVLchM2uCdyIz51ugTXM52GSChC+cb6HIBTZbL77rBI3ca8rAtcTs2eFqcbgpC0OQfQVcHRLZ2bkvcN45xbqijXMF0S3UMAip8WLcQRvEO2NSTP/0kkeRwoYCW0V2Wiw72udFP09hj4RiA7dHLqvmk+ZgJzzbaQr3r0DxiDLM8HX6Q6+TrtUSCgT4Dknx5dXpLQIT5rf2AYPEEIPbbCa+P2w848gEM7zC+stgtVGJNawglMm5Mnyy6zBXwJy0gQ6CGC/ZKB3KSR6hsO1fXuePh0dL8wDXx8griwFYgM83mpm28afnV2xoqau8KEFLbudv/Cs59GpiWeJ46oTq7ICf9MdI15/iPcdKesu4CH2uBzyPF2+EEjHtVbu5qMypEitWzK5J56i52S+EOhdC+GvH7WPbKNpYwcUvkydkZ2x7h4UqoKABGlE61P8jUCXf7P/U+z/Dq/By3y+KFAkEKvfzdnPFRUojspDF6qKwGG+VpbHtG382xA9M3PX+H8WwvvlmwLeQ/1zxoDAv+p0pTqBAoECLjsQWMhlA12HBwq4bqHLBFWvwE+9EyJAw/7WRQAAAABJRU5ErkJggg==");
+                background-repeat: no-repeat;
+                background-position-x: right;
+                background-position-y: center;
+                background-size: calc($size*0.5);
+                border:1px solid $wd-edit-color-require !important;
+            }
+        
 }
 
 .wd-edit-frame{

@@ -53,6 +53,7 @@ react components for windeco
 |readonly|bool|false|только для чтения|
 |style|{}|{}|стиль css|
 |hint|string||подсказка title|
+|required|bool|false|включает подсветку,для незаполненных полей и добавляет css класс ```wd-edit-require```|
 ---
 ## Label
 ---

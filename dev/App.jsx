@@ -218,6 +218,15 @@ class App extends React.Component {
 
                             }
                         }/></Block>
+                    <Head>Edit</Head>
+                    <Block> <Edit> text from child</Edit></Block>
+                    <Block> <Edit type="password" placeholder="set password" disable={{ dim: true }} style={{ height: 18 }}/></Block>
+                    <Block> <Edit value="text from value, and hint" hint="hint prop"/></Block>
+                    <Block> <Edit value="" hint="обязательный ввод" placeholder="need text.." required={true}/></Block>
+                    <Block> <Edit value="disabled" disabled={1} /></Block>
+                    <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
+                    <Block> <Label caption="label"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
+                    <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
                     <Head>Text</Head>
                     <Block>
                         <Text
@@ -263,14 +272,6 @@ class App extends React.Component {
                         {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
 
                     </Block>
-                    <Head>Edit</Head>
-                    <Block> <Edit> text from child</Edit></Block>
-                    <Block> <Edit type="password" placeholder="set password" disable={{ dim: true }} style={{ height: 18 }}/></Block>
-                    <Block> <Edit value="text from value, and hint" hint="hint prop"/></Block>
-                    <Block> <Edit value="disabled" disabled={1} /></Block>
-                    <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
-                    <Block> <Label caption="label"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
-                    <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
 
                     <Head>ComboBox</Head>
                     <Block> <ComboBox /></Block>
