@@ -44,6 +44,7 @@ react components for windeco
 |type|string|text|тип поля text,password |
 |value|string|undefined|значение отображаемое в поле|
 |onChange|function({id,value})|undefined|событие на изменение |
+|onKeyPress|function({key,id,value,args})|undefined|событие после нажатия клавиши,args - оригинальные аргументы  |
 |addClass|string||добавить класс к input для стилизации,верхний класс wd-btn|
 |dim|string||размерность|
 |disable|{dim:bool}|{dim:false}|включить тот или иной признак|

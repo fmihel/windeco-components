@@ -219,7 +219,9 @@ class App extends React.Component {
                             }
                         }/></Block>
                     <Head>Edit</Head>
-                    <Block> <Edit> text from child</Edit></Block>
+                    <Block> <Edit id="tt" onKeyPress={(o) => {
+                        console.log(o);
+                    }}> text from child</Edit></Block>
                     <Block> <Edit type="password" placeholder="set password" disable={{ dim: true }} style={{ height: 18 }}/></Block>
                     <Block> <Edit value="text from value, and hint" hint="hint prop"/></Block>
                     <Block> <Edit value="" hint="обязательный ввод" placeholder="need text.." required={true}/></Block>

@@ -1,11 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import { binds, ut, JX } from 'fmihel-browser-lib';
+import { ut } from 'fmihel-browser-lib';
 
 export default class Edit extends React.Component {
     constructor(p) {
         super(p);
-        binds(this, 'onChange');
+
+        this.onChange = this.onChange.bind(this);
+        this.onKeyPress = this.onKeyPress.bind(this);
         this.state = {
             value: this.getValue(),
         };
@@ -21,6 +23,17 @@ export default class Edit extends React.Component {
             this.props.onChange({ id: this.props.id, value: e.target.value });
         } else {
             this.setState({ value: e.target.value });
+        }
+    }
+
+    onKeyPress(o) {
+        if (this.props.onKeyPress) {
+            this.props.onKeyPress({
+                id: this.props.id,
+                value: o.target.value,
+                key: o.key,
+                args: o,
+            });
         }
     }
 
@@ -51,6 +64,7 @@ export default class Edit extends React.Component {
                     ref = {this.inputRef}
                     type={type || 'text'}
                     onChange = {this.onChange}
+                    onKeyPress={this.onKeyPress}
                     className={`${editInputClass} ${addClass}`}
                     value={value}
                     disabled={!!disabled}
@@ -72,6 +86,7 @@ Edit.defaultProps = {
     type: 'text',
     disabled: 0,
     onChange: undefined,
+    onKeyPress: undefined,
     dim: 'm',
     value: undefined,
     visible: 1,
