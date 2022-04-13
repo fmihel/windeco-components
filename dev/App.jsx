@@ -36,12 +36,16 @@ class App extends React.Component {
     constructor(p) {
         super(p);
         binds(this, 'onTheme', 'onSize', 'onClickTable', 'onClickTableFixed', 'OpenDialog', 'CloseDialog', 'undefTheme');
+        this.onTableClear = this.onTableClear.bind(this);
+        this.onTableFill = this.onTableFill.bind(this);
         this.state = {
             theme: storage.get('theme-style', { default: 'dark' }),
             size: storage.get('theme-size', { default: 'normal' }),
             checked: 0,
             dialog: false,
             modalShow: false,
+            fields: table_long.fields,
+            table: table_long.data,
         };
 
         // общие параметры для диалогов
@@ -165,7 +169,16 @@ class App extends React.Component {
         o.sender.select(o.row);
     }
 
+    onTableClear() {
+        this.setState({ table: [] });
+    }
+
+    onTableFill() {
+        this.setState({ table: table_long.data });
+    }
+
     render() {
+        const { fields, table } = this.state;
         const dialogs = Object.keys(this.dialogs);
         return (
             <div className={`${this.state.theme} ${this.state.size}`}>
@@ -218,6 +231,19 @@ class App extends React.Component {
 
                             }
                         }/></Block>
+                    <Head>TableFixed</Head>
+                    <Block>
+                        <Btn onClick={this.onTableClear}>clear</Btn>
+                        <Btn onClick={this.onTableFill}>fill</Btn>
+                    </Block>
+
+                    <Block addClass="table-fixed-height">
+                        <TableFixed
+                            fields={fields}
+                            data={table}
+                            onClick={this.onClickTableFixed}
+                        />
+                    </Block>
                     <Head>Edit</Head>
                     <Block> <Edit id="tt" onKeyPress={(o) => {
                         console.log(o);
@@ -307,13 +333,6 @@ class App extends React.Component {
                         <Btn addClass="wd-primary">wd-primary</Btn>
                         <Btn addClass="wd-transparent">wd-transparent</Btn>
                         <Btn addClass="wd-primary pic-bag">pic</Btn>
-                    </Block>
-
-                    <Head>TableFixed</Head>
-                    <Block addClass="table-fixed-height">
-                        <TableFixed {...table_long}
-                            onClick={this.onClickTableFixed}
-                        />
                     </Block>
 
                     <Head>CheckBox</Head>

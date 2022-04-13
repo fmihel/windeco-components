@@ -51,19 +51,21 @@ export default class TableFixedHead extends React.Component {
         if (this.props.onMount) this.props.onMount({ sender: this });
     }
 
-    componentWillUnmount() {
-        // разовый после последнего рендеринга
-    }
+    // componentWillUnmount() {
+    // разовый после последнего рендеринга
+    // }
 
-    componentDidUpdate(prevProps, prevState, prevContext) {
-        // каждый раз после рендеринга (кроме первого раза !)
-    }
+    // componentDidUpdate(prevProps, prevState, prevContext) {
+    // каждый раз после рендеринга (кроме первого раза !)
+    // }
 
     render() {
-        const { fields } = this.props;
+        const { fields, visible } = this.props;
         const { widths } = this.state;
+        const style = {};
+        if (!visible) style.display = 'none';
         return (
-            <table className="wd-table-fixed-head" >
+            <table className="wd-table-fixed-head" style={style}>
                 <thead>
                     <tr className="wd-table-fixed-head-row">
                         {fields.map((field, i) => <TableFixedHeadCol key = {field.name} name={field.name} caption={field.caption} width={widths[i]}/>)}
@@ -75,4 +77,5 @@ export default class TableFixedHead extends React.Component {
 }
 TableFixedHead.defaultProps = {
     fields: [],
+    visible: true,
 };

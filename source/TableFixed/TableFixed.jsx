@@ -126,6 +126,10 @@ export default class TableFixed extends React.Component {
             style = { height: this.state.height };
         }
         const valid = this.validData();
+        const styleRows = {};
+        if (!valid) {
+            styleRows.display = 'none';
+        }
         const bottomShow = !_bottomShow ? _bottomShow : this.haveScrollBar();
         return (
             <div
@@ -133,25 +137,23 @@ export default class TableFixed extends React.Component {
                 ref = {this.ref}
                 style={style}
             >
-                {valid && <>
-                    { headerType === 'fields'
-                && <TableFixedHead onMount={this.onMountHead} fields={fields} />
-                    }
-                    { headerType === 'caption'
-                && <div className="wd-table-fixed-caption">{caption}</div>
-                    }
-                    <div className="wd-table-fixed-frame-rows">
-                        <TableFixedRows
-                            onMount={this.onMountRows}
-                            data={data}
-                            fields={fields}
-                            id={id}
-                            onClick={this.onClick}
-                            onDblClick={this.onDblClick}
-                        />
-                        {bottomShow && <div className="wd-table-fixed-bottom">{bottomText}</div>}
-                    </div>
-                </>}
+
+                <TableFixedHead onMount={this.onMountHead} fields={fields} visible={headerType === 'fields' && valid}/>
+
+                { headerType === 'caption' && <div className="wd-table-fixed-caption">{caption}</div>}
+
+                <div className="wd-table-fixed-frame-rows" style={styleRows}>
+                    <TableFixedRows
+                        onMount={this.onMountRows}
+                        data={data}
+                        fields={fields}
+                        id={id}
+                        onClick={this.onClick}
+                        onDblClick={this.onDblClick}
+                    />
+                    {bottomShow && <div className="wd-table-fixed-bottom">{bottomText}</div>}
+                </div>
+
                 {(!valid && nodataShow)
                 && <div className="wd-table-fixed-nodata"> {nodataText}</div>
                 }
