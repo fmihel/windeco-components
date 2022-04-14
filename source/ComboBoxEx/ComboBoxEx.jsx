@@ -229,6 +229,10 @@ export default class ComboBoxEx extends React.Component {
         return this.props._forcedSelect ? this.state.select : this.props.select;
     }
 
+    getItem(id) {
+        return this.props.list.find((it) => it[this.props.idFieldName] == id);
+    }
+
     render() {
         const {
             idFieldName, placeholder, disable, dim, labelName, addClass, list, maxListHeight, listClasses: listClassesProps, style, required,
@@ -239,7 +243,7 @@ export default class ComboBoxEx extends React.Component {
         let addClassValue = '';
         const select = this._getSelect();
         const listClasses = { ...ComboBoxEx._global.listClasses, ...listClassesProps };
-        const noSelect = ut.eq(select, -1);
+        const noSelect = this.getItem(select) === undefined;
         if (noSelect) {
             value = placeholder;
             addClassValue += ' wd-combobox-ex-placeholder';
