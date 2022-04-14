@@ -46,6 +46,7 @@ class App extends React.Component {
             modalShow: false,
             fields: table_long.fields,
             table: table_long.data,
+            textValue: '',
         };
 
         // общие параметры для диалогов
@@ -178,7 +179,7 @@ class App extends React.Component {
     }
 
     render() {
-        const { fields, table } = this.state;
+        const { fields, table, textValue } = this.state;
         const dialogs = Object.keys(this.dialogs);
         return (
             <div className={`${this.state.theme} ${this.state.size}`}>
@@ -262,6 +263,8 @@ class App extends React.Component {
                             maxLength={20}
                             placeholder="set text, max 20 len.."
                             hint="hint"
+                            value={textValue}
+                            onChange={(o) => { this.setState({ textValue: o.value }); }}
                         />
                     </Block>
                     <Block>

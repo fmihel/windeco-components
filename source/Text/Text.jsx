@@ -26,16 +26,20 @@ export default class Text extends React.Component {
 
     render() {
         const {
-            value, style, addClass, placeholder, hint, disabled, resize, readonly, maxLength,
+            value, style, addClass, placeholder, hint, disabled, resize, readonly, maxLength, required,
         } = this.props;
         const _style = { ...style, resize: resize ? '' : 'none' };
         const prop = {};
         if (maxLength > 0) prop.maxLength = maxLength;
+        let _class = `wd-text ${disabled ? 'wd-text-disabled ' : ''}${readonly ? 'wd-text-readonly ' : ''}${addClass || ''}`;
+        const _value = value || this.props.children || '';
+        if (required && (`${_value}`).length === 0) _class += ' wd-text-require ';
+
         return (
             <textarea
-                value={value || this.props.children}
+                value={_value}
                 style={_style}
-                className={`wd-text ${disabled ? 'wd-text-disabled ' : ''}${readonly ? 'wd-text-readonly ' : ''}${addClass || ''}`}
+                className={_class}
                 placeholder={placeholder}
                 title={hint}
                 disabled={disabled}
@@ -57,4 +61,5 @@ Text.defaultProps = {
     hint: '',
     resize: false,
     maxLength: 0,
+    required: true,
 };

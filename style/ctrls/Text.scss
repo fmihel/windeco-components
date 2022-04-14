@@ -39,6 +39,14 @@ $wd-edit-border-focus:$wd-ctrl-border-focus !default;
         background-color: rgba(0,0,0,0) !important;
         color: map-get($wd-ctrl-color-readonly,#{$name})!important;
     }
+    .wd-text-require{
+        border:1px solid  map-get($wd-ctrl-color-require,#{$name}) !important;
+        background-image: url($wd-ctrl-bg-img-require);
+        background-repeat: no-repeat;
+        background-position-x: right;
+        background-position-y: center;
+
+    }
 
 }
 
@@ -49,6 +57,9 @@ $wd-edit-border-focus:$wd-ctrl-border-focus !default;
         box-sizing: border-box;
         min-height:$size;
         font-size: map-get($wd-font-size,#{$name});
+    }
+    .wd-text-require{
+        background-size: calc($size*0.5);
     }
 }
 

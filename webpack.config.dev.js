@@ -9,7 +9,7 @@ const SOURCE_PATH = './dev/';
 const PUBLIC_PATH = './public/';
 const TEMPLATE_PATH = './dev/template/';
 const MEDIA_PATH = './dev/media/';
-const PORT = 3000;
+const PORT = 3002;
 module.exports = {
     entry: `${SOURCE_PATH}index.js`,
     output: {
