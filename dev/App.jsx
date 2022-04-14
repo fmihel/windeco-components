@@ -245,6 +245,30 @@ class App extends React.Component {
                             onClick={this.onClickTableFixed}
                         />
                     </Block>
+                    <Head>ComboBoxEx</Head>
+                    <Block>
+                        <ComboBoxEx
+                            style={{ height: 18 }}
+                            onChange={(o) => { console.log(o); }}
+                            list = {combo_list1}
+                            required={true}
+                        />
+                    </Block>
+
+                    <Block>
+                        <ComboBoxEx
+                            onChange={(o) => { console.log(o); }}
+                            list = {combo_list3}
+                            listClasses={listClasses3}
+                            disable={{ dim: true }}
+                            select={3}
+                        />
+                    </Block>
+                    <Block>
+                        <Label caption="comboboxex">
+                            <ComboBoxEx list = {combo_list2} disable={{ dim: false }}/>
+                        </Label>
+                    </Block>
                     <Head>Edit</Head>
                     <Block> <Edit id="tt" onKeyPress={(o) => {
                         console.log(o);
@@ -265,6 +289,7 @@ class App extends React.Component {
                             hint="hint"
                             value={textValue}
                             onChange={(o) => { this.setState({ textValue: o.value }); }}
+                            required={true}
                         />
                     </Block>
                     <Block>
@@ -307,28 +332,7 @@ class App extends React.Component {
                     <Head>ComboBox</Head>
                     <Block> <ComboBox /></Block>
                     <Block> <Label caption="combobox"><ComboBox disable={{ dim: false }}/></Label></Block>
-                    <Head>ComboBoxEx</Head>
-                    <Block>
-                        <ComboBoxEx
-                            style={{ height: 18 }}
-                            onChange={(o) => { console.log(o); }}
-                            list = {combo_list1}
-                        />
-                    </Block>
 
-                    <Block>
-                        <ComboBoxEx
-                            onChange={(o) => { console.log(o); }}
-                            list = {combo_list3}
-                            listClasses={listClasses3}
-                            disable={{ dim: true }}
-                            select={3}
-                        />
-                    </Block>
-                    <Block>
-                        <Label caption="comboboxex">
-                            <ComboBoxEx list = {combo_list2} disable={{ dim: false }}/>
-                        </Label></Block>
                     <Head>Btn</Head>
                     <Block>
                         <Btn>button</Btn>

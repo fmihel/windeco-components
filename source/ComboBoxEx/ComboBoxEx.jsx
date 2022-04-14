@@ -231,7 +231,7 @@ export default class ComboBoxEx extends React.Component {
 
     render() {
         const {
-            idFieldName, placeholder, disable, dim, labelName, addClass, list, maxListHeight, listClasses: listClassesProps, style,
+            idFieldName, placeholder, disable, dim, labelName, addClass, list, maxListHeight, listClasses: listClassesProps, style, required,
         } = this.props;
         const { visibleList, pos } = this.state;
         const name = (labelName ? { id: labelName } : {});
@@ -239,7 +239,8 @@ export default class ComboBoxEx extends React.Component {
         let addClassValue = '';
         const select = this._getSelect();
         const listClasses = { ...ComboBoxEx._global.listClasses, ...listClassesProps };
-        if (ut.eq(select, -1)) {
+        const noSelect = ut.eq(select, -1);
+        if (noSelect) {
             value = placeholder;
             addClassValue += ' wd-combobox-ex-placeholder';
         } else {
@@ -284,7 +285,7 @@ export default class ComboBoxEx extends React.Component {
 
             >
                 <div
-                    className={'wd-combobox-ex-focus'}
+                    className={`wd-combobox-ex-focus ${(noSelect && required) ? 'wd-combobox-ex-require' : ''}`}
                     tabIndex="0"
                     onKeyDown={this.onKeyDown}
                     onBlur={this.onFocusOut}
@@ -378,4 +379,5 @@ ComboBoxEx.defaultProps = {
     _forcedSelect: true, // если true то выбранный элемент в списке будет сразу отображаться в поле, false - необходимо передать props.select
     _forcedPosition: true, // включает режим доп проверки позиции выпадающего списка
     style: {},
+    required: false,
 };

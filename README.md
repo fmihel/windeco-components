@@ -79,6 +79,23 @@ react components for windeco
 ## ComboBox
 ---
 ## ComboBoxEx
+```html
+ <ComboBoxEx
+    style={{ height: 18 }}
+    onChange={}
+    list = {[
+        { id: 1, caption: 'text1' },
+        { id: 2, caption: 'text2', _disabled_: 1 },
+        { id: 3, caption: 'text3' },
+        { id: 4, caption: 'text4' },
+    ]}
+    required={true}
+/>
+``` 
+### property
+|prop|type|default|notes|
+|----|----|-----|-----|
+|id|any|undefined|идентификатор|
 ---
 ## Table
 ---
@@ -218,7 +235,7 @@ import {faFile} from '@fortawesome/free-solid-svg-icons';
 |disabled|num|0|неактивен|
 |resize|bool|false|разрешить изменять размеры|
 |maxLength|num|0|максимальная длина, если 0 то без ограничений|
-
+|required|bool|false|включает подсветку,для незаполненного поля и добавляет css класс ```wd-text-require```|
 ---
 
 

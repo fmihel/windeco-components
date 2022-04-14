@@ -61,5 +61,5 @@ Text.defaultProps = {
     hint: '',
     resize: false,
     maxLength: 0,
-    required: true,
+    required: false,
 };
