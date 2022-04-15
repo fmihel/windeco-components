@@ -156,7 +156,7 @@ export default class ModalDialog extends React.Component {
     render() {
         const {
             visible, children, header, footer, onClickHeaderClose, shadowEnable,
-            shadowOpacity, addShadowClass,
+            shadowOpacity, addShadowClass, addClass,
         } = this.props;
         const { modalPos } = this.state;
 
@@ -224,7 +224,8 @@ export default class ModalDialog extends React.Component {
         >
             <div
                 style={{ ...modalPos, display: displayModal }}
-                className="wd-modal-dialog"
+                // className={`wd-modal-dialog${addClass}` ? ` ${addClass} ` : ''}
+                className={`wd-modal-dialog ${addClass}`}
                 onMouseDown={this.onMouseDown}
                 onMouseUp={this.onMouseUp}
                 onMouseLeave={this.onMouseLeave}
@@ -292,5 +293,5 @@ ModalDialog.defaultProps = {
     shadowOpacity: 0.1, // num or 'css' if shadowOpacity === 'css'  opacity defined in wd-modal class
     shadowEnable: true,
     draggable: true, // work with align = custom || stickTo
-
+    addClass: '',
 };
