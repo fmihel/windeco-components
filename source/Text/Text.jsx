@@ -34,7 +34,7 @@ export default class Text extends React.Component {
         let _class = `wd-text ${disabled ? 'wd-text-disabled ' : ''}${readonly ? 'wd-text-readonly ' : ''}${addClass || ''}`;
         const _value = value || this.props.children || '';
         if (required && (`${_value}`).length === 0) _class += ' wd-text-require ';
-        if (readonly) prop.readonly = 'readonly';
+        if (readonly) prop.readOnly = 'readonly';
         return (
             <textarea
                 value={_value}
