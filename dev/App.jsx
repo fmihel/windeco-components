@@ -294,8 +294,10 @@ class App extends React.Component {
                     </Block>
                     <Block>
                         <Text
-                            readonly={1}
-                            value="readonly"
+                            readonly={true}
+                            hint="readonly"
+                            value= {textValue}
+                            onChange={(o) => { this.setState({ textValue: o.value }); }}
                         />
                     </Block>
                     <Block>
