@@ -5,7 +5,7 @@ import React from 'react';
 import _ from 'lodash';
 import Modal from '../Modal/Modal.jsx';
 import ComboBoxListEx from './ComboBoxListEx.jsx';
-// import { flex, binds } from 'fmihel-browser-lib'
+
 export default class ComboBoxEx extends React.Component {
     static _global={
         off: {

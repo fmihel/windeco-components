@@ -96,6 +96,7 @@ react components for windeco
 |prop|type|default|notes|
 |----|----|-----|-----|
 |id|any|undefined|идентификатор|
+|select|any|undefined|выбранный пункт|
 ---
 ## Table
 ---
