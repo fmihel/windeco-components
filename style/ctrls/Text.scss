@@ -24,10 +24,6 @@ $wd-edit-border-focus:$wd-ctrl-border-focus !default;
         }  
     }
     .wd-text-disabled{
-        //border-top:0px;
-        //border-left:0px;
-        //border-right:0px;
-        //border-bottom: 1px solid map-get($wd-ctrl-border,#{$name});
         color: map-get($wd-ctrl-color-disable,#{$name});
     }
     .wd-text-readonly{
@@ -36,8 +32,11 @@ $wd-edit-border-focus:$wd-ctrl-border-focus !default;
         border-right:1px solid rgba(0,0,0,0);
         border-bottom: 1px solid map-get($wd-ctrl-border,#{$name});
 
-        background-color: rgba(0,0,0,0) !important;
+        background-color: rgba(0,0,0,0);
         color: map-get($wd-ctrl-color-readonly,#{$name})!important;
+        &:hover{
+            background-color: rgba(0,0,0,0);
+        }
     }
     .wd-text-require{
         border:1px solid  map-get($wd-ctrl-color-require,#{$name}) !important;

@@ -231,7 +231,34 @@ class App extends React.Component {
                                 width: 150,
 
                             }
-                        }/></Block>
+                        }/>
+                    </Block>
+                    <Head>Text</Head>
+                    <Block>
+                        <Text
+                            style={{ height: 100 }}
+                            maxLength={20}
+                            placeholder="set text, max 20 len.."
+                            hint="hint"
+                            value={textValue}
+                            onChange={(o) => { this.setState({ textValue: o.value }); }}
+                            required={true}
+                        />
+                    </Block>
+                    <Block>
+                        <Text
+                            readonly={true}
+                            hint="readonly"
+                            value= "readonly"
+                        />
+                    </Block>
+                    <Block>
+                        <Text
+                            disabled={1}
+                            value="disabled"
+                            resize={true}
+                        />
+                    </Block>
                     <Head>TableFixed</Head>
                     <Block>
                         <Btn onClick={this.onTableClear}>clear</Btn>
@@ -280,33 +307,7 @@ class App extends React.Component {
                     <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
                     <Block> <Label caption="label"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
                     <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
-                    <Head>Text</Head>
-                    <Block>
-                        <Text
-                            style={{ height: 100 }}
-                            maxLength={20}
-                            placeholder="set text, max 20 len.."
-                            hint="hint"
-                            value={textValue}
-                            onChange={(o) => { this.setState({ textValue: o.value }); }}
-                            required={true}
-                        />
-                    </Block>
-                    <Block>
-                        <Text
-                            readonly={true}
-                            hint="readonly"
-                            value= {textValue}
-                            onChange={(o) => { this.setState({ textValue: o.value }); }}
-                        />
-                    </Block>
-                    <Block>
-                        <Text
-                            disabled={1}
-                            value="disabled"
-                            resize={true}
-                        />
-                    </Block>
+
                     <Head>BtnIcon</Head>
                     <Block>
 
