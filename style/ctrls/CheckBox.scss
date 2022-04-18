@@ -3,6 +3,7 @@
 //$galka:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAbFJREFUaEPtWDFOw0AQTCRqpEgQUTolDR3iAUQCHgBS3pEiTwj8BHhBCqBGlLQ00AIF/CCzki0Ri/Pueffsi7SWRnGcvfHMzvlsZzjY8m245foHbqDvBD0BT0DZAZ9Cygaqh3sC6hYqCTwBZQOr4RPs3ABn5YEVPhfAO8efQwJHEPkA7NfEfuL7CWeibwMk/hHYC3T6FsdnTSn0aYATT7p/gFGOBiTiszUgFU8GsptCMeK/YOAY+MhlCsWKn0L4q9UyWoBoCVwAO8ATMAfeuBOUv8eI/8aYU4l44pasQnSTeQbGNbEUsaRLycRLDdyj8DLQaa5bScVLDfyicLdhqoRMJBdvZYB46iY6ES81cIfCK8HFWpmg0qbHg79U3BRkTyu5iAuwvAD1h63/yEkQbaFnG1Px0gSo7hCgpfOAbYmsQLqCsWySBCoSKxNm4mMSsDJhKr6NAc10Mhff1kAbE0nEawzEmEgmXmtAYiKpeAsDxBF6KU8u3soA8RTANXBeLlfV3yKNLyPsIi8oiLkPCOi6L3ED3fd884yegCeg7IBPIWUD1cM9AXULlQSegLKB6uFrx8NWMSJUXUwAAAAASUVORK5CYII=';
 $cross_black:     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAx1JREFUaEPtmctqFUEQhk8UQXQrBNyoSNDHSOIyCzXeYjAG4y0ggs/hQgkR7xBwkbhQokZ0Iah5Cm8bXai4NLt4Af9fpg+dTt+qpjsQcaBIONNd9X9T1T01Mz2ddX70rHP9nX8eYC8y9ADWCzsLe7RGGRtHnKuwN7AjsC+huLEM7MGkl7DtzeTf+DsGm6sMMQH/d2Abmjgf8HcA9tkXNwTgijdza0OcRqDblngTNwjhAwiJrw0REh+FcAFS4mtBpMQHIVyA9xjZl1njPzHuOOxh5vjQsHM4cROWuyMuYmy/cWZP2ogfv8O2CgS1hZCKp7SPsF0+AP52EjbjWUQxJi2ERjxjHYIthAD4+ynYXSGEdHc6A/+3hDEo/hhs3r6aobqrCVFMPEFiC6cGhFb8UWj1dgGplV8Sorj4VAZMqZWAqCI+F4Dj3P4kZ6flwr4P2wI7kChX19+PZsEmm8dUCdmONZnIAXXHcLcJ1rw7WAKg3WIlECLxkhJai0yIxWsBamQiu+bbllCNTKjFt8mAAeHuxLZDupbMfJYNHxkfSxaKPVYb2PbBrW6/UgD7oUnl3L/TSgA8hZ8hpQhmjy8L1EdbgAuIfE0dvdP5hbkjMPVDURsATT/vY5W24it8aAFKiTdi1BAagNLiW0FIAWqJV0NIAM4jyo1CO1ds3YvKKRfgIiJOCcXzJnUPxnaaz7LmVWHOpsW5ozC+l40eOQCaK8/2gHfYJ010TSvOTPAtyWyMIAVQQryJXwUiBsBb/HVh2bhX3r14xSFCAJcQ+Uph8VUy4QPQij8Mhd03Zom1VywTLgB7m2nhlV/G+GHYs9SO4ZzXvChg78TNofuwbwNswokl2GaBEIo/CHsumGMP1UB8goOdxombAX6T4nexnKOteBNDCsHPXvtCACR7ZRMGSLjbSGo+dUFy18Q7OBqEdT/6+RZxCqK0eAOXglglnhND2+gOnHvtyUQt8SkIih+AfXVTGbuRuRC1xYcg3jZls0p8LAPG2W78w15kG4x35hepYi50/gT8XIZxU2FT9y3kN9ULFdJTz81/gHrXNs/zH1jFyDG0YnaaAAAAAElFTkSuQmCC';
 $cross_white:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAADLUlEQVR4nO2Zy2oUQRSGPzPJxrUg6CIBCfoY6k7ceIl6DMZrYoJByXOIqCB4TSJGTI4gqAnoQjC+hQYRdKHiIzgx4qK7hp6eqpm6dGdj/t1Ud536/q4606eqYUtbStK2bhdVdR/wAtgJTIjIq82AUtVzwC3gI3BCRH647nUaUNW9wHtgV960AYyJyFKFrLZxLwKPgL686TNwQES+2+7vszVa4AEawFNVPV0dbse4l2iHBxgGVlV1t61Pxww44IuqZSZy+Ic4HiqOmWgz4AFvVKkJD3ijDhPlDiv0hodsOT1R1eMhoDap6mU6l41Lw8CzYkOrk6o28IM3GgCWUkzk8Pfp8W9Y0mDxR8uAiGwAV4C/AcGiTUTCrwPXig1t0yYiC8A44Saeh/w7qeo4cI9w+FMislJstAZQ1QvALH7r0sgrsXP4B4GxDfzL8oVuL7LKTSTAn3RVAb1KicpM1AEPHmuwChN1wYNnElnqEx9tAApsB474jpWrSbbmexaP3kEjZyJGXk/eKOSpbIaJIHgINAC1mgiGJwZCRB4T/rLrpSYR8BAxA0YVzoR3wtoUbQBa/06zCXHWybaMr2MZkp6eiMwDywkh5lPgoZpE7E/o20gdPMmAqk4DhxNCnE/dFEUbyOv5OymDk81eUCleVlTyRW5Guil6jx3zIqsa3ijKRGgpURe8UbAJ7xxQ1UnqhYeIwzMvA6p6lbg97BywRFjZYY5sRnxu9tnQTBIO3yR7wy7nMWI3RWdFZLHbTb22lMnwhVi1mHAGU9UpKoKH6Cq2ASyo6qjrBtfp9Axwl4rgjeowYTudngFu2q51URMYKR86uVTlciqfTk+TlQch8L+BYyLyJqBP7EHBH7JZbu0dioe7A8ANwuGPhsJDqxSfIGw59QO3iw3Fw9114GtAMAP/NqBPmyJNfCn+KE/fIfxMmISNhjfKTfgm9howVmywJfEQsAoMOYIEJayvPBJ7DThY/mLpOp0eBD7QaaIW+MK4LhNrZJ+Wfpb7WN2KyDdgP+3LqVb4fFzbe+ITDnjoXUrsARaBHcCUiLyriLWrVPUMcJ3sQ/eoiPzajHG39F/qH+ntgWa7tnBJAAAAAElFTkSuQmCC';
+$cross_opacity :'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAB40lEQVR4nO2ZsU7DMBCGPxATK0gIBpBYkGBn6gJCAjGx0gfsgBBLFzaEVNE3AHVApCy8BgN2ZdI4se/slND+m93m7v+U2D7bsNJKKq3V/XjcmwCcAjvA8HV01IYnm/cGeAMmdXm9ACbIJbDldA9yQ5i8fafrExj58lYCeMxbZYOoMG/lhZgDaDBvlRyixrxVJcQvgEDzVskgAsxbzUGsl/7QI8w8QN8kVinCPMA+cOh2zABMoL3I/CqISPNWB25jBmBey53AhwhCaB7gyW34BrEkcPCYSJmjbhrNApE6dtNClhQiR8yQUiJJwlxvtRYgVeKcn2QjgNLAPbAJXAueDZoUggBABSFR8IwWDACtQUSVKFEAkB0iur6KBoBsEKLiUAQAySHEla0YAJJBqMrycjkdJZP4URFCvadQARhtJIghlgrAfEIXihDqTdFyDuJOT6OdXsg6XUr81WIuaBbS1PPAg+C54Nnpf29oOr2l7PSmvtPHKp0+2GrDfOpc5cPdW23AUJlnBoJ8526jfLhbRAZT1fNCiHe3UV7IxsBXYKAkFxyREAUwdTt8g/gM2K0JtIgrpgJ4iTmd9kEs4pKvoMI8NC9kZYhFXLN+AGPN6fQJsA08t3zRfcXPRfe0rbwrLaW+Ab09DMLFyhacAAAAAElFTkSuQmCC';
 $wd-checkbox-cross:('light':$cross_black,'dark':$cross_white) !default;
 
 @mixin wd-checkbox-theme($theme){
@@ -20,11 +21,18 @@ $wd-checkbox-cross:('light':$cross_black,'dark':$cross_white) !default;
             background-image:url(map-get($wd-checkbox-cross,#{$theme})) ;
         }
         &:not(:checked){
-
+            &:hover{
+                background-image:url($cross_opacity);
+            }
         }
         &:focus{
             outline: none;
             border:1px solid wd-get-theme($wd-ctrl-border-focus,#{$theme});
+        }
+        &:hover{
+            
+            //background-color: map-get($wd-ctrl-border-hover,#{$theme});
+
         }     
     }
     .checkbox{
@@ -54,7 +62,15 @@ $wd-checkbox-cross:('light':$cross_black,'dark':$cross_white) !default;
             background-size: $size*0.5;
             background-position: center center;
             background-repeat: no-repeat;
-        }        
+        }
+        &:not(:checked){
+            &:hover{
+                background-size: $size*0.5;
+                background-position: center center;
+                background-repeat: no-repeat;
+    
+            }
+        }                
     }
 }
 
