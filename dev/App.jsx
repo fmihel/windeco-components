@@ -233,6 +233,12 @@ class App extends React.Component {
                             }
                         }/>
                     </Block>
+                    <Head>CheckBox</Head>
+                    <Block> <CheckBox checked={true}/></Block>
+                    <Block> <Label caption='check'><CheckBox id="ckb1" onChange={(o) => { console.log(o); }}/></Label></Block>
+                    <Block> <Label caption='on change'><Btn onClick={() => { this.setState({ checked: 0 }); }} >on change false</Btn></Label></Block>
+                    <Block> <Label caption='on change'><CheckBox checked={this.state.checked} asRadio={1} onChange={() => { this.setState({ checked: 1 }); }}/></Label></Block>
+
                     <Head>Text</Head>
                     <Block>
                         <Text
@@ -345,11 +351,6 @@ class App extends React.Component {
                         <Btn addClass="wd-primary pic-bag">pic</Btn>
                     </Block>
 
-                    <Head>CheckBox</Head>
-                    <Block> <CheckBox/></Block>
-                    <Block> <Label caption='check'><CheckBox id="ckb1" onChange={(o) => { console.log(o); }}/></Label></Block>
-                    <Block> <Label caption='on change'><Btn onClick={() => { this.setState({ checked: 0 }); }} >on change false</Btn></Label></Block>
-                    <Block> <Label caption='on change'><CheckBox checked={this.state.checked} asRadio={1} onChange={() => { this.setState({ checked: 1 }); }}/></Label></Block>
                     <Head>Table</Head>
                     <Block> <Table onClick={this.onClickTable}/></Block>
                     <Head>Modal</Head>

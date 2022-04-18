@@ -29,10 +29,14 @@ export default class CheckBox extends React.Component {
         const display = (visible ? 'flex' : 'none');
         const name = (labelName ? { id: labelName, name: labelName } : {});
         const inputStyle = {};
-        if ('width' in style) inputStyle.width = style.width;
+        if ('width' in style) {
+            inputStyle.width = style.width;
+            inputStyle.height = style.width;
+            inputStyle.backgroundSize = style.width * 0.7;
+        }
 
         return (
-            <div style={{ display }} className="ch-frame" style={style}>
+            <div style={{ display, ...style }} className="ch-frame" >
                 <input
                     className={`checkbox ${addClass}`}
                     type="checkbox"
