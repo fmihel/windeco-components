@@ -238,6 +238,7 @@ class App extends React.Component {
                     <Block> <Label caption='check'><CheckBox id="ckb1" onChange={(o) => { console.log(o); }}/></Label></Block>
                     <Block> <Label caption='on change'><Btn onClick={() => { this.setState({ checked: 0 }); }} >on change false</Btn></Label></Block>
                     <Block> <Label caption='on change'><CheckBox checked={this.state.checked} asRadio={1} onChange={() => { this.setState({ checked: 1 }); }}/></Label></Block>
+                    <Block> <Label caption='disabled'><CheckBox id="ckb-disabled" checked={true} onChange={(o) => { console.log(o); }} disabled={true}/></Label></Block>
 
                     <Head>Text</Head>
                     <Block>
@@ -300,6 +301,11 @@ class App extends React.Component {
                     <Block>
                         <Label caption="comboboxex">
                             <ComboBoxEx list = {combo_list2} disable={{ dim: false }}/>
+                        </Label>
+                    </Block>
+                    <Block>
+                        <Label caption="disabled">
+                            <ComboBoxEx list = {combo_list2} disable={{ dim: false }} select={1} disabled={'true'}/>
                         </Label>
                     </Block>
                     <Head>Edit</Head>

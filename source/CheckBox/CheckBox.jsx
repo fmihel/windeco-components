@@ -12,12 +12,14 @@ export default class CheckBox extends React.Component {
     }
 
     onChange(o) {
-        if (this.props.onChange) {
-            if (!ut.toBool(this.props.asRadio) || o.target.checked) {
-                this.props.onChange({ id: this.props.id, checked: (o.target.checked ? 1 : 0) });
+        if (ut.False(this.props.disabled)) {
+            if (this.props.onChange) {
+                if (!ut.toBool(this.props.asRadio) || o.target.checked) {
+                    this.props.onChange({ id: this.props.id, checked: (o.target.checked ? 1 : 0) });
+                }
+            } else {
+                this.setState({ checked: o.target.checked });
             }
-        } else {
-            this.setState({ checked: o.target.checked });
         }
     }
 
@@ -57,7 +59,7 @@ CheckBox.defaultProps = {
     checked: false,
     asRadio: false, // если true то снятие галки возможно только через props и формироваться onChange при нажатии на галку не будет
     visible: 1,
-    disable: 0,
+    disabled: 0,
     onChange: undefined,
     addClass: '',
     style: {},

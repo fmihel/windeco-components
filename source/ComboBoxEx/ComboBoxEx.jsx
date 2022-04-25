@@ -56,10 +56,12 @@ export default class ComboBoxEx extends React.Component {
     }
 
     openList() {
-        this.setState({ visibleList: true });
-        this._reculcWordWidth();
-        this.definePosition(true);
-        this.createTimer();
+        if (ut.False(this.props.disabled)) {
+            this.setState({ visibleList: true });
+            this._reculcWordWidth();
+            this.definePosition(true);
+            this.createTimer();
+        }
     }
 
     closeList() {
