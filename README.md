@@ -43,6 +43,9 @@ react components for windeco
 |id|any|undefined|идентификатор|
 |type|string|text|тип поля text,password |
 |value|string|undefined|значение отображаемое в поле|
+|min|number|undefined|миниамальное значение для type=number or range|
+|max|number|undefined|максимальное значение для type=number or range|
+|step|number|undefined|шаг для type=number or range|
 |onChange|function({id,value})|undefined|событие на изменение |
 |onKeyPress|function({key,id,value,args})|undefined|событие после нажатия клавиши,args - оригинальные аргументы  |
 |addClass|string||добавить класс к input для стилизации,верхний класс wd-btn|
@@ -52,9 +55,10 @@ react components for windeco
 |placeholder|string||текст в незаполненном поле|
 |visible|bool|true|признак display|
 |readonly|bool|false|только для чтения|
-|style|{}|{}|стиль css|
+|style|{}|{}|стиль css. Не все стили обрабатываются, на данный момент только 3 width,textAlign,fontSize|
 |hint|string||подсказка title|
 |required|bool|false|включает подсветку,для незаполненных полей и добавляет css класс ```wd-edit-require```|
+
 ---
 ## Label
 ---

@@ -39,12 +39,12 @@ export default class Edit extends React.Component {
 
     render() {
         const {
-            dim, placeholder, disable, labelName, addClass, style, hint, type, required,
+            dim, placeholder, disable, labelName, addClass, style, hint, type, required, min, max, step,
         } = this.props;
         const disabled = ut.toBool(this.props.disabled);
         const visible = ut.toBool(this.props.visible);
         const readonly = ut.toBool(this.props.readonly);
-
+        const props = {};// доп атрибуты input
         const value = ((this.props.onChange || readonly) ? this.getValue() : this.state.value);
 
         let editInputClass = `wd-edit-input${disabled ? ' wd-edit-disabled' : ''}`;
@@ -52,11 +52,15 @@ export default class Edit extends React.Component {
         if (required && (`${value}`).length === 0) editInputClass += ' wd-edit-require ';
 
         const display = (visible ? 'flex' : 'none');
-        const name = (labelName ? { id: labelName } : {});
-        const readonlyProp = (readonly ? { readOnly: 'readonly' } : {});
+        if (readonly) props.readOnly = 'readonly';
+        if (labelName) props.id = labelName;
+        if (min !== undefined) props.min = min;
+        if (max !== undefined) props.max = max;
+        if (step !== undefined) props.step = step;
+
         const inputStyle = {};
-        if ('width' in style) inputStyle.width = style.width;
-        if ('textAlign' in style) inputStyle.textAlign = style.textAlign;
+        // список свойсв которые идут из style в input
+        ['width', 'textAlign', 'fontSize'].map((prop) => { if (prop in style) inputStyle[prop] = style[prop]; });
 
         return (
             <div className='wd-edit-frame' style={{ display, ...style }}>
@@ -69,8 +73,7 @@ export default class Edit extends React.Component {
                     value={value}
                     disabled={!!disabled}
                     placeholder={placeholder}
-                    {...readonlyProp}
-                    {...name}
+                    {...props}
                     style={inputStyle}
                     title={hint}
 
@@ -99,4 +102,9 @@ Edit.defaultProps = {
     },
     addClass: '',
     hint: '',
+
+    min: undefined, // for type = range or number
+    max: undefined, // for type = range or number
+    step: undefined, // for type = range or number
+
 };

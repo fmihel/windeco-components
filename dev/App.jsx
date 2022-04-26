@@ -233,6 +233,19 @@ class App extends React.Component {
                             }
                         }/>
                     </Block>
+                    <Head>Edit</Head>
+                    <Block> <Edit id="tt" style={{ fontSize: '1.2em' }}onKeyPress={(o) => {
+                        console.log(o);
+                    }}> text from child</Edit></Block>
+                    <Block> <Edit type="password" placeholder="set password" disable={{ dim: true }} style={{ height: 18 }}/></Block>
+                    <Block> <Edit value="text from value, and hint" hint="hint prop"/></Block>
+                    <Block> <Edit value="" hint="обязательный ввод" placeholder="need text.." required={true}/></Block>
+                    <Block> <Edit value="disabled" disabled={1} /></Block>
+                    <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
+                    <Block> <Label caption="label"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
+                    <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
+                    <Block> <Label caption="range"><Edit value={5} dim={''} type='number' min={0} max={10} step={1}/></Label></Block>
+
                     <Head>CheckBox</Head>
                     <Block> <CheckBox checked={true}/></Block>
                     <Block> <Label caption='check'><CheckBox id="ckb1" onChange={(o) => { console.log(o); }}/></Label></Block>
@@ -308,17 +321,6 @@ class App extends React.Component {
                             <ComboBoxEx list = {combo_list2} disable={{ dim: false }} select={1} disabled={'true'}/>
                         </Label>
                     </Block>
-                    <Head>Edit</Head>
-                    <Block> <Edit id="tt" onKeyPress={(o) => {
-                        console.log(o);
-                    }}> text from child</Edit></Block>
-                    <Block> <Edit type="password" placeholder="set password" disable={{ dim: true }} style={{ height: 18 }}/></Block>
-                    <Block> <Edit value="text from value, and hint" hint="hint prop"/></Block>
-                    <Block> <Edit value="" hint="обязательный ввод" placeholder="need text.." required={true}/></Block>
-                    <Block> <Edit value="disabled" disabled={1} /></Block>
-                    <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
-                    <Block> <Label caption="label"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
-                    <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
 
                     <Head>BtnIcon</Head>
                     <Block>

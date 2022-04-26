@@ -10,6 +10,12 @@ $wd-edit-border-focus:$wd-ctrl-border-focus !default;
 $wd-edit-color-require: $wd-ctrl-color-require !default;
 
 @mixin wd-edit-theme($name){
+    input[type=number]{
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+        }
+        
+    }
     .wd-edit-input{
         background-color: map-get($wd-edit-bg,#{$name});
         color: map-get($wd-edit-color,#{$name});
@@ -89,6 +95,19 @@ $wd-edit-color-require: $wd-ctrl-color-require !default;
             .wd-edit-require{
                 background-size: calc($size*0.5);
             }
+            input[type=number]{
+                &::-webkit-inner-spin-button,
+                &::-webkit-outer-spin-button {
+                    -webkit-appearance: inner-spin-button !important;
+                    min-width: $size;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    height: 100%;
+                }
+                
+            }
+        
         
 }
 
