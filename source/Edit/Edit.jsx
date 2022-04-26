@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { ut } from 'fmihel-browser-lib';
@@ -41,6 +42,7 @@ export default class Edit extends React.Component {
         const {
             dim, placeholder, disable, labelName, addClass, style, hint, type, required, min, max, step,
         } = this.props;
+        const { fontSize, ...frameStyle } = style;
         const disabled = ut.toBool(this.props.disabled);
         const visible = ut.toBool(this.props.visible);
         const readonly = ut.toBool(this.props.readonly);
@@ -63,7 +65,7 @@ export default class Edit extends React.Component {
         ['width', 'textAlign', 'fontSize'].map((prop) => { if (prop in style) inputStyle[prop] = style[prop]; });
 
         return (
-            <div className='wd-edit-frame' style={{ display, ...style }}>
+            <div className='wd-edit-frame' style={{ display, ...frameStyle }}>
                 <input
                     ref = {this.inputRef}
                     type={type || 'text'}
