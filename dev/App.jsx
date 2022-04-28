@@ -30,6 +30,9 @@ import {
 
 ComboBoxEx.global({
     // listClasses: listClasses3,
+    offText: {
+        // y: 10,
+    },
 });
 
 class App extends React.Component {
@@ -245,7 +248,73 @@ class App extends React.Component {
                     <Block> <Label caption="label"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
                     <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
                     <Block> <Label caption="range"><Edit value={5} dim={''} type='number' min={0} max={10} step={1}/></Label></Block>
+                    <Head>ComboBoxEx</Head>
+                    <Block>
+                        <ComboBoxEx
+                            style={{ height: 18 }}
+                            onChange={(o) => { console.log(o); }}
+                            list = {combo_list1}
+                            required={true}
+                        />
+                    </Block>
+                    <Block>
+                        <div className="block-horiz">
+                            <ComboBoxEx
+                                onChange={(o) => { console.log(o); }}
+                                list = {combo_list3}
+                                listClasses={listClasses3}
+                                disable={{ dim: true }}
+                                select={3}
+                                style={{ width: 100 }}
+                            />
+                            <Edit id="ttt" style={{ width: 100 }} disable={{ dim: true }} onKeyPress={(o) => {
+                                console.log(o);
+                            }}> text from child</Edit>
+                            <BtnIcon
+                                hint = "icon"
+                                IconComponent={FontAwesomeIcon}
+                                icon={faAddressBook}
+                                addClass="wd-danger"
+                                iconClass="demo-bi-color"
+                            >ok</BtnIcon>
+                            <Btn> left</Btn>
+                        </div>
+                    </Block>
+                    <Block>
+                        <div className="block-horiz">
+                            <ComboBoxEx
+                                onChange={(o) => { console.log(o); }}
+                                list = {combo_list3}
+                                disable={{ dim: true }}
+                                select={3}
+                                style={{ width: 100, height: 43 }}
 
+                            />
+                            <Edit id="tttt" style={{ width: 100, height: 43 }} disable={{ dim: true }} onKeyPress={(o) => {
+                                console.log(o);
+                            }}> text from child</Edit>
+                        </div>
+                    </Block>
+
+                    <Block>
+                        <ComboBoxEx
+                            onChange={(o) => { console.log(o); }}
+                            list = {combo_list3}
+                            listClasses={listClasses3}
+                            disable={{ dim: true }}
+                            select={3}
+                        />
+                    </Block>
+                    <Block>
+                        <Label caption="comboboxex">
+                            <ComboBoxEx list = {combo_list2} disable={{ dim: false }}/>
+                        </Label>
+                    </Block>
+                    <Block>
+                        <Label caption="disabled">
+                            <ComboBoxEx list = {combo_list2} disable={{ dim: false }} select={1} disabled={'true'}/>
+                        </Label>
+                    </Block>
                     <Head>CheckBox</Head>
                     <Block> <CheckBox checked={true}/></Block>
                     <Block> <Label caption='check'><CheckBox id="ckb1" onChange={(o) => { console.log(o); }}/></Label></Block>
@@ -291,35 +360,6 @@ class App extends React.Component {
                             data={table}
                             onClick={this.onClickTableFixed}
                         />
-                    </Block>
-                    <Head>ComboBoxEx</Head>
-                    <Block>
-                        <ComboBoxEx
-                            style={{ height: 18 }}
-                            onChange={(o) => { console.log(o); }}
-                            list = {combo_list1}
-                            required={true}
-                        />
-                    </Block>
-
-                    <Block>
-                        <ComboBoxEx
-                            onChange={(o) => { console.log(o); }}
-                            list = {combo_list3}
-                            listClasses={listClasses3}
-                            disable={{ dim: true }}
-                            select={3}
-                        />
-                    </Block>
-                    <Block>
-                        <Label caption="comboboxex">
-                            <ComboBoxEx list = {combo_list2} disable={{ dim: false }}/>
-                        </Label>
-                    </Block>
-                    <Block>
-                        <Label caption="disabled">
-                            <ComboBoxEx list = {combo_list2} disable={{ dim: false }} select={1} disabled={'true'}/>
-                        </Label>
                     </Block>
 
                     <Head>BtnIcon</Head>

@@ -16,5 +16,13 @@
             flex: 1 1 auto;
         }
     }
+    .block-horiz{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: stretch;
+    }
     
 }

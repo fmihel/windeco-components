@@ -13,6 +13,7 @@ export default class ComboBoxEx extends React.Component {
             top: 0,
             width: 0,
             height: 0,
+            lineHeight: -1, // смещение текста, только при указании style.height
         },
         listClasses: {},
     };
@@ -262,7 +263,7 @@ export default class ComboBoxEx extends React.Component {
             valueStyle = {
                 ...valueStyle,
                 // height: style.height,
-                lineHeight: `${parseInt(style.height, 10) - 4}px`,
+                lineHeight: `${parseInt(style.height, 10) + ComboBoxEx._global.off.lineHeight}px`,
             };
         }
         let btnStyle = {};
@@ -386,4 +387,5 @@ ComboBoxEx.defaultProps = {
     _forcedPosition: true, // включает режим доп проверки позиции выпадающего списка
     style: {},
     required: false,
+
 };
