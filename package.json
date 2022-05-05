@@ -14,7 +14,7 @@
     "build-to-order-blank-editor": "webpack --toobe && npm run copy-style-to-order-blank-editor",
     "copy-style-to-order-header": "cp -r style ../order-header/node_modules/fmihel-windeco-components/",
     "copy-style-to-order-karniz": "cp -r style ../order-karniz/node_modules/fmihel-windeco-components/",
-    "copy-style-to-order": "cp -r style ../order/node_modules/fmihel-windeco-components/",
+    "copy-style-to-order": "cp -r style ../orders-test/node_modules/fmihel-windeco-components/",
     "copy-style-to-order-blank": "cp -r style ../order-blank/node_modules/fmihel-windeco-components/",
     "copy-style-to-order-blank-editor": "cp -r style ../order-blank-editor/node_modules/fmihel-windeco-components/",
     "git-push": "git push windeco-components && git push windeco-components --tag",

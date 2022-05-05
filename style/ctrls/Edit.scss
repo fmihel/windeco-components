@@ -9,6 +9,7 @@ $wd-edit-border:$wd-ctrl-border !default;
 $wd-edit-border-focus:$wd-ctrl-border-focus !default;
 $wd-edit-color-require: $wd-ctrl-color-require !default;
 
+
 @mixin wd-edit-theme($name){
     input[type=number]{
         &::-webkit-inner-spin-button,
@@ -79,10 +80,19 @@ $wd-edit-color-require: $wd-ctrl-color-require !default;
                 margin: 0px;
                 padding: 0px;
                 text-indent:5px;
-
                 font-size: map-get($wd-font-size,#{$name});
+                @include transition(margin 0.2s);
             }
-            .wd-edit-disabled{
+            
+            .wd-edit-input-scale{
+                height:100%;
+                margin-left:-10px;
+                margin-right:-10px;
+                position: relative;
+                z-index:2000;
+            }
+
+        .wd-edit-disabled{
 
             }
             .wd-edit-dim{

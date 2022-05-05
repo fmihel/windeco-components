@@ -292,7 +292,23 @@ class App extends React.Component {
                             />
                             <Edit id="tttt" style={{ width: 100, height: 43 }} disable={{ dim: true }} onKeyPress={(o) => {
                                 console.log(o);
-                            }}> text from child</Edit>
+                            }}>text from child</Edit>
+                            <Edit id="tt90" style={{ width: 90, height: 43 }} disable={{ dim: true }} onKeyPress={(o) => {
+                                console.log(o);
+                            }}>90</Edit>
+                            <Edit id="tt20" style={{ width: 20, height: 43 }} disable={{ dim: true }} clamp={50} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                console.log(o);
+                            }}>20</Edit>
+                            <Edit id="tt30" style={{ width: 30, height: 43 }} disable={{ dim: true }} clamp={50} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                console.log(o);
+                            }}>30</Edit>
+
+                            <Edit id="tt40" style={{ width: 40, height: 43 }} disable={{ dim: true }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                console.log(o);
+                            }}>40</Edit>
+                            <Edit id="tt50" style={{ width: 50, height: 43 }} disable={{ dim: true }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                console.log(o);
+                            }}>50</Edit>
                         </div>
                     </Block>
 
