@@ -25,7 +25,7 @@ import Text from '../source/Text/Text.jsx';
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
 import {
-    table_long2, table_long, combo_list1, combo_list2, combo_list3, listClasses3,
+    table_long2, table_long, combo_list1, combo_list2, combo_list3, listClasses3, fonts,
 } from './data.js';
 
 ComboBoxEx.global({
@@ -184,6 +184,7 @@ class App extends React.Component {
     render() {
         const { fields, table, textValue } = this.state;
         const dialogs = Object.keys(this.dialogs);
+        const fontsName = Object.keys(fonts);
         return (
             <div className={`${this.state.theme} ${this.state.size}`}>
                 <div className="panel">
@@ -235,6 +236,10 @@ class App extends React.Component {
 
                             }
                         }/>
+                    </Block>
+                    <Head>Fonts</Head>
+                    <Block>
+                        {fontsName.map((name, key) => <div key={key} className="font-line"><div>{name}</div><div className={`font-${name}`}>Короткий текст для примера.</div></div>)}
                     </Block>
                     <Head>Edit</Head>
                     <Block> <Edit id="tt" style={{ fontSize: '1.2em' }}onKeyPress={(o) => {

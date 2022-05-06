@@ -10,11 +10,15 @@
     user-select: none;
 }
 
+input, select, textarea, button{
+    font-family:inherit;
+}
+
 body{
     overflow: hidden;
     margin: 0px;
     padding: 0px;
-    font-family: Roboto, sans-serif;
+    @include font-family('gothic'); 
     font-size:12px;
 
 }
@@ -106,6 +110,43 @@ body{
     }
 }
 
+
+.font-line{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+    border-bottom: 1px solid #32332E;
+    height: 24px;
+    line-height: 24px;
+    >div{
+        &:nth-child(1) {
+            order: 0;
+            flex: 0 1 auto;
+            align-self: auto;
+            width:100px;
+        }
+        
+        &:nth-child(2) {
+            order: 0;
+            flex: 1 1 auto;
+            align-self: auto;
+        }
+    }
+
+}
+@each $key,$font in $wd-font-family{
+    .font-#{$key}{
+        @include font-family($key); 
+        font-size:14px;
+    }
+    .font-#{$key}-small{
+        @include font-family($key);
+        font-size:8px;
+    }
+}
 
 @each $name in $wd-themes{
     .#{$name} {
