@@ -41,17 +41,6 @@ class App extends React.Component {
         binds(this, 'onTheme', 'onSize', 'onClickTable', 'onClickTableFixed', 'OpenDialog', 'CloseDialog', 'undefTheme');
         this.onTableClear = this.onTableClear.bind(this);
         this.onTableFill = this.onTableFill.bind(this);
-        this.state = {
-            theme: storage.get('theme-style', { default: 'dark' }),
-            size: storage.get('theme-size', { default: 'normal' }),
-            checked: 0,
-            dialog: false,
-            modalShow: false,
-            fields: table_long.fields,
-            table: table_long.data,
-            textValue: '',
-        };
-
         // общие параметры для диалогов
         const defaultDialogParam = {
             header: false,
@@ -61,7 +50,7 @@ class App extends React.Component {
             onClickFooterBtn: this.CloseDialog,
 
         };
-        // cgb
+
         this.dialogs = {
             common: {
                 ...defaultDialogParam,
@@ -136,6 +125,16 @@ class App extends React.Component {
                 width: 200,
                 height: 200,
             },
+        };
+        this.state = {
+            theme: storage.get('theme-style', { default: 'dark' }),
+            size: storage.get('theme-size', { default: 'normal' }),
+            checked: 0,
+            dialog: 'table',
+            modalShow: false,
+            fields: table_long.fields,
+            table: table_long.data,
+            textValue: '',
         };
     }
 
@@ -237,6 +236,12 @@ class App extends React.Component {
                             }
                         }/>
                     </Block>
+                    <Head>Dialog</Head>
+                    <Block>
+                        {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
+
+                    </Block>
+
                     <Head>Fonts</Head>
                     <Block>
                         {fontsName.map((name, key) => <div key={key} className="font-line"><div>{name}</div><div className={`font-${name}`}>Короткий текст для примера.</div></div>)}
@@ -399,12 +404,6 @@ class App extends React.Component {
                         <BtnIcon addClass="wd-primary">cancel</BtnIcon>
                         <BtnIcon>story</BtnIcon>
                         <BtnIcon addClass="wd-green">save</BtnIcon>
-                    </Block>
-
-                    <Head>Dialog</Head>
-                    <Block>
-                        {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
-
                     </Block>
 
                     <Head>ComboBox</Head>

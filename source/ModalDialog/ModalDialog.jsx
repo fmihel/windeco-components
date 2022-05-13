@@ -11,11 +11,11 @@ export default class ModalDialog extends React.Component {
             modalPos: {
                 left: 0, top: 0, width: -1, height: -1,
             },
-
         };
+        // this.resizeRef = React.createRef();
 
         binds(this, 'resize', 'onClickFooterBtn', 'onClickShadow', 'onClickHeaderClose',
-            'onMouseDown', 'onMouseUp', 'onMouseLeave', 'onMouseMove');
+            'onMouseDown', 'onMouseUp', 'onMouseLeave', 'onMouseMove', 'onMouseDownResize', 'mousemove', 'mouseup', 'mouseleave');
     }
 
     resize() {
@@ -73,15 +73,6 @@ export default class ModalDialog extends React.Component {
         return {
             left: 10, top: 10, width: 100, height: 100,
         };
-    }
-
-    componentDidMount() {
-        $(window).on('resize', this.resize);
-        this.resize();
-    }
-
-    componentWillUnmount() {
-        $(window).off('resize', this.resize);
     }
 
     onClickHeaderClose() {
@@ -153,10 +144,65 @@ export default class ModalDialog extends React.Component {
         this.onMouseUp();
     }
 
+    onMouseDownResize() {
+        this.isResize = true;
+        this.coord = JX.mouse();
+        console.log('start');
+    }
+
+    mousemove(o) {
+        if (this.isResize) {
+            const current = JX.mouse();
+            this.setState({
+                modalPos: {
+                    ...this.state.modalPos,
+                    width: this.state.modalPos.width + (current.x - this.coord.x),
+                    height: this.state.modalPos.height + (current.y - this.coord.y),
+                },
+            });
+            this.coord = current;
+        }
+    }
+
+    mouseup(o) {
+        if (this.isResize) {
+            this.isResize = false;
+            console.log('stop');
+        }
+    }
+
+    mouseleave() {
+        this.mouseup();
+    }
+
+    onMouseUpResize() {
+    }
+
+    componentDidMount() {
+        // разовый вызов после первого рендеринга
+        $(window).on('resize', this.resize);
+        $(window).on('mousemove', this.mousemove);
+        $(window).on('mouseup', this.mouseup);
+        // $(window).on('mouseleave', this.mouseleave);
+        this.resize();
+    }
+
+    componentWillUnmount() {
+        // разовый после последнего рендеринга
+        $(window).off('resize', this.resize);
+        $(window).off('mousemove', this.mousemove);
+        $(window).off('mouseup', this.mouseup);
+        // $(window).off('mouseleave', this.mouseleave);
+    }
+
+    componentDidUpdate(prevProps, prevState, prevContext) {
+        // каждый раз после рендеринга (кроме первого раза !)
+    }
+
     render() {
         const {
             visible, children, header, footer, onClickHeaderClose, shadowEnable,
-            shadowOpacity, addShadowClass, addClass,
+            shadowOpacity, addShadowClass, addClass, resizeble,
         } = this.props;
         const { modalPos } = this.state;
 
@@ -168,22 +214,18 @@ export default class ModalDialog extends React.Component {
         }
         // const displayShadow = visible ? 'block' : 'none';
         const displayModal = visible ? 'flex' : 'none';
-        // const opacityShadow = shadowOpacity !== 'css' ? { opacity: shadowOpacity } : {};
-        /* return (
+
+        return <Modal
+            enableShadow={visible && shadowEnable}
+            onClickShadow={this.onClickShadow}
+            shadowOpacity={shadowOpacity}
+            addShadowClass={addShadowClass}
+        >
             <>
-                {shadowEnable
-                && <div
-                    style={{ ...shadowPos, display: displayShadow, ...opacityShadow }}
-                    className='wd-modal-dialog-shadow'
-                    onClick={this.onClickShadow}
-
-                >
-                </div>
-                }
-
                 <div
                     style={{ ...modalPos, display: displayModal }}
-                    className="wd-modal-dialog"
+                    // className={`wd-modal-dialog${addClass}` ? ` ${addClass} ` : ''}
+                    className={`wd-modal-dialog ${addClass}`}
                     onMouseDown={this.onMouseDown}
                     onMouseUp={this.onMouseUp}
                     onMouseLeave={this.onMouseLeave}
@@ -213,49 +255,19 @@ export default class ModalDialog extends React.Component {
                         </div>
                     }
                 </div>
-            </>
-        ); */
-
-        return <Modal
-            enableShadow={visible && shadowEnable}
-            onClickShadow={this.onClickShadow}
-            shadowOpacity={shadowOpacity}
-            addShadowClass={addShadowClass}
-        >
-            <div
-                style={{ ...modalPos, display: displayModal }}
-                // className={`wd-modal-dialog${addClass}` ? ` ${addClass} ` : ''}
-                className={`wd-modal-dialog ${addClass}`}
-                onMouseDown={this.onMouseDown}
-                onMouseUp={this.onMouseUp}
-                onMouseLeave={this.onMouseLeave}
-                onMouseMove={this.onMouseMove}
-            >
-                {header && <div className="wd-modal-dialog-header">
-                    <div className="wd-modal-dialog-header-caption">
-                        {header}
-                    </div>
-                    {onClickHeaderClose && <div className="wd-modal-dialog-header-close" onClick={this.onClickHeaderClose}>&#10060;</div>}
-
-                </div>}
-                <div className="wd-modal-dialog-content">
-                    {children}
+                {resizeble
+                && <div className="wd-md-resize"
+                    style={{
+                        left: modalPos.left + modalPos.width,
+                        top: modalPos.top + modalPos.height,
+                    }}>
+                    <div
+                        onMouseDown={this.onMouseDownResize}
+                    ></div>
                 </div>
-
-                {footers.length > 0
-                        && <div className="wd-modal-dialog-footer">
-                            {footers.map((key) => <Btn
-                                id={this._get_footer_param(key, 'id')}
-                                key={key} onClick={() => this.onClickFooterBtn(key)}
-                                addClass={this._get_footer_param(key, 'addClass')}
-                            >
-                                {this._get_footer_param(key, 'caption')}
-                            </Btn>)
-                            }
-                        </div>
                 }
-            </div>
 
+            </>
         </Modal>;
     }
 }
@@ -293,5 +305,6 @@ ModalDialog.defaultProps = {
     shadowOpacity: 0.1, // num or 'css' if shadowOpacity === 'css'  opacity defined in wd-modal class
     shadowEnable: true,
     draggable: true, // work with align = custom || stickTo
+    resizeble: true,
     addClass: '',
 };

@@ -65,7 +65,17 @@ export const table_long2 = {
         { ID: 18, NAME: 'doni', AGE: 74 },
         { ID: 19, NAME: 'tori', AGE: 17 },
         { ID: 20, NAME: 'fri', AGE: 42 },
-        { ID: 21, NAME: 'doni', AGE: 74 },
+        { ID: 21, NAME: 'mara', AGE: 74 },
+        { ID: 22, NAME: 'poke', AGE: 42 },
+        { ID: 23, NAME: 'bone', AGE: 34 },
+        { ID: 24, NAME: 'stomer', AGE: 74 },
+        { ID: 25, NAME: 'bagi s tout', AGE: 17 },
+        { ID: 26, NAME: 'blame', AGE: 42 },
+        { ID: 27, NAME: 'bibi', AGE: 74 },
+        { ID: 28, NAME: 'yoko', AGE: 74 },
+        { ID: 29, NAME: 'suk', AGE: 17 },
+        { ID: 30, NAME: 'bemoret', AGE: 42 },
+        { ID: 31, NAME: 'fromer', AGE: 74 },
     ],
 };
 
