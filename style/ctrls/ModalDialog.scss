@@ -49,12 +49,11 @@ $wd-modal-dialog-color:('light':#000000,'dark':#c7c7c7)  !default;
     }
     .wd-md-resize{
         >div{
-            border-right:1px solid wd-get-theme($wd-modal-dialog-border,#{$name});
-            border-bottom:1px solid wd-get-theme($wd-modal-dialog-border,#{$name});
+            border-right:2px solid wd-get-theme($wd-modal-dialog-border,#{$name});
+            border-bottom:2px solid wd-get-theme($wd-modal-dialog-border,#{$name});
             &:hover{
                 border-right:2px solid wd-get-theme($wd-border-focus,#{$name});
                 border-bottom:2px solid wd-get-theme($wd-border-focus,#{$name});
-                    
             }
         }
     }
@@ -158,11 +157,10 @@ $wd-modal-dialog-color:('light':#000000,'dark':#c7c7c7)  !default;
         height: 0px;
         >div{
             position: relative;
-            width: $size;
-            height: $size;
-            left:-$size*0.7;
-            top:-$size*0.7;
-            cursor:move;
+            width: $size*0.6;
+            height: $size*0.6;
+            left:-$size*0.6+4;
+            top:-$size*0.6+4;
         }
     }
 }
