@@ -61,6 +61,7 @@ class App extends React.Component {
                 ...defaultDialogParam,
                 header: 'table',
                 msg: '|--|',
+                resizable: true,
             },
             'with btns': {
                 ...defaultDialogParam,
@@ -89,6 +90,7 @@ class App extends React.Component {
                 height: 150,
                 width: 300,
                 draggable: true, // by default true
+                resizable: true,
 
             },
             extend: {
@@ -450,9 +452,13 @@ class App extends React.Component {
                 { this.state.dialog
                     && <ModalDialog {...this.dialogs[this.state.dialog]}>
                         {this.state.dialog === 'table'
-                        && <TableFixed {...table_long2}
-                            onClick={this.onClickTableFixed}
-                        />
+                        && <div className="test-place-table">
+                            <div className="test-box1">box1</div>
+                            <div className="test-box2">
+                                <TableFixed {...table_long2} onClick={this.onClickTableFixed}/>
+                            </div>
+                        </div>
+
                         }
                         {this.state.dialog !== 'table' && this.dialogs[this.state.dialog].msg}
                     </ModalDialog>
