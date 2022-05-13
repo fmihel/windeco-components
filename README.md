@@ -1,4 +1,4 @@
-# windeco-components
+# windeco-components v1.18.0
 react components for windeco
 
 [1. Btn - кнопка](#Btn)<br/>
@@ -58,6 +58,7 @@ react components for windeco
 |style|{}|{}|стиль css. Не все стили обрабатываются, на данный момент только 3 width,textAlign,fontSize|
 |hint|string||подсказка title|
 |required|bool|false|включает подсветку,для незаполненных полей и добавляет css класс ```wd-edit-require```|
+|minLength|number|0|максимальное кол-во вводимых символов, если 0 то без ограничений|
 
 ---
 ## Label

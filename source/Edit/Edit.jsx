@@ -75,7 +75,7 @@ export default class Edit extends React.Component {
 
     render() {
         const {
-            dim, placeholder, disable, labelName, addClass, style, hint, type, required, min, max, step,
+            dim, placeholder, disable, labelName, addClass, style, hint, type, required, min, max, step, maxLength, minLength,
         } = this.props;
         const { fontSize, ...frameStyle } = style;
         const { clampClass, focused } = this.state;
@@ -95,6 +95,8 @@ export default class Edit extends React.Component {
         if (min !== undefined) props.min = min;
         if (max !== undefined) props.max = max;
         if (step !== undefined) props.step = step;
+        if (minLength > 0) props.minLength = minLength;
+        if (maxLength > 0) props.maxLength = maxLength;
 
         const inputStyle = {};
         // список свойсв которые идут из style в input
@@ -152,5 +154,7 @@ Edit.defaultProps = {
     max: undefined, // for type = range or number
     step: undefined, // for type = range or number
     clamp: 0,
+    minLength: 0,
+    maxLength: 0,
 
 };
