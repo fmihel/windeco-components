@@ -243,6 +243,8 @@ import {faFile} from '@fortawesome/free-solid-svg-icons';
 |disabled|num|0|неактивен|
 |resize|bool|false|разрешить изменять размеры|
 |maxLength|num|0|максимальная длина, если 0 то без ограничений|
+|rows|num|0|максимально кол-во строк, задается вместе с cols|
+|cols|num|0|максимальная длина строки, задается вместе с rows|
 |required|bool|false|включает подсветку,для незаполненного поля и добавляет css класс ```wd-text-require```|
 ---
 

@@ -136,6 +136,7 @@ class App extends React.Component {
             fields: table_long.fields,
             table: table_long.data,
             textValue: '',
+            textValue2: '',
         };
     }
 
@@ -182,7 +183,9 @@ class App extends React.Component {
     }
 
     render() {
-        const { fields, table, textValue } = this.state;
+        const {
+            fields, table, textValue, textValue2,
+        } = this.state;
         const dialogs = Object.keys(this.dialogs);
         const fontsName = Object.keys(fonts);
         return (
@@ -241,6 +244,43 @@ class App extends React.Component {
                     <Block>
                         {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
 
+                    </Block>
+                    <Head>Text</Head>
+                    <Block>
+                        <Text
+                            style={{ height: 70 }}
+                            placeholder="rows:4 cols:15 len:60  "
+                            hint="hint"
+                            value={textValue2}
+                            onChange={(o) => { this.setState({ textValue2: o.value }); }}
+                            rows={4}
+                            cols={15}
+                        />
+                    </Block>
+                    <Block>
+                        <Text
+                            style={{ height: 30 }}
+                            maxLength={20}
+                            placeholder="set text, max 20 len.."
+                            hint="hint"
+                            value={textValue}
+                            onChange={(o) => { this.setState({ textValue: o.value }); }}
+                            required={true}
+                        />
+                    </Block>
+                    <Block>
+                        <Text
+                            readonly={true}
+                            hint="readonly"
+                            value= "readonly"
+                        />
+                    </Block>
+                    <Block>
+                        <Text
+                            disabled={1}
+                            value="disabled"
+                            resize={true}
+                        />
                     </Block>
 
                     <Head>Fonts</Head>
@@ -349,32 +389,6 @@ class App extends React.Component {
                     <Block> <Label caption='on change'><CheckBox checked={this.state.checked} asRadio={1} onChange={() => { this.setState({ checked: 1 }); }}/></Label></Block>
                     <Block> <Label caption='disabled'><CheckBox id="ckb-disabled" checked={true} onChange={(o) => { console.log(o); }} disabled={true}/></Label></Block>
 
-                    <Head>Text</Head>
-                    <Block>
-                        <Text
-                            style={{ height: 100 }}
-                            maxLength={20}
-                            placeholder="set text, max 20 len.."
-                            hint="hint"
-                            value={textValue}
-                            onChange={(o) => { this.setState({ textValue: o.value }); }}
-                            required={true}
-                        />
-                    </Block>
-                    <Block>
-                        <Text
-                            readonly={true}
-                            hint="readonly"
-                            value= "readonly"
-                        />
-                    </Block>
-                    <Block>
-                        <Text
-                            disabled={1}
-                            value="disabled"
-                            resize={true}
-                        />
-                    </Block>
                     <Head>TableFixed</Head>
                     <Block>
                         <Btn onClick={this.onTableClear}>clear</Btn>
