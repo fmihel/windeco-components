@@ -179,6 +179,7 @@ content..
 |shadowOpacity|float or string|0.1|коеффициент прозрачности тени <br>num or 'css' if shadowOpacity === 'css'  opacity defined in wd-shadow class|
 |shadowEnable|bool|true|включить модальность|
 |draggable|bool|true| перемещаемая форма, только для align = custom or stickTo|
+|resizable|bool|false| форма может менять размеры|
 |addClass|string|| добавляет css класс к форме|
 
 ---

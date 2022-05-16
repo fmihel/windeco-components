@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 import { binds, DOM, JX } from 'fmihel-browser-lib';
 import React from 'react';
+import _ from 'lodash';
 import Btn from '../Btn/Btn.jsx';
 import Modal from '../Modal/Modal.jsx';
 
@@ -11,15 +12,15 @@ export default class ModalDialog extends React.Component {
             modalPos: {
                 left: 0, top: 0, width: -1, height: -1,
             },
-
         };
+        // this.resizeRef = React.createRef();
 
         binds(this, 'resize', 'onClickFooterBtn', 'onClickShadow', 'onClickHeaderClose',
-            'onMouseDown', 'onMouseUp', 'onMouseLeave', 'onMouseMove');
+            'onMouseDown', 'onMouseDownResize', 'mousemove', 'mouseup', 'mouseleave');
     }
 
     resize() {
-        const s = JX.screen();
+        // const s = JX.screen();
         this.setState((state) => ({
             modalPos: this.getModalPos(),
         }));
@@ -75,15 +76,6 @@ export default class ModalDialog extends React.Component {
         };
     }
 
-    componentDidMount() {
-        $(window).on('resize', this.resize);
-        this.resize();
-    }
-
-    componentWillUnmount() {
-        $(window).off('resize', this.resize);
-    }
-
     onClickHeaderClose() {
         if (this.props.onClickHeaderClose) this.props.onClickHeaderClose({ sender: this });
     }
@@ -126,8 +118,24 @@ export default class ModalDialog extends React.Component {
         }
     }
 
-    onMouseMove(o) {
-        if ((this.props.align === 'custom' || this.props.align === 'stickTo') && this.props.draggable && this.pressed === 0) {
+    onMouseDownResize() {
+        this.isResize = true;
+        this.coord = JX.mouse();
+    }
+
+    mousemove() {
+        if (this.isResize) {
+            const current = JX.mouse();
+
+            this.setState({
+                modalPos: {
+                    ...this.state.modalPos,
+                    width: this.state.modalPos.width + (current.x - this.coord.x),
+                    height: this.state.modalPos.height + (current.y - this.coord.y),
+                },
+            });
+            this.coord = current;
+        } else if ((this.props.align === 'custom' || this.props.align === 'stickTo') && this.props.draggable && this.pressed === 0) {
             const current = JX.mouse();
             const pos = this.state.modalPos;
             if ((current.x - this.coord.x !== 0) || (current.y - this.coord.y !== 0)) {
@@ -145,18 +153,45 @@ export default class ModalDialog extends React.Component {
         }
     }
 
-    onMouseUp() {
+    mouseup(o) {
+        this.isResize = false;
         this.pressed = undefined;
     }
 
-    onMouseLeave() {
-        this.onMouseUp();
+    mouseleave() {
+        this.mouseup();
+    }
+
+    onMouseUpResize() {
+    }
+
+    componentDidMount() {
+        // разовый вызов после первого рендеринга
+        $(window).on('resize', this.resize);
+        this.throttle_mousemove = _.throttle(this.mousemove, 50);
+        $(window).on('mousemove', this.throttle_mousemove);
+        $(window).on('mouseup', this.mouseup);
+        // $(window).on('mouseleave', this.mouseleave);
+        this.resize();
+    }
+
+    componentWillUnmount() {
+        // разовый после последнего рендеринга
+        $(window).off('resize', this.resize);
+        $(window).off('mousemove', this.throttle_mousemove);
+        // $(window).off('mousemove', this.mousemove);
+        $(window).off('mouseup', this.mouseup);
+        // $(window).off('mouseleave', this.mouseleave);
+    }
+
+    componentDidUpdate(prevProps, prevState, prevContext) {
+        // каждый раз после рендеринга (кроме первого раза !)
     }
 
     render() {
         const {
             visible, children, header, footer, onClickHeaderClose, shadowEnable,
-            shadowOpacity, addShadowClass, addClass,
+            shadowOpacity, addShadowClass, addClass, resizable,
         } = this.props;
         const { modalPos } = this.state;
 
@@ -168,26 +203,20 @@ export default class ModalDialog extends React.Component {
         }
         // const displayShadow = visible ? 'block' : 'none';
         const displayModal = visible ? 'flex' : 'none';
-        // const opacityShadow = shadowOpacity !== 'css' ? { opacity: shadowOpacity } : {};
-        /* return (
+
+        return <Modal
+            enableShadow={visible && shadowEnable}
+            onClickShadow={this.onClickShadow}
+            shadowOpacity={shadowOpacity}
+            addShadowClass={addShadowClass}
+        >
             <>
-                {shadowEnable
-                && <div
-                    style={{ ...shadowPos, display: displayShadow, ...opacityShadow }}
-                    className='wd-modal-dialog-shadow'
-                    onClick={this.onClickShadow}
-
-                >
-                </div>
-                }
-
                 <div
                     style={{ ...modalPos, display: displayModal }}
-                    className="wd-modal-dialog"
+                    // className={`wd-modal-dialog${addClass}` ? ` ${addClass} ` : ''}
+                    className={`wd-modal-dialog ${addClass}`}
                     onMouseDown={this.onMouseDown}
-                    onMouseUp={this.onMouseUp}
-                    onMouseLeave={this.onMouseLeave}
-                    onMouseMove={this.onMouseMove}
+
                 >
                     {header && <div className="wd-modal-dialog-header">
                         <div className="wd-modal-dialog-header-caption">
@@ -213,49 +242,19 @@ export default class ModalDialog extends React.Component {
                         </div>
                     }
                 </div>
-            </>
-        ); */
-
-        return <Modal
-            enableShadow={visible && shadowEnable}
-            onClickShadow={this.onClickShadow}
-            shadowOpacity={shadowOpacity}
-            addShadowClass={addShadowClass}
-        >
-            <div
-                style={{ ...modalPos, display: displayModal }}
-                // className={`wd-modal-dialog${addClass}` ? ` ${addClass} ` : ''}
-                className={`wd-modal-dialog ${addClass}`}
-                onMouseDown={this.onMouseDown}
-                onMouseUp={this.onMouseUp}
-                onMouseLeave={this.onMouseLeave}
-                onMouseMove={this.onMouseMove}
-            >
-                {header && <div className="wd-modal-dialog-header">
-                    <div className="wd-modal-dialog-header-caption">
-                        {header}
-                    </div>
-                    {onClickHeaderClose && <div className="wd-modal-dialog-header-close" onClick={this.onClickHeaderClose}>&#10060;</div>}
-
-                </div>}
-                <div className="wd-modal-dialog-content">
-                    {children}
+                {resizable
+                && <div className="wd-md-resize"
+                    style={{
+                        left: modalPos.left + modalPos.width,
+                        top: modalPos.top + modalPos.height,
+                    }}>
+                    <div
+                        onMouseDown={this.onMouseDownResize}
+                    ></div>
                 </div>
-
-                {footers.length > 0
-                        && <div className="wd-modal-dialog-footer">
-                            {footers.map((key) => <Btn
-                                id={this._get_footer_param(key, 'id')}
-                                key={key} onClick={() => this.onClickFooterBtn(key)}
-                                addClass={this._get_footer_param(key, 'addClass')}
-                            >
-                                {this._get_footer_param(key, 'caption')}
-                            </Btn>)
-                            }
-                        </div>
                 }
-            </div>
 
+            </>
         </Modal>;
     }
 }
@@ -293,5 +292,6 @@ ModalDialog.defaultProps = {
     shadowOpacity: 0.1, // num or 'css' if shadowOpacity === 'css'  opacity defined in wd-modal class
     shadowEnable: true,
     draggable: true, // work with align = custom || stickTo
+    resizable: false,
     addClass: '',
 };
