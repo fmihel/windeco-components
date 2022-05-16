@@ -48,7 +48,6 @@ class App extends React.Component {
             onClickHeaderClose: this.CloseDialog,
             onClickShadow: this.CloseDialog,
             onClickFooterBtn: this.CloseDialog,
-
         };
 
         this.dialogs = {
@@ -132,7 +131,7 @@ class App extends React.Component {
             theme: storage.get('theme-style', { default: 'dark' }),
             size: storage.get('theme-size', { default: 'normal' }),
             checked: 0,
-            dialog: 'table',
+            dialog: false, // 'table',
             modalShow: false,
             fields: table_long.fields,
             table: table_long.data,
