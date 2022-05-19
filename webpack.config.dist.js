@@ -6,7 +6,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 
 const SOURCE_PATH = './dev/';
-const PUBLIC_PATH = './public/';
+const PUBLIC_PATH = './dist/';
 const TEMPLATE_PATH = './dev/template/';
 const MEDIA_PATH = './dev/media/';
 const PORT = 3002;
@@ -61,13 +61,8 @@ module.exports = {
             },
         ],
     },
-    mode: 'development',
-    devtool: 'inline-source-map',
-    devServer: {
-        contentBase: PUBLIC_PATH,
-        port:PORT,
-        liveReload: true,
-    },
+    mode: 'production',
+    devtool: '',
     plugins: [
         new CleanWebpackPlugin(),
         new webpack.ProvidePlugin({

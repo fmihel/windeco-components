@@ -1,4 +1,5 @@
 /dist/
 webpack.config.js
 webpack.config.dev.js
+webpack.config.dist.js
 .eslintrc.js

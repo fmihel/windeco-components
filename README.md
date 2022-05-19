@@ -1,5 +1,7 @@
-# windeco-components v1.18.0
-react components for windeco
+# windeco-components 
+react components for windeco\
+`v1.21.0`
+
 
 [1. Btn - кнопка](#Btn)<br/>
 [2. Edit - поле ввода](#Edit)<br/>
@@ -14,6 +16,7 @@ react components for windeco
 [11. Waiter - блокиратор экрана на ввод](#Waiter)<br/>
 [12. BtnIcon - кнопка c иконкой](#BtnIcon)<br/>
 [13. Text - многострочный текст](#Text)<br/>
+[14. Icon - иконка](#Icon)<br/>
 
 
 
@@ -246,6 +249,34 @@ import {faFile} from '@fortawesome/free-solid-svg-icons';
 |rows|num|0|максимально кол-во строк, задается вместе с cols|
 |cols|num|0|максимальная длина строки, задается вместе с rows|
 |required|bool|false|включает подсветку,для незаполненного поля и добавляет css класс ```wd-text-require```|
+---
+## Icon
+
+### Examle:
+```javascript
+import {Icon} from 'fmihel-windeco-component';
+// создание базы иконок
+const iEdit='iEdit';
+const iEdit16='iEdit16';
+
+Icon.icons({
+    [iEdit]:'./media/edit.png', // аналогично, что и {path:'./media/edit.png'}
+    [iEdit16]:{path:'./media/edit16.png',addClass:'wd-icon'}
+});
+
+// использование иконки
+<Icon icon={iEdit}/>
+<BtnIcon  
+    IconComponent={Icon}
+    icon={iEdit16}
+>ok
+</BtnIcon>
+
+``` 
+### property
+|prop|type|default|notes|
+|----|----|-----|-----|
+|icon|string|undefined|имя иконки в базе иконок, для создания базы используется глобальная ф-ция Icon.global или Icon.icons|
 ---
 
 

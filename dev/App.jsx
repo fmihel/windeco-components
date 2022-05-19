@@ -21,6 +21,7 @@ import TableFixed from '../source/TableFixed/TableFixed.jsx';
 import ModalDialog from '../source/ModalDialog/ModalDialog.jsx';
 import Modal from '../source/Modal/Modal.jsx';
 import Text from '../source/Text/Text.jsx';
+import Icon from '../source/Icon/Icon.jsx';
 
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
@@ -34,6 +35,21 @@ ComboBoxEx.global({
         // y: 10,
     },
 });
+
+const iEdit = 'edit';
+const iEdit16 = 'edit16';
+
+Icon.global({
+    icons: {
+        [iEdit]: { path: './media/edit.png', addClass: 'wd-icon' },
+        [iEdit16]: { path: './media/edit16.png' },
+
+    },
+});
+// Icon.icons({
+// [iEdit]: './media/edit.png',
+// [iEdit16]: { path: './media/edit16.png' },
+// });
 
 class App extends React.Component {
     constructor(p) {
@@ -199,6 +215,7 @@ class App extends React.Component {
                     <input id="undef-theme" type="button" value="undef-theme" onClick={this.undefTheme}/>
                 </div>
                 <div className='content wd-scrollbar'>
+                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head>Abs position</Head>
                     <Block addClass="abs-pos"> <Edit
                         disable={{ dim: true }}
@@ -240,11 +257,46 @@ class App extends React.Component {
                             }
                         }/>
                     </Block>
+
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head>Icon</Head>
+                    <Block>
+                        <Icon icon={iEdit}/>
+                        <Icon icon={iEdit16}/>
+                    </Block>
+
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head>BtnIcon</Head>
+                    <Block>
+
+                        <Btn>left</Btn>
+                        <BtnIcon>button presed test</BtnIcon>
+                        <BtnIcon
+                            hint = "icon"
+                            IconComponent={Icon}
+                            icon={iEdit}
+                            addClass="wd-danger"
+                            iconClass="demo-bi-color"
+                        >ok</BtnIcon>
+                        <BtnIcon
+                            hint = "icon"
+                            IconComponent={FontAwesomeIcon}
+                            icon={faAddressBook}
+                            addClass="wd-danger"
+                            iconClass="demo-bi-color"
+                        >ok</BtnIcon>
+                        <Btn>standart</Btn>
+                        <BtnIcon addClass="wd-primary">cancel</BtnIcon>
+                        <BtnIcon>story</BtnIcon>
+                        <BtnIcon addClass="wd-green">save</BtnIcon>
+                    </Block>
+                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head>Dialog</Head>
                     <Block>
                         {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
 
                     </Block>
+                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head>Text</Head>
                     <Block>
                         <Text
@@ -282,11 +334,12 @@ class App extends React.Component {
                             resize={true}
                         />
                     </Block>
-
+                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head>Fonts</Head>
                     <Block>
                         {fontsName.map((name, key) => <div key={key} className="font-line"><div>{name}</div><div className={`font-${name}`}>Короткий текст для примера.</div></div>)}
                     </Block>
+                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head>Edit</Head>
                     <Block> <Edit id="tt" style={{ fontSize: '1.2em' }}onKeyPress={(o) => {
                         console.log(o);
@@ -299,6 +352,7 @@ class App extends React.Component {
                     <Block> <Label caption="label"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
                     <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
                     <Block> <Label caption="range"><Edit value={5} dim={''} type='number' min={0} max={10} step={1}/></Label></Block>
+                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head>ComboBoxEx</Head>
                     <Block>
                         <ComboBoxEx
@@ -382,13 +436,14 @@ class App extends React.Component {
                             <ComboBoxEx list = {combo_list2} disable={{ dim: false }} select={1} disabled={'true'}/>
                         </Label>
                     </Block>
+                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head>CheckBox</Head>
                     <Block> <CheckBox checked={true}/></Block>
                     <Block> <Label caption='check'><CheckBox id="ckb1" onChange={(o) => { console.log(o); }}/></Label></Block>
                     <Block> <Label caption='on change'><Btn onClick={() => { this.setState({ checked: 0 }); }} >on change false</Btn></Label></Block>
                     <Block> <Label caption='on change'><CheckBox checked={this.state.checked} asRadio={1} onChange={() => { this.setState({ checked: 1 }); }}/></Label></Block>
                     <Block> <Label caption='disabled'><CheckBox id="ckb-disabled" checked={true} onChange={(o) => { console.log(o); }} disabled={true}/></Label></Block>
-
+                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head>TableFixed</Head>
                     <Block>
                         <Btn onClick={this.onTableClear}>clear</Btn>
@@ -402,29 +457,11 @@ class App extends React.Component {
                             onClick={this.onClickTableFixed}
                         />
                     </Block>
-
-                    <Head>BtnIcon</Head>
-                    <Block>
-
-                        <Btn>left</Btn>
-                        <BtnIcon>button presed test</BtnIcon>
-                        <BtnIcon
-                            hint = "icon"
-                            IconComponent={FontAwesomeIcon}
-                            icon={faAddressBook}
-                            addClass="wd-danger"
-                            iconClass="demo-bi-color"
-                        >ok</BtnIcon>
-                        <Btn>standart</Btn>
-                        <BtnIcon addClass="wd-primary">cancel</BtnIcon>
-                        <BtnIcon>story</BtnIcon>
-                        <BtnIcon addClass="wd-green">save</BtnIcon>
-                    </Block>
-
+                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head>ComboBox</Head>
                     <Block> <ComboBox /></Block>
                     <Block> <Label caption="combobox"><ComboBox disable={{ dim: false }}/></Label></Block>
-
+                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head>Btn</Head>
                     <Block>
                         <Btn>button</Btn>
@@ -433,9 +470,10 @@ class App extends React.Component {
                         <Btn addClass="wd-transparent">wd-transparent</Btn>
                         <Btn addClass="wd-primary pic-bag">pic</Btn>
                     </Block>
-
+                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head>Table</Head>
                     <Block> <Table onClick={this.onClickTable}/></Block>
+                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head>Modal</Head>
                     <Block>
                         <Btn onClick={() => { this.setState({ modalShow: true }); }} >show</Btn>

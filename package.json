@@ -5,6 +5,7 @@
   "main": "dist/windeco-components.min.js",
   "scripts": {
     "run-dev-server": "webpack-dev-server --config webpack.config.dev.js",
+    "build-dist": "webpack --config webpack.config.dist.js",
     "build": "webpack && webpack --prod",
     "build-to": "npm run build-to-order && npm run build-to-order-header && npm run build-to-order-karniz",
     "build-to-order": "webpack --too && npm run copy-style-to-order",

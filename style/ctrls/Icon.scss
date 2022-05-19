@@ -1,0 +1,34 @@
+@import '../vars.scss';
+
+@mixin wd-icon-theme($name){
+    outline: none;
+}
+
+@mixin wd-icon-theme-size($name){
+    $size:map-get($wd-size,#{$name});
+    $gap:map-get($wd-gap,#{$name});
+    
+    width:$size*0.75;
+    height:$size*0.75;
+  
+}
+.wd-icon{
+    @include wd-icon-theme($wd-default-theme);
+    @include wd-icon-theme-size($wd-default-theme-size);
+}
+
+@each $name in $wd-themes{
+    .#{$name} {
+        .wd-icon{
+            @include wd-icon-theme($name);
+        }
+    }
+}
+
+@each $name in $wd-sizes{
+    .#{$name}{
+        .wd-icon{
+            @include wd-icon-theme-size($name);
+        }     
+    }
+}
