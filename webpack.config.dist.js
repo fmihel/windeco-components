@@ -30,6 +30,9 @@ module.exports = {
                         loader: 'style-loader', // inject CSS to page
                     },{
                         loader: 'css-loader', // translates CSS into CommonJS modules
+                        options:{
+                            url:false
+                        }
                     },{
                         loader: 'postcss-loader', // Run post css actions
                         options: {

@@ -115,6 +115,23 @@ export const listClasses3 = {
     none: 'wd-cbex-iconno',
 };
 
+export const combo_list4 = [
+    { id: 1, caption: 'text1', _indexClass_: 'line' },
+    { id: 2, caption: 'text2', _disabled_: 1 },
+    { id: 3, caption: 'text3', _indexClass_: 'double90' },
+    { id: 4, caption: 'text4', _indexClass_: 'none' },
+    { id: 5, caption: 'text5', _indexClass_: 'line' },
+    { id: 6, caption: 'text6', _indexClass_: 'line' },
+
+];
+
+export const listClasses4 = {
+    default: 'wd-cb32',
+    line: 'wd-cb32 wd-cb32-line',
+    double90: 'wd-cb32 wd-cb32-90-double',
+    none: 'wd-cb32',
+};
+
 export const fonts = {
     arial: 'Arial, sans-serif',
     'arial-black': 'Arial Black, sans-serif',

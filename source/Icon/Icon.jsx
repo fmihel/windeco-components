@@ -1,12 +1,16 @@
 import React from 'react';
 import _ from 'lodash';
 
-export default function Icon({ icon }) {
+export default function Icon({
+    icon, addClass, onClick, style = {},
+}) {
     const param = Icon._global.icons[icon];
     return (
         <img
-            src={param.path}
-            className={param.addClass}
+            src={param ? param.path : ''}
+            className={`${param ? param.addClass : ''} ${addClass || ''}`}
+            onClick={onClick}
+            style={{ ...style }}
         />
     );
 }

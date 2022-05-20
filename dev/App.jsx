@@ -26,7 +26,7 @@ import Icon from '../source/Icon/Icon.jsx';
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
 import {
-    table_long2, table_long, combo_list1, combo_list2, combo_list3, listClasses3, fonts,
+    table_long2, table_long, combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4,
 } from './data.js';
 
 ComboBoxEx.global({
@@ -257,12 +257,108 @@ class App extends React.Component {
                             }
                         }/>
                     </Block>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head>ComboBoxEx</Head>
+                    <Block>
+                        <ComboBoxEx
+                            style={{ height: 18 }}
+                            onChange={(o) => { console.log(o); }}
+                            list = {combo_list1}
+                            required={true}
+                        />
+                    </Block>
+                    <Block>
+                        <div className="block-horiz">
+                            <ComboBoxEx
+                                onChange={(o) => { console.log(o); }}
+                                list = {combo_list3}
+                                listClasses={listClasses3}
+                                disable={{ dim: true }}
+                                select={3}
+                                style={{ width: 100 }}
+                            />
+                            <Edit id="ttt" style={{ width: 100 }} disable={{ dim: true }} onKeyPress={(o) => {
+                                console.log(o);
+                            }}> text from child</Edit>
+                            <BtnIcon
+                                hint = "icon"
+                                IconComponent={FontAwesomeIcon}
+                                icon={faAddressBook}
+                                addClass="wd-danger"
+                                iconClass="demo-bi-color"
+                            >ok</BtnIcon>
+                            <Btn> left</Btn>
+                        </div>
+                    </Block>
+                    <Block>
+                        <div className="block-horiz">
+                            <ComboBoxEx
+                                onChange={(o) => { console.log(o); }}
+                                list = {combo_list3}
+                                disable={{ dim: true }}
+                                select={3}
+                                style={{ width: 100, height: 43 }}
+
+                            />
+                            <Edit id="tttt" style={{ width: 100, height: 43 }} disable={{ dim: true }} onKeyPress={(o) => {
+                                console.log(o);
+                            }}>text from child</Edit>
+                            <Edit id="tt90" style={{ width: 90, height: 43 }} disable={{ dim: true }} onKeyPress={(o) => {
+                                console.log(o);
+                            }}>90</Edit>
+                            <Edit id="tt20" style={{ width: 20, height: 43 }} disable={{ dim: true }} clamp={50} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                console.log(o);
+                            }}>20</Edit>
+                            <Edit id="tt30" style={{ width: 30, height: 43 }} disable={{ dim: true }} clamp={50} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                console.log(o);
+                            }}>30</Edit>
+
+                            <Edit id="tt40" style={{ width: 40, height: 43 }} disable={{ dim: true }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                console.log(o);
+                            }}>40</Edit>
+                            <Edit id="tt50" style={{ width: 50, height: 43 }} disable={{ dim: true }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                console.log(o);
+                            }}>50</Edit>
+                        </div>
+                    </Block>
+
+                    <Block>
+                        <ComboBoxEx
+                            onChange={(o) => { console.log(o); }}
+                            list = {combo_list3}
+                            listClasses={listClasses3}
+                            disable={{ dim: true }}
+                            select={3}
+                        />
+                    </Block>
+                    <Block>
+                        <Label caption="comboboxex">
+                            <ComboBoxEx list = {combo_list2} disable={{ dim: false }}/>
+                        </Label>
+                    </Block>
+                    <Block>
+                        <Label caption="disabled">
+                            <ComboBoxEx list = {combo_list2} disable={{ dim: false }} select={1} disabled={'true'}/>
+                        </Label>
+                    </Block>
+                    <Block>
+                        <Label caption="outer url">
+                            <ComboBoxEx
+                                listClasses={listClasses4}
+                                list = {combo_list4}
+                                disable={{ dim: false }}
+                                select={1}
+
+                            />
+                        </Label>
+                    </Block>
 
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head>Icon</Head>
                     <Block>
-                        <Icon icon={iEdit}/>
+                        <Icon icon={iEdit} addClass="icon-custom"/>
                         <Icon icon={iEdit16}/>
+                        <Icon icon={'uncknown'} addClass="icon-custom"/>
                     </Block>
 
                     {/*--------------------------------------------------------------------------------------------------*/}
@@ -352,90 +448,6 @@ class App extends React.Component {
                     <Block> <Label caption="label"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
                     <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
                     <Block> <Label caption="range"><Edit value={5} dim={''} type='number' min={0} max={10} step={1}/></Label></Block>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head>ComboBoxEx</Head>
-                    <Block>
-                        <ComboBoxEx
-                            style={{ height: 18 }}
-                            onChange={(o) => { console.log(o); }}
-                            list = {combo_list1}
-                            required={true}
-                        />
-                    </Block>
-                    <Block>
-                        <div className="block-horiz">
-                            <ComboBoxEx
-                                onChange={(o) => { console.log(o); }}
-                                list = {combo_list3}
-                                listClasses={listClasses3}
-                                disable={{ dim: true }}
-                                select={3}
-                                style={{ width: 100 }}
-                            />
-                            <Edit id="ttt" style={{ width: 100 }} disable={{ dim: true }} onKeyPress={(o) => {
-                                console.log(o);
-                            }}> text from child</Edit>
-                            <BtnIcon
-                                hint = "icon"
-                                IconComponent={FontAwesomeIcon}
-                                icon={faAddressBook}
-                                addClass="wd-danger"
-                                iconClass="demo-bi-color"
-                            >ok</BtnIcon>
-                            <Btn> left</Btn>
-                        </div>
-                    </Block>
-                    <Block>
-                        <div className="block-horiz">
-                            <ComboBoxEx
-                                onChange={(o) => { console.log(o); }}
-                                list = {combo_list3}
-                                disable={{ dim: true }}
-                                select={3}
-                                style={{ width: 100, height: 43 }}
-
-                            />
-                            <Edit id="tttt" style={{ width: 100, height: 43 }} disable={{ dim: true }} onKeyPress={(o) => {
-                                console.log(o);
-                            }}>text from child</Edit>
-                            <Edit id="tt90" style={{ width: 90, height: 43 }} disable={{ dim: true }} onKeyPress={(o) => {
-                                console.log(o);
-                            }}>90</Edit>
-                            <Edit id="tt20" style={{ width: 20, height: 43 }} disable={{ dim: true }} clamp={50} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
-                                console.log(o);
-                            }}>20</Edit>
-                            <Edit id="tt30" style={{ width: 30, height: 43 }} disable={{ dim: true }} clamp={50} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
-                                console.log(o);
-                            }}>30</Edit>
-
-                            <Edit id="tt40" style={{ width: 40, height: 43 }} disable={{ dim: true }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
-                                console.log(o);
-                            }}>40</Edit>
-                            <Edit id="tt50" style={{ width: 50, height: 43 }} disable={{ dim: true }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
-                                console.log(o);
-                            }}>50</Edit>
-                        </div>
-                    </Block>
-
-                    <Block>
-                        <ComboBoxEx
-                            onChange={(o) => { console.log(o); }}
-                            list = {combo_list3}
-                            listClasses={listClasses3}
-                            disable={{ dim: true }}
-                            select={3}
-                        />
-                    </Block>
-                    <Block>
-                        <Label caption="comboboxex">
-                            <ComboBoxEx list = {combo_list2} disable={{ dim: false }}/>
-                        </Label>
-                    </Block>
-                    <Block>
-                        <Label caption="disabled">
-                            <ComboBoxEx list = {combo_list2} disable={{ dim: false }} select={1} disabled={'true'}/>
-                        </Label>
-                    </Block>
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head>CheckBox</Head>
                     <Block> <CheckBox checked={true}/></Block>

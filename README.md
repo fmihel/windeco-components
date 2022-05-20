@@ -277,6 +277,10 @@ Icon.icons({
 |prop|type|default|notes|
 |----|----|-----|-----|
 |icon|string|undefined|имя иконки в базе иконок, для создания базы используется глобальная ф-ция Icon.global или Icon.icons|
+|addClass|string||добавляет класс к картинке|
+|onClick|function|undefined|событие клик|
+|style|object|{}|список свойств css|
+
 ---
 
 
