@@ -202,17 +202,18 @@ export default class ModalDialog extends React.Component {
             footers = Object.keys(footer);
         }
         // const displayShadow = visible ? 'block' : 'none';
-        const displayModal = visible ? 'flex' : 'none';
+        // const displayModal = visible ? 'flex' : 'none';
 
         return <Modal
             enableShadow={visible && shadowEnable}
             onClickShadow={this.onClickShadow}
             shadowOpacity={shadowOpacity}
             addShadowClass={addShadowClass}
+            visible={visible}
         >
             <>
                 <div
-                    style={{ ...modalPos, display: displayModal }}
+                    style={{ ...modalPos }}
                     // className={`wd-modal-dialog${addClass}` ? ` ${addClass} ` : ''}
                     className={`wd-modal-dialog ${addClass}`}
                     onMouseDown={this.onMouseDown}

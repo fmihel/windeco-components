@@ -512,7 +512,25 @@ class App extends React.Component {
                         }
                     </Block>
                 </div>
-                { this.state.dialog
+                {
+                    dialogs.map((name) => <ModalDialog
+                        key={name}
+                        {...this.dialogs[name]}
+                        visible={(name === this.state.dialog)}
+                    >
+                        {name === 'table'
+                        && <div className="test-place-table">
+                            <div className="test-box1">box1</div>
+                            <div className="test-box2">
+                                <TableFixed {...table_long2} onClick={this.onClickTableFixed}/>
+                            </div>
+                        </div>
+
+                        }
+                        {name !== 'table' && this.dialogs[name].msg}
+                    </ModalDialog>)
+                }
+                {/* this.state.dialog
                     && <ModalDialog {...this.dialogs[this.state.dialog]}>
                         {this.state.dialog === 'table'
                         && <div className="test-place-table">
@@ -525,7 +543,7 @@ class App extends React.Component {
                         }
                         {this.state.dialog !== 'table' && this.dialogs[this.state.dialog].msg}
                     </ModalDialog>
-                }
+                    */}
                 <div id="wd-modal" ></div>
             </div>
         );

@@ -1,8 +1,7 @@
-import { binds, DOM, JX } from 'fmihel-browser-lib';
+import { DOM, JX } from 'fmihel-browser-lib';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// import { flex, binds } from 'fmihel-browser-lib'
 export default class Modal extends React.Component {
     constructor(p) {
         super(p);
@@ -12,7 +11,8 @@ export default class Modal extends React.Component {
                 left: 0, top: 0, width: 0, height: 0,
             },
         };
-        binds(this, 'resize', 'onClickShadow');
+        this.resize = this.resize.bind(this);
+        this.onClickShadow = this.onClickShadow.bind(this);
     }
 
     onClickShadow() {
@@ -29,6 +29,12 @@ export default class Modal extends React.Component {
             },
 
         }));
+    }
+
+    /** перемещаем на верх */
+    moveTop() {
+        const parent = this.el.parentElement;
+        parent.insertBefore(this.el, null);
     }
 
     componentDidMount() {
@@ -54,6 +60,13 @@ export default class Modal extends React.Component {
         this.resize();
     }
 
+    componentDidUpdate() {
+        if (this.props.visible && this.props.visible !== this.propsVisible) {
+            this.propsVisible = this.props.visible;
+            this.moveTop();
+        }
+    }
+
     componentWillUnmount() {
         $(window).off('resize', this.resize);
         this.modalRoot.removeChild(this.el);
@@ -64,13 +77,23 @@ export default class Modal extends React.Component {
             enableShadow, addClass,
             children, addShadowClass,
             shadowOpacity,
+            visible,
         } = this.props;
 
         const { shadowPos } = this.state;
         const opacityShadow = shadowOpacity !== 'css' ? { opacity: shadowOpacity } : {};
+        const display = visible ? 'block' : 'none';
 
         return ReactDOM.createPortal(
-            <div className={`wd-modal ${addClass}`} style={{ position: 'absolute', left: 0, top: 0 }}>
+            <div
+                className={`wd-modal ${addClass}`}
+                style={{
+                    position: 'absolute',
+                    left: 0,
+                    top: 0,
+                    display,
+                }}
+            >
                 {enableShadow && <div
                     className={`wd-shadow ${addShadowClass}`}
                     style={{ position: 'absolute', ...shadowPos, ...opacityShadow }}
@@ -89,4 +112,5 @@ Modal.defaultProps = {
     onClickShadow: undefined,
     addShadowClass: '',
     shadowOpacity: 0.1, // num or 'css' if shadowOpacity === 'css'  opacity defined in wd-modal or addShadowClass class
+    visible: true, // сурывает (НЕ УДАЛЯЕТ) объект
 };
