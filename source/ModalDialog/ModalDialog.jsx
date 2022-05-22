@@ -186,6 +186,9 @@ export default class ModalDialog extends React.Component {
 
     componentDidUpdate(prevProps, prevState, prevContext) {
         // каждый раз после рендеринга (кроме первого раза !)
+        if (this.props.visible && !prevProps.visible && this.props.align === 'stickTo') {
+            this.resize();
+        }
     }
 
     render() {

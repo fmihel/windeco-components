@@ -60,11 +60,11 @@ export default class Modal extends React.Component {
         this.resize();
     }
 
-    componentDidUpdate() {
-        if (this.props.visible && this.props.visible !== this.propsVisible) {
-            this.propsVisible = this.props.visible;
+    componentDidUpdate(prevProps/* , prevState, prevContext */) {
+        if (this.props.visible && !prevProps.visible) {
             this.moveTop();
         }
+        // this.propsVisible = this.props.visible;
     }
 
     componentWillUnmount() {

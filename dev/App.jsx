@@ -54,7 +54,9 @@ Icon.global({
 class App extends React.Component {
     constructor(p) {
         super(p);
-        binds(this, 'onTheme', 'onSize', 'onClickTable', 'onClickTableFixed', 'OpenDialog', 'CloseDialog', 'undefTheme');
+        const t = this;
+        binds(this, 'onTheme', 'onSize',
+            'onClickTable', 'onClickTableFixed', 'OpenDialog', 'CloseDialog', 'undefTheme', 'OpenDialogEx', 'CloseDialogEx');
         this.onTableClear = this.onTableClear.bind(this);
         this.onTableFill = this.onTableFill.bind(this);
         // общие параметры для диалогов
@@ -65,7 +67,19 @@ class App extends React.Component {
             onClickShadow: this.CloseDialog,
             onClickFooterBtn: this.CloseDialog,
         };
-
+        this.dialogEx = {
+            ...defaultDialogParam,
+            msg: 'upper..',
+            height: 200,
+            width: 200,
+            resizable: false,
+            draggable: false,
+            stickTo: '#ex-btn',
+            align: 'stickTo',
+            onClickHeaderClose: this.CloseDialogEx,
+            onClickShadow: this.CloseDialogEx,
+            onClickFooterBtn: this.CloseDialogEx,
+        };
         this.dialogs = {
             common: {
                 ...defaultDialogParam,
@@ -114,7 +128,8 @@ class App extends React.Component {
                 msg: 'common simple dialog',
                 footer: {
                     add(o) {
-                        console.log('press add', o);
+                        // console.log('press add', o);
+                        t.OpenDialogEx();
                     },
                     ok: {
                         onClick(o) {
@@ -130,8 +145,10 @@ class App extends React.Component {
                 },
                 align: 'stickTo',
                 stickTo: '#dialog-btn-extend',
-                height: 150,
-                width: 300,
+                height: 400,
+                width: 400,
+                resizable: true,
+                draggable: true,
             },
             custom: {
                 ...defaultDialogParam,
@@ -148,12 +165,22 @@ class App extends React.Component {
             size: storage.get('theme-size', { default: 'normal' }),
             checked: 0,
             dialog: false, // 'table',
+            dialogEx: false,
             modalShow: false,
             fields: table_long.fields,
             table: table_long.data,
             textValue: '',
             textValue2: '',
+
         };
+    }
+
+    OpenDialogEx() {
+        this.setState({ dialogEx: true });
+    }
+
+    CloseDialogEx() {
+        this.setState({ dialogEx: false });
     }
 
     OpenDialog(name) {
@@ -200,7 +227,7 @@ class App extends React.Component {
 
     render() {
         const {
-            fields, table, textValue, textValue2,
+            fields, table, textValue, textValue2, dialogEx,
         } = this.state;
         const dialogs = Object.keys(this.dialogs);
         const fontsName = Object.keys(fonts);
@@ -513,6 +540,7 @@ class App extends React.Component {
                     </Block>
                 </div>
                 {
+
                     dialogs.map((name) => <ModalDialog
                         key={name}
                         {...this.dialogs[name]}
@@ -528,23 +556,19 @@ class App extends React.Component {
 
                         }
                         {name !== 'table' && this.dialogs[name].msg}
+                        {name === 'extend' && <Btn id="ex-btn" onClick={this.OpenDialogEx}>open</Btn>}
                     </ModalDialog>)
                 }
-                {/* this.state.dialog
-                    && <ModalDialog {...this.dialogs[this.state.dialog]}>
-                        {this.state.dialog === 'table'
-                        && <div className="test-place-table">
-                            <div className="test-box1">box1</div>
-                            <div className="test-box2">
-                                <TableFixed {...table_long2} onClick={this.onClickTableFixed}/>
-                            </div>
-                        </div>
+                <ModalDialog
+                    {...this.dialogEx}
+                    visible={dialogEx}
+                >
+                    {this.dialogEx.msg}
+                </ModalDialog>
 
-                        }
-                        {this.state.dialog !== 'table' && this.dialogs[this.state.dialog].msg}
-                    </ModalDialog>
-                    */}
-                <div id="wd-modal" ></div>
+                <div id="wd-modal" >
+
+                </div>
             </div>
         );
     }
