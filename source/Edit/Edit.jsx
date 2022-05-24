@@ -100,7 +100,7 @@ export default class Edit extends React.Component {
 
         const inputStyle = {};
         // список свойсв которые идут из style в input
-        ['width', 'textAlign', 'fontSize'].map((prop) => { if (prop in style) inputStyle[prop] = style[prop]; });
+        ['width', 'textAlign', 'fontSize', 'lineHeight'].map((prop) => { if (prop in style) inputStyle[prop] = style[prop]; });
         // if (clampClass !== false) {
         //    delete inputStyle.width;
         // }
