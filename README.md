@@ -105,6 +105,7 @@ react components for windeco\
 |----|----|-----|-----|
 |id|any|undefined|идентификатор|
 |select|any|undefined|выбранный пункт|
+|hideBtnOnSelect|bool|false|скрывать кнопку раскрытия, если выбран элемент|
 ---
 ## Table
 ---

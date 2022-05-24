@@ -30,9 +30,10 @@ export default class ComboBoxEx extends React.Component {
             },
             select: this.props.select,
             id: (this.props.id === '' ? `cbex-${ut.random_str(5)}` : this.props.id),
+            mouseOnCombo: false,
         };
 
-        binds(this, 'openList', 'closeList', 'onChange', 'onKeyDown', 'onFocusOut', 'onCreateList');
+        binds(this, 'openList', 'closeList', 'onChange', 'onKeyDown', 'onFocusOut', 'onCreateList', 'onMouseMove', 'onMouseLeave');
         this.ref = React.createRef();
         this.refFocus = React.createRef();
         this.refValue = React.createRef();
@@ -198,6 +199,14 @@ export default class ComboBoxEx extends React.Component {
         this.list = o.sender;
     }
 
+    onMouseLeave(o) {
+        this.setState({ mouseOnCombo: false });
+    }
+
+    onMouseMove(o) {
+        if (!this.state.mouseOnCombo) this.setState({ mouseOnCombo: true });
+    }
+
     componentDidMount() {
         // разовый вызов после первого рендеринга
 
@@ -238,9 +247,11 @@ export default class ComboBoxEx extends React.Component {
 
     render() {
         const {
-            idFieldName, placeholder, disable, dim, labelName, addClass, list, maxListHeight, listClasses: listClassesProps, style, required,
+            idFieldName, placeholder, disable, dim, labelName,
+            addClass, list, maxListHeight, listClasses: listClassesProps, style, required,
+            hideBtnOnSelect,
         } = this.props;
-        const { visibleList, pos } = this.state;
+        const { visibleList, pos, mouseOnCombo } = this.state;
         const name = (labelName ? { id: labelName } : {});
         let value = '';
         let addClassValue = '';
@@ -276,11 +287,13 @@ export default class ComboBoxEx extends React.Component {
                 minWidth: bgSize,
             };
         }
-        let focusStyle = {};
+        if (!noSelect && hideBtnOnSelect && !mouseOnCombo && !visibleList) {
+            btnStyle.display = 'none';
+        }
+
+        const focusStyle = {};
         if ('width' in style) {
-            focusStyle = {
-                width: style.width,
-            };
+            focusStyle.width = style.width;
         }
 
         return (
@@ -296,6 +309,8 @@ export default class ComboBoxEx extends React.Component {
                     tabIndex="0"
                     onKeyDown={this.onKeyDown}
                     onBlur={this.onFocusOut}
+                    onMouseMove={this.onMouseMove}
+                    onMouseLeave={this.onMouseLeave}
                     ref={this.refFocus}
                     style={focusStyle}
                 >
@@ -309,6 +324,7 @@ export default class ComboBoxEx extends React.Component {
                     >
                         {value}
                     </div>
+
                     <div
                         className="wd-combobox-ex-btn"
                         onClick={this.openList}
@@ -387,5 +403,6 @@ ComboBoxEx.defaultProps = {
     _forcedPosition: true, // включает режим доп проверки позиции выпадающего списка
     style: {},
     required: false,
+    hideBtnOnSelect: false, // скрывать кнопку раскрытия, если выбран элемент
 
 };
