@@ -52,6 +52,8 @@ react components for windeco\
 |step|number|undefined|шаг для type=number or range|
 |onChange|function({id,value})|undefined|событие на изменение |
 |onKeyPress|function({key,id,value,args})|undefined|событие после нажатия клавиши,args - оригинальные аргументы  |
+|onKeyUp|function({key,id,value,args})|undefined|событие после прижатия клавиши,args - оригинальные аргументы  |
+|onKeyDown|function({key,id,value,args})|undefined|событие после отжатия клавиши,args - оригинальные аргументы  |
 |onInit|function(component)|undefined|событие при создании, передает ссылку на компонент |
 |addClass|string||добавить класс к input для стилизации,верхний класс wd-btn|
 |dim|string||размерность|

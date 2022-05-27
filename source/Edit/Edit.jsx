@@ -10,6 +10,8 @@ export default class Edit extends React.Component {
 
         this.onChange = this.onChange.bind(this);
         this.onKeyPress = this.onKeyPress.bind(this);
+        this.onKeyDown = this.onKeyDown.bind(this);
+        this.onKeyUp = this.onKeyUp.bind(this);
         this.onFocus = this.onFocus.bind(this);
         this.onBlur = this.onBlur.bind(this);
         this.state = {
@@ -37,6 +39,28 @@ export default class Edit extends React.Component {
     onKeyPress(o) {
         if (this.props.onKeyPress) {
             this.props.onKeyPress({
+                id: this.props.id,
+                value: o.target.value,
+                key: o.key,
+                args: o,
+            });
+        }
+    }
+
+    onKeyUp(o) {
+        if (this.props.onKeyUp) {
+            this.props.onKeyUp({
+                id: this.props.id,
+                value: o.target.value,
+                key: o.key,
+                args: o,
+            });
+        }
+    }
+
+    onKeyDown(o) {
+        if (this.props.onKeyDown) {
+            this.props.onKeyDown({
                 id: this.props.id,
                 value: o.target.value,
                 key: o.key,
@@ -126,6 +150,9 @@ export default class Edit extends React.Component {
                     type={_type || 'text'}
                     onChange = {this.onChange}
                     onKeyPress={this.onKeyPress}
+                    onKeyUp={this.onKeyUp}
+                    onKeyDown={this.onKeyDown}
+
                     className={`${editInputClass} ${addClass} ${clampClass || ''}`}
                     value={value}
                     disabled={!!disabled}
@@ -149,6 +176,8 @@ Edit.defaultProps = {
     disabled: 0,
     onChange: undefined,
     onKeyPress: undefined,
+    onKeyDown: undefined,
+    onKeyUp: undefined,
     onInit: undefined,
     dim: 'm',
     value: undefined,

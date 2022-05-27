@@ -291,7 +291,17 @@ class App extends React.Component {
                     }}> text from child</Edit></Block>
                     <Block> <Edit type="password" placeholder="set password" disable={{ dim: true }} style={{ height: 18 }}/></Block>
                     <Block> <Edit autoFocus value="text from value, and hint" hint="hint prop"/></Block>
-                    <Block> <Edit value="" hint="обязательный ввод" placeholder="need text.." required={true} maxLength={10} onInit={(component) => { this.EditRequired = component; }}/></Block>
+                    <Block> <Edit
+                        value=""
+                        hint="обязательный ввод"
+                        placeholder="need text.."
+                        required={true}
+                        maxLength={10}
+                        onInit={(component) => { this.EditRequired = component; }}
+                        onKeyDown={(o) => { console.log('down', o); }}
+                        onKeyUp={(o) => { console.log('up', o); }}
+                    />
+                    </Block>
                     <Block> <Edit value="disabled" disabled={1} /></Block>
                     <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
                     <Block> <Label caption="label"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
