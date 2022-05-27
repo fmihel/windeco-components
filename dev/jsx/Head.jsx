@@ -1,17 +1,14 @@
 import React from 'react';
 import './Head.scss';
-// import { flex, binds } from 'fmihel-browser-lib'
-export default class Head extends React.Component {
-    constructor(p) {
-        super(p);
-    }
 
-    render() {
-        return (
-            <div className="block-head">{this.props.children}</div>
-        );
-    }
+export default function Head({ caption, children }) {
+    return (
+
+        <div className="block-head">
+            <div className="b-caption">{caption}</div>
+            <div className="b-child">
+                {children}
+            </div>
+        </div>
+    );
 }
-Head.defaultProps = {
-// default
-};

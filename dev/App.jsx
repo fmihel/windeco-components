@@ -243,94 +243,190 @@ class App extends React.Component {
                 </div>
                 <div className='content wd-scrollbar'>
                     {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head>Abs position</Head>
-                    <Block addClass="abs-pos"> <Edit
-                        disable={{ dim: true }}
-                        style={
+                    <Head caption="Abs position">
+                        <Block addClass="abs-pos"> <Edit
+                            disable={{ dim: true }}
+                            style={
+                                {
+                                    position: 'absolute',
+                                    left: 540,
+                                    top: -75,
+                                    // border: '1px dashed lime',
+                                    width: 57,
+                                    height: 16,
+                                }
+                            }>abs position</Edit></Block>
+
+                        <Block addClass="abs-pos"> <CheckBox style={
                             {
                                 position: 'absolute',
-                                left: 540,
+                                left: 350,
                                 top: -75,
                                 // border: '1px dashed lime',
-                                width: 57,
-                                height: 16,
+                                width: 14,
+                                height: 14,
                             }
-                        }>abs position</Edit></Block>
+                        }/></Block>
+                        <Block addClass="abs-pos"> <ComboBoxEx
+                            list = {combo_list3}
+                            listClasses={listClasses3}
+                            disable={{ dim: true }}
+                            select={3}
+                            style={
+                                {
+                                    position: 'absolute',
+                                    left: 380,
+                                    top: -75,
+                                    // border: '1px dashed lime',
+                                    height: 16,
+                                    width: 150,
 
-                    <Block addClass="abs-pos"> <CheckBox style={
-                        {
-                            position: 'absolute',
-                            left: 350,
-                            top: -75,
-                            // border: '1px dashed lime',
-                            width: 14,
-                            height: 14,
-                        }
-                    }/></Block>
-                    <Block addClass="abs-pos"> <ComboBoxEx
-                        list = {combo_list3}
-                        listClasses={listClasses3}
-                        disable={{ dim: true }}
-                        select={3}
-                        style={
-                            {
-                                position: 'absolute',
-                                left: 380,
-                                top: -75,
-                                // border: '1px dashed lime',
-                                height: 16,
-                                width: 150,
-
-                            }
-                        }/>
-                    </Block>
+                                }
+                            }/>
+                        </Block>
+                    </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head>Edit</Head>
-                    <Block> <Edit id="tt" style={{ fontSize: '1.2em' }}onKeyPress={(o) => {
-                        console.log(o);
-                    }}> text from child</Edit></Block>
-                    <Block> <Edit type="password" placeholder="set password" disable={{ dim: true }} style={{ height: 18 }}/></Block>
-                    <Block> <Edit autoFocus value="text from value, and hint" hint="hint prop"/></Block>
-                    <Block> <Edit
-                        value=""
-                        hint="обязательный ввод"
-                        placeholder="need text.."
-                        required={true}
-                        maxLength={10}
-                        onInit={(component) => { this.EditRequired = component; }}
-                        onKeyDown={(o) => { console.log('down', o); }}
-                        onKeyUp={(o) => { console.log('up', o); }}
-                    />
-                    </Block>
-                    <Block> <Edit value="disabled" disabled={1} /></Block>
-                    <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
-                    <Block> <Label caption="label"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
-                    <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
-                    <Block> <Label caption="range"><Edit value={5} dim={''} type='number' min={0} max={10} step={1}/></Label></Block>
-                    <Block> <Btn onClick={() => { this.EditRequired.focus(); }}>focus to required</Btn></Block>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head>ComboBoxEx</Head>
-                    <Block>
-                        <ComboBoxEx
-                            style={{ height: 18 }}
-                            onChange={(o) => { console.log(o); }}
-                            list = {combo_list1}
+                    <Head caption="Edit">
+                        <Block> <Edit id="tt" style={{ fontSize: '1.2em' }}onKeyPress={(o) => {
+                            console.log(o);
+                        }}> text from child</Edit></Block>
+                        <Block> <Edit type="password" placeholder="set password" disable={{ dim: true }} style={{ height: 18 }}/></Block>
+                        <Block> <Edit autoFocus value="text from value, and hint" hint="hint prop"/></Block>
+                        <Block> <Edit
+                            value=""
+                            hint="обязательный ввод"
+                            placeholder="need text.."
                             required={true}
+                            maxLength={10}
+                            onInit={(component) => { this.EditRequired = component; }}
+                            onKeyDown={(o) => { console.log('down', o); }}
+                            onKeyUp={(o) => { console.log('up', o); }}
                         />
-                    </Block>
-                    <Block>
-                        <div className="block-horiz">
+                        </Block>
+                        <Block> <Edit value="disabled" disabled={1} /></Block>
+                        <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
+                        <Block> <Label caption="label"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
+                        <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
+                        <Block> <Label caption="range"><Edit value={5} dim={''} type='number' min={0} max={10} step={1}/></Label></Block>
+                        <Block> <Btn onClick={() => { this.EditRequired.focus(); }}>focus to required</Btn></Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="ComboBoxEx">
+                        <Block>
+                            <ComboBoxEx
+                                style={{ height: 18 }}
+                                onChange={(o) => { console.log(o); }}
+                                list = {combo_list1}
+                                required={true}
+                            />
+                        </Block>
+                        <Block>
+                            <div className="block-horiz">
+                                <ComboBoxEx
+                                    onChange={(o) => { console.log(o); }}
+                                    list = {combo_list3}
+                                    listClasses={listClasses3}
+                                    disable={{ dim: true }}
+                                    select={3}
+                                    style={{ width: 100 }}
+                                />
+                                <Edit id="ttt" style={{ width: 100 }} disable={{ dim: true }} onKeyPress={(o) => {
+                                    console.log(o);
+                                }}> text from child</Edit>
+                                <BtnIcon
+                                    hint = "icon"
+                                    IconComponent={FontAwesomeIcon}
+                                    icon={faAddressBook}
+                                    addClass="wd-danger"
+                                    iconClass="demo-bi-color"
+                                >ok</BtnIcon>
+                                <Btn> left</Btn>
+                            </div>
+                        </Block>
+                        <Block>
+                            <div className="block-horiz">
+                                <ComboBoxEx
+                                    onChange={(o) => { console.log(o); }}
+                                    list = {combo_list3}
+                                    disable={{ dim: true }}
+                                    select={3}
+                                    style={{ width: 100, height: 43 }}
+
+                                />
+                                <Edit id="tttt" style={{ width: 100, height: 43 }} disable={{ dim: true }} onKeyPress={(o) => {
+                                    console.log(o);
+                                }}>text from child</Edit>
+                                <Edit id="tt90" style={{ width: 90, height: 43 }} disable={{ dim: true }} onKeyPress={(o) => {
+                                    console.log(o);
+                                }}>90</Edit>
+                                <Edit id="tt20" style={{ width: 20, height: 43 }} disable={{ dim: true }} clamp={50} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                    console.log(o);
+                                }}>20</Edit>
+                                <Edit id="tt30" style={{ width: 30, height: 43 }} disable={{ dim: true }} clamp={50} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                    console.log(o);
+                                }}>30</Edit>
+
+                                <Edit id="tt40" style={{ width: 40, height: 43 }} disable={{ dim: true }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                    console.log(o);
+                                }}>40</Edit>
+                                <Edit id="tt50" style={{ width: 50, height: 43 }} disable={{ dim: true }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                    console.log(o);
+                                }}>50</Edit>
+                            </div>
+                        </Block>
+
+                        <Block>
                             <ComboBoxEx
                                 onChange={(o) => { console.log(o); }}
                                 list = {combo_list3}
                                 listClasses={listClasses3}
                                 disable={{ dim: true }}
                                 select={3}
-                                style={{ width: 100 }}
                             />
-                            <Edit id="ttt" style={{ width: 100 }} disable={{ dim: true }} onKeyPress={(o) => {
-                                console.log(o);
-                            }}> text from child</Edit>
+                        </Block>
+                        <Block>
+                            <Label caption="comboboxex">
+                                <ComboBoxEx list = {combo_list2} disable={{ dim: false }}/>
+                            </Label>
+                        </Block>
+                        <Block>
+                            <Label caption="disabled">
+                                <ComboBoxEx list = {combo_list2} disable={{ dim: false }} select={1} disabled={'true'}/>
+                            </Label>
+                        </Block>
+                        <Block>
+                            <Label caption="outer url">
+                                <ComboBoxEx
+                                    listClasses={listClasses4}
+                                    list = {combo_list4}
+                                    disable={{ dim: false }}
+                                    select={1}
+
+                                />
+                            </Label>
+                        </Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Icon">
+                        <Block>
+                            <Icon icon={iEdit} addClass="icon-custom"/>
+                            <Icon icon={iEdit16}/>
+                            <Icon icon={'uncknown'} addClass="icon-custom"/>
+                        </Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption={'BtnIcon'}>
+                        <Block>
+
+                            <Btn>left</Btn>
+                            <BtnIcon>button presed test</BtnIcon>
+                            <BtnIcon
+                                hint = "icon"
+                                IconComponent={Icon}
+                                icon={iEdit}
+                                addClass="wd-danger"
+                                iconClass="demo-bi-color"
+                            >ok</BtnIcon>
                             <BtnIcon
                                 hint = "icon"
                                 IconComponent={FontAwesomeIcon}
@@ -338,196 +434,111 @@ class App extends React.Component {
                                 addClass="wd-danger"
                                 iconClass="demo-bi-color"
                             >ok</BtnIcon>
-                            <Btn> left</Btn>
-                        </div>
-                    </Block>
-                    <Block>
-                        <div className="block-horiz">
-                            <ComboBoxEx
-                                onChange={(o) => { console.log(o); }}
-                                list = {combo_list3}
-                                disable={{ dim: true }}
-                                select={3}
-                                style={{ width: 100, height: 43 }}
+                            <Btn>standart</Btn>
+                            <BtnIcon addClass="wd-primary">cancel</BtnIcon>
+                            <BtnIcon>story</BtnIcon>
+                            <BtnIcon addClass="wd-green">save</BtnIcon>
+                        </Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Dialog">
+                        <Block>
+                            {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
 
+                        </Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Text">
+                        <Block>
+                            <Text
+                                style={{ height: 70 }}
+                                placeholder="rows:4 cols:15 len:60  "
+                                hint="hint"
+                                value={textValue2}
+                                onChange={(o) => { this.setState({ textValue2: o.value }); }}
+                                rows={4}
+                                cols={15}
                             />
-                            <Edit id="tttt" style={{ width: 100, height: 43 }} disable={{ dim: true }} onKeyPress={(o) => {
-                                console.log(o);
-                            }}>text from child</Edit>
-                            <Edit id="tt90" style={{ width: 90, height: 43 }} disable={{ dim: true }} onKeyPress={(o) => {
-                                console.log(o);
-                            }}>90</Edit>
-                            <Edit id="tt20" style={{ width: 20, height: 43 }} disable={{ dim: true }} clamp={50} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
-                                console.log(o);
-                            }}>20</Edit>
-                            <Edit id="tt30" style={{ width: 30, height: 43 }} disable={{ dim: true }} clamp={50} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
-                                console.log(o);
-                            }}>30</Edit>
-
-                            <Edit id="tt40" style={{ width: 40, height: 43 }} disable={{ dim: true }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
-                                console.log(o);
-                            }}>40</Edit>
-                            <Edit id="tt50" style={{ width: 50, height: 43 }} disable={{ dim: true }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
-                                console.log(o);
-                            }}>50</Edit>
-                        </div>
-                    </Block>
-
-                    <Block>
-                        <ComboBoxEx
-                            onChange={(o) => { console.log(o); }}
-                            list = {combo_list3}
-                            listClasses={listClasses3}
-                            disable={{ dim: true }}
-                            select={3}
-                        />
-                    </Block>
-                    <Block>
-                        <Label caption="comboboxex">
-                            <ComboBoxEx list = {combo_list2} disable={{ dim: false }}/>
-                        </Label>
-                    </Block>
-                    <Block>
-                        <Label caption="disabled">
-                            <ComboBoxEx list = {combo_list2} disable={{ dim: false }} select={1} disabled={'true'}/>
-                        </Label>
-                    </Block>
-                    <Block>
-                        <Label caption="outer url">
-                            <ComboBoxEx
-                                listClasses={listClasses4}
-                                list = {combo_list4}
-                                disable={{ dim: false }}
-                                select={1}
-
+                        </Block>
+                        <Block>
+                            <Text
+                                style={{ height: 30 }}
+                                maxLength={20}
+                                placeholder="set text, max 20 len.."
+                                hint="hint"
+                                value={textValue}
+                                onChange={(o) => { this.setState({ textValue: o.value }); }}
+                                required={true}
                             />
-                        </Label>
-                    </Block>
+                        </Block>
+                        <Block>
+                            <Text
+                                readonly={true}
+                                hint="readonly"
+                                value= "readonly"
+                            />
+                        </Block>
+                        <Block>
+                            <Text
+                                disabled={1}
+                                value="disabled"
+                                resize={true}
+                            />
+                        </Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Fonts">
+                        <Block>
+                            {fontsName.map((name, key) => <div key={key} className="font-line"><div>{name}</div><div className={`font-${name}`}>Короткий текст для примера.</div></div>)}
+                        </Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="CheckBox">
+                        <Block> <CheckBox checked={true}/></Block>
+                        <Block> <Label caption='check'><CheckBox id="ckb1" onChange={(o) => { console.log(o); }}/></Label></Block>
+                        <Block> <Label caption='on change'><Btn onClick={() => { this.setState({ checked: 0 }); }} >on change false</Btn></Label></Block>
+                        <Block> <Label caption='on change'><CheckBox checked={this.state.checked} asRadio={1} onChange={() => { this.setState({ checked: 1 }); }}/></Label></Block>
+                        <Block> <Label caption='disabled'><CheckBox id="ckb-disabled" checked={true} onChange={(o) => { console.log(o); }} disabled={true}/></Label></Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption = "TableFixed">
+                        <Block>
+                            <Btn onClick={this.onTableClear}>clear</Btn>
+                            <Btn onClick={this.onTableFill}>fill</Btn>
+                        </Block>
 
+                        <Block addClass="table-fixed-height">
+                            <TableFixed
+                                fields={fields}
+                                data={table}
+                                onClick={this.onClickTableFixed}
+                            />
+                        </Block>
+                    </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head>Icon</Head>
-                    <Block>
-                        <Icon icon={iEdit} addClass="icon-custom"/>
-                        <Icon icon={iEdit16}/>
-                        <Icon icon={'uncknown'} addClass="icon-custom"/>
-                    </Block>
-
+                    <Head caption = "ComboBox">
+                        <Block> <ComboBox /></Block>
+                        <Block> <Label caption="combobox"><ComboBox disable={{ dim: false }}/></Label></Block>
+                    </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head>BtnIcon</Head>
-                    <Block>
-
-                        <Btn>left</Btn>
-                        <BtnIcon>button presed test</BtnIcon>
-                        <BtnIcon
-                            hint = "icon"
-                            IconComponent={Icon}
-                            icon={iEdit}
-                            addClass="wd-danger"
-                            iconClass="demo-bi-color"
-                        >ok</BtnIcon>
-                        <BtnIcon
-                            hint = "icon"
-                            IconComponent={FontAwesomeIcon}
-                            icon={faAddressBook}
-                            addClass="wd-danger"
-                            iconClass="demo-bi-color"
-                        >ok</BtnIcon>
-                        <Btn>standart</Btn>
-                        <BtnIcon addClass="wd-primary">cancel</BtnIcon>
-                        <BtnIcon>story</BtnIcon>
-                        <BtnIcon addClass="wd-green">save</BtnIcon>
-                    </Block>
+                    <Head caption="Btn">
+                        <Block>
+                            <Btn>button</Btn>
+                            <Btn addClass="wd-danger" hint="wd-danger hint">wd-danger</Btn>
+                            <Btn addClass="wd-primary">wd-primary</Btn>
+                            <Btn addClass="wd-transparent">wd-transparent</Btn>
+                            <Btn addClass="wd-primary pic-bag">pic</Btn>
+                        </Block>
+                    </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head>Dialog</Head>
-                    <Block>
-                        {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
-
-                    </Block>
+                    <Head caption="Table">
+                        <Block> <Table onClick={this.onClickTable}/></Block>
+                    </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head>Text</Head>
-                    <Block>
-                        <Text
-                            style={{ height: 70 }}
-                            placeholder="rows:4 cols:15 len:60  "
-                            hint="hint"
-                            value={textValue2}
-                            onChange={(o) => { this.setState({ textValue2: o.value }); }}
-                            rows={4}
-                            cols={15}
-                        />
-                    </Block>
-                    <Block>
-                        <Text
-                            style={{ height: 30 }}
-                            maxLength={20}
-                            placeholder="set text, max 20 len.."
-                            hint="hint"
-                            value={textValue}
-                            onChange={(o) => { this.setState({ textValue: o.value }); }}
-                            required={true}
-                        />
-                    </Block>
-                    <Block>
-                        <Text
-                            readonly={true}
-                            hint="readonly"
-                            value= "readonly"
-                        />
-                    </Block>
-                    <Block>
-                        <Text
-                            disabled={1}
-                            value="disabled"
-                            resize={true}
-                        />
-                    </Block>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head>Fonts</Head>
-                    <Block>
-                        {fontsName.map((name, key) => <div key={key} className="font-line"><div>{name}</div><div className={`font-${name}`}>Короткий текст для примера.</div></div>)}
-                    </Block>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head>CheckBox</Head>
-                    <Block> <CheckBox checked={true}/></Block>
-                    <Block> <Label caption='check'><CheckBox id="ckb1" onChange={(o) => { console.log(o); }}/></Label></Block>
-                    <Block> <Label caption='on change'><Btn onClick={() => { this.setState({ checked: 0 }); }} >on change false</Btn></Label></Block>
-                    <Block> <Label caption='on change'><CheckBox checked={this.state.checked} asRadio={1} onChange={() => { this.setState({ checked: 1 }); }}/></Label></Block>
-                    <Block> <Label caption='disabled'><CheckBox id="ckb-disabled" checked={true} onChange={(o) => { console.log(o); }} disabled={true}/></Label></Block>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head>TableFixed</Head>
-                    <Block>
-                        <Btn onClick={this.onTableClear}>clear</Btn>
-                        <Btn onClick={this.onTableFill}>fill</Btn>
-                    </Block>
-
-                    <Block addClass="table-fixed-height">
-                        <TableFixed
-                            fields={fields}
-                            data={table}
-                            onClick={this.onClickTableFixed}
-                        />
-                    </Block>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head>ComboBox</Head>
-                    <Block> <ComboBox /></Block>
-                    <Block> <Label caption="combobox"><ComboBox disable={{ dim: false }}/></Label></Block>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head>Btn</Head>
-                    <Block>
-                        <Btn>button</Btn>
-                        <Btn addClass="wd-danger" hint="wd-danger hint">wd-danger</Btn>
-                        <Btn addClass="wd-primary">wd-primary</Btn>
-                        <Btn addClass="wd-transparent">wd-transparent</Btn>
-                        <Btn addClass="wd-primary pic-bag">pic</Btn>
-                    </Block>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head>Table</Head>
-                    <Block> <Table onClick={this.onClickTable}/></Block>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head>Modal</Head>
-                    <Block>
-                        <Btn onClick={() => { this.setState({ modalShow: true }); }} >show</Btn>
-                        {this.state.modalShow
+                    <Head caption="Modal">
+                        <Block>
+                            <Btn onClick={() => { this.setState({ modalShow: true }); }} >show</Btn>
+                            {this.state.modalShow
                         && <Modal
                             onClickShadow={() => {
                                 this.setState({ modalShow: false });
@@ -547,8 +558,9 @@ class App extends React.Component {
                                 <Btn >btn on modal 2</Btn>
                             </div>
                         </Modal>
-                        }
-                    </Block>
+                            }
+                        </Block>
+                    </Head>
                 </div>
                 {
 
