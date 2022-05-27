@@ -1,6 +1,6 @@
 # windeco-components 
 react components for windeco\
-`v1.21.0`
+`v1.23.0`
 
 
 [1. Btn - кнопка](#Btn)<br/>
@@ -62,6 +62,7 @@ react components for windeco\
 |hint|string||подсказка title|
 |required|bool|false|включает подсветку,для незаполненных полей и добавляет css класс ```wd-edit-require```|
 |minLength|number|0|максимальное кол-во вводимых символов, если 0 то без ограничений|
+|autoFocus|bool|false|установить фокус на компонент|
 
 ---
 ## Label

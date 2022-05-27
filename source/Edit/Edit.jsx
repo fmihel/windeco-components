@@ -47,10 +47,12 @@ export default class Edit extends React.Component {
 
     onFocus() {
         const dom = this.inputRef.current;
-        const width = JX.pos(dom).w;
-        if (width <= parseInt(this.props.clamp, 10)) {
-            this.setState({ clampClass: 'wd-edit-input-scale', focused: true });
-        } else this.setState({ focused: true });
+        if (dom) {
+            const width = JX.pos(dom).w;
+            if (width <= parseInt(this.props.clamp, 10)) {
+                this.setState({ clampClass: 'wd-edit-input-scale', focused: true });
+            } else this.setState({ focused: true });
+        }
     }
 
     onBlur() {
@@ -75,7 +77,9 @@ export default class Edit extends React.Component {
 
     render() {
         const {
-            dim, placeholder, disable, labelName, addClass, style, hint, type, required, min, max, step, maxLength, minLength,
+            dim, placeholder, disable, labelName, addClass, style, hint,
+            type, required, min, max, step, maxLength, minLength,
+            autoFocus,
         } = this.props;
         const { fontSize, ...frameStyle } = style;
         const { clampClass, focused } = this.state;
@@ -97,7 +101,7 @@ export default class Edit extends React.Component {
         if (step !== undefined) props.step = step;
         if (minLength > 0) props.minLength = minLength;
         if (maxLength > 0) props.maxLength = maxLength;
-
+        if (autoFocus === true) props.autoFocus = true;
         const inputStyle = {};
         // список свойсв которые идут из style в input
         ['width', 'textAlign', 'fontSize', 'lineHeight'].map((prop) => { if (prop in style) inputStyle[prop] = style[prop]; });
@@ -156,5 +160,6 @@ Edit.defaultProps = {
     clamp: 0,
     minLength: 0,
     maxLength: 0,
+    autoFocus: false,
 
 };
