@@ -1,6 +1,6 @@
 # windeco-components 
 react components for windeco\
-`v1.23.0`
+`v1.24.0`
 
 
 [1. Btn - кнопка](#Btn)<br/>
@@ -39,6 +39,7 @@ react components for windeco\
 ```html
 <Edit>name</Edit>
 <Edit value="name" />
+<Edit onInit={ ( o ) =>{ o.focus(); }} />
 ``` 
 ### property
 |prop|type|default|notes|
@@ -51,6 +52,7 @@ react components for windeco\
 |step|number|undefined|шаг для type=number or range|
 |onChange|function({id,value})|undefined|событие на изменение |
 |onKeyPress|function({key,id,value,args})|undefined|событие после нажатия клавиши,args - оригинальные аргументы  |
+|onInit|function(component)|undefined|событие при создании, передает ссылку на компонент |
 |addClass|string||добавить класс к input для стилизации,верхний класс wd-btn|
 |dim|string||размерность|
 |disable|{dim:bool}|{dim:false}|включить тот или иной признак|
@@ -62,7 +64,11 @@ react components for windeco\
 |hint|string||подсказка title|
 |required|bool|false|включает подсветку,для незаполненных полей и добавляет css класс ```wd-edit-require```|
 |minLength|number|0|максимальное кол-во вводимых символов, если 0 то без ограничений|
-|autoFocus|bool|false|установить фокус на компонент|
+|autoFocus|bool|false|установить фокус на компонент при создании|
+### methods
+|name|return|notes|
+|----|----|-----|
+|focus()||установить фокус на компонент, использовать component из onInit|
 
 ---
 ## Label

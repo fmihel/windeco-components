@@ -63,8 +63,16 @@ export default class Edit extends React.Component {
         this.setState({ focused: false });
     }
 
+    focus() {
+        const dom = this.inputRef.current;
+        if (dom) {
+            dom.focus();
+        }
+    }
+
     componentDidMount() {
         // разовый вызов после первого рендеринга
+        if (this.props.onInit) this.props.onInit(this);
     }
 
     componentWillUnmount() {
@@ -141,6 +149,7 @@ Edit.defaultProps = {
     disabled: 0,
     onChange: undefined,
     onKeyPress: undefined,
+    onInit: undefined,
     dim: 'm',
     value: undefined,
     visible: 1,
