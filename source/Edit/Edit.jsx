@@ -69,7 +69,7 @@ export default class Edit extends React.Component {
         }
     }
 
-    onFocus() {
+    onFocus(o) {
         const dom = this.inputRef.current;
         if (dom) {
             const width = JX.pos(dom).w;
@@ -77,14 +77,28 @@ export default class Edit extends React.Component {
                 this.setState({ clampClass: 'wd-edit-input-scale', focused: true });
             } else this.setState({ focused: true });
         }
+        if (this.props.onFocus) {
+            this.props.onFocus({
+                id: this.props.id,
+                value: o.target.value,
+                args: o,
+            });
+        }
     }
 
-    onBlur() {
+    onBlur(o) {
         const dom = this.inputRef.current;
         if (this.state.clampClass) {
             this.setState({ clampClass: false, focused: false });
         }
         this.setState({ focused: false });
+        if (this.props.onBlur) {
+            this.props.onBlur({
+                id: this.props.id,
+                value: o.target.value,
+                args: o,
+            });
+        }
     }
 
     focus() {
@@ -179,6 +193,9 @@ Edit.defaultProps = {
     onKeyDown: undefined,
     onKeyUp: undefined,
     onInit: undefined,
+    onFocus: undefined,
+    onBlur: undefined,
+
     dim: 'm',
     value: undefined,
     visible: 1,

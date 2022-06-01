@@ -55,6 +55,8 @@ react components for windeco\
 |onKeyUp|function({key,id,value,args})|undefined|событие после прижатия клавиши,args - оригинальные аргументы  |
 |onKeyDown|function({key,id,value,args})|undefined|событие после отжатия клавиши,args - оригинальные аргументы  |
 |onInit|function(component)|undefined|событие при создании, передает ссылку на компонент |
+|onFocus|function({id,value,args})|undefined|событие при фокусе |
+|onBlur|function({id,value,args})|undefined|событие при потери фокуса |
 |addClass|string||добавить класс к input для стилизации,верхний класс wd-btn|
 |dim|string||размерность|
 |disable|{dim:bool}|{dim:false}|включить тот или иной признак|
