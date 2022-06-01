@@ -127,13 +127,13 @@ export const combo_list4 = [
 
 export const combo_list5 = [
     {
-        id: 1, caption: 'double', _src_: './media/combo_32/e_90_double.png',
+        id: 1, caption: 'double', _src_: 'e_90_double.png',
     },
     {
-        id: 2, caption: 'left', _src_: './media/combo_32/e-90-left.png', _disabled_: 1,
+        id: 2, caption: 'left', _src_: 'e-90-left.png', _disabled_: 1,
     },
     {
-        id: 3, caption: 'line', _src_: './media/combo_32/e-line.png',
+        id: 3, caption: 'line', _src_: 'e-line.png',
     },
 
 ];

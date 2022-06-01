@@ -249,7 +249,7 @@ export default class ComboBoxEx extends React.Component {
         const {
             idFieldName, placeholder, disable, dim, labelName,
             addClass, addClassItem, list, maxListHeight, listClasses: listClassesProps, style, required,
-            hideBtnOnSelect,
+            hideBtnOnSelect, srcPath,
         } = this.props;
         const { visibleList, pos, mouseOnCombo } = this.state;
         const name = (labelName ? { id: labelName } : {});
@@ -279,7 +279,7 @@ export default class ComboBoxEx extends React.Component {
             };
         }
         if (selected) {
-            valueStyle = { ...valueStyle, ...ComboBoxListEx.getAddStyle(selected) };
+            valueStyle = { ...valueStyle, ...ComboBoxListEx.getAddStyle(selected, srcPath) };
         }
 
         let btnStyle = {};
@@ -356,6 +356,7 @@ export default class ComboBoxEx extends React.Component {
                         onCreate={this.onCreateList}
                         listClasses={listClasses}
                         addClassItem={addClassItem}
+                        srcPath={srcPath}
                     />
                 </Modal>}
 
@@ -411,5 +412,6 @@ ComboBoxEx.defaultProps = {
     style: {},
     required: false,
     hideBtnOnSelect: false, // скрывать кнопку раскрытия, если выбран элемент
+    srcPath: '',
 
 };

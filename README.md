@@ -96,7 +96,7 @@ react components for windeco\
 ## ComboBox
 ---
 ## ComboBoxEx
-Ex:1
+### Ex:1
 ```html
  <ComboBoxEx
     style={{ height: 18 }}
@@ -110,16 +110,14 @@ Ex:1
     required={true}
 />
 ``` 
-Ex:2
+### Ex:2
 ```js
-export const listClasses = {
+const listClasses = {
     default: '',
     line: 'wd-cb32-line',
     double90: 'wd-cb32-90-double',
     none: 'wd-cb32-none',
 };
-```
-```jsx
 
  <ComboBoxEx
     style={{ height: 18 }}
@@ -131,6 +129,23 @@ export const listClasses = {
         { id: 2, caption: 'text2', _disabled_: 1 },
         { id: 3, caption: 'text3', _indexClass_: 'line' },
         { id: 4, caption: 'text4', _indexClass_: 'double90' },
+        { id: 5, caption: 'text5' },    
+    ]}
+    required={true}
+/>
+``` 
+### Ex:3
+```html
+
+ <ComboBoxEx
+    listClasses={listClasses}
+    addClassItem = {'wd-cb32'}
+    srcPath='./media/'
+    list = {[
+        { id: 1, caption: 'text1', _src_: 'icon1.png' },
+        { id: 2, caption: 'text2', _src_: 'default.png',_disabled_: 1},
+        { id: 3, caption: 'text3', _src_: 'icon2.png' },
+        { id: 4, caption: 'text4', _src_: 'pic3.jpg' },
         { id: 5, caption: 'text5' },    
     ]}
     required={true}
@@ -152,6 +167,8 @@ export const listClasses = {
 |addClass|string||доп класс|
 |addClassItem|string||доп класс к каждому элементу|
 |required|bool|false|необходим для ввода|
+|srcPath|string||путь, который будет добавляться ко всем \_src_ в списке|
+
 ---
 ## Table
 ---

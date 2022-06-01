@@ -137,10 +137,10 @@ export default class ComboBoxListEx extends React.Component {
         return aci;
     }
 
-    static getAddStyle(item) {
+    static getAddStyle(item, srcPath) {
         const style = {};
         if ('_src_' in item) {
-            style.backgroundImage = `url(${item._src_})`;
+            style.backgroundImage = `url(${srcPath + item._src_})`;
             style.backgroundRepeat = 'no-repeat';
             style.backgroundPosition = 'left center';
         }
@@ -165,7 +165,7 @@ export default class ComboBoxListEx extends React.Component {
     render() {
         const {
 
-            idFieldName, list, listClasses, addClassItem,
+            idFieldName, list, listClasses, addClassItem, srcPath,
         } = this.props;
         const { mark, pos } = this.state;
         const style = {
@@ -185,7 +185,7 @@ export default class ComboBoxListEx extends React.Component {
                     caption={item.caption}
                     content={item.content}
                     addClass={ComboBoxListEx.getAddClass(item, listClasses, addClassItem)}
-                    style={ComboBoxListEx.getAddStyle(item)}
+                    style={ComboBoxListEx.getAddStyle(item, srcPath)}
                     disabled={ut.True(item._disabled_)}
                     data={item}
                     onClick={this.onSelect}
@@ -215,4 +215,5 @@ ComboBoxListEx.defaultProps = {
     onCreate: undefined,
     listClasses: {},
     addClassItem: undefined,
+    srcPath: '',
 };

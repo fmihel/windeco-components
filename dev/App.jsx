@@ -409,6 +409,7 @@ class App extends React.Component {
                             <Label caption="outer _src_">
                                 <ComboBoxEx
                                     list = {combo_list5}
+                                    srcPath={'./media/combo_32/'}
                                     addClassItem={'wd-cb32-src'}
                                     disable={{ dim: false }}
                                     select={1}
