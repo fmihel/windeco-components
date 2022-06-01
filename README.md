@@ -136,9 +136,7 @@ const listClasses = {
 ``` 
 ### Ex:3
 ```html
-
  <ComboBoxEx
-    listClasses={listClasses}
     addClassItem = {'wd-cb32'}
     srcPath='./media/'
     list = {[
