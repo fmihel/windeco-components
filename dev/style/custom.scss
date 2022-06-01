@@ -10,17 +10,35 @@
     filter: invert(1);
 }
 
+@each $name in $wd-themes{
+    .#{$name}{
+        .wd-edit-input{
+            //background-color: rgba(0,0,0,0) !important;
+            //background-image:url('./media/edit-fone.png');
+            //background: linear-gradient(to bottom, #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ 
+            //box-shadow: inset 1px 1px 0px 0px #898989;
+
+        }        
+    }
+}
+
 @each $name in $wd-sizes{
     .#{$name}{
         $size:wd-get-size($wd-size,#{$name});
         $gap:wd-get-size($wd-gap,#{$name});
         
         .wd-cb32{
-            background-repeat: no-repeat, repeat;
+            background-repeat: no-repeat, no-repeat;
             background-position: $size*0.1 center;
             background-size: $size*0.7;
             padding-left: $size+$gap !important;        
             
+        }
+        .wd-cb32-src{
+            background-repeat: no-repeat, no-repeat;
+            background-position: $size*0.1 center !important;
+            background-size: $size*0.7 !important;
+            padding-left: $size+$gap !important;        
         }
         
         .wd-cb32-line{

@@ -26,7 +26,7 @@ import Icon from '../source/Icon/Icon.jsx';
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
 import {
-    table_long2, table_long, combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4,
+    table_long2, table_long, combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4, combo_list5,
 } from './data.js';
 
 ComboBoxEx.global({
@@ -399,6 +399,17 @@ class App extends React.Component {
                                 <ComboBoxEx
                                     listClasses={listClasses4}
                                     list = {combo_list4}
+                                    disable={{ dim: false }}
+                                    select={1}
+
+                                />
+                            </Label>
+                        </Block>
+                        <Block>
+                            <Label caption="outer _src_">
+                                <ComboBoxEx
+                                    list = {combo_list5}
+                                    addClassItem={'wd-cb32-src'}
                                     disable={{ dim: false }}
                                     select={1}
 

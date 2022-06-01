@@ -1,6 +1,6 @@
 # windeco-components 
 react components for windeco\
-`v1.24.0`
+`v1.26.0`
 
 
 [1. Btn - кнопка](#Btn)<br/>
@@ -96,6 +96,7 @@ react components for windeco\
 ## ComboBox
 ---
 ## ComboBoxEx
+Ex:1
 ```html
  <ComboBoxEx
     style={{ height: 18 }}
@@ -109,12 +110,48 @@ react components for windeco\
     required={true}
 />
 ``` 
+Ex:2
+```js
+export const listClasses = {
+    default: '',
+    line: 'wd-cb32-line',
+    double90: 'wd-cb32-90-double',
+    none: 'wd-cb32-none',
+};
+```
+```jsx
+
+ <ComboBoxEx
+    style={{ height: 18 }}
+    onChange={}
+    listClasses={listClasses}
+    addClassItem = {'wd-cb32'}
+    list = {[
+        { id: 1, caption: 'text1', _indexClass_: 'default' },
+        { id: 2, caption: 'text2', _disabled_: 1 },
+        { id: 3, caption: 'text3', _indexClass_: 'line' },
+        { id: 4, caption: 'text4', _indexClass_: 'double90' },
+        { id: 5, caption: 'text5' },    
+    ]}
+    required={true}
+/>
+``` 
 ### property
 |prop|type|default|notes|
 |----|----|-----|-----|
 |id|any|undefined|идентификатор|
-|select|any|undefined|выбранный пункт|
+|idFieldName|string|id|имя ключевого поля|
+|select|any|undefined|выбранный пункт (id)|
 |hideBtnOnSelect|bool|false|скрывать кнопку раскрытия, если выбран элемент|
+|onChange|function|undefined|событие на выбор пункта|
+|placeholder|string||значение если пункт не выбран|
+|maxListHeight|int|300|максимальная высота листа|
+|maxListWidth|string|'auto'|'fixed' or 'auto'|
+|list|array|[]|список строк|
+|disabled|int|0|признак что компонент заблокирован|
+|addClass|string||доп класс|
+|addClassItem|string||доп класс к каждому элементу|
+|required|bool|false|необходим для ввода|
 ---
 ## Table
 ---

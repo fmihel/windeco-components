@@ -99,7 +99,7 @@ export default class ComboBoxEx extends React.Component {
             const isPlaceholder = this.refValue.current.classList.contains('wd-combobox-ex-placeholder');
             let addClass = false;
             if (isPlaceholder && this.props.list.length) {
-                addClass = ComboBoxListEx.getAddClass(this.props.list[0], { ...ComboBoxEx._global.listClasses, ...this.props.listClasses });
+                addClass = ComboBoxListEx.getAddClass(this.props.list[0], { ...ComboBoxEx._global.listClasses, ...this.props.listClasses }, this.props.addClassItem);
                 if (addClass && !this.refValue.current.classList.contains(addClass)) {
                     this.refValue.current.classList.add(addClass);
                 } else {
@@ -248,7 +248,7 @@ export default class ComboBoxEx extends React.Component {
     render() {
         const {
             idFieldName, placeholder, disable, dim, labelName,
-            addClass, list, maxListHeight, listClasses: listClassesProps, style, required,
+            addClass, addClassItem, list, maxListHeight, listClasses: listClassesProps, style, required,
             hideBtnOnSelect,
         } = this.props;
         const { visibleList, pos, mouseOnCombo } = this.state;
@@ -258,13 +258,14 @@ export default class ComboBoxEx extends React.Component {
         const select = this._getSelect();
         const listClasses = { ...ComboBoxEx._global.listClasses, ...listClassesProps };
         const noSelect = this.getItem(select) === undefined;
+        let selected = false;
         if (noSelect) {
             value = placeholder;
             addClassValue += ' wd-combobox-ex-placeholder';
         } else {
-            const selected = list.find((item) => ut.eq(item[idFieldName], select));
+            selected = list.find((item) => ut.eq(item[idFieldName], select));
             if (selected) {
-                addClassValue += ` ${ComboBoxListEx.getAddClass(selected, listClasses)}`;
+                addClassValue += ` ${ComboBoxListEx.getAddClass(selected, listClasses, addClassItem)}`;
                 value = selected.caption;
             }
         }
@@ -277,6 +278,10 @@ export default class ComboBoxEx extends React.Component {
                 lineHeight: `${parseInt(style.height, 10) + ComboBoxEx._global.off.lineHeight}px`,
             };
         }
+        if (selected) {
+            valueStyle = { ...valueStyle, ...ComboBoxListEx.getAddStyle(selected) };
+        }
+
         let btnStyle = {};
         if ('height' in style) {
             const bgSize = `${parseInt(style.height, 10) - 4}px`;
@@ -350,6 +355,7 @@ export default class ComboBoxEx extends React.Component {
                         onSelect={this.onChange}
                         onCreate={this.onCreateList}
                         listClasses={listClasses}
+                        addClassItem={addClassItem}
                     />
                 </Modal>}
 
@@ -399,6 +405,7 @@ ComboBoxEx.defaultProps = {
         dim: true,
     },
     addClass: '',
+    addClassItem: '',
     _forcedSelect: true, // если true то выбранный элемент в списке будет сразу отображаться в поле, false - необходимо передать props.select
     _forcedPosition: true, // включает режим доп проверки позиции выпадающего списка
     style: {},

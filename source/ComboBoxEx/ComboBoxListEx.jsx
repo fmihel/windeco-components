@@ -122,18 +122,29 @@ export default class ComboBoxListEx extends React.Component {
         && ((mouse.y >= list.top) && (mouse.y <= list.top + list.height)));
     }
 
-    static getAddClass(item, listClasses) {
+    static getAddClass(item, listClasses, addClassItem) {
+        const aci = (addClassItem ? (` ${addClassItem} `) : '');
         if ('addClass' in item) {
-            return item.addClass;
+            return item.addClass + aci;
         }
         // const listClassesIndexs = Object.keys(listClasses);
         // if (listClassesIndexs.length) {
         if (('_indexClass_' in item) && (item._indexClass_ in listClasses)) {
-            return listClasses[item._indexClass_];
+            return aci + listClasses[item._indexClass_];
         }
-        if ('default' in listClasses) return listClasses.default;
+        if ('default' in listClasses) return aci + listClasses.default;
         // }
-        return '';
+        return aci;
+    }
+
+    static getAddStyle(item) {
+        const style = {};
+        if ('_src_' in item) {
+            style.backgroundImage = `url(${item._src_})`;
+            style.backgroundRepeat = 'no-repeat';
+            style.backgroundPosition = 'left center';
+        }
+        return style;
     }
 
     componentDidMount() {
@@ -154,7 +165,7 @@ export default class ComboBoxListEx extends React.Component {
     render() {
         const {
 
-            idFieldName, list, listClasses,
+            idFieldName, list, listClasses, addClassItem,
         } = this.props;
         const { mark, pos } = this.state;
         const style = {
@@ -173,7 +184,8 @@ export default class ComboBoxListEx extends React.Component {
                     id={item[idFieldName]}
                     caption={item.caption}
                     content={item.content}
-                    addClass={ComboBoxListEx.getAddClass(item, listClasses)}
+                    addClass={ComboBoxListEx.getAddClass(item, listClasses, addClassItem)}
+                    style={ComboBoxListEx.getAddStyle(item)}
                     disabled={ut.True(item._disabled_)}
                     data={item}
                     onClick={this.onSelect}
@@ -202,4 +214,5 @@ ComboBoxListEx.defaultProps = {
     onSelect: undefined,
     onCreate: undefined,
     listClasses: {},
+    addClassItem: undefined,
 };
