@@ -86,18 +86,21 @@ class App extends React.Component {
                 header: 'text in header',
                 msg: 'common simple dialog',
             },
+
             table: {
                 ...defaultDialogParam,
                 header: 'table',
                 msg: '|--|',
                 resizable: true,
             },
+
             'with btns': {
                 ...defaultDialogParam,
                 // header: 'text in header',
                 msg: 'common simple dialog',
                 footer: ['ok', 'cancel'],
             },
+
             stickTo: {
                 ...defaultDialogParam,
                 header: 'text in header',
@@ -109,13 +112,29 @@ class App extends React.Component {
                 width: 300,
                 draggable: false,
             },
-            stickAndDragg: {
+
+            stickAndDrag: {
                 ...defaultDialogParam,
                 header: 'text in header',
                 msg: 'common simple dialog',
                 footer: ['ok', 'cancel'],
                 align: 'stickTo',
-                stickTo: '#dialog-btn-stickAndDragg',
+                stickTo: '#dialog-btn-stickAndDrag',
+                height: 150,
+                width: 300,
+                draggable: true, // by default true
+                resizable: true,
+            },
+            stickToHoriz: {
+                ...defaultDialogParam,
+                header: 'stickTo-horiz',
+                msg: 'stickTo-horiz',
+                footer: ['ok', 'cancel'],
+                align: 'stickTo',
+                stickTo: '#dialog-btn-stickToHoriz',
+                stickAlign: 'left',
+                stickOffY: -20,
+                stickOffX: 10,
                 height: 150,
                 width: 300,
                 draggable: true, // by default true
@@ -158,7 +177,10 @@ class App extends React.Component {
                 top: 100,
                 width: 200,
                 height: 200,
+                resizable: false,
+                draggable: false,
             },
+
         };
         this.state = {
             theme: storage.get('theme-style', { default: 'dark' }),
@@ -171,6 +193,8 @@ class App extends React.Component {
             table: table_long.data,
             textValue: '',
             textValue2: '',
+            customLeft: 100,
+            customTop: 100,
 
         };
     }
@@ -227,10 +251,11 @@ class App extends React.Component {
 
     render() {
         const {
-            fields, table, textValue, textValue2, dialogEx,
+            fields, table, textValue, textValue2, dialogEx, customLeft, customTop,
         } = this.state;
         const dialogs = Object.keys(this.dialogs);
         const fontsName = Object.keys(fonts);
+
         return (
             <div className={`${this.state.theme} ${this.state.size}`}>
                 <div className="panel">
@@ -311,6 +336,13 @@ class App extends React.Component {
                         <Block> <Btn onClick={() => { this.EditRequired.focus(); }}>focus to required</Btn></Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Dialog">
+                        <Block>
+                            {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
+                        </Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+
                     <Head caption="ComboBoxEx">
                         <Block>
                             <ComboBoxEx
@@ -453,13 +485,6 @@ class App extends React.Component {
                         </Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption="Dialog">
-                        <Block>
-                            {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
-
-                        </Block>
-                    </Head>
-                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="Text">
                         <Block>
                             <Text
@@ -578,7 +603,9 @@ class App extends React.Component {
 
                     dialogs.map((name) => <ModalDialog
                         key={name}
+                        id={name}
                         {...this.dialogs[name]}
+                        {...(name === 'custom' ? { left: customLeft, top: customTop } : {})}
                         visible={(name === this.state.dialog)}
                     >
                         {name === 'table'
@@ -592,14 +619,15 @@ class App extends React.Component {
                         }
                         {name !== 'table' && this.dialogs[name].msg}
                         {name === 'extend' && <Btn id="ex-btn" onClick={this.OpenDialogEx}>open</Btn>}
+                        {name === 'custom' && <Btn id="ex-btn-2" onClick={() => { this.setState({ customLeft: 300, customTop: 300 }); }}>move</Btn>}
                     </ModalDialog>)
                 }
-                <ModalDialog
+                {/* <ModalDialog
                     {...this.dialogEx}
                     visible={dialogEx}
                 >
                     {this.dialogEx.msg}
-                </ModalDialog>
+            </ModalDialog> */}
 
                 <div id="wd-modal" >
 

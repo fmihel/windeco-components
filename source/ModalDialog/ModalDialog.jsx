@@ -8,22 +8,59 @@ import Modal from '../Modal/Modal.jsx';
 export default class ModalDialog extends React.Component {
     constructor(p) {
         super(p);
+        this._prevPos = {};
+        this.prevPos('reset');
         this.state = {
             modalPos: {
                 left: 0, top: 0, width: -1, height: -1,
             },
         };
-        // this.resizeRef = React.createRef();
 
         binds(this, 'resize', 'onClickFooterBtn', 'onClickShadow', 'onClickHeaderClose',
             'onMouseDown', 'onMouseDownResize', 'mousemove', 'mouseup', 'mouseleave');
     }
 
     resize() {
-        // const s = JX.screen();
-        this.setState((state) => ({
-            modalPos: this.getModalPos(),
-        }));
+        const modalPos = this.getModalPos();
+        const prev = this.state.modalPos;
+        if (modalPos.left !== prev.left || modalPos.top !== prev.top || modalPos.width !== prev.width || modalPos.height !== prev.height) {
+            this.setState({ modalPos });
+        }
+    }
+
+    prevPos(ev) {
+        if (ev === 'reset') {
+            this._prevPos.left = this.props.left;
+            this._prevPos.top = this.props.top;
+            this._prevPos.width = this.props.width;
+            this._prevPos.height = this.props.height;
+        }
+        if (ev === 'changing') {
+            return (this._prevPos.left !== this.props.left || this._prevPos.top !== this.props.top || this._prevPos.width !== this.props.width || this._prevPos.height !== this.props.height);
+        }
+
+        if (ev === 'get-changing') {
+            const out = {};
+            if (this._prevPos.left !== this.props.left) {
+                out.left = this.props.left;
+                this._prevPos.left = this.props.left;
+            }
+            if (this._prevPos.top !== this.props.top) {
+                out.top = this.props.top;
+                this._prevPos.top = this.props.top;
+            }
+            if (this._prevPos.width !== this.props.width) {
+                out.width = this.props.width;
+                this._prevPos.width = this.props.width;
+            }
+            if (this._prevPos.height !== this.props.height) {
+                out.height = this.props.height;
+                this._prevPos.height = this.props.height;
+            }
+            return out;
+        }
+
+        return this._prevPos;
     }
 
     _margin() {
@@ -40,6 +77,8 @@ export default class ModalDialog extends React.Component {
 
     getModalPos() {
         const screen = JX.screen();
+        const first = this.state.modalPos.width === -1;
+
         if (this.props.align === 'stretch') {
             const margin = this._margin();
             return {
@@ -48,31 +87,50 @@ export default class ModalDialog extends React.Component {
                 width: screen.w - (margin.left + margin.right),
                 height: screen.h - (margin.top + margin.bottom),
             };
-        } if (this.props.align === 'custom' || (this.props.align === 'stickTo' && this.props.draggable && this.state.modalPos.width !== -1)) {
-            return this.state.modalPos.width === -1 ? {
+        }
+        if (this.props.align === 'custom') {
+            let pos = {
                 left: this.props.left,
                 top: this.props.top,
                 width: this.props.width,
                 height: this.props.height,
-            } : this.state.modalPos;
-        } if (this.props.align === 'stickTo' && (!this.props.draggable || this.state.modalPos.width === -1)) {
+            };
+
+            if (!first) {
+                if (this.draggable || this.resizable) {
+                    pos = { ...pos, ...this.state.modalPos };
+                }
+            }
+            return pos;
+        }
+        if (this.props.align === 'stickTo') {
             const stickTo = typeof this.props.stickTo === 'string' ? DOM(this.props.stickTo) : this.props.stickTo;
             const abs = JX.abs(stickTo);
             const pos = {
-                left: abs.x + abs.w / 2 - this.props.width / 2,
-                top: abs.y + abs.h,
                 width: this.props.width,
                 height: this.props.height,
             };
-            if (pos.left + pos.width > screen.w) pos.left = screen.w - pos.width;
-            if (pos.left < 0) pos.left = 0;
-            if (pos.top + pos.height > screen.h) pos.top = abs.y - pos.height;
-            if (pos.top < 0) pos.top = 0;
+            if (this.props.stickAlign === 'bottom') {
+                pos.left = abs.x + abs.w / 2 - this.props.width / 2 + this.props.stickOffX;
+                pos.top = abs.y + abs.h + this.props.stickOffY;
+                if (pos.left + pos.width > screen.w) pos.left = screen.w - pos.width;
+                if (pos.left < 0) pos.left = 0;
+                if (pos.top + pos.height > screen.h) pos.top = abs.y - pos.height - this.props.stickOffY;
+                if (pos.top < 0) pos.top = 0;
+            } else { // left
+                pos.left = abs.x + abs.w + this.props.stickOffX;
+                pos.top = abs.y + this.props.stickOffY;
+                if (pos.left + pos.width > screen.w) pos.left = abs.x - pos.width - this.props.stickOffX;
+                if (pos.left < 0) pos.left = 0;
+                if (pos.top + pos.height > screen.h) pos.top = abs.y - pos.height;
+                if (pos.top < 0) pos.top = 0;
+            }
 
             return pos;
         }
+
         return {
-            left: 10, top: 10, width: 100, height: 100,
+            left: 10, top: 10, width: 200, height: 200,
         };
     }
 
@@ -112,7 +170,8 @@ export default class ModalDialog extends React.Component {
     }
 
     onMouseDown(o) {
-        if ((this.props.align === 'custom' || this.props.align === 'stickTo') && this.props.draggable && o.button === 0) {
+        if ((this.props.align === 'custom' || this.props.align === 'stickTo')
+        && this.props.draggable && o.button === 0) {
             this.pressed = 0;
             this.coord = JX.mouse();
         }
@@ -172,6 +231,7 @@ export default class ModalDialog extends React.Component {
         $(window).on('mousemove', this.throttle_mousemove);
         $(window).on('mouseup', this.mouseup);
         // $(window).on('mouseleave', this.mouseleave);
+
         this.resize();
     }
 
@@ -179,21 +239,32 @@ export default class ModalDialog extends React.Component {
         // разовый после последнего рендеринга
         $(window).off('resize', this.resize);
         $(window).off('mousemove', this.throttle_mousemove);
-        // $(window).off('mousemove', this.mousemove);
         $(window).off('mouseup', this.mouseup);
-        // $(window).off('mouseleave', this.mouseleave);
     }
 
-    componentDidUpdate(prevProps, prevState, prevContext) {
+    shouldComponentUpdate(next) {
+        return this.props.visible || next.visible;
+    }
+
+    componentDidUpdate(prev, prevState, prevContext) {
         // каждый раз после рендеринга (кроме первого раза !)
-        if (this.props.visible && !prevProps.visible && this.props.align === 'stickTo') {
+        const { props } = this;
+        if (props.visible
+            && (!prev.visible
+                || (props.align === 'custom'
+                    && (props.left !== prev.left
+                        || props.top !== prev.top
+                        || props.width !== prev.width
+                        || props.height !== prev.height)
+                ))
+        ) {
             this.resize();
         }
     }
 
     render() {
         const {
-            visible, children, header, footer, onClickHeaderClose, shadowEnable,
+            id, visible, children, header, footer, onClickHeaderClose, shadowEnable,
             shadowOpacity, addShadowClass, addClass, resizable,
         } = this.props;
         const { modalPos } = this.state;
@@ -208,6 +279,7 @@ export default class ModalDialog extends React.Component {
         // const displayModal = visible ? 'flex' : 'none';
 
         return <Modal
+            id={id}
             enableShadow={visible && shadowEnable}
             onClickShadow={this.onClickShadow}
             shadowOpacity={shadowOpacity}
@@ -263,6 +335,7 @@ export default class ModalDialog extends React.Component {
     }
 }
 ModalDialog.defaultProps = {
+    id: undefined,
     visible: true, // сурывает (НЕ УДАЛЯЕТ) объект
     onClickHeaderClose: undefined,
     onClickShadow: undefined,
@@ -286,7 +359,10 @@ ModalDialog.defaultProps = {
         },
     },
     align: 'stretch', // stretch, custom,stickTo
-    stickTo: undefined, // DOM
+    stickTo: undefined, // DOM or object {to:string | DOM
+    stickAlign: 'bottom',
+    stickOffX: 0,
+    stickOffY: 0,
     margin: 50, // for align = stretch
     left: 50, // for align = custom
     top: 50, // for align = custom

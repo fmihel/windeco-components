@@ -78,15 +78,18 @@ export default class Modal extends React.Component {
             children, addShadowClass,
             shadowOpacity,
             visible,
+            id,
         } = this.props;
 
         const { shadowPos } = this.state;
         const opacityShadow = shadowOpacity !== 'css' ? { opacity: shadowOpacity } : {};
         const display = visible ? 'block' : 'none';
-
+        const props = {};
+        if (id) props.id = id;
         return ReactDOM.createPortal(
             <div
                 className={`wd-modal ${addClass}`}
+                {...props}
                 style={{
                     position: 'absolute',
                     left: 0,
@@ -106,6 +109,7 @@ export default class Modal extends React.Component {
     }
 }
 Modal.defaultProps = {
+    id: undefined,
     modalRoot: '#wd-modal',
     enableShadow: true,
     addClass: '',
