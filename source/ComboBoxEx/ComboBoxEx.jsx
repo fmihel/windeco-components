@@ -100,7 +100,7 @@ export default class ComboBoxEx extends React.Component {
 
             const remove = [];
             if (isPlaceholder && this.props.list.length) {
-                const addClasses = ComboBoxListEx.getAddClass(this.props.list[0], { ...ComboBoxEx._global.listClasses, ...this.props.listClasses }, this.props.addClassItem).split(' ');
+                const addClasses = ComboBoxListEx.getAddClass(this.props.list[0], { ...ComboBoxEx._global.listClasses, ...this.props.listClasses }, this.props.addClassItem).split(' ').filter((it) => it.trim());
                 addClasses.map((className) => {
                     if (!this.refValue.current.classList.contains(className)) {
                         this.refValue.current.classList.add(className);
