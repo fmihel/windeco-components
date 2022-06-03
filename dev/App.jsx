@@ -418,7 +418,7 @@ class App extends React.Component {
                         </Block>
                         <Block>
                             <Label caption="comboboxex">
-                                <ComboBoxEx list = {combo_list2} disable={{ dim: false }}/>
+                                <ComboBoxEx list = {combo_list2} disable={{ dim: false }} addClassItem={'wd-cb32-src'}/>
                             </Label>
                         </Block>
                         <Block>
@@ -444,7 +444,7 @@ class App extends React.Component {
                                     srcPath={'./media/combo_32/'}
                                     addClassItem={'wd-cb32-src'}
                                     disable={{ dim: false }}
-                                    select={1}
+                                    select={-1}
 
                                 />
                             </Label>

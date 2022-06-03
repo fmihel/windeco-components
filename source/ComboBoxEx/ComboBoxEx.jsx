@@ -97,14 +97,16 @@ export default class ComboBoxEx extends React.Component {
             // в случае если еще не было выбрано ни одного пункта (isPlaceholder===true), то компонент refValue не содержит
             // класс с оформлением, поэтому необходимо определить класс первого пугкта и подставить его в refValue
             const isPlaceholder = this.refValue.current.classList.contains('wd-combobox-ex-placeholder');
-            let addClass = false;
+
+            const remove = [];
             if (isPlaceholder && this.props.list.length) {
-                addClass = ComboBoxListEx.getAddClass(this.props.list[0], { ...ComboBoxEx._global.listClasses, ...this.props.listClasses }, this.props.addClassItem);
-                if (addClass && !this.refValue.current.classList.contains(addClass)) {
-                    this.refValue.current.classList.add(addClass);
-                } else {
-                    addClass = false;
-                }
+                const addClasses = ComboBoxListEx.getAddClass(this.props.list[0], { ...ComboBoxEx._global.listClasses, ...this.props.listClasses }, this.props.addClassItem).split(' ');
+                addClasses.map((className) => {
+                    if (!this.refValue.current.classList.contains(className)) {
+                        this.refValue.current.classList.add(className);
+                        remove.push(className);
+                    }
+                });
             }
 
             this.props.list.map((it) => {
@@ -117,9 +119,7 @@ export default class ComboBoxEx extends React.Component {
                 );
             });
 
-            if (addClass) {
-                this.refValue.current.classList.remove(addClass);
-            }
+            remove.map((className) => this.refValue.current.classList.remove(className));
         }
     }
 

@@ -123,24 +123,25 @@ export default class ComboBoxListEx extends React.Component {
     }
 
     static getAddClass(item, listClasses, addClassItem) {
-        const aci = (addClassItem ? (` ${addClassItem} `) : '');
-        if ('addClass' in item) {
-            return item.addClass + aci;
+        const _addClassItem = (addClassItem ? `${addClassItem}` : '');
+        if ('addClass' in item && item.addClass) {
+            return `${item.addClass} ${_addClassItem}`;
         }
         // const listClassesIndexs = Object.keys(listClasses);
         // if (listClassesIndexs.length) {
         if (('_indexClass_' in item) && (item._indexClass_ in listClasses)) {
-            return aci + listClasses[item._indexClass_];
+            return _addClassItem + listClasses[item._indexClass_];
         }
-        if ('default' in listClasses) return aci + listClasses.default;
-        // }
-        return aci;
+        if ('default' in listClasses && listClasses.default) {
+            return `${_addClassItem} ${listClasses.default}`;
+        }
+        return _addClassItem;
     }
 
     static getAddStyle(item, srcPath) {
         const style = {};
-        if ('_src_' in item) {
-            style.backgroundImage = `url(${srcPath + item._src_})`;
+        if ('_src_' in item && item._src_) {
+            style.backgroundImage = `url(${(srcPath || '') + item._src_})`;
             style.backgroundRepeat = 'no-repeat';
             style.backgroundPosition = 'left center';
         }

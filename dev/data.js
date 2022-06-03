@@ -126,7 +126,7 @@ export const combo_list4 = [
 ];
 
 export const combo_list5 = [
-    {
+    /* {
         id: 1, caption: 'double', _src_: 'e_90_double.png',
     },
     {
@@ -134,6 +134,9 @@ export const combo_list5 = [
     },
     {
         id: 3, caption: 'line', _src_: 'e-line.png',
+    }, */
+    {
+        id: 4, caption: 'line', _src_: 'e-line.png',
     },
 
 ];
