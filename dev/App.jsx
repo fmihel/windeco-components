@@ -35,7 +35,9 @@ ComboBoxEx.global({
         // y: 10,
     },
 });
-
+BtnIcon.global({
+    IconComponent: FontAwesomeIcon,
+});
 const iEdit = 'edit';
 const iEdit16 = 'edit16';
 
@@ -367,7 +369,6 @@ class App extends React.Component {
                                 }}> text from child</Edit>
                                 <BtnIcon
                                     hint = "icon"
-                                    IconComponent={FontAwesomeIcon}
                                     icon={faAddressBook}
                                     addClass="wd-danger"
                                     iconClass="demo-bi-color"
@@ -472,7 +473,7 @@ class App extends React.Component {
                                 iconClass="demo-bi-color"
                             >ok</BtnIcon>
                             <BtnIcon
-                                hint = "icon"
+                                hint = "icon "
                                 IconComponent={FontAwesomeIcon}
                                 icon={faAddressBook}
                                 addClass="wd-danger"

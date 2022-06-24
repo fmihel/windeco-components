@@ -1,4 +1,6 @@
 @use "sass:map";
+@import './utils.scss'; 
+
 
 $wd-themes:('light','dark') !default;
 $wd-sizes:('normal','small') !default;
@@ -123,73 +125,4 @@ $wd-gap:('small':2px,'normal':5px) !default;
 }
 
 
-
-
-// to use: @include transparent-border();
-@mixin transparent-border{
-    border:1px solid rgba(0,0,0,0); 
-}
-
-@mixin flex-row-strech-stretch{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-content: stretch;
-    align-items: stretch;    
-}
-
-@mixin stretch{
-    order: 0;
-    flex: 1 1 auto;
-    align-self: auto;    
-}
-
-@mixin no-stretch{
-    order: 0;
-    flex: 0 1 auto;
-    align-self: auto;    
-}
-@mixin transition($x...){
-    -webkit-transition: $x;
-    -moz-transition: $x;
-    -ms-transition: $x;
-    -o-transition: $x;
-    transition: $x;
-}
-
-$wd-font-family:(
-    'arial':'Arial, sans-serif',
-    'arial-black':'Arial Black, sans-serif',
-    'comic':'Comic Sans MS, cursive',
-    'courier':'Courier New, monospace',
-    'franklin':'Franklin Gothic Medium, sans-serif',
-    'gothic':'Franklin Gothic Medium, sans-serif',
-    'georgia':'Georgia, serif',
-    'impact':'Impact, sans-serif',
-    'lucida':'Lucida Console, monospace',
-    'console':'Lucida Console, monospace',
-    'ms':'Microsoft Sans Serif, sans-serif',
-    'palatino':'Palatino Linotype, serif',
-    'sylfaen':'Sylfaen, serif',
-    'tahoma':'Tahoma, sans-serif',
-    'times':'Times New Roman, serif',
-    'trebuchet':'Trebuchet MS, sans-serif',
-    'verdana':'Verdana, sans-serif',
-    'roboto':'Roboto, sans-serif'
-);
-
-@mixin font-family($name: 'roboto'){ 
-    @if map_has_key($wd-font-family,$name) {
-        font-family: #{map-get($wd-font-family, $name)};
-    } @else {
-        font-family: map-get($wd-font-family, 'roboto');
-        @debug 'set default font-family: Roboto';
-        @debug 'you can use next fonts:';
-        @each $key, $mean in $wd-font-family {
-            @debug $key;
-        }
-        
-    };
-}
 

@@ -259,7 +259,7 @@ content..
 ```
  npm i @fortawesome/fontawesome-free@5.15.4 @fortawesome/fontawesome-svg-core@1.2.28 @fortawesome/free-solid-svg-icons@5.13.0 @fortawesome/react-fontawesome@0.1.9
 ```
-### Examle:
+### Examle 1:
 ```javascript
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faFile} from '@fortawesome/free-solid-svg-icons';
@@ -273,6 +273,25 @@ import {faFile} from '@fortawesome/free-solid-svg-icons';
 
 <BtnIcon addClass="wd-primary">cancel</BtnIcon>
 ``` 
+### Examle 2: use global setup
+```javascript
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faFile} from '@fortawesome/free-solid-svg-icons';
+
+BtnIcon.global({
+    IconComponent:FontAwesomeIcon, //  by default use IconComponent
+    addClass:'wd-transparent',     
+});
+...
+<BtnIcon
+    icon={faFile}
+    addClass="wd-danger"              // wd-transparent wd-danger
+    iconClass="demo-bi-color"
+    value = "ok"
+/>
+
+``` 
+
 ### property
 |prop|type|default|notes|
 |----|----|-----|-----|
