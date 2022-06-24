@@ -11,6 +11,7 @@ function BtnIcon({
     const CIconComponent = IconComponent || BtnIcon._global.IconComponent;
     const CStyle = { ...BtnIcon._global.style, ...style };
     const CAddClass = [BtnIcon._global.addClass, addClass].join(' ').trim();
+    const margin = (iconClass || (CIconComponent && icon) && (value || children)) ? ' wd-margin-right-gap' : '';
     return (
         <div
             id={id}
@@ -21,7 +22,7 @@ function BtnIcon({
             style={CStyle}
         >
             { (iconClass || (CIconComponent && icon))
-            && <div className={`wd-bi-icon ${iconClass}`}>
+            && <div className={`wd-bi-icon${iconClass ? ` ${iconClass}` : ''}${margin}`}>
                 {CIconComponent && icon && <CIconComponent icon={icon}/>}
             </div>
             }

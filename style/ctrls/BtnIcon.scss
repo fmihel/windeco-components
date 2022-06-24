@@ -50,10 +50,9 @@ $wd-btn-border-focus:$wd-ctrl-border-focus !default;
         align-self: auto;
     }
     .wd-bi-icon{
-
         min-height:$size*0.5;
         min-width:$size*0.5;
-        margin-right: $gap;
+        @include display-flex-center();
         >svg{
             height: $size*0.5;
         }

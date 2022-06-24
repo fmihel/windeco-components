@@ -124,5 +124,17 @@ $wd-gap:('small':2px,'normal':5px) !default;
     }
 }
 
+@each $name in $wd-sizes{
+    $gap:map-get($wd-gap,#{$name});
+    .#{$name}{
+        .wd-margin-left-gap{
+            margin-left:$gap;
+        }
+        .wd-margin-right-gap{
+            margin-right:$gap;
+        }
+
+    }
+}
 
 

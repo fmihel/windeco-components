@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faFile, faFolder, faFolderOpen, faCoffeCup, faFileCode, faAddressBook,
+    faFile, faFolder, faFolderOpen, faCoffeCup, faFileCode, faAddressBook, faCaretDown,
 } from '@fortawesome/free-solid-svg-icons';
 import Edit from '../source/Edit/Edit.jsx';
 import Btn from '../source/Btn/Btn.jsx';
@@ -37,6 +37,10 @@ ComboBoxEx.global({
 });
 BtnIcon.global({
     IconComponent: FontAwesomeIcon,
+    style: {
+        borderRadius: '0px',
+        marginLeft: '2px',
+    },
 });
 const iEdit = 'edit';
 const iEdit16 = 'edit16';
@@ -313,6 +317,33 @@ class App extends React.Component {
                         </Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption={'BtnIcon'}>
+                        <Block>
+                            <Btn>left</Btn>
+                            <BtnIcon>button presed test</BtnIcon>
+                            <BtnIcon
+                                hint = "icon"
+                                IconComponent={Icon}
+                                icon={iEdit}
+                                addClass="wd-danger"
+                                iconClass="demo-bi-color"
+                            >ok</BtnIcon>
+                            <BtnIcon
+                                hint = "icon "
+                                IconComponent={FontAwesomeIcon}
+                                icon={faAddressBook}
+                                addClass="wd-danger"
+                                iconClass="demo-bi-color"
+                            >ok</BtnIcon>
+                            <Btn>standart</Btn>
+                            <BtnIcon addClass="wd-primary">cancel</BtnIcon>
+                            <BtnIcon>story</BtnIcon>
+                            <BtnIcon icon={faCaretDown} style={{ width: '100px' }} hint="no text"/>
+                            <BtnIcon addClass="wd-green">save</BtnIcon>
+                        </Block>
+                    </Head>
+
+                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="Edit">
                         <Block> <Edit id="tt" style={{ fontSize: '1.2em' }}onKeyPress={(o) => {
                             console.log(o);
@@ -457,32 +488,6 @@ class App extends React.Component {
                             <Icon icon={iEdit} addClass="icon-custom"/>
                             <Icon icon={iEdit16}/>
                             <Icon icon={'uncknown'} addClass="icon-custom"/>
-                        </Block>
-                    </Head>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption={'BtnIcon'}>
-                        <Block>
-
-                            <Btn>left</Btn>
-                            <BtnIcon>button presed test</BtnIcon>
-                            <BtnIcon
-                                hint = "icon"
-                                IconComponent={Icon}
-                                icon={iEdit}
-                                addClass="wd-danger"
-                                iconClass="demo-bi-color"
-                            >ok</BtnIcon>
-                            <BtnIcon
-                                hint = "icon "
-                                IconComponent={FontAwesomeIcon}
-                                icon={faAddressBook}
-                                addClass="wd-danger"
-                                iconClass="demo-bi-color"
-                            >ok</BtnIcon>
-                            <Btn>standart</Btn>
-                            <BtnIcon addClass="wd-primary">cancel</BtnIcon>
-                            <BtnIcon>story</BtnIcon>
-                            <BtnIcon addClass="wd-green">save</BtnIcon>
                         </Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
