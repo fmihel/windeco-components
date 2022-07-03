@@ -233,6 +233,7 @@ content..
 |onClickHeaderClose|function|undefined||
 |onClickShadow|function|undefined||
 |onClickFooterBtn|function|undefined||
+|onShow|function({sender})|undefined|Каждый раз при отображении|
 |header|string|false|заголовок|
 |footer|object|undefined|кнопки внизу панели <br>Ex1: ['ok','cancel']<br>Ex2: {ok(o){ console.log(o);}}<br>Ex3: {ok:{ <br>id:'ok-id',<br>caption:'enter',<br>addClass:'wd-primary'}} |
 |align|string|stretch|stretch,custom,stickTo|

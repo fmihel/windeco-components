@@ -130,6 +130,9 @@ class App extends React.Component {
                 width: 300,
                 draggable: true, // by default true
                 resizable: true,
+                onShow() {
+                    console.log('show dialog');
+                },
             },
             stickToHoriz: {
                 ...defaultDialogParam,

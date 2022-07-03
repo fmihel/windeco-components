@@ -233,6 +233,9 @@ export default class ModalDialog extends React.Component {
         // $(window).on('mouseleave', this.mouseleave);
 
         this.resize();
+        if (this.props.onShow && this.props.visible) {
+            this.props.onShow({ sender: this });
+        }
     }
 
     componentWillUnmount() {
@@ -259,6 +262,9 @@ export default class ModalDialog extends React.Component {
                 ))
         ) {
             this.resize();
+        }
+        if (props.visible && !prev.visible && props.onShow) {
+            props.onShow({ sender: this });
         }
     }
 
@@ -340,6 +346,7 @@ ModalDialog.defaultProps = {
     onClickHeaderClose: undefined,
     onClickShadow: undefined,
     onClickFooterBtn: undefined,
+    onShow: undefined,
     header: false,
     footer: undefined,
     footer_example: {
