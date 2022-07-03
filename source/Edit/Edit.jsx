@@ -123,6 +123,7 @@ export default class Edit extends React.Component {
 
     render() {
         const {
+            id,
             dim, placeholder, disable, labelName, addClass, style, hint,
             type, required, min, max, step, maxLength, minLength,
             autoFocus,
@@ -160,6 +161,7 @@ export default class Edit extends React.Component {
         return (
             <div className='wd-edit-frame' style={{ display, ...frameStyle }}>
                 <input
+                    id={id}
                     ref = {this.inputRef}
                     type={_type || 'text'}
                     onChange = {this.onChange}
