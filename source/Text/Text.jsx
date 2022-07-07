@@ -73,7 +73,7 @@ export default class Text extends React.Component {
 
     render() {
         const {
-            value, style, addClass, placeholder, hint, disabled, resize, readonly, maxLength, required,
+            value, style, addClass, placeholder, hint, disabled, resize, readonly, maxLength, required, id,
         } = this.props;
         const _style = { ...style, resize: resize ? '' : 'none' };
         const prop = {};
@@ -82,6 +82,7 @@ export default class Text extends React.Component {
         const _value = value || this.props.children || '';
         if (required && (`${_value}`).length === 0) _class += ' wd-text-require ';
         if (readonly) prop.readOnly = 'readonly';
+        if (id) prop.id = id;
         return (
             <textarea
                 ref = {this.refTextarea}
