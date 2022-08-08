@@ -168,6 +168,7 @@ const listClasses = {
 |addClassItem|string||доп класс к каждому элементу|
 |required|bool|false|необходим для ввода|
 |srcPath|string||путь, который будет добавляться ко всем \_src_ в списке|
+|clamp|int|0|если ширина меньше clamp то при наведении (hover или focus) будет увеличиваться до clamp|
 
 ---
 ## Table

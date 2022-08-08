@@ -33,7 +33,7 @@ export default class ComboBoxEx extends React.Component {
             mouseOnCombo: false,
         };
 
-        binds(this, 'openList', 'closeList', 'onChange', 'onKeyDown', 'onFocusOut', 'onCreateList', 'onMouseMove', 'onMouseLeave');
+        binds(this, 'openList', 'closeList', 'onChange', 'onKeyDown', 'onFocusOut', 'onCreateList', 'onMouseMove', 'onMouseLeave', 'onFocusIn');
         this.ref = React.createRef();
         this.refFocus = React.createRef();
         this.refValue = React.createRef();
@@ -67,7 +67,7 @@ export default class ComboBoxEx extends React.Component {
     }
 
     closeList() {
-        this.setState({ visibleList: false });
+        this.setState({ visibleList: false, mouseOnCombo: false });
         this.destroyTimer();
     }
 
@@ -176,7 +176,11 @@ export default class ComboBoxEx extends React.Component {
     }
 
     onFocusOut() {
+        this.setState({ mouseOnCombo: false });
+    }
 
+    onFocusIn() {
+        this.setState({ mouseOnCombo: true });
     }
 
     onChange(o) {
@@ -191,7 +195,7 @@ export default class ComboBoxEx extends React.Component {
                 });
             }
         }
-        this.setState({ select });
+        this.setState({ select, mouseOnCombo: false });
         this.closeList();
     }
 
@@ -249,7 +253,7 @@ export default class ComboBoxEx extends React.Component {
         const {
             idFieldName, placeholder, disable, dim, labelName,
             addClass, addClassItem, list, maxListHeight, listClasses: listClassesProps, style, required,
-            hideBtnOnSelect, srcPath,
+            hideBtnOnSelect, srcPath, clamp,
         } = this.props;
         const { visibleList, pos, mouseOnCombo } = this.state;
         const name = (labelName ? { id: labelName } : {});
@@ -300,13 +304,25 @@ export default class ComboBoxEx extends React.Component {
         if ('width' in style) {
             focusStyle.width = style.width;
         }
-
+        const clampStyle = {};
+        if (clamp > 0 && mouseOnCombo && this.ref) {
+            const { w } = JX.pos(this.ref.current);
+            if (w < clamp) {
+                clampStyle.left = -(clamp - w) / 2;
+                clampStyle.width = clamp;
+                clampStyle.minWidth = clamp;
+                clampStyle.position = 'relative';
+                clampStyle.zIndex = 10000;
+            }
+        }
         return (
             <div
                 className={`wd-combobox-ex ${addClass}`}
                 ref={this.ref}
                 {...name}
-                style={style}
+                style={{ ...style }}
+                onMouseMove={this.onMouseMove}
+                onMouseLeave={this.onMouseLeave}
 
             >
                 <div
@@ -314,10 +330,9 @@ export default class ComboBoxEx extends React.Component {
                     tabIndex="0"
                     onKeyDown={this.onKeyDown}
                     onBlur={this.onFocusOut}
-                    onMouseMove={this.onMouseMove}
-                    onMouseLeave={this.onMouseLeave}
+                    onFocus={this.onFocusIn}
                     ref={this.refFocus}
-                    style={focusStyle}
+                    style={{ ...focusStyle, ...clampStyle }}
                 >
 
                     <div
@@ -413,5 +428,5 @@ ComboBoxEx.defaultProps = {
     required: false,
     hideBtnOnSelect: false, // скрывать кнопку раскрытия, если выбран элемент
     srcPath: '',
-
+    clamp: 0, // если ширина меньше указанногов clamp то при раскрытии
 };
