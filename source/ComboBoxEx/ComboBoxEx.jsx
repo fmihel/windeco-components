@@ -176,11 +176,13 @@ export default class ComboBoxEx extends React.Component {
     }
 
     onFocusOut() {
-        this.setState({ mouseOnCombo: false });
+        // if (this.state.mouseOnCombo) this.setState({ mouseOnCombo: false });
+        // console.log('out');
     }
 
     onFocusIn() {
-        this.setState({ mouseOnCombo: true });
+        // console.log('in');
+        if (!this.state.mouseOnCombo) this.setState({ mouseOnCombo: true });
     }
 
     onChange(o) {
