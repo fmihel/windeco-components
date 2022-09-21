@@ -1,6 +1,6 @@
 # windeco-components 
 react components for windeco\
-`v1.26.0`
+`v1.33.1`
 
 
 [1. Btn - кнопка](#Btn)<br/>

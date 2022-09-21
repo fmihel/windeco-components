@@ -18,7 +18,7 @@
     "copy-style-to-order": "cp -r style ../orders-test/node_modules/fmihel-windeco-components/",
     "copy-style-to-order-blank": "cp -r style ../order-blank/node_modules/fmihel-windeco-components/",
     "copy-style-to-order-blank-editor": "cp -r style ../order-blank-editor/node_modules/fmihel-windeco-components/",
-    "git-push": "git push windeco-components && git push windeco-components --tag",
+    "git-push": "git push origin main && git push origin main --tag",
     "npm-publish-patch": "npm run build && npm version patch && npm publish && npm run git-push",
     "npm-publish-minor": "npm run build && npm version minor && npm publish && npm run git-push",
     "npm-publish-major": "npm run build && npm version major && npm publish && npm run git-push"
@@ -40,7 +40,7 @@
   "homepage": "https://github.com/fmihel/windeco-components#readme",
   "peerDependencies": {
     "fmihel-polyfills": ">=0.2.0",
-    "fmihel-browser-lib": "^1.15.0",
+    "fmihel-browser-lib": "^2.0.0",
     "jquery": "^3.4.1",
     "react": ">=16.13.1",
     "react-dom": ">=16.13.1",
