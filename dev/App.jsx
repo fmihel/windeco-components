@@ -477,6 +477,7 @@ class App extends React.Component {
                         <Block> <Edit value="disabled" disabled={1} /></Block>
                         <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
                         <Block> <Label caption="label" id="myEdit100"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
+                        <Block> <Label caption="pass" id="pass"><Edit type="password" value="set text" disable={{ dim: true }}/></Label></Block>
                         <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
                         <Block> <Label caption="range"><Edit value={5} dim={''} type='number' min={0} max={10} step={1}/></Label></Block>
                         <Block> <Btn onClick={() => { this.EditRequired.focus(); }}>focus to required</Btn></Block>

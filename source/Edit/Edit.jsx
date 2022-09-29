@@ -155,8 +155,10 @@ export default class Edit extends React.Component {
         // if (clampClass !== false) {
         //    delete inputStyle.width;
         // }
-        let _type = 'text';
-        if (type === 'number') _type = focused ? type : 'text';
+        let _type = type || 'text';
+        if (type === 'number') {
+            _type = focused ? type : 'text';
+        }
 
         return (
             <div className='wd-edit-frame' style={{ display, ...frameStyle }}>
