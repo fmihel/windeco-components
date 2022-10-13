@@ -423,7 +423,7 @@ class App extends React.Component {
                             />
                         </Block>
                         <Block>
-                            <Label caption="comboboxex">
+                            <Label caption="comboboxex" style={{ color: 'red' }}>
                                 <ComboBoxEx list = {combo_list2} disable={{ dim: false }} addClassItem={'wd-cb32-src'}/>
                             </Label>
                         </Block>

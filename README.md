@@ -76,6 +76,21 @@ react components for windeco\
 
 ---
 ## Label
+```html
+<Label style={{color:'red'}}>
+    <Edit>name</Edit>
+</Label>
+``` 
+
+### property
+|prop|type|default|notes|
+|----|----|-----|-----|
+|id|any|undefined|идентификатор|
+|caption|string|| отображаемый текст |
+|addClass|string|undefined|класс добавляемый в label|
+|style|object|{}|стиль css в label|
+
+
 ---
 ## CheckBox
 ```html
