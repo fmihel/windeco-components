@@ -16,7 +16,6 @@ export default class Label extends React.Component {
         const {
             caption, addClass, id, style,
         } = this.props;
-        console.log(`label.style ${caption}`, style);
         const labelName = id || this.state.labelName;
         return (
             <div className="wd-label-frame">
