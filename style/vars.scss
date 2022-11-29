@@ -90,7 +90,12 @@ $wd-gap:('small':2px,'normal':5px) !default;
             color: map-get($wd-ctrl-color-primary,#{$name}) !important;
             border-color: map-get($wd-ctrl-border-primary,#{$name}) !important;
             &:hover{
-                background-color:darken(map-get($wd-ctrl-bg-primary,#{$name}), 10%) !important;
+                @if  $name=='dark' {
+                    background-color:lighten(map-get($wd-ctrl-bg-primary,#{$name}), 10%) !important;
+                } @else {
+                    background-color:darken(map-get($wd-ctrl-bg-primary,#{$name}), 10%) !important;
+                }
+                    
 
              }
         }
@@ -99,7 +104,12 @@ $wd-gap:('small':2px,'normal':5px) !default;
             color: map-get($wd-ctrl-color-danger,#{$name}) !important;
             border-color: map-get($wd-ctrl-border-danger,#{$name}) !important;
             &:hover{
-                background-color:darken(map-get($wd-ctrl-bg-danger,#{$name}), 10%) !important;
+                @if  $name=='dark' {
+                    background-color:lighten(map-get($wd-ctrl-bg-danger,#{$name}), 10%) !important;
+                } @else {
+                    background-color:darken(map-get($wd-ctrl-bg-danger,#{$name}), 10%) !important;
+                }
+        
              }
         }
         .wd-green{
@@ -107,7 +117,11 @@ $wd-gap:('small':2px,'normal':5px) !default;
             color: map-get($wd-ctrl-color-green,#{$name}) !important;
             border-color: map-get($wd-ctrl-border-green,#{$name}) !important;
             &:hover{
-                background-color:darken(map-get($wd-ctrl-bg-green,#{$name}), 10%) !important;
+                @if  $name=='dark' {
+                    background-color:lighten(map-get($wd-ctrl-bg-green,#{$name}), 10%) !important;
+                } @else {
+                    background-color:darken(map-get($wd-ctrl-bg-green,#{$name}), 10%) !important;
+                }
 
              }
         }

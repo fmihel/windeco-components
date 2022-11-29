@@ -2,52 +2,44 @@ import React from 'react';
 import _ from 'lodash';
 
 function BtnIcon({
-    id, value, onClick, children,
-    addClass = '',
-    iconClass,
-    IconComponent = undefined,
-    icon, hint = '', style = {},
+    id,
+    value,
+    onClick = undefined,
+    addClass = BtnIcon.global.addClass,
+    className = BtnIcon.global.className,
+    iconClass = BtnIcon.global.iconClass,
+    IconComponent = BtnIcon.global.IconComponent,
+    icon,
+    hint = '',
+    title = '',
+    style = {},
+    children,
 }) {
-    const CIconComponent = IconComponent || BtnIcon._global.IconComponent;
-    const CStyle = { ...BtnIcon._global.style, ...style };
-    const CAddClass = [BtnIcon._global.addClass, addClass].join(' ').trim();
-    const margin = (iconClass || (CIconComponent && icon) && (value || children)) ? ' wd-margin-right-gap' : '';
     return (
         <div
             id={id}
             onClick={onClick}
-            className={`wd-btn-icon${CAddClass ? ` ${CAddClass}` : ''}`}
+            className={`${className} ${addClass}`}
             tabIndex={0}
-            title = {hint || ''}
-            style={CStyle}
+            title = {title || hint || ''}
+            style={{ ...BtnIcon.global.style, ...style }}
         >
-            { (iconClass || (CIconComponent && icon))
-            && <div className={`wd-bi-icon${iconClass ? ` ${iconClass}` : ''}${margin}`}>
-                {CIconComponent && icon && <CIconComponent icon={icon}/>}
+
+            <div style = {{ display: (iconClass || (IconComponent && icon)) ? 'block' : 'none' }}className={`${iconClass ? ` ${iconClass}` : ''}`}>
+                {IconComponent && icon && <IconComponent icon={icon}/>}
             </div>
-            }
-            {(value || children)
-            && <div className={'wd-bi-value'}>{value || children}</div>
-            }
+
+            <div style={{ display: (value || children) ? 'block' : 'none' }}>{value || children}</div>
         </div>
     );
 }
 
-BtnIcon._global = {
+BtnIcon.global = {
     IconComponent: undefined,
     style: {},
     addClass: '',
-};
+    className: 'wd-btn-icon',
 
-BtnIcon.global = (o) => {
-    if (o) {
-        const props = Object.keys(o);
-        props.map((prop) => {
-            if (prop === 'IconComponent') BtnIcon._global[prop] = o[prop];
-            else BtnIcon._global[prop] = _.cloneDeep(o[prop]);
-        });
-    }
-    return BtnIcon._global;
 };
 
 export default BtnIcon;

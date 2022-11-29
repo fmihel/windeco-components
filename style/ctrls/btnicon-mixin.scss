@@ -1,0 +1,83 @@
+@use "sass:meta";
+@mixin btnicon-mixin($args...){
+    $theme:'dark';
+    $size:2rem;
+    $bg:gray;
+    $color:black;
+    $border:gray;
+    $outline:black;
+    $font-size:1rem;
+    $gap:5px;
+
+    @each $name, $mean in meta.keywords($args) {
+        @if ($name=='theme'){$theme:$mean;};    
+        @if ($name=='size'){$size:$mean;};    
+        @if ($name=='bg'){$bg:$mean;};    
+        @if ($name=='color'){$color:$mean;};    
+        @if ($name=='border'){$border:$mean;};    
+        @if ($name=='outline'){$outline:$mean;};    
+        @if ($name=='font-size'){$font-size:$mean;};    
+        @if ($name=='gap'){$gap:$mean;};    
+    };
+
+    background-color: $bg;
+    color: $color;
+    border:1px solid $border;
+    outline: none;
+
+
+    vertical-align: top;
+    box-sizing: border-box;
+    
+    min-height:$size;
+    height:$size;
+    min-width:$size;
+    
+    border-radius: 5px;
+    font-size: $font-size;
+   
+    padding-left:$gap;
+    padding-right:$gap;
+
+    margin-left:1px;
+    margin-right:1px;
+
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    &:focus { 
+        outline: 2px solid $outline;
+    }
+    &:hover{
+        @if  $theme=='dark' {
+            background-color:lighten($bg, 5%);
+        } @else {
+            background-color:darken($bg, 5%);
+        }
+    }
+
+    >div{
+        order: 0;
+        flex: 0 1 auto;
+        align-self: auto;
+        margin-left:1px;
+        margin-right:1px;
+        &:first-child(){
+            min-height:$size*0.5;
+            min-width:$size*0.5;
+            @include display-flex-center();
+            >svg{
+                max-height: $size*0.5;
+            }
+        }
+        &:last-child(){
+            min-width:calc($size/2);
+
+        }
+    }
+
+}

@@ -19,13 +19,15 @@ ComboBoxEx.global({
         // y: 10,
     },
 });
-BtnIcon.global({
+BtnIcon.global = {
+    ...BtnIcon.global,
     IconComponent: FontAwesomeIcon,
     style: {
-        borderRadius: '0px',
-        marginLeft: '2px',
+        ...BtnIcon.global.style,
+        // borderRadius: '0px',
+        // marginLeft: '2px',
     },
-});
+};
 export const iEdit = 'edit';
 export const iEdit16 = 'edit16';
 
