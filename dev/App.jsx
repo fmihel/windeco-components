@@ -6,9 +6,11 @@ import {
 import { connect } from 'react-redux';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import {
     faFile, faFolder, faFolderOpen, faCoffeCup, faFileCode, faAddressBook, faCaretDown,
 } from '@fortawesome/free-solid-svg-icons';
+import { iEdit, iEdit16 } from './global';
 import Edit from '../source/Edit/Edit.jsx';
 import Btn from '../source/Btn/Btn.jsx';
 import BtnIcon from '../source/BtnIcon/BtnIcon.jsx';
@@ -29,29 +31,6 @@ import {
     table_long2, table_long, combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4, combo_list5,
 } from './data.js';
 
-ComboBoxEx.global({
-    // listClasses: listClasses3,
-    offText: {
-        // y: 10,
-    },
-});
-BtnIcon.global({
-    IconComponent: FontAwesomeIcon,
-    style: {
-        borderRadius: '0px',
-        marginLeft: '2px',
-    },
-});
-const iEdit = 'edit';
-const iEdit16 = 'edit16';
-
-Icon.global({
-    icons: {
-        [iEdit]: { path: './media/edit.png', addClass: 'wd-icon' },
-        [iEdit16]: { path: './media/edit16.png' },
-
-    },
-});
 // Icon.icons({
 // [iEdit]: './media/edit.png',
 // [iEdit16]: { path: './media/edit16.png' },
@@ -321,6 +300,26 @@ class App extends React.Component {
                         </Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Icon">
+                        <Block>
+                            <Icon icon={iEdit} addClass="icon-custom"/>
+                            <Icon icon={iEdit16}/>
+                            <Icon icon={'uncknown'} addClass="icon-custom"/>
+                        </Block>
+                    </Head>
+
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Btn">
+                        <Block>
+                            <Btn>button</Btn>
+                            <Btn addClass="wd-danger" hint="wd-danger hint">wd-danger</Btn>
+                            <Btn addClass="wd-primary">wd-primary</Btn>
+                            <Btn addClass="wd-transparent">wd-transparent</Btn>
+                            <Btn addClass="wd-primary pic-bag">pic</Btn>
+                        </Block>
+                    </Head>
+
+                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption={'BtnIcon'}>
                         <Block>
                             <Btn>left</Btn>
@@ -490,14 +489,6 @@ class App extends React.Component {
                     </Head>
 
                     {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption="Icon">
-                        <Block>
-                            <Icon icon={iEdit} addClass="icon-custom"/>
-                            <Icon icon={iEdit16}/>
-                            <Icon icon={'uncknown'} addClass="icon-custom"/>
-                        </Block>
-                    </Head>
-                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="Text">
                         <Block>
                             <Text
@@ -569,16 +560,6 @@ class App extends React.Component {
                     <Head caption = "ComboBox">
                         <Block> <ComboBox /></Block>
                         <Block> <Label caption="combobox"><ComboBox disable={{ dim: false }}/></Label></Block>
-                    </Head>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption="Btn">
-                        <Block>
-                            <Btn>button</Btn>
-                            <Btn addClass="wd-danger" hint="wd-danger hint">wd-danger</Btn>
-                            <Btn addClass="wd-primary">wd-primary</Btn>
-                            <Btn addClass="wd-transparent">wd-transparent</Btn>
-                            <Btn addClass="wd-primary pic-bag">pic</Btn>
-                        </Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="Table">

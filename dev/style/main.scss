@@ -15,13 +15,16 @@ input, select, textarea, button{
     font-family:inherit;
 }
 
+html{
+    font-size:16px;
+    @include font-family('gothic'); 
+}
+
 body{
     overflow: hidden;
     margin: 0px;
     padding: 0px;
-    @include font-family('gothic'); 
-    font-size:12px;
-
+    
 }
 #app{
     position: absolute;

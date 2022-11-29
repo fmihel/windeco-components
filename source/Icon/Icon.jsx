@@ -1,53 +1,26 @@
 import React from 'react';
-import _ from 'lodash';
 
 export default function Icon({
-    icon, addClass, onClick, style = {},
+    src, icon, path,
+    className = Icon.global.className,
+    addClass = Icon.global.addClass,
+    onClick = undefined,
+    style = Icon.global.style,
+    icons = Icon.global.icons,
 }) {
-    const param = Icon._global.icons[icon];
     return (
         <img
-            src={param ? param.path : ''}
-            className={`${param ? param.addClass : ''} ${addClass || ''}`}
+            src={src || path || ((icons[icon] && icons[icon].src) ? icons[icon].src : false) || (icons[icon] && icons[icon].path ? icons[icon].path : false) || ''}
+            className={className + (addClass ? ` ${addClass}` : '') + ((icons[icon] && icons[icon].addClass) ? ` ${icons[icon].addClass}` : '')}
             onClick={onClick}
-            style={{ ...style }}
+            style={ { ...style } }
         />
     );
 }
 
-Icon._global = {
-    icons: {},
-};
-
-Icon.global = (params) => {
-    const type = typeof params;
-    if (type === 'string') {
-        return Icon._global[params];
-    }
-    if (type === 'object') {
-        Icon._global = _.defaultsDeep(params, Icon._global);
-    }
-    return { ...Icon._global };
-};
-
-Icon.icons = (params) => {
-    const type = typeof params;
-    if (type === 'string') {
-        return Icon._global.icons[params];
-    }
-
-    if (type === 'object') {
-        const icons = {};
-        const keys = Object.keys(params);
-        keys.map((key) => {
-            if (typeof params[key] === 'string') {
-                icons[key] = { path: params[key] };
-            } else {
-                icons[key] = params[key];
-            }
-        });
-        Icon._global.icons = _.defaultsDeep(icons, Icon._global.icons);
-    }
-
-    return { ...Icon._global.icons };
+Icon.global = {
+    icons: {}, // {name1:{src,addClass?},name2:{src,addClass?}...}
+    addClass: '',
+    className: 'wd-icon',
+    style: {},
 };

@@ -1,0 +1,47 @@
+@use "sass:meta";
+@mixin btn-mixin($args...){
+    $theme:'dark';
+    $size:2rem;
+    $bg:gray;
+    $color:black;
+    $border:gray;
+    $outline:black;
+    $font-size:1rem;
+
+    @each $name, $mean in meta.keywords($args) {
+        @if ($name=='theme'){$theme:$mean;};    
+        @if ($name=='size'){$size:$mean;};    
+        @if ($name=='bg'){$bg:$mean;};    
+        @if ($name=='color'){$color:$mean;};    
+        @if ($name=='border'){$border:$mean;};    
+        @if ($name=='outline'){$outline:$mean;};    
+        @if ($name=='font-size'){$font-size:$mean;};    
+    };
+
+    background-color: $bg;
+    color: $color;
+    border:1px solid $border;
+    outline: 'none';
+
+    box-sizing: border-box;
+    height:$size;
+    min-width:$size;
+    border-radius: 5px;
+    font-size: $font-size;
+    
+    margin-left:1px;
+    margin-right:1px;
+
+    &:focus { 
+        outline: 2px solid $outline;
+
+    }
+
+    &:hover{
+        @if  $theme=='dark' {
+            background-color:lighten($bg, 5%);
+        } @else {
+            background-color:darken($bg, 5%);
+        }
+    }
+}

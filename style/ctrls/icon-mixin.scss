@@ -1,0 +1,14 @@
+@use "sass:meta";
+@mixin icon-mixin($args...){
+    $theme:'dark';
+    $size:1rem;
+    @each $name, $mean in meta.keywords($args) {
+        @if ($name=='theme'){$theme:$mean;};    
+        @if ($name=='size'){$size:$mean;};    
+    }
+
+    outline: none;
+    width:$size;
+    height:$size;
+
+}
