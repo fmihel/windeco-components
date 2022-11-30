@@ -24,6 +24,7 @@ import ModalDialog from '../source/ModalDialog/ModalDialog.jsx';
 import Modal from '../source/Modal/Modal.jsx';
 import Text from '../source/Text/Text.jsx';
 import Icon from '../source/Icon/Icon.jsx';
+import EditEx from '../source/Edit/EditEx.jsx';
 
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
@@ -44,6 +45,7 @@ class App extends React.Component {
             'onClickTable', 'onClickTableFixed', 'OpenDialog', 'CloseDialog', 'undefTheme', 'OpenDialogEx', 'CloseDialogEx');
         this.onTableClear = this.onTableClear.bind(this);
         this.onTableFill = this.onTableFill.bind(this);
+        this.onChangeEx = this.onChangeEx.bind(this);
         // общие параметры для диалогов
         const defaultDialogParam = {
             header: false,
@@ -183,6 +185,9 @@ class App extends React.Component {
             textValue2: '',
             customLeft: 100,
             customTop: 100,
+            values: {
+
+            },
 
         };
     }
@@ -237,9 +242,20 @@ class App extends React.Component {
         this.setState({ table: table_long.data });
     }
 
+    onChangeEx({ id, value }) {
+        if (id) {
+            this.setState((prev) => ({
+                values: {
+                    ...prev.values,
+                    [id]: value,
+                },
+            }));
+        }
+    }
+
     render() {
         const {
-            fields, table, textValue, textValue2, dialogEx, customLeft, customTop,
+            fields, table, textValue, textValue2, dialogEx, customLeft, customTop, values,
         } = this.state;
         const dialogs = Object.keys(this.dialogs);
         const fontsName = Object.keys(fonts);
@@ -298,6 +314,52 @@ class App extends React.Component {
                                 }
                             }/>
                         </Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Edit">
+                        <Block> <EditEx id="tt" style={{ fontSize: '1.2em' }} onKeyPress={(o) => {
+                            console.log(o);
+                        }}> text from child</EditEx></Block>
+                        <Block> <EditEx type="password" placeholder="set password" style={{ height: 18, minHeight: 18 }}/></Block>
+                        <Block> <EditEx autoFocus value="text from value, and hint" title="title prop (hint deeprecated)"/></Block>
+
+                        <Block> <EditEx
+                            id = 'edNeed'
+                            value = {values.edNeed}
+                            onChange = {this.onChangeEx}
+                            hint="обязательный ввод"
+                            placeholder="need text.."
+                            required={true}
+                            maxLength={10}
+                        />
+                        </Block>
+                        <Block> <EditEx value="disabled" disabled={1} /></Block>
+                        <Block> <EditEx id="edph" placeholder="set text" value={values.edph} onChange={this.onChangeEx}/></Block>
+                        {/*
+                        <Block> <Edit id="tt" style={{ fontSize: '1.2em' }} onKeyPress={(o) => {
+                            console.log(o);
+                        }}> text from child</Edit></Block>
+                        <Block> <Edit type="password" placeholder="set password" disable={{ dim: true }} style={{ height: 18 }}/></Block>
+                        <Block> <Edit autoFocus value="text from value, and hint" hint="hint prop"/></Block>
+                        <Block> <Edit
+                            value=""
+                            hint="обязательный ввод"
+                            placeholder="need text.."
+                            required={true}
+                            maxLength={10}
+                            onInit={(component) => { this.EditRequired = component; }}
+                            onKeyDown={(o) => { console.log('down', o); }}
+                            onKeyUp={(o) => { console.log('up', o); }}
+                        />
+                        </Block>
+                        <Block> <Edit value="disabled" disabled={1} /></Block>
+                        <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
+                        <Block> <Label caption="label" id="myEdit100"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
+                        <Block> <Label caption="pass" id="pass"><Edit type="password" value="set text" disable={{ dim: true }}/></Label></Block>
+                        <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
+                        <Block> <Label caption="range"><Edit value={5} dim={''} type='number' min={0} max={10} step={1}/></Label></Block>
+                        <Block> <Btn onClick={() => { this.EditRequired.focus(); }}>focus to required</Btn></Block>
+                    */}
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="Icon">
@@ -454,32 +516,6 @@ class App extends React.Component {
                                 />
                             </Label>
                         </Block>
-                    </Head>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption="Edit">
-                        <Block> <Edit id="tt" style={{ fontSize: '1.2em' }}onKeyPress={(o) => {
-                            console.log(o);
-                        }}> text from child</Edit></Block>
-                        <Block> <Edit type="password" placeholder="set password" disable={{ dim: true }} style={{ height: 18 }}/></Block>
-                        <Block> <Edit autoFocus value="text from value, and hint" hint="hint prop"/></Block>
-                        <Block> <Edit
-                            value=""
-                            hint="обязательный ввод"
-                            placeholder="need text.."
-                            required={true}
-                            maxLength={10}
-                            onInit={(component) => { this.EditRequired = component; }}
-                            onKeyDown={(o) => { console.log('down', o); }}
-                            onKeyUp={(o) => { console.log('up', o); }}
-                        />
-                        </Block>
-                        <Block> <Edit value="disabled" disabled={1} /></Block>
-                        <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
-                        <Block> <Label caption="label" id="myEdit100"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
-                        <Block> <Label caption="pass" id="pass"><Edit type="password" value="set text" disable={{ dim: true }}/></Label></Block>
-                        <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
-                        <Block> <Label caption="range"><Edit value={5} dim={''} type='number' min={0} max={10} step={1}/></Label></Block>
-                        <Block> <Btn onClick={() => { this.EditRequired.focus(); }}>focus to required</Btn></Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="Dialog">
