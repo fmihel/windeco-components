@@ -1,0 +1,34 @@
+@use "sass:meta";
+@mixin label-frame-mixin($args...){
+    $theme:'dark';
+    $size:2rem;
+    $gap:5px;
+
+    @each $name, $mean in meta.keywords($args) {
+        @if ($name=='theme'){$theme:$mean;};    
+        @if ($name=='size'){$size:$mean;}; 
+        @if ($name=='gap'){$gap:$mean;};    
+    }
+
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+
+    height:$size;
+
+    >div:nth-child(2){
+        flex:1 1 auto;
+    }
+    .wd-label{
+        height:$size;
+        line-height: $size;
+        margin-right:$gap;
+        text-indent: $gap;
+    }            
+
+
+}

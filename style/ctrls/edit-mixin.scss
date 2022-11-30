@@ -33,6 +33,9 @@
     &:focus { 
         outline: 2px solid $outline;
     }
+
+    @include transition(margin 0.2s);
+
 }
 
 @mixin edit-require($args...){

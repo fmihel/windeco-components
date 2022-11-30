@@ -1,34 +1,14 @@
 @import '../vars.scss';
+@import './label-frame-mixin.scss';
 
+
+.wd-label-frame{
+    @include label-frame-mixin($wd-default-theme);
+}
 
 @each $name in $wd-themes{
-    
     .#{$name} {
         .wd-label-frame{
-            
-                
-        }
-}}
-
-@each $name in $wd-sizes{
-    $size:map-get($wd-size,#{$name});
-    .#{$name} {
-        .wd-label-frame{
-            height:$size;
-
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            justify-content: flex-start;
-            align-content: stretch;
-            align-items: stretch;
-            >div:nth-child(2){
-                flex:1 1 auto;
-            }
-            .wd-label{
-                height:$size;
-                line-height: $size;
-                margin-right: map-get($wd-gap,#{$name});
-            }            
+            @include label-frame-mixin($theme:$name);
         }
 }}

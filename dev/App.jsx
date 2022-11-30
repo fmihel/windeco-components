@@ -18,6 +18,7 @@ import ComboBox from '../source/ComboBox/ComboBox.jsx';
 import ComboBoxEx from '../source/ComboBoxEx/ComboBoxEx.jsx';
 import CheckBox from '../source/CheckBox/CheckBox.jsx';
 import Label from '../source/Label/Label.jsx';
+import LabelEx from '../source/Label/LabelEx.jsx';
 import Table from '../source/Table/Table.jsx';
 import TableFixed from '../source/TableFixed/TableFixed.jsx';
 import ModalDialog from '../source/ModalDialog/ModalDialog.jsx';
@@ -319,7 +320,7 @@ class App extends React.Component {
                     <Head caption="Edit">
                         <Block> <EditEx id="tt" style={{ fontSize: '1.2em' }} onKeyPress={(o) => {
                             console.log(o);
-                        }}> text from child</EditEx></Block>
+                        }}>text from child</EditEx></Block>
                         <Block> <EditEx type="password" placeholder="set password" style={{ height: 18, minHeight: 18 }}/></Block>
                         <Block> <EditEx autoFocus value="text from value, and hint" title="title prop (hint deeprecated)"/></Block>
 
@@ -336,31 +337,13 @@ class App extends React.Component {
                         <Block> <EditEx value="readonly" readonly={1} /></Block>
                         <Block> <EditEx value="disabled" disabled={1} visible={true}/></Block>
                         <Block> <EditEx id="edph" placeholder="set text" value={values.edph} onChange={this.onChangeEx}/></Block>
-                        {/*
-                        <Block> <Edit id="tt" style={{ fontSize: '1.2em' }} onKeyPress={(o) => {
-                            console.log(o);
-                        }}> text from child</Edit></Block>
-                        <Block> <Edit type="password" placeholder="set password" disable={{ dim: true }} style={{ height: 18 }}/></Block>
-                        <Block> <Edit autoFocus value="text from value, and hint" hint="hint prop"/></Block>
-                        <Block> <Edit
-                            value=""
-                            hint="обязательный ввод"
-                            placeholder="need text.."
-                            required={true}
-                            maxLength={10}
-                            onInit={(component) => { this.EditRequired = component; }}
-                            onKeyDown={(o) => { console.log('down', o); }}
-                            onKeyUp={(o) => { console.log('up', o); }}
-                        />
-                        </Block>
-                        <Block> <Edit value="disabled" disabled={1} /></Block>
-                        <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
-                        <Block> <Label caption="label" id="myEdit100"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
-                        <Block> <Label caption="pass" id="pass"><Edit type="password" value="set text" disable={{ dim: true }}/></Label></Block>
-                        <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
-                        <Block> <Label caption="range"><Edit value={5} dim={''} type='number' min={0} max={10} step={1}/></Label></Block>
-                        <Block> <Btn onClick={() => { this.EditRequired.focus(); }}>focus to required</Btn></Block>
-                    */}
+                        <Block> <LabelEx caption="label" id="myEdit100">
+                            <EditEx id="myEdit100" value={values.myEdit100} onChange={this.onChangeEx}/>
+                        </LabelEx></Block>
+                        <Block> <LabelEx caption="pass" id="pass"><EditEx id="pass" type="password" value="set text" /></LabelEx></Block>
+                        <Block> <LabelEx caption="readonly" id="ronl"><EditEx id="ronl" value="readonly text in edit" dim={''} readonly={true}/></LabelEx></Block>
+                        <Block> <LabelEx caption="range" id="rng" ><EditEx id="rng" value={5} type='number' min={0} max={10} step={1}/></LabelEx></Block>
+
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="Icon">
