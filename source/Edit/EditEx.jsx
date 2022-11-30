@@ -61,7 +61,7 @@ function Edit({
     };
     // --------------------------------------------------------
     const props = {};
-    if (readonly) { props.readonly = 'readonly'; }
+    if (readonly) { props.readOnly = 'readonly'; }
     if (disabled) { props.disabled = true; }
     if (min !== undefined) props.min = min;
     if (max !== undefined) props.max = max;
@@ -71,6 +71,7 @@ function Edit({
     // --------------------------------------------------------
     const requiredClass = (required && (`${value || children || ''}`).length === 0) ? Edit.global.requiredClass : '';
     const disabledClass = (disabled) ? Edit.global.disabledClass : '';
+    const readonlyClass = (readonly) ? Edit.global.readonlyClass : '';
     let _type = type;
     if (type === 'number') {
         _type = focused ? type : 'text';
@@ -91,7 +92,7 @@ function Edit({
                 ...style,
                 ...(visible ? {} : { display: 'none' }),
             }}
-            className={`${className} ${addClass} ${requiredClass} ${disabledClass}`}
+            className={`${className} ${addClass} ${requiredClass} ${disabledClass} ${readonlyClass}`}
             placeholder={placeholder}
             {...props}
             title = {title || hint || ''}
@@ -105,7 +106,8 @@ Edit.global = {
     addClass: '',
     style: {},
     requiredClass: 'wd-edit-require',
-    disabledClass: 'wd-edit-disabled',
+    disabledClass: 'wd-edit-disable',
+    readonlyClass: 'wd-edit-readonly',
 };
 
 export default Edit;

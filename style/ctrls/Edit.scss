@@ -150,6 +150,12 @@ $wd-edit-color-require: $wd-ctrl-color-require !default;
 .wd-edit-require{
     @include edit-require($wd-default-theme);
 }
+.wd-edit-readonly{
+    @include edit-disabled($theme:$wd-default-theme);
+};
+.wd-edit-disable{
+    @include edit-disabled($theme:$wd-default-theme);
+};
 
 @each $name in $wd-themes{
     .#{$name} {
@@ -169,6 +175,20 @@ $wd-edit-color-require: $wd-ctrl-color-require !default;
                 $border:map-get($wd-edit-color-require,#{$name}),
             );
         }
+        .wd-edit-readonly{
+            @include edit-disabled(
+                $theme:$name,
+                $border:map-get($wd-edit-border,#{$name}),
+                $color: map-get($wd-edit-color-readonly,#{$name})
+            );
+        };
+        .wd-edit-disable{
+            @include edit-disabled(
+                $theme:$name,
+                $border:map-get($wd-edit-border,#{$name}),
+                $color: map-get($wd-edit-color-disable,#{$name})
+            );
+        };
     }
 }
 
