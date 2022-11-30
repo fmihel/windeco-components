@@ -23,6 +23,7 @@ import Table from '../source/Table/Table.jsx';
 import TableFixed from '../source/TableFixed/TableFixed.jsx';
 import ModalDialog from '../source/ModalDialog/ModalDialog.jsx';
 import Modal from '../source/Modal/Modal.jsx';
+import ModalEx from '../source/Modal/ModalEx.jsx';
 import Text from '../source/Text/Text.jsx';
 import Icon from '../source/Icon/Icon.jsx';
 import EditEx from '../source/Edit/EditEx.jsx';
@@ -317,6 +318,53 @@ class App extends React.Component {
                         </Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Modal">
+                        <Block>
+                            <Btn onClick={() => { this.setState({ modalShow: true }); }} >show</Btn>
+                            { <ModalEx
+                                id="test-modal"
+                                visible={this.state.modalShow}
+                                onClickShadow={() => {
+                                    this.setState({ modalShow: false });
+                                }}
+                            >
+                                <div
+                                    style={{
+                                        position: 'absolute',
+                                        left: 100,
+                                        top: 100,
+                                        width: 200,
+                                        height: 200,
+                                        border: '1px solid navy',
+                                        background: 'gray',
+                                    }}>
+                                    <Btn >btn on modal 1</Btn>
+                                    <Btn >btn on modal 2</Btn>
+                                </div>
+                            </ModalEx>
+                            }
+                        </Block>
+                    </Head>
+                    {/** <Modal
+                            onClickShadow={() => {
+                                this.setState({ modalShow: false });
+                            }}
+                        >
+                            <div
+                                style={{
+                                    position: 'absolute',
+                                    left: 100,
+                                    top: 100,
+                                    width: 200,
+                                    height: 200,
+                                    border: '1px solid navy',
+                                    background: 'gray',
+                                }}>
+                                <Btn >btn on modal 1</Btn>
+                                <Btn >btn on modal 2</Btn>
+                            </div>
+                        </Modal> */}
+                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="CheckBox">
                         <Block> <CheckBox id="ch1" checked={values.ch1} onChange={this.onChangeEx}/></Block>
                         <Block> <LabelEx id="ckb1" caption='check'><CheckBox id="ckb1" checked={values.ckb1} onChange={this.onChangeEx}/></LabelEx></Block>
@@ -586,33 +634,6 @@ class App extends React.Component {
                     <Head caption="Table">
                         <Block> <Table onClick={this.onClickTable}/></Block>
                     </Head>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption="Modal">
-                        <Block>
-                            <Btn onClick={() => { this.setState({ modalShow: true }); }} >show</Btn>
-                            {this.state.modalShow
-                        && <Modal
-                            onClickShadow={() => {
-                                this.setState({ modalShow: false });
-                            }}
-                        >
-                            <div
-                                style={{
-                                    position: 'absolute',
-                                    left: 100,
-                                    top: 100,
-                                    width: 200,
-                                    height: 200,
-                                    border: '1px solid navy',
-                                    background: 'gray',
-                                }}>
-                                <Btn >btn on modal 1</Btn>
-                                <Btn >btn on modal 2</Btn>
-                            </div>
-                        </Modal>
-                            }
-                        </Block>
-                    </Head>
                 </div>
                 {
 
@@ -647,6 +668,10 @@ class App extends React.Component {
                 <div id="wd-modal" >
 
                 </div>
+                <div id="wd-modal2" >
+
+                </div>
+
             </div>
         );
     }
