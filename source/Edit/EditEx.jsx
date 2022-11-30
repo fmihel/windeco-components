@@ -20,7 +20,6 @@ function Edit({
     title = '',
     hint = '',
     visible = true,
-    defaultDisplay = Edit.global.defaultDisplay,
     min = undefined, // for type = range or number
     max = undefined, // for type = range or number
     step = undefined, // for type = range or number
@@ -88,10 +87,9 @@ function Edit({
             onFocus={focus}
             onBlur = {unfocus}
             style={{
-                display: (visible ? defaultDisplay : 'none'),
                 ...Edit.global.style,
                 ...style,
-
+                ...(visible ? {} : { display: 'none' }),
             }}
             className={`${className} ${addClass} ${requiredClass} ${disabledClass}`}
             placeholder={placeholder}
@@ -106,7 +104,6 @@ Edit.global = {
     className: 'wd-edit',
     addClass: '',
     style: {},
-    defaultDisplay: 'block',
     requiredClass: 'wd-edit-require',
     disabledClass: 'wd-edit-disabled',
 };

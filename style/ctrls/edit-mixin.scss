@@ -7,6 +7,7 @@
     $color:black;
     $outline:#92BCD8;
     $border:#DCDCDC;
+    $gap:5px;
 
     @each $name, $mean in meta.keywords($args) {
         @if ($name=='theme'){$theme:$mean;};    
@@ -16,7 +17,7 @@
         @if ($name=='color'){$color:$mean;};    
         @if ($name=='border'){$border:$mean;};    
         @if ($name=='outline'){$outline:$mean;};    
-
+        @if ($name=='gap'){$gap:$mean;};    
     }
 
     outline: none;
@@ -25,6 +26,8 @@
     border:1px solid $border;
     width:100%;
     background-color: $bg;
+    text-indent:$gap;
+
     color:$color;
 
     &:focus { 

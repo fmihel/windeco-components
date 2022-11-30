@@ -333,7 +333,7 @@ class App extends React.Component {
                             maxLength={10}
                         />
                         </Block>
-                        <Block> <EditEx value="disabled" disabled={1} /></Block>
+                        <Block> <EditEx value="disabled" disabled={1} visible={true}/></Block>
                         <Block> <EditEx id="edph" placeholder="set text" value={values.edph} onChange={this.onChangeEx}/></Block>
                         {/*
                         <Block> <Edit id="tt" style={{ fontSize: '1.2em' }} onKeyPress={(o) => {
