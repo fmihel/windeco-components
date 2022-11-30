@@ -16,7 +16,7 @@ import Btn from '../source/Btn/Btn.jsx';
 import BtnIcon from '../source/BtnIcon/BtnIcon.jsx';
 import ComboBox from '../source/ComboBox/ComboBox.jsx';
 import ComboBoxEx from '../source/ComboBoxEx/ComboBoxEx.jsx';
-import CheckBox from '../source/CheckBox/CheckBox.jsx';
+import CheckBox from '../source/CheckBox/CheckBoxEx.jsx';
 import Label from '../source/Label/Label.jsx';
 import LabelEx from '../source/Label/LabelEx.jsx';
 import Table from '../source/Table/Table.jsx';
@@ -317,6 +317,15 @@ class App extends React.Component {
                         </Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="CheckBox">
+                        <Block> <CheckBox id="ch1" checked={values.ch1} onChange={this.onChangeEx}/></Block>
+                        <Block> <LabelEx id="ckb1" caption='check'><CheckBox id="ckb1" checked={values.ckb1} onChange={this.onChangeEx}/></LabelEx></Block>
+                        <Block> <LabelEx caption='on change'><Btn onClick={() => { this.setState({ checked: 0 }); }} >on change false</Btn></LabelEx></Block>
+                        <Block> <LabelEx caption='on change'><CheckBox checked={this.state.checked} onChange={() => { this.setState({ checked: 1 }); }}/></LabelEx></Block>
+                        <Block> <LabelEx id="ckb-disabled" caption='disabled'><CheckBox id="ckb-disabled" checked={true} onChange={(o) => { console.log(o); }} disabled={true}/></LabelEx></Block>
+                    </Head>
+
+                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="Edit">
                         <Block> <EditEx id="tt" style={{ fontSize: '1.2em' }} onKeyPress={(o) => {
                             console.log(o);
@@ -552,14 +561,6 @@ class App extends React.Component {
                         <Block>
                             {fontsName.map((name, key) => <div key={key} className="font-line"><div>{name}</div><div className={`font-${name}`}>Короткий текст для примера.</div></div>)}
                         </Block>
-                    </Head>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption="CheckBox">
-                        <Block> <CheckBox checked={true}/></Block>
-                        <Block> <Label caption='check'><CheckBox id="ckb1" onChange={(o) => { console.log(o); }}/></Label></Block>
-                        <Block> <Label caption='on change'><Btn onClick={() => { this.setState({ checked: 0 }); }} >on change false</Btn></Label></Block>
-                        <Block> <Label caption='on change'><CheckBox checked={this.state.checked} asRadio={1} onChange={() => { this.setState({ checked: 1 }); }}/></Label></Block>
-                        <Block> <Label caption='disabled'><CheckBox id="ckb-disabled" checked={true} onChange={(o) => { console.log(o); }} disabled={true}/></Label></Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption = "TableFixed">

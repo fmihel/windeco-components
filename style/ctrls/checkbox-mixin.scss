@@ -1,0 +1,61 @@
+@use "sass:meta";
+@mixin checkbox-mixin($args...){
+    $theme:'dark';
+    $size:2rem;
+    $bg:gray;
+    $border:gray;
+    $outline:gray;
+    $icon:'';
+    $icon-hover:'';
+
+    @each $name, $mean in meta.keywords($args) {
+        @if ($name=='theme'){$theme:$mean;};    
+        @if ($name=='size'){$size:$mean;};    
+        @if ($name=='bg'){$bg:$mean;};    
+        @if ($name=='border'){$border:$mean;};    
+        @if ($name=='outline'){$outline:$mean;};    
+        @if ($name=='icon'){$icon:$mean;};    
+        @if ($name=='icon-hover'){$icon-hover:$mean;};    
+    };
+
+
+    input[type=checkbox] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        
+        background-color: $bg;
+        border: 1px solid $border;
+
+        width: $size*0.7;
+        height: $size*0.7;
+        margin:0px;
+
+        cursor: pointer;        
+
+        &:checked{
+            background-image:url($icon);
+            background-size: $size*0.5;
+            background-position: center center;
+            background-repeat: no-repeat;
+
+        }
+        &:not(:checked){
+            &:hover{
+                background-image:url($icon-hover);
+                background-size: $size*0.5;
+                background-position: center center;
+                background-repeat: no-repeat;
+            }
+        }
+        &:focus{
+            outline:2px solid $outline;
+        }
+        /*
+        &:hover{
+
+        } 
+        */    
+    }
+
+
+}
