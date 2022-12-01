@@ -181,6 +181,7 @@ class App extends React.Component {
             dialog: false, // 'table',
             dialogEx: false,
             modalShow: false,
+            modalShow2: false,
             fields: table_long.fields,
             table: table_long.data,
             textValue: '',
@@ -320,9 +321,9 @@ class App extends React.Component {
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="Modal">
                         <Block>
-                            <Btn onClick={() => { this.setState({ modalShow: true }); }} >show</Btn>
+                            <Btn onClick={() => { this.setState({ modalShow: true }); }} >show1</Btn>
                             { <ModalEx
-                                id="test-modal"
+                                id="test-modal1"
                                 visible={this.state.modalShow}
                                 onClickShadow={() => {
                                     this.setState({ modalShow: false });
@@ -338,9 +339,36 @@ class App extends React.Component {
                                         border: '1px solid navy',
                                         background: 'gray',
                                     }}>
-                                    <Btn >btn on modal 1</Btn>
-                                    <Btn >btn on modal 2</Btn>
+                                    <Btn onClick={() => { this.setState({ modalShow2: true }); }} >show2</Btn>
+
                                 </div>
+
+                            </ModalEx>
+                            }
+                        </Block>
+                        <Block>
+                            <Btn onClick={() => { this.setState({ modalShow2: true }); }} >show2</Btn>
+                            { <ModalEx
+                                id="test-modal2"
+                                visible={this.state.modalShow2}
+                                onClickShadow={() => {
+                                    this.setState({ modalShow2: false });
+                                }}
+                            >
+                                <div
+                                    style={{
+                                        position: 'absolute',
+                                        left: 100,
+                                        top: 100,
+                                        width: 200,
+                                        height: 200,
+                                        border: '1px solid navy',
+                                        background: 'gray',
+                                    }}>
+                                    <Btn onClick={() => { this.setState({ modalShow: true }); }} >show1</Btn>
+
+                                </div>
+
                             </ModalEx>
                             }
                         </Block>

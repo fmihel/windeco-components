@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { JX } from 'fmihel-browser-lib';
 
 let _root;
 function getRoot() {
@@ -18,28 +17,29 @@ function Modal({
     onClickShadow = undefined,
     children,
 }) {
-    const [screen, setScreen] = useState({ width: JX.screen().w, height: JX.screen().h });
+    const screenSize = () => ({ width: window.innerWidth, height: window.innerHeight });
+    const [screen, setScreen] = useState(screenSize());
     const [element] = useState(document.createElement('div'));
+    const moveTop = () => { element.parentElement.insertBefore(element, null); };
 
     const resize = () => {
-        const s = JX.screen();
-        setScreen({ width: s.w, height: s.h });
+        setScreen(screenSize());
     };
     useEffect(() => {
         getRoot().appendChild(element);
-        $(window).on('resize', resize);
-        console.log('creare');
+        window.addEventListener('resize', () => resize);
         return () => {
-            $(window).off('resize', resize);
+            window.removeEventListener('resize', resize);
             getRoot().removeChild(element);
-            console.log('delete');
         };
     }, []);
 
-    const moveTop = () => {
-        const parent = element.parentElement;
-        parent.insertBefore(element, null);
-    };
+    useEffect(() => {
+        if (visible) {
+            moveTop();
+        }
+    }, [visible]);
+
     return ReactDOM.createPortal(
         <div
             id = {id}
