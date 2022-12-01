@@ -66,7 +66,7 @@ function Modal({
 }
 
 Modal.global = {
-    idRoot: 'wd-modal2',
+    idRoot: 'wd-modal',
     className: 'wd-modal',
     classShadow: 'wd-shadow',
 };

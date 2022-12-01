@@ -21,8 +21,9 @@ import Label from '../source/Label/Label.jsx';
 import LabelEx from '../source/Label/LabelEx.jsx';
 import Table from '../source/Table/Table.jsx';
 import TableFixed from '../source/TableFixed/TableFixed.jsx';
-import ModalDialog from '../source/ModalDialog/ModalDialog.jsx';
-import Modal from '../source/Modal/Modal.jsx';
+// import ModalDialog from '../source/ModalDialog/ModalDialog.jsx';
+import ModalDialog from '../source/ModalDialog/ModalDialogEx.jsx';
+// import Modal from '../source/Modal/Modal.jsx';
 import ModalEx from '../source/Modal/ModalEx.jsx';
 import Text from '../source/Text/Text.jsx';
 import Icon from '../source/Icon/Icon.jsx';
@@ -319,6 +320,12 @@ class App extends React.Component {
                         </Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Dialog">
+                        <Block>
+                            {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
+                        </Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="Modal">
                         <Block>
                             <Btn onClick={() => { this.setState({ modalShow: true }); }} >show1</Btn>
@@ -373,25 +380,6 @@ class App extends React.Component {
                             }
                         </Block>
                     </Head>
-                    {/** <Modal
-                            onClickShadow={() => {
-                                this.setState({ modalShow: false });
-                            }}
-                        >
-                            <div
-                                style={{
-                                    position: 'absolute',
-                                    left: 100,
-                                    top: 100,
-                                    width: 200,
-                                    height: 200,
-                                    border: '1px solid navy',
-                                    background: 'gray',
-                                }}>
-                                <Btn >btn on modal 1</Btn>
-                                <Btn >btn on modal 2</Btn>
-                            </div>
-                        </Modal> */}
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="CheckBox">
                         <Block> <CheckBox id="ch1" checked={values.ch1} onChange={this.onChangeEx}/></Block>
@@ -586,12 +574,6 @@ class App extends React.Component {
                             </Label>
                         </Block>
                     </Head>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption="Dialog">
-                        <Block>
-                            {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
-                        </Block>
-                    </Head>
 
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="Text">
@@ -694,12 +676,7 @@ class App extends React.Component {
             </ModalDialog> */}
 
                 <div id="wd-modal" >
-
                 </div>
-                <div id="wd-modal2" >
-
-                </div>
-
             </div>
         );
     }

@@ -3,7 +3,7 @@ import { binds, DOM, JX } from 'fmihel-browser-lib';
 import React from 'react';
 import _ from 'lodash';
 import Btn from '../Btn/Btn.jsx';
-import Modal from '../Modal/Modal.jsx';
+import Modal from '../Modal/ModalEx.jsx';
 
 export default class ModalDialog extends React.Component {
     constructor(p) {

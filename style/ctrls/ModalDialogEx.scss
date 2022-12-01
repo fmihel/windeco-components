@@ -1,0 +1,185 @@
+@import '../vars.scss';
+
+$wd-modal-dialog-gap-k:('small':2,'normal':1) !default;
+$wd-modal-dialog-bg:$wd-bg !default;
+$wd-modal-dialog-border:('light':#c9c9c9,'dark':#4d4e49) !default;
+$wd-modal-dialog-color:('light':#000000,'dark':#c7c7c7)  !default;
+
+.wd-dialog-shadow{
+    background-color: rgb(0, 0, 0);
+    //background-color: rgba(0, 0, 0,0.2);  set if shadowOpacity === 'css' (by default)
+    position: absolute;
+} 
+
+@mixin  wd-dialog-theme($name) {
+ 
+    .wd-dialog{
+        border:1px solid wd-get-theme($wd-modal-dialog-border,#{$name});
+        border-radius: 3px;
+        @if $name=='dark'{
+            background-color:lighten( wd-get-theme($wd-modal-dialog-bg,#{$name}),5%);
+        }@else{
+            background-color:darken( wd-get-theme($wd-modal-dialog-bg,#{$name}),0%);
+        }
+    
+        color:wd-get-theme($wd-modal-dialog-color,#{$name});
+        @if $name=='dark'{
+            box-shadow: 0px 0px 5px  black;
+        }
+    
+        .wd-dialog-header{
+    
+            .wd-dialog-caption{
+                font-size: 1.3em;
+                font-weight: bold;
+                
+            }
+            .wd-dialog-close-btn{
+                border-radius: 12px;
+                &:hover{
+                    color:rgb(165, 139, 139);
+                }
+            }
+        }
+        .wd-dialog-content{
+            
+        }
+        .wd-dialog-footer{
+        }
+    }
+    .wd-dialog-resize{
+        >div{
+            border-right:2px solid wd-get-theme($wd-modal-dialog-border,#{$name});
+            border-bottom:2px solid wd-get-theme($wd-modal-dialog-border,#{$name});
+            &:hover{
+                border-right:2px solid wd-get-theme($wd-border-focus,#{$name});
+                border-bottom:2px solid wd-get-theme($wd-border-focus,#{$name});
+            }
+        }
+    }
+}
+
+@mixin  wd-dialog-theme-size($name) {
+
+    $size:wd-get-size($wd-size,#{$name});
+    $gap:wd-get-size($wd-gap,#{$name});
+    $font-size:wd-get-size($wd-font-size,#{$name});
+    .wd-dialog{
+
+        position: absolute;
+        font-size:$font-size;
+    
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: stretch;
+    
+        >div{
+            order: 0;
+            flex: 0 1 auto;
+            align-self: auto;
+        }
+
+        .wd-dialog-header{
+            height: $size;
+    
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-content: stretch;
+            align-items: center; 
+    
+            padding-left:$gap*wd-get-size($wd-modal-dialog-gap-k,#{$name});
+            padding-right:$gap*wd-get-size($wd-modal-dialog-gap-k,#{$name});
+    
+            >div{
+                order: 0;
+                flex: 0 1 auto;
+                align-self: auto;
+            }
+    
+            .wd-dialog-caption{
+                flex: 1 1 auto;
+                height: $size;
+                line-height: $size;
+            }
+            
+            .wd-dialog-close-btn{
+                height: $size*0.8;
+                width:$size*0.8;
+                min-width: $size*0.8;
+                line-height: $size*0.8;
+                text-align: center;
+    
+                //font-size:1.5em;
+    
+                &:hover{
+                }
+            }
+        }
+
+        .wd-dialog-content{
+            padding: $gap*wd-get-size($wd-modal-dialog-gap-k,#{$name});
+
+            flex: 1 1 auto;
+            overflow: auto;
+        }
+        .wd-dialog-footer{
+            height: $size*1.2;
+    
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-end;
+            align-content: stretch;
+            align-items: center;
+    
+            margin-left:$gap;
+            margin-right:$gap;
+    
+            input{
+                margin-right: $gap;
+                min-width: $size*2;
+                &:last-child{
+                    margin-right: 0px;
+                }
+            }
+            
+        }
+    }
+    
+    .wd-dialog-resize{
+        position: absolute;
+        width: 0px;
+        height: 0px;
+        >div{
+            position: relative;
+            width: $size*0.6;
+            height: $size*0.6;
+            left:-$size*0.6+4;
+            top:-$size*0.6+4;
+            cursor: move;
+        }
+    }
+}
+
+
+@include wd-dialog-theme($wd-default-theme);
+@include wd-dialog-theme-size($wd-default-theme-size);
+
+
+@each $name in $wd-themes{
+    .#{$name} {
+        @include wd-dialog-theme($name);
+    }
+}
+
+@each $name in $wd-sizes{
+
+    .#{$name} {
+        @include wd-dialog-theme-size($name);
+    }
+}
