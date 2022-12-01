@@ -113,6 +113,24 @@ class ModalDialogAPI {
             left: 10, top: 10, width: 200, height: 200,
         };
     }
+
+    static getFooterParam(key, paramName, footer) {
+        let param = {
+            key,
+            id: undefined,
+            caption: key,
+            onClick: undefined,
+            addClass: '',
+        };
+        if (!Array.isArray(footer)) {
+            if (typeof footer[key] === 'function') {
+                param.onClick = footer[key];
+            } else {
+                param = { ...param, ...footer[key] };
+            }
+        }
+        return param[paramName];
+    }
 }
 ModalDialogAPI._init();
 
