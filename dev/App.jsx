@@ -15,7 +15,7 @@ import Edit from '../source/Edit/Edit.jsx';
 import Btn from '../source/Btn/Btn.jsx';
 import BtnIcon from '../source/BtnIcon/BtnIcon.jsx';
 import ComboBox from '../source/ComboBox/ComboBox.jsx';
-import ComboBoxEx from '../source/ComboBoxEx/ComboBoxEx.jsx';
+import ComboBoxEx from '../source/ComboBoxEx/ComboBoxExEx.jsx';
 import CheckBox from '../source/CheckBox/CheckBoxEx.jsx';
 import Label from '../source/Label/Label.jsx';
 import LabelEx from '../source/Label/LabelEx.jsx';
@@ -320,6 +320,115 @@ class App extends React.Component {
                         </Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="ComboBoxEx">
+                        <Block>
+                            <ComboBoxEx
+                                style={{ height: 18 }}
+                                onChange={(o) => { console.log(o); }}
+                                list = {combo_list1}
+                                required={true}
+                            />
+                        </Block>
+                        <Block>
+                            <div className="block-horiz">
+                                <ComboBoxEx
+                                    onChange={(o) => { console.log(o); }}
+                                    list = {combo_list3}
+                                    listClasses={listClasses3}
+                                    disable={{ dim: true }}
+                                    select={3}
+                                    style={{ width: 100 }}
+                                    clamp={150}
+                                />
+                                <Edit id="ttt" style={{ width: 100 }} disable={{ dim: true }} onKeyPress={(o) => {
+                                    console.log(o);
+                                }}> text from child</Edit>
+                                <BtnIcon
+                                    hint = "icon"
+                                    icon={faAddressBook}
+                                    addClass="wd-danger"
+                                    iconClass="demo-bi-color"
+                                >ok</BtnIcon>
+                                <Btn> left</Btn>
+                            </div>
+                        </Block>
+                        <Block>
+                            <div className="block-horiz">
+                                <ComboBoxEx
+                                    onChange={(o) => { console.log(o); }}
+                                    list = {combo_list3}
+                                    disable={{ dim: true }}
+                                    select={3}
+                                    style={{ width: 100, height: 43, textAlign: 'center' }}
+                                    clamp={150}
+                                    hideBtnOnSelect = {true}
+                                />
+                                <Edit id="tttt" style={{ width: 100, height: 43 }} disable={{ dim: true }} onKeyPress={(o) => {
+                                    console.log(o);
+                                }}>text from child</Edit>
+                                <Edit id="tt90" style={{ width: 90, height: 43 }} disable={{ dim: true }} onKeyPress={(o) => {
+                                    console.log(o);
+                                }}>90</Edit>
+                                <Edit id="tt20" style={{ width: 20, height: 43 }} disable={{ dim: true }} clamp={50} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                    console.log(o);
+                                }}>20</Edit>
+                                <Edit id="tt30" style={{ width: 30, height: 43 }} disable={{ dim: true }} clamp={50} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                    console.log(o);
+                                }}>30</Edit>
+
+                                <Edit id="tt40" style={{ width: 40, height: 43 }} disable={{ dim: true }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                    console.log(o);
+                                }}>40</Edit>
+                                <Edit id="tt50" style={{ width: 50, height: 43 }} disable={{ dim: true }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                    console.log(o);
+                                }}>50</Edit>
+                            </div>
+                        </Block>
+
+                        <Block>
+                            <ComboBoxEx
+                                onChange={(o) => { console.log(o); }}
+                                list = {combo_list3}
+                                listClasses={listClasses3}
+                                disable={{ dim: true }}
+                                select={3}
+                            />
+                        </Block>
+                        <Block>
+                            <Label caption="comboboxex" style={{ color: 'red' }}>
+                                <ComboBoxEx list = {combo_list2} disable={{ dim: false }} addClassItem={'wd-cb32-src'}/>
+                            </Label>
+                        </Block>
+                        <Block>
+                            <Label caption="disabled">
+                                <ComboBoxEx list = {combo_list2} disable={{ dim: false }} select={1} disabled={'true'}/>
+                            </Label>
+                        </Block>
+                        <Block>
+                            <Label caption="outer url">
+                                <ComboBoxEx
+                                    listClasses={listClasses4}
+                                    list = {combo_list4}
+                                    disable={{ dim: false }}
+                                    select={1}
+
+                                />
+                            </Label>
+                        </Block>
+                        <Block>
+                            <Label caption="outer _src_">
+                                <ComboBoxEx
+                                    list = {combo_list5}
+                                    srcPath={'./media/combo_32/'}
+                                    addClassItem={'wd-cb32-src'}
+                                    disable={{ dim: false }}
+                                    select={-1}
+
+                                />
+                            </Label>
+                        </Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="Dialog">
                         <Block>
                             {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
@@ -464,117 +573,6 @@ class App extends React.Component {
                             <BtnIcon addClass="wd-green">save</BtnIcon>
                         </Block>
                     </Head>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-
-                    <Head caption="ComboBoxEx">
-                        <Block>
-                            <ComboBoxEx
-                                style={{ height: 18 }}
-                                onChange={(o) => { console.log(o); }}
-                                list = {combo_list1}
-                                required={true}
-                            />
-                        </Block>
-                        <Block>
-                            <div className="block-horiz">
-                                <ComboBoxEx
-                                    onChange={(o) => { console.log(o); }}
-                                    list = {combo_list3}
-                                    listClasses={listClasses3}
-                                    disable={{ dim: true }}
-                                    select={3}
-                                    style={{ width: 100 }}
-                                    clamp={150}
-                                />
-                                <Edit id="ttt" style={{ width: 100 }} disable={{ dim: true }} onKeyPress={(o) => {
-                                    console.log(o);
-                                }}> text from child</Edit>
-                                <BtnIcon
-                                    hint = "icon"
-                                    icon={faAddressBook}
-                                    addClass="wd-danger"
-                                    iconClass="demo-bi-color"
-                                >ok</BtnIcon>
-                                <Btn> left</Btn>
-                            </div>
-                        </Block>
-                        <Block>
-                            <div className="block-horiz">
-                                <ComboBoxEx
-                                    onChange={(o) => { console.log(o); }}
-                                    list = {combo_list3}
-                                    disable={{ dim: true }}
-                                    select={3}
-                                    style={{ width: 100, height: 43, textAlign: 'center' }}
-                                    clamp={150}
-                                    hideBtnOnSelect = {true}
-                                />
-                                <Edit id="tttt" style={{ width: 100, height: 43 }} disable={{ dim: true }} onKeyPress={(o) => {
-                                    console.log(o);
-                                }}>text from child</Edit>
-                                <Edit id="tt90" style={{ width: 90, height: 43 }} disable={{ dim: true }} onKeyPress={(o) => {
-                                    console.log(o);
-                                }}>90</Edit>
-                                <Edit id="tt20" style={{ width: 20, height: 43 }} disable={{ dim: true }} clamp={50} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
-                                    console.log(o);
-                                }}>20</Edit>
-                                <Edit id="tt30" style={{ width: 30, height: 43 }} disable={{ dim: true }} clamp={50} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
-                                    console.log(o);
-                                }}>30</Edit>
-
-                                <Edit id="tt40" style={{ width: 40, height: 43 }} disable={{ dim: true }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
-                                    console.log(o);
-                                }}>40</Edit>
-                                <Edit id="tt50" style={{ width: 50, height: 43 }} disable={{ dim: true }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
-                                    console.log(o);
-                                }}>50</Edit>
-                            </div>
-                        </Block>
-
-                        <Block>
-                            <ComboBoxEx
-                                onChange={(o) => { console.log(o); }}
-                                list = {combo_list3}
-                                listClasses={listClasses3}
-                                disable={{ dim: true }}
-                                select={3}
-                            />
-                        </Block>
-                        <Block>
-                            <Label caption="comboboxex" style={{ color: 'red' }}>
-                                <ComboBoxEx list = {combo_list2} disable={{ dim: false }} addClassItem={'wd-cb32-src'}/>
-                            </Label>
-                        </Block>
-                        <Block>
-                            <Label caption="disabled">
-                                <ComboBoxEx list = {combo_list2} disable={{ dim: false }} select={1} disabled={'true'}/>
-                            </Label>
-                        </Block>
-                        <Block>
-                            <Label caption="outer url">
-                                <ComboBoxEx
-                                    listClasses={listClasses4}
-                                    list = {combo_list4}
-                                    disable={{ dim: false }}
-                                    select={1}
-
-                                />
-                            </Label>
-                        </Block>
-                        <Block>
-                            <Label caption="outer _src_">
-                                <ComboBoxEx
-                                    list = {combo_list5}
-                                    srcPath={'./media/combo_32/'}
-                                    addClassItem={'wd-cb32-src'}
-                                    disable={{ dim: false }}
-                                    select={-1}
-
-                                />
-                            </Label>
-                        </Block>
-                    </Head>
-
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="Text">
                         <Block>
