@@ -5,7 +5,6 @@ let _root;
 function getRoot() {
     // eslint-disable-next-line no-use-before-define
     if (!_root) _root = document.getElementById(Modal.global.idRoot) || document.getElementsByTagName('body')[0];
-    console.log('root', _root);
     return _root;
 }
 
@@ -16,6 +15,7 @@ function Modal({
     enableShadow = true,
     classShadow = Modal.global.classShadow,
     onClickShadow = undefined,
+    opacityShadow = Modal.global.opacityShadow,
     children,
 }) {
     const screenSize = () => ({ width: window.innerWidth, height: window.innerHeight });
@@ -63,7 +63,11 @@ function Modal({
             && <div
                 className={`${classShadow}`}
                 style={{
-                    position: 'absolute', left: 0, top: 0, ...screen,
+                    position: 'absolute',
+                    left: 0,
+                    top: 0,
+                    ...screen,
+                    ...(opacityShadow === false ? {} : { opacity: opacityShadow }),
                 }}
                 onClick={onClickShadow}
             />}
@@ -74,9 +78,10 @@ function Modal({
 }
 
 Modal.global = {
-    idRoot: 'wd-modal1',
+    idRoot: 'wd-modal',
     className: 'wd-modal',
     classShadow: 'wd-shadow',
+    opacityShadow: false,
 };
 
 export default Modal;

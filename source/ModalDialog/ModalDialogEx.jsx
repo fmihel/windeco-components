@@ -23,10 +23,9 @@ function ModalDialog({
     top = ModalDialog.global.top, // for align = custom
     width = ModalDialog.global.width, // for align = custom,stickTo
     height = ModalDialog.global.height, // for align = custom,stickTo
-    addShadowClass = false, // deprected
-    shadowClass = '', // use as addShadow
-    shadowOpacity = 0.1, // num or 'css' if shadowOpacity === 'css'  opacity defined in wd-modal class
-    shadowEnable = true,
+    classShadow = Modal.global.classShadow,
+    opacityShadow = Modal.global.opacityShadow,
+    enableShadow = true,
     draggable = true, // work with align = custom || stickTo
     resizable = false,
     className = ModalDialog.global.className,
@@ -75,7 +74,6 @@ function ModalDialog({
         };
         window.addEventListener('resize', resize);
         resize(true);
-        console.log('create resize');
         return () => {
             window.removeEventListener('resize', resize);
         };
@@ -141,7 +139,11 @@ function ModalDialog({
         <Modal
             id={id}
             visible={visible}
+            classShadow= {classShadow}
+            opacityShadow={opacityShadow}
+            enableShadow={enableShadow}
             onClickShadow={onClickShadow}
+
         ><>
                 <div
                     style={{ ...pos, ...size }}
@@ -200,6 +202,8 @@ ModalDialog.global = {
     top: 0,
     width: 300,
     height: 100,
+    classShadow: 'wd-shadow',
+    opacityShadow: false,
 
 };
 export default ModalDialog;
