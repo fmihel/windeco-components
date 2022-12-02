@@ -23,7 +23,8 @@ function ModalDialog({
     top = ModalDialog.global.top, // for align = custom
     width = ModalDialog.global.width, // for align = custom,stickTo
     height = ModalDialog.global.height, // for align = custom,stickTo
-    addShadowClass = '',
+    addShadowClass = false, // deprected
+    shadowClass = '', // use as addShadow
     shadowOpacity = 0.1, // num or 'css' if shadowOpacity === 'css'  opacity defined in wd-modal class
     shadowEnable = true,
     draggable = true, // work with align = custom || stickTo
@@ -34,20 +35,15 @@ function ModalDialog({
 
 }) {
     const [pos, setPos] = useState({
-        left, top, width, height,
+        left, top,
     });
-    const [cursor, setCursor] = useState({
-        state: false,
-        mouse: { x: -1, y: -1 },
-        pressed: -1,
+    const [size, setSize] = useState({
+        width, height,
     });
 
-    const resize = (first = false) => {
-        const newPos = api.updatePos({
-            first, pos, left, top, width, height, align, stickTo, stickOffX, stickOffY, stickAlign, margin,
-        });
-        setPos(newPos);
-    };
+    const [mouseState, setMouseState] = useState(false);
+    const [off, setOff] = useState({ x: 0, y: 0 });
+    const [userModif, setUserModif] = useState(false);
 
     let footers = [];
     if (Array.isArray(footer)) {
@@ -55,59 +51,82 @@ function ModalDialog({
     } else if (typeof footer === 'object') {
         footers = Object.keys(footer);
     }
+    useEffect(() => {
+        const resize = (first = false) => {
+            if (!userModif) {
+                const newPos = api.updatePos({
+                    first,
+                    pos: { ...pos, ...size },
+                    left,
+                    top,
+                    width,
+                    height,
+                    align,
+                    stickTo,
+                    stickOffX,
+                    stickOffY,
+                    stickAlign,
+                    margin,
+                });
+
+                setPos({ left: newPos.left, top: newPos.top });
+                setSize({ width: newPos.width, height: newPos.height });
+            }
+        };
+        window.addEventListener('resize', resize);
+        resize(true);
+        console.log('create resize');
+        return () => {
+            window.removeEventListener('resize', resize);
+        };
+    }, [left, top, width, height, align, stickTo, stickOffX, stickOffY, stickAlign, margin, userModif]);
 
     useEffect(() => {
         const mouseMove = () => {
             if (visible) {
-                console.log(id, visible);
-                console.log('mouse move', cursor);
-                if (cursor.state === 'resize') {
+                if (mouseState === 'resize') {
+                    const mouse = api.mouse();
+                    setSize({
+                        width: mouse.x + off.x,
+                        height: mouse.y + off.y,
+                    });
+                } else if (mouseState === 'move') {
                     const mouse = api.mouse();
                     setPos({
-                        ...pos,
-                        width: pos.width + (mouse.x - cursor.mouse.x),
-                        height: pos.height + (mouse.y - cursor.mouse.y),
+                        left: mouse.x - off.x,
+                        top: mouse.y - off.y,
                     });
-                    setCursor({ ...cursor, mouse });
-                } else if ((align === 'custom' || align === 'stickTo')
-            && draggable && cursor.pressed === 0) {
-                    const mouse = api.mouse();
-                    setPos({
-                        ...pos,
-                        left: pos.left + mouse.x - cursor.mouse.x,
-                        top: pos.top + mouse.y - cursor.mouse.y,
-                    });
-
-                    setCursor({ ...cursor, mouse });
                 }
             }
         };
 
         const mouseUp = () => {
-            setCursor({ state: false, pressed: undefined, moyuse: { x: 0, y: 0 } });
+            setMouseState(false);
         };
-        console.log('create');
-        window.addEventListener('resize', resize);
+
         window.addEventListener('mousemove', mouseMove);
         window.addEventListener('mouseup', mouseUp);
-        resize(true);
 
         return () => {
-            console.log('destroy');
-            window.removeEventListener('resize', resize);
             window.removeEventListener('mousemove', mouseMove);
             window.removeEventListener('mouseup', mouseUp);
         };
-    }, [visible, align]);
+    }, [visible, mouseState, off]);
 
     const mouseDown = ({ button }) => {
         if ((align === 'custom' || align === 'stickTo')
         && draggable && button === 0) {
-            setCursor({ ...cursor, mouse: api.mouse(), pressed: 0 });
+            const mouse = api.mouse();
+            setOff({ x: mouse.x - pos.left, y: mouse.y - pos.top });
+            setMouseState('move');
+            if (!userModif) setUserModif(true);
         }
     };
     const mouseDownResize = () => {
-        setCursor({ ...cursor, state: 'resize', mouse: api.mouse() });
+        const mouse = api.mouse();
+        setOff({ x: size.width - mouse.x, y: size.height - mouse.y });
+        setMouseState('resize');
+        if (!userModif) setUserModif(true);
     };
     const clickFooterBtn = (key) => {
         const onClick = api.getFooterParam(key, 'onClick', footer);
@@ -117,6 +136,7 @@ function ModalDialog({
             onClickFooterBtn({ sender: this, key });
         }
     };
+
     return (
         <Modal
             id={id}
@@ -124,7 +144,7 @@ function ModalDialog({
             onClickShadow={onClickShadow}
         ><>
                 <div
-                    style={{ ...pos }}
+                    style={{ ...pos, ...size }}
                     className={`${className} ${addClass}`}
                     onMouseDown={mouseDown}
                 >
@@ -159,8 +179,8 @@ function ModalDialog({
                 {resizable
                 && <div className="wd-dialog-resize"
                     style={{
-                        left: pos.left + pos.width,
-                        top: pos.top + pos.height,
+                        left: pos.left + size.width,
+                        top: pos.top + size.height,
                     }}>
                     <div
                         onMouseDown={mouseDownResize}

@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom';
 let _root;
 function getRoot() {
     // eslint-disable-next-line no-use-before-define
-    if (!_root) _root = document.getElementById(Modal.global.idRoot);
+    if (!_root) _root = document.getElementById(Modal.global.idRoot) || document.getElementsByTagName('body')[0];
+    console.log('root', _root);
     return _root;
 }
 
@@ -22,22 +23,29 @@ function Modal({
     const [element] = useState(document.createElement('div'));
     const moveTop = () => { element.parentElement.insertBefore(element, null); };
 
-    const resize = () => {
-        setScreen(screenSize());
-    };
     useEffect(() => {
         getRoot().appendChild(element);
-        window.addEventListener('resize', () => resize);
         return () => {
-            window.removeEventListener('resize', resize);
             getRoot().removeChild(element);
         };
     }, []);
 
     useEffect(() => {
+        const resize = () => {
+            if (visible) {
+                setScreen(screenSize());
+            }
+        };
+
+        window.addEventListener('resize', resize);
+        resize();
+
         if (visible) {
             moveTop();
         }
+        return () => {
+            window.removeEventListener('resize', resize);
+        };
     }, [visible]);
 
     return ReactDOM.createPortal(
@@ -66,7 +74,7 @@ function Modal({
 }
 
 Modal.global = {
-    idRoot: 'wd-modal',
+    idRoot: 'wd-modal1',
     className: 'wd-modal',
     classShadow: 'wd-shadow',
 };

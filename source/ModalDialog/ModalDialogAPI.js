@@ -25,15 +25,14 @@ class ModalDialogAPI {
             right: isObject ? (margin.right || 0) : margin,
             top: isObject ? (margin.top || 0) : margin,
             bottom: isObject ? (margin.bottom || 0) : margin,
-
         };
     }
 
-    static DOM(id) {
-        if (typeof id === 'string') {
-            return document.getElementById(id.replace('#', ''));
+    static DOM(idOrDOM) {
+        if (typeof idOrDOM === 'string') {
+            return document.getElementById(idOrDOM.replace('#', ''));
         }
-        return id;
+        return idOrDOM;
     }
 
     static abs(dom) {
