@@ -46,4 +46,9 @@
             }
         }
     }
+    .wd-combo-list{
+        background-color: $bg;
+        border:1px solid $border;
+        position: absolute;
+    }
 }

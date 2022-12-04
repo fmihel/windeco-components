@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Modal from '../Modal/ModalEx.jsx';
 import api from './ModalDialogAPI';
 import Btn from '../Btn/Btn.jsx';
+import mousePos from '../Utils/mouse';
 
 function ModalDialog({
     id,
@@ -83,13 +84,13 @@ function ModalDialog({
         const mouseMove = () => {
             if (visible) {
                 if (mouseState === 'resize') {
-                    const mouse = api.mouse();
+                    const mouse = mousePos();
                     setSize({
                         width: mouse.x + off.x,
                         height: mouse.y + off.y,
                     });
                 } else if (mouseState === 'move') {
-                    const mouse = api.mouse();
+                    const mouse = mousePos();
                     setPos({
                         left: mouse.x - off.x,
                         top: mouse.y - off.y,
@@ -114,14 +115,14 @@ function ModalDialog({
     const mouseDown = ({ button }) => {
         if ((align === 'custom' || align === 'stickTo')
         && draggable && button === 0) {
-            const mouse = api.mouse();
+            const mouse = mousePos();
             setOff({ x: mouse.x - pos.left, y: mouse.y - pos.top });
             setMouseState('move');
             if (!userModif) setUserModif(true);
         }
     };
     const mouseDownResize = () => {
-        const mouse = api.mouse();
+        const mouse = mousePos();
         setOff({ x: size.width - mouse.x, y: size.height - mouse.y });
         setMouseState('resize');
         if (!userModif) setUserModif(true);
