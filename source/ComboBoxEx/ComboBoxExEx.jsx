@@ -1,13 +1,44 @@
 import React, { useState, useRef, useEffect } from 'react';
 import abs from '../Utils/abs';
 import Modal from '../Modal/ModalEx.jsx';
+import screen from '../Utils/screen';
 
 function listPos({
     left, top, width, height,
 }) {
-    return {
+    const out = {
         left, top, width, height,
     };
+    out.height = 100;
+    if (out.top + height + out.height > screen().height) {
+        out.top -= out.height;
+    } else {
+        out.top = top + height;
+    }
+    return out;
+}
+function ComboItem({
+    id,
+    caption = '',
+    className = 'wd-combo-item',
+    onClick = undefined,
+    data = {},
+}) {
+    const click = () => {
+        if (onClick) {
+            onClick({
+                id, data,
+            });
+        }
+    };
+    return (
+        <div
+            className={`${className}`}
+            onClick={click}
+        >
+            {caption}
+        </div>
+    );
 }
 function ComboList({
     list = [],
@@ -32,9 +63,13 @@ function ComboList({
                 }),
             }}
         >
-            {list.map((item) => {
-
-            })}
+            {
+                list.map((item) => <ComboItem
+                    key={item[aliasId]}
+                    id={item[aliasId]}
+                    caption={item[aliasCaption]}
+                    data={item}
+                />)}
         </div>
     );
 }
@@ -98,6 +133,8 @@ function ComboBox({
                 <ComboList
                     list = {list}
                     {...size}
+                    aliasId={aliasId}
+                    aliasCaption={aliasCaption}
                 />
             </Modal>
         </>
