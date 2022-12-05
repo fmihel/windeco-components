@@ -168,3 +168,5 @@ export const fonts = {
     verdana: 'Verdana, sans-serif',
     roboto: 'Roboto, sans-serif',
 };
+
+export const icons = ['icon-dots', 'icon-bell', 'icon-file', 'icon-image', 'icon-man', 'icon-pen'];

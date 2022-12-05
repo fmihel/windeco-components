@@ -20,7 +20,9 @@
         @if ($name=='gap'){$gap:$mean;};    
     }
 
-    outline: none;
+    outline: 0px solid rgba(0,0,0,0);
+    //transition: outline-color 0.4s;
+
     min-height:$size;
     font-size:$font-size;
     border:1px solid $border;
@@ -34,7 +36,7 @@
         outline: 2px solid $outline;
     }
 
-    @include transition(margin 0.2s);
+    @include transition(margin 0.2s,outline-color 0.4s);
 
 }
 

@@ -46,6 +46,8 @@
         justify-content: flex-start;
         align-content: stretch;
         align-items: stretch;
+        outline: 0px solid rgba(0,0,0,0);
+        transition: outline-color 0.4s;
 
         >*{
             &:nth-child(1) {
@@ -94,12 +96,34 @@
         }
     }
     .wd-combo-item{
-        padding-left: $gap;
+        text-indent: $gap;
         min-height: $size;
         height: $size;
         line-height: $size;
         white-space: nowrap;
         overflow: hidden;
+
+        // for ComboItemIcon
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: stretch;
+
+        >div{
+            &:nth-child(1) {
+                order: 0;
+                flex: 0 1 auto;
+                align-self: auto;
+            }                
+            &:nth-child(2) {
+                order: 0;
+                flex: 1 1 auto;
+                align-self: auto;
+            }                
+        }
+
     }
     
 }

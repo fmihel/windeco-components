@@ -15,7 +15,9 @@ import Edit from '../source/Edit/Edit.jsx';
 import Btn from '../source/Btn/Btn.jsx';
 import BtnIcon from '../source/BtnIcon/BtnIcon.jsx';
 import ComboBox from '../source/ComboBox/ComboBox.jsx';
-import ComboBoxEx from '../source/ComboBoxEx/ComboBoxExEx.jsx';
+import ComboBoxEx from '../source/ComboBoxEx/ComboBoxEx.jsx';
+import ComboItemIcon from '../source/ComboBoxEx/ComboItemIcon.jsx';
+
 import CheckBox from '../source/CheckBox/CheckBoxEx.jsx';
 import Label from '../source/Label/Label.jsx';
 import LabelEx from '../source/Label/LabelEx.jsx';
@@ -32,7 +34,9 @@ import EditEx from '../source/Edit/EditEx.jsx';
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
 import {
-    table_long2, table_long, combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4, combo_list5,
+    table_long2, table_long,
+    combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4, combo_list5,
+    icons,
 } from './data.js';
 
 // Icon.icons({
@@ -277,7 +281,13 @@ class App extends React.Component {
         } = this.state;
         const dialogs = Object.keys(this.dialogs);
         const fontsName = Object.keys(fonts);
-
+        const getItemClass = (data) => {
+            if (data) {
+                if ('id' in data && icons[data.id]) { return icons[data.id]; }
+                return icons[0];
+            }
+            return '';
+        };
         return (
             <div className={`${this.state.theme} ${this.state.size}`}>
                 <div className="panel">
@@ -374,7 +384,6 @@ class App extends React.Component {
                                 <ComboBoxEx
                                     onChange={(o) => { console.log(o); }}
                                     list = {combo_list3}
-                                    disable={{ dim: true }}
                                     select={3}
                                     style={{ width: 100, height: 43, textAlign: 'center' }}
                                     clamp={150}
@@ -404,21 +413,27 @@ class App extends React.Component {
 
                         <Block>
                             <ComboBoxEx
-                                onChange={(o) => { console.log(o); }}
+                                id='cb3'
+                                onChange={this.onChangeCombo}
                                 list = {combo_list3}
-                                listClasses={listClasses3}
-                                disable={{ dim: true }}
-                                select={3}
+                                select={'cb3' in comboSelect ? comboSelect.cb3 : false}
+                                ItemComponent={ComboItemIcon}
+                                onGetItemClass={getItemClass}
                             />
                         </Block>
                         <Block>
                             <Label caption="comboboxex" style={{ color: 'red' }}>
-                                <ComboBoxEx list = {combo_list2} disable={{ dim: false }} addClassItem={'wd-cb32-src'}/>
+                                <ComboBoxEx
+                                    list = {combo_list2}
+                                    addClassItem={'wd-cb32-src'}
+                                    ItemComponent={ComboItemIcon}
+                                    onGetItemClass={getItemClass}
+                                />
                             </Label>
                         </Block>
                         <Block>
                             <Label caption="disabled">
-                                <ComboBoxEx list = {combo_list2} disable={{ dim: false }} select={1} disabled={'true'}/>
+                                <ComboBoxEx list = {combo_list2} select={1} disabled={'true'}/>
                             </Label>
                         </Block>
                         <Block>
@@ -426,9 +441,7 @@ class App extends React.Component {
                                 <ComboBoxEx
                                     listClasses={listClasses4}
                                     list = {combo_list4}
-                                    disable={{ dim: false }}
                                     select={1}
-
                                 />
                             </Label>
                         </Block>

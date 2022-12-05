@@ -1,0 +1,27 @@
+@use "sass:map";
+$icons:('bell','file','image','man','pen','dots') !default;
+$path:'./media/icons/';
+
+
+@mixin icon-common-prop($invert){
+    width: 32px;
+    min-width: 32px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    filter:invert($invert);
+}
+
+@each $name in $wd-themes{
+    .#{$name}{
+        $invert:100%;
+        @if($name=='light'){
+            $invert:0%;
+        }
+        @each $icon in $icons{
+            .icon-#{$icon}>div:nth-child(1) {
+                @include icon-common-prop($invert);
+                background-image: url($path + #{$icon} + '.png');
+            }
+        }
+    }
+}

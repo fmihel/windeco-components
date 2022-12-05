@@ -13,12 +13,6 @@ import Modal from '../source/Modal/Modal.jsx';
 import Text from '../source/Text/Text.jsx';
 import Icon from '../source/Icon/Icon.jsx';
 
-ComboBoxEx.global({
-    // listClasses: listClasses3,
-    offText: {
-        // y: 10,
-    },
-});
 BtnIcon.global = {
     ...BtnIcon.global,
     IconComponent: FontAwesomeIcon,
