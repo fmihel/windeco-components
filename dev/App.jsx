@@ -49,6 +49,7 @@ class App extends React.Component {
         this.onTableClear = this.onTableClear.bind(this);
         this.onTableFill = this.onTableFill.bind(this);
         this.onChangeEx = this.onChangeEx.bind(this);
+        this.onChangeCombo = this.onChangeCombo.bind(this);
         // общие параметры для диалогов
         const defaultDialogParam = {
             header: false,
@@ -192,7 +193,9 @@ class App extends React.Component {
             values: {
 
             },
+            comboSelect: {
 
+            },
         };
     }
 
@@ -257,9 +260,20 @@ class App extends React.Component {
         }
     }
 
+    onChangeCombo({ id, data }) {
+        if (id) {
+            console.log('change combo', id, data);
+            this.setState((prev) => {
+                const comboSelect = { ...prev.comboSelect };
+                comboSelect[id] = data.id;
+                return { ...prev, comboSelect };
+            });
+        }
+    }
+
     render() {
         const {
-            fields, table, textValue, textValue2, dialogEx, customLeft, customTop, values,
+            fields, table, textValue, textValue2, dialogEx, customLeft, customTop, values, comboSelect,
         } = this.state;
         const dialogs = Object.keys(this.dialogs);
         const fontsName = Object.keys(fonts);
@@ -323,9 +337,11 @@ class App extends React.Component {
                     <Head caption="ComboBoxEx">
                         <Block>
                             <ComboBoxEx
+                                id='cb1'
                                 style={{ height: 18 }}
-                                onChange={(o) => { console.log(o); }}
+                                onChange={this.onChangeCombo}
                                 list = {combo_list1}
+                                select={'cb1' in comboSelect ? comboSelect.cb1 : false}
                                 required={true}
                             />
                         </Block>

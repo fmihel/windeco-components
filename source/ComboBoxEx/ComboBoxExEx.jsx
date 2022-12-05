@@ -18,7 +18,6 @@ function listPos({
     return out;
 }
 function ComboItem({
-    id,
     caption = '',
     className = 'wd-combo-item',
     onClick = undefined,
@@ -26,15 +25,14 @@ function ComboItem({
 }) {
     const click = () => {
         if (onClick) {
-            onClick({
-                id, data,
-            });
+            onClick(data);
         }
     };
     return (
         <div
             className={`${className}`}
             onClick={click}
+            title={caption}
         >
             {caption}
         </div>
@@ -50,6 +48,7 @@ function ComboList({
     addClass = '',
     aliasId = 'id',
     aliasCaption = 'caption',
+    onClick = undefined,
 }) {
     return (
         <div
@@ -66,9 +65,9 @@ function ComboList({
             {
                 list.map((item) => <ComboItem
                     key={item[aliasId]}
-                    id={item[aliasId]}
                     caption={item[aliasCaption]}
                     data={item}
+                    onClick={onClick}
                 />)}
         </div>
     );
@@ -89,6 +88,7 @@ function ComboBox({
     placeholder = ComboBox.global.placeholder,
     aliasId = ComboBox.global.aliasId,
     aliasCaption = ComboBox.global.aliasCaption,
+    ItemComponent = ComboItem,
 
 }) {
     const selectIndex = list.findIndex((item) => (item[aliasId] == select));
@@ -114,27 +114,40 @@ function ComboBox({
     const closeList = () => {
         setOpen(false);
     };
+    const change = (data) => {
+        setOpen(false);
+        if (onChange) {
+            onChange({ id, data });
+        }
+    };
+
     return (
         <>
             <div
                 id={id}
+                tabIndex="0"
                 className={`${className} ${addClass}`}
                 style={{ ...ComboBox.global.style, ...style }}
                 onClick = {click}
                 ref = {ref}
+                title = {selectCaption || ''}
             >
-                {(selectCaption) && selectCaption}
-                {(!selectCaption && placeholder) && placeholder}
+                <ItemComponent
+                    caption = {selectCaption || placeholder || ''}
+                />
+                <div/>
             </div>
             <Modal
                 visible = {open}
                 onClickShadow={closeList}
+                opacityShadow={0}
             >
                 <ComboList
                     list = {list}
                     {...size}
                     aliasId={aliasId}
                     aliasCaption={aliasCaption}
+                    onClick={change}
                 />
             </Modal>
         </>

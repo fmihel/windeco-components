@@ -4,9 +4,12 @@
     $size:2rem;
     $bg:gray;
     $color:black;
-    $border:gray;
+    $border:white;
     $outline:black;
     $font-size:1rem;
+
+    $bg-hover:#0E639C;
+    $color-hover:white;
 
     @each $name, $mean in meta.keywords($args) {
         @if ($name=='theme'){$theme:$mean;};    
@@ -22,22 +25,56 @@
         background-color: $bg;
         color: $color;
         border:1px solid $border;
-        outline: 'none';
     
         box-sizing: border-box;
-        height:$size;
+        min-height:$size;
+        line-height:$size;
         min-width:$size;
-        border-radius: 5px;
+        //border-radius: 5px;
         font-size: $font-size;
+        white-space: nowrap;
+        overflow: hidden;
         
-        //margin-left:1px;
-        //margin-right:1px;
-    
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: stretch;
+
+        >*{
+            &:nth-child(1) {
+                order: 0;
+                flex: 1 1 auto;
+                align-self: auto;
+            }
+            &:nth-child(2) {
+                min-width: $size;
+                width: $size;
+                background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAATklEQVR4nO3OMQoAIAwEwXtn/uV7tVFIocRCI8JOHbInAQDwkSrJNu6s3x41nkYjdu+ujLgajyIp8VUsNT4bkR4fiouX7Lgf8SwOADiiAWpFIUWn1ypTAAAAAElFTkSuQmCC'); 
+                background-repeat: no-repeat, no-repeat;
+                background-position: center;
+                        
+            }
+        }
         &:focus { 
             outline: 2px solid $outline;
-    
         }
     
+    }
+    .wd-combo-list{
+        background-color: $bg;
+        color:$color;
+        border:1px solid $border;
+        position: absolute;
+        overflow-x: hidden;
+        overflow-y: auto;        
+    }
+    .wd-combo-item{
+        min-height: $size;
+        line-height: $size;
+        white-space: nowrap;
+        overflow: hidden;
         &:hover{
             @if  $theme=='dark' {
                 background-color:lighten($bg, 5%);
@@ -45,10 +82,5 @@
                 background-color:darken($bg, 5%);
             }
         }
-    }
-    .wd-combo-list{
-        background-color: $bg;
-        border:1px solid $border;
-        position: absolute;
     }
 }
