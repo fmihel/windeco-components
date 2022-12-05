@@ -9,11 +9,12 @@ function listPos({
     const out = {
         left, top, width, height,
     };
-    out.height = 100;
-    if (out.top + height + out.height > screen().height) {
-        out.top -= out.height;
+    out.height = 150;
+    const scr = screen();
+    if (out.top + height + out.height > scr.height) {
+        out.top -= out.height + 3;
     } else {
-        out.top = top + height;
+        out.top = top + height + 1;
     }
     return out;
 }
@@ -22,9 +23,10 @@ function ComboItem({
     className = 'wd-combo-item',
     onClick = undefined,
     data = {},
+    disabled = false,
 }) {
     const click = () => {
-        if (onClick) {
+        if (!disabled && onClick) {
             onClick(data);
         }
     };
@@ -33,6 +35,7 @@ function ComboItem({
             className={`${className}`}
             onClick={click}
             title={caption}
+            {...(disabled ? { disabled: true } : {})}
         >
             {caption}
         </div>
@@ -48,6 +51,7 @@ function ComboList({
     addClass = '',
     aliasId = 'id',
     aliasCaption = 'caption',
+    aliasDisabled = '_disabled_',
     onClick = undefined,
 }) {
     return (
@@ -68,6 +72,7 @@ function ComboList({
                     caption={item[aliasCaption]}
                     data={item}
                     onClick={onClick}
+                    disabled={aliasDisabled in item ? item[aliasDisabled] : false}
                 />)}
         </div>
     );
@@ -88,7 +93,8 @@ function ComboBox({
     placeholder = ComboBox.global.placeholder,
     aliasId = ComboBox.global.aliasId,
     aliasCaption = ComboBox.global.aliasCaption,
-    ItemComponent = ComboItem,
+    aliasDisabled = ComboBox.global.aliasDisabled,
+    ItemComponent = ComboBox.global.ItemComponent,
 
 }) {
     const selectIndex = list.findIndex((item) => (item[aliasId] == select));
@@ -147,6 +153,7 @@ function ComboBox({
                     {...size}
                     aliasId={aliasId}
                     aliasCaption={aliasCaption}
+                    aliasDisabled={aliasDisabled}
                     onClick={change}
                 />
             </Modal>
@@ -159,9 +166,11 @@ ComboBox.global = {
     addClass: '',
     placeholder: '-выбрать-',
     style: {},
+    ItemComponent: ComboItem,
 
     aliasId: 'id',
     aliasCaption: 'caption',
+    aliasDisabled: '_disabled_',
 
 };
 

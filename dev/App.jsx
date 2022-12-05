@@ -348,11 +348,12 @@ class App extends React.Component {
                         <Block>
                             <div className="block-horiz">
                                 <ComboBoxEx
-                                    onChange={(o) => { console.log(o); }}
+                                    id='cb2'
+                                    onChange={this.onChangeCombo}
                                     list = {combo_list3}
                                     listClasses={listClasses3}
                                     disable={{ dim: true }}
-                                    select={3}
+                                    select={'cb2' in comboSelect ? comboSelect.cb2 : false}
                                     style={{ width: 100 }}
                                     clamp={150}
                                 />

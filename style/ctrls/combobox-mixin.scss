@@ -1,11 +1,13 @@
 @use "sass:meta";
+
 @mixin combobox-mixin($args...){
     $theme:'dark';
     $size:2rem;
+    $gap:5px;
     $bg:gray;
     $color:black;
     $border:white;
-    $outline:black;
+    $outline:#3476BC;
     $font-size:1rem;
 
     $bg-hover:#0E639C;
@@ -14,11 +16,14 @@
     @each $name, $mean in meta.keywords($args) {
         @if ($name=='theme'){$theme:$mean;};    
         @if ($name=='size'){$size:$mean;};    
+        @if ($name=='gap'){$gap:$mean;};    
         @if ($name=='bg'){$bg:$mean;};    
         @if ($name=='color'){$color:$mean;};    
         @if ($name=='border'){$border:$mean;};    
         @if ($name=='outline'){$outline:$mean;};    
         @if ($name=='font-size'){$font-size:$mean;};    
+        @if ($name=='bg-hover'){$bg-hover:$mean;};    
+        @if ($name=='color-hover'){$color-hover:$mean;};    
     };
     .wd-combo{
 
@@ -57,6 +62,11 @@
                         
             }
         }
+        &:hover{
+            //background-color: $bg-hover;
+            //color: $color-hover;
+
+        }
         &:focus { 
             outline: 2px solid $outline;
         }
@@ -69,18 +79,27 @@
         position: absolute;
         overflow-x: hidden;
         overflow-y: auto;        
-    }
-    .wd-combo-item{
-        min-height: $size;
-        line-height: $size;
-        white-space: nowrap;
-        overflow: hidden;
-        &:hover{
-            @if  $theme=='dark' {
-                background-color:lighten($bg, 5%);
-            } @else {
-                background-color:darken($bg, 5%);
+        .wd-combo-item{
+            &:hover{
+                background-color: $bg-hover;
+                color: $color-hover;
+            }
+            &[disabled]{
+                opacity: 0.3;
+                &:hover{
+                    background-color: $bg;
+                    color:$color;
+                }                
             }
         }
     }
+    .wd-combo-item{
+        padding-left: $gap;
+        min-height: $size;
+        height: $size;
+        line-height: $size;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    
 }
