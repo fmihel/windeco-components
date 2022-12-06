@@ -1,0 +1,68 @@
+@use "sass:meta";
+@mixin text-mixin($args...){
+    $theme:'dark';
+    $size:2rem;
+    $bg:gray;
+    $color:black;
+    $border:gray;
+    $outline:rgb(6, 114, 255);
+    $font-size:1rem;
+    $gap:5px;
+    $required:red;
+    $required-url:'';
+
+    @each $name, $mean in meta.keywords($args) {
+        @if ($name=='theme'){$theme:$mean;};    
+        @if ($name=='size'){$size:$mean;};    
+        @if ($name=='bg'){$bg:$mean;};    
+        @if ($name=='color'){$color:$mean;};    
+        @if ($name=='border'){$border:$mean;};    
+        @if ($name=='outline'){$outline:$mean;};    
+        @if ($name=='font-size'){$font-size:$mean;};    
+        @if ($name=='gap'){$gap:$mean;};    
+        @if ($name=='required'){$required:$mean;};    
+        @if ($name=='required-url'){$required-url:$mean;};    
+    };
+
+    .wd-text{
+        background-color: $bg;
+        color: $color;
+        @include transparent-border(); 
+        outline: none;
+        border: 1px solid $border;
+        box-sizing: border-box;
+        min-height:$size;
+        font-size: $font-size;
+        
+        outline: 0px solid rgba(0,0,0,0);
+        @include transition(outline-color 0.4s);            
+        &:focus { 
+            outline: 2px solid $outline;
+            border-color: rgba(0,0,0,0) !important;
+
+        }
+        &:hover { 
+            
+        }
+        &[disabled]{
+            opacity: 0.4;
+        }
+
+        &[readOnly]{
+
+        }
+        &[required]{
+            border:1px solid $required ;
+            background-image: url($required-url);
+            background-repeat: no-repeat;
+            background-position-x: right;
+            background-position-y: center;
+            background-size: calc($size*0.5);
+    
+        }
+
+    }
+
+
+
+}

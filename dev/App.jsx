@@ -346,6 +346,46 @@ class App extends React.Component {
                         </Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Text">
+                        <Block>
+                            <Text
+                                style={{ height: 70, width: '100%' }}
+                                placeholder="rows:4 cols:15 len:60"
+                                title="rows:4 cols:15 len:60"
+                                value={textValue2}
+                                onChange={(o) => { this.setState({ textValue2: o.value }); }}
+                                rows={4}
+                                cols={15}
+                            />
+                        </Block>
+                        <Block>
+                            <Text
+                                style={{ height: 30 }}
+                                maxLength={20}
+                                placeholder="set text, max 20 len.."
+                                title="set text, max 20 len.."
+                                value={textValue}
+                                onChange={(o) => { this.setState({ textValue: o.value }); }}
+                                required={true}
+                            />
+                        </Block>
+                        <Block>
+                            <Text
+                                readonly={true}
+                                title="readonly"
+                                value= "readonly"
+                            />
+                        </Block>
+                        <Block>
+                            <Text
+                                disabled={1}
+                                value="disabled"
+                                resize={true}
+                            />
+                        </Block>
+                    </Head>
+
+                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="ComboBoxEx">
                         <Block>
                             <ComboBoxEx
@@ -601,45 +641,6 @@ class App extends React.Component {
                             <BtnIcon>story</BtnIcon>
                             <BtnIcon icon={faCaretDown} style={{ width: '100px' }} hint="no text"/>
                             <BtnIcon addClass="wd-green">save</BtnIcon>
-                        </Block>
-                    </Head>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption="Text">
-                        <Block>
-                            <Text
-                                style={{ height: 70 }}
-                                placeholder="rows:4 cols:15 len:60  "
-                                hint="hint"
-                                value={textValue2}
-                                onChange={(o) => { this.setState({ textValue2: o.value }); }}
-                                rows={4}
-                                cols={15}
-                            />
-                        </Block>
-                        <Block>
-                            <Text
-                                style={{ height: 30 }}
-                                maxLength={20}
-                                placeholder="set text, max 20 len.."
-                                hint="hint"
-                                value={textValue}
-                                onChange={(o) => { this.setState({ textValue: o.value }); }}
-                                required={true}
-                            />
-                        </Block>
-                        <Block>
-                            <Text
-                                readonly={true}
-                                hint="readonly"
-                                value= "readonly"
-                            />
-                        </Block>
-                        <Block>
-                            <Text
-                                disabled={1}
-                                value="disabled"
-                                resize={true}
-                            />
                         </Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
