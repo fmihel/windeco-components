@@ -346,6 +346,22 @@ class App extends React.Component {
                         </Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption = "TableFixed">
+                        <Block>
+                            <Btn onClick={this.onTableClear}>clear</Btn>
+                            <Btn onClick={this.onTableFill}>fill</Btn>
+                        </Block>
+
+                        <Block addClass="table-fixed-height">
+                            <TableFixed
+                                fields={fields}
+                                data={table}
+                                onClick={this.onClickTableFixed}
+                            />
+                        </Block>
+                    </Head>
+
+                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="Text">
                         <Block>
                             <Text
@@ -647,21 +663,6 @@ class App extends React.Component {
                     <Head caption="Fonts">
                         <Block>
                             {fontsName.map((name, key) => <div key={key} className="font-line"><div>{name}</div><div className={`font-${name}`}>Короткий текст для примера.</div></div>)}
-                        </Block>
-                    </Head>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption = "TableFixed">
-                        <Block>
-                            <Btn onClick={this.onTableClear}>clear</Btn>
-                            <Btn onClick={this.onTableFill}>fill</Btn>
-                        </Block>
-
-                        <Block addClass="table-fixed-height">
-                            <TableFixed
-                                fields={fields}
-                                data={table}
-                                onClick={this.onClickTableFixed}
-                            />
                         </Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
