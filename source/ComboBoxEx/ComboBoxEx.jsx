@@ -11,11 +11,14 @@ function ComboBox({
     classNameList = ComboBox.global.classNameList,
     addClassList = ComboBox.global.addClassList,
     style = ComboBox.global.style,
+    styleOuter = {},
+    styleItem = {},
     list = [],
     /*
         list:[{ id, caption},{...},...]
     */
     disabled = false,
+    required = false,
     select = false,
     onChange = undefined,
     hideBtnOnSelect = false,
@@ -105,6 +108,7 @@ function ComboBox({
                 onClick = {click}
                 ref = {ref}
                 {...(disabled ? { disabled: true } : { tabIndex: '0' })}
+                {...((required && !selected && !focused) ? { required: true } : { })}
                 onMouseMove={mouseMove}
                 onMouseLeave={mouseLeave}
                 onFocus={focus}
@@ -116,6 +120,7 @@ function ComboBox({
                     title={selectCaption || ''}
                     onGetItemClass = {getItemClass}
                     attr={{ state: (selected ? 'select' : 'no-select') }}
+                    style={styleOuter}
                 >
                     {selectCaption || placeholder || ''}
                 </ItemComponent>
@@ -129,6 +134,7 @@ function ComboBox({
                 <ComboList
                     className={classNameList}
                     addClass={addClassList}
+                    styleItem={styleItem}
                     list = {list}
                     {...size}
                     aliasId={aliasId}
@@ -150,6 +156,7 @@ ComboBox.global = {
     addClassList: 'wd-scrollbar',
     placeholder: '- выбрать -',
     style: {},
+
     ItemComponent: ComboItem,
     onGetItemClass: undefined,
 

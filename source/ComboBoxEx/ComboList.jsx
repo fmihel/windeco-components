@@ -26,6 +26,7 @@ function ComboList({
     height = 100,
     className = 'wd-combo-list',
     addClass = '',
+    styleItem = {},
     aliasId = 'id',
     aliasCaption = 'caption',
     aliasDisabled = '_disabled_',
@@ -54,6 +55,7 @@ function ComboList({
                         onClick={onClick}
                         onGetItemClass={onGetItemClass}
                         disabled={aliasDisabled in item ? item[aliasDisabled] : false}
+                        style={styleItem}
                     >
                         {item[aliasCaption]}
                     </ItemComponent>

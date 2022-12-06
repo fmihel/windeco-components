@@ -7,6 +7,7 @@ function ComboItem({
     data = {},
     disabled = false,
     onGetItemClass = undefined,
+    style = {},
     attr = {},
     children,
 }) {
@@ -20,6 +21,7 @@ function ComboItem({
             className={`${className} ${onGetItemClass ? onGetItemClass(data) : ''}`}
             onClick={click}
             title={title || ''}
+            style={style}
             {...attr}
             {...(disabled ? { disabled: true } : {})}
         >

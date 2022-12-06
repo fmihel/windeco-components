@@ -7,6 +7,8 @@
     $bg:gray;
     $color:black;
     $border:white;
+    $required:#B22D1C;
+
     $outline:#3476BC;
     $font-size:1rem;
 
@@ -24,6 +26,7 @@
         @if ($name=='font-size'){$font-size:$mean;};    
         @if ($name=='bg-hover'){$bg-hover:$mean;};    
         @if ($name=='color-hover'){$color-hover:$mean;};    
+        @if ($name=='required'){$required:$mean;};    
     };
     .wd-combo{
 
@@ -35,7 +38,7 @@
         min-height:$size;
         line-height:$size;
         min-width:$size;
-        //border-radius: 5px;
+       //border-radius: 12px;
         font-size: $font-size;
         white-space: nowrap;
         overflow: hidden;
@@ -43,7 +46,7 @@
         @include display-flex-horiz-stretch();
 
         outline: 0px solid rgba(0,0,0,0);
-        transition: outline-color 0.4s;
+        @include transition(outline-color 0.4s);
 
         >*{
             &:nth-child(1) {
@@ -69,6 +72,9 @@
         &[disabled]{
             opacity: 0.4;
         }
+        &[required]{
+            border:1px solid $required !important;
+        }        
     
     }
     .wd-combo-list{

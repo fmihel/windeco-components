@@ -382,11 +382,13 @@ class App extends React.Component {
                             <div className="block-horiz">
                                 <ComboBoxEx
                                     onChange={(o) => { console.log(o); }}
-                                    list = {combo_list3}
+                                    list = {combo_list1}
                                     select={3}
                                     style={{
-                                        width: 100, height: 43,
+                                        width: 100,
+                                        height: 43,
                                     }}
+                                    styleOuter={{ lineHeight: '43px' }}
                                     clamp={150}
                                     hideBtnOnSelect = {true}
                                 />
@@ -433,7 +435,7 @@ class App extends React.Component {
                         </Block>
                         <Block>
                             <Label caption="disabled">
-                                <ComboBoxEx list = {combo_list2} select={1} />
+                                <ComboBoxEx list = {combo_list2} select={1} disabled={true}/>
                             </Label>
                         </Block>
                         <Block>
@@ -452,7 +454,6 @@ class App extends React.Component {
                                     srcPath={'./media/combo_32/'}
                                     addClassItem={'wd-cb32-src'}
                                     select={-1}
-
                                 />
                             </Label>
                         </Block>
