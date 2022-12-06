@@ -8,13 +8,17 @@ function ComboBox({
     id,
     className = ComboBox.global.className,
     addClass = ComboBox.global.addClass,
+    classNameList = ComboBox.global.classNameList,
+    addClassList = ComboBox.global.addClassList,
     style = ComboBox.global.style,
     list = [],
     /*
         list:[{ id, caption},{...},...]
     */
+    disabled = false,
     select = false,
     onChange = undefined,
+    hideBtnOnSelect = false,
     onGetItemClass = ComboBox.global.onGetItemClass,
     placeholder = ComboBox.global.placeholder,
     aliasId = ComboBox.global.aliasId,
@@ -27,6 +31,8 @@ function ComboBox({
     const selectCaption = selected ? selected[aliasCaption] : false;
 
     const [open, setOpen] = useState(false);
+    const [btnOpenShow, setBtnOpenShow] = useState(!hideBtnOnSelect);
+    const [focused, setFocused] = useState(false);
     const ref = useRef(null);
     const [size, setSize] = useState({
         left: 0, top: 0, width: 0, height: 0,
@@ -55,34 +61,60 @@ function ComboBox({
     };
     const getItemClass = () => {
         if (onGetItemClass) {
-            return onGetItemClass(selected);
+            return onGetItemClass(selected, true);
         }
         return '';
+    };
+    const mouseMove = () => {
+        if (hideBtnOnSelect) {
+            setBtnOpenShow(true);
+        }
+    };
+    const mouseLeave = () => {
+        if (hideBtnOnSelect) {
+            setBtnOpenShow(false);
+        }
+    };
+
+    const focus = () => {
+        setFocused(true);
+    };
+    const focusOut = () => {
+        setFocused(false);
+        setTimeout(() => { closeList(); }, 100);
     };
     return (
         <>
             <div
                 id={id}
-                tabIndex="0"
+
                 className={`${className} ${addClass}`}
                 style={{ ...ComboBox.global.style, ...style }}
                 onClick = {click}
                 ref = {ref}
+                {...(disabled ? { disabled: true } : { tabIndex: '0' })}
+                onMouseMove={mouseMove}
+                onMouseLeave={mouseLeave}
+                onFocus={focus}
+                onBlur={focusOut}
             >
                 <ItemComponent
                     title={selectCaption || ''}
                     onGetItemClass = {getItemClass}
+                    attr={{ state: (selected ? 'select' : 'no-select') }}
                 >
                     {selectCaption || placeholder || ''}
                 </ItemComponent>
-                <div/>
+                <div style={ { ...((btnOpenShow || focused) ? {} : { display: 'none' }) }} />
             </div>
-            <Modal
+            {(!disabled) && <Modal
                 visible = {open}
                 onClickShadow={closeList}
                 opacityShadow={0}
             >
                 <ComboList
+                    className={classNameList}
+                    addClass={addClassList}
                     list = {list}
                     {...size}
                     aliasId={aliasId}
@@ -92,7 +124,7 @@ function ComboBox({
                     onGetItemClass = {onGetItemClass}
                     ItemComponent={ItemComponent}
                 />
-            </Modal>
+            </Modal>}
         </>
     );
 }
@@ -100,7 +132,9 @@ function ComboBox({
 ComboBox.global = {
     className: 'wd-combo',
     addClass: '',
-    placeholder: '-выбрать-',
+    classNameList: 'wd-combo-list',
+    addClassList: 'wd-scrollbar',
+    placeholder: '- выбрать -',
     style: {},
     ItemComponent: ComboItem,
     onGetItemClass: undefined,

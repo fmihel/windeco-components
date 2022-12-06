@@ -283,7 +283,9 @@ class App extends React.Component {
         const fontsName = Object.keys(fonts);
         const getItemClass = (data) => {
             if (data) {
-                if ('id' in data && icons[data.id]) { return icons[data.id]; }
+                if ('id' in data && icons[data.id]) {
+                    return icons[data.id];
+                }
                 return icons[0];
             }
             return '';
@@ -348,7 +350,6 @@ class App extends React.Component {
                         <Block>
                             <ComboBoxEx
                                 id='cb1'
-                                style={{ height: 18 }}
                                 onChange={this.onChangeCombo}
                                 list = {combo_list1}
                                 select={'cb1' in comboSelect ? comboSelect.cb1 : false}
@@ -361,13 +362,11 @@ class App extends React.Component {
                                     id='cb2'
                                     onChange={this.onChangeCombo}
                                     list = {combo_list3}
-                                    listClasses={listClasses3}
-                                    disable={{ dim: true }}
                                     select={'cb2' in comboSelect ? comboSelect.cb2 : false}
                                     style={{ width: 100 }}
                                     clamp={150}
                                 />
-                                <Edit id="ttt" style={{ width: 100 }} disable={{ dim: true }} onKeyPress={(o) => {
+                                <Edit id="ttt" style={{ width: 100 }} onKeyPress={(o) => {
                                     console.log(o);
                                 }}> text from child</Edit>
                                 <BtnIcon
@@ -385,7 +384,9 @@ class App extends React.Component {
                                     onChange={(o) => { console.log(o); }}
                                     list = {combo_list3}
                                     select={3}
-                                    style={{ width: 100, height: 43, textAlign: 'center' }}
+                                    style={{
+                                        width: 100, height: 43,
+                                    }}
                                     clamp={150}
                                     hideBtnOnSelect = {true}
                                 />
@@ -425,7 +426,6 @@ class App extends React.Component {
                             <Label caption="comboboxex" style={{ color: 'red' }}>
                                 <ComboBoxEx
                                     list = {combo_list2}
-                                    addClassItem={'wd-cb32-src'}
                                     ItemComponent={ComboItemIcon}
                                     onGetItemClass={getItemClass}
                                 />
@@ -433,7 +433,7 @@ class App extends React.Component {
                         </Block>
                         <Block>
                             <Label caption="disabled">
-                                <ComboBoxEx list = {combo_list2} select={1} disabled={'true'}/>
+                                <ComboBoxEx list = {combo_list2} select={1} />
                             </Label>
                         </Block>
                         <Block>
@@ -451,7 +451,6 @@ class App extends React.Component {
                                     list = {combo_list5}
                                     srcPath={'./media/combo_32/'}
                                     addClassItem={'wd-cb32-src'}
-                                    disable={{ dim: false }}
                                     select={-1}
 
                                 />

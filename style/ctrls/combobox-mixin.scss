@@ -40,20 +40,14 @@
         white-space: nowrap;
         overflow: hidden;
         
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        align-content: stretch;
-        align-items: stretch;
+        @include display-flex-horiz-stretch();
+
         outline: 0px solid rgba(0,0,0,0);
         transition: outline-color 0.4s;
 
         >*{
             &:nth-child(1) {
-                order: 0;
-                flex: 1 1 auto;
-                align-self: auto;
+                @include stretch();
             }
             &:nth-child(2) {
                 min-width: $size;
@@ -72,6 +66,9 @@
         &:focus { 
             outline: 2px solid $outline;
         }
+        &[disabled]{
+            opacity: 0.4;
+        }
     
     }
     .wd-combo-list{
@@ -82,6 +79,8 @@
         overflow-x: hidden;
         overflow-y: auto;        
         .wd-combo-item{
+            max-height: $size;
+            height: $size;
             &:hover{
                 background-color: $bg-hover;
                 color: $color-hover;
@@ -97,33 +96,23 @@
     }
     .wd-combo-item{
         text-indent: $gap;
-        min-height: $size;
-        height: $size;
         line-height: $size;
         white-space: nowrap;
         overflow: hidden;
-
-        // for ComboItemIcon
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        align-content: stretch;
-        align-items: stretch;
-
+        &[state="no-select"]{
+            color:rgba($color,0.5);
+        }
+        // for ComboItemIcon -------
+        @include display-flex-horiz-stretch();
         >div{
             &:nth-child(1) {
-                order: 0;
-                flex: 0 1 auto;
-                align-self: auto;
+                @include no-stretch();
             }                
             &:nth-child(2) {
-                order: 0;
-                flex: 1 1 auto;
-                align-self: auto;
+                @include stretch();
             }                
         }
-
+        // ----------------------------
     }
     
 }

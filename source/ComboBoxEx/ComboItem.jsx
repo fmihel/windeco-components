@@ -7,6 +7,7 @@ function ComboItem({
     data = {},
     disabled = false,
     onGetItemClass = undefined,
+    attr = {},
     children,
 }) {
     const click = () => {
@@ -19,6 +20,7 @@ function ComboItem({
             className={`${className} ${onGetItemClass ? onGetItemClass(data) : ''}`}
             onClick={click}
             title={title || ''}
+            {...attr}
             {...(disabled ? { disabled: true } : {})}
         >
             {children}
