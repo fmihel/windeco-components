@@ -51,7 +51,7 @@ function ComboBox({
         setOpen(!open);
     };
     const closeList = () => {
-        setOpen(false);
+        if (open) setOpen(false);
     };
     const change = (data) => {
         setOpen(false);
@@ -81,7 +81,19 @@ function ComboBox({
     };
     const focusOut = () => {
         setFocused(false);
-        setTimeout(() => { closeList(); }, 100);
+    };
+    const keyDown = (o) => {
+        if (o.keyCode === 9) {
+            closeList();
+        }
+        if (o.keyCode === 27) {
+            closeList();
+            o.preventDefault();
+        }
+        if ([34, 33, 40, 38, 13].indexOf(o.keyCode) >= 0) {
+            setOpen(true);
+            o.preventDefault();
+        }
     };
     return (
         <>
@@ -97,6 +109,8 @@ function ComboBox({
                 onMouseLeave={mouseLeave}
                 onFocus={focus}
                 onBlur={focusOut}
+                onKeyDown={keyDown}
+
             >
                 <ItemComponent
                     title={selectCaption || ''}

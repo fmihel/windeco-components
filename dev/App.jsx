@@ -265,8 +265,8 @@ class App extends React.Component {
     }
 
     onChangeCombo({ id, data }) {
+        console.log('change combo', id, data);
         if (id) {
-            console.log('change combo', id, data);
             this.setState((prev) => {
                 const comboSelect = { ...prev.comboSelect };
                 comboSelect[id] = data.id;
