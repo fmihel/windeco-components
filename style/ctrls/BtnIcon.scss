@@ -7,21 +7,17 @@ $wd-btn-border:$wd-ctrl-border !default;
 $wd-btn-border-focus:$wd-ctrl-border-focus !default;
 
 
-.wd-btn-icon{
-    @include btnicon-mixin($wd-default-theme);
-}
+@include btnicon-mixin($wd-default-theme);
 
 @each $name in $wd-themes{
     .#{$name} {
-        .wd-btn-icon{
-            @include btnicon-mixin(
-                $theme:$name,
-                $bg:map-get($wd-btn-bg,#{$name}),
-                $color: map-get($wd-ctrl-color,#{$name}),
-                $border:map-get($wd-btn-border,#{$name}),
-                $outline:map-get($wd-btn-border-focus,#{$name}),
-            );
-        }
+        @include btnicon-mixin(
+            $theme:$name,
+            $bg:map-get($wd-btn-bg,#{$name}),
+            $color: map-get($wd-ctrl-color,#{$name}),
+            $border:map-get($wd-btn-border,#{$name}),
+            $outline:map-get($wd-btn-border-focus,#{$name}),
+        );
     }
 }
 

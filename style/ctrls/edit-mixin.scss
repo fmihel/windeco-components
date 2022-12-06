@@ -8,7 +8,8 @@
     $outline:#92BCD8;
     $border:#DCDCDC;
     $gap:5px;
-
+    $require:red;
+    $require-url:'';
     @each $name, $mean in meta.keywords($args) {
         @if ($name=='theme'){$theme:$mean;};    
         @if ($name=='size'){$size:$mean;}; 
@@ -17,65 +18,39 @@
         @if ($name=='color'){$color:$mean;};    
         @if ($name=='border'){$border:$mean;};    
         @if ($name=='outline'){$outline:$mean;};    
-        @if ($name=='gap'){$gap:$mean;};    
+        @if ($name=='gap'){$gap:$mean;};
+        @if ($name=='require'){$require:$mean;}; 
+        @if ($name=='require-url'){$require-url:$mean;}; 
+    
     }
+    .wd-edit{
+        min-height:$size;
+        font-size:$font-size;
+        border:1px solid $border;
+        width:100%;
+        background-color: $bg;
+        text-indent:$gap;
 
-    outline: 0px solid rgba(0,0,0,0);
-    //transition: outline-color 0.4s;
+        color:$color;
 
-    min-height:$size;
-    font-size:$font-size;
-    border:1px solid $border;
-    width:100%;
-    background-color: $bg;
-    text-indent:$gap;
+        outline: 0px solid rgba(0,0,0,0);
+        @include transition(margin 0.2s,outline-color 0.4s);
+        &:focus { 
+            outline: 2px solid $outline;
+        }
 
-    color:$color;
-
-    &:focus { 
-        outline: 2px solid $outline;
-    }
-
-    @include transition(margin 0.2s,outline-color 0.4s);
-
-}
-
-@mixin edit-require($args...){
-    $theme:'dark';
-    $img:'';
-    $border:#DCDCDC;
-    $size:1rem;
-
-    @each $name, $mean in meta.keywords($args) {
-        @if ($name=='theme'){$theme:$mean;};    
-        @if ($name=='img'){$img:$mean;}; 
-        @if ($name=='border'){$border:$mean;}; 
-        @if ($name=='size'){$size:$mean;};       
-    }
-
-    background-image: url($img);
-    background-repeat: no-repeat;
-    background-position-x: right;
-    background-position-y: center;
-    border:1px solid $border !important;
-    background-size: $size;
-}
-
-@mixin edit-disabled($args...){
-    $theme:'dark';
-    $border:#838383;
-    $color:rgba(0, 0, 0, 0.486);
-
-    @each $name, $mean in meta.keywords($args) {
-        @if ($name=='theme'){$theme:$mean;};    
-        @if ($name=='color'){$color:$mean;}; 
-        @if ($name=='border'){$border:$mean;}; 
-    }
-
-    border-top:0px;
-    border-left:0px;
-    border-right:0px;
-    border-bottom: 1px solid $border;
-    color: $color;
-    background-color: rgba(0,0,0,0) !important;
+        &[readonly]{
+        }        
+        &[disabled]{
+            opacity: 0.5;
+        }
+        &[required]{
+            background-image: url($require-url);
+            background-repeat: no-repeat;
+            background-position-x: right;
+            background-position-y: center;
+            border:1px solid $require !important;
+            background-size: $size*0.5;
+        }
+    }   
 }

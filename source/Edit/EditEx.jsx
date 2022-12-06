@@ -61,17 +61,16 @@ function Edit({
     };
     // --------------------------------------------------------
     const props = {};
-    if (readonly) { props.readOnly = 'readonly'; }
-    if (disabled) { props.disabled = true; }
     if (min !== undefined) props.min = min;
     if (max !== undefined) props.max = max;
     if (step !== undefined) props.step = step;
     if (minLength > 0) props.minLength = minLength;
     if (maxLength > 0) props.maxLength = maxLength;
     // --------------------------------------------------------
-    const requiredClass = (required && (`${value || children || ''}`).length === 0) ? Edit.global.requiredClass : '';
-    const disabledClass = (disabled) ? Edit.global.disabledClass : '';
-    const readonlyClass = (readonly) ? Edit.global.readonlyClass : '';
+    const val = value || children || '';
+    // const requiredClass = (required && (`${value || children || ''}`).length === 0) ? Edit.global.requiredClass : '';
+    // const disabledClass = (disabled) ? Edit.global.disabledClass : '';
+    // const readonlyClass = (readonly) ? Edit.global.readonlyClass : '';
     let _type = type;
     if (type === 'number') {
         _type = focused ? type : 'text';
@@ -80,7 +79,7 @@ function Edit({
         <input
             id={id}
             type={_type}
-            value={value || children || ''}
+            value={val}
             onChange={change}
             onKeyUp={keyup}
             onKeyDown={keydn}
@@ -92,8 +91,12 @@ function Edit({
                 ...style,
                 ...(visible ? {} : { display: 'none' }),
             }}
-            className={`${className} ${addClass} ${requiredClass} ${disabledClass} ${readonlyClass}`}
+            className={`${className} ${addClass}`}
             placeholder={placeholder}
+            {...(disabled ? { disabled: true } : {})}
+            {...(readonly ? { readOnly: 'readonly' } : {})}
+            {...(required && !focused ? { required: true } : {})}
+
             {...props}
             title = {title || hint || ''}
 

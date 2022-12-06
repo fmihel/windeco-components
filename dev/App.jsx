@@ -345,6 +345,37 @@ class App extends React.Component {
                             }/>
                         </Block>
                     </Head>
+
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Edit">
+                        <Block> <EditEx id="tt" style={{ fontSize: '1.2em' }} onKeyPress={(o) => {
+                            console.log(o);
+                        }}>text from child</EditEx></Block>
+                        <Block> <EditEx type="password" placeholder="set password" style={{ height: 18, minHeight: 18 }}/></Block>
+                        <Block> <EditEx autoFocus value="text from value, and hint" title="title prop (hint deeprecated)"/></Block>
+
+                        <Block> <EditEx
+                            id = 'edNeed'
+                            value = {values.edNeed}
+                            onChange = {this.onChangeEx}
+                            hint="обязательный ввод"
+                            placeholder="need text.."
+                            required={true}
+                            maxLength={10}
+                        />
+                        </Block>
+                        <Block> <EditEx value="readonly" readonly={1} /></Block>
+                        <Block> <EditEx value="disabled" disabled={1} visible={true}/></Block>
+                        <Block> <EditEx id="edph" placeholder="set text" value={values.edph} onChange={this.onChangeEx}/></Block>
+                        <Block> <LabelEx caption="label" id="myEdit100">
+                            <EditEx id="myEdit100" value={values.myEdit100} onChange={this.onChangeEx}/>
+                        </LabelEx></Block>
+                        <Block> <LabelEx caption="pass" id="pass"><EditEx id="pass" type="password" value="set text" /></LabelEx></Block>
+                        <Block> <LabelEx caption="readonly" id="ronl"><EditEx id="ronl" value="readonly text in edit" dim={''} readonly={true}/></LabelEx></Block>
+                        <Block> <LabelEx caption="range" id="rng" ><EditEx id="rng" value={5} type='number' min={0} max={10} step={1}/></LabelEx></Block>
+
+                    </Head>
+
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption = "TableFixed">
                         <Block>
@@ -582,36 +613,6 @@ class App extends React.Component {
                         <Block> <LabelEx caption='on change'><Btn onClick={() => { this.setState({ checked: 0 }); }} >on change false</Btn></LabelEx></Block>
                         <Block> <LabelEx caption='on change'><CheckBox checked={this.state.checked} onChange={() => { this.setState({ checked: 1 }); }}/></LabelEx></Block>
                         <Block> <LabelEx id="ckb-disabled" caption='disabled'><CheckBox id="ckb-disabled" checked={true} onChange={(o) => { console.log(o); }} disabled={true}/></LabelEx></Block>
-                    </Head>
-
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption="Edit">
-                        <Block> <EditEx id="tt" style={{ fontSize: '1.2em' }} onKeyPress={(o) => {
-                            console.log(o);
-                        }}>text from child</EditEx></Block>
-                        <Block> <EditEx type="password" placeholder="set password" style={{ height: 18, minHeight: 18 }}/></Block>
-                        <Block> <EditEx autoFocus value="text from value, and hint" title="title prop (hint deeprecated)"/></Block>
-
-                        <Block> <EditEx
-                            id = 'edNeed'
-                            value = {values.edNeed}
-                            onChange = {this.onChangeEx}
-                            hint="обязательный ввод"
-                            placeholder="need text.."
-                            required={true}
-                            maxLength={10}
-                        />
-                        </Block>
-                        <Block> <EditEx value="readonly" readonly={1} /></Block>
-                        <Block> <EditEx value="disabled" disabled={1} visible={true}/></Block>
-                        <Block> <EditEx id="edph" placeholder="set text" value={values.edph} onChange={this.onChangeEx}/></Block>
-                        <Block> <LabelEx caption="label" id="myEdit100">
-                            <EditEx id="myEdit100" value={values.myEdit100} onChange={this.onChangeEx}/>
-                        </LabelEx></Block>
-                        <Block> <LabelEx caption="pass" id="pass"><EditEx id="pass" type="password" value="set text" /></LabelEx></Block>
-                        <Block> <LabelEx caption="readonly" id="ronl"><EditEx id="ronl" value="readonly text in edit" dim={''} readonly={true}/></LabelEx></Block>
-                        <Block> <LabelEx caption="range" id="rng" ><EditEx id="rng" value={5} type='number' min={0} max={10} step={1}/></LabelEx></Block>
-
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="Icon">

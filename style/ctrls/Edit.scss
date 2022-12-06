@@ -23,51 +23,19 @@ input[type=number]{
 }
 
 
-.wd-edit{
-    @include edit-mixin($wd-default-theme);
-}
-.wd-edit-require{
-    @include edit-require($wd-default-theme);
-}
-.wd-edit-readonly{
-    @include edit-disabled($theme:$wd-default-theme);
-};
-.wd-edit-disable{
-    @include edit-disabled($theme:$wd-default-theme);
-};
+@include edit-mixin($wd-default-theme);
 
 @each $name in $wd-themes{
     .#{$name} {
-        .wd-edit{
-            @include edit-mixin(
-                $theme:$name,
-                $bg:map-get($wd-edit-bg,#{$name}),
-                $color:map-get($wd-edit-color,#{$name}),
-                $border:map-get($wd-edit-border,#{$name}),
-                $outline:map-get($wd-edit-border-focus,#{$name}),
-            );
-        }
-        .wd-edit-require{
-            @include edit-require(
-                $theme:$name,
-                $img:$wd-ctrl-bg-img-require,
-                $border:map-get($wd-edit-color-require,#{$name}),
-            );
-        }
-        .wd-edit-readonly{
-            @include edit-disabled(
-                $theme:$name,
-                $border:map-get($wd-edit-border,#{$name}),
-                $color: map-get($wd-edit-color-readonly,#{$name})
-            );
-        };
-        .wd-edit-disable{
-            @include edit-disabled(
-                $theme:$name,
-                $border:map-get($wd-edit-border,#{$name}),
-                $color: map-get($wd-edit-color-disable,#{$name})
-            );
-        };
+        @include edit-mixin(
+            $theme:$name,
+            $bg:map-get($wd-edit-bg,#{$name}),
+            $color:map-get($wd-edit-color,#{$name}),
+            $border:map-get($wd-edit-border,#{$name}),
+            $outline:map-get($wd-edit-border-focus,#{$name}),
+            $require-url:$wd-ctrl-bg-img-require,
+            $require:map-get($wd-edit-color-require,#{$name}),
+        );
     }
 }
 
