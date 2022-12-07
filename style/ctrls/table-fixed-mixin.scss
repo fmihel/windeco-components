@@ -32,6 +32,10 @@
     }
     .wd-table-fixed{
         border-collapse: collapse;
+        tr{
+            min-height: $size;
+            height: $size;
+        }
         &[header]{  
             background-color: rgb(63, 63, 63);
             th{
@@ -39,6 +43,7 @@
             }
         }
         &[table]{
+
             td{
                 border: 1px solid gray;
 

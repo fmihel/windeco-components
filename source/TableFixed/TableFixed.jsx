@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import _ from 'lodash';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 import Table from './Table.jsx';
@@ -21,7 +22,7 @@ function TableFixed({
     fields = [],
     header = true,
     textOnEmpty = TableFixed.global.textOnEmpty,
-    minWidth = 500,
+    minWidth = 0,
 
 }) {
     const [size, setSize] = useState({ width: 0, height: 0 });
@@ -46,7 +47,7 @@ function TableFixed({
     }, [id, size]);
 
     useEffect(() => {
-        const resize = () => {
+        const _resize = () => {
             if (ref.current) {
                 setSize({
                     width: ref.current.offsetWidth,
@@ -54,9 +55,11 @@ function TableFixed({
                 });
             }
         };
+
+        // const resize = _.throttle(_resize, 100);
         const newObserv = new ResizeObserver(() => {
-            resize();
-            resize();
+            _resize();
+            // resize();
         });
         newObserv.observe(ref.current);
 
