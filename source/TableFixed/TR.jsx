@@ -2,7 +2,7 @@ import React from 'react';
 import TD from './TD.jsx';
 
 function TR({
-    data = [s],
+    data = [],
     fields = [], // []
     widths = [],
     aliasId = 'ID',

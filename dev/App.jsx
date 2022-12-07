@@ -355,6 +355,7 @@ class App extends React.Component {
 
                         <Block addClass="table-fixed-height">
                             <TableFixed
+                                id='tab1'
                                 fields={fields}
                                 data={table}
                                 onClick={this.onClickTableFixed}

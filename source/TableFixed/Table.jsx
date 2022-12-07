@@ -1,18 +1,21 @@
 import React from 'react';
 import TR from './TR.jsx';
 
-function Rows({
+function Table({
     id,
     data = [],
     aliasId,
     fields,
-    widths,
+    className = 'wd-table-fixed',
+    addClass = '',
+    style = {},
 }) {
     return (
         <table
-            // id={id}
-            // className={`${className} ${addClass}`}
-            // style={{ ...TableFixed.global.style, ...style }}
+            id={`table-${id}`}
+            className={`${className} ${addClass}`}
+            style={{ ...style }}
+            table='true'
         >
             <tbody>
                 {data.map((row) => (
@@ -20,7 +23,6 @@ function Rows({
                         key = {row[aliasId]}
                         data = {row}
                         fields = {fields}
-                        widths={widths}
                         aliasId={aliasId}/>
                 ))}
             </tbody>
@@ -28,4 +30,4 @@ function Rows({
     );
 }
 
-export default Rows;
+export default Table;

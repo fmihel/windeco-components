@@ -19,12 +19,31 @@
         @if ($name=='font-size'){$font-size:$mean;};    
         @if ($name=='gap'){$gap:$mean;};    
     };
-    .wd-table-fixed-container{
+    .wd-table-fixed-horiz{
         border:1px solid red;
         width:100%;
         height: 100%;
         overflow-y: hidden;
         overflow-x: auto;
+    }
+    .wd-table-fixed-vert{
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    .wd-table-fixed{
+        border-collapse: collapse;
+        &[header]{  
+            background-color: rgb(63, 63, 63);
+            th{
+                border: 1px solid gray;
+            }
+        }
+        &[table]{
+            td{
+                border: 1px solid gray;
+
+            }
+        }
     }
 
 }

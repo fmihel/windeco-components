@@ -1,6 +1,9 @@
 import React from 'react';
 
 function Header({
+    id,
+    className,
+    addClass,
     type,
     caption,
     fields,
@@ -8,18 +11,24 @@ function Header({
 
 }) {
     return (
-        <table>
-            <tbody><tr>
-                {fields.map((field) => (
-                    <th
-                        key={field.name}
-                        style={{
-                            ...(widths[field.name] ? { width: widths[field.name] } : {}),
-                        }}
-                    >
-                        {field.caption}
-                    </th>))}
-            </tr></tbody>
+        <table
+            id={`header-${id}`}
+            className={`${className} ${addClass}`}
+            header="true"
+        >
+            <thead>
+                <tr>
+                    {fields.map((field, i) => (
+                        <th
+                            key={field.name}
+                            style={{
+                                ...(i < widths.length ? { width: widths[i], minWidth: widths[i] } : {}),
+                            }}
+                        >
+                            {field.caption}
+                        </th>))}
+                </tr>
+            </thead>
         </table>
     );
 }

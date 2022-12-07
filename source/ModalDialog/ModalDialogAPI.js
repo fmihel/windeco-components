@@ -56,7 +56,6 @@ class ModalDialogAPI {
         if (align === 'stickTo') {
             const dom = DOM(`#${stickTo}`.replace('##', '#'));
             const abs = absPos(dom);
-            console.log('dom', stickTo, abs);
             const out = { width, height };
             if (stickAlign === 'bottom') {
                 out.left = abs.x + abs.w / 2 - width / 2 + stickOffX;
