@@ -2,10 +2,10 @@ import React from 'react';
 import TD from './TD.jsx';
 
 function TR({
-    data,
-    fields, // []
-    widths,
-    aliasId,
+    data = [s],
+    fields = [], // []
+    widths = [],
+    aliasId = 'ID',
 }) {
     return (
         <tr id={data[aliasId]}>
@@ -15,6 +15,7 @@ function TR({
                     value={data[name]}
                     rowData = {data}
                     aliasId={aliasId}
+                    width={widths[name] || false}
                 />))}
         </tr>
     );

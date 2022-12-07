@@ -11,7 +11,6 @@ function ModalDialog({
     onClickHeaderClose = undefined,
     onClickShadow = undefined,
     onClickFooterBtn = undefined,
-    onShow = undefined,
     header = false,
     footer = undefined,
     align = 'stretch', // stretch, custom,stickTo
@@ -78,7 +77,7 @@ function ModalDialog({
         return () => {
             window.removeEventListener('resize', resize);
         };
-    }, [left, top, width, height, align, stickTo, stickOffX, stickOffY, stickAlign, margin, userModif]);
+    }, [visible, left, top, width, height, align, stickTo, stickOffX, stickOffY, stickAlign, margin, userModif]);
 
     useEffect(() => {
         const mouseMove = () => {

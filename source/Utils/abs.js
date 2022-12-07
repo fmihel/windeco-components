@@ -1,9 +1,9 @@
 export default function abs(dom) {
-    const w = dom.getBoundingClientRect();
+    const rect = dom.getBoundingClientRect();
     return {
-        x: w.left + window.pageXOffset,
-        y: w.top + window.pageYOffset,
-        w: w.width,
-        h: w.height,
+        x: rect.left + window.pageXOffset,
+        y: rect.top + window.pageYOffset,
+        w: rect.width,
+        h: rect.height,
     };
 }

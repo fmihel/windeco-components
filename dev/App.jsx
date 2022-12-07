@@ -345,6 +345,7 @@ class App extends React.Component {
                             }/>
                         </Block>
                     </Head>
+
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption = "TableFixed">
                         <Block>
@@ -389,6 +390,12 @@ class App extends React.Component {
                         <Block> <LabelEx caption="readonly" id="ronl"><EditEx id="ronl" value="readonly text in edit" dim={''} readonly={true}/></LabelEx></Block>
                         <Block> <LabelEx caption="range" id="rng" ><EditEx id="rng" value={5} type='number' min={0} max={10} step={1}/></LabelEx></Block>
 
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Dialog">
+                        <Block>
+                            {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
+                        </Block>
                     </Head>
 
                     {/*--------------------------------------------------------------------------------------------------*/}
@@ -542,12 +549,6 @@ class App extends React.Component {
                                     select={-1}
                                 />
                             </Label>
-                        </Block>
-                    </Head>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption="Dialog">
-                        <Block>
-                            {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
                         </Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
@@ -705,7 +706,7 @@ class App extends React.Component {
                     {this.dialogEx.msg}
             </ModalDialog> */}
 
-                <div id="wd-modal" >
+                <div id="wd-modal" style={{ position: 'absolute', left: 0, top: 0 }}>
                 </div>
             </div>
         );
