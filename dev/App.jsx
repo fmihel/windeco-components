@@ -345,6 +345,21 @@ class App extends React.Component {
                             }/>
                         </Block>
                     </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption = "TableFixed">
+                        <Block>
+                            <Btn onClick={this.onTableClear}>clear</Btn>
+                            <Btn onClick={this.onTableFill}>fill</Btn>
+                        </Block>
+
+                        <Block addClass="table-fixed-height">
+                            <TableFixed
+                                fields={fields}
+                                data={table}
+                                onClick={this.onClickTableFixed}
+                            />
+                        </Block>
+                    </Head>
 
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="Edit">
@@ -374,22 +389,6 @@ class App extends React.Component {
                         <Block> <LabelEx caption="readonly" id="ronl"><EditEx id="ronl" value="readonly text in edit" dim={''} readonly={true}/></LabelEx></Block>
                         <Block> <LabelEx caption="range" id="rng" ><EditEx id="rng" value={5} type='number' min={0} max={10} step={1}/></LabelEx></Block>
 
-                    </Head>
-
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption = "TableFixed">
-                        <Block>
-                            <Btn onClick={this.onTableClear}>clear</Btn>
-                            <Btn onClick={this.onTableFill}>fill</Btn>
-                        </Block>
-
-                        <Block addClass="table-fixed-height">
-                            <TableFixed
-                                fields={fields}
-                                data={table}
-                                onClick={this.onClickTableFixed}
-                            />
-                        </Block>
                     </Head>
 
                     {/*--------------------------------------------------------------------------------------------------*/}

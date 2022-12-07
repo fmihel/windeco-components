@@ -1,5 +1,5 @@
 @use "sass:meta";
-@mixin tablefixed-mixin($args...){
+@mixin table-fixed-mixin($args...){
     $theme:'dark';
     $size:2rem;
     $bg:gray;
@@ -19,7 +19,12 @@
         @if ($name=='font-size'){$font-size:$mean;};    
         @if ($name=='gap'){$gap:$mean;};    
     };
-    .wd-fixed-table{
-        
+    .wd-table-fixed-container{
+        border:1px solid red;
+        width:100%;
+        height: 100%;
+        overflow-y: hidden;
+        overflow-x: auto;
     }
+
 }
