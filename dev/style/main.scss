@@ -93,21 +93,8 @@ body{
             align-self: auto;
             overflow: auto; 
             
-            .table-fixed-height{
-                height: 200px;
+            .container-for-table-fixed{
                 overflow: hidden;
-                .wd-table-fixed-frame{
-                    
-                }
-                /*
-                >div{
-                    &:nth-child(2){
-                        max-height: 200px;
-                        height: 200px;
-        
-                    }
-                }
-                */
             }
             
         }

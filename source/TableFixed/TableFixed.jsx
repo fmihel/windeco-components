@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
-import _ from 'lodash';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 import Table from './Table.jsx';
-import { culcWidths, eqWidths } from './utils';
+import { culcWidths, haveScrollBar, isWidthsEmpty } from './utils';
 import DOM from '../Utils/DOM';
 import getId from '../Utils/getId';
+import getSize from '../Utils/size';
 
 function TableFixed({
     id = getId(),
@@ -28,38 +28,48 @@ function TableFixed({
     const [size, setSize] = useState({ width: 0, height: 0 });
     const [widths, setWidths] = useState([]);
     const [vertHeight, setVertHeight] = useState(0);
-
+    const [border, setBorder] = useState({});
     const ref = useRef(null);
 
     useEffect(() => {
         const tableDOM = DOM(`#table-${id}`);
         if (tableDOM) {
-            const newWidths = culcWidths(tableDOM, fields);
-            setWidths(newWidths);
+            const newWidths = culcWidths(tableDOM, size);
+            if (!isWidthsEmpty(newWidths)) {
+                setWidths(newWidths);
+            }
         }
     }, [data, fields, ref, id, size]);
 
     useEffect(() => {
         const headerDOM = DOM(`#header-${id}`);
         if (headerDOM) {
-            setVertHeight(size.height - headerDOM.offsetHeight);
+            const headerSize = getSize(headerDOM, 'offset');
+            setVertHeight(size.height - headerSize.height);
         }
     }, [id, size]);
 
     useEffect(() => {
-        const _resize = () => {
+        let first = true;
+        const showBorder = () => {
+            const tableDOM = DOM(`#table-${id}`);
+            if (tableDOM) {
+                const frameDOM = tableDOM.parentNode;
+                setBorder(haveScrollBar(tableDOM, frameDOM) ? { border: 'for-scroll' } : {});
+            }
+        };
+        const resize = () => {
             if (ref.current) {
-                setSize({
-                    width: ref.current.offsetWidth,
-                    height: ref.current.offsetHeight,
-                });
+                setSize(getSize(ref.current));
             }
         };
 
         // const resize = _.throttle(_resize, 100);
         const newObserv = new ResizeObserver(() => {
-            _resize();
-            // resize();
+            resize();
+            if (first) resize();
+            first = false;
+            showBorder();
         });
         newObserv.observe(ref.current);
 
@@ -88,8 +98,12 @@ function TableFixed({
                 />
             }
             <div
-                className={`${classNameVert} ${addClassVert}`}
-                style={{ height: vertHeight, ...(minWidth > 0 && size.width < minWidth ? { width: minWidth } : {}) }}
+                className={`${classNameVert} ${addClassVert} `}
+                style={{
+                    height: vertHeight,
+                    ...(minWidth > 0 && size.width < minWidth ? { width: minWidth } : {}),
+                }}
+                {...border}
             >
                 {data.length > 0
                 && <Table
@@ -126,5 +140,6 @@ TableFixed.global = {
     header: true, // string true false
     textOnEmpty: 'no data', // string or false
     textOnEnd: 'end', // string ot false
+
 };
 export default TableFixed;

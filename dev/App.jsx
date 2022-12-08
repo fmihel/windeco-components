@@ -353,9 +353,17 @@ class App extends React.Component {
                             <Btn onClick={this.onTableFill}>fill</Btn>
                         </Block>
 
-                        <Block addClass="table-fixed-height">
+                        <Block addClass="container-for-table-fixed" style={{ height: 200 }}>
                             <TableFixed
                                 id='tab1'
+                                fields={fields}
+                                data={table}
+                                onClick={this.onClickTableFixed}
+                            />
+                        </Block>
+                        <Block addClass="container-for-table-fixed"style={{ height: 700 }}>
+                            <TableFixed
+                                id='tab2'
                                 fields={fields}
                                 data={table}
                                 onClick={this.onClickTableFixed}
@@ -690,7 +698,7 @@ class App extends React.Component {
                         && <div className="test-place-table">
                             <div className="test-box1">box1</div>
                             <div className="test-box2">
-                                <TableFixed {...table_long2} onClick={this.onClickTableFixed}/>
+                                <TableFixed id={'tab3'} {...table_long2} onClick={this.onClickTableFixed}/>
                             </div>
                         </div>
 
