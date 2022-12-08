@@ -52,9 +52,11 @@ function TableFixed({
         const tableDOM = DOM(`#table-${id}`);
         if (tableDOM) {
             const frameDOM = tableDOM.parentNode;
-            setBorder(haveScrollBar(tableDOM, frameDOM) ? { border: 'for-scroll' } : {});
+            setBorder((data.length && haveScrollBar(tableDOM, frameDOM)) ? { border: 'for-scroll' } : {});
+        } else {
+            setBorder(false);
         }
-    }, [size]);
+    }, [size, data]);
 
     useEffect(() => {
         let first = true;
@@ -68,7 +70,6 @@ function TableFixed({
         const newObserv = new ResizeObserver(() => {
             resize();
             if (first) {
-                console.log('first');
                 resize();
             }
             first = false;

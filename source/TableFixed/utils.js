@@ -3,10 +3,9 @@ import size from '../Utils/size';
 export const culcWidths = (tableDOM, sizeTable) => {
     const tds = tableDOM.childNodes[0].childNodes[0].childNodes;
     const widths = [];
-    let sum = 0;
+
     for (let i = 0; i < tds.length; i++) {
         const area = size(tds[i], 'bounding');
-        sum += area.width;
         widths.push(area.width);
     }
 
