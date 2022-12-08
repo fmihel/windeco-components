@@ -22,7 +22,7 @@ function Header({
                         <th
                             key={field.name}
                             style={{
-                                ...(i < widths.length ? { width: widths[i], minWidth: widths[i] } : {}),
+                                ...(i < widths.length ? { width: widths[i], maxWidth: widths[i] } : {}),
                             }}
                         >
                             {field.caption}

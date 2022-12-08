@@ -22,7 +22,6 @@ function TableFixed({
     fields = [],
     header = true,
     textOnEmpty = TableFixed.global.textOnEmpty,
-    minWidth = 0,
 
 }) {
     const [size, setSize] = useState({ width: 0, height: 0 });
@@ -50,14 +49,15 @@ function TableFixed({
     }, [id, size]);
 
     useEffect(() => {
+        const tableDOM = DOM(`#table-${id}`);
+        if (tableDOM) {
+            const frameDOM = tableDOM.parentNode;
+            setBorder(haveScrollBar(tableDOM, frameDOM) ? { border: 'for-scroll' } : {});
+        }
+    }, [size]);
+
+    useEffect(() => {
         let first = true;
-        const showBorder = () => {
-            const tableDOM = DOM(`#table-${id}`);
-            if (tableDOM) {
-                const frameDOM = tableDOM.parentNode;
-                setBorder(haveScrollBar(tableDOM, frameDOM) ? { border: 'for-scroll' } : {});
-            }
-        };
         const resize = () => {
             if (ref.current) {
                 setSize(getSize(ref.current));
@@ -67,9 +67,11 @@ function TableFixed({
         // const resize = _.throttle(_resize, 100);
         const newObserv = new ResizeObserver(() => {
             resize();
-            if (first) resize();
+            if (first) {
+                console.log('first');
+                resize();
+            }
             first = false;
-            showBorder();
         });
         newObserv.observe(ref.current);
 
@@ -101,7 +103,6 @@ function TableFixed({
                 className={`${classNameVert} ${addClassVert} `}
                 style={{
                     height: vertHeight,
-                    ...(minWidth > 0 && size.width < minWidth ? { width: minWidth } : {}),
                 }}
                 {...border}
             >
@@ -113,7 +114,7 @@ function TableFixed({
                     aliasId={aliasId}
                     data={data}
                     fields={fields}
-                    style={{ width: (minWidth > 0 && size.width < minWidth) ? minWidth : '100%' }}
+                    style={{ width: '100%' }}
                 />
                 }
             </div>

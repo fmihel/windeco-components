@@ -4,15 +4,10 @@ function TD({
     value,
     rowData,
     aliasId,
-    width = false,
     style = {},
 }) {
     return (
-        <td
-            style={{ ...style, ...(width ? { width } : {}) }}
-        >
-            {value}
-        </td>
+        <td style={style }>{value}</td>
     );
 }
 

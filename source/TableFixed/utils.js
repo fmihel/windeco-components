@@ -1,6 +1,6 @@
 import size from '../Utils/size';
 
-export const culcWidths = (tableDOM, sizeTable, param = {}) => {
+export const culcWidths = (tableDOM, sizeTable) => {
     const tds = tableDOM.childNodes[0].childNodes[0].childNodes;
     const widths = [];
     let sum = 0;
@@ -9,9 +9,9 @@ export const culcWidths = (tableDOM, sizeTable, param = {}) => {
         sum += area.width;
         widths.push(area.width);
     }
+
     // коррекция последней ячейки
-    const off = sizeTable.width - sum - tds.length + 2;
-    console.log();
+    const off = sizeTable.width - size(tableDOM).width;
     if (tds.length > 0 && off > 0) {
         widths[widths.length - 1] += off;
     }

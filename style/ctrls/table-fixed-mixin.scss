@@ -2,10 +2,16 @@
 @mixin table-fixed-mixin($args...){
     $theme:'dark';
     $size:2rem;
-    $bg:gray;
-    $color:black;
+    $outline:'none';
+
+    $bg:rgba(156, 67, 67, 0);
+    $color:rgb(112, 112, 112);
     $border:gray;
-    $outline:black;
+
+    $bg-header:rgb(63, 63, 63);
+    $color-header:white;
+    $border-header:gray;
+
     $font-size:1rem;
     $gap:5px;
 
@@ -15,23 +21,36 @@
         @if ($name=='bg'){$bg:$mean;};    
         @if ($name=='color'){$color:$mean;};    
         @if ($name=='border'){$border:$mean;};    
+
+        @if ($name=='bg-header'){$bg-header:$mean;};    
+        @if ($name=='color-header'){$color-header:$mean;};    
+        @if ($name=='border-header'){$border-header:$mean;};    
+
         @if ($name=='outline'){$outline:$mean;};    
         @if ($name=='font-size'){$font-size:$mean;};    
         @if ($name=='gap'){$gap:$mean;};    
     };
     .wd-table-fixed-horiz{
+        
+        @if ($outline != 'none'){
+            border:1px solid $outline;
+        }
+
         box-sizing: border-box;
         width:100%;
         height: 100%;
         overflow-y: hidden;
-        overflow-x: auto;
+        overflow-x: hidden;
     }
     .wd-table-fixed-vert{
+        background-color: $bg;
+        color: $color;
+        
         overflow-y: auto;
         overflow-x: hidden;
         &[border]{
-            border-right:1px solid gray;
-            border-bottom:1px solid gray;
+            border-right:1px solid $border;
+            border-bottom:1px solid $border;
         }    
     }
     .wd-table-fixed{
@@ -41,23 +60,24 @@
             height: $size;
         }
         &[header]{  
-            background-color: rgb(63, 63, 63);
-            color:white;
+            background-color: $bg-header;
+            color:$color-header;
             
             th{
-                border: 1px solid gray;
+                border: 1px solid $border-header;
+                //border-right-color: rgba(0,0,0,0);
+                overflow: hidden;
                 &:first-child{
-                    //border-left:0px;
                 }
                 &:last-child{
-                    //border-right:0px;
+                    border-right-color: $border-header;
                 }
 
             }
         }
         &[table]{
             td{
-                border: 1px solid gray;
+                border: 1px solid $border;
             }
             tr{
                 &:first-child{
@@ -67,10 +87,8 @@
                 }
                 td{
                     &:first-child{
-                        //border-left:0px;
                     }
                     &:last-child{
-                        //border-right:0px;
                     }
                 }
             }

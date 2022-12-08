@@ -4,18 +4,21 @@ import TD from './TD.jsx';
 function TR({
     data = [],
     fields = [], // []
-    widths = [],
     aliasId = 'ID',
 }) {
     return (
         <tr id={data[aliasId]}>
-            {fields.map(({ name }) => (
+            {fields.map((field) => (
                 <TD
-                    key = {name}
-                    value={data[name]}
+                    key = {field.name}
+                    value={data[field.name]}
                     rowData = {data}
                     aliasId={aliasId}
-                    width={widths[name] || false}
+                    style={{
+                        ...field.style,
+                        ...('width' in field ? { width: field.width } : {}),
+                    }}
+
                 />))}
         </tr>
     );

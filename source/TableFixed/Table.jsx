@@ -23,7 +23,9 @@ function Table({
                         key = {row[aliasId]}
                         data = {row}
                         fields = {fields}
-                        aliasId={aliasId}/>
+                        aliasId={aliasId}
+
+                    />
                 ))}
             </tbody>
         </table>
