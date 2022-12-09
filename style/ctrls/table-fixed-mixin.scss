@@ -6,11 +6,12 @@
 
     $bg:rgba(156, 67, 67, 0);
     $color:rgb(112, 112, 112);
-    $border:rgb(194, 34, 34);
+    $border:rgb(107, 107, 107);
 
-    $bg-header:rgb(63, 63, 63);
+    $bg-header:rgb(32, 32, 32);
     $color-header:white;
-    $border-header:rgb(76, 128, 78);
+    $border-header:gray;
+    $sep-header:'yes';
 
     $font-size:1rem;
     $gap:5px;
@@ -25,6 +26,7 @@
         @if ($name=='bg-header'){$bg-header:$mean;};    
         @if ($name=='color-header'){$color-header:$mean;};    
         @if ($name=='border-header'){$border-header:$mean;};    
+        @if ($name=='sep-header'){$sep-header:$mean;};    
 
         @if ($name=='outline'){$outline:$mean;};    
         @if ($name=='font-size'){$font-size:$mean;};    
@@ -48,10 +50,15 @@
         
         overflow-y: auto;
         overflow-x: hidden;
-        &[border]{
+        &[border*="right"]{
             border-right:1px solid $border;
-            border-bottom:1px solid $border;
         }    
+        &[border*="bottom"]{
+            border-bottom:1px solid $border;
+        }
+        &[border*="top"]{
+            border-top:1px solid $border;
+        }
     }
     .wd-table-fixed{
         border-collapse: collapse;
@@ -65,7 +72,9 @@
             
             th{
                 border: 1px solid $border-header;
-                //border-right-color: rgba(0,0,0,0);
+                @if($sep-header=='none'){
+                    border-right-color: rgba(0,0,0,0);
+                }
                 overflow: hidden;
                 &:first-child{
                 }
@@ -78,8 +87,13 @@
         &[table]{
             td{
                 border: 1px solid $border;
+                padding-left: $gap;
             }
             tr{
+                &[selected]{
+                    background-color: blue;
+                    color: white;
+                }
                 &:first-child{
                     td{
                         border-top: 0px;
@@ -95,5 +109,4 @@
 
         }
     }
-
 }

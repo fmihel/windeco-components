@@ -20,14 +20,14 @@ function TableFixed({
     aliasId = TableFixed.global.aliasId,
     data = [],
     fields = [],
-    header = true,
+    header = true, /// / string true false
     textOnEmpty = TableFixed.global.textOnEmpty,
 
 }) {
     const [size, setSize] = useState({ width: 0, height: 0 });
     const [widths, setWidths] = useState([]);
     const [vertHeight, setVertHeight] = useState(0);
-    const [border, setBorder] = useState({});
+    const [border, setBorder] = useState('');
     const ref = useRef(null);
 
     useEffect(() => {
@@ -41,20 +41,22 @@ function TableFixed({
     }, [data, fields, ref, id, size]);
 
     useEffect(() => {
-        const headerDOM = DOM(`#header-${id}`);
-        if (headerDOM) {
-            const headerSize = getSize(headerDOM, 'offset');
-            setVertHeight(size.height - headerSize.height);
+        if (header === true) {
+            const headerDOM = DOM(`#header-${id}`);
+            if (headerDOM) {
+                setVertHeight(size.height - getSize(headerDOM, 'offset').height);
+            }
+        } else {
+            setVertHeight(size.height);
         }
-    }, [id, size]);
+    }, [id, size, header]);
 
     useEffect(() => {
         const tableDOM = DOM(`#table-${id}`);
         if (tableDOM) {
-            const frameDOM = tableDOM.parentNode;
-            setBorder((data.length && haveScrollBar(tableDOM, frameDOM)) ? { border: 'for-scroll' } : {});
+            setBorder((data.length && haveScrollBar(tableDOM, tableDOM.parentNode)) ? 'right bottom' : '');
         } else {
-            setBorder(false);
+            setBorder('');
         }
     }, [size, data]);
 
@@ -81,8 +83,6 @@ function TableFixed({
         };
     }, [ref]);
 
-    // eslint-disable-next-line no-return-assign
-
     return (
         <div
             id = {id}
@@ -105,7 +105,7 @@ function TableFixed({
                 style={{
                     height: vertHeight,
                 }}
-                {...border}
+                border={border + (header === false ? ' top' : '')}
             >
                 {data.length > 0
                 && <Table

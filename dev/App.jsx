@@ -353,13 +353,13 @@ class App extends React.Component {
                             <Btn onClick={this.onTableFill}>fill</Btn>
                         </Block>
 
-                        <Block addClass="container-for-table-fixed" style={{ height: 500 }} hide={false} >
+                        <Block addClass="container-for-table-fixed" style={{ height: 200 }} hide={false} >
                             <TableFixed
                                 id='tab1'
                                 fields={fields}
                                 data={table}
                                 onClick={this.onClickTableFixed}
-                                minWidth={500}
+                                header={true}
                             />
 
                         </Block>
