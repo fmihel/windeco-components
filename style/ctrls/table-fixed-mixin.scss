@@ -7,11 +7,12 @@
     $bg:rgba(156, 67, 67, 0);
     $color:rgb(112, 112, 112);
     $border:rgb(58, 94, 138);
+    $sep:'none';
 
     $bg-header:rgb(32, 32, 32);
     $color-header:white;
     $border-header:gray;
-    $sep-header:'none';
+    $sep-header:'yes';
 
     $font-size:1rem;
     $gap:5px;
@@ -57,12 +58,23 @@
         }    
         &[border*="bottom"]{
             border-bottom:1px solid $border;
+            >div[footer]{
+                border-bottom-color:rgba(0,0,0,0);
+            }
         }
         &[border*="top"]{
             border-top:1px solid $border;
         }
         &[border*="left"]{
             border-left:1px solid $border;
+        }
+        >div[footer]{
+            border-left:1px solid $border;
+            border-right:1px solid $border;
+            border-bottom:1px solid $border;
+            text-align: center;
+            height: $size;
+            line-height: $size;
         }
     }
     .wd-table-fixed{

@@ -9,26 +9,32 @@ function Table({
     className = 'wd-table-fixed',
     addClass = '',
     style = {},
+    footer = false,
 }) {
     return (
-        <table
-            id={`table-${id}`}
-            className={`${className} ${addClass}`}
-            style={{ ...style }}
-            table='true'
-        >
-            <tbody>
-                {data.map((row) => (
-                    <TR
-                        key = {row[aliasId]}
-                        data = {row}
-                        fields = {fields}
-                        aliasId={aliasId}
+        <>
+            <table
+                id={`table-${id}`}
+                className={`${className} ${addClass}`}
+                style={{ ...style }}
+                table='true'
+            >
+                <tbody>
+                    {data.map((row) => (
+                        <TR
+                            key = {row[aliasId]}
+                            data = {row}
+                            fields = {fields}
+                            aliasId={aliasId}
 
-                    />
-                ))}
-            </tbody>
-        </table>
+                        />
+                    ))}
+                </tbody>
+            </table>
+            {(footer)
+                && <div footer="true">{footer}</div>
+            }
+        </>
     );
 }
 

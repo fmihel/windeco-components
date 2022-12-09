@@ -24,6 +24,7 @@ function TableFixed({
     fields = [],
     header = true, /// / string true false
     textOnEmpty = TableFixed.global.textOnEmpty,
+    footer = TableFixed.global.footer,
     select = [],
 
 }) {
@@ -120,6 +121,7 @@ function TableFixed({
                     data={data}
                     fields={fields}
                     style={{ width: '100%' }}
+                    footer={footer}
                 />
                 }
                 {(data.length === 0 && textOnEmpty)
@@ -145,7 +147,7 @@ TableFixed.global = {
     aliasId: 'ID',
     header: true, // string true false
     textOnEmpty: 'no data', // string or false
-    textOnEnd: 'end', // string ot false
+    footer: 'end', // string ot false
 
 };
 export default TableFixed;
