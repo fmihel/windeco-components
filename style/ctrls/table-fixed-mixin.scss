@@ -17,6 +17,9 @@
     $font-size:1rem;
     $gap:5px;
 
+    $bg-select:#3A5E8A;
+    $color-select:white;
+
     @each $name, $mean in meta.keywords($args) {
         @if ($name=='theme'){$theme:$mean;};    
         @if ($name=='size'){$size:$mean;};    
@@ -31,7 +34,11 @@
 
         @if ($name=='outline'){$outline:$mean;};    
         @if ($name=='font-size'){$font-size:$mean;};    
-        @if ($name=='gap'){$gap:$mean;};    
+        @if ($name=='gap'){$gap:$mean;};
+
+        @if ($name=='bg-select'){$bg-select:$mean;};    
+        @if ($name=='color-select'){$color-select:$mean;};    
+
     };
     .wd-table-fixed-horiz{
         @if ($outline != 'none'){
@@ -94,6 +101,7 @@
     }
     .wd-table-fixed{
         border-collapse: collapse;
+        width: 100%;
         tr{
             min-height: $size;
             height: $size;
@@ -126,9 +134,10 @@
                 padding-left: $gap;
             }
             tr{
-                &[selected]{
-                    background-color: blue;
-                    color: white;
+                @include transition(background-color 0.2s,color 0.2s);
+                &[select]{
+                    background-color: $bg-select;
+                    color: $color-select;
                 }
                 &:first-child{
                     td{

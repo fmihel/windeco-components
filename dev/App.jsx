@@ -203,6 +203,8 @@ class App extends React.Component {
             tableHeader: true,
             tableHeight: 200,
             tableFooter: 'end',
+            tableSelect: [],
+
         };
     }
 
@@ -244,8 +246,8 @@ class App extends React.Component {
     }
 
     onClickTableFixed(o) {
-        console.log(o.row);
-        o.sender.select(o.row);
+        console.log(o);
+        this.setState({ tableSelect: [o.row[o.aliasId]] });
     }
 
     onTableClear() {
@@ -281,7 +283,7 @@ class App extends React.Component {
     render() {
         const {
             fields, table, textValue, textValue2, dialogEx, customLeft, customTop, values, comboSelect,
-            tableHeader, tableHeight, tableFooter,
+            tableHeader, tableHeight, tableFooter, tableSelect,
         } = this.state;
         const dialogs = Object.keys(this.dialogs);
         const fontsName = Object.keys(fonts);
@@ -371,6 +373,7 @@ class App extends React.Component {
                                 onClick={this.onClickTableFixed}
                                 header={tableHeader}
                                 footer={tableFooter}
+                                select={tableSelect}
                             />
 
                         </Block>

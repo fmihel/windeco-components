@@ -5,9 +5,18 @@ function TD({
     rowData,
     aliasId,
     style = {},
+    name = '',
+    onClick = undefined,
 }) {
+    const click = () => {
+        if (onClick) {
+            onClick({
+                col: name, value, row: rowData, aliasId,
+            });
+        }
+    };
     return (
-        <td style={style }>{value}</td>
+        <td style={style } onClick={click}>{value}</td>
     );
 }
 

@@ -10,6 +10,8 @@ function Table({
     addClass = '',
     style = {},
     footer = false,
+    select = [],
+    onClick = undefined,
 }) {
     return (
         <>
@@ -26,7 +28,8 @@ function Table({
                             data = {row}
                             fields = {fields}
                             aliasId={aliasId}
-
+                            select={(select.findIndex((ID) => row[aliasId] == ID) >= 0)}
+                            onClick={onClick}
                         />
                     ))}
                 </tbody>

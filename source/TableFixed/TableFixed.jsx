@@ -26,6 +26,7 @@ function TableFixed({
     noData = TableFixed.global.noData,
     footer = TableFixed.global.footer,
     select = [],
+    onClick = undefined,
 
 }) {
     const [size, setSize] = useState({ width: 0, height: 0 });
@@ -76,7 +77,6 @@ function TableFixed({
                 }, 50);
             }
         };
-        // const resize = throttle(_resize, 100);
         const newObserv = new ResizeObserver(() => {
             resize();
             resize();
@@ -87,7 +87,6 @@ function TableFixed({
             newObserv.disconnect();
         };
     }, [ref, header, data]);
-
     return (
         <div
             id = {id}
@@ -107,9 +106,6 @@ function TableFixed({
             }
             <div
                 className={`${classNameVert} ${addClassVert} `}
-                style={{
-                    // height: vertHeight,
-                }}
                 border={border + (header === false ? ' top' : '')}
             >
                 {data.length > 0
@@ -120,8 +116,9 @@ function TableFixed({
                     aliasId={aliasId}
                     data={data}
                     fields={fields}
-                    style={{ width: '100%' }}
                     footer={footer}
+                    select={select}
+                    onClick={onClick}
                 />
                 }
                 {(data.length === 0 && noData)
