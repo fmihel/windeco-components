@@ -202,6 +202,7 @@ class App extends React.Component {
             },
             tableHeader: true,
             tableHeight: 200,
+            tableFooter: 'end',
         };
     }
 
@@ -280,7 +281,7 @@ class App extends React.Component {
     render() {
         const {
             fields, table, textValue, textValue2, dialogEx, customLeft, customTop, values, comboSelect,
-            tableHeader, tableHeight,
+            tableHeader, tableHeight, tableFooter,
         } = this.state;
         const dialogs = Object.keys(this.dialogs);
         const fontsName = Object.keys(fonts);
@@ -359,6 +360,7 @@ class App extends React.Component {
                             <Btn onClick={() => { this.setState({ tableHeader: true }); }}>header fields</Btn>
                             <Btn onClick={() => { this.setState({ tableHeight: 200 }); }}>H=200</Btn>
                             <Btn onClick={() => { this.setState({ tableHeight: 500 }); }}>H=500</Btn>
+                            <Btn onClick={() => { this.setState((prev) => ({ tableFooter: (prev.tableFooter ? false : 'end') })); }}>footer</Btn>
                         </Block>
 
                         <Block addClass="container-for-table-fixed" style={{ height: tableHeight }} hide={false} >
@@ -368,6 +370,7 @@ class App extends React.Component {
                                 data={table}
                                 onClick={this.onClickTableFixed}
                                 header={tableHeader}
+                                footer={tableFooter}
                             />
 
                         </Block>
