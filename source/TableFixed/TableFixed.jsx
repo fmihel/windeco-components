@@ -23,7 +23,7 @@ function TableFixed({
     data = [],
     fields = [],
     header = true, /// / string true false
-    textOnEmpty = TableFixed.global.textOnEmpty,
+    noData = TableFixed.global.noData,
     footer = TableFixed.global.footer,
     select = [],
 
@@ -124,10 +124,10 @@ function TableFixed({
                     footer={footer}
                 />
                 }
-                {(data.length === 0 && textOnEmpty)
-                    && <span>
-                        {textOnEmpty}
-                    </span>
+                {(data.length === 0 && noData)
+                    && <div no-data='true'>
+                        {noData}
+                    </div>
                 }
             </div>
 
@@ -146,7 +146,7 @@ TableFixed.global = {
     addClass: '',
     aliasId: 'ID',
     header: true, // string true false
-    textOnEmpty: 'no data', // string or false
+    noData: 'no data', // string or false
     footer: 'end', // string ot false
 
 };

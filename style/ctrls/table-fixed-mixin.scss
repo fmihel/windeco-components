@@ -86,6 +86,11 @@
             height: $size;
             line-height: $size;
         }
+        >div[no-data]{
+            height: 100%;
+            text-align: center;
+            padding-top:$gap ;
+        }
     }
     .wd-table-fixed{
         border-collapse: collapse;
