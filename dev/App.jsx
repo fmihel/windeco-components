@@ -200,6 +200,8 @@ class App extends React.Component {
             comboSelect: {
 
             },
+            tableHeader: true,
+            tableHeight: 200,
         };
     }
 
@@ -278,6 +280,7 @@ class App extends React.Component {
     render() {
         const {
             fields, table, textValue, textValue2, dialogEx, customLeft, customTop, values, comboSelect,
+            tableHeader, tableHeight,
         } = this.state;
         const dialogs = Object.keys(this.dialogs);
         const fontsName = Object.keys(fonts);
@@ -351,15 +354,20 @@ class App extends React.Component {
                         <Block>
                             <Btn onClick={this.onTableClear}>clear</Btn>
                             <Btn onClick={this.onTableFill}>fill</Btn>
+                            <Btn onClick={() => { this.setState({ tableHeader: false }); }}>header no</Btn>
+                            <Btn onClick={() => { this.setState({ tableHeader: 'text' }); }}>header cap</Btn>
+                            <Btn onClick={() => { this.setState({ tableHeader: true }); }}>header fields</Btn>
+                            <Btn onClick={() => { this.setState({ tableHeight: 200 }); }}>H=200</Btn>
+                            <Btn onClick={() => { this.setState({ tableHeight: 500 }); }}>H=500</Btn>
                         </Block>
 
-                        <Block addClass="container-for-table-fixed" style={{ height: 200 }} hide={false} >
+                        <Block addClass="container-for-table-fixed" style={{ height: tableHeight }} hide={false} >
                             <TableFixed
                                 id='tab1'
                                 fields={fields}
                                 data={table}
                                 onClick={this.onClickTableFixed}
-                                header={true}
+                                header={tableHeader}
                             />
 
                         </Block>

@@ -22,6 +22,7 @@ function TableFixed({
     fields = [],
     header = true, /// / string true false
     textOnEmpty = TableFixed.global.textOnEmpty,
+    select = [],
 
 }) {
     const [size, setSize] = useState({ width: 0, height: 0 });
@@ -33,15 +34,22 @@ function TableFixed({
     useEffect(() => {
         const tableDOM = DOM(`#table-${id}`);
         if (tableDOM) {
-            const newWidths = culcWidths(tableDOM, size);
-            if (!isWidthsEmpty(newWidths)) {
-                setWidths(newWidths);
+            if (header === true) {
+                const newWidths = culcWidths(tableDOM, size);
+                if (!isWidthsEmpty(newWidths)) {
+                    setWidths(newWidths);
+                }
+            } else if (typeof header === 'string') {
+                setWidths([size.width]);
             }
+        } else {
+            const newWidths = fields.map(() => size.width / fields.length);
+            setWidths(newWidths);
         }
-    }, [data, fields, ref, id, size]);
+    }, [data, fields, ref, id, size, header]);
 
     useEffect(() => {
-        if (header === true) {
+        if (header) {
             const headerDOM = DOM(`#header-${id}`);
             if (headerDOM) {
                 setVertHeight(size.height - getSize(headerDOM, 'offset').height);
@@ -55,33 +63,30 @@ function TableFixed({
         const tableDOM = DOM(`#table-${id}`);
         if (tableDOM) {
             setBorder((data.length && haveScrollBar(tableDOM, tableDOM.parentNode)) ? 'right bottom' : '');
+        } else if (data.length === 0) {
+            setBorder('right bottom left');
         } else {
             setBorder('');
         }
     }, [size, data]);
 
     useEffect(() => {
-        let first = true;
         const resize = () => {
             if (ref.current) {
                 setSize(getSize(ref.current));
             }
         };
-
         // const resize = _.throttle(_resize, 100);
         const newObserv = new ResizeObserver(() => {
             resize();
-            if (first) {
-                resize();
-            }
-            first = false;
+            resize();
         });
         newObserv.observe(ref.current);
-
+        resize();
         return () => {
-            newObserv.observer.disconnect();
+            newObserv.disconnect();
         };
-    }, [ref]);
+    }, [ref, header, data]);
 
     return (
         <div
@@ -118,12 +123,12 @@ function TableFixed({
                     style={{ width: '100%' }}
                 />
                 }
+                {(data.length === 0 && textOnEmpty)
+                    && <span>
+                        {textOnEmpty}
+                    </span>
+                }
             </div>
-            {(data.length === 0 && textOnEmpty)
-                && <span>
-                    {textOnEmpty}
-                </span>
-            }
 
         </div>
     );

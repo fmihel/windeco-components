@@ -6,7 +6,7 @@
 
     $bg:rgba(156, 67, 67, 0);
     $color:rgb(112, 112, 112);
-    $border:rgb(107, 107, 107);
+    $border:rgb(58, 94, 138);
 
     $bg-header:rgb(32, 32, 32);
     $color-header:white;
@@ -33,16 +33,15 @@
         @if ($name=='gap'){$gap:$mean;};    
     };
     .wd-table-fixed-horiz{
-        
         @if ($outline != 'none'){
-            border:1px solid $outline;
+            margin-top:1px;
+            outline:1px solid $outline;
         }
 
         box-sizing: border-box;
         width:100%;
         height: 100%;
-        overflow-y: hidden;
-        overflow-x: hidden;
+        overflow: hidden;
     }
     .wd-table-fixed-vert{
         background-color: $bg;
@@ -58,6 +57,9 @@
         }
         &[border*="top"]{
             border-top:1px solid $border;
+        }
+        &[border*="left"]{
+            border-left:1px solid $border;
         }
     }
     .wd-table-fixed{

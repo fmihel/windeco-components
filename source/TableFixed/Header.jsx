@@ -4,7 +4,7 @@ function Header({
     id,
     className,
     addClass,
-    type,
+    type, // 'fields' : 'caption'
     caption,
     fields,
     widths,
@@ -18,7 +18,7 @@ function Header({
         >
             <thead>
                 <tr>
-                    {fields.map((field, i) => (
+                    {(type === 'fields') && fields.map((field, i) => (
                         <th
                             key={field.name}
                             style={{
@@ -26,10 +26,13 @@ function Header({
                             }}
                         >
                             {field.caption}
-                        </th>))}
+                        </th>))
+                    }
+                    {(type === 'caption') && <th style={{ width: widths[0], maxWidth: widths[0] }}>{caption}</th>}
                 </tr>
             </thead>
         </table>
+
     );
 }
 
