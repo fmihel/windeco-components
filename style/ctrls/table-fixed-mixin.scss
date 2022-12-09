@@ -11,7 +11,7 @@
     $bg-header:rgb(32, 32, 32);
     $color-header:white;
     $border-header:gray;
-    $sep-header:'yes';
+    $sep-header:'none';
 
     $font-size:1rem;
     $gap:5px;
@@ -42,8 +42,11 @@
         width:100%;
         height: 100%;
         overflow: hidden;
+
+        @include display-flex-vert-stretch();
     }
     .wd-table-fixed-vert{
+        flex:1 1 auto;
         background-color: $bg;
         color: $color;
         

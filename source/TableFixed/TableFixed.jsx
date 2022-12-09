@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
+// import _ from 'lodash';
+// import { throttle } from 'lodash';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 import Table from './Table.jsx';
@@ -27,7 +29,6 @@ function TableFixed({
 }) {
     const [size, setSize] = useState({ width: 0, height: 0 });
     const [widths, setWidths] = useState([]);
-    const [vertHeight, setVertHeight] = useState(0);
     const [border, setBorder] = useState('');
     const ref = useRef(null);
 
@@ -42,22 +43,13 @@ function TableFixed({
             } else if (typeof header === 'string') {
                 setWidths([size.width]);
             }
+        } else if (typeof header === 'string') {
+            setWidths([size.width]);
         } else {
             const newWidths = fields.map(() => size.width / fields.length);
             setWidths(newWidths);
         }
     }, [data, fields, ref, id, size, header]);
-
-    useEffect(() => {
-        if (header) {
-            const headerDOM = DOM(`#header-${id}`);
-            if (headerDOM) {
-                setVertHeight(size.height - getSize(headerDOM, 'offset').height);
-            }
-        } else {
-            setVertHeight(size.height);
-        }
-    }, [id, size, header]);
 
     useEffect(() => {
         const tableDOM = DOM(`#table-${id}`);
@@ -71,12 +63,19 @@ function TableFixed({
     }, [size, data]);
 
     useEffect(() => {
+        let throttle = false;
         const resize = () => {
-            if (ref.current) {
-                setSize(getSize(ref.current));
+            if (!throttle) {
+                throttle = true;
+                setTimeout(() => {
+                    if (ref && ref.current) {
+                        setSize(getSize(ref.current));
+                    }
+                    throttle = false;
+                }, 50);
             }
         };
-        // const resize = _.throttle(_resize, 100);
+        // const resize = throttle(_resize, 100);
         const newObserv = new ResizeObserver(() => {
             resize();
             resize();
@@ -108,7 +107,7 @@ function TableFixed({
             <div
                 className={`${classNameVert} ${addClassVert} `}
                 style={{
-                    height: vertHeight,
+                    // height: vertHeight,
                 }}
                 border={border + (header === false ? ' top' : '')}
             >
