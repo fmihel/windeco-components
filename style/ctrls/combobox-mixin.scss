@@ -120,5 +120,20 @@
         }
         // ----------------------------
     }
-    
+
+    .wd-clamp{
+        @include transition(width 0.1s,min-width 0.1s,margin-left 0.1s,margin-right 0.1s);
+        
+        &:hover { 
+            width:200px !important;
+            min-width: 200px;
+            margin-left: -50px;
+        }
+        &:focus { 
+            width:200px !important;
+            min-width: 200px;
+            margin-left: -50px;
+        }
+
+    }
 }
