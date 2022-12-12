@@ -1,5 +1,5 @@
 @import '../vars.scss';
-@import './icon-mixin.scss';
+@import '../mixin/icon-mixin.scss';
 
 .wd-icon{
     @include icon_mixin($theme:$wd-default-theme);

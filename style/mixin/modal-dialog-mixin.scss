@@ -1,5 +1,5 @@
 @use "sass:meta";
-@mixin dialog-mixin($args...){
+@mixin modal-dialog-mixin($args...){
     $theme:'dark';
     $size:2rem;
     $gap:5px;

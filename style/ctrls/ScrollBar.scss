@@ -53,7 +53,6 @@ $wd-scb-size-k:0.3;
 
 @mixin wd-scrollbar-default(){
     @include wd-scrollbar-theme($wd-default-theme);
-    @include wd-scrollbar-theme-size($wd-default-theme-size);
 }
 
 .wd-scrollbar{
@@ -68,12 +67,4 @@ $wd-scb-size-k:0.3;
     }
 }
 
-@each $name in $wd-sizes{
-    .#{$name} {
-        .wd-scrollbar{
-            @include wd-scrollbar-theme-size($name);
-        }
-        
-    }
-}
 

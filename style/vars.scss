@@ -1,11 +1,9 @@
 @use "sass:map";
 @import './utils.scss'; 
 
-
+$wd-size:24px;
 $wd-themes:('light','dark') !default;
-$wd-sizes:('normal','small') !default;
 $wd-default-theme:'light';
-$wd-default-theme-size:'small';
 
 
 $wd-font-size:('small':9px,'normal':12px) !default;
@@ -78,10 +76,6 @@ $wd-gap:('small':2px,'normal':5px) !default;
     @return wd-get($map,$key,$wd-default-theme);
 }
 
-@function wd-get-size($map,$key){
-    @return wd-get($map,$key,$wd-default-theme-size);
-}
-
 
 @each $name in $wd-themes{
     .#{$name} {
@@ -135,19 +129,6 @@ $wd-gap:('small':2px,'normal':5px) !default;
              }
 
         }
-    }
-}
-
-@each $name in $wd-sizes{
-    $gap:map-get($wd-gap,#{$name});
-    .#{$name}{
-        .wd-margin-left-gap{
-            margin-left:$gap;
-        }
-        .wd-margin-right-gap{
-            margin-right:$gap;
-        }
-
     }
 }
 

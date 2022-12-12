@@ -147,20 +147,3 @@ body{
     }
 }
 
-@each $name in $wd-sizes{
-    $size:wd-get-size($wd-size,#{$name});
-    .#{$name} {
-        .wd-label{
-            min-width:$size*5 !important;
-        }
-        
-    }
-    
-    .pic-bag{
-        background-image: url($pic-bag);
-        background-position: 2px center;
-        background-repeat: no-repeat;
-        padding-left:$size+2px;
-    }
-}
-

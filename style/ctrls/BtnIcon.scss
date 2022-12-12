@@ -1,5 +1,5 @@
 @import '../vars.scss';
-@import './btnicon-mixin.scss';
+@import '../mixin/btnicon-mixin.scss';
 
 $wd-btn-bg:('light':#c4c4c4,'dark':#343530) !default;
 $wd-btn-color:$wd-ctrl-color !default;
@@ -13,6 +13,7 @@ $wd-btn-border-focus:$wd-ctrl-border-focus !default;
     .#{$name} {
         @include btnicon-mixin(
             $theme:$name,
+            $size:$wd-size,
             $bg:map-get($wd-btn-bg,#{$name}),
             $color: map-get($wd-ctrl-color,#{$name}),
             $border:map-get($wd-btn-border,#{$name}),

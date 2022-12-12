@@ -1,6 +1,6 @@
 @use "sass:math";
 @import '../vars.scss';
-@import './combobox-mixin.scss';
+@import '../mixin/combobox-mixin.scss';
 
 $wd-cbex-bg:$wd-ctrl-bg !default;
 $wd-cbex-bg-list:$wd-cbex-bg !default;
@@ -11,10 +11,12 @@ $wd-cbex-border:$wd-ctrl-border !default;
 $wd-cbex-border-focus:$wd-ctrl-border-focus !default;
 
 @include combobox-mixin($theme:$wd-default-theme);
+
 @each $theme in $wd-themes{
     .#{$theme}{
         @include combobox-mixin(
-            $theme:$theme, 
+            $theme:$theme,
+            $size:$wd-size, 
             $bg:map-get($wd-cbex-bg,#{$theme}),
             $color:map-get($wd-cbex-color,#{$theme}),
             $border:map-get($wd-cbex-border,#{$theme}),

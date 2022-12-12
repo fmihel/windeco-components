@@ -1,5 +1,5 @@
 @import '../vars.scss';
-@import './edit-mixin.scss';
+@import '../mixin/edit-mixin.scss';
 
 $wd-edit-bg:$wd-ctrl-bg !default;
 $wd-edit-bg-hover:$wd-ctrl-bg-hover !default;
@@ -10,18 +10,6 @@ $wd-edit-border:$wd-ctrl-border !default;
 $wd-edit-border-focus:$wd-ctrl-border-focus !default;
 $wd-edit-color-require: $wd-ctrl-color-require !default;
 
-input[type=number]{
-    &::-webkit-inner-spin-button,
-    &::-webkit-outer-spin-button {
-        -webkit-appearance: inner-spin-button !important;
-        min-width: 1rem;
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: 100%;
-    }
-}
-
 
 @include edit-mixin($wd-default-theme);
 
@@ -29,6 +17,7 @@ input[type=number]{
     .#{$name} {
         @include edit-mixin(
             $theme:$name,
+            $size:$wd-size,
             $bg:map-get($wd-edit-bg,#{$name}),
             $color:map-get($wd-edit-color,#{$name}),
             $border:map-get($wd-edit-border,#{$name}),

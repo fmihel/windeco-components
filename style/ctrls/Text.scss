@@ -1,5 +1,5 @@
 @import '../vars.scss';
-@import './text-mixin.scss';
+@import '../mixin/text-mixin.scss';
 
 
 @include text-mixin($wd-default-theme);

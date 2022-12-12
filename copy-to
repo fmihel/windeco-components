@@ -5,13 +5,14 @@ src="dist"
 rm -rf "$toPath\\$src"
 cp -rf "$src" "$toPath\\$src"
 
-src="source" 
-rm -rf "$toPath\\$src"
-cp -rf "$src" "$toPath\\$src"
+#src="source" 
+#rm -rf "$toPath\\$src"
+#cp -rf "$src" "$toPath\\$src"
 
 src="style" 
 rm -rf "$toPath\\$src"
 cp -rf "$src" "$toPath\\$src"
 
+cp -rf "package.json" "$toPath\\package.json"
 
 echo "copy to $toPath: ok"

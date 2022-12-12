@@ -8,6 +8,7 @@
     $outline:black;
     $font-size:1rem;
     $gap:5px;
+    $margin:2px;
 
     @each $name, $mean in meta.keywords($args) {
         @if ($name=='theme'){$theme:$mean;};    
@@ -17,9 +18,12 @@
         @if ($name=='border'){$border:$mean;};    
         @if ($name=='outline'){$outline:$mean;};    
         @if ($name=='font-size'){$font-size:$mean;};    
-        @if ($name=='gap'){$gap:$mean;};    
+        @if ($name=='gap'){$gap:$mean;};
+        @if ($name=='margin'){$margin:$mean;};
     };
     .wd-btn-icon{
+        height:$size;
+
         background-color: $bg;
         color: $color;
         border:1px solid $border;
@@ -29,18 +33,17 @@
         vertical-align: top;
         box-sizing: border-box;
     
-        min-height:$size;
-        height:$size;
         min-width:$size;
         
-        border-radius: 5px;
+        //border-radius: 5px;
         font-size: $font-size;
     
         padding-left:$gap;
         padding-right:$gap;
-
-        margin-left:1px;
-        margin-right:1px;
+        
+        @if($margin!='none'){
+            margin-right:$margin;
+        };
 
         display: inline-flex;
         flex-direction: row;

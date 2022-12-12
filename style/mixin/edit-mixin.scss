@@ -1,4 +1,17 @@
 @use "sass:meta";
+
+input[type=number]{
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+        -webkit-appearance: inner-spin-button !important;
+        min-width: 1rem;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+    }
+}
+
 @mixin edit-mixin($args...){
     $theme:'dark';
     $size:2rem;
@@ -10,6 +23,8 @@
     $gap:5px;
     $require:red;
     $require-url:'';
+    $margin:2px;
+
     @each $name, $mean in meta.keywords($args) {
         @if ($name=='theme'){$theme:$mean;};    
         @if ($name=='size'){$size:$mean;}; 
@@ -21,15 +36,21 @@
         @if ($name=='gap'){$gap:$mean;};
         @if ($name=='require'){$require:$mean;}; 
         @if ($name=='require-url'){$require-url:$mean;}; 
+        @if ($name=='margin'){$margin:$mean;};
     
     }
     .wd-edit{
-        min-height:$size;
+        height:$size;
+        
         font-size:$font-size;
         border:1px solid $border;
         width:100%;
         background-color: $bg;
         text-indent:$gap;
+
+        @if($margin!='none'){
+            margin-right:$margin;
+        };
 
         color:$color;
 

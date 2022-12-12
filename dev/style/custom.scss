@@ -22,33 +22,3 @@
     }
 }
 
-@each $name in $wd-sizes{
-    .#{$name}{
-        $size:wd-get-size($wd-size,#{$name});
-        $gap:wd-get-size($wd-gap,#{$name});
-        
-        .wd-cb32{
-            background-repeat: no-repeat, no-repeat;
-            background-position: $size*0.1 center;
-            background-size: $size*0.7;
-            padding-left: $size+$gap !important;        
-            
-        }
-        .wd-cb32-src{
-            background-repeat: no-repeat, no-repeat;
-            background-position: $size*0.1 center !important;
-            background-size: $size*0.7 !important;
-            padding-left: $size+$gap !important;        
-        }
-        
-        .wd-cb32-line{
-            background-image:url('./media/combo_32/e-line.png'); 
-        }
-        
-        .wd-cb32-90-double{
-            background-image: url('./media/combo_32/e_90_double.png'); 
-        }
-
-    }
-}
-

@@ -7,6 +7,7 @@
     $border:gray;
     $outline:black;
     $font-size:1rem;
+    $margin:2px;
 
     @each $name, $mean in meta.keywords($args) {
         @if ($name=='theme'){$theme:$mean;};    
@@ -15,9 +16,11 @@
         @if ($name=='color'){$color:$mean;};    
         @if ($name=='border'){$border:$mean;};    
         @if ($name=='outline'){$outline:$mean;};    
-        @if ($name=='font-size'){$font-size:$mean;};    
+        @if ($name=='font-size'){$font-size:$mean;};
+        @if ($name=='margin'){$margin:$mean;};    
     };
     .wd-btn{
+        height:$size;
 
         background-color: $bg;
         color: $color;
@@ -25,17 +28,16 @@
         outline: 'none';
     
         box-sizing: border-box;
-        height:$size;
         min-width:$size;
         //border-radius: 5px;
         font-size: $font-size;
         
-        margin-left:1px;
-        margin-right:1px;
+        @if($margin!='none'){
+            margin-right:$margin;
+        };
     
         &:focus { 
             outline: 2px solid $outline;
-    
         }
     
         &:hover{

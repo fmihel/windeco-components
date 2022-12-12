@@ -22,10 +22,15 @@ else if (defArg('toob'))
 module.exports = {
   mode: toProduction?'production':'development',
   devtool: toProduction?'':'inline-source-map',
-  entry: './source/index.js',
+  entry: {
+    'windeco-components':'./source/index.js',
+    Btn:'./source/Btn/Btn.jsx',
+    Edit:'./source/Edit/Edit.jsx',
+  },
   output: {
     path: toRemotePath?remotePath:path.resolve(__dirname, 'dist'),
-    filename: 'windeco-components'+((toProduction||toRemotePath)?'.min':'')+'.js',
+    filename: '[name].js',
+    //filename: 'windeco-components-[name]'+((toProduction||toRemotePath)?'.min':'')+'.js',
     libraryTarget: 'commonjs2' // THIS IS THE MOST IMPORTANT LINE! :mindblow: I wasted more than 2 days until realize this was the line most important in all this guide.
   },
   externals: {      
