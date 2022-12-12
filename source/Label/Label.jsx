@@ -1,35 +1,41 @@
-/* eslint-disable camelcase */
-/* eslint-disable import/no-extraneous-dependencies */
-import { ut } from 'fmihel-browser-lib';
 import React from 'react';
-// import { flex, binds } from 'fmihel-browser-lib'
-export default class Label extends React.Component {
-    constructor(p) {
-        super(p);
-        this.state = {
-            labelName: `lb_${ut.random_str(5)}`,
 
-        };
-    }
+function Label({
+    id,
+    labelName,
+    caption = 'label',
+    className = Label.global.className,
+    classNameFrame = Label.global.classNameFrame,
+    addClass = Label.global.addClass,
+    style = Label.global.style,
+    styleFrame = Label.global.styleFrame,
+    children,
 
-    render() {
-        const {
-            caption, addClass, id, style,
-        } = this.props;
-        const labelName = id || this.state.labelName;
-        return (
-            <div className="wd-label-frame">
-                <label htmlFor={labelName} className={`wd-label ${addClass}`} style={ style }>{caption}</label>
-                <div>
-                    {React.cloneElement(this.props.children, { labelName })}
-                </div>
-            </div>
-        );
-    }
+}) {
+    return (
+        <div
+            className={classNameFrame}
+            style={{ ...Label.global.styleFrame, ...styleFrame }}
+        >
+            <label
+                htmlFor={id || labelName}
+                className={`${className} ${addClass}`}
+                style={{ ...Label.global.style, ...style }}
+            >
+                {caption}
+            </label>
+
+            {children}
+        </div>
+    );
 }
-Label.defaultProps = {
-    id: undefined,
-    caption: '',
-    addClass: '',
+
+Label.global = {
+    className: 'wd-label',
+    classNameFrame: 'wd-label-frame',
+    classAdd: '',
     style: {},
+    styleFrame: {},
 };
+
+export default Label;

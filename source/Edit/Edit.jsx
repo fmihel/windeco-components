@@ -1,224 +1,116 @@
-/* eslint-disable array-callback-return */
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/no-extraneous-dependencies */
-import React from 'react';
-import { ut, JX } from 'fmihel-browser-lib';
+import React, { useState } from 'react';
 
-export default class Edit extends React.Component {
-    constructor(p) {
-        super(p);
+function Edit({
+    id,
+    value,
+    type = 'text',
+    onChange = undefined,
+    onKeyPress = undefined,
+    onKeyUp = undefined,
+    onKeyDown = undefined,
 
-        this.onChange = this.onChange.bind(this);
-        this.onKeyPress = this.onKeyPress.bind(this);
-        this.onKeyDown = this.onKeyDown.bind(this);
-        this.onKeyUp = this.onKeyUp.bind(this);
-        this.onFocus = this.onFocus.bind(this);
-        this.onBlur = this.onBlur.bind(this);
-        this.state = {
-            value: this.getValue(),
-            clampClass: false,
-            focused: false,
-        };
+    className = Edit.global.className,
+    addClass = Edit.global.addClass,
+    style = Edit.global.style,
 
-        this.inputRef = React.createRef();
-    }
+    placeholder = '',
+    readonly = undefined,
+    disabled = undefined,
+    required = undefined,
+    title = '',
+    hint = '',
+    visible = true,
+    min = undefined, // for type = range or number
+    max = undefined, // for type = range or number
+    step = undefined, // for type = range or number
+    minLength = 0,
+    maxLength = 0,
 
-    getValue() {
-        const value = this.props.value || this.props.children;
-        return value === undefined ? '' : value;
-    }
+    children,
+}) {
+    const [focused, setFocused] = useState(false);
 
-    onChange(e) {
-        if (this.props.onChange) {
-            this.props.onChange({ id: this.props.id, value: e.target.value });
-        } else {
-            this.setState({ value: e.target.value });
+    const change = (o) => {
+        console.log('change', value);
+        if (onChange) {
+            onChange({ id, value: o.target.value });
         }
-    }
-
-    onKeyPress(o) {
-        if (this.props.onKeyPress) {
-            this.props.onKeyPress({
-                id: this.props.id,
+    };
+    const keyevent = (o, callback) => {
+        if (callback) {
+            callback({
+                id,
                 value: o.target.value,
                 key: o.key,
                 args: o,
             });
         }
+    };
+    const keyup = (o) => {
+        keyevent(o, onKeyUp);
+    };
+    const keydn = (o) => {
+        keyevent(o, onKeyDown);
+        keyevent(o, onKeyPress);
+    };
+    const focus = () => {
+        setFocused(true);
+    };
+    const unfocus = () => {
+        setFocused(false);
+    };
+    // --------------------------------------------------------
+    const props = {};
+    if (min !== undefined) props.min = min;
+    if (max !== undefined) props.max = max;
+    if (step !== undefined) props.step = step;
+    if (minLength > 0) props.minLength = minLength;
+    if (maxLength > 0) props.maxLength = maxLength;
+    // --------------------------------------------------------
+    const val = value || children || '';
+    // const requiredClass = (required && (`${value || children || ''}`).length === 0) ? Edit.global.requiredClass : '';
+    // const disabledClass = (disabled) ? Edit.global.disabledClass : '';
+    // const readonlyClass = (readonly) ? Edit.global.readonlyClass : '';
+    let _type = type;
+    if (type === 'number') {
+        _type = focused ? type : 'text';
     }
+    return (
+        <input
+            id={id}
+            type={_type}
+            value={val}
+            onChange={change}
+            onKeyUp={keyup}
+            onKeyDown={keydn}
+            // onKeyPress={keypress} deprected
+            onFocus={focus}
+            onBlur = {unfocus}
+            style={{
+                ...Edit.global.style,
+                ...style,
+                ...(visible ? {} : { display: 'none' }),
+            }}
+            className={`${className} ${addClass}`}
+            placeholder={placeholder}
+            {...(disabled ? { disabled: true } : {})}
+            {...(readonly ? { readOnly: 'readonly' } : {})}
+            {...(required && !focused ? { required: true } : {})}
 
-    onKeyUp(o) {
-        if (this.props.onKeyUp) {
-            this.props.onKeyUp({
-                id: this.props.id,
-                value: o.target.value,
-                key: o.key,
-                args: o,
-            });
-        }
-    }
+            {...props}
+            title = {title || hint || ''}
 
-    onKeyDown(o) {
-        if (this.props.onKeyDown) {
-            this.props.onKeyDown({
-                id: this.props.id,
-                value: o.target.value,
-                key: o.key,
-                args: o,
-            });
-        }
-    }
-
-    onFocus(o) {
-        const dom = this.inputRef.current;
-        if (dom) {
-            const width = JX.pos(dom).w;
-            if (width <= parseInt(this.props.clamp, 10)) {
-                this.setState({ clampClass: 'wd-edit-input-scale', focused: true });
-            } else this.setState({ focused: true });
-        }
-        if (this.props.onFocus) {
-            this.props.onFocus({
-                id: this.props.id,
-                value: o.target.value,
-                args: o,
-            });
-        }
-    }
-
-    onBlur(o) {
-        const dom = this.inputRef.current;
-        if (this.state.clampClass) {
-            this.setState({ clampClass: false, focused: false });
-        }
-        this.setState({ focused: false });
-        if (this.props.onBlur) {
-            this.props.onBlur({
-                id: this.props.id,
-                value: o.target.value,
-                args: o,
-            });
-        }
-    }
-
-    focus() {
-        const dom = this.inputRef.current;
-        if (dom) {
-            dom.focus();
-        }
-    }
-
-    componentDidMount() {
-        // разовый вызов после первого рендеринга
-        if (this.props.onInit) this.props.onInit(this);
-    }
-
-    componentWillUnmount() {
-        // разовый после последнего рендеринга
-    }
-
-    componentDidUpdate(prevProps, prevState, prevContext) {
-        // каждый раз после рендеринга (кроме первого раза !)
-    }
-
-    render() {
-        const {
-            id,
-            dim, placeholder, disable, labelName, addClass, style, hint,
-            type, required, min, max, step, maxLength, minLength,
-            autoFocus,
-        } = this.props;
-        const { fontSize, ...frameStyle } = style;
-        const { clampClass, focused } = this.state;
-        const disabled = ut.toBool(this.props.disabled);
-        const visible = ut.toBool(this.props.visible);
-        const readonly = ut.toBool(this.props.readonly);
-        const props = {};// доп атрибуты input
-        const value = ((this.props.onChange || readonly) ? this.getValue() : this.state.value);
-
-        let editInputClass = `wd-edit-input${disabled ? ' wd-edit-disabled' : ''}`;
-        editInputClass += (readonly ? ' wd-edit-readonly' : '');
-        if (required && (`${value}`).length === 0) editInputClass += ' wd-edit-require ';
-
-        const display = (visible ? 'flex' : 'none');
-        if (readonly) props.readOnly = 'readonly';
-        if (labelName) props.id = labelName;
-        if (min !== undefined) props.min = min;
-        if (max !== undefined) props.max = max;
-        if (step !== undefined) props.step = step;
-        if (minLength > 0) props.minLength = minLength;
-        if (maxLength > 0) props.maxLength = maxLength;
-        if (autoFocus === true) props.autoFocus = true;
-        const inputStyle = {};
-        // список свойсв которые идут из style в input
-        ['width', 'textAlign', 'fontSize', 'lineHeight'].map((prop) => { if (prop in style) inputStyle[prop] = style[prop]; });
-        // if (clampClass !== false) {
-        //    delete inputStyle.width;
-        // }
-        let _type = type || 'text';
-        if (type === 'number') {
-            _type = focused ? type : 'text';
-        }
-
-        return (
-            <div className='wd-edit-frame' style={{ display, ...frameStyle }}>
-                <input
-                    id={id}
-                    ref = {this.inputRef}
-                    type={_type || 'text'}
-                    onChange = {this.onChange}
-                    onKeyPress={this.onKeyPress}
-                    onKeyUp={this.onKeyUp}
-                    onKeyDown={this.onKeyDown}
-
-                    className={`${editInputClass} ${addClass} ${clampClass || ''}`}
-                    value={value}
-                    disabled={!!disabled}
-                    placeholder={placeholder}
-                    {...props}
-                    style={inputStyle}
-                    title={hint}
-                    onFocus={this.onFocus}
-                    onBlur={this.onBlur}
-
-                />
-                {!disable.dim && <div className="wd-edit-dim">{dim}</div>}
-
-            </div>
-        );
-    }
+        />
+    );
 }
-Edit.defaultProps = {
-    id: undefined,
-    type: 'text',
-    disabled: 0,
-    onChange: undefined,
-    onKeyPress: undefined,
-    onKeyDown: undefined,
-    onKeyUp: undefined,
-    onInit: undefined,
-    onFocus: undefined,
-    onBlur: undefined,
 
-    dim: 'm',
-    value: undefined,
-    visible: 1,
-    placeholder: '',
-    readonly: false,
-    required: false,
-    style: {},
-    disable: {
-        dim: false,
-    },
+Edit.global = {
+    className: 'wd-edit',
     addClass: '',
-    hint: '',
-
-    min: undefined, // for type = range or number
-    max: undefined, // for type = range or number
-    step: undefined, // for type = range or number
-    clamp: 0,
-    minLength: 0,
-    maxLength: 0,
-    autoFocus: false,
-
+    style: {},
+    requiredClass: 'wd-edit-require',
+    disabledClass: 'wd-edit-disable',
+    readonlyClass: 'wd-edit-readonly',
 };
+
+export default Edit;

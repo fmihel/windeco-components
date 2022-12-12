@@ -1,0 +1,17 @@
+#!/bin/bash
+toPath="D:\\work\tests\\test1\\node_modules\\fmihel-windeco-components\\" 
+
+src="dist" 
+rm -rf "$toPath\\$src"
+cp -rf "$src" "$toPath\\$src"
+
+src="source" 
+rm -rf "$toPath\\$src"
+cp -rf "$src" "$toPath\\$src"
+
+src="style" 
+rm -rf "$toPath\\$src"
+cp -rf "$src" "$toPath\\$src"
+
+
+echo "copy to $toPath: ok"

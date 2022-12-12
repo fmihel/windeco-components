@@ -7,12 +7,12 @@
     "run-dev-server": "webpack-dev-server --config webpack.config.dev.js",
     "build-dist": "webpack --config webpack.config.dist.js",
     "build": "webpack && webpack --prod",
-    "build-to": "npm run build-to-order && npm run build-to-order-header && npm run build-to-order-karniz",
-    "copy-style-to": "cp -r style ../order-header/node_modules/fmihel-windeco-components/",
+    "build-to": "npm run build-dist && cp -rf dist D:\\work\tests\\test1\\node_modules\\fmihel-windeco-components\\dist",
     "git-push": "git push origin main && git push origin main --tag",
     "npm-publish-patch": "npm run build && npm version patch && npm publish && npm run git-push",
     "npm-publish-minor": "npm run build && npm version minor && npm publish && npm run git-push",
-    "npm-publish-major": "npm run build && npm version major && npm publish && npm run git-push"
+    "npm-publish-major": "npm run build && npm version major && npm publish && npm run git-push",
+    "copy-to": "bash copy-to"
   },
   "repository": {
     "type": "git",

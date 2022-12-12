@@ -11,25 +11,19 @@ import {
     faFile, faFolder, faFolderOpen, faCoffeCup, faFileCode, faAddressBook, faCaretDown,
 } from '@fortawesome/free-solid-svg-icons';
 import { iEdit, iEdit16 } from './global';
-import Edit from '../source/Edit/Edit.jsx';
 import Btn from '../source/Btn/Btn.jsx';
 import BtnIcon from '../source/BtnIcon/BtnIcon.jsx';
-import ComboBox from '../source/ComboBox/ComboBox.jsx';
 import ComboBoxEx from '../source/ComboBoxEx/ComboBoxEx.jsx';
 import ComboItemIcon from '../source/ComboBoxEx/ComboItemIcon.jsx';
 
-import CheckBox from '../source/CheckBox/CheckBoxEx.jsx';
+import CheckBox from '../source/CheckBox/CheckBox.jsx';
 import Label from '../source/Label/Label.jsx';
-import LabelEx from '../source/Label/LabelEx.jsx';
-import Table from '../source/Table/Table.jsx';
 import TableFixed from '../source/TableFixed/TableFixed.jsx';
-// import ModalDialog from '../source/ModalDialog/ModalDialog.jsx';
-import ModalDialog from '../source/ModalDialog/ModalDialogEx.jsx';
-// import Modal from '../source/Modal/Modal.jsx';
-import ModalEx from '../source/Modal/ModalEx.jsx';
+import ModalDialog from '../source/ModalDialog/ModalDialog.jsx';
+import Modal from '../source/Modal/Modal.jsx';
 import Text from '../source/Text/Text.jsx';
 import Icon from '../source/Icon/Icon.jsx';
-import EditEx from '../source/Edit/EditEx.jsx';
+import Edit from '../source/Edit/Edit.jsx';
 
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
@@ -375,9 +369,9 @@ class App extends React.Component {
                                     style={{ width: 100 }}
                                     addClass={'wd-clamp'}
                                 />
-                                <EditEx id="ttt" style={{ width: 100 }} onKeyPress={(o) => {
+                                <Edit id="ttt" style={{ width: 100 }} onKeyPress={(o) => {
                                     console.log(o);
-                                }}> text from child</EditEx>
+                                }}> text from child</Edit>
                                 <BtnIcon
                                     hint = "icon"
                                     icon={faAddressBook}
@@ -401,27 +395,27 @@ class App extends React.Component {
                                     addClass={'wd-clamp'}
                                     hideBtnOnSelect = {true}
                                 />
-                                <EditEx id="tttt" style={{ width: 100, height: 43 }} onKeyPress={(o) => {
+                                <Edit id="tttt" style={{ width: 100, height: 43 }} onKeyPress={(o) => {
                                     console.log(o);
-                                }}>text from child</EditEx>
-                                <EditEx id="tt90" style={{ width: 90, height: 43 }} onKeyPress={(o) => {
+                                }}>text from child</Edit>
+                                <Edit id="tt90" style={{ width: 90, height: 43 }} onKeyPress={(o) => {
                                     console.log(o);
-                                }}>90</EditEx>
-                                <EditEx id="tt20"
+                                }}>90</Edit>
+                                <Edit id="tt20"
                                     style={{ width: 20, height: 43 }} addClass={'wd-clamp'}
                                     type='number' min={0} max={10} step={1} onKeyPress={(o) => {
                                         console.log(o);
-                                    }}>20</EditEx>
-                                <EditEx id="tt30" style={{ width: 30, height: 43 }} addClass={'wd-clamp'} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                    }}>20</Edit>
+                                <Edit id="tt30" style={{ width: 30, height: 43 }} addClass={'wd-clamp'} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
                                     console.log(o);
-                                }}>30</EditEx>
+                                }}>30</Edit>
 
-                                <EditEx id="tt40" style={{ width: 40, height: 43 }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                <Edit id="tt40" style={{ width: 40, height: 43 }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
                                     console.log(o);
-                                }}>40</EditEx>
-                                <EditEx id="tt50" style={{ width: 50, height: 43 }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                }}>40</Edit>
+                                <Edit id="tt50" style={{ width: 50, height: 43 }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
                                     console.log(o);
-                                }}>50</EditEx>
+                                }}>50</Edit>
                             </div>
                         </Block>
 
@@ -508,13 +502,13 @@ class App extends React.Component {
 
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="Edit">
-                        <Block> <EditEx id="tt" style={{ fontSize: '1.2em' }} onKeyPress={(o) => {
+                        <Block> <Edit id="tt" style={{ fontSize: '1.2em' }} onKeyPress={(o) => {
                             console.log(o);
-                        }}>text from child</EditEx></Block>
-                        <Block> <EditEx type="password" placeholder="set password" style={{ height: 18, minHeight: 18 }}/></Block>
-                        <Block> <EditEx autoFocus value="text from value, and hint" title="title prop (hint deeprecated)"/></Block>
+                        }}>text from child</Edit></Block>
+                        <Block> <Edit type="password" placeholder="set password" style={{ height: 18, minHeight: 18 }}/></Block>
+                        <Block> <Edit autoFocus value="text from value, and hint" title="title prop (hint deeprecated)"/></Block>
 
-                        <Block> <EditEx
+                        <Block> <Edit
                             id = 'edNeed'
                             value = {values.edNeed}
                             onChange = {this.onChangeEx}
@@ -524,15 +518,15 @@ class App extends React.Component {
                             maxLength={10}
                         />
                         </Block>
-                        <Block> <EditEx value="readonly" readonly={1} /></Block>
-                        <Block> <EditEx value="disabled" disabled={1} visible={true}/></Block>
-                        <Block> <EditEx id="edph" placeholder="set text" value={values.edph} onChange={this.onChangeEx}/></Block>
-                        <Block> <LabelEx caption="label" id="myEdit100">
-                            <EditEx id="myEdit100" value={values.myEdit100} onChange={this.onChangeEx}/>
-                        </LabelEx></Block>
-                        <Block> <LabelEx caption="pass" id="pass"><EditEx id="pass" type="password" value="set text" /></LabelEx></Block>
-                        <Block> <LabelEx caption="readonly" id="ronl"><EditEx id="ronl" value="readonly text in edit" dim={''} readonly={true}/></LabelEx></Block>
-                        <Block> <LabelEx caption="range" id="rng" ><EditEx id="rng" value={5} type='number' min={0} max={10} step={1}/></LabelEx></Block>
+                        <Block> <Edit value="readonly" readonly={1} /></Block>
+                        <Block> <Edit value="disabled" disabled={1} visible={true}/></Block>
+                        <Block> <Edit id="edph" placeholder="set text" value={values.edph} onChange={this.onChangeEx}/></Block>
+                        <Block> <Label caption="label" id="myEdit100">
+                            <Edit id="myEdit100" value={values.myEdit100} onChange={this.onChangeEx}/>
+                        </Label></Block>
+                        <Block> <Label caption="pass" id="pass"><Edit id="pass" type="password" value="set text" /></Label></Block>
+                        <Block> <Label caption="readonly" id="ronl"><Edit id="ronl" value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
+                        <Block> <Label caption="range" id="rng" ><Edit id="rng" value={5} type='number' min={0} max={10} step={1}/></Label></Block>
 
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
@@ -586,7 +580,7 @@ class App extends React.Component {
                     <Head caption="Modal">
                         <Block>
                             <Btn onClick={() => { this.setState({ modalShow: true }); }} >show1</Btn>
-                            { <ModalEx
+                            { <Modal
                                 id="test-modal1"
                                 visible={this.state.modalShow}
                                 onClickShadow={() => {
@@ -607,12 +601,12 @@ class App extends React.Component {
 
                                 </div>
 
-                            </ModalEx>
+                            </Modal>
                             }
                         </Block>
                         <Block>
                             <Btn onClick={() => { this.setState({ modalShow2: true }); }} >show2</Btn>
-                            { <ModalEx
+                            { <Modal
                                 id="test-modal2"
                                 visible={this.state.modalShow2}
                                 onClickShadow={() => {
@@ -633,17 +627,17 @@ class App extends React.Component {
 
                                 </div>
 
-                            </ModalEx>
+                            </Modal>
                             }
                         </Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="CheckBox">
                         <Block> <CheckBox id="ch1" checked={values.ch1} onChange={this.onChangeEx}/></Block>
-                        <Block> <LabelEx id="ckb1" caption='check'><CheckBox id="ckb1" checked={values.ckb1} onChange={this.onChangeEx}/></LabelEx></Block>
-                        <Block> <LabelEx caption='on change'><Btn onClick={() => { this.setState({ checked: 0 }); }} >on change false</Btn></LabelEx></Block>
-                        <Block> <LabelEx caption='on change'><CheckBox checked={this.state.checked} onChange={() => { this.setState({ checked: 1 }); }}/></LabelEx></Block>
-                        <Block> <LabelEx id="ckb-disabled" caption='disabled'><CheckBox id="ckb-disabled" checked={true} onChange={(o) => { console.log(o); }} disabled={true}/></LabelEx></Block>
+                        <Block> <Label id="ckb1" caption='check'><CheckBox id="ckb1" checked={values.ckb1} onChange={this.onChangeEx}/></Label></Block>
+                        <Block> <Label caption='on change'><Btn onClick={() => { this.setState({ checked: 0 }); }} >on change false</Btn></Label></Block>
+                        <Block> <Label caption='on change'><CheckBox checked={this.state.checked} onChange={() => { this.setState({ checked: 1 }); }}/></Label></Block>
+                        <Block> <Label id="ckb-disabled" caption='disabled'><CheckBox id="ckb-disabled" checked={true} onChange={(o) => { console.log(o); }} disabled={true}/></Label></Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="Icon">
@@ -698,14 +692,6 @@ class App extends React.Component {
                         </Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption = "ComboBox">
-                        <Block> <ComboBox /></Block>
-                        <Block> <Label caption="combobox"><ComboBox disable={{ dim: false }}/></Label></Block>
-                    </Head>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption="Table">
-                        <Block> <Table onClick={this.onClickTable}/></Block>
-                    </Head>
                 </div>
                 {
 

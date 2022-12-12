@@ -11,7 +11,9 @@ const TEMPLATE_PATH = './dev/template/';
 const MEDIA_PATH = './dev/media/';
 const PORT = 3002;
 module.exports = {
-    entry: `${SOURCE_PATH}index.js`,
+    entry: [
+        `${SOURCE_PATH}index.js`
+    ],
     output: {
         path: path.resolve(__dirname, PUBLIC_PATH),
         filename: '[name].[contenthash].js',
