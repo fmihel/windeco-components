@@ -8,13 +8,13 @@
     .#{$name} {
         @include text-mixin(
             $theme:$name,
-            $bg:map-get($wd-ctrl-bg,#{$name}),
-            $color:map-get($wd-ctrl-color,#{$name}),
-            $border:map-get($wd-ctrl-border,#{$name}),
-            $outline:map-get($wd-ctrl-border-focus,#{$name}),
-            $font-size:map-get($wd-font-size,#{$name}),
-            $required:map-get($wd-ctrl-color-require,#{$name}),
-            $required-url:$wd-ctrl-bg-img-require,    
+            $bg:map-get($wd-bgs,#{$name}),
+            $color:map-get($wd-colors,#{$name}),
+            $border:map-get($wd-borders,#{$name}),
+            $outline:map-get($wd-outlines,#{$name}),
+            $font-size:$wd-size,
+            //$required:map-get($wd-colorrequire,#{$name}),
+            //$required-url:$wd-ctrl-bg-img-require,    
         );
     }
 }

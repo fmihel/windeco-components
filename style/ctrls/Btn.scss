@@ -1,10 +1,6 @@
 @import '../vars.scss';
 @import '../mixin/btn-mixin.scss';
 
-$wd-btn-bg:('light':#efefef,'dark':#343530) !default;
-$wd-btn-color:$wd-ctrl-color !default;
-$wd-btn-border:$wd-ctrl-border !default;
-$wd-btn-border-focus:$wd-ctrl-border-focus !default;
 
 @include btn-mixin($theme:$wd-default-theme);
 
@@ -14,10 +10,10 @@ $wd-btn-border-focus:$wd-ctrl-border-focus !default;
         @include btn-mixin(
             $theme:$name,
             $size:$wd-size,
-            $bg:map-get($wd-btn-bg,#{$name}),
-            $color:map-get($wd-btn-color,#{$name}),
-            $border:map-get($wd-btn-border,#{$name}),
-            $outline:map-get($wd-btn-border-focus,#{$name}),
+            $bg:blendColor($colors:$wd-bgs,$theme:#{$name},$light:-10%,$dark:10%),
+            $color:blendColor($colors:$wd-colors,$theme:#{$name},$light:-30%,$dark:40%),
+            $border:map-get($wd-borders,#{$name}),
+            $outline:map-get($wd-outlines,#{$name}),
         );
     }
 }

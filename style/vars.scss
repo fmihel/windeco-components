@@ -37,23 +37,27 @@ $wd-color-url-hover:('light':#0014ff,'dark':#0c5ae3) !default;
 
 
 $wd-bgs:('light':#F7F7F7,'dark':#1F201C) !default;
-$wd-colors:('light':#696969,'dark':#646464) !default;
+$wd-colors:('light':#292929,'dark':#dfdfdf) !default;
 $wd-borders:('light':#DCDCDC,'dark':#3D3E38) !default;
 $wd-outlines:('light':#92BCD8,'dark':#3476BC) !default;
+$wd-hovers:('light':#d8d8d8,'dark':#3f3f3e) !default;
+$wd-selects:('light':#92BCD8,'dark':#3476BC) !default;
 
-$wd-ctrl-bg:('light':#FDFDFD,'dark':#343530) !default;
-$wd-ctrl-bg-hover:$wd-ctrl-bg !default;
-$wd-ctrl-bg-select:$wd-ctrl-bg-primary !default;
 
-$wd-ctrl-color:('light':#000000,'dark':#cfcfcf) !default;
-$wd-ctrl-color-readonly:('light':#000000,'dark':#cfcfcf) !default;
-$wd-ctrl-color-disable:('light':#797979,'dark':#757575) !default;
-$wd-ctrl-color-hover:('light':#000000,'dark':#646464) !default;
-$wd-ctrl-color-select:$wd-ctrl-color-primary !default;
 
-$wd-ctrl-border:$wd-borders !default;
-$wd-ctrl-border-focus:$wd-outlines !default;
-$wd-ctrl-border-hover:$wd-borders !default;
+//$wd-ctrl-bg:('light':#FDFDFD,'dark':#343530) !default;
+//$wd-ctrl-bg-hover:$wd-ctrl-bg !default;
+//$wd-ctrl-bg-select:$wd-ctrl-bg-primary !default;
+
+//$wd-ctrl-color:('light':#000000,'dark':#cfcfcf) !default;
+//$wd-ctrl-color-readonly:('light':#000000,'dark':#cfcfcf) !default;
+//$wd-ctrl-color-disable:('light':#797979,'dark':#757575) !default;
+//$wd-ctrl-color-hover:('light':#000000,'dark':#646464) !default;
+//$wd-ctrl-color-select:$wd-ctrl-color-primary !default;
+
+//$wd-ctrl-border:$wd-borders !default;
+//$wd-ctrl-border-focus:$wd-outlines !default;
+//$wd-ctrl-border-hover:$wd-borders !default;
 
 
 

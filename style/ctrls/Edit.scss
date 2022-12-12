@@ -1,15 +1,6 @@
 @import '../vars.scss';
 @import '../mixin/edit-mixin.scss';
 
-$wd-edit-bg:$wd-ctrl-bg !default;
-$wd-edit-bg-hover:$wd-ctrl-bg-hover !default;
-$wd-edit-color:$wd-ctrl-color !default;
-$wd-edit-color-readonly:$wd-ctrl-color-readonly !default;
-$wd-edit-color-disable:$wd-ctrl-color-disable !default;
-$wd-edit-border:$wd-ctrl-border !default;
-$wd-edit-border-focus:$wd-ctrl-border-focus !default;
-$wd-edit-color-require: $wd-ctrl-color-require !default;
-
 
 @include edit-mixin($wd-default-theme);
 
@@ -18,12 +9,12 @@ $wd-edit-color-require: $wd-ctrl-color-require !default;
         @include edit-mixin(
             $theme:$name,
             $size:$wd-size,
-            $bg:map-get($wd-edit-bg,#{$name}),
-            $color:map-get($wd-edit-color,#{$name}),
-            $border:map-get($wd-edit-border,#{$name}),
-            $outline:map-get($wd-edit-border-focus,#{$name}),
-            $require-url:$wd-ctrl-bg-img-require,
-            $require:map-get($wd-edit-color-require,#{$name}),
+            $bg:blendColor($colors:$wd-bgs,$theme:#{$name},$light:50%,$dark:3%),
+            $color:blendColor($wd-colors:$wd-bgs,$theme:#{$name},$light:50%,$dark:0%),
+            $border:map-get($wd-borders,#{$name}),
+            $outline:map-get($wd-outlines,#{$name}),
+            //$require-url:$wd-ctrl-bg-img-require,
+            //$require:map-get($wd-edit-color-require,#{$name}),
         );
     }
 }

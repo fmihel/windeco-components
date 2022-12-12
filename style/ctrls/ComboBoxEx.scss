@@ -2,13 +2,13 @@
 @import '../vars.scss';
 @import '../mixin/combobox-mixin.scss';
 
-$wd-cbex-bg:$wd-ctrl-bg !default;
+$wd-cbex-bg:$wd-bgs !default;
 $wd-cbex-bg-list:$wd-cbex-bg !default;
 $wd-cbex-bg-hover:('light':#0D6EFD,'dark':#0E639C) !default;
 $wd-cbex-color-hover:('light':white,'dark':white) !default;
-$wd-cbex-color:$wd-ctrl-color !default;
-$wd-cbex-border:$wd-ctrl-border !default;
-$wd-cbex-border-focus:$wd-ctrl-border-focus !default;
+$wd-cbex-color:$wd-colors !default;
+$wd-cbex-border:$wd-borders !default;
+$wd-cbex-border-focus:$wd-outlines !default;
 
 @include combobox-mixin($theme:$wd-default-theme);
 

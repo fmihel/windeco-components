@@ -6,8 +6,8 @@
 $wd-tf-bg:('light':rgba(0,0,0,0),'dark':rgba(0,0,0,0)) !default;
 $wd-tf-bg2:('light':#ECECEC,'dark':#292929) !default;
 
-$wd-tf-color:$wd-ctrl-color !default;
-$wd-tf-border:$wd-ctrl-border !default;
+$wd-tf-color:$wd-colors !default;
+$wd-tf-border:$wd-borders !default;
 
 $wd-tf-hover-bg:('light':#DCDCDC,'dark':#2e2e2e) !default;
 $wd-tf-hover-color:('light':#000000,'dark':#ffffff) !default;
@@ -25,8 +25,8 @@ $wd-tf-row-border-vert:('light':#DCDCDC,'dark':#282924) !default;
 
 //$wd-tf-row-active-bg:('light':#0D6EFD,'dark':#0E639C) !default;
 //$wd-tf-row-active-color:('light':#ffffff,'dark':#ffffff) !default;
-$wd-tf-row-active-bg:$wd-ctrl-bg-select !default;
-$wd-tf-row-active-color:$wd-ctrl-color-select !default;
+$wd-tf-row-active-bg:$wd-selects !default;
+$wd-tf-row-active-color:$wd-colors !default;
 
 
 @include table-fixed-mixin($theme:$wd-default-theme);

@@ -1,3 +1,5 @@
+@use "sass:meta";
+@use "sass:math";
 // @include display-flex-horiz-stretch();
 @mixin display-flex-horiz-stretch(){
     display: flex;
@@ -109,5 +111,29 @@ $wd-font-family:(
     };
 }
 
+//blendColor($color:red,$theme:'dark',light:5%,dark:10%) 
+
+@function blendColor($args...){
+    $colors:('light':#0D6EFD,'dark':#0E639C);
+    $theme:'dark';
+    $level:5%;
+    @each $name, $mean in meta.keywords($args) {
+        @if ($name=='theme'){$theme:$mean;};
+        @if ($name=='colors'){$colors:$mean;}; 
+        @if ($name==$theme){$level:$mean};
+    }
+    $color:map-get($colors,$theme);
+
+    @if($level==0){
+        @return $color;
+    };
+
+    @if ($level<0){
+        @return darken($color,math.abs($level));
+    }@else{
+        @return lighten($color,$level);
+    };
+   
+}
 
 
