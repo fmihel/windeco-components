@@ -1,10 +1,11 @@
 @use "sass:map";
 @import './utils.scss'; 
 
-$wd-size:24px;
+$wd-size:28px;
 $wd-themes:('light','dark') !default;
 $wd-default-theme:'light';
-
+$wd-gap:5px;
+$wd-margin:2px;
 
 $wd-font-size:('small':9px,'normal':12px) !default;
 
@@ -35,10 +36,10 @@ $wd-color-url:('light':#169bb9,'dark':#194d8f) !default;
 $wd-color-url-hover:('light':#0014ff,'dark':#0c5ae3) !default;
 
 
-$wd-bg:('light':#F7F7F7,'dark':#1F201C) !default;
-$wd-color:('light':#696969,'dark':#646464) !default;
-$wd-border:('light':#DCDCDC,'dark':#3D3E38) !default;
-$wd-border-focus:('light':#92BCD8,'dark':#3476BC) !default;
+$wd-bgs:('light':#F7F7F7,'dark':#1F201C) !default;
+$wd-colors:('light':#696969,'dark':#646464) !default;
+$wd-borders:('light':#DCDCDC,'dark':#3D3E38) !default;
+$wd-outlines:('light':#92BCD8,'dark':#3476BC) !default;
 
 $wd-ctrl-bg:('light':#FDFDFD,'dark':#343530) !default;
 $wd-ctrl-bg-hover:$wd-ctrl-bg !default;
@@ -50,17 +51,11 @@ $wd-ctrl-color-disable:('light':#797979,'dark':#757575) !default;
 $wd-ctrl-color-hover:('light':#000000,'dark':#646464) !default;
 $wd-ctrl-color-select:$wd-ctrl-color-primary !default;
 
-$wd-ctrl-border:$wd-border !default;
-$wd-ctrl-border-focus:$wd-border-focus !default;
-$wd-ctrl-border-hover:$wd-border !default;
+$wd-ctrl-border:$wd-borders !default;
+$wd-ctrl-border-focus:$wd-outlines !default;
+$wd-ctrl-border-hover:$wd-borders !default;
 
 
-
-
-
-$wd-size:('small':20px,'normal':32px) !default;
-$wd-scale:('small':0.5,'normal':1) !default;
-$wd-gap:('small':2px,'normal':5px) !default;
 
 // альтернатива map-get но в случе отсуствия индекса вернет default
 @function wd-get($map,$key,$default){

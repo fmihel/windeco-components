@@ -1,7 +1,7 @@
 @use "sass:meta";
 @mixin label-frame-mixin($args...){
     $theme:'dark';
-    $size:2rem;
+    $size:28px;
     $gap:5px;
 
     @each $name, $mean in meta.keywords($args) {
@@ -10,25 +10,26 @@
         @if ($name=='gap'){$gap:$mean;};    
     }
 
+    .wd-label-frame{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: center;
 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-content: stretch;
-    align-items: center;
-
-    height:$size;
-
-    >div:nth-child(2){
-        flex:1 1 auto;
-    }
-    .wd-label{
         height:$size;
-        line-height: $size;
-        margin-right:$gap;
-        text-indent: $gap;
-    }            
+
+        >div:nth-child(2){
+            flex:1 1 auto;
+        }
+        .wd-label{
+            height:$size;
+            line-height: $size;
+            margin-right:$gap;
+            text-indent: $gap;
+        }            
+    }
 
 
 }

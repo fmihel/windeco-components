@@ -1,15 +1,15 @@
 @use "sass:meta";
 @mixin btnicon-mixin($args...){
     $theme:'dark';
-    $size:2rem;
-    $bg:gray;
-    $color:black;
-    $border:gray;
-    $outline:black;
+    $size:28px;
+    $bg:#343530;
+    $color:silver;
+    $border:#4a4b48;
+    $outline:#0E639C;
     $font-size:1rem;
     $gap:5px;
     $margin:2px;
-
+    
     @each $name, $mean in meta.keywords($args) {
         @if ($name=='theme'){$theme:$mean;};    
         @if ($name=='size'){$size:$mean;};    
@@ -21,9 +21,11 @@
         @if ($name=='gap'){$gap:$mean;};
         @if ($name=='margin'){$margin:$mean;};
     };
+
+
     .wd-btn-icon{
         height:$size;
-
+        cursor: pointer;
         background-color: $bg;
         color: $color;
         border:1px solid $border;
@@ -35,7 +37,7 @@
     
         min-width:$size;
         
-        //border-radius: 5px;
+        border-radius: 5px;
         font-size: $font-size;
     
         padding-left:$gap;
@@ -52,6 +54,8 @@
         align-content: center;
         align-items: center;
 
+        outline: 2px solid rgba(0,0,0,0);
+        @include transition(outline-color 0.2s);
         &:focus { 
             outline: 2px solid $outline;
         }

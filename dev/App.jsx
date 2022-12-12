@@ -349,6 +349,45 @@ class App extends React.Component {
                         </Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Btn">
+                        <Block>
+                            <Btn>button</Btn>
+                            <Btn addClass="wd-danger" hint="wd-danger hint">wd-danger</Btn>
+                            <Btn addClass="wd-primary">wd-primary</Btn>
+                            <Btn addClass="wd-transparent">wd-transparent</Btn>
+                            <Btn addClass="wd-primary pic-bag">pic</Btn>
+                        </Block>
+                    </Head>
+
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption={'BtnIcon'}>
+                        <Block>
+                            <Btn>left</Btn>
+                            <BtnIcon>button presed test</BtnIcon>
+                            <BtnIcon
+                                hint = "icon"
+                                IconComponent={Icon}
+                                icon={iEdit}
+                                addClass="wd-danger"
+                                iconClass="demo-bi-color"
+                            >ok</BtnIcon>
+                            <BtnIcon
+                                hint = "icon "
+                                IconComponent={FontAwesomeIcon}
+                                icon={faAddressBook}
+                                addClass="wd-danger"
+                                iconClass="demo-bi-color"
+                            >ok</BtnIcon>
+                            <Btn>standart</Btn>
+                            <BtnIcon addClass="wd-primary">cancel</BtnIcon>
+                            <BtnIcon>story</BtnIcon>
+                            <BtnIcon icon={faCaretDown} style={{ width: '100px' }} hint="no text"/>
+                            <BtnIcon addClass="wd-green">save</BtnIcon>
+                        </Block>
+                    </Head>
+
+                    {/*--------------------------------------------------------------------------------------------------*/}
+
                     <Head caption="ComboBoxEx">
                         <Block>
                             <ComboBoxEx
@@ -648,43 +687,6 @@ class App extends React.Component {
                         </Block>
                     </Head>
 
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption="Btn">
-                        <Block>
-                            <Btn>button</Btn>
-                            <Btn addClass="wd-danger" hint="wd-danger hint">wd-danger</Btn>
-                            <Btn addClass="wd-primary">wd-primary</Btn>
-                            <Btn addClass="wd-transparent">wd-transparent</Btn>
-                            <Btn addClass="wd-primary pic-bag">pic</Btn>
-                        </Block>
-                    </Head>
-
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption={'BtnIcon'}>
-                        <Block>
-                            <Btn>left</Btn>
-                            <BtnIcon>button presed test</BtnIcon>
-                            <BtnIcon
-                                hint = "icon"
-                                IconComponent={Icon}
-                                icon={iEdit}
-                                addClass="wd-danger"
-                                iconClass="demo-bi-color"
-                            >ok</BtnIcon>
-                            <BtnIcon
-                                hint = "icon "
-                                IconComponent={FontAwesomeIcon}
-                                icon={faAddressBook}
-                                addClass="wd-danger"
-                                iconClass="demo-bi-color"
-                            >ok</BtnIcon>
-                            <Btn>standart</Btn>
-                            <BtnIcon addClass="wd-primary">cancel</BtnIcon>
-                            <BtnIcon>story</BtnIcon>
-                            <BtnIcon icon={faCaretDown} style={{ width: '100px' }} hint="no text"/>
-                            <BtnIcon addClass="wd-green">save</BtnIcon>
-                        </Block>
-                    </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="Fonts">
                         <Block>
