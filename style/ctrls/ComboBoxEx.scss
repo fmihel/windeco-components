@@ -11,11 +11,11 @@
             $theme:$theme,
             $size:$wd-size, 
             $bg:map-get($wd-deep,#{$theme}),
-            $color:map-get($wd-colors,#{$theme}),
-            $border:map-get($wd-borders,#{$theme}),
-            $hover:map-get($wd-hovers,#{$theme}),
-            $color-hover:blendColor($colors:$wd-colors,$theme:$theme,$level:-30%),
-            $outline:map-get($wd-outlines,#{$theme}),
+            $color:map-get($wd-color,#{$theme}),
+            $border:map-get($wd-border,#{$theme}),
+            $hover:map-get($wd-hover,#{$theme}),
+            $color-hover:blendColor($colors:$wd-color,$theme:$theme,$level:-30%),
+            $outline:map-get($wd-outline,#{$theme}),
         );
     }
 }

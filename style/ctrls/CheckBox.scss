@@ -17,9 +17,9 @@ $wd-checkbox-cross:('light':$cross_black,'dark':$cross_white) !default;
     .#{$name} {
         @include checkbox-mixin(
             $theme:$name,
-            $bg: map-get($wd-bgs,#{$name}),
-            $border:map-get($wd-borders,#{$name}),
-            $outline:map-get($wd-outlines,#{$name}),
+            $bg: map-get($wd-bg,#{$name}),
+            $border:map-get($wd-border,#{$name}),
+            $outline:map-get($wd-outline,#{$name}),
             $icon:map-get($wd-checkbox-cross,#{$name}),
             $icon-hover:$cross_opacity,
         )

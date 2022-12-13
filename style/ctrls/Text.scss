@@ -8,10 +8,10 @@
     .#{$name} {
         @include text-mixin(
             $theme:$name,
-            $bg:map-get($wd-bgs,#{$name}),
-            $color:map-get($wd-colors,#{$name}),
-            $border:map-get($wd-borders,#{$name}),
-            $outline:map-get($wd-outlines,#{$name}),
+            $bg:map-get($wd-bg,#{$name}),
+            $color:map-get($wd-color,#{$name}),
+            $border:map-get($wd-border,#{$name}),
+            $outline:map-get($wd-outline,#{$name}),
             $font-size:$wd-size,
             //$required:map-get($wd-colorrequire,#{$name}),
             //$required-url:$wd-ctrl-bg-img-require,    

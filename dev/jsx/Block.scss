@@ -34,13 +34,13 @@
     box-shadow: 5px 5px 8px -5px rgba(34, 60, 80, 0.6);
 }
 .dark .b-child{
-    border:1px solid map-get($wd-borders,'dark');
-    background-color: map-get($wd-blocks,'dark');
+    border:1px solid map-get($wd-border,'dark');
+    background-color: map-get($wd-block,'dark');
 
 }
 
 .light .b-child{
-    border:1px solid map-get($wd-borders,'light');
-    background-color: map-get($wd-blocks,'light');
+    border:1px solid map-get($wd-border,'light');
+    background-color: map-get($wd-block,'light');
 
 }

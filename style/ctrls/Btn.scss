@@ -11,9 +11,9 @@
             $theme:$name,
             $size:$wd-size,
             $bg:map-get($wd-high,$name),
-            $color:map-get($wd-colors,$name),
-            $border:map-get($wd-borders,$name),
-            $outline:map-get($wd-outlines,$name),
+            $color:map-get($wd-color,$name),
+            $border:map-get($wd-border,$name),
+            $outline:map-get($wd-outline,$name),
         );
     }
 }

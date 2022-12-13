@@ -36,17 +36,17 @@ $wd-color-url:('light':#169bb9,'dark':#194d8f) !default;
 $wd-color-url-hover:('light':#63a6ff,'dark':#0c5ae3) !default;
 
 
-$wd-bgs:('light':#EDF2F9,'dark':#0B1727) !default;
-$wd-colors:('light':#5E6E82,'dark':#9DA9BB) !default;
-$wd-borders:('light':#D8E2EF,'dark':#344050) !default;
-$wd-outlines:('light':#CADEF8,'dark':#0E639C) !default;
-$wd-hovers:('light':#EDF2F9,'dark':#232E3C) !default;
-$wd-selects:('light':#2C7BE5,'dark':#2C7BE5) !default;
-$wd-headers:('light':#EDF2F9,'dark':#232E3C) !default;
+$wd-bg:('light':#EDF2F9,'dark':#0B1727) !default;
+$wd-color:('light':#5E6E82,'dark':#9DA9BB) !default;
+$wd-border:('light':#D8E2EF,'dark':#344050) !default;
+$wd-outline:('light':#CADEF8,'dark':#0E639C) !default;
+$wd-hover:('light':#EDF2F9,'dark':#232E3C) !default;
+$wd-select:('light':#2C7BE5,'dark':#2C7BE5) !default;
+$wd-header:('light':#EDF2F9,'dark':#232E3C) !default;
 $wd-deep:('light':#FFFFFF,'dark':#0B1727) !default;
 $wd-high:('light':#FFFFFF,'dark':#0B1727) !default;
 $wd-transparent:('light':rgba(0,0,0,0),'dark':rgba(0,0,0,0)) !default;
-$wd-blocks:('light':#FFFFFF,'dark':#162231) !default;
+$wd-block:('light':#FFFFFF,'dark':#162231) !default;
 $wd-alert:('light':#FFFFFF,'dark':#162231) !default;
 //$wd-ctrl-bg:('light':#FDFDFD,'dark':#343530) !default;
 //$wd-ctrl-bg-hover:$wd-ctrl-bg !default;
@@ -58,9 +58,9 @@ $wd-alert:('light':#FFFFFF,'dark':#162231) !default;
 //$wd-ctrl-color-hover:('light':#000000,'dark':#646464) !default;
 //$wd-ctrl-color-select:$wd-ctrl-color-primary !default;
 
-//$wd-ctrl-border:$wd-borders !default;
-//$wd-ctrl-border-focus:$wd-outlines !default;
-//$wd-ctrl-border-hover:$wd-borders !default;
+//$wd-ctrl-border:$wd-border !default;
+//$wd-ctrl-border-focus:$wd-outline !default;
+//$wd-ctrl-border-hover:$wd-border !default;
 
 
 

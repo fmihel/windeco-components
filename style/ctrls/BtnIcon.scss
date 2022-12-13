@@ -2,9 +2,9 @@
 @import '../mixin/btnicon-mixin.scss';
 
 $wd-btn-bg:('light':#c4c4c4,'dark':#343530) !default;
-$wd-btn-color:$wd-colors !default;
-$wd-btn-border:$wd-borders !default;
-$wd-btn-border-focus:$wd-outlines !default;
+$wd-btn-color:$wd-color !default;
+$wd-btn-border:$wd-border !default;
+$wd-btn-border-focus:$wd-outline !default;
 
 
 @include btnicon-mixin($wd-default-theme);
@@ -15,9 +15,9 @@ $wd-btn-border-focus:$wd-outlines !default;
             $theme:$name,
             $size:$wd-size,
             $bg:map-get($wd-high,$name),
-            $color:map-get($wd-colors,$name),
-            $border:map-get($wd-borders,$name),
-            $outline:map-get($wd-outlines,#{$name}),
+            $color:map-get($wd-color,$name),
+            $border:map-get($wd-border,$name),
+            $outline:map-get($wd-outline,#{$name}),
         );
     }
 }
