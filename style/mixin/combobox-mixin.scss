@@ -16,6 +16,7 @@
     $color-hover:white;
     $margin:2px;
     $radius:0.25rem;
+    $placeholder:silver;
 
     @each $name, $mean in meta.keywords($args) {
         @if ($name=='theme'){$theme:$mean;};    
@@ -31,6 +32,7 @@
         @if ($name=='required'){$required:$mean;};    
         @if ($name=='margin'){$margin:$mean;};
         @if ($name=='radius'){$radius:$mean;};    
+        @if ($name=='placeholder'){$placeholder:$mean;};
     
     };
     .wd-combo{
@@ -42,7 +44,7 @@
         color: $color;
         border:1px solid $border;
         border-radius: $radius;
-        
+
         box-sizing: border-box;
         min-width:$size;
        //border-radius: 12px;
@@ -91,6 +93,8 @@
         }
         &[required]{
             border:1px solid $required !important;
+            background-color:$required !important;
+
         }        
     
     }
@@ -123,7 +127,7 @@
         white-space: nowrap;
         overflow: hidden;
         &[state="no-select"]{
-            color:rgba($color,0.5);
+            color: $placeholder;
         }
         // for ComboItemIcon -------
         @include display-flex-horiz-stretch();

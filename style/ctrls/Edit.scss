@@ -1,3 +1,4 @@
+@use 'sass:color';
 @import '../vars.scss';
 @import '../mixin/edit-mixin.scss';
 
@@ -10,11 +11,11 @@
             $theme:$name,
             $size:$wd-size,
             $bg:map-get($wd-deep,#{$name}),
-            $color:blendColor($colors:$wd-color,$theme:#{$name},$light:0%,$dark:0%),
+            $color:blendColor($colors:$wd-color,$theme:#{$name},$light:-20%,$dark:20%),
             $border:map-get($wd-border,#{$name}),
             $outline:map-get($wd-outline,#{$name}),
             //$require-url:$wd-ctrl-bg-img-require,
-            //$require:map-get($wd-edit-color-require,#{$name}),
+            $require:rgba(map-get($wd-alert,#{$name}),0.1),
             $placeholder:blendColor($colors:$wd-color,$theme:#{$name},$level:40%),
         );
     }

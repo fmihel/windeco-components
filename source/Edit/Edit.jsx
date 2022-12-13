@@ -95,7 +95,7 @@ function Edit({
             placeholder={placeholder}
             {...(disabled ? { disabled: true } : {})}
             {...(readonly ? { readOnly: 'readonly' } : {})}
-            {...(required && !focused ? { required: true } : {})}
+            {...((required && `${val}`.length === 0) ? { required: true } : {})}
 
             {...props}
             title = {title || hint || ''}

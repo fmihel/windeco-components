@@ -76,6 +76,7 @@ input[type=number]{
             //border:1px solid $require !important;
             //background-size: $size*0.5;
             background-color:$require !important;
+            border:1px solid $require !important;
         }
 
         &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
