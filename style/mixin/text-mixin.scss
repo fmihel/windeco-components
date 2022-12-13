@@ -52,12 +52,13 @@
 
         }
         &[required]{
-            border:1px solid $required ;
-            background-image: url($required-url);
-            background-repeat: no-repeat;
-            background-position-x: right;
-            background-position-y: center;
-            background-size: calc($size*0.5);
+            border:1px solid $required !important;
+            background-color:$required !important;
+            //background-image: url($required-url);
+            //background-repeat: no-repeat;
+            //background-position-x: right;
+            //background-position-y: center;
+            //background-size: calc($size*0.5);
     
         }
 

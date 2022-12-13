@@ -8,12 +8,12 @@
     .#{$name} {
         @include text-mixin(
             $theme:$name,
-            $bg:map-get($wd-bg,#{$name}),
+            $bg:map-get($wd-deep,#{$name}),
             $color:map-get($wd-color,#{$name}),
             $border:map-get($wd-border,#{$name}),
             $outline:map-get($wd-outline,#{$name}),
-            $font-size:$wd-size,
-            //$required:map-get($wd-colorrequire,#{$name}),
+            $font-size:$wd-font-size,
+            $required:rgba(map-get($wd-alert,#{$name}),0.1),
             //$required-url:$wd-ctrl-bg-img-require,    
         );
     }
