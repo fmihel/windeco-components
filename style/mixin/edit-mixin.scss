@@ -24,7 +24,8 @@ input[type=number]{
     $require:red;
     $require-url:'';
     $margin:2px;
-
+    $radius:0.25rem;
+    $placeholder:silver;
     @each $name, $mean in meta.keywords($args) {
         @if ($name=='theme'){$theme:$mean;};    
         @if ($name=='size'){$size:$mean;}; 
@@ -37,13 +38,16 @@ input[type=number]{
         @if ($name=='require'){$require:$mean;}; 
         @if ($name=='require-url'){$require-url:$mean;}; 
         @if ($name=='margin'){$margin:$mean;};
-    
+        @if ($name=='radius'){$radius:$mean;};
+        @if ($name=='placeholder'){$placeholder:$mean;};
     }
+
     .wd-edit{
         height:$size;
         
         font-size:$font-size;
         border:1px solid $border;
+        border-radius: $radius;
         width:100%;
         background-color: $bg;
         text-indent:$gap;
@@ -51,7 +55,6 @@ input[type=number]{
         @if($margin!='none'){
             margin-right:$margin;
         };
-
         color:$color;
 
         outline: 0px solid rgba(0,0,0,0);
@@ -66,12 +69,18 @@ input[type=number]{
             opacity: 0.5;
         }
         &[required]{
-            background-image: url($require-url);
-            background-repeat: no-repeat;
-            background-position-x: right;
-            background-position-y: center;
-            border:1px solid $require !important;
-            background-size: $size*0.5;
+            //background-image: url($require-url);
+            //background-repeat: no-repeat;
+            //background-position-x: right;
+            //background-position-y: center;
+            //border:1px solid $require !important;
+            //background-size: $size*0.5;
+            background-color:$require !important;
         }
+
+        &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: $placeholder;
+        }
+          
     }   
 }

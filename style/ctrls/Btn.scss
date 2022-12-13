@@ -10,10 +10,10 @@
         @include btn-mixin(
             $theme:$name,
             $size:$wd-size,
-            $bg:blendColor($colors:$wd-bgs,$theme:#{$name},$light:-10%,$dark:10%),
-            $color:blendColor($colors:$wd-colors,$theme:#{$name},$light:-30%,$dark:40%),
-            $border:map-get($wd-borders,#{$name}),
-            $outline:map-get($wd-outlines,#{$name}),
+            $bg:map-get($wd-high,$name),
+            $color:map-get($wd-colors,$name),
+            $border:map-get($wd-borders,$name),
+            $outline:map-get($wd-outlines,$name),
         );
     }
 }

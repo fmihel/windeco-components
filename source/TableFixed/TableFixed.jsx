@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react';
 // import _ from 'lodash';
 // import { throttle } from 'lodash';
 import Header from './Header.jsx';
-import Footer from './Footer.jsx';
 import Table from './Table.jsx';
 import { culcWidths, haveScrollBar, isWidthsEmpty } from './utils';
 import DOM from '../Utils/DOM';

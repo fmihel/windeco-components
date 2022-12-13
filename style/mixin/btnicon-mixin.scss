@@ -9,6 +9,7 @@
     $font-size:1rem;
     $gap:5px;
     $margin:2px;
+    $radius:0.25rem;
     
     @each $name, $mean in meta.keywords($args) {
         @if ($name=='theme'){$theme:$mean;};    
@@ -20,6 +21,7 @@
         @if ($name=='font-size'){$font-size:$mean;};    
         @if ($name=='gap'){$gap:$mean;};
         @if ($name=='margin'){$margin:$mean;};
+        @if ($name=='radius'){$radius:$mean;};
     };
 
 
@@ -37,7 +39,7 @@
     
         min-width:$size;
         
-        border-radius: 5px;
+        border-radius: $radius;
         font-size: $font-size;
     
         padding-left:$gap;

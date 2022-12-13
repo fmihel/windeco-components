@@ -9,16 +9,16 @@
     $border:rgb(58, 94, 138);
     $sep:'yes';
 
-    $bg-header:rgb(32, 32, 32);
-    $color-header:white;
-    $border-header:gray;
-    $sep-header:'yes';
+    $header:rgb(32, 32, 32);
+    $header-color:white;
+    $header-border:gray;
+    $header-sep:'yes';
 
     $font-size:1rem;
     $gap:5px;
 
-    $bg-select:#3A5E8A;
-    $color-select:white;
+    $select:#3A5E8A;
+    $select-color:white;
 
     @each $name, $mean in meta.keywords($args) {
         @if ($name=='theme'){$theme:$mean;};    
@@ -27,17 +27,17 @@
         @if ($name=='color'){$color:$mean;};    
         @if ($name=='border'){$border:$mean;};    
 
-        @if ($name=='bg-header'){$bg-header:$mean;};    
-        @if ($name=='color-header'){$color-header:$mean;};    
-        @if ($name=='border-header'){$border-header:$mean;};    
-        @if ($name=='sep-header'){$sep-header:$mean;};    
+        @if ($name=='header'){$header:$mean;};    
+        @if ($name=='header-color'){$header-color:$mean;};    
+        @if ($name=='header-border'){$header-border:$mean;};    
+        @if ($name=='header-sep'){$header-sep:$mean;};    
 
         @if ($name=='outline'){$outline:$mean;};    
         @if ($name=='font-size'){$font-size:$mean;};    
         @if ($name=='gap'){$gap:$mean;};
 
-        @if ($name=='bg-select'){$bg-select:$mean;};    
-        @if ($name=='color-select'){$color-select:$mean;};    
+        @if ($name=='select'){$select:$mean;};    
+        @if ($name=='select-color'){$select-color:$mean;};    
 
     };
     .wd-table-fixed-horiz{
@@ -107,19 +107,19 @@
             height: $size;
         }
         &[header]{  
-            background-color: $bg-header;
-            color:$color-header;
+            background-color: $header;
+            color:$header-color;
             
             th{
-                border: 1px solid $border-header;
-                @if($sep-header=='none'){
+                border: 1px solid $header-border;
+                @if($header-sep=='none'){
                     border-right-color: rgba(0,0,0,0);
                 }
                 overflow: hidden;
                 &:first-child{
                 }
                 &:last-child{
-                    border-right-color: $border-header;
+                    border-right-color: $header-border;
                 }
 
             }
@@ -136,8 +136,8 @@
             tr{
                 @include transition(background-color 0.2s,color 0.2s);
                 &[select]{
-                    background-color: $bg-select;
-                    color: $color-select;
+                    background-color: $select;
+                    color: $select-color;
                 }
                 &:first-child{
                     td{

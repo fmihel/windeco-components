@@ -2,13 +2,6 @@
 @import '../vars.scss';
 @import '../mixin/combobox-mixin.scss';
 
-$wd-cbex-bg:$wd-bgs !default;
-$wd-cbex-bg-list:$wd-cbex-bg !default;
-$wd-cbex-bg-hover:('light':#0D6EFD,'dark':#0E639C) !default;
-$wd-cbex-color-hover:('light':white,'dark':white) !default;
-$wd-cbex-color:$wd-colors !default;
-$wd-cbex-border:$wd-borders !default;
-$wd-cbex-border-focus:$wd-outlines !default;
 
 @include combobox-mixin($theme:$wd-default-theme);
 
@@ -17,12 +10,12 @@ $wd-cbex-border-focus:$wd-outlines !default;
         @include combobox-mixin(
             $theme:$theme,
             $size:$wd-size, 
-            $bg:map-get($wd-cbex-bg,#{$theme}),
-            $color:map-get($wd-cbex-color,#{$theme}),
-            $border:map-get($wd-cbex-border,#{$theme}),
-            $bg-hover:map-get($wd-cbex-bg-hover,#{$theme}),
-            $color-hover:map-get($wd-cbex-color-hover,#{$theme}),
-            $outline:map-get($wd-cbex-border-focus,#{$theme}),
+            $bg:map-get($wd-deep,#{$theme}),
+            $color:map-get($wd-colors,#{$theme}),
+            $border:map-get($wd-borders,#{$theme}),
+            $hover:map-get($wd-hovers,#{$theme}),
+            $color-hover:blendColor($colors:$wd-colors,$theme:$theme,$level:-30%),
+            $outline:map-get($wd-outlines,#{$theme}),
         );
     }
 }
