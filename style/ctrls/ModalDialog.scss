@@ -11,9 +11,9 @@
     .#{$name} {
         @include modal-dialog-mixin(
             $theme:$name,
-            $bg:wd-get-theme($wd-block,#{$name}),
-            $border:wd-get-theme($wd-border,#{$name}),
-            $color:wd-get-theme($wd-color,#{$name}),
+            $bg:map-get($wd-block,#{$name}),
+            $border:map-get($wd-border,#{$name}),
+            $color:map-get($wd-color,#{$name}),
             $gap:$wd-gap,
 
         );

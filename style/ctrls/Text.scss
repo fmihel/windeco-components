@@ -14,7 +14,7 @@
             $outline:map-get($wd-outline,#{$name}),
             $font-size:$wd-font-size,
             $required:rgba(map-get($wd-alert,#{$name}),0.1),
-            //$required-url:$wd-ctrl-bg-img-require,    
+            //$required-url:$wd-require-img,    
         );
     }
 }

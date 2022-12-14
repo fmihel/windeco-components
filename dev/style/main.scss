@@ -142,8 +142,8 @@ body{
 
 @each $name in $wd-themes{
     .#{$name} {
-        background-color: wd-get-theme($wd-bg,#{$name});
-        color: wd-get-theme($wd-color,#{$name});
+        background-color:map-get($wd-bg,#{$name});
+        color: map-get($wd-color,#{$name});
     }
 }
 

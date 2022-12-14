@@ -6,34 +6,7 @@ $wd-themes:('light','dark') !default;
 $wd-default-theme:'light';
 $wd-gap:5px;
 $wd-margin:2px;
-
 $wd-font-size:14px !default;
-
-$wd-ctrl-bg-primary:('light':#0D6EFD,'dark':#0E639C) !default;
-$wd-ctrl-color-primary:('light':#FDFDFD,'dark':white) !default;
-$wd-ctrl-border-primary:('light':#0D6EFD,'dark':#0E639C) !default;
-
-$wd-ctrl-bg-danger:('light':#C32F3D,'dark':#632323) !default;
-$wd-ctrl-color-danger:('light':#FDFDFD,'dark':#bdb9b9) !default;
-$wd-ctrl-border-danger:('light':#C32F3D,'dark':#632323) !default;
-
-$wd-ctrl-bg-green:('light':#008b14,'dark':#017711) !default;
-$wd-ctrl-color-green:('light':white,'dark':white) !default;
-$wd-ctrl-border-green:('light':#32a815,'dark':#005f08) !default;
-
-$wd-ctrl-bg-transparent:('light':#80808013,'dark':rgba(0,0,0,0)) !default;
-$wd-ctrl-bg-transparent-hover:('light':#8080801f,'dark':rgba(0, 0, 0, 0.05)) !default;
-$wd-ctrl-color-transparent:('light':#535353,'dark':#a1a1a19d) !default;
-$wd-ctrl-color-transparent-hover:('light':#222222,'dark':#d4d4d4) !default;
-$wd-ctrl-border-transparent:('light':#8080802d,'dark':#4242424f) !default;
-$wd-ctrl-color-require:('light':#B22D1C,'dark':#B22D1C) !default; 
-$wd-ctrl-bg-img-require:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAA5xJREFUaEPtWEtsTGEUPuefaUgkRCg6t5WKR8o86pGoViRobDCuNmKBnYWdkLAVjx0hLCXYeKzQ6R0sRFWIRxeCuW0qkRA6M00REiIRnXuP809TmSmT+O+DTHL/VXvnP+d83/m+/79nBqHKF1Y5fggI/G8FAwUCBVx2ILCQywa6Dg8UcN1Clwl8VaC7ObJM4tNf5J+5xFkx3DcC6Vh9ByFcl5URsCNpDqX8IOEbASMauQxC7JCgCezLupnfVTUEiJtuxCN5BDFnDDSNJM1cHXeLP/J2+aJAOqo1k8DnpVCJoFnvz2a8hS/t6cMyYg0HAOlEOQE8oPcPnfS6nDIBI6ZtZ2/vBdsaJBHqATvcq/e/GSkFZsS129ybDaXP+CDf4YNc9qw7Nm82iMI6tK12EKHFCPbpZCZ3VYWkOoG4lmdwdeNF2NTEayAE2ENAj0DAAiA8xp+LMgWk/xGO8u4BQbjaAmpHxCgD+IWB41/rZm6+vwQS2j4iPFVaWKVgpb2yEUxlv57JnlHJp6yATJ5OaNtsgotsi8kqxSrvpR/clN18yC+p5nNEQBZJxSJtfE12I8JM1aLl1qLPbKnOZH/2npM8jgkUSUTnLhFg3QSBjU6K89nJCYJNyYHcCyfxMsYVAZmga2ljoygUXrESYSUQRKMhy164aXD4rVLchM2uCdyIz51ugTXM52GSChC+cb6HIBTZbL77rBI3ca8rAtcTs2eFqcbgpC0OQfQVcHRLZ2bkvcN45xbqijXMF0S3UMAip8WLcQRvEO2NSTP/0kkeRwoYCW0V2Wiw72udFP09hj4RiA7dHLqvmk+ZgJzzbaQr3r0DxiDLM8HX6Q6+TrtUSCgT4Dknx5dXpLQIT5rf2AYPEEIPbbCa+P2w848gEM7zC+stgtVGJNawglMm5Mnyy6zBXwJy0gQ6CGC/ZKB3KSR6hsO1fXuePh0dL8wDXx8griwFYgM83mpm28afnV2xoqau8KEFLbudv/Cs59GpiWeJ46oTq7ICf9MdI15/iPcdKesu4CH2uBzyPF2+EEjHtVbu5qMypEitWzK5J56i52S+EOhdC+GvH7WPbKNpYwcUvkydkZ2x7h4UqoKABGlE61P8jUCXf7P/U+z/Dq/By3y+KFAkEKvfzdnPFRUojspDF6qKwGG+VpbHtG382xA9M3PX+H8WwvvlmwLeQ/1zxoDAv+p0pTqBAoECLjsQWMhlA12HBwq4bqHLBFWvwE+9EyJAw/7WRQAAAABJRU5ErkJggg==' !default;
-
-$wd-color-red:('light':#ff0000,'dark':#ff0000) !default;
-$wd-color-orange:('light':#FF8A00,'dark':#FF8A00) !default;
-$wd-color-url:('light':#169bb9,'dark':#194d8f) !default;
-$wd-color-url-hover:('light':#63a6ff,'dark':#0c5ae3) !default;
-
 
 $wd-bg:('light':#EDF2F9,'dark':#0B1727) !default;
 $wd-color:('light':#5E6E82,'dark':#9DA9BB) !default;
@@ -51,79 +24,58 @@ $wd-alert:('light':#ff0000,'dark':#ff0000) !default;
 
 
 
-// альтернатива map-get но в случе отсуствия индекса вернет default
-@function wd-get($map,$key,$default){
+$wd-primary:('light':#0D6EFD,'dark':#0E639C) !default;
+$wd-danger:('light':#C32F3D,'dark':#632323) !default;
+$wd-green:('light':#008b14,'dark':#017711) !default;
 
-    @if map-has-key($map,$key) == true {
-        @return map-get($map,$key);
-    } @else {
-        @return $default;
-    }
-}
+$wd-transparent:('light':#80808013,'dark':rgba(0,0,0,0)) !default;
+$wd-require-img:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAA5xJREFUaEPtWEtsTGEUPuefaUgkRCg6t5WKR8o86pGoViRobDCuNmKBnYWdkLAVjx0hLCXYeKzQ6R0sRFWIRxeCuW0qkRA6M00REiIRnXuP809TmSmT+O+DTHL/VXvnP+d83/m+/79nBqHKF1Y5fggI/G8FAwUCBVx2ILCQywa6Dg8UcN1Clwl8VaC7ObJM4tNf5J+5xFkx3DcC6Vh9ByFcl5URsCNpDqX8IOEbASMauQxC7JCgCezLupnfVTUEiJtuxCN5BDFnDDSNJM1cHXeLP/J2+aJAOqo1k8DnpVCJoFnvz2a8hS/t6cMyYg0HAOlEOQE8oPcPnfS6nDIBI6ZtZ2/vBdsaJBHqATvcq/e/GSkFZsS129ybDaXP+CDf4YNc9qw7Nm82iMI6tK12EKHFCPbpZCZ3VYWkOoG4lmdwdeNF2NTEayAE2ENAj0DAAiA8xp+LMgWk/xGO8u4BQbjaAmpHxCgD+IWB41/rZm6+vwQS2j4iPFVaWKVgpb2yEUxlv57JnlHJp6yATJ5OaNtsgotsi8kqxSrvpR/clN18yC+p5nNEQBZJxSJtfE12I8JM1aLl1qLPbKnOZH/2npM8jgkUSUTnLhFg3QSBjU6K89nJCYJNyYHcCyfxMsYVAZmga2ljoygUXrESYSUQRKMhy164aXD4rVLchM2uCdyIz51ugTXM52GSChC+cb6HIBTZbL77rBI3ca8rAtcTs2eFqcbgpC0OQfQVcHRLZ2bkvcN45xbqijXMF0S3UMAip8WLcQRvEO2NSTP/0kkeRwoYCW0V2Wiw72udFP09hj4RiA7dHLqvmk+ZgJzzbaQr3r0DxiDLM8HX6Q6+TrtUSCgT4Dknx5dXpLQIT5rf2AYPEEIPbbCa+P2w848gEM7zC+stgtVGJNawglMm5Mnyy6zBXwJy0gQ6CGC/ZKB3KSR6hsO1fXuePh0dL8wDXx8griwFYgM83mpm28afnV2xoqau8KEFLbudv/Cs59GpiWeJ46oTq7ICf9MdI15/iPcdKesu4CH2uBzyPF2+EEjHtVbu5qMypEitWzK5J56i52S+EOhdC+GvH7WPbKNpYwcUvkydkZ2x7h4UqoKABGlE61P8jUCXf7P/U+z/Dq/By3y+KFAkEKvfzdnPFRUojspDF6qKwGG+VpbHtG382xA9M3PX+H8WwvvlmwLeQ/1zxoDAv+p0pTqBAoECLjsQWMhlA12HBwq4bqHLBFWvwE+9EyJAw/7WRQAAAABJRU5ErkJggg==' !default;
 
-@function wd-get-theme($map,$key){
-    @return wd-get($map,$key,$wd-default-theme);
-}
+$wd-red:('light':#ff0000,'dark':#ff0000) !default;
+$wd-orange:('light':#FF8A00,'dark':#FF8A00) !default;
+$wd-url:('light':#169bb9,'dark':#194d8f) !default;
+
+
 
 
 @each $name in $wd-themes{
     .#{$name} {
         .wd-primary{
-            background-color: map-get($wd-ctrl-bg-primary,#{$name}) !important;
-            color: map-get($wd-ctrl-color-primary,#{$name}) !important;
-            border-color: map-get($wd-ctrl-border-primary,#{$name}) !important;
+            background-color: map-get($wd-primary,#{$name}) !important;
+            color:blendColors($colors:$wd-primary,$theme:$name,$light:60%,$dark:60%) !important;
+            border-color: blendColors($colors:$wd-primary,$theme:$name,$level:-5%) !important;
             &:hover{
-                @if  $name=='dark' {
-                    background-color:lighten(map-get($wd-ctrl-bg-primary,#{$name}), 10%) !important;
-                } @else {
-                    background-color:darken(map-get($wd-ctrl-bg-primary,#{$name}), 10%) !important;
-                }
-                    
-
+                background-color:blendColors($colors:$wd-primary,$theme:$name,$level:-5%) !important;
              }
         }
         .wd-danger{
-            background-color: map-get($wd-ctrl-bg-danger,#{$name}) !important;
-            color: map-get($wd-ctrl-color-danger,#{$name}) !important;
-            border-color: map-get($wd-ctrl-border-danger,#{$name}) !important;
+            background-color: map-get($wd-danger,#{$name}) !important;
+            color:blendColors($colors:$wd-danger,$theme:$name,$light:60%,$dark:60%) !important;
+            border-color: blendColors($colors:$wd-danger,$theme:$name,$level:-5%) !important;
             &:hover{
-                @if  $name=='dark' {
-                    background-color:lighten(map-get($wd-ctrl-bg-danger,#{$name}), 10%) !important;
-                } @else {
-                    background-color:darken(map-get($wd-ctrl-bg-danger,#{$name}), 10%) !important;
-                }
-        
+                background-color:blendColors($colors:$wd-danger,$theme:$name,$level:-5%) !important;
              }
         }
         .wd-green{
-            background-color: map-get($wd-ctrl-bg-green,#{$name}) !important;
-            color: map-get($wd-ctrl-color-green,#{$name}) !important;
-            border-color: map-get($wd-ctrl-border-green,#{$name}) !important;
+            background-color: map-get($wd-green,#{$name}) !important;
+            color:blendColors($colors:$wd-green,$theme:$name,$light:70%,$dark:70%) !important;
+            border-color: blendColors($colors:$wd-green,$theme:$name,$level:-5%) !important;
             &:hover{
-                @if  $name=='dark' {
-                    background-color:lighten(map-get($wd-ctrl-bg-green,#{$name}), 10%) !important;
-                } @else {
-                    background-color:darken(map-get($wd-ctrl-bg-green,#{$name}), 10%) !important;
-                }
-
+                background-color:blendColors($colors:$wd-green,$theme:$name,$level:-5%) !important;
              }
         }
         .wd-transparent{
-            background-color: map-get($wd-ctrl-bg-transparent,#{$name}) !important;
-            color: map-get($wd-ctrl-color-transparent,#{$name}) !important;
-            border-color: map-get($wd-ctrl-border-transparent,#{$name}) !important;
+            background-color: map-get($wd-transparent,#{$name}) !important;
+            color:blendColors($colors:$wd-color,$theme:$name,$level:15%) !important;
+            border-color: rgba(0,0,0,0) !important;
             &:hover{
-                background-color:map-get($wd-ctrl-bg-transparent-hover,#{$name}) !important;
-                color:map-get($wd-ctrl-color-transparent-hover,#{$name}) !important;
+                color:blendColors($colors:$wd-color,$theme:$name,$level:0%) !important;
              }
 
         }
     }
 }
 
-@function wd-blends($level){
-    @return ('light':$level,'dark':-$level)    
-}
 
 
 
