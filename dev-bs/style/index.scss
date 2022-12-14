@@ -1,15 +1,18 @@
 @use "sass:map";
-@import './vars.scss';
+@import '../../style/vars.scss';
+@import '../../style/ctrls/Btn.scss';
+@import '../../style/ctrls/Edit.scss';
+//@import './vars.scss';
 @import './redefine.bootstrap.scss';
 @import "../../node_modules/bootstrap/scss/bootstrap";
-@import './ctrls.scss';
+//@import './ctrls.scss';
 
 *, *::before, *::after {
     box-sizing: border-box;
 }
 
 html{
-    font-size: $fontSize;
+    font-size: $wd-font-size;
 }
 
 body{
@@ -51,14 +54,14 @@ body{
         .app{
             flex:1 1 auto;
         }
-        @each $theme in $themes{
+        @each $theme in $wd-themes{
             .#{$theme}{
-                $bg:map-get($bgs,#{$theme});
-                $color:map-get($colors,#{$theme});
-                $border:map-get($borders,#{$theme});
+                //$bg:map-get($wd-bg,#{$theme});
+                //$color:map-get($wd-color,#{$theme});
+                //$border:map-get($wd-border,#{$theme});
 
-                background-color: $bg;
-                color:$color;
+                //background-color: $bg;
+                //color:$color;
                 
             }
         }
@@ -68,6 +71,6 @@ body{
 }
 
 .row{
-    margin-bottom: $gap;
+    margin-bottom: $wd-gap;
 }
 

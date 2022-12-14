@@ -6,6 +6,8 @@ import redux from 'REDUX';
 import Fallback from './components/Fallback/Fallback.jsx';
 // import Modal, { modal } from './components/Modal';
 import AsyncState from './common/AsyncState.js';
+import Btn from '../source/Btn/Btn.jsx';
+import Edit from '../source/Edit/Edit.jsx';
 
 const Navbar = lazy(() => import(/* webpackChunkName: "Navbar" */'./components/Navbar/Navbar.jsx'));
 
@@ -88,11 +90,21 @@ class App extends React.Component {
                             </div>
                         </div>
 
+                        <div className="row">
+                            <div className="col">
+                                <div className="input-group mb-3">
+                                    <Btn value="test"/>
+                                    <Edit value="edit"/>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 {(Modal)
                 && <Modal
                     id='my-dialog'
+                    theme={theme}
                     caption = 'message'
                     buttons={ {
                         cancel: { caption: 'отмена' },

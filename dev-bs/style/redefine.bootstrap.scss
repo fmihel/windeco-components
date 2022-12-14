@@ -1,1 +1,15 @@
 $primary: #2f5499;
+.dark,.light{
+    //background-color: rgba(0,0,0,0) !important;
+}
+@each $theme in $wd-themes{
+    .#{$theme}{
+        .modal-content{
+            background-color: map-get($wd-block,$theme) !important;
+            color: map-get($wd-color,$theme) !important;
+        }
+        div{
+            border-color: map-get($wd-border,$theme) !important;
+        }
+    }
+}

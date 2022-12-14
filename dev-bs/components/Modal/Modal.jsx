@@ -1,7 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import modalData from './data';
+import Btn from '../../../source/Btn/Btn.jsx';
 
-export default ({
+function Modal({
     id, children,
     caption = '',
     buttons = {
@@ -11,7 +13,7 @@ export default ({
     align = 'center', // center stretch fullscreen  | custom class
     theme = 'light',
 
-}) => {
+}) {
     const btns = Object.keys(buttons);
     const onClickBack = () => {
         modalData.err();
@@ -34,9 +36,9 @@ export default ({
     const place = align in aligns ? aligns[align] : align;
 
     return (
-        <div className="modal fade" id={id} tabIndex="-1" aria-labelledby={`${id}Label`} aria-hidden="true" onClick={onClickBack} >
-            <div className={`modal-dialog  ${place} ${scroll ? 'modal-dialog-scrollable' : ''} modal-lg`}>
-                <div className={`modal-content ${theme === 'dark' ? 'bg-dark' : ''}`} onClick={onClickContent}>
+        <div className={`modal fade ${theme}`} id={id} tabIndex="-1" aria-labelledby={`${id}Label`} aria-hidden="true" onClick={onClickBack} >
+            <div className={`modal-dialog ${place} ${scroll ? 'modal-dialog-scrollable' : ''} modal-lg`}>
+                <div className={'modal-content '} onClick={onClickContent}>
                     { caption !== false
             && <div className="modal-header">
                 <h5 className="modal-title" id={`${id}Label`}>{caption}</h5>
@@ -72,15 +74,14 @@ export default ({
                         },
                     };
                     return (
-                        <button
+                        <Btn
                             key={item.key}
                             id={key}
-                            type="button"
-                            className={`btn${item.addClass}`}
+                            addClass={item.addClass}
                             onClick={item.onClick}
                         >
                             {item.caption}
-                        </button>
+                        </Btn>
                     );
                 })}
                 {
@@ -94,4 +95,6 @@ export default ({
             </div>
         </div>
     );
-};
+}
+
+export default Modal;
