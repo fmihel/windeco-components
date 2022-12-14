@@ -399,6 +399,11 @@ Icon.icons({
 
 ---
 
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1",
 
 
 
