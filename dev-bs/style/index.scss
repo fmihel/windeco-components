@@ -1,0 +1,73 @@
+@use "sass:map";
+@import './vars.scss';
+@import './redefine.bootstrap.scss';
+@import "../../node_modules/bootstrap/scss/bootstrap";
+@import './ctrls.scss';
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html{
+    font-size: $fontSize;
+}
+
+body{
+    background-color: gray;
+    user-select: none;
+    input[type="text"] {
+        user-select: auto;
+    }
+    margin:0px;
+    padding:0px;
+    overflow:hidden;
+    font-family: roboto,"Noto Sans Myanmar UI",arial,sans-serif ;
+    
+
+
+    font-weight: 400;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+
+    #root{
+        overflow: hidden;
+        position: absolute;
+
+        margin:0px;
+        padding:0px;
+        width:100%;
+        height:100%;
+        border:1px solid 0;
+
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: stretch;
+
+        .app{
+            flex:1 1 auto;
+        }
+        @each $theme in $themes{
+            .#{$theme}{
+                $bg:map-get($bgs,#{$theme});
+                $color:map-get($colors,#{$theme});
+                $border:map-get($borders,#{$theme});
+
+                background-color: $bg;
+                color:$color;
+                
+            }
+        }
+
+    }
+    
+}
+
+.row{
+    margin-bottom: $gap;
+}
+
