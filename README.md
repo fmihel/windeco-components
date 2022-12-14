@@ -5,20 +5,18 @@ react components for windeco\
 
 [1. Btn - кнопка](#Btn)<br/>
 [2. Edit - поле ввода](#Edit)<br/>
-[3. Label - метка](#Label)<br/>
-[4. CheckBox - флажок](#CheckBox)<br/>
-[5. ComboBox - раскрываемый список стандартный ](#ComboBox)<br/>
-[6. ComboBoxEx - раскрываемый список расширенный](#ComboBoxEx)<br/>
-[7. Table - стандартная таблица](#Table)<br/>
-[8. TableFixed - расширенная таблица ( с фиксируемым заголовком)](#TableFixed)<br/>
-[9. ModalDialog - Модальный диалог](#ModalDialog)<br/>
-[10. Modal - обертка для модальных диалогов](#Modal)<br/>
-[11. Waiter - блокиратор экрана на ввод](#Waiter)<br/>
-[12. BtnIcon - кнопка c иконкой](#BtnIcon)<br/>
-[13. Text - многострочный текст](#Text)<br/>
-[14. Icon - иконка](#Icon)<br/>
+[3. *Label - метка](#Label)<br/>
+[4. *CheckBox - флажок](#CheckBox)<br/>
+[6. *ComboBoxEx - раскрываемый список расширенный](#ComboBoxEx)<br/>
+[8. *TableFixed - расширенная таблица ( с фиксируемым заголовком)](#TableFixed)<br/>
+[9. *ModalDialog - Модальный диалог](#ModalDialog)<br/>
+[10. *Modal - обертка для модальных диалогов](#Modal)<br/>
+[11. *Waiter - блокиратор экрана на ввод](#Waiter)<br/>
+[12. *BtnIcon - кнопка c иконкой](#BtnIcon)<br/>
+[13. *Text - многострочный текст](#Text)<br/>
+[14. *Icon - иконка](#Icon)<br/>
 
-
+```* - неотредактированные главы```
 
 ---
 ## Btn
@@ -33,7 +31,7 @@ react components for windeco\
 |value|string|undefined|надпись на кнопке, можно задать через children|
 |onClick|function|undefined|onclick событие|
 |className|string|Btn.global.className|класс css|
-|addClass|string|Btn.global.addClass|добавочный класс, результирующий будет к `${className} ${addClass}`|
+|addClass|string|Btn.global.addClass|добавочный класс, результирующий будет к "`${className} ${addClass}`"|
 |title|string||подсказка title|
 ### global
 ```js
@@ -73,7 +71,7 @@ Btn.global = {
 |onKeyUp|function({key,id,value,args})|undefined|событие после прижатия клавиши,args - оригинальные аргументы  |
 |onKeyDown|function({key,id,value,args})|undefined|событие после отжатия клавиши,args - оригинальные аргументы  |
 |className|string|Edit.global.className|класс css|
-|addClass|string|Edit.global.addClass|добавочный класс, результирующий будет к `${className} ${addClass}`|
+|addClass|string|Edit.global.addClass|добавочный класс, результирующий будет к "`${className} ${addClass}`"|
 |style|{}|{}|стиль css|
 |disabled|bool|false|отключить возможность редактировния и фокуса|
 |readonly|bool|false|только для чтения|
