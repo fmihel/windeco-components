@@ -1,11 +1,11 @@
 @use "sass:meta";
 
 @mixin modal-dialog-mixin($args...){
-    $theme:'dark';
+    $theme:'light';
     $size:2rem;
     $gap:5px;
-    $border:gray;
-    $bg:silver;
+    $border:#DCDCDC;
+    $bg:#f8f8f8;
     $color:black;
     $font-size:1rem;
     $radius:3px;
@@ -80,9 +80,11 @@
                 min-width: $size*0.8;
                 line-height: $size*0.8;
                 text-align: center;
-
+                color:$color;
                 &:hover{
-                    color:rgb(165, 139, 139);
+                    color:blendColor($color,$theme,$level:-20%);
+                    font-size:1.1em;
+                    cursor:pointer;
                 }
             }
         }

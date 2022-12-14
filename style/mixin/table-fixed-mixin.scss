@@ -1,23 +1,23 @@
 @use "sass:meta";
 @mixin table-fixed-mixin($args...){
-    $theme:'dark';
+    $theme:'light';
     $size:2rem;
     $outline:'none';
 
     $bg:rgba(156, 67, 67, 0);
     $color:rgb(112, 112, 112);
-    $border:rgb(58, 94, 138);
+    $border:#DCDCDC;
     $sep:'yes';
 
-    $header:rgb(32, 32, 32);
-    $header-color:white;
-    $header-border:gray;
+    $header:#e9e9e9;
+    $header-color:#555555;
+    $header-border:#DCDCDC;
     $header-sep:'yes';
 
     $font-size:1rem;
     $gap:5px;
 
-    $select:#3A5E8A;
+    $select:#2C7BE5;
     $select-color:white;
 
     @each $name, $mean in meta.keywords($args) {

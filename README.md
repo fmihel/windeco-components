@@ -30,11 +30,29 @@ react components for windeco\
 |prop|type|default|notes|
 |----|----|-----|-----|
 |id|any|undefined|идентификатор|
-|value|string|undefined|надпись на кнопке, можно задать через props.children|
+|value|string|undefined|надпись на кнопке, можно задать через children|
 |onClick|function|undefined|onclick событие|
-|addClass|string||добавить класс к кнопке для стилизации,верхний класс wd-btn|
-|hint|string||подсказка title|
+|className|string|Btn.global.className|класс css|
+|addClass|string|Btn.global.addClass|добавочный класс, результирующий будет к `${className} ${addClass}`|
+|title|string||подсказка title|
+### global
+```js
+Btn.global = {
+    className: 'wd-btn',
+    addClass: '',
+};
+```
+`Глобальные параметры можно переопределить, для изменения значений, используемых по умолчанию.`
+Example:
+```js
+Btn.global = {
+    ...Btn.global,
+    className:'my-btn'
+}
+
+```
 ---
+
 ## Edit
 ```html
 <Edit>name</Edit>
@@ -54,26 +72,24 @@ react components for windeco\
 |onKeyPress|function({key,id,value,args})|undefined|событие после нажатия клавиши,args - оригинальные аргументы  |
 |onKeyUp|function({key,id,value,args})|undefined|событие после прижатия клавиши,args - оригинальные аргументы  |
 |onKeyDown|function({key,id,value,args})|undefined|событие после отжатия клавиши,args - оригинальные аргументы  |
-|onInit|function(component)|undefined|событие при создании, передает ссылку на компонент |
-|onFocus|function({id,value,args})|undefined|событие при фокусе |
-|onBlur|function({id,value,args})|undefined|событие при потери фокуса |
-|addClass|string||добавить класс к input для стилизации,верхний класс wd-btn|
-|dim|string||размерность|
-|disable|{dim:bool}|{dim:false}|включить тот или иной признак|
-|dim|string||размерность|
+|className|string|Edit.global.className|класс css|
+|addClass|string|Edit.global.addClass|добавочный класс, результирующий будет к `${className} ${addClass}`|
+|style|{}|{}|стиль css|
+|disabled|bool|false|отключить возможность редактировния и фокуса|
+|readonly|bool|false|только для чтения|
+|required|bool|false|включает подсветку для незаполненных полей |
 |placeholder|string||текст в незаполненном поле|
 |visible|bool|true|признак display|
-|readonly|bool|false|только для чтения|
-|style|{}|{}|стиль css. Не все стили обрабатываются, на данный момент только 3 width,textAlign,fontSize|
-|hint|string||подсказка title|
-|required|bool|false|включает подсветку,для незаполненных полей и добавляет css класс ```wd-edit-require```|
+|title|string||подсказка title|
 |minLength|number|0|максимальное кол-во вводимых символов, если 0 то без ограничений|
-|autoFocus|bool|false|установить фокус на компонент при создании|
-### methods
-|name|return|notes|
-|----|----|-----|
-|focus()||установить фокус на компонент, использовать component из onInit|
 
+### global
+```js
+Edit.global = {
+    className: 'wd-edit',
+    addClass: '',
+    style: {},
+};
 ---
 ## Label
 ```html

@@ -1,12 +1,12 @@
 @use "sass:meta";
 @mixin btn-mixin($args...){
-    $theme:'dark';
+    $theme:'light';
 
     $size:28px;
-    $bg:#343530;
-    $color:silver;
-    $border:#4a4b48;
-    $outline:#0E639C;
+    $bg:#f5f5f5;  
+    $color:rgb(70, 70, 70);
+    $border:#d5d5da;
+    $outline:#9dcff0;
     $font-size:1rem;
     $margin:2px;
     $radius:0.25rem;

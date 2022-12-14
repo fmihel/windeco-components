@@ -1,18 +1,18 @@
 @use "sass:meta";
 
 @mixin combobox-mixin($args...){
-    $theme:'dark';
+    $theme:'light';
     $size:2rem;
     $gap:5px;
-    $bg:gray;
+    $bg:white;
     $color:black;
-    $border:white;
-    $required:#B22D1C;
+    $border:#DCDCDC;
+    $required:rgba(255, 0, 0, 0.144);
 
-    $outline:#3476BC;
+    $outline:#9dcff0;    
     $font-size:1rem;
-
-    $hover:#0E639C;
+    
+    $hover:#2C7BE5;
     $color-hover:white;
     $margin:2px;
     $radius:0.25rem;

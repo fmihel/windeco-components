@@ -13,16 +13,16 @@ input[type=number]{
 }
 
 @mixin edit-mixin($args...){
-    $theme:'dark';
+    $theme:'light';
     $size:2rem;
     $font-size:1rem;
     $bg:white;
     $color:black;
-    $outline:#92BCD8;
+    $outline:#9dcff0;
     $border:#DCDCDC;
     $gap:5px;
-    $require:red;
-    $require-url:'';
+    $required:rgba(255, 0, 0, 0.144);
+    $required-url:'';
     $margin:2px;
     $radius:0.25rem;
     $placeholder:silver;
@@ -35,8 +35,8 @@ input[type=number]{
         @if ($name=='border'){$border:$mean;};    
         @if ($name=='outline'){$outline:$mean;};    
         @if ($name=='gap'){$gap:$mean;};
-        @if ($name=='require'){$require:$mean;}; 
-        @if ($name=='require-url'){$require-url:$mean;}; 
+        @if ($name=='required'){$required:$mean;}; 
+        @if ($name=='required-url'){$required-url:$mean;}; 
         @if ($name=='margin'){$margin:$mean;};
         @if ($name=='radius'){$radius:$mean;};
         @if ($name=='placeholder'){$placeholder:$mean;};
@@ -69,14 +69,14 @@ input[type=number]{
             opacity: 0.5;
         }
         &[required]{
-            //background-image: url($require-url);
+            //background-image: url($required-url);
             //background-repeat: no-repeat;
             //background-position-x: right;
             //background-position-y: center;
-            //border:1px solid $require !important;
+            //border:1px solid $required !important;
             //background-size: $size*0.5;
-            background-color:$require !important;
-            border:1px solid $require !important;
+            background-color:$required !important;
+            border:1px solid $required !important;
         }
 
         &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */

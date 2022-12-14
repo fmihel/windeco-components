@@ -157,7 +157,7 @@ function ModalDialog({
                         </div>
                         {(onClickHeaderClose)
                         && <div className="wd-dialog-close-btn" onClick={onClickHeaderClose}>
-                        &#10060;
+                        &#10006;
                         </div>}
 
                     </div>

@@ -1,14 +1,14 @@
 @use "sass:meta";
 @mixin text-mixin($args...){
-    $theme:'dark';
+    $theme:'light';
     $size:2rem;
-    $bg:gray;
+    $bg:white;
     $color:black;
-    $border:gray;
-    $outline:rgb(6, 114, 255);
+    $border:#DCDCDC;
+    $outline:#9dcff0;
     $font-size:1rem;
     $gap:5px;
-    $required:red;
+    $required:rgba(255, 0, 0, 0.144);
     $required-url:'';
 
     @each $name, $mean in meta.keywords($args) {

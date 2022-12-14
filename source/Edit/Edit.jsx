@@ -68,9 +68,6 @@ function Edit({
     if (maxLength > 0) props.maxLength = maxLength;
     // --------------------------------------------------------
     const val = value || children || '';
-    // const requiredClass = (required && (`${value || children || ''}`).length === 0) ? Edit.global.requiredClass : '';
-    // const disabledClass = (disabled) ? Edit.global.disabledClass : '';
-    // const readonlyClass = (readonly) ? Edit.global.readonlyClass : '';
     let _type = type;
     if (type === 'number') {
         _type = focused ? type : 'text';
@@ -108,9 +105,6 @@ Edit.global = {
     className: 'wd-edit',
     addClass: '',
     style: {},
-    requiredClass: 'wd-edit-require',
-    disabledClass: 'wd-edit-disable',
-    readonlyClass: 'wd-edit-readonly',
 };
 
 export default Edit;

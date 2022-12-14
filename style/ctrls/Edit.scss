@@ -15,7 +15,7 @@
             $border:map-get($wd-border,#{$name}),
             $outline:map-get($wd-outline,#{$name}),
             //$require-url:$wd-require-img,
-            $require:rgba(map-get($wd-alert,#{$name}),0.1),
+            $required:rgba(map-get($wd-alert,#{$name}),0.1),
             $placeholder:blendColors($colors:$wd-color,$theme:#{$name},$level:40%),
         );
     }
