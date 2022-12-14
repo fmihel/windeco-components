@@ -42,7 +42,7 @@ Btn.global = {
     addClass: '',
 };
 ```
-`Глобальные параметры можно переопределить, для изменения значений, используемых по умолчанию.`
+`Глобальные параметры можно переопределить, для изменения значений, используемых по умолчанию.`\
 Example:
 ```js
 Btn.global = {
@@ -57,7 +57,7 @@ Btn.global = {
 ```html
 <Edit>name</Edit>
 <Edit value="name" />
-<Edit onInit={ ( o ) =>{ o.focus(); }} />
+
 ``` 
 ### property
 |prop|type|default|notes|
@@ -90,6 +90,8 @@ Edit.global = {
     addClass: '',
     style: {},
 };
+```
+
 ---
 ## Label
 ```html
