@@ -1,14 +1,13 @@
 @use "sass:map";
 @import './utils.scss'; 
 
-$wd-size:28px;
+$wd-size:32px;
 $wd-themes:('light','dark') !default;
 $wd-default-theme:'light';
 $wd-gap:5px;
 $wd-margin:2px;
 
-$wd-font-size:12px !default;
-
+$wd-font-size:14px !default;
 
 $wd-ctrl-bg-primary:('light':#0D6EFD,'dark':#0E639C) !default;
 $wd-ctrl-color-primary:('light':#FDFDFD,'dark':white) !default;
@@ -38,30 +37,17 @@ $wd-color-url-hover:('light':#63a6ff,'dark':#0c5ae3) !default;
 
 $wd-bg:('light':#EDF2F9,'dark':#0B1727) !default;
 $wd-color:('light':#5E6E82,'dark':#9DA9BB) !default;
+$wd-label:('light':#5E6E82,'dark':#848b94) !default;
 $wd-border:('light':#D8E2EF,'dark':#344050) !default;
 $wd-outline:('light':#CADEF8,'dark':#0E639C) !default;
 $wd-hover:('light':#EDF2F9,'dark':#232E3C) !default;
 $wd-select:('light':#2C7BE5,'dark':#2C7BE5) !default;
 $wd-header:('light':#EDF2F9,'dark':#232E3C) !default;
 $wd-deep:('light':#FFFFFF,'dark':#0B1727) !default;
-$wd-high:('light':#FFFFFF,'dark':#0B1727) !default;
+$wd-high:('light':#fdfdfd,'dark':#2d353e) !default;
 $wd-transparent:('light':rgba(0,0,0,0),'dark':rgba(0,0,0,0)) !default;
 $wd-block:('light':#FFFFFF,'dark':#162231) !default;
 $wd-alert:('light':#ff0000,'dark':#ff0000) !default;
-
-//$wd-ctrl-bg:('light':#FDFDFD,'dark':#343530) !default;
-//$wd-ctrl-bg-hover:$wd-ctrl-bg !default;
-//$wd-ctrl-bg-select:$wd-ctrl-bg-primary !default;
-
-//$wd-ctrl-color:('light':#000000,'dark':#cfcfcf) !default;
-//$wd-ctrl-color-readonly:('light':#000000,'dark':#cfcfcf) !default;
-//$wd-ctrl-color-disable:('light':#797979,'dark':#757575) !default;
-//$wd-ctrl-color-hover:('light':#000000,'dark':#646464) !default;
-//$wd-ctrl-color-select:$wd-ctrl-color-primary !default;
-
-//$wd-ctrl-border:$wd-border !default;
-//$wd-ctrl-border-focus:$wd-outline !default;
-//$wd-ctrl-border-hover:$wd-border !default;
 
 
 

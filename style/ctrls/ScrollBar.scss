@@ -10,8 +10,8 @@
             $theme:$name,
             $size:$wd-size*0.4,
             $bg:map-get($wd-transparent,$name),
-            $thumb:blendColor($colors:$wd-bg,$theme:$name,$level:-20%),
-            $hover:blendColor($colors:$wd-bg,$theme:$name,$level:-25%),
+            $thumb:blendColors($colors:$wd-bg,$theme:$name,$level:-20%),
+            $hover:blendColors($colors:$wd-bg,$theme:$name,$level:-25%),
         );
     }
 }

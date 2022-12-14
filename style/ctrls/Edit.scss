@@ -11,12 +11,12 @@
             $theme:$name,
             $size:$wd-size,
             $bg:map-get($wd-deep,#{$name}),
-            $color:blendColor($colors:$wd-color,$theme:#{$name},$light:-20%,$dark:20%),
+            $color:blendColors($colors:$wd-color,$theme:#{$name},$light:-20%,$dark:20%),
             $border:map-get($wd-border,#{$name}),
             $outline:map-get($wd-outline,#{$name}),
             //$require-url:$wd-ctrl-bg-img-require,
             $require:rgba(map-get($wd-alert,#{$name}),0.1),
-            $placeholder:blendColor($colors:$wd-color,$theme:#{$name},$level:40%),
+            $placeholder:blendColors($colors:$wd-color,$theme:#{$name},$level:40%),
         );
     }
 }

@@ -27,7 +27,9 @@
         border: 1px solid $border;
 
         width: $size*0.7;
+        max-width: $size*0.7;
         height: $size*0.7;
+        max-height: $size*0.7;
         margin:0px;
 
         cursor: pointer;        

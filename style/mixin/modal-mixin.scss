@@ -1,4 +1,6 @@
 @use "sass:meta";
+
+
 @mixin modal-mixin($args...){
     $theme:'dark';
  
@@ -17,6 +19,7 @@
         background-color: rgba(0, 0, 0, 0.4);
         position: absolute;
     } 
+
     .wd-modal{
         
     }    

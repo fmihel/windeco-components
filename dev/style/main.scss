@@ -17,7 +17,7 @@ input, select, textarea, button{
 }
 
 html{
-    font-size:14px;
+    font-size:$wd-font-size;
     @include font-family('ms'); 
 }
 

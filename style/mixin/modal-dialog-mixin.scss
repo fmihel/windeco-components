@@ -1,4 +1,5 @@
 @use "sass:meta";
+
 @mixin modal-dialog-mixin($args...){
     $theme:'dark';
     $size:2rem;
@@ -7,6 +8,7 @@
     $bg:silver;
     $color:black;
     $font-size:1rem;
+    $radius:3px;
 
     @each $name, $mean in meta.keywords($args) {
         @if ($name=='theme'){$theme:$mean;};    
@@ -15,25 +17,18 @@
         @if ($name=='border'){$border:$mean;};    
         @if ($name=='bg'){$bg:$mean;};    
         @if ($name=='color'){$color:$mean;};    
-        @if ($name=='font-size'){$font-size:$mean;};    
-
+        @if ($name=='font-size'){$font-size:$mean;};
+        @if ($name=='radius'){$radius:$mean;};    
     }
 
 
 
     .wd-dialog{
         border:1px solid $border;
-        border-radius: 3px;
-        @if $theme=='dark'{
-            background-color:lighten( $bg,5%);
-        }@else{
-            background-color:darken( $bg,0%);
-        }
+        border-radius: $radius;
+        background-color:$bg;
         color:$color;
-
-        @if $theme=='dark'{
-            box-shadow: 0px 0px 5px  black;
-        }
+        overflow: hidden;
     
         position: absolute;
         font-size:$font-size;
@@ -52,8 +47,9 @@
         }
 
         .wd-dialog-header{
-            height: $size;
-    
+            min-height: $size*1.2;
+            color:blendColor($color,$theme,$level:-10%);
+
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
@@ -98,7 +94,7 @@
             
         }
         .wd-dialog-footer{
-            height: $size*1.2;
+            min-height: $size*1.2;
     
             display: flex;
             flex-direction: row;
@@ -106,16 +102,10 @@
             justify-content: flex-end;
             align-content: stretch;
             align-items: center;
-    
-            margin-left:$gap;
-            margin-right:$gap;
-    
-            input{
-                margin-right: $gap;
+            
+            padding: $gap;
+            >*{
                 min-width: $size*2;
-                &:last-child{
-                    margin-right: 0px;
-                }
             }
         }
     }

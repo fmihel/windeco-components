@@ -14,13 +14,13 @@
             $border:map-get($wd-border,$name),
             
             $header:map-get($wd-header,$name),
-            $header-color:blendColor($colors:$wd-color,$theme:$name,$level:-20%),
+            $header-color:blendColors($colors:$wd-color,$theme:$name,$level:-20%),
             $header-border:map-get($wd-border,$name),
             $header-sep:map-get($wd-border,$name),
 
             $outline:map-get($wd-transparent,$name),
             $select:map-get($wd-select,$name),
-            $select-color:blendColor($colors:$wd-color,$theme:$name,$light:50%,$dark:20%),
+            $select-color:blendColors($colors:$wd-color,$theme:$name,$light:50%,$dark:20%),
         );
     }
 }

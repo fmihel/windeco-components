@@ -11,13 +11,13 @@
             $theme:$theme,
             $size:$wd-size, 
             $bg:map-get($wd-deep,#{$theme}),
-            $color:blendColor($colors:$wd-color,$theme:#{$theme},$light:-20%,$dark:20%),
+            $color:blendColors($colors:$wd-color,$theme:#{$theme},$light:-20%,$dark:20%),
             $border:map-get($wd-border,#{$theme}),
             $hover:map-get($wd-hover,#{$theme}),
-            $color-hover:blendColor($colors:$wd-color,$theme:$theme,$level:-30%),
+            $color-hover:blendColors($colors:$wd-color,$theme:$theme,$level:-30%),
             $outline:map-get($wd-outline,#{$theme}),
             $required:rgba(map-get($wd-alert,#{$theme}),0.1),
-            $placeholder:blendColor($colors:$wd-color,$theme:#{$theme},$level:40%),
+            $placeholder:blendColors($colors:$wd-color,$theme:#{$theme},$level:40%),
         );
     }
 }

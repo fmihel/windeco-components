@@ -3,11 +3,13 @@
     $theme:'dark';
     $size:28px;
     $gap:5px;
+    $color:'none';
 
     @each $name, $mean in meta.keywords($args) {
         @if ($name=='theme'){$theme:$mean;};    
         @if ($name=='size'){$size:$mean;}; 
         @if ($name=='gap'){$gap:$mean;};    
+        @if ($name=='color'){$color:$mean;};    
     }
 
     .wd-label-frame{
@@ -20,14 +22,19 @@
 
         height:$size;
 
-        >div:nth-child(2){
-            flex:1 1 auto;
+        >*:nth-child(2){
+            //flex:1 1 auto;
+            margin-right: 0px;
         }
         .wd-label{
+            @if($color!='none'){
+                color:$color;
+            };
             height:$size;
             line-height: $size;
             margin-right:$gap;
             text-indent: $gap;
+            min-width:6rem;
         }            
     }
 

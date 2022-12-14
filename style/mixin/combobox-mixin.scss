@@ -37,7 +37,8 @@
     };
     .wd-combo{
         height:$size;
-        line-height:$size;
+        width:100%;
+        
 
         background-color: $bg;
         
@@ -64,6 +65,7 @@
         >*{
             &:nth-child(1) {
                 @include stretch();
+                line-height:$size * 0.9;
             }
             &:nth-child(2) {
                 min-width: $size;

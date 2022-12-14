@@ -40,6 +40,8 @@
         min-width:$size;
         
         border-radius: $radius;
+        //box-shadow:  1px 1px 1px 0px rgb(0 0 0 / 15%);
+
         font-size: $font-size;
     
         padding-left:$gap;
@@ -62,11 +64,8 @@
             outline: 2px solid $outline;
         }
         &:hover{
-            @if  $theme=='dark' {
-                background-color:lighten($bg, 5%);
-            } @else {
-                background-color:darken($bg, 5%);
-            }
+            background-color:blendColor($color:$bg,$theme:$theme,$level:-5%);
+            color:blendColor($color:$color,$theme:$theme,$level:-20%);
         }
 
         >div{

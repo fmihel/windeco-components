@@ -115,12 +115,57 @@ $wd-font-family:(
     };
 }
 
-//blendColor($colors:('light':red,'dark':blue),$theme:'dark',$light:5%,$dark:10%);
-//blendColor($colors:('light':red,'dark':blue),$theme:'dark',$light:yellow,$dark:-5%);
-//blendColor($colors:('light':red,'dark':blue),$theme:'dark',$level:5%);
-//blendColor($colors:('light':red,'dark':blue),$theme:'dark',$map:('light':yellow,'dark:-5%));
-//blendColor($colors:$XXXX,$theme:'dark',$light:5%,$dark:10%)
-@function blendColor($args...){
+@function blendColor($color:white,$theme:'dark',$args...){
+    $level:0;
+    @each $name, $mean in meta.keywords($args) {
+        @if ($name=='theme'){$theme:$mean;};
+        @if ($name==$theme){$level:$mean};
+        @if ($name=='level'){
+            $level:$mean;
+            @if($theme=='dark'){
+                @if ($level>0){
+                    $level:-$level;
+                }@else{
+                    $level:math.abs($level);
+                }
+            }
+        };
+        @if ($name=='map'){
+            @each $key,$val in $mean{
+                @if($key==$theme){
+                    $level:$val;
+                }
+            }
+        }
+    }
+    
+    @if( $level!=0 and string.index(#{$level},'%')==null){
+        @return $level;
+    }
+
+    //$color:map-get($colors,$theme);
+
+    @if($level==0){
+        @return $color;
+    };
+
+    @if ($level<0){
+        //@return color.change($color,$blackness:math.abs($level));
+        @return darken($color,math.abs($level));
+    }@else{
+        //@return color.change($color,$lightness:$level);
+        @return lighten($color,$level);
+    };
+    
+    @return $color;
+
+}
+//blendColors($colors:('light':red,'dark':blue),$theme:'dark',$light:5%,$dark:10%);
+//blendColors($colors:('light':red,'dark':blue),$theme:'dark',$light:yellow,$dark:-5%);
+//blendColors($colors:('light':red,'dark':blue),$theme:'dark',$level:5%);
+//blendColors($colors:('light':red,'dark':blue),$theme:'dark',$map:('light':yellow,'dark:-5%));
+//blendColors($colors:$XXXX,$theme:'dark',$light:5%,$dark:10%)
+@function blendColors($args...){
     $colors:('light':#0D6EFD,'dark':#0E639C);
     $theme:'dark';
     $level:0;
@@ -170,3 +215,4 @@ $wd-font-family:(
 
    
 }
+

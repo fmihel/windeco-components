@@ -6,6 +6,11 @@
 
 @each $name in $wd-themes{
     .#{$name} {
-        @include label-frame-mixin($theme:$name,$size:$wd-size,$gap:$wd-gap);
+        @include label-frame-mixin(
+            $theme:$name,
+            $size:$wd-size,
+            $gap:$wd-gap,
+            $color:map-get($wd-label,$name)
+        );
     }
 }
