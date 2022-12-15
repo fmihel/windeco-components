@@ -8,11 +8,11 @@
     .#{$name} {
         @include group-mixin(
             $theme:$name,
+            $size:$wd-size,
             $bg:map-get($wd-block,$name),
             $color:map-get($wd-color,$name),
             $border:map-get($wd-border,$name),
-            $padding:$wd-padding,
-            $margin:$wd-margin,
+            $gap:$wd-gap,
             $radius:$wd-radius
         );
     }

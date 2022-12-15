@@ -12,7 +12,10 @@ import Label from '../source/Label/Label.jsx';
 import Group from '../source/Group/Group.jsx';
 
 const Navbar = lazy(() => import(/* webpackChunkName: "Navbar" */'./components/Navbar/Navbar.jsx'));
-
+Group.global = {
+    ...Group.global,
+    style: { ...Group.global.style },
+};
 class App extends React.Component {
     constructor(p) {
         super(p);
@@ -72,10 +75,12 @@ class App extends React.Component {
                     <Suspense fallback={<Fallback/>}>
                         <Navbar src="./media/logo.png" menu={menu} addClass={theme === 'dark' ? 'navbar-dark bg-primary' : 'navbar-dark bg-dark text-bg-dark'}/>
                     </Suspense>
+
                     <div className="container-lg">
+                        {/** Edit ------------------------------------------------------------------------  */}
                         <div className="row">
                             <div className="col">
-                                <Group>
+                                <Group style={{ marginTop: 10 }} caption="input">
                                     <label>
                                         <span>label</span>
                                         <input type='text' placeholder="edit" className="form-control"/>
@@ -83,29 +88,29 @@ class App extends React.Component {
                                 </Group>
                             </div>
                             <div className="col">
-                                <Group caption={'labele'}>
+                                <Group style={{ marginTop: 10 }} caption ="Edit">
                                     <Label id="edit1">
                                         <Edit id="edit1" value="edit" />
                                     </Label>
                                 </Group>
                             </div>
                         </div>
+
+                        {/** Btn ------------------------------------------------------------------------  */}
                         <div className="row">
                             <div className="col">
-                                <div className="input-group mb-3">
-                                    <span className="input-group-text" id="basic-addon1">email</span>
-                                    <input type="text" className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"/>
-                                </div>
+                                <Group style={{ marginTop: 10 }} caption="button">
+                                    <button className="btn">simple</button>
+                                    <button className="btn btn-primary">sinple</button>
+                                </Group>
                             </div>
-                        </div>
-
-                        <div className="row">
                             <div className="col">
-                                <Btn value="test" />
-
+                                <Group style={{ marginTop: 10 }} caption ="Btn">
+                                    <Btn>simple</Btn>
+                                    <Btn addClass="wd-primary">simple</Btn>
+                                </Group>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 {(Modal)

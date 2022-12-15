@@ -2,25 +2,28 @@
 @mixin group-mixin($args...){
     $theme:'light';
     $bg:#f5f5f5;  
+    $fone:#EDF2F9;
     $color:rgb(70, 70, 70);
     $border:#d5d5da;
     $font-size:1rem;
-    $padding:5px;
+    $gap:5px;
     $radius:0.25rem;
-    $margin:5px;
+    $size:28px;
 
     @each $name, $mean in meta.keywords($args) {
        
         @if ($name=='theme'){$theme:$mean;};    
-        @if ($name=='bg'){$bg:$mean;};    
+        @if ($name=='size'){$size:$mean;};    
+        @if ($name=='bg'){$bg:$mean;};
         @if ($name=='color'){$color:$mean;};    
         @if ($name=='border'){$border:$mean;};    
         @if ($name=='font-size'){$font-size:$mean;};    
-        @if ($name=='padding'){$padding:$mean;};    
-        @if ($name=='margin'){$margin:$mean;};    
+        @if ($name=='gap'){$gap:$mean;};    
         @if ($name=='radius'){$radius:$mean;};    
     }
     .wd-group{
+        //overflow: hidden;
+
         @if($bg!='none'){
             background-color: $bg;
         }
@@ -35,15 +38,52 @@
         @if($font-size!='none'){
             font-size: $font-size;
         }
-        @if($padding!='none'){
-            padding: $padding;
-        }
-        @if($margin!='none'){
-            margin: $margin;
-        }
+
+        margin: $gap;
 
         @if($radius!='none'){
             border-radius: $radius;
+        }
+        
+        @include display-flex-vert-stretch();
+        >*{
+
+            $pos:'up';
+            &:nth-child(1){
+                @include no-stretch();
+                @if ($pos=='up'){
+                    //font-size: 0.8rem;
+                    max-height:0;
+                    line-height: 0px;
+                    padding-left: 2*$gap;
+                    margin-bottom: 2*$gap;
+                    >span{
+                        background-color:$fone;
+                        padding-left: $gap;
+                        padding-right: $gap;
+                        background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, $bg 100%);
+                    }
+                }@else{
+                    //font-size: 0.8rem;
+                    max-height: $size*0.5;
+                    height: $size*0.5;
+                    padding-left: 2*$gap;
+                    overflow: hidden;
+                    margin-bottom: $gap;
+                }
+                //line-height:0;
+                //margin-bottom: $gap;
+                color:blendColor($color,$theme,$level:-20%);
+                background-color: $bg;
+                white-space: nowrap;
+
+            }
+            &:nth-child(2){
+                padding: $gap;
+                padding-left: 2*$gap;
+
+                @include stretch();
+            }
         }
     }
 }

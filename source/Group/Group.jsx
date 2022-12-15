@@ -14,21 +14,10 @@ function Group({
         <div
             {...(id ? { id } : {})}
             className={`${className} ${addClass}`}
-            style={{ style }}
+            style={{ ...Group.global.style, ...style }}
         >
-            { (caption)
-            && <div style={{ position: 'absolute' }}>
-                <span
-                    style={{
-                        position: 'relative',
-                        left: '5px',
-                        top: '-1.2rem',
-                        fontSize: '0.8rem',
-                    }}
-                >{caption}</span>
-            </div>
-            }
-            {children}
+            { (caption) && <div><span>{caption}</span></div>}
+            <div>{children}</div>
         </div>
     );
 }
