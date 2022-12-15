@@ -5,7 +5,7 @@
 
 
 @each $name in $wd-themes{
-    .#{$name} {
+    :root.#{$name} {
         @include group-mixin(
             $theme:$name,
             $size:$wd-size,

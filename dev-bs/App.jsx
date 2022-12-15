@@ -1,8 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-return-assign */
 import React, { lazy, Suspense } from 'react';
 import redux from 'REDUX';
 // import { imports } from 'fmihel-lazy-load';
+import $ from 'jquery';
 import Fallback from './components/Fallback/Fallback.jsx';
 // import Modal, { modal } from './components/Modal';
 import AsyncState from './common/AsyncState.js';
@@ -111,6 +113,21 @@ class App extends React.Component {
                                 </Group>
                             </div>
                         </div>
+
+                        {/** Btn ------------------------------------------------------------------------  */}
+                        <div className="row">
+                            <div className="col">
+                                <Group style={{ marginTop: 10 }} caption="test">
+                                    <div className="test"></div>
+                                </Group>
+                            </div>
+                            <div className="col">
+                                <Group style={{ marginTop: 10 }} caption ="">
+                                </Group>
+                            </div>
+                        </div>
+
+                        {/** ------------------------------------------------------------------------  */}
                     </div>
                 </div>
                 {(Modal)

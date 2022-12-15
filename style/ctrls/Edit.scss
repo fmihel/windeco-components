@@ -6,7 +6,7 @@
 @include edit-mixin($wd-default-theme);
 
 @each $name in $wd-themes{
-    .#{$name} {
+    :root.#{$name} {
         @include edit-mixin(
             $theme:$name,
             $size:$wd-size,

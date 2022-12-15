@@ -23,7 +23,8 @@
     }
     .wd-group{
         //overflow: hidden;
-
+        box-shadow:   0 3px 6px 0 rgba(0, 0, 0, 0.07);
+        min-height: $size;
         @if($bg!='none'){
             background-color: $bg;
         }
@@ -55,13 +56,14 @@
                     //font-size: 0.8rem;
                     max-height:0;
                     line-height: 0px;
-                    padding-left: 2*$gap;
-                    margin-bottom: 2*$gap;
+                    padding-left: $gap;
+                    margin-bottom: $gap;
                     >span{
+                        border-radius: 5px 5px 0px 0px;
                         background-color:$fone;
                         padding-left: $gap;
                         padding-right: $gap;
-                        background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, $bg 100%);
+                        background: linear-gradient(to bottom,rgba(0,0,0,0) 0%, $bg 80%,$bg 100%);
                     }
                 }@else{
                     //font-size: 0.8rem;
