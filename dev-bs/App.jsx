@@ -8,6 +8,8 @@ import Fallback from './components/Fallback/Fallback.jsx';
 import AsyncState from './common/AsyncState.js';
 import Btn from '../source/Btn/Btn.jsx';
 import Edit from '../source/Edit/Edit.jsx';
+import Label from '../source/Label/Label.jsx';
+import Group from '../source/Group/Group.jsx';
 
 const Navbar = lazy(() => import(/* webpackChunkName: "Navbar" */'./components/Navbar/Navbar.jsx'));
 
@@ -73,12 +75,19 @@ class App extends React.Component {
                     <div className="container-lg">
                         <div className="row">
                             <div className="col">
-                                <label>
-                                    <span>label</span>
-                                    <input type='text' placeholder="edit" className="form-control"/>
-                                </label>
-                                <button className="btn  btn-secondary">press...</button>
-                                <input className="btn btn-secondary"type='button' value="press..." />
+                                <Group>
+                                    <label>
+                                        <span>label</span>
+                                        <input type='text' placeholder="edit" className="form-control"/>
+                                    </label>
+                                </Group>
+                            </div>
+                            <div className="col">
+                                <Group caption={'labele'}>
+                                    <Label id="edit1">
+                                        <Edit id="edit1" value="edit" />
+                                    </Label>
+                                </Group>
                             </div>
                         </div>
                         <div className="row">
@@ -92,10 +101,8 @@ class App extends React.Component {
 
                         <div className="row">
                             <div className="col">
-                                <div className="input-group mb-3">
-                                    <Btn value="test"/>
-                                    <Edit value="edit"/>
-                                </div>
+                                <Btn value="test" />
+
                             </div>
                         </div>
 

@@ -1,0 +1,49 @@
+@use "sass:meta";
+@mixin group-mixin($args...){
+    $theme:'light';
+    $bg:#f5f5f5;  
+    $color:rgb(70, 70, 70);
+    $border:#d5d5da;
+    $font-size:1rem;
+    $padding:5px;
+    $radius:0.25rem;
+    $margin:5px;
+
+    @each $name, $mean in meta.keywords($args) {
+       
+        @if ($name=='theme'){$theme:$mean;};    
+        @if ($name=='bg'){$bg:$mean;};    
+        @if ($name=='color'){$color:$mean;};    
+        @if ($name=='border'){$border:$mean;};    
+        @if ($name=='font-size'){$font-size:$mean;};    
+        @if ($name=='padding'){$padding:$mean;};    
+        @if ($name=='margin'){$margin:$mean;};    
+        @if ($name=='radius'){$radius:$mean;};    
+    }
+    .wd-group{
+        @if($bg!='none'){
+            background-color: $bg;
+        }
+        @if($color!='none'){
+            color: $color;
+        }
+        @if($border!='none'){
+            border:1px solid  $border;
+        }@else{
+            border:1px solid rgba(0,0,0,0);
+        }
+        @if($font-size!='none'){
+            font-size: $font-size;
+        }
+        @if($padding!='none'){
+            padding: $padding;
+        }
+        @if($margin!='none'){
+            margin: $margin;
+        }
+
+        @if($radius!='none'){
+            border-radius: $radius;
+        }
+    }
+}

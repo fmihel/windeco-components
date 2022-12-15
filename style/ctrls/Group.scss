@@ -1,0 +1,19 @@
+@import '../vars.scss';
+@import '../mixin/group-mixin.scss';
+
+@include group-mixin($theme:$wd-default-theme);
+
+
+@each $name in $wd-themes{
+    .#{$name} {
+        @include group-mixin(
+            $theme:$name,
+            $bg:map-get($wd-block,$name),
+            $color:map-get($wd-color,$name),
+            $border:map-get($wd-border,$name),
+            $padding:$wd-padding,
+            $margin:$wd-margin,
+            $radius:$wd-radius
+        );
+    }
+}

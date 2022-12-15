@@ -1,0 +1,42 @@
+
+@each $theme in $wd-themes{
+    /*
+    $theme-colors: (
+        "primary":    map-get($wd-primary, $theme),
+        "secondary":  map-get($wd-secondary, $theme),
+        "success":    map-get($wd-success, $theme),
+        "info":       map-get($wd-info, $theme),
+        "warning":    map-get($wd-warning, $theme),
+        "danger":     map-get($wd-danger, $theme),
+        "light":      map-get($wd-light, $theme),
+        "dark":       map-get($wd-dark, $theme)
+      );
+    */
+
+    .app.#{$theme}{
+        background-color: map-get($wd-bg,#{$theme});
+        color:map-get($wd-color,#{$theme});
+    }
+
+ 
+    .#{$theme}{
+        .modal-content{
+            background-color: map-get($wd-block,$theme) !important;
+            color: map-get($wd-color,$theme) !important;
+            border-color: map-get($wd-border,$theme) !important;
+            div{
+                border-color: map-get($wd-border,$theme) !important;
+            }
+        }
+        .form-control{
+            background-color: map-get($wd-bg,$theme) !important;
+            color: map-get($wd-color,$theme) !important;
+            border-color: map-get($wd-border,$theme) !important;
+            outline-color: map-get($wd-outline,$theme) !important;
+        }
+    }
+
+ 
+}
+
+@import "../../node_modules/bootstrap/scss/bootstrap";

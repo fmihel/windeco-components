@@ -2,10 +2,10 @@
 @import '../../style/vars.scss';
 @import '../../style/ctrls/Btn.scss';
 @import '../../style/ctrls/Edit.scss';
-//@import './vars.scss';
-@import './redefine.bootstrap.scss';
-@import "../../node_modules/bootstrap/scss/bootstrap";
-//@import './ctrls.scss';
+@import '../../style/ctrls/Label.scss';
+@import '../../style/ctrls/Group.scss';
+@import './custom.scss';
+
 
 *, *::before, *::after {
     box-sizing: border-box;
@@ -51,25 +51,12 @@ body{
         align-content: stretch;
         align-items: stretch;
 
-        .app{
+        .app{ 
             flex:1 1 auto;
         }
-        @each $theme in $wd-themes{
-            .#{$theme}{
-                //$bg:map-get($wd-bg,#{$theme});
-                //$color:map-get($wd-color,#{$theme});
-                //$border:map-get($wd-border,#{$theme});
-
-                //background-color: $bg;
-                //color:$color;
-                
-            }
-        }
-
     }
     
 }
-
 .row{
     margin-bottom: $wd-gap;
 }
