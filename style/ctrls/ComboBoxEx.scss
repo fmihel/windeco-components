@@ -1,18 +1,24 @@
 @use "sass:meta";
 @use "sass:math";
-
 @import '../vars.scss';
-
 
 @mixin define(){
     $themes:$wd-themes;
     $colors:$wd-color;
     $inverts:('light':60%,'dark':30%);
-
+    @each $theme in $themes{
+        :root.#{$theme}{
+           --cb-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:-20%))};
+           --cb-color-hover:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:-50%))};
+           --cb-placeholder:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:40%))};
+        }
+    }
+    
     $size:$wd-size;
     $gap:$wd-gap;
     $bg:var(--wd-deep);
-    //$color:blendColors($colors:$wd-color,$theme:#{$theme},$light:-20%,$dark:20%),
+    $color:var(--cb-color);
+    
 
     $border:var(--wd-border);
     $required:rgba(var(--wd-alert-rgb), 0.1);
@@ -21,16 +27,17 @@
     $font-size:var(--wd-font-size);
     
     $hover:var(--wd-hover);
-    //$color-hover:$color-hover:blendColors($colors:$wd-color,$theme:$theme,$level:-30%);
+    $color-hover:var(--cb-color-hover);
     $margin:var(--wd-margin);
     $radius:var(--wd-radius);
-    //$placeholder:blendColors($colors:$wd-color,$theme:#{$theme},$level:40%),
+    $placeholder:var(--cb-placeholder);
 
     .wd-combo{
         height:$size;
         width:100%;
         background-color: $bg;
-        
+        color:$color;
+
         border:1px solid $border;
         border-radius: $radius;
 
@@ -78,6 +85,7 @@
     }
     .wd-combo-list{
         background-color: $bg;
+        color:$color;
         border:1px solid $border;
         position: absolute;
         overflow-x: hidden;
@@ -87,11 +95,13 @@
             height: $size;
             &:hover{
                 background-color: $hover;
+                color:$color-hover;
             }
             &[disabled]{
                 opacity: 0.3;
                 &:hover{
                     background-color: $bg;
+                    color:$color;
                 }                
             }
         }
@@ -101,6 +111,10 @@
         line-height: $size;
         white-space: nowrap;
         overflow: hidden;
+
+        &[state="no-select"]{
+            color: $placeholder;
+        }
         // for ComboItemIcon -------
         @include display-flex-horiz-stretch();
         >div{
@@ -114,36 +128,6 @@
         // ----------------------------
     };
 
-    @each $theme in $themes{
-        :root.#{$theme}{ 
-            .wd-combo{
-                color:blendColors($colors:$colors,$theme:$theme,$light:-20%,$dark:20%);
-                >*{
-                    &:nth-child(2) {
-                        filter: invert(map-get($inverts,$theme));                        
-                    }
-                }
-            }
-            .wd-combo-list{
-                color:blendColors($colors:$colors,$theme:$theme,$light:-20%,$dark:20%);
-                .wd-combo-item{
-                    &:hover{
-                        color: blendColors($colors:$colors,$theme:$theme,$level:-30%);
-                    }
-                    &[disabled]{
-                        &:hover{
-                            color:blendColors($colors:$colors,$theme:$theme,$light:-20%,$dark:20%);
-                        }                
-                    }            
-                }
-            }
-            .wd-combo-item{
-                &[state="no-select"]{
-                    color: blendColors($colors:$colors,$theme:#{$theme},$level:40%);
-                }
-            }
-        }   
-    }    
 }
 
 .wd-clamp{
