@@ -1,23 +1,168 @@
+@use "sass:meta";
 @use "sass:math";
+
 @import '../vars.scss';
-@import '../mixin/combobox-mixin.scss';
 
 
-@include combobox-mixin($theme:$wd-default-theme);
+@mixin define(){
+    $themes:$wd-themes;
+    $colors:$wd-color;
+    $inverts:('light':60%,'dark':30%);
 
-@each $theme in $wd-themes{
-    .#{$theme}{
-        @include combobox-mixin(
-            $theme:$theme,
-            $size:$wd-size, 
-            $bg:map-get($wd-deep,#{$theme}),
-            $color:blendColors($colors:$wd-color,$theme:#{$theme},$light:-20%,$dark:20%),
-            $border:map-get($wd-border,#{$theme}),
-            $hover:map-get($wd-hover,#{$theme}),
-            $color-hover:blendColors($colors:$wd-color,$theme:$theme,$level:-30%),
-            $outline:map-get($wd-outline,#{$theme}),
-            $required:rgba(map-get($wd-alert,#{$theme}),0.1),
-            $placeholder:blendColors($colors:$wd-color,$theme:#{$theme},$level:40%),
-        );
+    $size:$wd-size;
+    $gap:$wd-gap;
+    $bg:var(--wd-deep);
+    //$color:blendColors($colors:$wd-color,$theme:#{$theme},$light:-20%,$dark:20%),
+
+    $border:var(--wd-border);
+    $required:rgba(var(--wd-alert-rgb), 0.1);
+
+    $outline:var(--wd-outline);    
+    $font-size:var(--wd-font-size);
+    
+    $hover:var(--wd-hover);
+    //$color-hover:$color-hover:blendColors($colors:$wd-color,$theme:$theme,$level:-30%);
+    $margin:var(--wd-margin);
+    $radius:var(--wd-radius);
+    //$placeholder:blendColors($colors:$wd-color,$theme:#{$theme},$level:40%),
+
+    .wd-combo{
+        height:$size;
+        width:100%;
+        background-color: $bg;
+        
+        border:1px solid $border;
+        border-radius: $radius;
+
+        box-sizing: border-box;
+        min-width:$size;
+       
+        font-size: $font-size;
+        white-space: nowrap;
+        overflow: hidden;
+        
+        @if($margin!='none'){
+            margin-right:$margin;
+        };
+
+        @include display-flex-horiz-stretch();
+
+        outline: 0px solid rgba(0,0,0,0);
+        @include transition(outline-color 0.4s);
+
+        >*{
+            &:nth-child(1) {
+                @include stretch();
+                line-height:$size * 0.9;
+            }
+            &:nth-child(2) {
+                min-width: $size;
+                width: $size;
+                background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAATklEQVR4nO3OMQoAIAwEwXtn/uV7tVFIocRCI8JOHbInAQDwkSrJNu6s3x41nkYjdu+ujLgajyIp8VUsNT4bkR4fiouX7Lgf8SwOADiiAWpFIUWn1ypTAAAAAElFTkSuQmCC'); 
+                background-repeat: no-repeat, no-repeat;
+                background-position: center;
+            }
+        }
+        &:focus { 
+            outline: 2px solid $outline;
+        }
+        &[disabled]{
+            opacity: 0.4;
+        }
+        &[required]{
+            border:1px solid $required !important;
+            background-color:$required !important;
+
+        }        
+    
     }
+    .wd-combo-list{
+        background-color: $bg;
+        border:1px solid $border;
+        position: absolute;
+        overflow-x: hidden;
+        overflow-y: auto;        
+        .wd-combo-item{
+            max-height: $size;
+            height: $size;
+            &:hover{
+                background-color: $hover;
+            }
+            &[disabled]{
+                opacity: 0.3;
+                &:hover{
+                    background-color: $bg;
+                }                
+            }
+        }
+    }
+    .wd-combo-item{
+        text-indent: $gap;
+        line-height: $size;
+        white-space: nowrap;
+        overflow: hidden;
+        // for ComboItemIcon -------
+        @include display-flex-horiz-stretch();
+        >div{
+            &:nth-child(1) {
+                @include no-stretch();
+            }                
+            &:nth-child(2) {
+                @include stretch();
+            }                
+        }
+        // ----------------------------
+    };
+
+    @each $theme in $themes{
+        :root.#{$theme}{ 
+            .wd-combo{
+                color:blendColors($colors:$colors,$theme:$theme,$light:-20%,$dark:20%);
+                >*{
+                    &:nth-child(2) {
+                        filter: invert(map-get($inverts,$theme));                        
+                    }
+                }
+            }
+            .wd-combo-list{
+                color:blendColors($colors:$colors,$theme:$theme,$light:-20%,$dark:20%);
+                .wd-combo-item{
+                    &:hover{
+                        color: blendColors($colors:$colors,$theme:$theme,$level:-30%);
+                    }
+                    &[disabled]{
+                        &:hover{
+                            color:blendColors($colors:$colors,$theme:$theme,$light:-20%,$dark:20%);
+                        }                
+                    }            
+                }
+            }
+            .wd-combo-item{
+                &[state="no-select"]{
+                    color: blendColors($colors:$colors,$theme:#{$theme},$level:40%);
+                }
+            }
+        }   
+    }    
 }
+
+.wd-clamp{
+    @include transition(width 0.1s,min-width 0.1s,margin-left 0.1s,margin-right 0.1s);
+    
+    &:hover { 
+        width:200px !important;
+        min-width: 200px;
+        margin-left: -50px;
+    }
+    &:focus { 
+        width:200px !important;
+        min-width: 200px;
+        margin-left: -50px;
+    }
+
+}
+
+
+
+
+@include define();

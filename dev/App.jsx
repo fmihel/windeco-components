@@ -364,80 +364,6 @@ class App extends React.Component {
                         </Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption="Dialog">
-                        <Block>
-                            {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
-                        </Block>
-                    </Head>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption="Btn">
-                        <Block>
-                            <Btn>button</Btn>
-                            <Btn addClass="wd-danger" hint="wd-danger hint">wd-danger</Btn>
-                            <Btn addClass="wd-primary">wd-primary</Btn>
-                            <Btn addClass="wd-transparent">wd-transparent</Btn>
-                            <Btn addClass="wd-primary pic-bag">pic</Btn>
-                        </Block>
-                    </Head>
-
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption={'BtnIcon'}>
-                        <Block>
-                            <Btn>left</Btn>
-                            <BtnIcon>button presed test</BtnIcon>
-                            <BtnIcon
-                                hint = "icon"
-                                IconComponent={Icon}
-                                icon={iEdit}
-                                addClass="wd-danger"
-                                iconClass="demo-bi-color"
-                            >ok</BtnIcon>
-                            <BtnIcon
-                                hint = "icon "
-                                IconComponent={FontAwesomeIcon}
-                                icon={faAddressBook}
-                                addClass="wd-danger"
-                                iconClass="demo-bi-color"
-                            >ok</BtnIcon>
-                            <Btn>standart</Btn>
-                            <BtnIcon addClass="wd-primary">cancel</BtnIcon>
-                            <BtnIcon>story</BtnIcon>
-                            <BtnIcon icon={faCaretDown} style={{ width: '100px' }} hint="no text"/>
-                            <BtnIcon addClass="wd-green">save</BtnIcon>
-                        </Block>
-                    </Head>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption="Edit">
-                        <Block> <Edit id="tt" style={{ fontSize: '1.2em' }} onKeyPress={(o) => {
-                            console.log(o);
-                        }}>text from child</Edit></Block>
-                        <Block> <Edit type="password" placeholder="set password" style={{ height: 18, minHeight: 18 }}/></Block>
-                        <Block> <Edit autoFocus value="text from value, and hint" title="title prop (hint deeprecated)"/></Block>
-
-                        <Block> <Edit
-                            id = 'edNeed'
-                            value = {values.edNeed}
-                            onChange = {this.onChangeEx}
-                            hint="обязательный ввод"
-                            placeholder="need text.."
-                            required={true}
-                            maxLength={10}
-                        />
-                        </Block>
-                        <Block> <Edit value="readonly" readonly={1} /></Block>
-                        <Block> <Edit value="disabled" disabled={1} visible={true}/></Block>
-                        <Block> <Edit id="edph" placeholder="set text" value={values.edph} onChange={this.onChangeEx}/></Block>
-                        <Block> <Label caption="label" id="myEdit100">
-                            <Edit id="myEdit100" value={values.myEdit100} onChange={this.onChangeEx}/>
-                        </Label></Block>
-                        <Block> <Label caption="pass" id="pass"><Edit id="pass" type="password" value="set text" /></Label></Block>
-                        <Block> <Label caption="readonly" id="ronl"><Edit id="ronl" value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
-                        <Block> <Label caption="range" id="rng" ><Edit id="rng" value={5} type='number' min={0} max={10} step={1}/></Label></Block>
-
-                    </Head>
-
-                    {/*--------------------------------------------------------------------------------------------------*/}
-
                     <Head caption="ComboBoxEx">
                         <Block>
                             <ComboBoxEx
@@ -552,6 +478,79 @@ class App extends React.Component {
                             </Label>
                         </Block>
                     </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Dialog">
+                        <Block>
+                            {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
+                        </Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Btn">
+                        <Block>
+                            <Btn>button</Btn>
+                            <Btn addClass="wd-danger" hint="wd-danger hint">wd-danger</Btn>
+                            <Btn addClass="wd-primary">wd-primary</Btn>
+                            <Btn addClass="wd-transparent">wd-transparent</Btn>
+                            <Btn addClass="wd-primary pic-bag">pic</Btn>
+                        </Block>
+                    </Head>
+
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption={'BtnIcon'}>
+                        <Block>
+                            <Btn>left</Btn>
+                            <BtnIcon>button presed test</BtnIcon>
+                            <BtnIcon
+                                hint = "icon"
+                                IconComponent={Icon}
+                                icon={iEdit}
+                                addClass="wd-danger"
+                                iconClass="demo-bi-color"
+                            >ok</BtnIcon>
+                            <BtnIcon
+                                hint = "icon "
+                                IconComponent={FontAwesomeIcon}
+                                icon={faAddressBook}
+                                addClass="wd-danger"
+                                iconClass="demo-bi-color"
+                            >ok</BtnIcon>
+                            <Btn>standart</Btn>
+                            <BtnIcon addClass="wd-primary">cancel</BtnIcon>
+                            <BtnIcon>story</BtnIcon>
+                            <BtnIcon icon={faCaretDown} style={{ width: '100px' }} hint="no text"/>
+                            <BtnIcon addClass="wd-green">save</BtnIcon>
+                        </Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Edit">
+                        <Block> <Edit id="tt" style={{ fontSize: '1.2em' }} onKeyPress={(o) => {
+                            console.log(o);
+                        }}>text from child</Edit></Block>
+                        <Block> <Edit type="password" placeholder="set password" style={{ height: 18, minHeight: 18 }}/></Block>
+                        <Block> <Edit autoFocus value="text from value, and hint" title="title prop (hint deeprecated)"/></Block>
+
+                        <Block> <Edit
+                            id = 'edNeed'
+                            value = {values.edNeed}
+                            onChange = {this.onChangeEx}
+                            hint="обязательный ввод"
+                            placeholder="need text.."
+                            required={true}
+                            maxLength={10}
+                        />
+                        </Block>
+                        <Block> <Edit value="readonly" readonly={1} /></Block>
+                        <Block> <Edit value="disabled" disabled={1} visible={true}/></Block>
+                        <Block> <Edit id="edph" placeholder="set text" value={values.edph} onChange={this.onChangeEx}/></Block>
+                        <Block> <Label caption="label" id="myEdit100">
+                            <Edit id="myEdit100" value={values.myEdit100} onChange={this.onChangeEx}/>
+                        </Label></Block>
+                        <Block> <Label caption="pass" id="pass"><Edit id="pass" type="password" value="set text" /></Label></Block>
+                        <Block> <Label caption="readonly" id="ronl"><Edit id="ronl" value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
+                        <Block> <Label caption="range" id="rng" ><Edit id="rng" value={5} type='number' min={0} max={10} step={1}/></Label></Block>
+
+                    </Head>
+
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption = "TableFixed">
                         <Block>

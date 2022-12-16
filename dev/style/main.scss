@@ -36,6 +36,9 @@ body{
     border:1px solid rgba(0,0,0,0);
     box-sizing: border-box;
 
+    background-color:var(--wd-bg);
+    color: var(--wd-color);
+
     >div{
 
         max-width:100%;
@@ -140,10 +143,4 @@ body{
     }
 }
 
-@each $name in $wd-themes{
-    .#{$name} {
-        background-color:map-get($wd-bg,#{$name});
-        color: map-get($wd-color,#{$name});
-    }
-}
 

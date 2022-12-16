@@ -1,28 +1,93 @@
+@use "sass:meta";
 @import '../vars.scss';
-@import '../mixin/btnicon-mixin.scss';
 
-$wd-btn-bg:('light':#c4c4c4,'dark':#343530) !default;
-$wd-btn-color:$wd-color !default;
-$wd-btn-border:$wd-border !default;
-$wd-btn-border-focus:$wd-outline !default;
+@mixin define(){
+    $themes:$wd-themes;
+    $hovers:$wd-high;
+    $hovers-color:$wd-color;
+
+    $size:$wd-size;
+    $bg:var(--wd-high); 
+    $color:var(--wd-color);
+    $border:var(--wd-border);
+    $outline:var(--wd-outline);
+    $font-size:var(--wd-font-size);
+    $gap:var(--wd-gap);
+    $margin:var(--wd-margin);
+    $radius:var(--wd-radius);
 
 
-@include btnicon-mixin($wd-default-theme);
+    .wd-btn-icon{
+        height:$size;
+        cursor: pointer;
+        background-color: $bg;
+        color: $color;
+        border:1px solid $border;
 
-@each $name in $wd-themes{
-    .#{$name} {
-        @include btnicon-mixin(
-            $theme:$name,
-            $size:$wd-size,
-            $bg:map-get($wd-high,$name),
-            $color:map-get($wd-color,$name),
-            $border:map-get($wd-border,$name),
-            $outline:map-get($wd-outline,#{$name}),
-        );
+
+        vertical-align: top;
+        box-sizing: border-box;
+
+        min-width:$size;
+        
+        border-radius: $radius;
+        //box-shadow:  1px 1px 1px 0px rgb(0 0 0 / 15%);
+
+        font-size: $font-size;
+
+        padding-left:$gap;
+        padding-right:$gap;
+        
+        @if($margin!='none'){
+            margin-right:$margin;
+        };
+
+        display: inline-flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+
+        outline: 2px solid rgba(0,0,0,0);
+        @include transition(outline-color 0.2s);
+        &:focus { 
+            outline: 2px solid $outline;
+        }
+
+        >div{
+            order: 0;
+            flex: 0 1 auto;
+            align-self: auto;
+            margin-left:1px;
+            margin-right:1px;
+            &:first-child(){
+                min-height:$size*0.5;
+                min-width:$size*0.5;
+                @include display-flex-center();
+                >svg{
+                    max-height: $size*0.5;
+                }
+            }
+            &:last-child(){
+                min-width:calc($size/2);
+            }
+        }
+    }
+
+    @each $theme in $themes{
+        :root.#{$theme} .wd-btn-icon{
+            &:hover{
+                background-color:blendColors($colors:$hovers,$theme:$theme,$level:-5%);
+                color:blendColors($colors:$hovers-color,$theme:$theme,$level:-20%);
+            }
+        }   
     }
 }
 
+@include define();
 
 .demo-bi-color{
     color:rgb(49, 214, 16) !important;
 }
+
