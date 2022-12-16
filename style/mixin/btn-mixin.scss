@@ -1,7 +1,7 @@
 @use "sass:meta";
 @mixin btn-mixin($args...){
-    $theme:'light';
-
+    $class:'wd-btn';
+    $themes:('light','dark');
     $size:28px;
     $bg:#f5f5f5;  
     $color:rgb(70, 70, 70);
@@ -10,7 +10,6 @@
     $font-size:1rem;
     $margin:2px;
     $radius:0.25rem;
-
 
     @each $name, $mean in meta.keywords($args) {
         
@@ -25,7 +24,7 @@
         @if ($name=='radius'){$radius:$mean;};    
         
     };
-    .wd-btn{
+    .#{$class}{
         height:$size;
         cursor: pointer;
         background-color: $bg;
@@ -51,9 +50,13 @@
             outline: 2px solid $outline;
         }
     
-        &:hover{
-            background-color:blendColor($color:$bg,$theme:$theme,$level:-5%);
-            color:blendColor($color:$color,$theme:$theme,$level:-20%);
-        }
+    }
+    @each $theme in $themes{
+        :root.#{$theme} .#{$class}{
+            &:hover{
+                background-color:blendColors($colors:$wd-bg,$theme:$theme,$level:-5%);
+                color:blendColors($colors:$wd-color,$theme:$theme,$level:-20%);
+            }
+        }   
     }
 }

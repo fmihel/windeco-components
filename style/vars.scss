@@ -2,6 +2,7 @@
 // https://prium.github.io/falcon/v3.14.0/modules/forms/basic/form-control.html
 
 @use "sass:map";
+@use 'sass:meta';
 @import './utils.scss'; 
 
 $wd-size:32px;
@@ -28,15 +29,14 @@ $wd-block:('light':#FFFFFF,'dark':#162231) !default;
 $wd-alert:('light':#ff0000,'dark':#ff0000) !default;
 
 
-
 $wd-red:('light':#ff0000,'dark':#ff0000) !default;
 $wd-orange:('light':#FF8A00,'dark':#FF8A00) !default;
+$wd-green:('light':#008b14,'dark':#017711) !default;
 $wd-url:('light':#169bb9,'dark':#194d8f) !default;
 
 
 $wd-primary:('light':#0D6EFD,'dark':#0E639C) !default;
 $wd-secondary:$wd-high !default;
-$wd-green:('light':#008b14,'dark':#017711) !default;
 $wd-success:('light':#008b14,'dark':#017711) !default;
 $wd-danger:('light':#C32F3D,'dark':#632323) !default;
 $wd-warning:$wd-orange !default;
@@ -47,12 +47,50 @@ $wd-dark:$wd-bg !default;
 $wd-transparent:('light':#80808013,'dark':rgba(0,0,0,0)) !default;
 $wd-require-img:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAA5xJREFUaEPtWEtsTGEUPuefaUgkRCg6t5WKR8o86pGoViRobDCuNmKBnYWdkLAVjx0hLCXYeKzQ6R0sRFWIRxeCuW0qkRA6M00REiIRnXuP809TmSmT+O+DTHL/VXvnP+d83/m+/79nBqHKF1Y5fggI/G8FAwUCBVx2ILCQywa6Dg8UcN1Clwl8VaC7ObJM4tNf5J+5xFkx3DcC6Vh9ByFcl5URsCNpDqX8IOEbASMauQxC7JCgCezLupnfVTUEiJtuxCN5BDFnDDSNJM1cHXeLP/J2+aJAOqo1k8DnpVCJoFnvz2a8hS/t6cMyYg0HAOlEOQE8oPcPnfS6nDIBI6ZtZ2/vBdsaJBHqATvcq/e/GSkFZsS129ybDaXP+CDf4YNc9qw7Nm82iMI6tK12EKHFCPbpZCZ3VYWkOoG4lmdwdeNF2NTEayAE2ENAj0DAAiA8xp+LMgWk/xGO8u4BQbjaAmpHxCgD+IWB41/rZm6+vwQS2j4iPFVaWKVgpb2yEUxlv57JnlHJp6yATJ5OaNtsgotsi8kqxSrvpR/clN18yC+p5nNEQBZJxSJtfE12I8JM1aLl1qLPbKnOZH/2npM8jgkUSUTnLhFg3QSBjU6K89nJCYJNyYHcCyfxMsYVAZmga2ljoygUXrESYSUQRKMhy164aXD4rVLchM2uCdyIz51ugTXM52GSChC+cb6HIBTZbL77rBI3ca8rAtcTs2eFqcbgpC0OQfQVcHRLZ2bkvcN45xbqijXMF0S3UMAip8WLcQRvEO2NSTP/0kkeRwoYCW0V2Wiw72udFP09hj4RiA7dHLqvmk+ZgJzzbaQr3r0DxiDLM8HX6Q6+TrtUSCgT4Dknx5dXpLQIT5rf2AYPEEIPbbCa+P2w848gEM7zC+stgtVGJNawglMm5Mnyy6zBXwJy0gQ6CGC/ZKB3KSR6hsO1fXuePh0dL8wDXx8griwFYgM83mpm28afnV2xoqau8KEFLbudv/Cs59GpiWeJ46oTq7ICf9MdI15/iPcdKesu4CH2uBzyPF2+EEjHtVbu5qMypEitWzK5J56i52S+EOhdC+GvH7WPbKNpYwcUvkydkZ2x7h4UqoKABGlE61P8jUCXf7P/U+z/Dq/By3y+KFAkEKvfzdnPFRUojspDF6qKwGG+VpbHtG382xA9M3PX+H8WwvvlmwLeQ/1zxoDAv+p0pTqBAoECLjsQWMhlA12HBwq4bqHLBFWvwE+9EyJAw/7WRQAAAABJRU5ErkJggg==' !default;
 
+$wd-maps:(
+    'bg':$wd-bg,
+    'color':$wd-color,
+    'label':$wd-label,
+    'border':$wd-border,
+    'outline':$wd-outline,
+    'hover':$wd-hover,
+    'select':$wd-select,
+    'header':$wd-header,
+    'deep':$wd-deep,
+    'high':$wd-high,
+    'transparent':$wd-transparent,
+    'block':$wd-block,
+    'alert':$wd-alert,
+    'red':$wd-red,
+    'orange':$wd-orange,
+    'green':$wd-green,
+    'url':$wd-url,
+    'primary':$wd-primary,
+    'secondary':$wd-secondary,
+    'success':$wd-success,
+    'danger':$wd-danger,
+    'warning':$wd-warning,
+    'info':$wd-info,
+    'light':$wd-light,
+    'dark':$wd-dark
+);
 
-
+:root{
+    @each $key,$map in $wd-maps{
+        --wd-#{$key}:#{meta.inspect(map-get($map:$map, $key:$wd-default-theme ))};    
+    }    
+}
 
 
 @each $name in $wd-themes{
+    :root.#{$name}{
+        @each $key,$map in $wd-maps{
+            --wd-#{$key}:#{meta.inspect(map-get($map:$map, $key:$name ))};    
+        }    
+    }
     .#{$name} {
+        
+
         .wd-primary{
             background-color: map-get($wd-primary,#{$name}) !important;
             color:blendColors($colors:$wd-primary,$theme:$name,$light:60%,$dark:60%) !important;

@@ -73,7 +73,7 @@ class App extends React.Component {
 
         return (
             <>
-                <div className={`app ${theme}`}>
+                <div className={'app'}>
                     <Suspense fallback={<Fallback/>}>
                         <Navbar src="./media/logo.png" menu={menu} addClass={theme === 'dark' ? 'navbar-dark bg-primary' : 'navbar-dark bg-dark text-bg-dark'}/>
                     </Suspense>
@@ -133,7 +133,6 @@ class App extends React.Component {
                 {(Modal)
                 && <Modal
                     id='my-dialog'
-                    theme={theme}
                     caption = 'message'
                     buttons={ {
                         cancel: { caption: 'отмена' },

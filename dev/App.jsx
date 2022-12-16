@@ -32,6 +32,7 @@ import {
     combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4, combo_list5,
     icons,
 } from './data.js';
+import theme from '../source/Utils/theme';
 
 // Icon.icons({
 // [iEdit]: './media/edit.png',
@@ -43,11 +44,15 @@ class App extends React.Component {
         super(p);
         const t = this;
         binds(this, 'onTheme', 'onSize',
-            'onClickTable', 'onClickTableFixed', 'OpenDialog', 'CloseDialog', 'undefTheme', 'OpenDialogEx', 'CloseDialogEx');
+            'onClickTable', 'onClickTableFixed',
+            'OpenDialog', 'CloseDialog', 'undefTheme', 'OpenDialogEx',
+            'CloseDialogEx');
         this.onTableClear = this.onTableClear.bind(this);
         this.onTableFill = this.onTableFill.bind(this);
         this.onChangeEx = this.onChangeEx.bind(this);
         this.onChangeCombo = this.onChangeCombo.bind(this);
+        this.setLightTheme = this.setLightTheme.bind(this);
+        this.setDarkTheme = this.setDarkTheme.bind(this);
         // общие параметры для диалогов
         const defaultDialogParam = {
             header: false,
@@ -218,6 +223,14 @@ class App extends React.Component {
         this.setState({ dialog: false });
     }
 
+    setLightTheme() {
+        theme.set('light');
+    }
+
+    setDarkTheme() {
+        theme.set('dark');
+    }
+
     onTheme(o) {
         storage.set('theme-style', o.currentTarget.id);
         this.setState({ theme: o.currentTarget.id });
@@ -294,10 +307,12 @@ class App extends React.Component {
             <div className={`${this.state.theme} ${this.state.size}`}>
                 <div className="panel">
                     <span>{`${this.state.theme} / ${this.state.size}`} </span>
-                    <input id="light" type="button" value="light" onClick={this.onTheme}/>
-                    <input id="dark" type="button" value="dark" onClick={this.onTheme}/>
+                    <input id="light" type="button" value="light" onClick={this.setLightTheme}/>
+                    <input id="dark" type="button" value="dark" onClick={this.setDarkTheme}/>
+                    {/*
                     <input id="small" type="button" value="small" onClick={this.onSize}/>
                     <input id="normal" type="button" value="normal" onClick={this.onSize}/>
+                    */}
                     <input id="undef-theme" type="button" value="undef-theme" onClick={this.undefTheme}/>
                 </div>
                 <div className='content wd-scrollbar'>

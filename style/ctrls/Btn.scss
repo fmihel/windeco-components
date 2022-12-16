@@ -2,18 +2,31 @@
 @import '../mixin/btn-mixin.scss';
 
 
-@include btn-mixin($theme:$wd-default-theme);
 
+//@each $name in $wd-themes{
+//    .#{$name} {
+//        @include btn-mixin(
+//            $theme:$name,
+//            $size:$wd-size,
+//            $bg:map-get($wd-high,$name),
+//            $color:map-get($wd-color,$name),
+//            $border:map-get($wd-border,$name),
+//            $outline:map-get($wd-outline,$name),
+//        );
+//    }
+//}
 
-@each $name in $wd-themes{
-    .#{$name} {
-        @include btn-mixin(
-            $theme:$name,
-            $size:$wd-size,
-            $bg:map-get($wd-high,$name),
-            $color:map-get($wd-color,$name),
-            $border:map-get($wd-border,$name),
-            $outline:map-get($wd-outline,$name),
-        );
-    }
-}
+@include btn-mixin(
+    $themes:$wd-themes,
+    $bg:var(--wd-bg),
+    $color:var(--wd-color),
+    $border:var(--wd-border),
+    $outline:var(--wd-outline),
+    $size:$wd-size
+);
+
+//:root.dark .wd-btn{
+//&:hover{
+        //color:red !important;
+    //}
+//}

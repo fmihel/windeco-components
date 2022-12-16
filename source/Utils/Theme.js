@@ -37,7 +37,7 @@ class Theme {
     set(theme) {
         const html = document.documentElement;
         const { themes } = this;
-        const clear = html.classList.split(' ').filter((name) => (!(themes.indexOf(name) >= 0))).join(' ').trim();
+        const clear = html.className.split(' ').filter((name) => (!(themes.indexOf(name) >= 0))).join(' ').trim();
         html.className = (clear ? ' ' : '') + theme;
     }
 }
