@@ -74,19 +74,40 @@ $wd-maps:(
     'light':$wd-light,
     'dark':$wd-dark
 );
+$wd-vars:(
+    'size':$wd-size,
+    'gap':$wd-gap,
+    'padding':$wd-padding,
+    'margin':$wd-margin,
+    'radius':$wd-radius,
+    'font-size':$wd-font-size
+);
 
 :root{
-    @each $key,$map in $wd-maps{
-        --wd-#{$key}:#{meta.inspect(map-get($map:$map, $key:$wd-default-theme ))};    
-    }    
+//    @each $key,$map in $wd-maps{
+    //    --wd-#{$key}:#{meta.inspect(map-get($map:$map, $key:$wd-default-theme ))};    
+//    }    
+    //@each $key,$val in $wd-vars{
+    //    --wd-#{$key}:#{meta.inspect($val)};    
+    //}    
 }
 
 
 @each $name in $wd-themes{
-    :root.#{$name}{
+    $class:":root."+#{$name};
+    //@if ($name == 'light'){
+    //    $class: ":root, :root."+#{$name};
+    //}
+    //:root.#{$name}{
+    #{$class}{
         @each $key,$map in $wd-maps{
             --wd-#{$key}:#{meta.inspect(map-get($map:$map, $key:$name ))};    
+        }
+
+        @each $key,$val in $wd-vars{
+            --wd-#{$key}:#{meta.inspect($val)};    
         }    
+    
     }
     .#{$name} {
         
