@@ -70,7 +70,7 @@ class App extends React.Component {
         // const { LazyLoadA, LazyLoadB, LazyLoadD } = this.state;
         const { theme } = this.props;
         const { menu, Modal } = this.state;
-
+        const prs = ['simple', 'primary', 'secondary', 'success', 'info', 'warning', 'danger', 'light', 'dark'];
         return (
             <>
                 <div className={'app'}>
@@ -102,8 +102,7 @@ class App extends React.Component {
                         <div className="row">
                             <div className="col">
                                 <Group style={{ marginTop: 10 }} caption="button">
-                                    <button className="btn">simple</button>
-                                    <button className="btn btn-primary">sinple</button>
+                                    {prs.map((it) => (<button className={`btn btn-${it}`}>{it}</button>))}
                                 </Group>
                             </div>
                             <div className="col">

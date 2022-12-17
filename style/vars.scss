@@ -122,8 +122,6 @@ $wd-vars:(
     
     }
     .#{$name} {
-        
-
         .wd-primary{
             background-color: map-get($wd-primary,#{$name}) !important;
             color:blendColors($colors:$wd-primary,$theme:$name,$light:60%,$dark:60%) !important;

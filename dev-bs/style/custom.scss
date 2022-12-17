@@ -1,74 +1,56 @@
 @use 'sass:meta';
+@import '../../style/vars.scss';
 
-:root{
-    --bg:red;
-}
+//$theme-colors: (
+//    "primary":    var(--wd-primary),
+//    "secondary":  var(--wd-secondary),
+//    "success":    var(--wd-success),
+//    "info":       var(--wd-info),
+//    "warning":    var(--wd-warning),
+//    "danger":     var(--wd-danger),
+//    "light":      var(--wd-light),
+//    "dark":       var(--wd-dark)
+//  );
 
+//$theme-colors: (
+//    "primary":    blue,
+//    "secondary":  gray,
+//    "success":    yellow,
+//    "info":       blue,
+//    "warning":    brown,
+//    "danger":     red,
+//    "light":      white, 
+//    "dark":       black
+//  );
 
 @each $theme in $wd-themes{
-    :root.#{$theme}{
-        --bg:#{meta.inspect(map-get($wd-danger,$theme))};
-        $primary:red;      
-        /*
-        $theme-colors: (
-            "primary":    map-get($wd-primary, $theme),
-            "secondary":  map-get($wd-secondary, $theme),
-            "success":    map-get($wd-success, $theme),
-            "info":       map-get($wd-info, $theme),
-            "warning":    map-get($wd-warning, $theme),
-            "danger":     map-get($wd-danger, $theme),
-            "light":      map-get($wd-light, $theme),
-            "dark":       map-get($wd-dark, $theme)
-          );
-        */
-    }
-
-    
-    
-
     :root.#{$theme}{
         .app{
             background-color: map-get($wd-bg,#{$theme});
             color:map-get($wd-color,#{$theme});
         }
-    }
-    
+        $primary:    var(--wd-primary);
+        $secondary:  var(--wd-secondary);
+        $success:    var(--wd-success);
+        $info:       var(--wd-info);
+        $warning:    var(--wd-warning);
+        $danger:     var(--wd-danger);
+        $light:      var(--wd-light);
+        $dark:       var(--wd-dark);
 
-     
-    .#{$theme}{
-        
-        $theme-colors: (
-            "primary":    map-get($wd-primary, $theme),
-            "secondary":  map-get($wd-secondary, $theme),
-            "success":    map-get($wd-success, $theme),
-            "info":       map-get($wd-info, $theme),
-            "warning":    map-get($wd-warning, $theme),
-            "danger":     map-get($wd-danger, $theme),
-            "light":      map-get($wd-light, $theme),
-            "dark":       map-get($wd-dark, $theme)
-          );
-    
-        .modal-content{
-            background-color: map-get($wd-block,$theme) !important;
-            color: map-get($wd-color,$theme) !important;
-            border-color: map-get($wd-border,$theme) !important;
-            div{
-                border-color: map-get($wd-border,$theme) !important;
-            }
-        }
-        .form-control{
-            background-color: map-get($wd-bg,$theme) !important;
-            color: map-get($wd-color,$theme) !important;
-            border-color: map-get($wd-border,$theme) !important;
-            outline-color: map-get($wd-outline,$theme) !important;
-        }
+        //$theme-colors: (
+        //   "primary":    map-get($wd-primary,$theme),
+        //    "secondary":  map-get($wd-secondary,$theme),
+        //    "success":    map-get($wd-success,$theme),
+        //    "info":       map-get($wd-info,$theme),
+        //    "warning":    map-get($wd-warning,$theme),
+        //    "danger":     map-get($wd-danger,$theme),
+        //    "light":      map-get($wd-light,$theme),
+        //    "dark":       map-get($wd-dark,$theme)
+        //);
     }
+}
 
- 
-}
-.test{
-    height: 16px;
-    background-color: var(--bg);
-}
+
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
