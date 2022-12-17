@@ -1,14 +1,15 @@
+@use "sass:meta";
 @import '../vars.scss';
-@import '../mixin/icon-mixin.scss';
 
-.wd-icon{
-    @include icon_mixin($theme:$wd-default-theme);
-}
 
-@each $name in $wd-themes{
-    .#{$name} {
-        .wd-icon{
-            @include icon_mixin($theme:$name);
-        }
+@mixin define(){
+    $size:var(--wd-size);
+
+    .wd-icon{
+        outline: none;
+        width:$size;
+        height:$size;
     }
 }
+
+@include define();
