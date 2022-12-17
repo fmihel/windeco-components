@@ -102,13 +102,12 @@ class App extends React.Component {
                         <div className="row">
                             <div className="col">
                                 <Group style={{ marginTop: 10 }} caption="button">
-                                    {prs.map((it) => (<button className={`btn btn-${it}`}>{it}</button>))}
+                                    {prs.map((it) => (<button key={it} className={`btn btn-${it}`}>{it}</button>))}
                                 </Group>
                             </div>
                             <div className="col">
                                 <Group style={{ marginTop: 10 }} caption ="Btn">
-                                    <Btn>simple</Btn>
-                                    <Btn addClass="wd-primary">simple</Btn>
+                                    {prs.map((it) => (<Btn key={it} addClass={`wd-${it}`}>{it}</Btn>))}
                                 </Group>
                             </div>
                         </div>

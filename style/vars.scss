@@ -88,6 +88,16 @@ $wd-vars:(
     'radius':$wd-radius,
     'font-size':$wd-font-size,
 );
+$wd-bootstrap-vars:(
+    'primary':$wd-primary,
+    'secondary':$wd-secondary,
+    'success':$wd-success,
+    'danger':$wd-danger,
+    'warning':$wd-warning,
+    'info':$wd-info,
+    'light':$wd-light,
+    'dark':$wd-dark,
+);
 
 :root{
 //    @each $key,$map in $wd-maps{
@@ -100,12 +110,8 @@ $wd-vars:(
 
 
 @each $name in $wd-themes{
-    $class:":root."+#{$name};
-    //@if ($name == 'light'){
-    //    $class: ":root, :root."+#{$name};
-    //}
-    //:root.#{$name}{
-    #{$class}{
+
+    :root.#{$name}{
         @each $key,$map in $wd-maps{
             $acolor:map-get($map:$map, $key:$name );
             $r:color.red($acolor);
@@ -119,15 +125,24 @@ $wd-vars:(
         @each $key,$val in $wd-vars{
             --wd-#{$key}:#{meta.inspect($val)};    
         }    
-    
-    }
-    .#{$name} {
+        @each $key,$colors in $wd-bootstrap-vars{
+            .wd-#{$key}{
+                background-color: map-get($colors,#{$name}) !important;
+                color:blendColors($colors:$colors,$theme:$name,$light:60%,$dark:60%) !important;
+                border-color: blendColors($colors:$colors,$theme:$name,$level:-5%) !important;
+                &:hover{
+                    //background-color:blendColors($colors:$wd-primary,$theme:$name,$level:-5%) !important;
+                    
+                }
+            }
+        }
+        
         .wd-primary{
             background-color: map-get($wd-primary,#{$name}) !important;
             color:blendColors($colors:$wd-primary,$theme:$name,$light:60%,$dark:60%) !important;
             border-color: blendColors($colors:$wd-primary,$theme:$name,$level:-5%) !important;
             &:hover{
-                background-color:blendColors($colors:$wd-primary,$theme:$name,$level:-5%) !important;
+                //background-color:blendColors($colors:$wd-primary,$theme:$name,$level:-5%) !important;
              }
         }
         .wd-danger{
@@ -135,7 +150,7 @@ $wd-vars:(
             color:blendColors($colors:$wd-danger,$theme:$name,$light:60%,$dark:60%) !important;
             border-color: blendColors($colors:$wd-danger,$theme:$name,$level:-5%) !important;
             &:hover{
-                background-color:blendColors($colors:$wd-danger,$theme:$name,$level:-5%) !important;
+                //background-color:blendColors($colors:$wd-danger,$theme:$name,$level:-5%) !important;
              }
         }
         .wd-green{
@@ -143,7 +158,7 @@ $wd-vars:(
             color:blendColors($colors:$wd-green,$theme:$name,$light:70%,$dark:70%) !important;
             border-color: blendColors($colors:$wd-green,$theme:$name,$level:-5%) !important;
             &:hover{
-                background-color:blendColors($colors:$wd-green,$theme:$name,$level:-5%) !important;
+                //background-color:blendColors($colors:$wd-green,$theme:$name,$level:-5%) !important;
              }
         }
         .wd-transparent{
