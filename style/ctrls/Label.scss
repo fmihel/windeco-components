@@ -1,16 +1,37 @@
+@use "sass:meta";
 @import '../vars.scss';
-@import '../mixin/label-frame-mixin.scss';
 
 
-@include label-frame-mixin($theme:$wd-default-theme);
+@mixin define($args...){
+    $size:var(--wd-size);
+    $gap:var(--wd-gap);
+    $color:var(--wd-label);
 
-@each $name in $wd-themes{
-    .#{$name} {
-        @include label-frame-mixin(
-            $theme:$name,
-            $size:$wd-size,
-            $gap:$wd-gap,
-            $color:map-get($wd-label,$name)
-        );
+    .wd-label-frame{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: center;
+
+        height:$size;
+
+        >*:nth-child(2){
+            //flex:1 1 auto;
+            margin-right: 0px;
+        }
+        .wd-label{
+            @if($color!='none'){
+                color:$color;
+            };
+            height:$size;
+            line-height: $size;
+            margin-right:$gap;
+            //text-indent: $gap;
+            min-width:6rem;
+        }            
     }
 }
+
+@include define();
