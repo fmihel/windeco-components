@@ -5,13 +5,14 @@
 @mixin define(){
     $themes:$wd-themes;
     $colors:$wd-color;
-    //$inverts:('light':#{60%},'dark':#{30%});
+    //$inverts:('light':60%,'dark':30%);
     @each $theme in $themes{
         :root.#{$theme}{
-           --cb-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:-20%))};
-           --cb-color-hover:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:-50%))};
-           --cb-placeholder:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:40%))};
+           --cb-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:-20%))};
+           --cb-color-hover:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:-50%))};
+           --cb-placeholder:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:40%))};
            //--cb-invert:#{meta.inspect(map-get($map:$inverts,$key:$theme))};
+           //@debug $inverts  map-get($map:$inverts,$key:$theme);
         }
     }
     
@@ -19,7 +20,7 @@
     $gap:$wd-gap;
     $bg:var(--wd-deep);
     $color:var(--cb-color);
-    //$invert:var(--cb-invert);
+    $invert:50%;//var(--cb-invert);
 
     $border:var(--wd-border);
     $required:rgba(var(--wd-alert-rgb), 0.1);
@@ -69,7 +70,7 @@
                 background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAATklEQVR4nO3OMQoAIAwEwXtn/uV7tVFIocRCI8JOHbInAQDwkSrJNu6s3x41nkYjdu+ujLgajyIp8VUsNT4bkR4fiouX7Lgf8SwOADiiAWpFIUWn1ypTAAAAAElFTkSuQmCC'); 
                 background-repeat: no-repeat, no-repeat;
                 background-position: center;
-                filter:invert(40%);
+                filter:invert($invert);
             }
         }
         &:focus { 

@@ -117,7 +117,10 @@ $wd-font-family:(
 
 @function blendColor($color:white,$theme:'dark',$args...){
     $level:0;
+    $debug:'none';
+
     @each $name, $mean in meta.keywords($args) {
+        @if ($name=='debug'){$debug:$mean;};
         @if ($name=='theme'){$theme:$mean;};
         @if ($name==$theme){$level:$mean};
         @if ($name=='level'){
@@ -138,10 +141,10 @@ $wd-font-family:(
             }
         }
     }
-    
     @if( $level!=0 and string.index(#{$level},'%')==null){
         @return $level;
     }
+
 
     //$color:map-get($colors,$theme);
 
@@ -149,11 +152,18 @@ $wd-font-family:(
         @return $color;
     };
 
+
     @if ($level<0){
-        //@return color.change($color,$blackness:math.abs($level));
+        @if($debug!='none'){
+            @debug '<0' $level $color;
+        }
+            //@return color.change($color,$blackness:math.abs($level));
         @return darken($color,math.abs($level));
     }@else{
-        //@return color.change($color,$lightness:$level);
+        @if($debug!='none'){
+            @debug '>0' $level $color;
+        }
+            //@return color.change($color,$lightness:$level);
         @return lighten($color,$level);
     };
     
@@ -169,8 +179,9 @@ $wd-font-family:(
     $colors:('light':#0D6EFD,'dark':#0E639C);
     $theme:'dark';
     $level:0;
-    
+    $debug:'none';
     @each $name, $mean in meta.keywords($args) {
+        @if ($name=='debug'){$debug:$mean;};
         @if ($name=='theme'){$theme:$mean;};
         @if ($name=='colors'){$colors:$mean;}; 
         @if ($name==$theme){$level:$mean};
@@ -192,19 +203,19 @@ $wd-font-family:(
             }
         }
     }
-    
     @if( $level!=0 and string.index(#{$level},'%')==null){
         @return $level;
     }
 
     $color:map-get($colors,$theme);
-
+    
     @if($level==0){
         @return $color;
     };
 
     @if ($level<0){
         //@return color.change($color,$blackness:math.abs($level));
+    
         @return darken($color,math.abs($level));
     }@else{
         //@return color.change($color,$lightness:$level);
