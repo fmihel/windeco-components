@@ -1,21 +1,138 @@
+@use "sass:meta";
 @import '../vars.scss';
-@import '../mixin/modal-dialog-mixin.scss';
 
 
+@mixin define(){
+    $themes:$wd-themes;
+    $colors:$wd-color;
+    
+    @each $theme in $themes{
+        :root.#{$theme}{
+           --md-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:-10%))};
+           --md-color-hover:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:-20%))};
+        };
+    };
 
+    $size:var(--wd-size);
+    $gap:var(--wd-gap);
+    $border:var(--wd-border);
+    $bg:var(--wd-block);
+    $color:var(--wd-color);
+    $font-size:var(--wd-font-size);
+    $radius:var(--wd-radius);
+    $md-color:var(--md-color);
+    $md-color-hover:var(--md-color-hover);
 
-@include modal-dialog-mixin($theme:$wd-default-theme);
+    .wd-dialog{
+        border:1px solid $border;
+        border-radius: $radius;
+        background-color:$bg;
+        color:$color;
+        overflow: hidden;
+    
+        position: absolute;
+        font-size:$font-size;
+    
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: stretch;
 
+        >div{
+            order: 0;
+            flex: 0 1 auto;
+            align-self: auto;
+        }
 
-@each $name in $wd-themes{
-    .#{$name} {
-        @include modal-dialog-mixin(
-            $theme:$name,
-            $bg:map-get($wd-block,#{$name}),
-            $border:map-get($wd-border,#{$name}),
-            $color:map-get($wd-color,#{$name}),
-            $gap:$wd-gap,
+        .wd-dialog-header{
+            min-height: calc( $size * 1.2 );
+            color:$md-color;
 
-        );
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-content: stretch;
+            align-items: center; 
+    
+            padding-left:$gap;
+            padding-right:$gap;
+    
+            >div{
+                order: 0;
+                flex: 0 1 auto;
+                align-self: auto;
+            }
+            .wd-dialog-caption{
+                font-size: calc( $font-size * 1.3 );
+                font-weight: bold;
+                flex: 1 1 auto;
+                height: $size;
+                line-height: $size;
+                
+            }
+            .wd-dialog-close-btn{
+                border-radius: 12px;
+                height:calc( $size * 0.8 );
+                width:calc( $size * 0.8 );
+                min-width: calc( $size * 0.8 );
+                line-height: calc( $size * 0.8 );
+                text-align: center;
+                color:$color;
+                &:hover{
+                    color:b$md-color-hover;
+                    font-size:1.1em;
+                    cursor:pointer;
+                }
+            }
+        }
+        .wd-dialog-content{
+            padding: $gap;
+
+            flex: 1 1 auto;
+            overflow: auto;
+            
+        }
+        .wd-dialog-footer{
+            min-height: calc( $size * 1.2 );
+    
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-end;
+            align-content: stretch;
+            align-items: center;
+            
+            padding: $gap;
+            >*{
+                min-width: calc( $size * 2 );
+            }
+        }
     }
+    .wd-dialog-resize{
+        position: absolute;
+        width: 0px;
+        height: 0px;
+
+        >div{
+            position: relative;
+            width: $size;
+            height: $size;
+            left:calc( $size * (-0.8));
+            top:calc($size * (-0.8));
+            cursor: move;
+
+            border-right:2px solid $border;
+            border-bottom:2px solid $border;
+            &:hover{
+                border-right:2px solid $border;
+                border-bottom:2px solid $border;
+            }
+        }
+    }
+
 }
+
+@include define();
