@@ -1,18 +1,17 @@
+@use "sass:meta";
 @import '../vars.scss';
-@import '../mixin/modal-mixin.scss';
 
-/*
-$wd-modal-gap-k:('small':2,'normal':1) !default;
-$wd-modal-bg:$wd-bg !default;
-$wd-modal-border:('light':#c9c9c9,'dark':#4d4e49) !default;
-$wd-modal-color:('light':#000000,'dark':#c7c7c7)  !default;
-*/
 
-@include modal-mixin();
+@mixin define($args...){
 
-@each $name in $wd-themes{
-    .#{$name} {
-        @include modal-mixin($theme:$name);
-    }
+    .wd-shadow{
+        background-color: rgba(0, 0, 0, 0.4);
+        position: absolute;
+    } 
+
+    .wd-modal{
+        
+    }    
 }
 
+@include define();
