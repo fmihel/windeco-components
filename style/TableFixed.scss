@@ -1,5 +1,5 @@
 @use "sass:meta";
-@import '../vars.scss';
+@import './vars.scss';
 @import './ScrollBar.scss';
 
 @mixin define(){

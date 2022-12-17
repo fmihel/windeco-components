@@ -1,5 +1,4 @@
-@use "sass:meta";
-@import '../vars.scss';
+@import './vars.scss';
 
 
 @mixin define($args...){
