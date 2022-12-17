@@ -1,19 +1,52 @@
+@use "sass:meta";
 @import '../vars.scss';
-@import '../mixin/scrollbar-mixin.scss';
 
+@mixin define(){
+    $themes:$wd-themes;
+    $colors:$wd-color;
+    
+    @each $theme in $themes{
+        :root.#{$theme}{
+           --sb-thumb:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:40%))};
+           --sb-hover:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:30%))};
+        };
+    };
 
-@include scrollbar-mixin($theme:$wd-default-theme);
+    $size:calc( var(--wd-size) * 0.4);
+    $bg:var(--wd-transparent);// цвет фона
+    $thumb:var(--sb-thumb);// цвет курсора
+    $hover:var(--sb-hover);// цвет курсора при hover
+    $border:var(--wd-border);
 
-@each $name in $wd-themes{
-    .#{$name} {
-        @include scrollbar-mixin(
-            $theme:$name,
-            $size:$wd-size*0.4,
-            $bg:map-get($wd-transparent,$name),
-            $thumb:blendColors($colors:$wd-bg,$theme:$name,$level:-20%),
-            $hover:blendColors($colors:$wd-bg,$theme:$name,$level:-25%),
-        );
+    .wd-scrollbar{
+        
+        &::-webkit-scrollbar-track{
+            background-color: $bg;
+            border-right:1px solid $bg;
+        }
+        
+        &::-webkit-scrollbar{
+            background-color:$bg;
+            width: $size;
+            height: $size;
+        }
+        
+        &::-webkit-scrollbar-thumb{
+            background-color:$thumb;
+            border:1px solid $thumb;
+            
+            //border-radius: 24px;
+            //border-radius: 24px;
+            
+        }
+        &::-webkit-scrollbar-thumb{
+            &:hover{
+                
+                background-color:$hover;
+                border:1px solid $hover;
+            }
+        }
     }
 }
 
-
+@include define();
