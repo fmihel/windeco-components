@@ -38,50 +38,47 @@
         }
     }
 
-        
-
     .wd-edit{
         height:$size;
             
-            font-size:$font-size;
-            border:1px solid $border;
-            border-radius: $radius;
-            width:100%;
-            background-color: $bg;
-            text-indent:$gap;
+        font-size:$font-size;
+        border:1px solid $border;
+        border-radius: $radius;
+        width:100%;
+        background-color: $bg;
+        text-indent:$gap;
 
-            @if($margin!='none'){
-                margin-right:$margin;
-            };
-            color:$color;
+        @if($margin!='none'){
+            margin-right:$margin;
+        };
+        color:$color;
 
-            outline: 0px solid rgba(0,0,0,0);
-            @include transition(margin 0.2s,outline-color 0.4s);
-            &:focus { 
-                outline: 2px solid $outline;
-            }
+        outline: 0px solid rgba(0,0,0,0);
+        @include transition(margin 0.2s,outline-color 0.4s);
+        &:focus { 
+            outline: 2px solid $outline;
+        }
 
-            &[readonly]{
-            }        
-            &[disabled]{
-                opacity: 0.5;
-            }
-            &[required]{
-                //background-image: url($required-url);
-                //background-repeat: no-repeat;
-                //background-position-x: right;
-                //background-position-y: center;
-                //border:1px solid $required !important;
-                //background-size: $size*0.5;
-                background-color:$required !important;
-                border:1px solid $required !important;
-            }
+        &[readonly]{
+        }        
+        &[disabled]{
+            opacity: 0.5;
+        }
+        &[required]{
+            //background-image: url($required-url);
+            //background-repeat: no-repeat;
+            //background-position-x: right;
+            //background-position-y: center;
+            //border:1px solid $required !important;
+            //background-size: $size*0.5;
+            background-color:$required !important;
+            border:1px solid $required !important;
+        }
 
-            &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-                color: $placeholder;
-            }
-            
-        }   
+        &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: $placeholder;
+        }
+    }   
 }
 
 @include define();
