@@ -227,3 +227,23 @@ $wd-font-family:(
    
 }
 
+@function contrast-component($component){
+    $mid: 255 * 0.5;
+    @if($component>$mid){
+        @return 0;
+    }@else{
+        @return 255;
+    }
+};
+
+@function contrast($color,$light:white,$dark:black,$alpha:1){
+    
+    $out:$dark;
+    $r:contrast-component(color.red($color));
+    $g:contrast-component(color.green($color));
+    $b:contrast-component(color.blue($color));
+    @if (($r+$g+$b)*0.33 > 255 * 0.5){
+        $out:$light
+    }
+    @return color.change($color:$out,$alpha:$alpha); 
+};
