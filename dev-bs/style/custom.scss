@@ -16,9 +16,21 @@
         $danger:     var(--wd-danger);
         $light:      var(--wd-light);
         $dark:       var(--wd-dark);
-
+        
+        //$theme-colors: (
+        //    'primary':    var(--wd-primary),
+        //    'secondary':  var(--wd-secondary),
+        //    'success':    var(--wd-success),
+        //    'info':       var(--wd-info),
+        //    'warning':    var(--wd-warning),
+        //    'danger':     var(--wd-danger),
+        //    'light':      var(--wd-light),
+        //    'dark':       var(--wd-dark),
+        //  );
     }
 }
+
+
 
 
 @import "../../node_modules/bootstrap/scss/bootstrap";

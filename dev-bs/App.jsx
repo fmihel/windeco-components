@@ -12,6 +12,12 @@ import Btn from '../source/Btn/Btn.jsx';
 import Edit from '../source/Edit/Edit.jsx';
 import Label from '../source/Label/Label.jsx';
 import Group from '../source/Group/Group.jsx';
+import ComboBox from '../source/ComboBoxEx/ComboBoxEx.jsx';
+import {
+    table_long2, table_long,
+    combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4, combo_list5,
+    icons,
+} from './data.js';
 
 const Navbar = lazy(() => import(/* webpackChunkName: "Navbar" */'./components/Navbar/Navbar.jsx'));
 Group.global = {
@@ -112,15 +118,27 @@ class App extends React.Component {
                             </div>
                         </div>
 
-                        {/** Btn ------------------------------------------------------------------------  */}
+                        {/** combo ------------------------------------------------------------------------  */}
                         <div className="row">
                             <div className="col">
-                                <Group style={{ marginTop: 10 }} caption="test">
-                                    <div className="test"></div>
+                                <Group style={{ marginTop: 10 }} caption="select">
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
                                 </Group>
                             </div>
                             <div className="col">
-                                <Group style={{ marginTop: 10 }} caption ="">
+                                <Group style={{ marginTop: 10 }} caption ="ComboBoxEx">
+                                    <ComboBox
+                                        id='cb1'
+                                        // onChange={this.onChangeCombo}
+                                        list = {combo_list1}
+                                        select={1}
+                                        required={true}
+                                    />
                                 </Group>
                             </div>
                         </div>
