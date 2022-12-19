@@ -1,21 +1,24 @@
 @use 'sass:meta';
 @import '../../style/vars.scss';
 
+
 @each $theme in $wd-themes{
-    :root.#{$theme}{
+    :root, :root.#{$theme}, :root .#{$theme}, .#{$theme}{
+        //$body-bg: map-get($wd-bg,#{$theme});
+        //$body-color:map-get($wd-color,#{$theme});
         .app{
-            background-color: map-get($wd-bg,#{$theme});
-            color:map-get($wd-color,#{$theme});
+            //background-color: map-get($wd-bg,#{$theme});
+            //color:map-get($wd-color,#{$theme});
         }
 
-        $primary:    var(--wd-primary);
-        $secondary:  var(--wd-secondary);
-        $success:    var(--wd-success);
-        $info:       var(--wd-info);
-        $warning:    var(--wd-warning);
-        $danger:     var(--wd-danger);
-        $light:      var(--wd-light);
-        $dark:       var(--wd-dark);
+        //$primary:    var(--wd-primary);
+        //$secondary:  var(--wd-secondary);
+        //$success:    var(--wd-success);
+        //$info:       var(--wd-info);
+        //$warning:    var(--wd-warning);
+        //$danger:     var(--wd-danger);
+        //$light:      var(--wd-light);
+        //$dark:       var(--wd-dark);
         
         //$theme-colors: (
         //    'primary':    var(--wd-primary),
@@ -29,7 +32,12 @@
         //  );
     }
 }
-
+:root{
+    $body-bg:white;
+}
+:root.dark{
+    $body-bg:red;
+}
 
 
 

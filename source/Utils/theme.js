@@ -1,10 +1,11 @@
 class Theme {
     constructor() {
         this.themes = ['dark', 'light'];
+        this.default = 'light';
     }
 
     get() {
-        let out = false;
+        let out = this.default;
 
         const html = document.documentElement;
 
@@ -51,8 +52,11 @@ class Theme {
         const { themes } = this;
 
         const clear = html.className.split(' ').filter((name) => (!(themes.indexOf(name) >= 0))).join(' ').trim();
-
-        html.className = (clear ? ' ' : '') + theme;
+        if (theme !== this.default) {
+            html.className = (clear ? ' ' : '') + theme;
+        } else {
+            html.className = clear;
+        }
     }
 }
 

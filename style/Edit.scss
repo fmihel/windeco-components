@@ -8,7 +8,7 @@
     $colors:$wd-color;
     
     @each $theme in $themes{
-        :root.#{$theme}{
+        #{getThemingRootClass($theme)}{
            --ed-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:-20%))};
            --ed-placeholder:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:40%))};
         };

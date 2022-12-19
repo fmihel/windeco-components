@@ -7,7 +7,8 @@
     $colors:$wd-color;
     //$inverts:('light':60%,'dark':30%);
     @each $theme in $themes{
-        :root.#{$theme}{
+        #{getThemingRootClass($theme)} {
+            
            --cb-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:-20%))};
            --cb-color-hover:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:-50%))};
            --cb-placeholder:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:40%))};

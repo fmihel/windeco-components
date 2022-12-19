@@ -7,7 +7,7 @@
     $colors:$wd-color;
     
     @each $theme in $themes{
-        :root.#{$theme}{
+        #{getThemingRootClass($theme)}{
            --md-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:-10%))};
            --md-color-hover:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:-20%))};
         };

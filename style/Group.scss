@@ -6,7 +6,7 @@
     $themes:$wd-themes;
     $colors:$wd-color;
     @each $theme in $themes{
-        :root.#{$theme}{
+        #{getThemingRootClass($theme)}{
            --g-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:-20%))};
         };
     };

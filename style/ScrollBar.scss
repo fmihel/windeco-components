@@ -6,7 +6,7 @@
     $colors:$wd-color;
     
     @each $theme in $themes{
-        :root.#{$theme}{
+        #{getThemingRootClass($theme)}{
            --sb-thumb:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:40%))};
            --sb-hover:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:30%))};
         };

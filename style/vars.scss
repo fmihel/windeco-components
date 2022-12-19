@@ -99,19 +99,15 @@ $wd-bootstrap-vars:(
     'dark':$wd-dark,
 );
 
-:root{
-//    @each $key,$map in $wd-maps{
-    //    --wd-#{$key}:#{meta.inspect(map-get($map:$map, $key:$wd-default-theme ))};    
-//    }    
-    //@each $key,$val in $wd-vars{
-    //    --wd-#{$key}:#{meta.inspect($val)};    
-    //}    
+
+@function getThemingRootClass($theme){
+     @return if($theme!=$wd-default-theme,':root.'+$theme,':root');
 }
-
-
 @each $name in $wd-themes{
 
-    :root.#{$name}{
+    $class:if($name!=$wd-default-theme,':root.'+$name,':root');
+    #{getThemingRootClass($name)}{
+    //:root.#{$name}{
         @each $key,$map in $wd-maps{
             $acolor:map-get($map:$map, $key:$name );
             $r:color.red($acolor);

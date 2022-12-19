@@ -7,7 +7,7 @@
     $colors:$wd-color;
     
     @each $theme in $themes{
-        :root.#{$theme}{
+        #{getThemingRootClass($theme)}{
            --tf-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:-20%))};
            --tf-header-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:-20%))};
            --tf-select-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$light:50%,$dark:20%))};

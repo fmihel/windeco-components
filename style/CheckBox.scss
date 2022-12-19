@@ -3,11 +3,18 @@
 
 @mixin define(){
     $themes:$wd-themes;
+    $icons:$wd-cross;
+
+    @each $theme in $themes{
+        #{getThemingRootClass($theme)} {
+            --chk-url:url(#{map-get($icons,$theme)});
+        }   
+    }
+    
     $size:$wd-size;
     $bg:var(--wd-bg);
     $border:var(--wd-border);
     $outline:var(--wd-outline);
-    $icons:$wd-cross;
     $icon-hover:$cross-opacity;
 
     input[type=checkbox] {
@@ -30,6 +37,7 @@
             background-size: $size*0.5;
             background-position: center center;
             background-repeat: no-repeat;
+            background-image:var(--chk-url);
 
         }
         &:not(:checked){
@@ -43,16 +51,16 @@
         &:focus{
             outline:2px solid $outline;
         }
-    }
+}
 
-    @each $theme in $themes{
-        :root.#{$theme} input[type=checkbox]{
-            &:checked{
-                background-image:url(#{map-get($icons,$theme)});
-            }
-
-        }
-    } 
+    //@each $theme in $themes{
+    //    :root.#{$theme} input[type=checkbox]{
+    //        &:checked{
+    //            background-image:url(#{map-get($icons,$theme)});
+    //        }
+//
+//        }
+//    } 
 }
 
 @include define();
