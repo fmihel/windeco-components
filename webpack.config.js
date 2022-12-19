@@ -4,27 +4,16 @@ const config = require('./webpack.local');
 const {defArg} = require('fmihel-server-lib');
 //const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const toRemotePath = defArg('tooh') || defArg('took') || defArg('too') || defArg('toobe') || defArg('toob');
+const toRemotePath = defArg('to') ;
 const toProduction = !toRemotePath && defArg('prod');
-let remotePath;
-if (defArg('tooh'))
-  remotePath =  config.REMOTE_ORDER_PATHS_BY_ARGS.tooh;
-else if (defArg('took'))
-  remotePath = config.REMOTE_ORDER_PATHS_BY_ARGS.took;
-else if (defArg('too'))
-  remotePath = config.REMOTE_ORDER_PATHS_BY_ARGS.too;
-else if (defArg('toobe'))
-  remotePath = config.REMOTE_ORDER_PATHS_BY_ARGS.toobe;
-else if (defArg('toob'))
-  remotePath = config.REMOTE_ORDER_PATHS_BY_ARGS.toob;
-
+let remotePath = '../../windeco/orders-test/node_modules/fmihel-windeco-components/dist/'
 
 module.exports = {
   mode: toProduction?'production':'development',
   devtool: toProduction?'':'inline-source-map',
   entry: './source/index.js',
   output: {
-    path: toRemotePath?remotePath:path.resolve(__dirname, 'dist'),
+    path: toRemotePath?path.resolve(__dirname,remotePath):path.resolve(__dirname, 'dist'),
     filename: 'windeco-components'+((toProduction||toRemotePath)?'.min':'')+'.js',
     libraryTarget: 'commonjs2' // THIS IS THE MOST IMPORTANT LINE! :mindblow: I wasted more than 2 days until realize this was the line most important in all this guide.
   },
