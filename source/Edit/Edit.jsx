@@ -29,10 +29,21 @@ export default class Edit extends React.Component {
     }
 
     onChange(e) {
-        if (this.props.onChange) {
-            this.props.onChange({ id: this.props.id, value: e.target.value });
-        } else {
-            this.setState({ value: e.target.value });
+        const { value } = e.target;
+        let canChange = true;
+        const { min, max, type } = this.props;
+        if (value !== '') {
+            if (type === 'number' || type === 'range') {
+                if (min !== undefined && value < min) canChange = false;
+                if (max !== undefined && value > max) canChange = false;
+            }
+        }
+        if (canChange) {
+            if (this.props.onChange) {
+                this.props.onChange({ id: this.props.id, value });
+            } else {
+                this.setState({ value });
+            }
         }
     }
 

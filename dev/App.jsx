@@ -321,6 +321,32 @@ class App extends React.Component {
                         </Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Edit">
+                        <Block> <Edit id="tt" style={{ fontSize: '1.2em' }}onKeyPress={(o) => {
+                            console.log(o);
+                        }}> text from child</Edit></Block>
+                        <Block> <Edit type="password" placeholder="set password" disable={{ dim: true }} style={{ height: 18 }}/></Block>
+                        <Block> <Edit autoFocus value="text from value, and hint" hint="hint prop"/></Block>
+                        <Block> <Edit
+                            value=""
+                            hint="обязательный ввод"
+                            placeholder="need text.."
+                            required={true}
+                            maxLength={10}
+                            onInit={(component) => { this.EditRequired = component; }}
+                            onKeyDown={(o) => { console.log('down', o); }}
+                            onKeyUp={(o) => { console.log('up', o); }}
+                        />
+                        </Block>
+                        <Block> <Edit value="disabled" disabled={1} /></Block>
+                        <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
+                        <Block> <Label caption="label" id="myEdit100"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
+                        <Block> <Label caption="pass" id="pass"><Edit type="password" value="set text" disable={{ dim: true }}/></Label></Block>
+                        <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
+                        <Block> <Label caption="range"><Edit value={5} dim={''} type='number' min={1} max={10} step={1}/></Label></Block>
+                        <Block> <Btn onClick={() => { this.EditRequired.focus(); }}>focus to required</Btn></Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption={'BtnIcon'}>
                         <Block>
                             <Btn>left</Btn>
@@ -455,32 +481,6 @@ class App extends React.Component {
                                 />
                             </Label>
                         </Block>
-                    </Head>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption="Edit">
-                        <Block> <Edit id="tt" style={{ fontSize: '1.2em' }}onKeyPress={(o) => {
-                            console.log(o);
-                        }}> text from child</Edit></Block>
-                        <Block> <Edit type="password" placeholder="set password" disable={{ dim: true }} style={{ height: 18 }}/></Block>
-                        <Block> <Edit autoFocus value="text from value, and hint" hint="hint prop"/></Block>
-                        <Block> <Edit
-                            value=""
-                            hint="обязательный ввод"
-                            placeholder="need text.."
-                            required={true}
-                            maxLength={10}
-                            onInit={(component) => { this.EditRequired = component; }}
-                            onKeyDown={(o) => { console.log('down', o); }}
-                            onKeyUp={(o) => { console.log('up', o); }}
-                        />
-                        </Block>
-                        <Block> <Edit value="disabled" disabled={1} /></Block>
-                        <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
-                        <Block> <Label caption="label" id="myEdit100"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
-                        <Block> <Label caption="pass" id="pass"><Edit type="password" value="set text" disable={{ dim: true }}/></Label></Block>
-                        <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
-                        <Block> <Label caption="range"><Edit value={5} dim={''} type='number' min={0} max={10} step={1}/></Label></Block>
-                        <Block> <Btn onClick={() => { this.EditRequired.focus(); }}>focus to required</Btn></Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="Dialog">
