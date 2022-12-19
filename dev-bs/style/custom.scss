@@ -1,14 +1,13 @@
 @use 'sass:meta';
 @import '../../style/vars.scss';
+@import '../../style/redefine.bootstrap.scss';
 
 
 @each $theme in $wd-themes{
-    :root, :root.#{$theme}, :root .#{$theme}, .#{$theme}{
-        //$body-bg: map-get($wd-bg,#{$theme});
-        //$body-color:map-get($wd-color,#{$theme});
+    #{getThemingRootClass($theme)}{
         .app{
-            //background-color: map-get($wd-bg,#{$theme});
-            //color:map-get($wd-color,#{$theme});
+            background-color: map-get($wd-bg,#{$theme});
+            color:map-get($wd-color,#{$theme});
         }
 
         //$primary:    var(--wd-primary);
@@ -32,12 +31,8 @@
         //  );
     }
 }
-:root{
-    $body-bg:white;
-}
-:root.dark{
-    $body-bg:red;
-}
+
+
 
 
 

@@ -1,0 +1,33 @@
+@each $theme in $wd-themes{
+    #{getThemingRootClass($theme)}{
+        
+        .form-control,.form-select{
+            background-color: map-get($wd-deep,#{$theme});
+            color:map-get($wd-color,#{$theme});
+            border-color:map-get($wd-border,#{$theme});
+            border-radius:$wd-radius;
+            box-shadow: none;
+
+            outline:2px solid rgba(0,0,0,0);
+            @include transition(outline-color 0.2s);
+            &:focus { 
+                outline: 2px solid map-get($wd-outline,#{$theme});
+                box-shadow: none;
+            }
+        }
+
+        .form-control-plaintext{
+            color:map-get($wd-color,#{$theme});
+        }
+
+        .nav-link{
+            color:map-get($wd-color,#{$theme});
+            &:hover{
+                
+            }
+        }
+        .active{
+            color:blendColors($colors:$wd-color,$theme:$theme,$level:-40%) !important;;
+        }
+    }
+}

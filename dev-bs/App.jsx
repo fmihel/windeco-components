@@ -81,7 +81,11 @@ class App extends React.Component {
             <>
                 <div className={'app'}>
                     <Suspense fallback={<Fallback/>}>
-                        <Navbar src="./media/logo.png" menu={menu} addClass={theme === 'dark' ? 'navbar-dark bg-primary' : 'navbar-dark bg-dark text-bg-dark'}/>
+                        <Navbar
+                            src="./media/logo.png"
+                            menu={menu}
+                            addClass={theme === 'dark' ? 'navbar-dark wd-secondary' : 'navbar-dark wd-dark '}
+                        />
                     </Suspense>
 
                     <div className="container-lg">
@@ -93,12 +97,20 @@ class App extends React.Component {
                                         <span>label</span>
                                         <input type='text' placeholder="edit" className="form-control"/>
                                     </label>
+                                    <div className="mb-3 row"></div>
+                                    <label className="col-sm-2 col-form-label" htmlFor="staticEmail">Email</label>
+                                    <div className="col-sm-10">
+                                        <input className="form-control-plaintext outline-none" id="staticEmail" type="text" readOnly="" defaultValue="email@example.com" ></input>
+                                    </div>
                                 </Group>
                             </div>
                             <div className="col">
                                 <Group style={{ marginTop: 10 }} caption ="Edit">
                                     <Label id="edit1">
                                         <Edit id="edit1" value="edit" />
+                                    </Label>
+                                    <Label id="edit2">
+                                        <Edit id="edit2" value="email@example.com" readonly={true}/>
                                     </Label>
                                 </Group>
                             </div>
@@ -113,7 +125,7 @@ class App extends React.Component {
                             </div>
                             <div className="col">
                                 <Group style={{ marginTop: 10 }} caption ="Btn">
-                                    {prs.map((it) => (<Btn key={it} addClass={`wd-${it}`}>{it}</Btn>))}
+                                    {prs.map((it) => (<Btn key={it} addClass={`wd-btn-${it}`}>{it}</Btn>))}
                                 </Group>
                             </div>
                         </div>
