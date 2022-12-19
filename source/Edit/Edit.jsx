@@ -34,8 +34,8 @@ export default class Edit extends React.Component {
         const { min, max, type } = this.props;
         if (value !== '') {
             if (type === 'number' || type === 'range') {
-                if (min !== undefined && parseFloat(value) < parseFloat(min)) canChange = false;
-                if (max !== undefined && parseFloat(value) > parseFloat(max)) canChange = false;
+                if (min !== undefined && min !== '' && parseFloat(value) < parseFloat(min)) canChange = false;
+                if (max !== undefined && max !== '' && parseFloat(value) > parseFloat(max)) canChange = false;
             }
         }
         if (canChange) {
