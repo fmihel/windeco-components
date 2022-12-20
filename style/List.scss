@@ -23,19 +23,37 @@
     $font-size:var(--wd-font-size);
     $margin:var(--wd-margin);
     $radius:var(--wd-radius);
+    $gap:$wd-gap;
 
     .wd-list{
         box-sizing: border-box;
-        min-height: $size;
-
+        overflow: hidden;
+        //min-height: $size;
+        height:auto;
+        @include transition(height 1s,color 1s);
+        &[expand*="true"]{
+            height:stretch !important;
+            color:red;
+        }
+        
     }
     .wd-list-item{
         min-height: $size;
         height:$size;
         line-height: $size;
+        text-indent: $gap;
+        white-space: nowrap;
+        overflow: hidden;
+
+        &[active]{
+            color:limegreen;
+        }
         &:hover{
             background-color:var(--btn-bg-hover);
             color:var(--btn-color-hover);
+            &[active]{
+                color:limegreen;
+            }
         }
     }
 

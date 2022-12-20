@@ -204,6 +204,7 @@ class App extends React.Component {
             tableHeight: 200,
             tableFooter: 'end',
             tableSelect: [],
+            listSetup: [],
 
         };
     }
@@ -291,7 +292,7 @@ class App extends React.Component {
     render() {
         const {
             fields, table, textValue, textValue2, dialogEx, customLeft, customTop, values, comboSelect,
-            tableHeader, tableHeight, tableFooter, tableSelect,
+            tableHeader, tableHeight, tableFooter, tableSelect, listSetup,
         } = this.state;
         const dialogs = Object.keys(this.dialogs);
         const fontsName = Object.keys(fonts);
@@ -368,13 +369,38 @@ class App extends React.Component {
                     <Head caption="List">
                         <Block>
                             <List
-                                list={
-                                    [
-                                        { id: 1, caption: 'item-1' },
-                                        { id: 2, caption: 'item-2' },
-                                        { id: 3, caption: 'item-3' },
-                                    ]
-                                }
+                                list={[
+                                    { id: 1, caption: 'item-1' },
+                                    {
+                                        id: 2,
+                                        caption: 'item-2',
+                                        childs: [
+                                            { id: 21, caption: 'item-21' },
+                                            { id: 22, caption: 'item-22' },
+                                            { id: 23, caption: 'item-23' },
+                                        ],
+                                    },
+                                    { id: 3, caption: 'item-3' },
+                                ]}
+                                setup={listSetup}
+                                onChange={({ id, active, expand }) => {
+                                    const setup = {
+                                        ...listSetup,
+                                        [id]: {
+                                            ...listSetup[id],
+                                            active,
+                                            expand,
+                                        },
+
+                                    };
+
+                                    this.setState({
+                                        listSetup: List.map(setup, (item, key) => ({
+                                            ...item,
+                                            active: key === id,
+                                        })),
+                                    });
+                                }}
                             />
                         </Block>
                     </Head>
