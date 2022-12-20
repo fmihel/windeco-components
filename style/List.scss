@@ -1,0 +1,45 @@
+@use "sass:meta";
+@import './vars.scss';
+
+@mixin define(){
+    $themes:$wd-themes;
+    $hovers:$wd-high;
+    $hovers-color:$wd-color;
+
+    @each $theme in $themes{
+        #{getThemingRootClass($theme)}{
+            //--btn-bg-hover:#{meta.inspect(blendColors($colors:$hovers,$theme:$theme,$level:-5%))};
+            //-btn-color-hover:#{meta.inspect(blendColors($colors:$hovers-color,$theme:$theme,$level:-20%))};
+        }   
+    }
+
+
+    $size:var(--wd-size);
+    $bg:var(--wd-high);
+    $color:var(--wd-color);
+    $border:var(--wd-border);
+    $outline:var(--wd-outline);
+    $margin:var(--wd-margin);
+    $font-size:var(--wd-font-size);
+    $margin:var(--wd-margin);
+    $radius:var(--wd-radius);
+
+    .wd-list{
+        box-sizing: border-box;
+        min-height: $size;
+
+    }
+    .wd-list-item{
+        min-height: $size;
+        height:$size;
+        line-height: $size;
+        &:hover{
+            background-color:var(--btn-bg-hover);
+            color:var(--btn-color-hover);
+        }
+    }
+
+}
+
+@include define();
+

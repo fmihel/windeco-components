@@ -14,6 +14,8 @@ $wd-margin:2px;
 $wd-padding:$wd-gap;
 $wd-radius:0.25rem;
 $wd-font-size:14px !default;
+$wd-font-family:font-family('verdana') !default;
+
 
 $wd-bg:('light':#EDF2F9,'dark':#0B1727) !default;
 $wd-color:('light':#83909F,'dark':#9DA9BB) !default;
@@ -103,11 +105,10 @@ $wd-bootstrap-vars:(
 @function getThemingRootClass($theme){
      @return if($theme!=$wd-default-theme,':root.'+$theme,':root');
 }
-@each $name in $wd-themes{
 
-    $class:if($name!=$wd-default-theme,':root.'+$name,':root');
+@each $name in $wd-themes{
     #{getThemingRootClass($name)}{
-    //:root.#{$name}{
+        
         @each $key,$map in $wd-maps{
             $acolor:map-get($map:$map, $key:$name );
             $r:color.red($acolor);

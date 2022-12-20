@@ -9,6 +9,7 @@ import RComboBoxEx from './ComboBoxEx/ComboBoxEx.jsx';
 import RBtnIcon from './BtnIcon/BtnIcon.jsx';
 import RText from './Text/Text.jsx';
 import RIcon from './Icon/Icon.jsx';
+import RList from './List/List.jsx';
 
 export default {
     Edit: REdit,
@@ -22,6 +23,7 @@ export default {
     BtnIcon: RBtnIcon,
     Text: RText,
     Icon: RIcon,
+    List: RList,
 };
 
 export const ComboBoxEx = RComboBoxEx;
@@ -35,3 +37,4 @@ export const TableFixed = RTableFixed;
 export const BtnIcon = RBtnIcon;
 export const Text = RText;
 export const Icon = RIcon;
+export const List = RList;

@@ -24,6 +24,7 @@ import Modal from '../source/Modal/Modal.jsx';
 import Text from '../source/Text/Text.jsx';
 import Icon from '../source/Icon/Icon.jsx';
 import Edit from '../source/Edit/Edit.jsx';
+import List from '../source/List/List.jsx';
 
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
@@ -363,6 +364,21 @@ class App extends React.Component {
                                 }/>
                         </Block>
                     </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="List">
+                        <Block>
+                            <List
+                                list={
+                                    [
+                                        { id: 1, caption: 'item-1' },
+                                        { id: 2, caption: 'item-2' },
+                                        { id: 3, caption: 'item-3' },
+                                    ]
+                                }
+                            />
+                        </Block>
+                    </Head>
+
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="ComboBoxEx">
                         <Block>

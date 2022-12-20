@@ -18,7 +18,7 @@ input, select, textarea, button{
 
 html{
     font-size:$wd-font-size;
-    @include font-family('ms'); 
+    font-family: font-family('verdana'); 
 }
 
 body{
@@ -132,15 +132,3 @@ body{
     }
 
 }
-@each $key,$font in $wd-font-family{
-    .font-#{$key}{
-        @include font-family($key); 
-        font-size:14px;
-    }
-    .font-#{$key}-small{
-        @include font-family($key);
-        font-size:8px;
-    }
-}
-
-

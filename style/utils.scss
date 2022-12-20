@@ -78,7 +78,7 @@
 }
 
 
-$wd-font-family:(
+$wd-fonts-family:(
     'arial':'Arial, sans-serif',
     'arial-black':'Arial Black, sans-serif',
     'comic':'Comic Sans MS, cursive',
@@ -100,19 +100,18 @@ $wd-font-family:(
 );
 
 //@include font-family('arial');
+@function font-family($name:'roboto'){
 
-@mixin font-family($name: 'roboto'){ 
-    @if map_has_key($wd-font-family,$name) {
-        font-family: #{map-get($wd-font-family, $name)};
-    } @else {
-        font-family: map-get($wd-font-family, 'roboto');
-        @debug 'set default font-family: Roboto';
-        @debug 'you can use next fonts:';
-        @each $key, $mean in $wd-font-family {
-            @debug $key;
-        }
+    @if map_has_key($wd-fonts-family,$name) {
+        @return #{map-get($wd-fonts-family, $name)};
+    }@else{
+        @debug --------------------------------------;
+        @warn 'font not exists ' $name ' set roboto';
+        @debug --------------------------------------;
+        @return #{map-get($wd-fonts-family, 'roboto')};
         
-    };
+    }
+
 }
 
 @function blendColor($color:white,$theme:'dark',$args...){

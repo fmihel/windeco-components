@@ -14,6 +14,10 @@
 
 html{
     font-size: $wd-font-size;
+    font-family:$wd-font-family;
+    font-weight: 400;
+    -webkit-text-size-adjust: 100%;
+
 }
 
 body{
@@ -25,13 +29,8 @@ body{
     margin:0px;
     padding:0px;
     overflow:hidden;
-    font-family: roboto,"Noto Sans Myanmar UI",arial,sans-serif ;
     
-
-
-    font-weight: 400;
     line-height: 1.5;
-    -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
 
