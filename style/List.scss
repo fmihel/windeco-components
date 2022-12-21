@@ -28,7 +28,13 @@
     .wd-list{
         box-sizing: border-box;
         overflow: hidden;
-        border: 1px dashed red;
+        
+        >div{
+            //@include display-flex-horiz-stretch();
+        }
+    }
+    .wd-node{
+        margin-left: $size;
     }
     .wd-list-item{
         min-height: $size;

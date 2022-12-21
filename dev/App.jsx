@@ -206,7 +206,6 @@ class App extends React.Component {
             tableSelect: [],
             listSetup: {
             },
-            collapse: false,
         };
     }
 
@@ -293,7 +292,7 @@ class App extends React.Component {
     render() {
         const {
             fields, table, textValue, textValue2, dialogEx, customLeft, customTop, values, comboSelect,
-            tableHeader, tableHeight, tableFooter, tableSelect, listSetup, collapse,
+            tableHeader, tableHeight, tableFooter, tableSelect, listSetup,
         } = this.state;
         const dialogs = Object.keys(this.dialogs);
         const fontsName = Object.keys(fonts);
@@ -368,16 +367,6 @@ class App extends React.Component {
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="List">
-                        <Block>
-                            <Collapse expand={!collapse}>
-                                <div style={{ border: '1px dashed red' }}>
-                                    <div style={{ border: '1px dashed gray' }}>item1</div>
-                                </div>
-                            </Collapse>
-                            <Btn onClick={() => {
-                                this.setState({ collapse: !collapse });
-                            }}>{collapse ? 'expand' : 'collapse'}</Btn>
-                        </Block>
 
                         <Block>
                             <List
@@ -393,9 +382,17 @@ class App extends React.Component {
                                                 caption: 'item-22',
                                                 childs: [
                                                     { id: 221, caption: 'item-221' },
-                                                    { id: 222, caption: 'item-222' },
-                                                    { id: 223, caption: 'item-223' },
+                                                    {
+                                                        id: 222,
+                                                        caption: 'item-222',
+                                                        childs: [
+                                                            { id: 2221, caption: 'item-2221' },
+                                                            { id: 2222, caption: 'item-2222' },
+                                                            { id: 2223, caption: 'item-2223' },
 
+                                                        ],
+                                                    },
+                                                    { id: 223, caption: 'item-223' },
                                                 ],
                                             },
                                             { id: 23, caption: 'item-23' },

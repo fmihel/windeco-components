@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import collapse from '../Utils/collapse';
+import React from 'react';
 import ListItem from './ListItem.jsx';
+import ListNode from './ListNode.jsx';
 
 function List({
     id = undefined,
@@ -18,100 +18,37 @@ function List({
     onChange = undefined,
     attr = {},
     style = List.global.style,
-    _expand = true,
-    _root = true,
 }) {
-    const changed = (o) => {
+    const change = (o) => {
         if (onChange) {
             onChange({ ...o, [aliasId]: o.id });
         }
     };
-    const dom = useRef(null);
-    const [position, setPosition] = useState('fixed');
-    const [show, setShow] = useState(false);
-
-    useEffect(() => {
-        if (!_root) {
-            if (dom && dom.current) {
-                if (_expand) {
-                    collapse(dom.current, {
-                        close: false,
-                        onStart() {
-                            setPosition(false);
-                            setShow(true);
-                        },
-                    });
-                } else {
-                    collapse(dom.current, {
-                        close: true,
-                        onStop() {
-                            setShow(false);
-                            setPosition('fixed');
-                        },
-                    });
-                }
-            }
-        } else {
-            setShow(true);
-        }
-    }, [_expand, _root, dom]);
-
     return (
-        <>{(_expand || show)
-        && <div
-            ref={dom}
+        <div
             {...(id ? { id } : {})}
             className={`${className} ${addClass}`}
             {...attr}
             style={{
                 ...List.global.style,
                 ...style,
-                ...((!_root && position) ? { position, opacity: 0 } : { position: 'static' }),
-                // ...(_root ? { display: 'content' } : {}),
             }}
         >
-            {list.map((it) => {
-                const childs = it[aliasChilds] || [];
-                const aid = `${it[aliasId]}`;
-                const active = (aid in setup) && setup[aid].active;
-                const expand = (aid in setup) && setup[aid].expand;
-                return (
-                    <div key={aid} id={aid}>
-                        <ItemComponent
-                            id={aid}
-                            caption={it[aliasCaption]}
-                            data={it}
-                            active={active}
-                            expand={expand}
-                            onClick={onClick}
-                            onChange={changed}
-                        />
-                        {(childs.length > 0)
-                        && <List
-                            _expand = {expand}
-                            _root = {false}
-                            className = {className}
-                            addClass = {addClass}
-                            list = {childs}
-                            ItemComponent ={ItemComponent}
+            <ListNode
+                className = {className}
+                addClass = {addClass}
+                style = {style}
+                list = {list}
+                aliasChilds = {aliasChilds}
+                aliasId = {aliasId}
+                aliasCaption = {aliasCaption}
+                setup = {setup}
+                ItemComponent = {ItemComponent}
+                onClick = {onClick}
+                onChange = {change}
+            />
+        </div>
 
-                            aliasId = {aliasId}
-                            aliasCaption = {aliasCaption}
-                            aliasChilds = {aliasChilds}
-                            setup={setup}
-                            onClick={onClick}
-                            onChange={onChange}
-                            attr={{ ...(expand ? { expand: 'true' } : {}) }}
-                            style={{
-                                ...style,
-                            }}
-                        />
-                        }
-                    </div>
-                );
-            })}
-        </div>}
-        </>
     );
 }
 List.global = {

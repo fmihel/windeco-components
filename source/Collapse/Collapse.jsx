@@ -29,6 +29,7 @@ function Collapse({
             } else {
                 collapse(dom.current, {
                     close: true,
+                    delay,
                     onStop() {
                         setShow(false);
                         setPosition('fixed');
@@ -46,7 +47,7 @@ function Collapse({
                 style={{
                     ...Collapse.global.style,
                     ...style,
-                    ...(position ? { position, opacity: 0 } : { position: 'static' }),
+                    ...(position ? { position, opacity: 0 } : { }),
                 }}
             >
                 {children}
@@ -58,7 +59,7 @@ Collapse.global = {
     className: '',
     addClass: '',
     style: {},
-    delay: 200,
+    delay: 100,
 
 };
 
