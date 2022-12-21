@@ -25,7 +25,7 @@ import Text from '../source/Text/Text.jsx';
 import Icon from '../source/Icon/Icon.jsx';
 import Edit from '../source/Edit/Edit.jsx';
 import List from '../source/List/List.jsx';
-
+import Collapse from '../source/Collapse/Collapse.jsx';
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
 import {
@@ -206,7 +206,7 @@ class App extends React.Component {
             tableSelect: [],
             listSetup: {
             },
-
+            collapse: false,
         };
     }
 
@@ -293,7 +293,7 @@ class App extends React.Component {
     render() {
         const {
             fields, table, textValue, textValue2, dialogEx, customLeft, customTop, values, comboSelect,
-            tableHeader, tableHeight, tableFooter, tableSelect, listSetup,
+            tableHeader, tableHeight, tableFooter, tableSelect, listSetup, collapse,
         } = this.state;
         const dialogs = Object.keys(this.dialogs);
         const fontsName = Object.keys(fonts);
@@ -368,6 +368,17 @@ class App extends React.Component {
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="List">
+                        <Block>
+                            <Collapse expand={!collapse}>
+                                <div style={{ border: '1px dashed red' }}>
+                                    <div style={{ border: '1px dashed gray' }}>item1</div>
+                                </div>
+                            </Collapse>
+                            <Btn onClick={() => {
+                                this.setState({ collapse: !collapse });
+                            }}>{collapse ? 'expand' : 'collapse'}</Btn>
+                        </Block>
+
                         <Block>
                             <List
                                 list={[
