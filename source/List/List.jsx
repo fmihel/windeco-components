@@ -104,7 +104,8 @@ function List({
             style={{
                 ...List.global.style,
                 ...style,
-                ...((!_root && position) ? { position, opacity: 0 } : {}),
+                ...((!_root && position) ? { position, opacity: 0 } : { position: 'static' }),
+                // ...(_root ? { display: 'content' } : {}),
             }}
         >
             {list.map((it) => {

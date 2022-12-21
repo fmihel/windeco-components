@@ -204,7 +204,10 @@ class App extends React.Component {
             tableHeight: 200,
             tableFooter: 'end',
             tableSelect: [],
-            listSetup: [],
+            listSetup: {
+                2: { expand: false },
+                22: { expand: true },
+            },
 
         };
     }
@@ -376,7 +379,16 @@ class App extends React.Component {
                                         caption: 'item-2',
                                         childs: [
                                             { id: 21, caption: 'item-21' },
-                                            { id: 22, caption: 'item-22' },
+                                            {
+                                                id: 22,
+                                                caption: 'item-22',
+                                                childs: [
+                                                    { id: 221, caption: 'item-221' },
+                                                    { id: 222, caption: 'item-222' },
+                                                    { id: 223, caption: 'item-223' },
+
+                                                ],
+                                            },
                                             { id: 23, caption: 'item-23' },
                                         ],
                                     },

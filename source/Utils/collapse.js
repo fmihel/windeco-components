@@ -3,7 +3,7 @@ import getsize from './size';
 
 function collapse(dom, {
     close = true,
-    delay = 200,
+    delay = 100,
     onStart = undefined,
     onStop = undefined,
 
@@ -12,8 +12,13 @@ function collapse(dom, {
         if (setHeight === false) {
             return parseInt(getsize(dom).height, 10);
         }
-        dom.style.height = `${setHeight}px`;
-        dom.style.maxHeight = `${setHeight}px`;
+        if (setHeight === 'auto') {
+            // delete dom.style.height;
+            dom.style.height = 'auto';
+        } else {
+            dom.style.height = `${setHeight}px`;
+            // dom.style.maxHeight = `${setHeight}px`;
+        }
     };
     const startHeight = height();
     let count;
@@ -25,7 +30,7 @@ function collapse(dom, {
             if (count > 0) {
                 move(dH, ok);
             } else {
-                height(startHeight);
+                height('auto');
                 if (onStop) {
                     onStop();
                 }
