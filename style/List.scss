@@ -30,12 +30,10 @@
         overflow: hidden;
         //min-height: $size;
         height:auto;
-        @include transition(height 1s,color 1s);
-        &[expand*="true"]{
-            height:stretch !important;
-            color:red;
-        }
-        
+        @include transition(height 1s);
+    }
+    .wd-list-collapse{
+        height:0px;
     }
     .wd-list-item{
         min-height: $size;
