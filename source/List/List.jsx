@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import collapse from '../Utils/collapse';
 
 function ListItem({
     id,
@@ -55,18 +56,56 @@ function List({
     onChange = undefined,
     attr = {},
     style = List.global.style,
+    _expand = true,
+    _root = true,
 }) {
     const changed = (o) => {
         if (onChange) {
             onChange({ ...o, [aliasId]: o.id });
         }
     };
+    const dom = useRef(null);
+    const [position, setPosition] = useState('fixed');
+    const [show, setShow] = useState(false);
+
+    useEffect(() => {
+        if (!_root) {
+            if (dom && dom.current) {
+                if (_expand) {
+                    collapse(dom.current, {
+                        close: false,
+                        onStart() {
+                            setPosition(false);
+                            setShow(true);
+                        },
+                    });
+                } else {
+                    collapse(dom.current, {
+                        close: true,
+                        onStop() {
+                            setShow(false);
+                            setPosition('fixed');
+                        },
+                    });
+                }
+            }
+        } else {
+            setShow(true);
+        }
+    }, [_expand, _root, dom]);
+
     return (
-        <div
+        <>{(_expand || show)
+        && <div
+            ref={dom}
             {...(id ? { id } : {})}
             className={`${className} ${addClass}`}
             {...attr}
-            style={{ ...List.global.style, ...style }}
+            style={{
+                ...List.global.style,
+                ...style,
+                ...((!_root && position) ? { position, opacity: 0 } : {}),
+            }}
         >
             {list.map((it) => {
                 const childs = it[aliasChilds] || [];
@@ -86,6 +125,8 @@ function List({
                         />
                         {(childs.length > 0)
                         && <List
+                            _expand = {expand}
+                            _root = {false}
                             className = {className}
                             addClass = {addClass}
                             list = {childs}
@@ -100,15 +141,14 @@ function List({
                             attr={{ ...(expand ? { expand: 'true' } : {}) }}
                             style={{
                                 ...style,
-                                // ...(!expand ? { height: 0 } : {}),
-                                height: 0,
                             }}
                         />
                         }
                     </div>
                 );
             })}
-        </div>
+        </div>}
+        </>
     );
 }
 List.global = {
