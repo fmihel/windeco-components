@@ -205,8 +205,6 @@ class App extends React.Component {
             tableFooter: 'end',
             tableSelect: [],
             listSetup: {
-                2: { expand: false },
-                22: { expand: true },
             },
 
         };
