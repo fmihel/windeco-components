@@ -1,7 +1,8 @@
 /* eslint-disable no-param-reassign */
-import getsize from './size';
+import getsize from '../Utils/size';
 
-function collapse(dom, {
+function collapse({
+    dom,
     close = true,
     delay = 100,
     onStart = undefined,

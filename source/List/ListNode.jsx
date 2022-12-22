@@ -1,10 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import Collapse from '../Collapse/Collapse.jsx';
 
 export default function ListNode({
-    className,
-    addClass,
-    style,
+    className = ListNode.global.className,
+    addClass = ListNode.global.addClass,
+    style = ListNode.global.style,
+
+    classNameList,
+    addClassList,
+    styleList,
+
     list,
     aliasChilds,
     aliasId,
@@ -13,6 +18,7 @@ export default function ListNode({
     ItemComponent,
     onClick,
     onChange,
+    level = 0,
 
 }) {
     return (
@@ -23,10 +29,19 @@ export default function ListNode({
                 const active = (aid in setup) && setup[aid].active;
                 const expand = (aid in setup) && setup[aid].expand;
                 return (
-                    <div key={aid} id={aid} className='wd-node'>
+                    <div
+                        key={aid}
+                        id={aid}
+                        className={`${className} ${addClass}`}
+                        style={{
+                            ...ListNode.global.style,
+                            ...style,
+                        }}
+                    >
                         <ItemComponent
                             id={aid}
                             caption={it[aliasCaption]}
+                            level={level}
                             data={it}
                             active={active}
                             expand={expand}
@@ -36,12 +51,21 @@ export default function ListNode({
                         {(childs.length > 0)
                         && <Collapse
                             expand = {expand}
-                            className = {className}
-                            addClass = {addClass}
+                            className = {classNameList}
+                            addClass = {addClassList}
+                            style={styleList}
+
                         >
                             <ListNode
+                                level={level + 1}
                                 className = {className}
                                 addClass = {addClass}
+                                style={style}
+
+                                classNameList = {classNameList}
+                                addClassList = {addClassList}
+                                styleList={styleList}
+
                                 list = {childs}
                                 ItemComponent ={ItemComponent}
 
@@ -51,10 +75,7 @@ export default function ListNode({
                                 setup={setup}
                                 onClick={onClick}
                                 onChange={onChange}
-                                attr={{ ...(expand ? { expand: 'true' } : {}) }}
-                                style={{
-                                    ...style,
-                                }}
+
                             />
                         </Collapse>
                         }
@@ -64,3 +85,9 @@ export default function ListNode({
         </>
     );
 }
+
+ListNode.global = {
+    className: 'wd-node',
+    addClass: '',
+    style: {},
+};

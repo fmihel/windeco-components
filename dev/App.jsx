@@ -370,36 +370,37 @@ class App extends React.Component {
 
                         <Block>
                             <List
-                                list={[
-                                    { id: 1, caption: 'item-1' },
-                                    {
-                                        id: 2,
-                                        caption: 'item-2',
-                                        childs: [
-                                            { id: 21, caption: 'item-21' },
-                                            {
-                                                id: 22,
-                                                caption: 'item-22',
-                                                childs: [
-                                                    { id: 221, caption: 'item-221' },
-                                                    {
-                                                        id: 222,
-                                                        caption: 'item-222',
-                                                        childs: [
-                                                            { id: 2221, caption: 'item-2221' },
-                                                            { id: 2222, caption: 'item-2222' },
-                                                            { id: 2223, caption: 'item-2223' },
+                                list={
+                                    [
+                                        { id: 1, caption: 'item-1' },
+                                        {
+                                            id: 2,
+                                            caption: 'item-2',
+                                            childs: [
+                                                { id: 21, caption: 'item-21' },
+                                                {
+                                                    id: 22,
+                                                    caption: 'item-22',
+                                                    childs: [
+                                                        { id: 221, caption: 'item-221' },
+                                                        {
+                                                            id: 222,
+                                                            caption: 'item-222',
+                                                            childs: [
+                                                                { id: 2221, caption: 'item-2221' },
+                                                                { id: 2222, caption: 'item-2222' },
+                                                                { id: 2223, caption: 'item-2223' },
 
-                                                        ],
-                                                    },
-                                                    { id: 223, caption: 'item-223' },
-                                                ],
-                                            },
-                                            { id: 23, caption: 'item-23' },
-                                        ],
-                                    },
-                                    { id: 3, caption: 'item-3' },
-                                ]}
+                                                            ],
+                                                        },
+                                                        { id: 223, caption: 'item-223' },
+                                                    ],
+                                                },
+                                                { id: 23, caption: 'item-23' },
+                                            ],
+                                        },
+                                        { id: 3, caption: 'item-3' },
+                                    ]}
                                 setup={listSetup}
                                 onChange={({ id, active, expand }) => {
                                     const setup = {

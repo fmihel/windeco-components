@@ -1,9 +1,11 @@
 import React from 'react';
+import Gap from '../Gap/Gap.jsx';
 
 export default function ListItem({
     id,
     caption,
     data,
+    level,
     className = ListItem.global.className,
     addClass = ListItem.global.addClass,
     active = false,
@@ -21,14 +23,20 @@ export default function ListItem({
         }
     };
     return (
-        <div
-            className={`${className} ${addClass}`}
-            onClick={click}
-            {...(active ? { active: 'true' } : {})}
-            {...(expand ? { expand: 'true' } : {})}
+        <Gap
+            count ={level}
+            addClass={`${className} ${addClass}`}
+            attr={{
+                ...(active ? { active: 'true' } : {}),
+                ...(expand ? { expand: 'true' } : {}),
+            }}
         >
-            {caption}
-        </div>
+            <div
+                onClick={click}
+            >
+                {caption}
+            </div>
+        </Gap>
     );
 }
 

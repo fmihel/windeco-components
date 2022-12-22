@@ -6,6 +6,12 @@ function List({
     id = undefined,
     className = List.global.className,
     addClass = List.global.addClass,
+    style = List.global.style,
+
+    classNameNode = ListNode.global.className,
+    addClassNode = ListNode.global.addClass,
+    styleNode = ListNode.global.style,
+
     list = [],
     ItemComponent = List.global.ItemComponent,
 
@@ -16,8 +22,6 @@ function List({
     setup = {},
     onClick = undefined,
     onChange = undefined,
-    attr = {},
-    style = List.global.style,
 }) {
     const change = (o) => {
         if (onChange) {
@@ -28,16 +32,23 @@ function List({
         <div
             {...(id ? { id } : {})}
             className={`${className} ${addClass}`}
-            {...attr}
             style={{
                 ...List.global.style,
                 ...style,
             }}
         >
             <ListNode
-                className = {className}
-                addClass = {addClass}
-                style = {style}
+                className = {classNameNode}
+                addClass = {addClassNode}
+                style = {styleNode}
+
+                classNameList = {className}
+                addClassList = {addClass}
+                styleList={{
+                    ...List.global.style,
+                    ...style,
+                }}
+
                 list = {list}
                 aliasChilds = {aliasChilds}
                 aliasId = {aliasId}
@@ -54,13 +65,13 @@ function List({
 List.global = {
     className: 'wd-list',
     addClass: '',
+    style: {},
 
     ItemComponent: ListItem,
 
     aliasId: 'id',
     aliasCaption: 'caption',
     aliasChilds: 'childs',
-    style: {},
 
 };
 

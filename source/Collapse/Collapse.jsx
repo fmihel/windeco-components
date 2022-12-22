@@ -1,7 +1,7 @@
 import React, {
     useEffect, useRef, useState,
 } from 'react';
-import collapse from '../Utils/collapse';
+import collapse from './collapse';
 
 function Collapse({
     className = Collapse.global.className,
@@ -9,6 +9,7 @@ function Collapse({
     style = Collapse.global.style,
     expand = true,
     delay = Collapse.global.delay,
+    attr = {},
     children,
 }) {
     const dom = useRef(null);
@@ -18,7 +19,8 @@ function Collapse({
     useEffect(() => {
         if (dom && dom.current) {
             if (expand) {
-                collapse(dom.current, {
+                collapse({
+                    dom: dom.current,
                     close: false,
                     onStart() {
                         setPosition(false);
@@ -27,7 +29,8 @@ function Collapse({
                     delay,
                 });
             } else {
-                collapse(dom.current, {
+                collapse({
+                    dom: dom.current,
                     close: true,
                     delay,
                     onStop() {
@@ -49,6 +52,7 @@ function Collapse({
                     ...style,
                     ...(position ? { position, opacity: 0 } : { }),
                 }}
+                {...attr}
             >
                 {children}
             </div>}
