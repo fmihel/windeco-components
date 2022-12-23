@@ -195,12 +195,11 @@ class App extends React.Component {
                                                 { id: 5, caption: 'Pages' },
                                             ]
                                         }
-                                        onChange={(o) => {
-                                            console.log(o);
+                                        onClick={(o) => {
                                             this.setState({
                                                 listSelect: {
                                                     ...map(listSelect, (val) => ({ ...val, active: false })),
-                                                    [o.id]: { ...listSelect[o.id], ...o },
+                                                    [o.id]: { ...listSelect[o.id], active: true, expand: !(listSelect[o.id] && listSelect[o.id].expand) },
                                                 },
                                             });
                                         }}

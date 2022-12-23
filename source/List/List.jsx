@@ -21,13 +21,8 @@ function List({
 
     setup = {},
     onClick = undefined,
-    onChange = undefined,
+    onDoubleClick = undefined,
 }) {
-    const change = (o) => {
-        if (onChange) {
-            onChange({ ...o, [aliasId]: o.id });
-        }
-    };
     return (
         <div
             {...(id ? { id } : {})}
@@ -56,7 +51,7 @@ function List({
                 setup = {setup}
                 ItemComponent = {ItemComponent}
                 onClick = {onClick}
-                onChange = {change}
+                onDoubleClick = {onDoubleClick}
             />
         </div>
 

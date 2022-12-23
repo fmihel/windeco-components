@@ -17,7 +17,7 @@ export default function ListNode({
     setup,
     ItemComponent,
     onClick,
-    onChange,
+    onDoubleClick,
     level = 0,
 
 }) {
@@ -47,8 +47,8 @@ export default function ListNode({
                             childs={it[aliasChilds]}
                             active={active}
                             expand={expand}
-                            onClick={onClick}
-                            onChange={onChange}
+                            onClick={onClick ? () => { onClick(it); } : undefined}
+                            onDoubleClick={onDoubleClick ? () => { onDoubleClick(it); } : undefined}
                         />
                         {(childs.length > 0)
                         && <Collapse
@@ -76,7 +76,7 @@ export default function ListNode({
                                 aliasChilds = {aliasChilds}
                                 setup={setup}
                                 onClick={onClick}
-                                onChange={onChange}
+                                onDoubleClick={onDoubleClick}
 
                             />
                         </Collapse>

@@ -402,22 +402,12 @@ class App extends React.Component {
                                         { id: 3, caption: 'item-3' },
                                     ]}
                                 setup={listSetup}
-                                onChange={({ id, active, expand }) => {
-                                    const setup = {
-                                        ...listSetup,
-                                        [id]: {
-                                            ...listSetup[id],
-                                            active,
-                                            expand,
-                                        },
-
-                                    };
-
+                                onClick={(o) => {
                                     this.setState({
-                                        listSetup: map(setup, (item, key) => ({
-                                            ...item,
-                                            active: key === id,
-                                        })),
+                                        listSetup: {
+                                            ...map(listSetup, (val) => ({ ...val, active: false })),
+                                            [o.id]: { ...listSetup[o.id], active: true, expand: !(listSetup[o.id] && listSetup[o.id].expand) },
+                                        },
                                     });
                                 }}
                             />

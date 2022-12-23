@@ -12,18 +12,9 @@ export default function ListItem({
     active = false,
     expand = false,
     onClick = undefined,
-    onChange = undefined,
+    onDoubleClick = undefined,
 
 }) {
-    const click = () => {
-        if (onClick) onClick({ id, data });
-        if (onChange) {
-            onChange({
-                id, active: !active, expand: !expand, data,
-            });
-        }
-    };
-
     return (
         <Gap
             count ={level}
@@ -32,7 +23,8 @@ export default function ListItem({
                 ...(active ? { active: 'true' } : {}),
                 ...(expand ? { expand: 'true' } : {}),
             }}
-            onClick={click}
+            onClick={onClick}
+            onDoubleClick={onDoubleClick}
         >
             <div is='caption'>
                 {caption}
