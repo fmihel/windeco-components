@@ -13,11 +13,14 @@ import Edit from '../source/Edit/Edit.jsx';
 import Label from '../source/Label/Label.jsx';
 import Group from '../source/Group/Group.jsx';
 import ComboBox from '../source/ComboBoxEx/ComboBoxEx.jsx';
+import List from '../source/List/List.jsx';
+
 import {
     table_long2, table_long,
     combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4, combo_list5,
     icons,
 } from './data.js';
+import map from '../source/Utils/map.js';
 
 const Navbar = lazy(() => import(/* webpackChunkName: "Navbar" */'./components/Navbar/Navbar.jsx'));
 Group.global = {
@@ -38,6 +41,7 @@ class App extends React.Component {
                 { id: 'item-3', caption: 'first' },
             ],
             Modal: undefined,
+            listSelect: {},
         };
         this.asyncState = new AsyncState(this);
     }
@@ -75,8 +79,9 @@ class App extends React.Component {
     render() {
         // const { LazyLoadA, LazyLoadB, LazyLoadD } = this.state;
         const { theme } = this.props;
-        const { menu, Modal } = this.state;
+        const { menu, Modal, listSelect } = this.state;
         const prs = ['simple', 'primary', 'secondary', 'success', 'info', 'warning', 'danger', 'light', 'dark'];
+        console.log('list', listSelect);
         return (
             <>
                 <div className={'app'}>
@@ -155,7 +160,54 @@ class App extends React.Component {
                             </div>
                         </div>
 
-                        {/** ------------------------------------------------------------------------  */}
+                        {/** List  ------------------------------------------------------------------------  */}
+                        <div className="row">
+                            <div className="col">
+                                <Group style={{ marginTop: 10 }} caption="ul">
+                                    <ul className="list-group">
+                                        <li className="list-group-item">News Feed</li>
+                                        <li className="list-group-item">Messages</li>
+                                        <li className="list-group-item">Events</li>
+                                        <li className="list-group-item">Groups</li>
+                                        <li className="list-group-item">Pages</li>
+                                    </ul>
+                                </Group>
+                            </div>
+                            <div className="col">
+                                <Group style={{ marginTop: 10 }} caption ="List">
+                                    <List
+                                        id='cb1'
+                                        setup={listSelect}
+                                        list = {
+                                            [{ id: 1, caption: 'New Feed' },
+                                                { id: 2, caption: 'Messages' },
+                                                {
+                                                    id: 3,
+                                                    caption: 'Events',
+                                                    childs: [
+                                                        { id: 31, caption: 'onClick' },
+                                                        { id: 32, caption: 'onDoubleClick' },
+                                                        { id: 33, caption: 'onFocus' },
+                                                        { id: 34, caption: 'onBlur' },
+                                                    ],
+                                                },
+                                                { id: 4, caption: 'Groups' },
+                                                { id: 5, caption: 'Pages' },
+                                            ]
+                                        }
+                                        onChange={(o) => {
+                                            console.log(o);
+                                            this.setState({
+                                                listSelect: {
+                                                    ...map(listSelect, (val) => ({ ...val, active: false })),
+                                                    [o.id]: { ...listSelect[o.id], ...o },
+                                                },
+                                            });
+                                        }}
+                                    />
+                                </Group>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 {(Modal)

@@ -26,8 +26,9 @@ export default function ListNode({
             {list.map((it) => {
                 const childs = it[aliasChilds] || [];
                 const aid = `${it[aliasId]}`;
-                const active = (aid in setup) && setup[aid].active;
-                const expand = (aid in setup) && setup[aid].expand;
+                const active = !!(((aid in setup) && setup[aid].active));
+                const expand = !!(((aid in setup) && setup[aid].expand));
+
                 return (
                     <div
                         key={aid}

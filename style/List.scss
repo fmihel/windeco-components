@@ -40,7 +40,6 @@
         height:$size;
         line-height: $size;
         text-indent: $gap;
-        white-space: nowrap;
         overflow: hidden;
 
         &[active]{
@@ -57,7 +56,8 @@
         }
         >div{
             &[is='caption']{
-                @include stretch();    
+                @include stretch();
+                overflow: hidden;    
             }
             &[is='icon']{
                 width: $size;
