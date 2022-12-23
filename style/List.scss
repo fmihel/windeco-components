@@ -13,10 +13,10 @@
         }   
     }
 
-
     $size:var(--wd-size);
     $bg:var(--wd-high);
     $color:var(--wd-color);
+    $highlight:var(--wd-highlight);
     $border:var(--wd-border);
     $outline:var(--wd-outline);
     $margin:var(--wd-margin);
@@ -24,6 +24,8 @@
     $margin:var(--wd-margin);
     $radius:var(--wd-radius);
     $gap:$wd-gap;
+    $tick:$wd-tick;
+    $invert:50%;//var(--cb-invert);
 
     .wd-list{
         box-sizing: border-box;
@@ -42,15 +44,39 @@
         overflow: hidden;
 
         &[active]{
-            color:limegreen;
+            color:$highlight;
+            text-shadow: 0 0 1px $highlight;
         }
         &:hover{
             background-color:var(--btn-bg-hover);
             color:var(--btn-color-hover);
             &[active]{
-                color:limegreen;
+                color:$highlight;
+                text-shadow: 0 0 1px $highlight;
             }
         }
+        >div{
+            &[is='caption']{
+                @include stretch();    
+            }
+            &[is='icon']{
+                width: $size;
+                min-width: $size;
+                background-image: url($tick); 
+                background-repeat: no-repeat, no-repeat;
+                background-position: center;
+                filter:invert($invert);                
+                
+            }
+        }
+        &[expand='true']{
+            >div{
+                &[is='icon']{
+                    transform: rotate(180deg);
+                }
+            }
+        }
+
     }
 
 }

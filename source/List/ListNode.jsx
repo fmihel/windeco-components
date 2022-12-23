@@ -43,6 +43,7 @@ export default function ListNode({
                             caption={it[aliasCaption]}
                             level={level}
                             data={it}
+                            childs={it[aliasChilds]}
                             active={active}
                             expand={expand}
                             onClick={onClick}

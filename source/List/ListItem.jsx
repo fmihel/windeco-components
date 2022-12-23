@@ -6,6 +6,7 @@ export default function ListItem({
     caption,
     data,
     level,
+    childs,
     className = ListItem.global.className,
     addClass = ListItem.global.addClass,
     active = false,
@@ -22,6 +23,7 @@ export default function ListItem({
             });
         }
     };
+
     return (
         <Gap
             count ={level}
@@ -30,12 +32,12 @@ export default function ListItem({
                 ...(active ? { active: 'true' } : {}),
                 ...(expand ? { expand: 'true' } : {}),
             }}
+            onClick={click}
         >
-            <div
-                onClick={click}
-            >
+            <div is='caption'>
                 {caption}
             </div>
+            {(childs && childs.length > 0) && <div is='icon'></div>}
         </Gap>
     );
 }

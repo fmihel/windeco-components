@@ -11,7 +11,7 @@
             
            --cb-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:-20%))};
            --cb-color-hover:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:-50%))};
-           --cb-placeholder:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:40%))};
+           --cb-placeholder:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$light:20%,$dark:-40%))};
            //--cb-invert:#{meta.inspect(map-get($map:$inverts,$key:$theme))};
            //@debug $inverts  map-get($map:$inverts,$key:$theme);
         }
@@ -22,7 +22,7 @@
     $bg:var(--wd-deep);
     $color:var(--cb-color);
     $invert:50%;//var(--cb-invert);
-
+    $tick:$wd-tick;
     $border:var(--wd-border);
     $required:rgba(var(--wd-alert-rgb), 0.1);
 
@@ -68,10 +68,17 @@
             &:nth-child(2) {
                 min-width: $size;
                 width: $size;
-                background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAATklEQVR4nO3OMQoAIAwEwXtn/uV7tVFIocRCI8JOHbInAQDwkSrJNu6s3x41nkYjdu+ujLgajyIp8VUsNT4bkR4fiouX7Lgf8SwOADiiAWpFIUWn1ypTAAAAAElFTkSuQmCC'); 
+                background-image: url($tick); 
                 background-repeat: no-repeat, no-repeat;
                 background-position: center;
                 filter:invert($invert);
+            }
+        }
+        &[open]{
+            >*{
+                &:nth-child(2) {
+                    transform: rotate(180deg);
+                }
             }
         }
         &:focus { 

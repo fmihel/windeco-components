@@ -109,6 +109,7 @@ function ComboBox({
                 ref = {ref}
                 {...(disabled ? { disabled: true } : { tabIndex: '0' })}
                 {...((required && !selected && !focused) ? { required: true } : { })}
+                {...(open ? { open: true } : { })}
                 onMouseMove={mouseMove}
                 onMouseLeave={mouseLeave}
                 onFocus={focus}

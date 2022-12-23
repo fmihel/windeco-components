@@ -10,7 +10,7 @@
     @each $theme in $themes{
         #{getThemingRootClass($theme)}{
            --ed-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:-20%))};
-           --ed-placeholder:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:40%))};
+           --ed-placeholder:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$light:20%,$dark:-40%))};
         };
     };
 
