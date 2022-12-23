@@ -1,5 +1,6 @@
 @use "sass:meta";
 @import './vars.scss';
+@import './Gap.scss';
 
 @mixin define(){
     $themes:$wd-themes;
@@ -41,17 +42,17 @@
         line-height: $size;
         text-indent: $gap;
         overflow: hidden;
-
+        border-bottom: 1px solid $border;
         &[active]{
             color:$highlight;
-            text-shadow: 0 0 1px $highlight;
+            //text-shadow: 0 0 1px $highlight;
         }
         &:hover{
             background-color:var(--btn-bg-hover);
             color:var(--btn-color-hover);
             &[active]{
                 color:$highlight;
-                text-shadow: 0 0 1px $highlight;
+                //text-shadow: 0 0 1px $highlight;
             }
         }
         >div{

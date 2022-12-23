@@ -205,6 +205,7 @@ class App extends React.Component {
             tableFooter: 'end',
             tableSelect: [],
             listSetup: {
+                2: { expand: true, active: true },
             },
         };
     }
@@ -318,53 +319,6 @@ class App extends React.Component {
                     <input id="undef-theme" type="button" value="undef-theme" onClick={this.undefTheme}/>
                 </div>
                 <div className='content wd-scrollbar'>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption="Abs position">
-                        <Block addClass="abs-pos">
-                            <Edit
-                                disable={{ dim: true }}
-                                style={
-                                    {
-                                        position: 'absolute',
-                                        left: 540,
-                                        top: -75,
-                                        // border: '1px dashed lime',
-                                        width: 57,
-                                        height: 16,
-                                    }
-                                }>abs position</Edit></Block>
-
-                        <Block addClass="abs-pos">
-                            <CheckBox style={
-                                {
-                                    position: 'absolute',
-                                    left: 350,
-                                    top: -75,
-                                    // border: '1px dashed lime',
-                                    width: 14,
-                                    height: 14,
-                                }
-                            }/></Block>
-                        <Block addClass="abs-pos">
-                            <ComboBoxEx
-                                list = {combo_list3}
-                                listClasses={listClasses3}
-                                disable={{ dim: true }}
-                                select={3}
-                                addClass={'wd-clamp'}
-                                style={
-                                    {
-                                        position: 'absolute',
-                                        left: 380,
-                                        top: -75,
-                                        // border: '1px dashed lime',
-                                        height: 16,
-                                        width: 150,
-
-                                    }
-                                }/>
-                        </Block>
-                    </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
                     <Head caption="List">
 
