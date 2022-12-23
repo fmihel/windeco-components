@@ -75,31 +75,4 @@ List.global = {
 
 };
 
-List.map = (o, callback) => {
-    if (Array.isArray(o)) {
-        return o.map((val, index) => callback(val, index));
-    } if (typeof o === 'object') {
-        const keys = Object.keys(o);
-        const out = {};
-        keys.map((key) => {
-            out[key] = callback(o[key], key);
-        });
-        return out;
-    }
-    throw Error('List.map(a,..) a is array or object');
-};
-List.filter = (o, callback) => {
-    if (Array.isArray(o)) {
-        return o.filter((p, i) => callback(p, i));
-    } if (typeof o === 'object') {
-        const keys = Object.keys(o);
-        const out = {};
-        keys.map((key) => {
-            const res = callback(o[key], key);
-            if (res) out[key] = res;
-        });
-        return out;
-    }
-    throw Error('List.map(a,..) a is array or object');
-};
 export default List;

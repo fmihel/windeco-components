@@ -25,7 +25,6 @@ import Text from '../source/Text/Text.jsx';
 import Icon from '../source/Icon/Icon.jsx';
 import Edit from '../source/Edit/Edit.jsx';
 import List from '../source/List/List.jsx';
-import Collapse from '../source/Collapse/Collapse.jsx';
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
 import {
@@ -33,6 +32,7 @@ import {
     combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4, combo_list5,
     icons,
 } from './data.js';
+import map from '../source/Utils/map';
 import theme from '../source/Utils/theme';
 
 // Icon.icons({
@@ -414,7 +414,7 @@ class App extends React.Component {
                                     };
 
                                     this.setState({
-                                        listSetup: List.map(setup, (item, key) => ({
+                                        listSetup: map(setup, (item, key) => ({
                                             ...item,
                                             active: key === id,
                                         })),
