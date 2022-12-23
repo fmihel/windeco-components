@@ -6,7 +6,7 @@
     $gap:var(--wd-gap);
     $color:var(--wd-label);
     $margin:$wd-margin;
-    .wd-label-frame{
+    .wd-label{
         margin-bottom:$margin;
         display: flex;
         flex-direction: row;
@@ -21,15 +21,15 @@
             //flex:1 1 auto;
             margin-right: 0px;
         }
-        .wd-label{
+        label{
             @if($color!='none'){
                 color:$color;
             };
             height:$size;
             line-height: $size;
             margin-right:$gap;
-            //text-indent: $gap;
             min-width:6rem;
+            overflow: hidden;
         }            
     }
 }

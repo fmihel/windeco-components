@@ -13,8 +13,8 @@ import {
 import { iEdit, iEdit16 } from './global';
 import Btn from '../source/Btn/Btn.jsx';
 import BtnIcon from '../source/BtnIcon/BtnIcon.jsx';
-import ComboBoxEx from '../source/ComboBoxEx/ComboBoxEx.jsx';
-import ComboItemIcon from '../source/ComboBoxEx/ComboItemIcon.jsx';
+import ComboBoxEx from '../source/ComboBox/ComboBox.jsx';
+import ComboItemIcon from '../source/ComboBox/ComboItemIcon.jsx';
 
 import CheckBox from '../source/CheckBox/CheckBox.jsx';
 import Label from '../source/Label/Label.jsx';
