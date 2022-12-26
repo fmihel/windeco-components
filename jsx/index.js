@@ -5,7 +5,7 @@ import RLabel from './Label/Label.jsx';
 import RModalDialog from './ModalDialog/ModalDialog.jsx';
 import RTableFixed from './TableFixed/TableFixed.jsx';
 import RModal from './Modal/Modal.jsx';
-import RComboBoxEx from './ComboBoxEx/ComboBoxEx.jsx';
+import RComboBox from './ComboBox/ComboBox.jsx';
 import RBtnIcon from './BtnIcon/BtnIcon.jsx';
 import RText from './Text/Text.jsx';
 import RIcon from './Icon/Icon.jsx';
@@ -16,7 +16,7 @@ export default {
     Btn: RBtn,
     CheckBox: RCheckBox,
     Label: RLabel,
-    ComboBoxEx: RComboBoxEx,
+    ComboBox: RComboBox,
     ModalDialog: RModalDialog,
     Modal: RModal,
     TableFixed: RTableFixed,
@@ -26,7 +26,7 @@ export default {
     List: RList,
 };
 
-export const ComboBoxEx = RComboBoxEx;
+export const ComboBox = RComboBox;
 export const Btn = RBtn;
 export const CheckBox = RCheckBox;
 export const Edit = REdit;

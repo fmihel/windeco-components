@@ -8,23 +8,23 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
-    faFile, faFolder, faFolderOpen, faCoffeCup, faFileCode, faAddressBook, faCaretDown,
+    faAddressBook, faCaretDown,
 } from '@fortawesome/free-solid-svg-icons';
 import { iEdit, iEdit16 } from './global';
-import Btn from '../source/Btn/Btn.jsx';
-import BtnIcon from '../source/BtnIcon/BtnIcon.jsx';
-import ComboBoxEx from '../source/ComboBox/ComboBox.jsx';
-import ComboItemIcon from '../source/ComboBox/ComboItemIcon.jsx';
+import Btn from '../jsx/Btn/Btn.jsx';
+import BtnIcon from '../jsx/BtnIcon/BtnIcon.jsx';
+import ComboBoxEx from '../jsx/ComboBox/ComboBox.jsx';
+import ComboItemIcon from '../jsx/ComboBox/ComboItemIcon.jsx';
 
-import CheckBox from '../source/CheckBox/CheckBox.jsx';
-import Label from '../source/Label/Label.jsx';
-import TableFixed from '../source/TableFixed/TableFixed.jsx';
-import ModalDialog from '../source/ModalDialog/ModalDialog.jsx';
-import Modal from '../source/Modal/Modal.jsx';
-import Text from '../source/Text/Text.jsx';
-import Icon from '../source/Icon/Icon.jsx';
-import Edit from '../source/Edit/Edit.jsx';
-import List from '../source/List/List.jsx';
+import CheckBox from '../jsx/CheckBox/CheckBox.jsx';
+import Label from '../jsx/Label/Label.jsx';
+import TableFixed from '../jsx/TableFixed/TableFixed.jsx';
+import ModalDialog from '../jsx/ModalDialog/ModalDialog.jsx';
+import Modal from '../jsx/Modal/Modal.jsx';
+import Text from '../jsx/Text/Text.jsx';
+import Icon from '../jsx/Icon/Icon.jsx';
+import Edit from '../jsx/Edit/Edit.jsx';
+import List from '../jsx/List/List.jsx';
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
 import {
@@ -32,8 +32,8 @@ import {
     combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4, combo_list5,
     icons,
 } from './data.js';
-import map from '../source/Utils/map';
-import theme from '../source/Utils/theme';
+import map from '../jsx/Utils/map';
+import theme from '../jsx/Utils/theme';
 
 // Icon.icons({
 // [iEdit]: './media/edit.png',

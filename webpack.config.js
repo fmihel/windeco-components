@@ -1,31 +1,19 @@
 const path = require('path');
-const config = require('./webpack.local');
 
 const {defArg} = require('fmihel-server-lib');
-//const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const toRemotePath = defArg('tooh') || defArg('took') || defArg('too') || defArg('toobe') || defArg('toob');
+let remotePath = false;
+const toRemotePath = '';
 const toProduction = !toRemotePath && defArg('prod');
-let remotePath;
-if (defArg('tooh'))
-  remotePath =  config.REMOTE_ORDER_PATHS_BY_ARGS.tooh;
-else if (defArg('took'))
-  remotePath = config.REMOTE_ORDER_PATHS_BY_ARGS.took;
-else if (defArg('too'))
-  remotePath = config.REMOTE_ORDER_PATHS_BY_ARGS.too;
-else if (defArg('toobe'))
-  remotePath = config.REMOTE_ORDER_PATHS_BY_ARGS.toobe;
-else if (defArg('toob'))
-  remotePath = config.REMOTE_ORDER_PATHS_BY_ARGS.toob;
 
 
 module.exports = {
   mode: toProduction?'production':'development',
   devtool: toProduction?'':'inline-source-map',
   entry: {
-    'windeco-components':'./source/index.js',
-    Btn:'./source/Btn/Btn.jsx',
-    Edit:'./source/Edit/Edit.jsx',
+    'windeco-components':'./jsx/index.js',
+    //Btn:'./source/Btn/Btn.jsx',
+    //Edit:'./source/Edit/Edit.jsx',
   },
   output: {
     path: toRemotePath?remotePath:path.resolve(__dirname, 'dist'),
@@ -55,7 +43,7 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        include: path.resolve(__dirname, 'source'),
+        include: path.resolve(__dirname, 'jsx'),
         exclude: /(node_modules|bower_components|build|dev)/,
         use: {
           loader: 'babel-loader',
