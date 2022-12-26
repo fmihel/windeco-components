@@ -8,19 +8,19 @@ import $ from 'jquery';
 import Fallback from './components/Fallback/Fallback.jsx';
 // import Modal, { modal } from './components/Modal';
 import AsyncState from './common/AsyncState.js';
-import Btn from '../source/Btn/Btn.jsx';
-import Edit from '../source/Edit/Edit.jsx';
-import Label from '../source/Label/Label.jsx';
-import Group from '../source/Group/Group.jsx';
-import ComboBox from '../source/ComboBoxEx/ComboBoxEx.jsx';
-import List from '../source/List/List.jsx';
+import Btn from '../jsx/Btn/Btn.jsx';
+import Edit from '../jsx/Edit/Edit.jsx';
+import Label from '../jsx/Label/Label.jsx';
+import Group from '../jsx/Group/Group.jsx';
+import ComboBox from '../jsx/ComboBox/ComboBox.jsx';
+import List from '../jsx/List/List.jsx';
 
 import {
     table_long2, table_long,
     combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4, combo_list5,
     icons,
 } from './data.js';
-import map from '../source/Utils/map.js';
+import map from '../jsx/Utils/map.js';
 
 const Navbar = lazy(() => import(/* webpackChunkName: "Navbar" */'./components/Navbar/Navbar.jsx'));
 Group.global = {

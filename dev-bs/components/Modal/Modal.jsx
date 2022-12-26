@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import modalData from './data';
-import Btn from '../../../source/Btn/Btn.jsx';
+import Btn from '../../../jsx/Btn/Btn.jsx';
 
 function Modal({
     id, children,
