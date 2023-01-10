@@ -6,12 +6,12 @@ function Nav({ children }) {
         setItemsState(itemsState === 'close' ? 'open' : 'close');
     };
     return (
-        <div className='wd-nav wd-scrollbar'>
+        <div className='wd-nav' state={`${itemsState}`} >
             <div it='panel'>
                 <div className="wd-nav-logo">Logo</div>
-                <div className="wd-nav-btn" onClick={toggleMenu}>...</div>
+                <div className="wd-nav-btn" onClick={toggleMenu}>&#8801;</div>
             </div>
-            <div state={`${itemsState}`} it={'items'} >
+            <div it={'items'} className="wd-scrollbar">
                 {children.map((it, key) => <div key={key}className='wd-nav-item'>{it}</div>)}
             </div>
         </div>

@@ -1,5 +1,5 @@
 $wd-max-mobile-width:900px;
-
+$wd-nav-panel-height:$wd-size*1.5;
 .wd-layout{
 
     display: flex;
@@ -12,12 +12,12 @@ $wd-max-mobile-width:900px;
     align-content: stretch;
     align-items: stretch;
 
-    overflow: auto;
+    overflow: hidden;
 
 }
 
 .wd-nav{
-
+    //border: 1px dashed yellow;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -25,9 +25,6 @@ $wd-max-mobile-width:900px;
     align-content: stretch;
     align-items: stretch;
     
-    //transition: height 1s ease-in-out;
-
-    //overflow: auto;
     >div[it='panel']{
 
         display: flex;
@@ -39,8 +36,8 @@ $wd-max-mobile-width:900px;
 
         .wd-nav-logo{
             flex:1 1 auto; 
-            min-height: 1.5*$wd-size;
-            line-height: 1.5*$wd-size;   
+            min-height: $wd-nav-panel-height;
+            line-height: $wd-nav-panel-height;   
         }
 
         .wd-nav-btn{
@@ -50,32 +47,43 @@ $wd-max-mobile-width:900px;
             
         }
     }
+    transition: height 0.4s;
+    
     >div[it='items']{
-        //flex:1 1 auto;
-        overflow: hidden;
-        border: 1px solid red;
-        transition: max-height 1s ease-in-out;
-        transition: height 1s ease-in-out;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
 
-        &[state='open']{
-            //max-height: 100% !important;
-            height: 100% !important;
+    &[state='open']{
+        height: 90% !important;
+        @media screen and (min-width: $wd-max-mobile-width) {
+            height: auto !important;
         }
-        &[state='close']{
-            //max-height: 0px !important;
-            height: 0px !important;
-            @media screen and (min-width: $wd-max-mobile-width) {
-                //max-height: 100% !important;
-                height: 100% !important;
+        >div[it='items']{
+            @media screen and (max-width: $wd-max-mobile-width) {
+                //max-height: 400px !important;
             }
+        }
+    }
+    &[state='close']{
+        height: $wd-nav-panel-height !important;
+        @media screen and (min-width: $wd-max-mobile-width) {
+            height: auto !important;
         }
     }
     
 }
 
+.wd-nav-btn{
+    width: $wd-nav-panel-height;
+    text-align: center;
+    line-height: $wd-nav-panel-height;
+    cursor: pointer;
 
+
+}
 .wd-nav-item{
-    border: 1px dashed gray;
+    border-bottom: 1px dashed gray;
     
     min-height: $wd-size;
     //height: $wd-size;
