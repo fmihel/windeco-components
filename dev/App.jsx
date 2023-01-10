@@ -27,7 +27,7 @@ import Edit from '../jsx/Edit/Edit.jsx';
 import List from '../jsx/List/List.jsx';
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
-import Nav from '../jsx/Nav/Nav.jsx';
+import NavBar from '../jsx/NavBar/NavBar.jsx';
 import {
     table_long2, table_long,
     combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4, combo_list5,
@@ -309,20 +309,14 @@ class App extends React.Component {
         };
         return (
             <div className={`${this.state.theme} ${this.state.size}`}>
-                <div className="panel">
-                    <span>{`${this.state.theme} / ${this.state.size}`} </span>
-                    <input id="light" type="button" value="light" onClick={this.setLightTheme}/>
-                    <input id="dark" type="button" value="dark" onClick={this.setDarkTheme}/>
-                    {/*
-                    <input id="small" type="button" value="small" onClick={this.onSize}/>
-                    <input id="normal" type="button" value="normal" onClick={this.onSize}/>
-                    */}
-                    <input id="undef-theme" type="button" value="undef-theme" onClick={this.undefTheme}/>
-                </div>
                 <div className="wd-layout">
 
-                    <Nav>
-                        <span>Item1</span>
+                    <NavBar>
+                        <div>
+                            <span>{'theme'} </span>
+                            <Btn onClick={this.setLightTheme} >light</Btn>
+                            <Btn onClick={this.setDarkTheme} >dark</Btn>
+                        </div>
                         <Edit placeholder='search'/>
                         <span>Item2</span>
                         <span>Item3</span>
@@ -353,7 +347,7 @@ class App extends React.Component {
                         <span>Item4</span>
                         <span>END</span>
 
-                    </Nav>
+                    </NavBar>
 
                     <div className='content wd-scrollbar'>
                         {/*--------------------------------------------------------------------------------------------------*/}

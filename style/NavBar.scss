@@ -1,0 +1,102 @@
+
+
+@use "sass:meta";
+@import './vars.scss';
+
+
+.wd-layout{
+
+    display: flex;
+    flex-direction: column;
+    @media screen and (min-width: $wd-max-mobile-width) {
+        flex-direction: row;
+    }    
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+
+    overflow: hidden;
+
+}
+
+
+@mixin define(){
+
+    $size:var(--wd-size);
+    $panel-height:calc($size*1.5);
+    $bg:var(--wd-deep);
+    $color:var(--wd-color);
+    $border:var(--wd-border);
+    $gap:var(--wd-gap);
+    $mobile-width:$wd-max-mobile-width;
+
+    .wd-nav{
+        @include display-flex-vert-stretch();
+        
+        >div[it='panel']{
+            
+            @include display-flex-horiz-stretch();
+    
+            .wd-nav-logo{
+                @include stretch();
+                min-height: $panel-height;
+                line-height: $panel-height;   
+            }
+    
+            .wd-nav-btn{
+                @media screen and (min-width: $mobile-width) {
+                    display: none;
+                }
+            }
+        }
+
+        @include transition(height 0.4s);
+        
+        >div[it='items']{
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+    
+        &[state='open']{
+            height: 90% !important;
+            @media screen and (min-width: $mobile-width) {
+                height: auto !important;
+            }
+        }
+
+        &[state='close']{
+            height: $panel-height !important;
+            @media screen and (min-width: $mobile-width) {
+                height: auto !important;
+            }
+        }
+        
+    }
+    
+    .wd-nav-btn{
+        width: $panel-height;
+        text-align: center;
+        line-height: $panel-height;
+        cursor: pointer;
+    }
+
+    .wd-nav-item{
+        border-bottom: 1px dashed $border;
+        
+        min-height: $size;
+        min-width: calc(5*$size);
+        line-height: $size;
+
+        padding-left: $gap;
+        padding-right: $gap;
+        padding-top: $gap;
+        padding-bottom: $gap;
+        overflow: hidden;
+        
+    }
+
+}
+
+@include define();
+

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Nav({ children }) {
+function NavBar({ children }) {
     const [itemsState, setItemsState] = useState('close');
     const toggleMenu = () => {
         setItemsState(itemsState === 'close' ? 'open' : 'close');
@@ -18,4 +18,4 @@ function Nav({ children }) {
     );
 }
 
-export default Nav;
+export default NavBar;
