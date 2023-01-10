@@ -1,0 +1,91 @@
+$wd-max-mobile-width:900px;
+
+.wd-layout{
+
+    display: flex;
+    flex-direction: column;
+    @media screen and (min-width: $wd-max-mobile-width) {
+        flex-direction: row;
+    }    
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+
+    overflow: auto;
+
+}
+
+.wd-nav{
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+    
+    //transition: height 1s ease-in-out;
+
+    //overflow: auto;
+    >div[it='panel']{
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: stretch;
+
+        .wd-nav-logo{
+            flex:1 1 auto; 
+            min-height: 1.5*$wd-size;
+            line-height: 1.5*$wd-size;   
+        }
+
+        .wd-nav-btn{
+            @media screen and (min-width: $wd-max-mobile-width) {
+                display: none;
+            }
+            
+        }
+    }
+    >div[it='items']{
+        //flex:1 1 auto;
+        overflow: hidden;
+        border: 1px solid red;
+        transition: max-height 1s ease-in-out;
+        transition: height 1s ease-in-out;
+
+        &[state='open']{
+            //max-height: 100% !important;
+            height: 100% !important;
+        }
+        &[state='close']{
+            //max-height: 0px !important;
+            height: 0px !important;
+            @media screen and (min-width: $wd-max-mobile-width) {
+                //max-height: 100% !important;
+                height: 100% !important;
+            }
+        }
+    }
+    
+}
+
+
+.wd-nav-item{
+    border: 1px dashed gray;
+    
+    min-height: $wd-size;
+    //height: $wd-size;
+    min-width: 5*$wd-size;
+
+    line-height: $wd-size;
+    padding-left: $wd-gap;
+    padding-right: $wd-gap;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    overflow: hidden;
+    
+}

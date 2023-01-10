@@ -5,7 +5,7 @@
     >div{
         &[gap="gap"]{
             width:$wd-size;
-            max-width: $wd-size;
+            min-width: $wd-size;
         }
     }
 }
