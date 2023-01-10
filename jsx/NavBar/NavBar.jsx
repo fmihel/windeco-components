@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import NavLogo from './NavLogo.jsx';
 
-function NavBar({ children }) {
+function NavBar({
+    LogoComponent = undefined,
+    children,
+}) {
     const [itemsState, setItemsState] = useState('close');
     const toggleMenu = () => {
         setItemsState(itemsState === 'close' ? 'open' : 'close');
@@ -8,11 +12,16 @@ function NavBar({ children }) {
     return (
         <div className='wd-nav' state={`${itemsState}`} >
             <div it='panel'>
-                <div className="wd-nav-logo">Logo</div>
+                {LogoComponent ? <LogoComponent/> : <NavLogo/>}
                 <div className="wd-nav-btn" onClick={toggleMenu}>&#8801;</div>
             </div>
             <div it={'items'} className="wd-scrollbar">
-                {children.map((it, key) => <div key={key}className='wd-nav-item'>{it}</div>)}
+                {children.map((it, key) => <div
+                    key={key}
+                    className='wd-nav-item'
+                >
+                    {it}
+                </div>)}
             </div>
         </div>
     );

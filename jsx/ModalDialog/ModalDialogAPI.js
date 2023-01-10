@@ -55,22 +55,29 @@ class ModalDialogAPI {
         }
         if (align === 'stickTo') {
             const dom = DOM(`#${stickTo}`.replace('##', '#'));
-            const abs = absPos(dom);
+
             const out = { width, height };
             if (stickAlign === 'bottom') {
+                const abs = absPos(dom);
                 out.left = abs.x + abs.w / 2 - width / 2 + stickOffX;
                 out.top = abs.y + abs.h + stickOffY;
                 if (out.left + out.width > scr.w) out.left = scr.w - out.width;
                 if (out.left < 0) out.left = 0;
                 if (out.top + out.height > scr.h) out.top = abs.y - out.height - stickOffY;
                 if (out.top < 0) out.top = 0;
-            } else { // left
+            } else if (stickAlign === 'left') { // left
+                const abs = absPos(dom);
                 out.left = abs.x + abs.w + stickOffX;
                 out.top = abs.y + stickOffY;
                 if (out.left + out.width > scr.w) out.left = abs.x - out.width - stickOffX;
                 if (out.left < 0) out.left = 0;
                 if (out.top + out.height > scr.h) out.top = abs.y - out.height;
                 if (out.top < 0) out.top = 0;
+            } else if (stickAlign === 'screen-right-all') {
+                out.left = scr.width - width;
+                out.width = width;
+                out.top = stickOffY;
+                out.height = scr.height - stickOffY;
             }
 
             return out;

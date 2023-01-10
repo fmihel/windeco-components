@@ -4,6 +4,7 @@ import Modal from '../Modal/Modal.jsx';
 import api from './ModalDialogAPI';
 import Btn from '../Btn/Btn.jsx';
 import mousePos from '../Utils/mouse';
+import onResizeScreen from '../Utils/onResizeScreen.js';
 
 function ModalDialog({
     id,
@@ -72,10 +73,10 @@ function ModalDialog({
                 setSize({ width: newPos.width, height: newPos.height });
             }
         };
-        window.addEventListener('resize', resize);
+        const removeResize = onResizeScreen(resize);
         resize(true);
         return () => {
-            window.removeEventListener('resize', resize);
+            removeResize();
         };
     }, [visible, left, top, width, height, align, stickTo, stickOffX, stickOffY, stickAlign, margin, userModif]);
 

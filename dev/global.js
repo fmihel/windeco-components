@@ -1,7 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import global from '../jsx/global';
 import BtnIcon from '../jsx/BtnIcon/BtnIcon.jsx';
 import Icon from '../jsx/Icon/Icon.jsx';
+
+global.wd_max_mobile_width = 900;
 
 BtnIcon.global = {
     ...BtnIcon.global,

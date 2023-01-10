@@ -28,6 +28,8 @@ import List from '../jsx/List/List.jsx';
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
 import NavBar from '../jsx/NavBar/NavBar.jsx';
+import NavLogo from '../jsx/NavBar/NavLogo.jsx';
+import NavMenu from '../jsx/NavBar/NavMenu.jsx';
 import {
     table_long2, table_long,
     combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4, combo_list5,
@@ -309,9 +311,9 @@ class App extends React.Component {
         };
         return (
             <div className={`${this.state.theme} ${this.state.size}`}>
-                <div className="wd-layout">
+                <div className="wd-layout-top">
 
-                    <NavBar>
+                    <NavBar LogoComponent2={() => <NavLogo>logo</NavLogo>}>
                         <div>
                             <span>{'theme'} </span>
                             <Btn onClick={this.setLightTheme} >light</Btn>
@@ -319,37 +321,21 @@ class App extends React.Component {
                         </div>
                         <Edit placeholder='search'/>
                         <span>Item2</span>
-                        <span>Item3</span>
-                        <span>Item4</span>
-                        <span>Item5</span>
-                        <Edit placeholder='search'/>
-                        <span>Item3</span>
-                        <span>Item4</span>
-                        <span>Item5</span>
-                        <span>Item3</span>
-                        <span>Item4</span>
-                        <span>Item5</span>
-                        <Edit placeholder='search'/>
-                        <span>Item4</span>
-                        <span>Item5</span>
-                        <span>Item4</span>
-                        <Edit placeholder='search'/>
-                        <span>Item4</span>
-                        <span>Item5</span>
-                        <span>Item4</span>
-                        <Edit placeholder='search'/>
-                        <span>Item4</span>
-                        <span>Item5</span>
-                        <span>Item4</span>
-                        <Edit placeholder='search'/>
-                        <span>Item4</span>
-                        <span>Item5</span>
-                        <span>Item4</span>
+                        <NavMenu caption="menu">
+                            <div>item1</div>
+                            <NavMenu caption="sub">
+                                <div>Item2</div>
+                                <div>Item4</div>
+                            </NavMenu>
+                            <div>item3</div>
+                        </NavMenu>
+
                         <span>END</span>
 
                     </NavBar>
 
                     <div className='content wd-scrollbar'>
+
                         {/*--------------------------------------------------------------------------------------------------*/}
                         <Head caption="List">
 

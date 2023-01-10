@@ -1,24 +1,5 @@
-
-
 @use "sass:meta";
 @import './vars.scss';
-
-
-.wd-layout{
-
-    display: flex;
-    flex-direction: column;
-    @media screen and (min-width: $wd-max-mobile-width) {
-        flex-direction: row;
-    }    
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-content: stretch;
-    align-items: stretch;
-
-    overflow: hidden;
-
-}
 
 
 @mixin define(){
@@ -31,6 +12,36 @@
     $gap:var(--wd-gap);
     $mobile-width:$wd-max-mobile-width;
 
+
+    .wd-layout-left{
+
+        @include display-flex-vert-stretch();    
+        @media screen and (min-width: $mobile-width) {
+            flex-direction: row;
+        }    
+        overflow: hidden;
+    }
+    
+    .wd-layout-top{
+        @include display-flex-vert-stretch();
+        overflow: hidden;
+    
+        .wd-nav{
+    
+            @include display-flex-vert-stretch();
+            @media screen and (min-width: $mobile-width) {
+                flex-direction: row;
+            }
+    
+            >div[it='items']{
+                display:block;
+                @media screen and (min-width: $mobile-width) {
+                    @include display-flex-horiz-stretch();
+                }
+            }
+        }
+    }
+    
     .wd-nav{
         @include display-flex-vert-stretch();
         
@@ -88,10 +99,7 @@
         min-width: calc(5*$size);
         line-height: $size;
 
-        padding-left: $gap;
-        padding-right: $gap;
-        padding-top: $gap;
-        padding-bottom: $gap;
+        padding: $gap;
         overflow: hidden;
         
     }
