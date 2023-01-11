@@ -16,7 +16,7 @@ function NavItem({
     };
     return (
         <div
-            className='wd-nav-item'
+            className={`${className}`}
             onClick={click}
         >
             {caption || children || ''}

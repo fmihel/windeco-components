@@ -11,7 +11,8 @@
     $border:var(--wd-border);
     $gap:var(--wd-gap);
     $mobile-width:$wd-max-mobile-width;
-
+    $tick:$wd-tick;
+    $invert:50%;//var(--cb-invert);
 
     .wd-nav-left{
 
@@ -83,21 +84,29 @@
     }//navbar
 
     div[it='nav-menu']{
-        >div[it='title']{
-            @include display-flex-horiz-stretch();
-            >div{
-                height: $size;
-                line-height: $size;
-                &:nth-child(1){
-                    @include stretch();
-                }
-                &:nth-child(2){
-                    width: $size;
+        overflow: hidden;
+        >div{
+            &[it='title']{
+                @include display-flex-horiz-stretch();
+                >div{
+                    &:nth-child(1){
+                        @include stretch();
+                    }
+                    &:nth-child(2){
+                        width: $size;
+                    }
                 }
             }
         }
+
         div[it="list"]{
             @include stretch();
+        }
+
+        @include transition(height 0.4s);
+        height: 0px;
+        &[expand='expand']{
+            height: auto;                        
         }
     }
 
@@ -109,20 +118,35 @@
 
     .wd-nav-item{
         border-bottom: 1px dashed $border;
-        
-        min-height: $size;
-        min-width: calc(5*$size);
+        height: $size;
+        min-width: calc(2*$size);
         line-height: $size;
-
-        padding: $gap;
-        overflow: hidden;
+        padding-left: $gap;
+        padding-right: $gap;
+        //overflow: hidden;
     }
+
     .wd-nav-menu{
-        padding: $gap;
-        padding-bottom: 0px;
-        padding-right: 0px;
+        border-bottom: 1px dashed $border;
         min-height: $size;
+        //padding: $gap;
+        //padding-bottom: 0px;
+        
         //min-width: calc(5*$size);
+        >div[it='title']{
+            line-height: $size;
+
+            padding-left: $gap;
+            padding-right: $gap;
+            
+            >div[it="btn"]{
+                width: $size;
+                background-image: url($tick); 
+                background-repeat: no-repeat, no-repeat;
+                background-position: center;
+                filter:invert($invert);                
+            }
+        }
     }
 
 }

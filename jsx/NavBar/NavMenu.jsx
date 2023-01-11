@@ -53,13 +53,13 @@ function NavMenu({
     };
     return (
         <>
-            <div className='wd-nav-menu' onClick={toggle} ref={dom} it="nav-menu">
-                <div it="title">
+            <div className='wd-nav-menu' ref={dom} it="nav-menu" {...(expand ? { expand: 'expand' } : {})}>
+                <div it="title" onClick={toggle}>
                     <div>{caption}</div>
-                    <div>&#9660;</div>
+                    <div it="btn"></div>
                 </div>
-                {(showAs === 'list' && expand)
-                    && <Gap>
+                {(showAs === 'list')
+                    && <Gap >
                         <div it="list">
                             {children.map((it, key) => ((isNavItem(it.type) || isNavMenu(it.type)) ? it : <NavItem key={key}>{it}</NavItem>))}
                         </div>
