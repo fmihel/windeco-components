@@ -13,7 +13,7 @@
     $mobile-width:$wd-max-mobile-width;
 
 
-    .wd-layout-left{
+    .wd-nav-left{
 
         @include display-flex-vert-stretch();    
         @media screen and (min-width: $mobile-width) {
@@ -22,11 +22,11 @@
         overflow: hidden;
     }
     
-    .wd-layout-top{
+    .wd-nav-top{
         @include display-flex-vert-stretch();
         overflow: hidden;
     
-        .wd-nav{
+        >div[it='navbar']{
     
             @include display-flex-vert-stretch();
             @media screen and (min-width: $mobile-width) {
@@ -42,20 +42,17 @@
         }
     }
     
-    .wd-nav{
+    div[it='navbar']{
         @include display-flex-vert-stretch();
-        
         >div[it='panel']{
-            
+            min-height: $panel-height;
             @include display-flex-horiz-stretch();
-    
-            .wd-nav-logo{
+            >div[it='logo']{
                 @include stretch();
-                min-height: $panel-height;
                 line-height: $panel-height;   
             }
-    
-            .wd-nav-btn{
+            >div[it='btn']{
+                width: $panel-height;
                 @media screen and (min-width: $mobile-width) {
                     display: none;
                 }
@@ -83,10 +80,28 @@
             }
         }
         
+    }//navbar
+
+    div[it='nav-menu']{
+        >div[it='title']{
+            @include display-flex-horiz-stretch();
+            >div{
+                height: $size;
+                line-height: $size;
+                &:nth-child(1){
+                    @include stretch();
+                }
+                &:nth-child(2){
+                    width: $size;
+                }
+            }
+        }
+        div[it="list"]{
+            @include stretch();
+        }
     }
-    
+
     .wd-nav-btn{
-        width: $panel-height;
         text-align: center;
         line-height: $panel-height;
         cursor: pointer;
@@ -101,7 +116,13 @@
 
         padding: $gap;
         overflow: hidden;
-        
+    }
+    .wd-nav-menu{
+        padding: $gap;
+        padding-bottom: 0px;
+        padding-right: 0px;
+        min-height: $size;
+        //min-width: calc(5*$size);
     }
 
 }

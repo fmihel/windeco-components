@@ -15,8 +15,8 @@ function ModalDialog({
     header = false,
     footer = undefined,
     align = 'stretch', // stretch, custom,stickTo
-    stickTo = undefined, // DOM or object {to:string | DOM
-    stickAlign = 'bottom',
+    stickTo = undefined, // DOM  | string
+    stickAlign = 'bottom', // bottom | left | screen-right-all
     stickOffX = 0,
     stickOffY = 0,
     margin = 50, // for align = stretch
@@ -75,6 +75,7 @@ function ModalDialog({
         };
         const removeResize = onResizeScreen(resize);
         resize(true);
+
         return () => {
             removeResize();
         };

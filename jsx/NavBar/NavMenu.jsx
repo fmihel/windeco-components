@@ -1,39 +1,71 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ModalDialog from '../ModalDialog/ModalDialog.jsx';
 import global from '../global.js';
 import screen from '../Utils/screen.js';
 import onResizeScreen from '../Utils/onResizeScreen.js';
+import NavItem, { isNavItem } from './NavItem.jsx';
+import Gap from '../Gap/Gap.jsx';
 
-const checkMobile = () => screen().width <= global.wd_max_mobile_width;
-function NavMenu({ caption, children }) {
+export function isNavMenu(o) {
+    return typeof o === 'function' && (o.name === 'NavMenu' || o._originalClass === 'NavMenu');
+}
+
+const isMobile = () => screen().width <= global.wd_max_mobile_width;
+const getViewAs = (viewAs, mobile) => {
+    const out = viewAs.split('/');
+    return (out.length > 1 && !mobile) ? out[1] : out[0];
+};
+function NavMenu({
+    caption,
+    viewAs = 'list/popup', // popup | panel | list -  можно задавать сразу два параметра в строке через слеш, первый для мобильной версии второй для обычной list/popup
+    children,
+}) {
     const [expand, setExpand] = useState(false);
-    const [isMobile, setIsMobile] = useState(checkMobile());
+    const [showAs, setShowAs] = useState(viewAs);
+    const [mobile, setMobile] = useState(false);
+    const dom = useRef(null);
 
     useEffect(() => {
-        const removeResizeScreen = onResizeScreen(() => {
-            setIsMobile(checkMobile());
-        });
-
+        const resize = () => {
+            setMobile(isMobile());
+        };
+        const removeResizeScreen = onResizeScreen(resize);
+        resize();
         return () => {
             removeResizeScreen();
         };
     }, []);
 
+    useEffect(() => {
+        setShowAs(getViewAs(viewAs, mobile));
+    }, [viewAs, mobile]);
+
     const close = () => {
         setExpand(false);
     };
-    const open = () => {
-        setExpand(true);
+    const toggle = (ev) => {
+        if (showAs === 'list') {
+            setExpand(!expand);
+        } else {
+            setExpand(true);
+        }
+        ev.stopPropagation();
     };
-
     return (
         <>
-            <div className='wd-nav-menu' onClick={open}>
-                <span>{caption}</span>
-                <span>&#9660;</span>
-                {(isMobile) ? <div style={{ paddingLeft: 20 }}>{children}</div> : undefined}
+            <div className='wd-nav-menu' onClick={toggle} ref={dom} it="nav-menu">
+                <div it="title">
+                    <div>{caption}</div>
+                    <div>&#9660;</div>
+                </div>
+                {(showAs === 'list' && expand)
+                    && <Gap>
+                        <div it="list">
+                            {children.map((it, key) => ((isNavItem(it.type) || isNavMenu(it.type)) ? it : <NavItem key={key}>{it}</NavItem>))}
+                        </div>
+                    </Gap>}
             </div>
-            {(!isMobile)
+            {((showAs === 'popup') || showAs === 'panel')
             && <ModalDialog
                 visible = {expand}
                 opacityShadow={0}
@@ -41,14 +73,18 @@ function NavMenu({ caption, children }) {
                 msg= ''
                 onClickHeaderClose={close}
                 onClickShadow={close}
-                align='stickTo'
-                stickAlign = 'screen-right-all'
+                {...((showAs === 'panel' || dom.current) ? { align: 'stickTo' } : { align: 'custom' })}
+                {...(showAs === 'panel' ? { stickAlign: 'screen-right-all' } : {})}
+                {...((showAs === 'popup' && dom.current) ? { stickTo: dom.current } : {})}
+                draggable ={false}
+                resizable = {false}
             >
-                {children}
+                {children.map((it, key) => ((isNavItem(it.type) || isNavMenu(it.type)) ? it : <NavItem key={key}>{it}</NavItem>))}
             </ModalDialog>
             }
         </>
     );
 }
 
+NavMenu._originalClass = 'NavMenu';
 export default NavMenu;

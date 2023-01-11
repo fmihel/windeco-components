@@ -54,7 +54,7 @@ class ModalDialogAPI {
             return out;
         }
         if (align === 'stickTo') {
-            const dom = DOM(`#${stickTo}`.replace('##', '#'));
+            const dom = DOM(typeof stickTo === 'string' ? `#${stickTo}`.replace('##', '#') : stickTo);
 
             const out = { width, height };
             if (stickAlign === 'bottom') {

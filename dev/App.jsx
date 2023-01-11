@@ -30,6 +30,8 @@ import Block from './jsx/Block.jsx';
 import NavBar from '../jsx/NavBar/NavBar.jsx';
 import NavLogo from '../jsx/NavBar/NavLogo.jsx';
 import NavMenu from '../jsx/NavBar/NavMenu.jsx';
+import NavItem from '../jsx/NavBar/NavItem.jsx';
+
 import {
     table_long2, table_long,
     combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4, combo_list5,
@@ -311,23 +313,27 @@ class App extends React.Component {
         };
         return (
             <div className={`${this.state.theme} ${this.state.size}`}>
-                <div className="wd-layout-top">
-
-                    <NavBar LogoComponent2={() => <NavLogo>logo</NavLogo>}>
+                <div className="wd-nav-top">
+                    <NavBar LogoComponent={() => <NavLogo>logo</NavLogo>}>
                         <div>
                             <span>{'theme'} </span>
                             <Btn onClick={this.setLightTheme} >light</Btn>
                             <Btn onClick={this.setDarkTheme} >dark</Btn>
                         </div>
                         <Edit placeholder='search'/>
-                        <span>Item2</span>
-                        <NavMenu caption="menu">
-                            <div>item1</div>
-                            <NavMenu caption="sub">
-                                <div>Item2</div>
+                        <NavItem>item1</NavItem>
+
+                        <NavMenu caption="menu" viewAs='list/panel' >
+                            <NavItem>item2</NavItem>
+                            <NavMenu caption="sub-1" viewAs="list">
+                                <div>Item3</div>
                                 <div>Item4</div>
+                                <NavMenu caption="sub-2" viewAs="list">
+                                    <div>Item6</div>
+                                    <div>Item7</div>
+                                </NavMenu>
                             </NavMenu>
-                            <div>item3</div>
+                            <div>item5</div>
                         </NavMenu>
 
                         <span>END</span>

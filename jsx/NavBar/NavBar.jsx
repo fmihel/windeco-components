@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import NavLogo from './NavLogo.jsx';
+import NavItem, { isNavItem } from './NavItem.jsx';
+import { isNavMenu } from './NavMenu.jsx';
 
 function NavBar({
     LogoComponent = undefined,
@@ -9,19 +10,15 @@ function NavBar({
     const toggleMenu = () => {
         setItemsState(itemsState === 'close' ? 'open' : 'close');
     };
+
     return (
-        <div className='wd-nav' state={`${itemsState}`} >
+        <div it='navbar' className='wd-navbar' state={`${itemsState}`} >
             <div it='panel'>
-                {LogoComponent ? <LogoComponent/> : <NavLogo/>}
-                <div className="wd-nav-btn" onClick={toggleMenu}>&#8801;</div>
+                <div it="logo">{LogoComponent && <LogoComponent/>}</div>
+                <div it="btn" className="wd-nav-btn" onClick={toggleMenu}>&#8801;</div>
             </div>
             <div it={'items'} className="wd-scrollbar">
-                {children.map((it, key) => <div
-                    key={key}
-                    className='wd-nav-item'
-                >
-                    {it}
-                </div>)}
+                {children.map((it, key) => ((isNavItem(it.type) || isNavMenu(it.type)) ? it : <NavItem key={key}>{it}</NavItem>))}
             </div>
         </div>
     );
