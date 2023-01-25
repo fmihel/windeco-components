@@ -4,6 +4,7 @@
 @import '../../style/ctrls.scss';
 @import './pics.scss';
 @import './test-place.scss';
+@import './icons.scss';
 
 
 *{
@@ -15,13 +16,16 @@ input, select, textarea, button{
     font-family:inherit;
 }
 
+html{
+    font-size:$wd-font-size;
+    font-family: font-family('verdana'); 
+}
+
 body{
     overflow: hidden;
     margin: 0px;
     padding: 0px;
-    @include font-family('gothic'); 
-    font-size:12px;
-
+    
 }
 #app{
     position: absolute;
@@ -31,6 +35,9 @@ body{
     height:100%;
     border:1px solid rgba(0,0,0,0);
     box-sizing: border-box;
+
+    background-color:var(--wd-bg);
+    color: var(--wd-color);
 
     >div{
 
@@ -78,10 +85,11 @@ body{
 
         }
         .content{
+            //min-height: $wd-size*10;
             //background-color: rgb(2, 2, 49);            
+            padding-left:10px;
+            padding-right:10px;
 
-            padding-left:100px;
-            padding-right:100px;
             padding-top: 20px;
 
             order: 0;
@@ -89,21 +97,8 @@ body{
             align-self: auto;
             overflow: auto; 
             
-            .table-fixed-height{
-                height: 200px;
+            .container-for-table-fixed{
                 overflow: hidden;
-                .wd-table-fixed-frame{
-                    
-                }
-                /*
-                >div{
-                    &:nth-child(2){
-                        max-height: 200px;
-                        height: 200px;
-        
-                    }
-                }
-                */
             }
             
         }
@@ -138,38 +133,3 @@ body{
     }
 
 }
-@each $key,$font in $wd-font-family{
-    .font-#{$key}{
-        @include font-family($key); 
-        font-size:14px;
-    }
-    .font-#{$key}-small{
-        @include font-family($key);
-        font-size:8px;
-    }
-}
-
-@each $name in $wd-themes{
-    .#{$name} {
-        background-color: wd-get-theme($wd-bg,#{$name});
-        color: wd-get-theme($wd-color,#{$name});
-    }
-}
-
-@each $name in $wd-sizes{
-    $size:wd-get-size($wd-size,#{$name});
-    .#{$name} {
-        .wd-label{
-            min-width:$size*5 !important;
-        }
-        
-    }
-    
-    .pic-bag{
-        background-image: url($pic-bag);
-        background-position: 2px center;
-        background-repeat: no-repeat;
-        padding-left:$size+2px;
-    }
-}
-

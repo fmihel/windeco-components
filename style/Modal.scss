@@ -1,0 +1,16 @@
+@import './vars.scss';
+
+
+@mixin define($args...){
+
+    .wd-shadow{
+        background-color: rgba(0, 0, 0, 0.4);
+        position: absolute;
+    } 
+
+    .wd-modal{
+        
+    }    
+}
+
+@include define();

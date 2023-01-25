@@ -7,8 +7,10 @@ import React from 'react';
 import ReacDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import redux from 'REDUX';
+import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
+// $(() => {
+//    ReacDOM.render(<Provider store={redux.store}> <App /></Provider>, DOM('#app'));
+// });
 
-$(() => {
-    ReacDOM.render(<Provider store={redux.store}> <App /></Provider>, DOM('#app'));
-});
+createRoot(document.getElementById('app')).render(<Provider store={redux.store}><App /></Provider>);

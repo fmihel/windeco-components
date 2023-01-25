@@ -1,0 +1,93 @@
+@use "sass:meta";
+@use "sass:math";
+@import './vars.scss';
+
+@mixin define(){
+    $themes:$wd-themes;
+    $colors:$wd-color;
+    @each $theme in $themes{
+        #{getThemingRootClass($theme)}{
+           --g-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:-20%))};
+        };
+    };
+
+    $bg:var(--wd-block);  
+    $fone:var(--wd-bg);
+    $color:var(--wd-color);
+    $border:var(--wd-border);
+    $font-size:var(--wd-font-size);
+    $gap:var(--wd-gap);
+    $radius:var(--wd-radius);
+    $size:var(--wd-size);
+    $g-color:var(--g-color);
+
+    .wd-group{
+        //overflow: hidden;
+        box-shadow:   0 3px 6px 0 rgba(0, 0, 0, 0.07);
+        min-height: $size;
+        @if($bg!='none'){
+            background-color: $bg;
+        }
+        @if($color!='none'){
+            color: $color;
+        }
+        @if($border!='none'){
+            border:1px solid  $border;
+        }@else{
+            border:1px solid rgba(0,0,0,0);
+        }
+        @if($font-size!='none'){
+            font-size: $font-size;
+        }
+
+        margin: $gap;
+
+        @if($radius!='none'){
+            border-radius: $radius;
+        }
+        
+        @include display-flex-vert-stretch();
+        >*{
+
+            $pos:'up';
+            &:nth-child(1){
+                @include no-stretch();
+                @if ($pos=='up'){
+                    //font-size: 0.8rem;
+                    max-height:0;
+                    line-height: 0px;
+                    padding-left: $gap;
+                    margin-bottom: $gap;
+                    >span{
+                        border-radius: 5px 5px 0px 0px;
+                        background-color:$fone;
+                        padding-left: $gap;
+                        padding-right: $gap;
+                        background: linear-gradient(to bottom,rgba(0,0,0,0) 0%, $bg 80%,$bg 100%);
+                    }
+                }@else{
+                    //font-size: 0.8rem;
+                    max-height: $size*0.5;
+                    height: $size*0.5;
+                    padding-left: 2*$gap;
+                    overflow: hidden;
+                    margin-bottom: $gap;
+                }
+                //line-height:0;
+                //margin-bottom: $gap;
+                color:$g-color;
+                background-color: $bg;
+                white-space: nowrap;
+
+            }
+            &:nth-child(2){
+                padding: $gap;
+                padding-left: calc($gap * 2);
+
+                @include stretch();
+            }
+        }
+    }
+}
+
+@include define();

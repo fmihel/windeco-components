@@ -1,0 +1,14 @@
+@import './vars.scss';
+
+
+@mixin define(){
+    $size:var(--wd-size);
+
+    .wd-icon{
+        outline: none;
+        width:$size;
+        height:$size;
+    }
+}
+
+@include define();
