@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faAddressBook, faCaretDown,
 } from '@fortawesome/free-solid-svg-icons';
+
 import { iEdit, iEdit16 } from './global';
 import Btn from '../jsx/Btn/Btn.jsx';
 import BtnIcon from '../jsx/BtnIcon/BtnIcon.jsx';
@@ -31,6 +32,7 @@ import NavBar from '../jsx/NavBar/NavBar.jsx';
 import NavLogo from '../jsx/NavBar/NavLogo.jsx';
 import NavMenu from '../jsx/NavBar/NavMenu.jsx';
 import NavItem from '../jsx/NavBar/NavItem.jsx';
+import Collapse from '../jsx/Collapse/Collapse.jsx';
 
 import {
     table_long2, table_long,
@@ -212,6 +214,7 @@ class App extends React.Component {
             listSetup: {
                 2: { expand: true, active: true },
             },
+            collapseExpand: true,
         };
     }
 
@@ -298,7 +301,7 @@ class App extends React.Component {
     render() {
         const {
             fields, table, textValue, textValue2, dialogEx, customLeft, customTop, values, comboSelect,
-            tableHeader, tableHeight, tableFooter, tableSelect, listSetup,
+            tableHeader, tableHeight, tableFooter, tableSelect, listSetup, collapseExpand,
         } = this.state;
         const dialogs = Object.keys(this.dialogs);
         const fontsName = Object.keys(fonts);
@@ -341,8 +344,24 @@ class App extends React.Component {
                     </NavBar>
 
                     <div className='content wd-scrollbar'>
-
                         {/*--------------------------------------------------------------------------------------------------*/}
+                        <Head caption="Collapse">
+                            <div onClick={() => { this.setState({ collapseExpand: !collapseExpand }); }}>{collapseExpand ? 'expand=true' : 'expand=false'}</div>
+                            <Collapse expand={collapseExpand}
+                                style={{
+                                    border: '1px solid red',
+                                    overflow: 'hidden',
+                                    minHeight: 0,
+                                }} delay={500}
+                            >
+                                <div>item2</div>
+                                <div>item3</div>
+                                <div>item4</div>
+                                <div>item5</div>
+                            </Collapse>
+                        </Head>
+                        {/*--------------------------------------------------------------------------------------------------*/}
+
                         <Head caption="List">
 
                             <Block>
@@ -390,7 +409,6 @@ class App extends React.Component {
                                 />
                             </Block>
                         </Head>
-
                         {/*--------------------------------------------------------------------------------------------------*/}
                         <Head caption="ComboBoxEx">
                             <Block>

@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import collapse from './collapse';
 
-function Collapse({
+export default function Collapse({
     className = Collapse.global.className,
     addClass = Collapse.global.addClass,
     style = Collapse.global.style,
@@ -11,6 +11,7 @@ function Collapse({
     delay = Collapse.global.delay,
     attr = {},
     children,
+    onClick = undefined,
 }) {
     const dom = useRef(null);
     const [position, setPosition] = useState('fixed');
@@ -53,6 +54,7 @@ function Collapse({
                     ...(position ? { position, opacity: 0 } : { }),
                 }}
                 {...attr}
+                onClick={onClick}
             >
                 {children}
             </div>}
@@ -66,5 +68,3 @@ Collapse.global = {
     delay: 100,
 
 };
-
-export default Collapse;
