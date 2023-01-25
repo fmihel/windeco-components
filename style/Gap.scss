@@ -1,11 +1,9 @@
 @import './utils.scss';
 
-.wd-gap{
+div[it='wd-gap']{
     @include display-flex-horiz-stretch();
-    >div{
-        &[gap="gap"]{
+    >div[gap]{
             width:$wd-size;
             min-width: $wd-size;
-        }
     }
 }

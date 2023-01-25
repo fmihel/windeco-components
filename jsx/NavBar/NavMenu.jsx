@@ -5,6 +5,7 @@ import screen from '../Utils/screen.js';
 import onResizeScreen from '../Utils/onResizeScreen.js';
 import NavItem, { isNavItem } from './NavItem.jsx';
 import Gap from '../Gap/Gap.jsx';
+import Collapse from '../Collapse/Collapse.jsx';
 
 export function isNavMenu(o) {
     return typeof o === 'function' && (o.name === 'NavMenu' || o._originalClass === 'NavMenu');
@@ -59,11 +60,9 @@ function NavMenu({
                     <div it="btn"></div>
                 </div>
                 {(showAs === 'list')
-                    && <Gap >
-                        <div it="list">
-                            {children.map((it, key) => ((isNavItem(it.type) || isNavMenu(it.type)) ? it : <NavItem key={key}>{it}</NavItem>))}
-                        </div>
-                    </Gap>}
+                    && <Collapse expand={expand} delay={100} attr={{ it: 'list' }} >
+                        {children.map((it, key) => ((isNavItem(it.type) || isNavMenu(it.type)) ? it : <NavItem key={key}>{it}</NavItem>))}
+                    </Collapse> }
             </div>
             {((showAs === 'popup') || showAs === 'panel')
             && <ModalDialog

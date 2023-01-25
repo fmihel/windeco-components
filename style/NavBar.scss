@@ -85,7 +85,7 @@
 
     div[it='nav-menu']{
         overflow: hidden;
-        >div{
+        div{
             &[it='title']{
                 @include display-flex-horiz-stretch();
                 >div{
@@ -97,16 +97,17 @@
                     }
                 }
             }
+            &[it="list"]{
+                @include stretch();
+                padding-left: $size;
+            }
         }
 
-        div[it="list"]{
-            @include stretch();
-        }
 
-        @include transition(height 0.4s);
-        height: 0px;
+        //@include transition(height 0.4s);
+        //height: 0px;
         &[expand='expand']{
-            height: auto;                        
+            height: auto;                       
         }
     }
 
@@ -117,34 +118,44 @@
     }
 
     .wd-nav-item{
-        border-bottom: 1px dashed $border;
-        height: $size;
-        min-width: calc(2*$size);
+        min-height: $size;
+        //border-bottom: 1px dashed $border;
+        //min-width: calc(2*$size);
         line-height: $size;
         padding-left: $gap;
         padding-right: $gap;
-        //overflow: hidden;
     }
 
     .wd-nav-menu{
-        border-bottom: 1px dashed $border;
         min-height: $size;
-        //padding: $gap;
-        //padding-bottom: 0px;
-        
-        //min-width: calc(5*$size);
-        >div[it='title']{
+        //border-bottom: 1px dashed $border;
+
+        >div{
+            &[it='title']{
             line-height: $size;
 
             padding-left: $gap;
             padding-right: $gap;
             
-            >div[it="btn"]{
-                width: $size;
-                background-image: url($tick); 
-                background-repeat: no-repeat, no-repeat;
-                background-position: center;
-                filter:invert($invert);                
+                >div[it="btn"]{
+                    width: $size;
+                    background-image: url($tick); 
+                    background-repeat: no-repeat, no-repeat;
+                    background-position: center;
+                    filter:invert($invert);                
+                }
+            }
+            &[it='list']{
+                >div{
+                    &:last-child{
+                        border-color: rgba(0,0,0,0) !important;
+                    }
+                }    
+            }
+        }
+        &[expand='expand']{
+            >div[it='title'] >div[it='btn']{ 
+                transform: rotate(180deg);
             }
         }
     }

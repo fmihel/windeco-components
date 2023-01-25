@@ -214,7 +214,7 @@ class App extends React.Component {
             listSetup: {
                 2: { expand: true, active: true },
             },
-            collapseExpand: true,
+            collapseExpand: false,
         };
     }
 
@@ -300,7 +300,7 @@ class App extends React.Component {
 
     render() {
         const {
-            fields, table, textValue, textValue2, dialogEx, customLeft, customTop, values, comboSelect,
+            fields, table, textValue, textValue2, customLeft, customTop, values, comboSelect,
             tableHeader, tableHeight, tableFooter, tableSelect, listSetup, collapseExpand,
         } = this.state;
         const dialogs = Object.keys(this.dialogs);
@@ -330,7 +330,7 @@ class App extends React.Component {
                             <NavItem>item2</NavItem>
                             <NavMenu caption="sub-1" viewAs="list">
                                 <div>Item3</div>
-                                <div>Item4</div>
+                                <Edit placeholder='search'/>
                                 <NavMenu caption="sub-2" viewAs="list">
                                     <div>Item6</div>
                                     <div>Item7</div>

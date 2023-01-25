@@ -14,6 +14,7 @@ function Gap({
     // console.log('level', count, Array(count).fill('').map(() => 's'));
     return (
         <div
+            it={'wd-gap'}
             className={`${className} ${addClass}`}
             style={{
                 ...Gap.global.style,
@@ -29,7 +30,7 @@ function Gap({
 }
 
 Gap.global = {
-    className: 'wd-gap',
+    className: '',
     addClass: '',
     style: {},
 

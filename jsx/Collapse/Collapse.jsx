@@ -11,7 +11,6 @@ export default function Collapse({
     delay = Collapse.global.delay,
     attr = {},
     children,
-    onClick = undefined,
 }) {
     const dom = useRef(null);
     const [position, setPosition] = useState('fixed');
@@ -42,19 +41,19 @@ export default function Collapse({
             }
         }
     }, [expand, dom, delay]);
+    const css = `${className} ${addClass}`.trim();
 
     return (
         <>{(expand || show)
             && <div
                 ref={dom}
-                className={`${className} ${addClass}`}
+                {...(css ? { className: css } : {})}
                 style={{
                     ...Collapse.global.style,
                     ...style,
                     ...(position ? { position, opacity: 0 } : { }),
                 }}
                 {...attr}
-                onClick={onClick}
             >
                 {children}
             </div>}
