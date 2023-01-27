@@ -316,7 +316,7 @@ class App extends React.Component {
         };
         return (
             <div className={`${this.state.theme} ${this.state.size}`}>
-                <div className="wd-nav-top">
+                <div className="wd-nav-left">
                     <NavBar Logo={() => <NavLogo>logo</NavLogo>}>
                         <div>
                             <span>{'theme'} </span>
@@ -326,17 +326,19 @@ class App extends React.Component {
                         <Edit placeholder='search'/>
                         <NavItem>item1</NavItem>
 
-                        <NavMenu caption="menu" viewAs='list/panel' >
+                        <NavMenu caption="menu" viewAs='list/popup' >
                             <NavItem>item2</NavItem>
-                            <NavMenu caption="sub-1" viewAs="list">
+                            <NavMenu caption="sub-1" viewAs="list/popup" >
                                 <div>Item3</div>
                                 <Edit placeholder='search'/>
-                                <NavMenu caption="sub-2" viewAs="list">
-                                    <div>Item6</div>
-                                    <div>Item7</div>
-                                </NavMenu>
+                                <div>Item4</div>
+                                <div>Item5</div>
                             </NavMenu>
-                            <div>item5</div>
+                            <NavItem>item5</NavItem>
+                            <NavItem>item6</NavItem>
+                            <NavItem>item7</NavItem>
+                            <div style={{ height: 100 }}>item7</div>
+                            <NavItem>item8</NavItem>
                         </NavMenu>
 
                         <NavItem>end</NavItem>
