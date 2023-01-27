@@ -340,7 +340,7 @@ class App extends React.Component {
                             <div style={{ height: 100 }}>item7</div>
                             <NavItem>item8</NavItem>
                         </NavMenu>
-
+                        <NavItem/>
                     </NavBar>
 
                     <div className='content wd-scrollbar'>

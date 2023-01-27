@@ -135,13 +135,12 @@
         }
     }
     .wd-nav-item-stretch{
+        min-height: 0px !important;
+        height: 0px;
         @include stretch();
+
         @media screen and (max-width: $mobile-width) {
             @include no-stretch();
-            position: absolute;
-            min-height: 0px !important;
-            //height: 0px !important;
-            padding: 0px !important;
         }
     }
     //-------------------------------------------------    
