@@ -55,12 +55,12 @@ function NavMenu({
     return (
         <>
             <div className='wd-nav-menu' ref={dom} it="nav-menu" {...(expand ? { expand: 'expand' } : {})}>
-                <div it="title" onClick={toggle}>
+                <div it="nav-menu-head" onClick={toggle}>
                     <div>{caption}</div>
-                    <div it="btn"></div>
+                    <div it="nav-menu-btn"></div>
                 </div>
                 {(showAs === 'list')
-                    && <Collapse expand={expand} delay={100} attr={{ it: 'list' }} >
+                    && <Collapse expand={expand} delay={100} attr={{ it: 'nav-menu-items' }} >
                         {children.map((it, key) => ((isNavItem(it.type) || isNavMenu(it.type)) ? it : <NavItem key={key}>{it}</NavItem>))}
                     </Collapse> }
             </div>

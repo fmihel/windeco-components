@@ -1,4 +1,4 @@
-@use "sass:meta";
+@use 'sass:meta';
 @import './vars.scss';
 
 
@@ -8,6 +8,7 @@
     $panel-height:calc($size*1.5);
     $bg:var(--wd-deep);
     $color:var(--wd-color);
+    $orange:var(--wd-orange);
     $border:var(--wd-border);
     $gap:var(--wd-gap);
     $mobile-width:$wd-max-mobile-width;
@@ -34,7 +35,7 @@
                 flex-direction: row;
             }
     
-            >div[it='items']{
+            >div[it='nav-items']{
                 display:block;
                 @media screen and (min-width: $mobile-width) {
                     @include display-flex-horiz-stretch();
@@ -45,14 +46,14 @@
     
     div[it='navbar']{
         @include display-flex-vert-stretch();
-        >div[it='panel']{
+        >div[it='nav-panel']{
             min-height: $panel-height;
-            @include display-flex-horiz-stretch();
-            >div[it='logo']{
+            @include display-flex-horiz-center();
+            >div[it='nav-logo']{
                 @include stretch();
                 line-height: $panel-height;   
             }
-            >div[it='btn']{
+            >div[it='nav-btn-close']{
                 width: $panel-height;
                 @media screen and (min-width: $mobile-width) {
                     display: none;
@@ -62,7 +63,7 @@
 
         @include transition(height 0.4s);
         
-        >div[it='items']{
+        >div[it='nav-items']{
             overflow-x: hidden;
             overflow-y: auto;
         }
@@ -86,7 +87,7 @@
     div[it='nav-menu']{
         overflow: hidden;
         div{
-            &[it='title']{
+            &[it='nav-menu-head']{
                 @include display-flex-horiz-stretch();
                 >div{
                     &:nth-child(1){
@@ -97,7 +98,7 @@
                     }
                 }
             }
-            &[it="list"]{
+            &[it='nav-menu-items']{
                 @include stretch();
                 padding-left: $size;
             }
@@ -117,27 +118,34 @@
         cursor: pointer;
     }
 
+    //-------------------------------------------------    
     .wd-nav-item{
         min-height: $size;
-        //border-bottom: 1px dashed $border;
-        //min-width: calc(2*$size);
         line-height: $size;
         padding-left: $gap;
         padding-right: $gap;
+        
     }
-
+    .wd-nav-top{
+        .wd-nav-item{
+            @media screen and (min-width: $mobile-width) {
+                @include display-flex-center(column);
+            }            
+        }
+    }
+    //-------------------------------------------------    
     .wd-nav-menu{
         min-height: $size;
         //border-bottom: 1px dashed $border;
 
         >div{
-            &[it='title']{
+            &[it='nav-menu-head']{
             line-height: $size;
 
             padding-left: $gap;
             padding-right: $gap;
             
-                >div[it="btn"]{
+                >div[it='nav-menu-btn']{
                     width: $size;
                     background-image: url($tick); 
                     background-repeat: no-repeat, no-repeat;
@@ -145,7 +153,7 @@
                     filter:invert($invert);                
                 }
             }
-            &[it='list']{
+            &[it='nav-menu-items']{
                 >div{
                     &:last-child{
                         border-color: rgba(0,0,0,0) !important;
@@ -154,10 +162,28 @@
             }
         }
         &[expand='expand']{
-            >div[it='title'] >div[it='btn']{ 
+            >div[it='nav-menu-head'] >div[it='nav-menu-btn']{ 
                 transform: rotate(180deg);
             }
         }
+    }
+    .wd-nav-top{
+        .wd-nav-menu{
+            @media screen and (min-width: $mobile-width) {
+                @include display-flex-center(column);
+            }            
+        }
+    }
+    //-------------------------------------------------    
+
+    .wd-nav-logo{
+        min-height: $panel-height;
+        line-height: $panel-height;
+        min-width: calc($size*3);
+        padding-left: $gap;
+        font-size: 1.2rem;
+        color:$orange;
+        text-shadow: 1px 1px 2px $orange;
     }
 
 }

@@ -6,7 +6,9 @@ export function isNavItem(o) {
 function NavItem({
     caption = undefined,
     link,
-    className = 'wd-nav-item',
+    className = NavItem.global.className,
+    addClass = NavItem.global.addClass,
+    style = NavItem.global.style,
     onClick = undefined,
     children,
 
@@ -16,7 +18,8 @@ function NavItem({
     };
     return (
         <div
-            className={`${className}`}
+            className={ `${className} ${addClass}`}
+            style={{ ...NavItem.global.style, ...style }}
             onClick={click}
         >
             {caption || children || ''}
@@ -25,4 +28,10 @@ function NavItem({
 }
 NavItem._originalClass = 'NavItem';
 
+NavItem.global = {
+    className: 'wd-nav-item',
+    addClass: '',
+    style: {},
+
+};
 export default NavItem;

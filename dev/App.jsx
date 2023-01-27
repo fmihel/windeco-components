@@ -316,8 +316,8 @@ class App extends React.Component {
         };
         return (
             <div className={`${this.state.theme} ${this.state.size}`}>
-                <div className="wd-nav-left">
-                    <NavBar LogoComponent={() => <NavLogo>logo</NavLogo>}>
+                <div className="wd-nav-top">
+                    <NavBar Logo={() => <NavLogo>logo</NavLogo>}>
                         <div>
                             <span>{'theme'} </span>
                             <Btn onClick={this.setLightTheme} >light</Btn>
@@ -326,7 +326,7 @@ class App extends React.Component {
                         <Edit placeholder='search'/>
                         <NavItem>item1</NavItem>
 
-                        <NavMenu caption="menu" viewAs='list' >
+                        <NavMenu caption="menu" viewAs='list/panel' >
                             <NavItem>item2</NavItem>
                             <NavMenu caption="sub-1" viewAs="list">
                                 <div>Item3</div>
@@ -346,19 +346,23 @@ class App extends React.Component {
                     <div className='content wd-scrollbar'>
                         {/*--------------------------------------------------------------------------------------------------*/}
                         <Head caption="Collapse">
-                            <div onClick={() => { this.setState({ collapseExpand: !collapseExpand }); }}>{collapseExpand ? 'expand=true' : 'expand=false'}</div>
-                            <Collapse expand={collapseExpand}
-                                style={{
-                                    border: '1px solid red',
-                                    overflow: 'hidden',
-                                    minHeight: 0,
-                                }} delay={500}
-                            >
-                                <div>item2</div>
-                                <div>item3</div>
-                                <div>item4</div>
-                                <div>item5</div>
-                            </Collapse>
+                            <Block>
+
+                                <Btn style={{ marginBottom: 5 }}onClick={() => { this.setState({ collapseExpand: !collapseExpand }); }}>{collapseExpand ? 'expand=true' : 'expand=false'}</Btn>
+                                <Collapse expand={collapseExpand}
+                                    style={{
+                                        border: '1px dashed gray',
+                                        overflow: 'hidden',
+                                        minHeight: 0,
+                                        padding: 5,
+                                    }} delay={500}
+                                >
+                                    <div>padding:5 дает фриз в начале и в конце</div>
+                                    <div>item3</div>
+                                    <div>item4</div>
+                                    <div>item5</div>
+                                </Collapse>
+                            </Block>
                         </Head>
                         {/*--------------------------------------------------------------------------------------------------*/}
 

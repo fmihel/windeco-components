@@ -7,6 +7,7 @@ export default function Btn({
     onClick = undefined,
     className = Btn.global.className,
     addClass = Btn.global.addClass,
+    style = Btn.global.style,
     hint = false,
     title = false,
     children,
@@ -19,6 +20,7 @@ export default function Btn({
             onClick={onClick}
             className={ `${className} ${addClass}`}
             title={title || hint || ''}
+            style={{ ...Btn.global.style, ...style }}
         />
     );
 }
@@ -26,4 +28,5 @@ export default function Btn({
 Btn.global = {
     className: 'wd-btn',
     addClass: '',
+    style: {},
 };
