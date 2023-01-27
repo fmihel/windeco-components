@@ -1,9 +1,3 @@
-@use "sass:meta";
-@use "sass:math";
-@use "sass:color";
-@use "sass:map";
-@use "sass:string";
-
 // @include display-flex-horiz-stretch();
 @mixin display-flex-horiz-stretch(){
     display: flex;
@@ -13,7 +7,7 @@
     align-content: stretch;
     align-items: stretch;
 }
-// @include display-flex-vert-stretch();
+// @include display-flex-vert-stretch;
 @mixin display-flex-vert-stretch {
     display: flex;
     flex-direction: column;
@@ -78,7 +72,7 @@
 }
 
 
-$wd-fonts-family:(
+$wd-font-family:(
     'arial':'Arial, sans-serif',
     'arial-black':'Arial Black, sans-serif',
     'comic':'Comic Sans MS, cursive',
@@ -100,149 +94,20 @@ $wd-fonts-family:(
 );
 
 //@include font-family('arial');
-@function font-family($name:'roboto'){
 
-    @if map_has_key($wd-fonts-family,$name) {
-        @return #{map-get($wd-fonts-family, $name)};
-    }@else{
-        @debug --------------------------------------;
-        @warn 'font not exists ' $name ' set roboto';
-        @debug --------------------------------------;
-        @return #{map-get($wd-fonts-family, 'roboto')};
+@mixin font-family($name: 'roboto'){ 
+    @if map_has_key($wd-font-family,$name) {
+        font-family: #{map-get($wd-font-family, $name)};
+    } @else {
+        font-family: map-get($wd-font-family, 'roboto');
+        @debug 'set default font-family: Roboto';
+        @debug 'you can use next fonts:';
+        @each $key, $mean in $wd-font-family {
+            @debug $key;
+        }
         
-    }
-
+    };
 }
 
-@function blendColor($color:white,$theme:'dark',$args...){
-    $level:0;
-    $debug:'none';
-
-    @each $name, $mean in meta.keywords($args) {
-        @if ($name=='debug'){$debug:$mean;};
-        @if ($name=='theme'){$theme:$mean;};
-        @if ($name==$theme){$level:$mean};
-        @if ($name=='level'){
-            $level:$mean;
-            @if($theme=='dark'){
-                @if ($level>0){
-                    $level:-$level;
-                }@else{
-                    $level:math.abs($level);
-                }
-            }
-        };
-        @if ($name=='map'){
-            @each $key,$val in $mean{
-                @if($key==$theme){
-                    $level:$val;
-                }
-            }
-        }
-    }
-    @if( $level!=0 and string.index(#{$level},'%')==null){
-        @return $level;
-    }
 
 
-    //$color:map-get($colors,$theme);
-
-    @if($level==0){
-        @return $color;
-    };
-
-
-    @if ($level<0){
-        @if($debug!='none'){
-            @debug '<0' $level $color;
-        }
-            //@return color.change($color,$blackness:math.abs($level));
-        @return darken($color,math.abs($level));
-    }@else{
-        @if($debug!='none'){
-            @debug '>0' $level $color;
-        }
-            //@return color.change($color,$lightness:$level);
-        @return lighten($color,$level);
-    };
-    
-    @return $color;
-
-}
-//blendColors($colors:('light':red,'dark':blue),$theme:'dark',$light:5%,$dark:10%);
-//blendColors($colors:('light':red,'dark':blue),$theme:'dark',$light:yellow,$dark:-5%);
-//blendColors($colors:('light':red,'dark':blue),$theme:'dark',$level:5%);
-//blendColors($colors:('light':red,'dark':blue),$theme:'dark',$map:('light':yellow,'dark:-5%));
-//blendColors($colors:$XXXX,$theme:'dark',$light:5%,$dark:10%)
-@function blendColors($args...){
-    $colors:('light':#0D6EFD,'dark':#0E639C);
-    $theme:'dark';
-    $level:0;
-    $debug:'none';
-    @each $name, $mean in meta.keywords($args) {
-        @if ($name=='debug'){$debug:$mean;};
-        @if ($name=='theme'){$theme:$mean;};
-        @if ($name=='colors'){$colors:$mean;}; 
-        @if ($name==$theme){$level:$mean};
-        @if ($name=='level'){
-            $level:$mean;
-            @if($theme=='dark'){
-                @if ($level>0){
-                    $level:-$level;
-                }@else{
-                    $level:math.abs($level);
-                }
-            }
-        };
-        @if ($name=='map'){
-            @each $key,$val in $mean{
-                @if($key==$theme){
-                    $level:$val;
-                }
-            }
-        }
-    }
-    @if( $level!=0 and string.index(#{$level},'%')==null){
-        @return $level;
-    }
-
-    $color:map-get($colors,$theme);
-    
-    @if($level==0){
-        @return $color;
-    };
-
-    @if ($level<0){
-        //@return color.change($color,$blackness:math.abs($level));
-    
-        @return darken($color,math.abs($level));
-    }@else{
-        //@return color.change($color,$lightness:$level);
-        @return lighten($color,$level);
-    };
-    
-    @return $color;
-
-   
-}
-
-@function contrast-component($component){
-    $mid: 255 * 0.5;
-    @if($component>$mid){
-        @return 0;
-    }@else{
-        @return 255;
-    }
-};
-
-@function contrast($color,$light:white,$dark:black,$alpha:1){
-    
-    $out:$dark;
-    $r:contrast-component(color.red($color));
-    $g:contrast-component(color.green($color));
-    $b:contrast-component(color.blue($color));
-    @if (($r+$g+$b)*0.33 > 255 * 0.5){
-        $out:$light
-    }
-    @return color.change($color:$out,$alpha:$alpha); 
-};

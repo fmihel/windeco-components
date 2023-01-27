@@ -2,17 +2,17 @@
   "name": "fmihel-windeco-components",
   "version": "1.37.2",
   "description": "components for orders windeco",
-  "main": "dist/windeco-components.js",
+  "main": "dist/windeco-components.min.js",
   "scripts": {
     "run-dev-server": "webpack-dev-server --config webpack.config.dev.js",
-    "run-bs-server": "webpack-dev-server --config webpack.config.bs.js",
     "build-dist": "webpack --config webpack.config.dist.js",
-    "build": "rm -rf dist && webpack --prod",
+    "build": "webpack && webpack --prod",
+    "build-to": "webpack --to  && npm run copy-style-to",
+    "copy-style-to": "cp -r style ../../windeco/orders-test/node_modules/fmihel-windeco-components/",
     "git-push": "git push origin main && git push origin main --tag",
     "npm-publish-patch": "npm run build && npm version patch && npm publish && npm run git-push",
     "npm-publish-minor": "npm run build && npm version minor && npm publish && npm run git-push",
-    "npm-publish-major": "npm run build && npm version major && npm publish && npm run git-push",
-    "copy-to": "bash copy-to"
+    "npm-publish-major": "npm run build && npm version major && npm publish && npm run git-push"
   },
   "repository": {
     "type": "git",
@@ -30,16 +30,13 @@
   },
   "homepage": "https://github.com/fmihel/windeco-components#readme",
   "peerDependencies": {
-    "bootstrap": "^5.2.3",
-    "fmihel-browser-lib": "^2.0.0",
     "fmihel-polyfills": ">=0.2.0",
+    "fmihel-browser-lib": "^2.0.0",
     "jquery": "^3.4.1",
-    "lodash": "^4.17.16",
-    "prop-types": "^15.7.2"
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": ">=16.13.1",
+    "react-dom": ">=16.13.1",
+    "prop-types": "^15.7.2",
+    "lodash": "^4.17.16"
   },
   "devDependencies": {
     "@babel/core": "^7.17.0",
@@ -53,7 +50,7 @@
     "babel-cli": "^6.26.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.3",
-    "bootstrap": "^5.2.3",
+    "bootstrap": "^4.6.1",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.6.0",
@@ -64,7 +61,6 @@
     "eslint-plugin-react": "^7.28.0",
     "exports-loader": "^0.7.0",
     "fmihel-browser-lib": "^2.3.1",
-    "fmihel-lazy-load": "^0.0.6",
     "fmihel-polyfills": "^0.3.0",
     "fmihel-redux-wrapper": "^2.0.0",
     "fmihel-server-lib": "^0.1.0",
@@ -73,10 +69,11 @@
     "lodash": "^4.17.16",
     "postcss-loader": "^3.0.0",
     "precss": "^4.0.0",
-    "react-redux": "^8.0.5",
-    "redux": "^4.2.0",
-    "redux-thunk": "^2.4.2",
-    "replace-in-file-webpack-plugin": "^1.0.6",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1",
     "sass": "^1.49.7",
     "sass-loader": "^9.0.3",
     "style-loader": "^1.2.1",

@@ -1,0 +1,145 @@
+@import '../vars.scss';
+
+$wd-edit-bg:$wd-ctrl-bg !default;
+$wd-edit-bg-hover:$wd-ctrl-bg-hover !default;
+$wd-edit-color:$wd-ctrl-color !default;
+$wd-edit-color-readonly:$wd-ctrl-color-readonly !default;
+$wd-edit-color-disable:$wd-ctrl-color-disable !default;
+$wd-edit-border:$wd-ctrl-border !default;
+$wd-edit-border-focus:$wd-ctrl-border-focus !default;
+$wd-edit-color-require: $wd-ctrl-color-require !default;
+
+
+@mixin wd-edit-theme($name){
+    input[type=number]{
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+        }
+        
+    }
+    .wd-edit-input{
+        background-color: map-get($wd-edit-bg,#{$name});
+        color: map-get($wd-edit-color,#{$name});
+        @include transparent-border();
+        outline: none;
+        border: 1px solid map-get($wd-edit-border,#{$name});
+
+        &:focus { 
+            border: 1px solid map-get($wd-edit-border-focus,#{$name});
+        }
+        &:hover { 
+            background-color: map-get($wd-edit-bg-hover,#{$name}); 
+        }  
+    }
+    .wd-edit-disabled{
+        border-top:0px;
+        border-left:0px;
+        border-right:0px;
+        border-bottom: 1px solid map-get($wd-edit-border,#{$name});
+        color: map-get($wd-edit-color-disable,#{$name});
+        //color:gray;
+        background-color: rgba(0,0,0,0) !important;
+    }
+    .wd-edit-readonly{
+        border-top:1px solid rgba(0,0,0,0);
+        border-left:1px solid rgba(0,0,0,0);
+        border-right:1px solid rgba(0,0,0,0);
+        border-bottom: 1px solid map-get($wd-edit-border,#{$name});
+
+        background-color: rgba(0,0,0,0) !important;
+        color: map-get($wd-edit-color-readonly,#{$name})!important;
+    }
+    .wd-edit-dim{
+
+    }
+    .wd-edit-require{
+        background-image: url($wd-ctrl-bg-img-require);
+        background-repeat: no-repeat;
+        background-position-x: right;
+        background-position-y: center;
+        border:1px solid map-get($wd-edit-color-require,#{$name}) !important;
+    }
+
+}
+
+@mixin wd-edit-theme-size($name){
+    $size:map-get($wd-size,#{$name});
+    box-sizing: border-box;
+            height:$size;
+            
+            margin: 0; 
+            display: flex; 
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-content: stretch;
+            align-items: stretch;
+            
+            .wd-edit-input{
+                flex: 1 1 auto;
+                margin: 0px;
+                padding: 0px;
+                text-indent:5px;
+                font-size: map-get($wd-font-size,#{$name});
+                @include transition(margin 0.2s);
+            }
+            
+            .wd-edit-input-scale{
+                //height:100%;
+                margin-left:-10px;
+                margin-right:-10px;
+                //position: relative;
+                z-index:2000;
+            }
+
+        .wd-edit-disabled{
+
+            }
+            .wd-edit-dim{
+                max-width: $size;
+                min-width: $size;
+                line-height: $size;
+                text-align: center;
+                border:0px;
+            }
+            .wd-edit-require{
+                background-size: calc($size*0.5);
+            }
+            input[type=number]{
+                &::-webkit-inner-spin-button,
+                &::-webkit-outer-spin-button {
+                    -webkit-appearance: inner-spin-button !important;
+                    min-width: $size;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    height: 100%;
+                }
+                
+            }
+        
+        
+}
+
+.wd-edit-frame{
+    @include wd-edit-theme($wd-default-theme);
+    @include wd-edit-theme-size($wd-default-theme-size);
+}
+
+@each $name in $wd-themes{
+    .#{$name} {
+        .wd-edit-frame{
+            @include wd-edit-theme($name);
+        }
+    }
+}
+
+@each $name in $wd-sizes{
+    $size:map-get($wd-size,#{$name});
+    .#{$name}{
+        .wd-edit-frame{
+            @include wd-edit-theme-size($name);
+        }     
+    }
+}
+

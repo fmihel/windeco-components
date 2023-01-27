@@ -1,24 +1,20 @@
 const path = require('path');
+const config = require('./webpack.local');
 
 const {defArg} = require('fmihel-server-lib');
+//const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-let remotePath = false;
-const toRemotePath = '';
+const toRemotePath = defArg('to') ;
 const toProduction = !toRemotePath && defArg('prod');
-
+let remotePath = '../../windeco/orders-test/node_modules/fmihel-windeco-components/dist/'
 
 module.exports = {
   mode: toProduction?'production':'development',
   devtool: toProduction?'':'inline-source-map',
-  entry: {
-    'windeco-components':'./jsx/index.js',
-    //Btn:'./source/Btn/Btn.jsx',
-    //Edit:'./source/Edit/Edit.jsx',
-  },
+  entry: './source/index.js',
   output: {
-    path: toRemotePath?remotePath:path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
-    //filename: 'windeco-components-[name]'+((toProduction||toRemotePath)?'.min':'')+'.js',
+    path: toRemotePath?path.resolve(__dirname,remotePath):path.resolve(__dirname, 'dist'),
+    filename: 'windeco-components'+((toProduction||toRemotePath)?'.min':'')+'.js',
     libraryTarget: 'commonjs2' // THIS IS THE MOST IMPORTANT LINE! :mindblow: I wasted more than 2 days until realize this was the line most important in all this guide.
   },
   externals: {      
@@ -43,7 +39,7 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        include: path.resolve(__dirname, 'jsx'),
+        include: path.resolve(__dirname, 'source'),
         exclude: /(node_modules|bower_components|build|dev)/,
         use: {
           loader: 'babel-loader',

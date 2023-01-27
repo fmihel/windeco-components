@@ -1,22 +1,24 @@
 # windeco-components 
 react components for windeco\
-`v2.0`
+`v1.36.0`
 
 
 [1. Btn - кнопка](#Btn)<br/>
 [2. Edit - поле ввода](#Edit)<br/>
 [3. Label - метка](#Label)<br/>
 [4. CheckBox - флажок](#CheckBox)<br/>
-[5. ComboBox - раскрываемый список](#ComboBoxEx)<br/>
-[6. *TableFixed - расширенная таблица ( с фиксируемым заголовком)](#TableFixed)<br/>
-[7. *ModalDialog - Модальный диалог](#ModalDialog)<br/>
-[8. *Modal - обертка для модальных диалогов](#Modal)<br/>
-[9. *Waiter - блокиратор экрана на ввод](#Waiter)<br/>
-[10. *BtnIcon - кнопка c иконкой](#BtnIcon)<br/>
-[11. *Text - многострочный текст](#Text)<br/>
-[12. *Icon - иконка](#Icon)<br/>
+[5. ComboBox - раскрываемый список стандартный ](#ComboBox)<br/>
+[6. ComboBoxEx - раскрываемый список расширенный](#ComboBoxEx)<br/>
+[7. Table - стандартная таблица](#Table)<br/>
+[8. TableFixed - расширенная таблица ( с фиксируемым заголовком)](#TableFixed)<br/>
+[9. ModalDialog - Модальный диалог](#ModalDialog)<br/>
+[10. Modal - обертка для модальных диалогов](#Modal)<br/>
+[11. Waiter - блокиратор экрана на ввод](#Waiter)<br/>
+[12. BtnIcon - кнопка c иконкой](#BtnIcon)<br/>
+[13. Text - многострочный текст](#Text)<br/>
+[14. Icon - иконка](#Icon)<br/>
 
-```* - неотредактированные главы```
+
 
 ---
 ## Btn
@@ -28,34 +30,16 @@ react components for windeco\
 |prop|type|default|notes|
 |----|----|-----|-----|
 |id|any|undefined|идентификатор|
-|value|string|undefined|надпись на кнопке, можно задать через children|
+|value|string|undefined|надпись на кнопке, можно задать через props.children|
 |onClick|function|undefined|onclick событие|
-|className|string|Btn.global.className|класс css|
-|addClass|string|Btn.global.addClass|добавочный класс, результирующий будет к "`${className} ${addClass}`"|
-|title|string||подсказка title|
-### global
-```js
-Btn.global = {
-    className: 'wd-btn',
-    addClass: '',
-};
-```
-`Глобальные параметры можно переопределить, для изменения значений, используемых по умолчанию.`\
-Example:
-```js
-Btn.global = {
-    ...Btn.global,
-    className:'my-btn'
-}
-
-```
+|addClass|string||добавить класс к кнопке для стилизации,верхний класс wd-btn|
+|hint|string||подсказка title|
 ---
-
 ## Edit
 ```html
 <Edit>name</Edit>
 <Edit value="name" />
-
+<Edit onInit={ ( o ) =>{ o.focus(); }} />
 ``` 
 ### property
 |prop|type|default|notes|
@@ -70,25 +54,25 @@ Btn.global = {
 |onKeyPress|function({key,id,value,args})|undefined|событие после нажатия клавиши,args - оригинальные аргументы  |
 |onKeyUp|function({key,id,value,args})|undefined|событие после прижатия клавиши,args - оригинальные аргументы  |
 |onKeyDown|function({key,id,value,args})|undefined|событие после отжатия клавиши,args - оригинальные аргументы  |
-|className|string|Edit.global.className|класс css|
-|addClass|string|Edit.global.addClass|добавочный класс, результирующий будет к "`${className} ${addClass}`"|
-|style|{}|Edit.global.style|стиль css|
-|disabled|bool|false|отключить возможность редактировния и фокуса|
-|readonly|bool|false|только для чтения|
-|required|bool|false|включает подсветку для незаполненных полей |
+|onInit|function(component)|undefined|событие при создании, передает ссылку на компонент |
+|onFocus|function({id,value,args})|undefined|событие при фокусе |
+|onBlur|function({id,value,args})|undefined|событие при потери фокуса |
+|addClass|string||добавить класс к input для стилизации,верхний класс wd-btn|
+|dim|string||размерность|
+|disable|{dim:bool}|{dim:false}|включить тот или иной признак|
+|dim|string||размерность|
 |placeholder|string||текст в незаполненном поле|
 |visible|bool|true|признак display|
-|title|string||подсказка title|
+|readonly|bool|false|только для чтения|
+|style|{}|{}|стиль css. Не все стили обрабатываются, на данный момент только 3 width,textAlign,fontSize|
+|hint|string||подсказка title|
+|required|bool|false|включает подсветку,для незаполненных полей и добавляет css класс ```wd-edit-require```|
 |minLength|number|0|максимальное кол-во вводимых символов, если 0 то без ограничений|
-
-### global
-```js
-Edit.global = {
-    className: 'wd-edit',
-    addClass: '',
-    style: {},
-};
-```
+|autoFocus|bool|false|установить фокус на компонент при создании|
+### methods
+|name|return|notes|
+|----|----|-----|
+|focus()||установить фокус на компонент, использовать component из onInit|
 
 ---
 ## Label
@@ -102,20 +86,10 @@ Edit.global = {
 |prop|type|default|notes|
 |----|----|-----|-----|
 |id|any|undefined|идентификатор|
-|labelName|string|undefined|идентификатор управляемого Edit|
 |caption|string|| отображаемый текст |
-|className|string|Label.global.className|класс css фрейма|
-|addClass|string|Label.global.addClass|класс добавляемый в фрейм label|
-|style|object|Label.global.style|стиль css добавляемый в label|
+|addClass|string|undefined|класс добавляемый в label|
+|style|object|{}|стиль css в label|
 
-### global
-```js
-Label.global = {
-    className: 'wd-label',
-    classAdd: '',
-    style: {},
-};
-```
 
 ---
 ## CheckBox
@@ -127,80 +101,290 @@ Label.global = {
 |----|----|-----|-----|
 |id|any|undefined|идентификатор|
 |checked|boolean|false|нажата или нет |
-|onChange|function({id,checked,value})|undefined|событие на изменение |
-|className|string|CheckBox.global.className|класс css|
-|addClass|string|CheckBox.global.addClass|добавочный класс, результирующий будет к "`${className} ${addClass}`"|
-|style|{}|CheckBox.global.style|стиль css|
-|disabled|num|0|блокировка на ввод|
+|value|string|undefined|значение отображаемое в поле|
+|asRadio|boolean|false|если true то снятие галки возможно только через props и формироваться onChange при нажатии на галку не будет|
+|onChange|function({id,checked})|undefined|событие на изменение |
+|addClass|string||добавить класс к input для стилизации,верхний класс wd-btn|
+|disable|num|0|блокировка на ввод|
 |visible|bool|true|признак display|
+|style|{}|{}|стиль css|
 |hint|string||подсказка title|
-
-### global
-```js
-CheckBox.global = {
-    className: 'wd-checkbox',
-    addClass: '',
-    style: {},
-};
-```
-
 ---
 ## ComboBox
+---
+## ComboBoxEx
 ### Ex:1
 ```html
- <ComboBox
-    onChange={()={
-
-    }}
+ <ComboBoxEx
+    style={{ height: 18 }}
+    onChange={}
     list = {[
         { id: 1, caption: 'text1' },
-        { id: 2, caption: 'text2' },
-        { id: 3, caption: 'text3',_disabled_:true },
+        { id: 2, caption: 'text2', _disabled_: 1 },
+        { id: 3, caption: 'text3' },
         { id: 4, caption: 'text4' },
     ]}
     required={true}
 />
+``` 
+### Ex:2
+```js
+const listClasses = {
+    default: '',
+    line: 'wd-cb32-line',
+    double90: 'wd-cb32-90-double',
+    none: 'wd-cb32-none',
+};
+
+ <ComboBoxEx
+    style={{ height: 18 }}
+    onChange={}
+    listClasses={listClasses}
+    addClassItem = {'wd-cb32'}
+    list = {[
+        { id: 1, caption: 'text1', _indexClass_: 'default' },
+        { id: 2, caption: 'text2', _disabled_: 1 },
+        { id: 3, caption: 'text3', _indexClass_: 'line' },
+        { id: 4, caption: 'text4', _indexClass_: 'double90' },
+        { id: 5, caption: 'text5' },    
+    ]}
+    required={true}
+/>
+``` 
+### Ex:3
+```html
+ <ComboBoxEx
+    addClassItem = {'wd-cb32'}
+    srcPath='./media/'
+    list = {[
+        { id: 1, caption: 'text1', _src_: 'icon1.png' },
+        { id: 2, caption: 'text2', _src_: 'default.png',_disabled_: 1},
+        { id: 3, caption: 'text3', _src_: 'icon2.png' },
+        { id: 4, caption: 'text4', _src_: 'pic3.jpg' },
+        { id: 5, caption: 'text5' },    
+    ]}
+    required={true}
+/>
+``` 
+### property
+|prop|type|default|notes|
+|----|----|-----|-----|
+|id|any|undefined|идентификатор|
+|idFieldName|string|id|имя ключевого поля|
+|select|any|undefined|выбранный пункт (id)|
+|hideBtnOnSelect|bool|false|скрывать кнопку раскрытия, если выбран элемент|
+|onChange|function|undefined|событие на выбор пункта|
+|placeholder|string||значение если пункт не выбран|
+|maxListHeight|int|300|максимальная высота листа|
+|maxListWidth|string|'auto'|'fixed' or 'auto'|
+|list|array|[]|список строк|
+|disabled|int|0|признак что компонент заблокирован|
+|addClass|string||доп класс|
+|addClassItem|string||доп класс к каждому элементу|
+|required|bool|false|необходим для ввода|
+|srcPath|string||путь, который будет добавляться ко всем \_src_ в списке|
+|clamp|int|0|если ширина меньше clamp то при наведении (hover или focus) будет увеличиваться до clamp|
+
+---
+## Table
+---
+## TableFixed
+```js
+const prop = {
+    id:'ID_ROW',
+    fields:[
+        {name:'ID_ROW',caption:'id',width:50},
+        {name:'TEXT',caption:'notes'},
+        {name:'DATA',caption:'data'}
+    ],
+    data:[
+        {ID_ROW:1,TEXT:'some',DATA:'12/12/20',COST:234},
+        {ID_ROW:2,TEXT:'any',DATA:'10/09/20',COST:443},
+        {ID_ROW:3,TEXT:'more',DATA:'04/11/20',COST:394.3},
+    ],
+
+}; 
+```
+```html
+<TableFixed {...prop}/>
+
+```
+### property
+|prop|type|default|notes|
+|----|----|-----|-----|
+|id|string|ID|имя поля которое используется как уникальный идентификатор строки|
+|fields|array|undefined|описание столбцов<br>[{name:FieldName,caption:ColumnCaption,width?:int},<br>...]|
+|data|array|[ ]|строки данных<br|
+|onClick|function|undefined||
+|onDblClick|function|undefined||
+|onMount|function|undefined||
+|stretch|bool|true|включает мехаизм растягивания по высоте таблицы до размеров родителя( с помощью js) <br> `ВНИМАНИЕ! у родительского фрейма, в случае stretch=true добавить overflow:hidden`|
+|headerType|string|fields|тип заголовка - fields,caption,none|
+|caption|string|Caption| загодловок если `headerType === 'caption'`|
+|bottomShow|bool|true|отображать или нет подвал в конце таблицы|
+|bottomText|string|конец|подпись в подвале|
+|nodataShow|bool|true| отображать текст когда нет данных|
+|nodataText|bool|нет данных||
+
+### methods
+|method|notes|
+|----|----|
+|select(o)||
+---
+## ModalDialog
+```javascript
+<ModalDialog
+    header='Dialog'
+    footer={['ok','cancel']}
+    onClickHeaderClose={this.onClose}
+    onClickShadow={this.onClose}
+    onClickFooterBtn={this.onClose}
+>
+content..
+</ModalDialog>
+```
+|prop|type|default|notes|
+|----|----|-----|-----|
+|visible|bool|true|скрывает (`НЕ УДАЛЯЕТ`) объект|
+|onClickHeaderClose|function|undefined||
+|onClickShadow|function|undefined||
+|onClickFooterBtn|function|undefined||
+|onShow|function({sender})|undefined|Каждый раз при отображении|
+|header|string|false|заголовок|
+|footer|object|undefined|кнопки внизу панели <br>Ex1: ['ok','cancel']<br>Ex2: {ok(o){ console.log(o);}}<br>Ex3: {ok:{ <br>id:'ok-id',<br>caption:'enter',<br>addClass:'wd-primary'}} |
+|align|string|stretch|stretch,custom,stickTo|
+|stickTo|DOM or string|undefined| ссылка на DOM объект или id <br>Ex: stickTo = "#btn-1"|
+|margin|int|50| отступ для align = 'stretch'|
+|left|int|50| отступ слева для align = 'custom'|
+|top|int|50| отступ сверху для align = 'custom'|
+|width|int|300| ширина для align = 'custom' or 'stickTo'|
+|height|int|100| высота для align = 'custom' or 'stickTo'|
+|addShadowClass|string||класс для модификации shadow|
+|shadowOpacity|float or string|0.1|коеффициент прозрачности тени <br>num or 'css' if shadowOpacity === 'css'  opacity defined in wd-shadow class|
+|shadowEnable|bool|true|включить модальность|
+|draggable|bool|true| перемещаемая форма, только для align = custom or stickTo|
+|resizable|bool|false| форма может менять размеры|
+|addClass|string|| добавляет css класс к форме|
+
+---
+## Modal
+---
+## Waiter
+---
+## BtnIcon
+### need install 
+```
+ npm i @fortawesome/fontawesome-free@5.15.4 @fortawesome/fontawesome-svg-core@1.2.28 @fortawesome/free-solid-svg-icons@5.13.0 @fortawesome/react-fontawesome@0.1.9
+```
+### Examle 1:
+```javascript
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faFile} from '@fortawesome/free-solid-svg-icons';
+...
+<BtnIcon
+    IconComponent={FontAwesomeIcon}
+    icon={faFile}
+    addClass="wd-danger"
+    iconClass="demo-bi-color"
+>ok</BtnIcon>
+
+<BtnIcon addClass="wd-primary">cancel</BtnIcon>
+``` 
+### Examle 2: use global setup
+```javascript
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faFile} from '@fortawesome/free-solid-svg-icons';
+
+BtnIcon.global({
+    IconComponent:FontAwesomeIcon, //  by default use IconComponent
+    addClass:'wd-transparent',     
+});
+...
+<BtnIcon
+    icon={faFile}
+    addClass="wd-danger"              // wd-transparent wd-danger
+    iconClass="demo-bi-color"
+    value = "ok"
+/>
+
 ``` 
 
 ### property
 |prop|type|default|notes|
 |----|----|-----|-----|
 |id|any|undefined|идентификатор|
-|aliasId|string|ComboBoxEx.global.aliasId|имя ключевого поля|
-|aliasCaption|string|ComboBoxEx.global.aliasCaption|имя поля к отображению|
-|aliasDisabled|string|ComboBoxEx.global.aliasDisabled|имя поля для указания, что строка неактивна|
-|onChange|function({id,data})|undefined|событие на изменение |
-|className|string|ComboBox.global.className|класс css|
-|addClass|string|ComboBox.global.addClass|добавочный класс, результирующий будет к "`${className} ${addClass}`"|
-|style|{}|ComboBox.global.style|стиль css|
-|styleOuter|{}|undefined|стиль css добавляемый к постоянно отображаемому компоненту ItemComponent|
-|styleItem|{}|undefined|стиль css добавляемый  компоненту ItemComponent используемомум в раскрываемом списке|
-|list|array|[]|массив отображаемых данных|
-|disabled|bool|false|блокирует объект на ввод|
-|required|bool|false|добавляет атрибут [required]|
-|select|string|undefined|мдентификатор выбранной строки|
-|hideBtnOnSelect|bool|false|скрывает кнопку разворота при деактивации|
-|onGetItemClass|func|undefined|метод вызываемый при отрисовке элемента ItemComponent|
-|placeholder|string|ComboBox.global.placeholder|текст в пустом поле|
-|ItemComponent|React|ComboBox.global.ItemComponent|компонент используемый для отображение строк и поля выбора|
+|value|string|undefined|надпись на кнопке, можно задать через props.children|
+|onClick|function|undefined|onclick событие|
+|addClass|string||добавить класс к кнопке для стилизации,верхний класс wd-btn-icon|
+|IconComponent|object||Компонент вывадящий иконку|
+|icon|any||константа иконки|
+|iconClass|string||дополнительный класс для иконки| 
+|hint|string||подсказка title|
+---
+## Text
+### Examle:
+```javascript
+<Text
+    id={"text-1"}
+    style={{ height: 100 }}
+    maxLength={20}
+    value={"init data"}
+    hint="hint"
+/>
 
-### global
-```js
-ComboBox.global = {
-    className: 'wd-combo',
-    addClass: '',
-    style: {},
-    classNameList: 'wd-combo-list',
-    addClassList: 'wd-scrollbar',
-    placeholder: '- выбрать -',
-    ItemComponent: ComboItem,
-    onGetItemClass: undefined,
-    aliasId: 'id',
-    aliasCaption: 'caption',
-    aliasDisabled: '_disabled_',
-};
-```
+``` 
+### property
+|prop|type|default|notes|
+|----|----|-----|-----|
+|id|any|undefined|идентификатор|
+|value|string|undefined|начальные данные, можно задать через props.children|
+|onChange|function|undefined|onchange = function({id,value,sender}) |
+|addClass|string||добавить класс к компоненту|
+|placeholder|string||надпись в пустом компоненте|
+|hint|string||подсказка title|
+|readonly|bool|false|только для чтения| 
+|disabled|num|0|неактивен|
+|resize|bool|false|разрешить изменять размеры|
+|maxLength|num|0|максимальная длина, если 0 то без ограничений|
+|rows|num|0|максимально кол-во строк, задается вместе с cols|
+|cols|num|0|максимальная длина строки, задается вместе с rows|
+|required|bool|false|включает подсветку,для незаполненного поля и добавляет css класс ```wd-text-require```|
+---
+## Icon
+
+### Examle:
+```javascript
+import {Icon} from 'fmihel-windeco-component';
+// создание базы иконок
+const iEdit='iEdit';
+const iEdit16='iEdit16';
+
+Icon.icons({
+    [iEdit]:'./media/edit.png', // аналогично, что и {path:'./media/edit.png'}
+    [iEdit16]:{path:'./media/edit16.png',addClass:'wd-icon'}
+});
+
+// использование иконки
+<Icon icon={iEdit}/>
+<BtnIcon  
+    IconComponent={Icon}
+    icon={iEdit16}
+>ok
+</BtnIcon>
+
+``` 
+### property
+|prop|type|default|notes|
+|----|----|-----|-----|
+|icon|string|undefined|имя иконки в базе иконок, для создания базы используется глобальная ф-ция Icon.global или Icon.icons|
+|addClass|string||добавляет класс к картинке|
+|onClick|function|undefined|событие клик|
+|style|object|{}|список свойств css|
 
 ---
+
+
+
+
 
 

@@ -6,42 +6,52 @@ import {
 import { connect } from 'react-redux';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import {
-    faAddressBook, faCaretDown,
+    faFile, faFolder, faFolderOpen, faCoffeCup, faFileCode, faAddressBook, faCaretDown,
 } from '@fortawesome/free-solid-svg-icons';
+import Edit from '../source/Edit/Edit.jsx';
+import Btn from '../source/Btn/Btn.jsx';
+import BtnIcon from '../source/BtnIcon/BtnIcon.jsx';
+import ComboBox from '../source/ComboBox/ComboBox.jsx';
+import ComboBoxEx from '../source/ComboBoxEx/ComboBoxEx.jsx';
+import CheckBox from '../source/CheckBox/CheckBox.jsx';
+import Label from '../source/Label/Label.jsx';
+import Table from '../source/Table/Table.jsx';
+import TableFixed from '../source/TableFixed/TableFixed.jsx';
+import ModalDialog from '../source/ModalDialog/ModalDialog.jsx';
+import Modal from '../source/Modal/Modal.jsx';
+import Text from '../source/Text/Text.jsx';
+import Icon from '../source/Icon/Icon.jsx';
 
-import { iEdit, iEdit16 } from './global';
-import Btn from '../jsx/Btn/Btn.jsx';
-import BtnIcon from '../jsx/BtnIcon/BtnIcon.jsx';
-import ComboBoxEx from '../jsx/ComboBox/ComboBox.jsx';
-import ComboItemIcon from '../jsx/ComboBox/ComboItemIcon.jsx';
-
-import CheckBox from '../jsx/CheckBox/CheckBox.jsx';
-import Label from '../jsx/Label/Label.jsx';
-import TableFixed from '../jsx/TableFixed/TableFixed.jsx';
-import ModalDialog from '../jsx/ModalDialog/ModalDialog.jsx';
-import Modal from '../jsx/Modal/Modal.jsx';
-import Text from '../jsx/Text/Text.jsx';
-import Icon from '../jsx/Icon/Icon.jsx';
-import Edit from '../jsx/Edit/Edit.jsx';
-import List from '../jsx/List/List.jsx';
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
-import NavBar from '../jsx/NavBar/NavBar.jsx';
-import NavLogo from '../jsx/NavBar/NavLogo.jsx';
-import NavMenu from '../jsx/NavBar/NavMenu.jsx';
-import NavItem from '../jsx/NavBar/NavItem.jsx';
-import Collapse from '../jsx/Collapse/Collapse.jsx';
-
 import {
-    table_long2, table_long,
-    combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4, combo_list5,
-    icons,
+    table_long2, table_long, combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4, combo_list5,
 } from './data.js';
-import map from '../jsx/Utils/map';
-import theme from '../jsx/Utils/theme';
 
+ComboBoxEx.global({
+    // listClasses: listClasses3,
+    offText: {
+        // y: 10,
+    },
+});
+BtnIcon.global({
+    IconComponent: FontAwesomeIcon,
+    style: {
+        borderRadius: '0px',
+        marginLeft: '2px',
+    },
+});
+const iEdit = 'edit';
+const iEdit16 = 'edit16';
+
+Icon.global({
+    icons: {
+        [iEdit]: { path: './media/edit.png', addClass: 'wd-icon' },
+        [iEdit16]: { path: './media/edit16.png' },
+
+    },
+});
 // Icon.icons({
 // [iEdit]: './media/edit.png',
 // [iEdit16]: { path: './media/edit16.png' },
@@ -52,15 +62,9 @@ class App extends React.Component {
         super(p);
         const t = this;
         binds(this, 'onTheme', 'onSize',
-            'onClickTable', 'onClickTableFixed',
-            'OpenDialog', 'CloseDialog', 'undefTheme', 'OpenDialogEx',
-            'CloseDialogEx');
+            'onClickTable', 'onClickTableFixed', 'OpenDialog', 'CloseDialog', 'undefTheme', 'OpenDialogEx', 'CloseDialogEx');
         this.onTableClear = this.onTableClear.bind(this);
         this.onTableFill = this.onTableFill.bind(this);
-        this.onChangeEx = this.onChangeEx.bind(this);
-        this.onChangeCombo = this.onChangeCombo.bind(this);
-        this.setLightTheme = this.setLightTheme.bind(this);
-        this.setDarkTheme = this.setDarkTheme.bind(this);
         // общие параметры для диалогов
         const defaultDialogParam = {
             header: false,
@@ -194,27 +198,13 @@ class App extends React.Component {
             dialog: false, // 'table',
             dialogEx: false,
             modalShow: false,
-            modalShow2: false,
             fields: table_long.fields,
             table: table_long.data,
             textValue: '',
             textValue2: '',
             customLeft: 100,
             customTop: 100,
-            values: {
 
-            },
-            comboSelect: {
-
-            },
-            tableHeader: true,
-            tableHeight: 200,
-            tableFooter: 'end',
-            tableSelect: [],
-            listSetup: {
-                2: { expand: true, active: true },
-            },
-            collapseExpand: false,
         };
     }
 
@@ -232,14 +222,6 @@ class App extends React.Component {
 
     CloseDialog() {
         this.setState({ dialog: false });
-    }
-
-    setLightTheme() {
-        theme.set('light');
-    }
-
-    setDarkTheme() {
-        theme.set('dark');
     }
 
     onTheme(o) {
@@ -264,8 +246,8 @@ class App extends React.Component {
     }
 
     onClickTableFixed(o) {
-        console.log(o);
-        this.setState({ tableSelect: [o.row[o.aliasId]] });
+        console.log(o.row);
+        o.sender.select(o.row);
     }
 
     onTableClear() {
@@ -276,485 +258,359 @@ class App extends React.Component {
         this.setState({ table: table_long.data });
     }
 
-    onChangeEx({ id, value }) {
-        if (id) {
-            this.setState((prev) => ({
-                values: {
-                    ...prev.values,
-                    [id]: value,
-                },
-            }));
-        }
-    }
-
-    onChangeCombo({ id, data }) {
-        console.log('change combo', id, data);
-        if (id) {
-            this.setState((prev) => {
-                const comboSelect = { ...prev.comboSelect };
-                comboSelect[id] = data.id;
-                return { ...prev, comboSelect };
-            });
-        }
-    }
-
     render() {
         const {
-            fields, table, textValue, textValue2, customLeft, customTop, values, comboSelect,
-            tableHeader, tableHeight, tableFooter, tableSelect, listSetup, collapseExpand,
+            fields, table, textValue, textValue2, dialogEx, customLeft, customTop,
         } = this.state;
         const dialogs = Object.keys(this.dialogs);
         const fontsName = Object.keys(fonts);
-        const getItemClass = (data) => {
-            if (data) {
-                if ('id' in data && icons[data.id]) {
-                    return icons[data.id];
-                }
-                return icons[0];
-            }
-            return '';
-        };
+
         return (
             <div className={`${this.state.theme} ${this.state.size}`}>
-                <div className="wd-nav-left">
-                    <NavBar LogoComponent={() => <NavLogo>logo</NavLogo>}>
-                        <div>
-                            <span>{'theme'} </span>
-                            <Btn onClick={this.setLightTheme} >light</Btn>
-                            <Btn onClick={this.setDarkTheme} >dark</Btn>
-                        </div>
-                        <Edit placeholder='search'/>
-                        <NavItem>item1</NavItem>
+                <div className="panel">
+                    <span>{`${this.state.theme} / ${this.state.size}`} </span>
+                    <input id="light" type="button" value="light" onClick={this.onTheme}/>
+                    <input id="dark" type="button" value="dark" onClick={this.onTheme}/>
+                    <input id="small" type="button" value="small" onClick={this.onSize}/>
+                    <input id="normal" type="button" value="normal" onClick={this.onSize}/>
+                    <input id="undef-theme" type="button" value="undef-theme" onClick={this.undefTheme}/>
+                </div>
+                <div className='content wd-scrollbar'>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Abs position">
+                        <Block addClass="abs-pos"> <Edit
+                            disable={{ dim: true }}
+                            style={
+                                {
+                                    position: 'absolute',
+                                    left: 540,
+                                    top: -75,
+                                    // border: '1px dashed lime',
+                                    width: 57,
+                                    height: 16,
+                                }
+                            }>abs position</Edit></Block>
 
-                        <NavMenu caption="menu" viewAs='list' >
-                            <NavItem>item2</NavItem>
-                            <NavMenu caption="sub-1" viewAs="list">
-                                <div>Item3</div>
-                                <Edit placeholder='search'/>
-                                <NavMenu caption="sub-2" viewAs="list">
-                                    <div>Item6</div>
-                                    <div>Item7</div>
-                                </NavMenu>
-                            </NavMenu>
-                            <div>item5</div>
-                        </NavMenu>
+                        <Block addClass="abs-pos"> <CheckBox style={
+                            {
+                                position: 'absolute',
+                                left: 350,
+                                top: -75,
+                                // border: '1px dashed lime',
+                                width: 14,
+                                height: 14,
+                            }
+                        }/></Block>
+                        <Block addClass="abs-pos"> <ComboBoxEx
+                            list = {combo_list3}
+                            listClasses={listClasses3}
+                            disable={{ dim: true }}
+                            select={3}
+                            clamp={200}
+                            style={
+                                {
+                                    position: 'absolute',
+                                    left: 380,
+                                    top: -75,
+                                    // border: '1px dashed lime',
+                                    height: 16,
+                                    width: 150,
 
-                        <NavItem>end</NavItem>
+                                }
+                            }/>
+                        </Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Edit">
+                        <Block> <Edit id="tt" style={{ fontSize: '1.2em' }}onKeyPress={(o) => {
+                            console.log(o);
+                        }}> text from child</Edit></Block>
+                        <Block> <Edit type="password" placeholder="set password" disable={{ dim: true }} style={{ height: 18 }}/></Block>
+                        <Block> <Edit autoFocus value="text from value, and hint" hint="hint prop"/></Block>
+                        <Block> <Edit
+                            value=""
+                            hint="обязательный ввод"
+                            placeholder="need text.."
+                            required={true}
+                            maxLength={10}
+                            onInit={(component) => { this.EditRequired = component; }}
+                            onKeyDown={(o) => { console.log('down', o); }}
+                            onKeyUp={(o) => { console.log('up', o); }}
+                        />
+                        </Block>
+                        <Block> <Edit value="disabled" disabled={1} /></Block>
+                        <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
+                        <Block> <Label caption="label" id="myEdit100"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
+                        <Block> <Label caption="pass" id="pass"><Edit type="password" value="set text" disable={{ dim: true }}/></Label></Block>
+                        <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
+                        <Block> <Label caption="range"><Edit value={5} dim={''} type='number' min={1} max={10} step={1}/></Label></Block>
+                        <Block> <Btn onClick={() => { this.EditRequired.focus(); }}>focus to required</Btn></Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption={'BtnIcon'}>
+                        <Block>
+                            <Btn>left</Btn>
+                            <BtnIcon>button presed test</BtnIcon>
+                            <BtnIcon
+                                hint = "icon"
+                                IconComponent={Icon}
+                                icon={iEdit}
+                                addClass="wd-danger"
+                                iconClass="demo-bi-color"
+                            >ok</BtnIcon>
+                            <BtnIcon
+                                hint = "icon "
+                                IconComponent={FontAwesomeIcon}
+                                icon={faAddressBook}
+                                addClass="wd-danger"
+                                iconClass="demo-bi-color"
+                            >ok</BtnIcon>
+                            <Btn>standart</Btn>
+                            <BtnIcon addClass="wd-primary">cancel</BtnIcon>
+                            <BtnIcon>story</BtnIcon>
+                            <BtnIcon icon={faCaretDown} style={{ width: '100px' }} hint="no text"/>
+                            <BtnIcon addClass="wd-green">save</BtnIcon>
+                        </Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
 
-                    </NavBar>
-
-                    <div className='content wd-scrollbar'>
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="Collapse">
-                            <div onClick={() => { this.setState({ collapseExpand: !collapseExpand }); }}>{collapseExpand ? 'expand=true' : 'expand=false'}</div>
-                            <Collapse expand={collapseExpand}
-                                style={{
-                                    border: '1px solid red',
-                                    overflow: 'hidden',
-                                    minHeight: 0,
-                                }} delay={500}
-                            >
-                                <div>item2</div>
-                                <div>item3</div>
-                                <div>item4</div>
-                                <div>item5</div>
-                            </Collapse>
-                        </Head>
-                        {/*--------------------------------------------------------------------------------------------------*/}
-
-                        <Head caption="List">
-
-                            <Block>
-                                <List
-                                    list={
-                                        [
-                                            { id: 1, caption: 'item-1' },
-                                            {
-                                                id: 2,
-                                                caption: 'item-2',
-                                                childs: [
-                                                    { id: 21, caption: 'item-21' },
-                                                    {
-                                                        id: 22,
-                                                        caption: 'item-22',
-                                                        childs: [
-                                                            { id: 221, caption: 'item-221' },
-                                                            {
-                                                                id: 222,
-                                                                caption: 'item-222',
-                                                                childs: [
-                                                                    { id: 2221, caption: 'item-2221' },
-                                                                    { id: 2222, caption: 'item-2222' },
-                                                                    { id: 2223, caption: 'item-2223' },
-
-                                                                ],
-                                                            },
-                                                            { id: 223, caption: 'item-223' },
-                                                        ],
-                                                    },
-                                                    { id: 23, caption: 'item-23' },
-                                                ],
-                                            },
-                                            { id: 3, caption: 'item-3' },
-                                        ]}
-                                    setup={listSetup}
-                                    onClick={(o) => {
-                                        this.setState({
-                                            listSetup: {
-                                                ...map(listSetup, (val) => ({ ...val, active: false })),
-                                                [o.id]: { ...listSetup[o.id], active: true, expand: !(listSetup[o.id] && listSetup[o.id].expand) },
-                                            },
-                                        });
-                                    }}
-                                />
-                            </Block>
-                        </Head>
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="ComboBoxEx">
-                            <Block>
+                    <Head caption="ComboBoxEx">
+                        <Block>
+                            <ComboBoxEx
+                                style={{ height: 18 }}
+                                onChange={(o) => { console.log(o); }}
+                                list = {combo_list1}
+                                required={true}
+                            />
+                        </Block>
+                        <Block>
+                            <div className="block-horiz">
                                 <ComboBoxEx
-                                    id='cb1'
-                                    onChange={this.onChangeCombo}
-                                    list = {combo_list1}
-                                    select={'cb1' in comboSelect ? comboSelect.cb1 : false}
-                                    required={true}
-                                />
-                            </Block>
-                            <Block>
-                                <div className="block-horiz">
-                                    <ComboBoxEx
-                                        id='cb2'
-                                        onChange={this.onChangeCombo}
-                                        list = {combo_list3}
-                                        select={'cb2' in comboSelect ? comboSelect.cb2 : false}
-                                        style={{ width: 100 }}
-                                        addClass={'wd-clamp'}
-                                    />
-                                    <Edit id="ttt" style={{ width: 100 }} onKeyPress={(o) => {
-                                        console.log(o);
-                                    }}> text from child</Edit>
-                                    <BtnIcon
-                                        hint = "icon"
-                                        icon={faAddressBook}
-                                        addClass="wd-danger"
-                                        iconClass="demo-bi-color"
-                                    >ok</BtnIcon>
-                                    <Btn> left</Btn>
-                                </div>
-                            </Block>
-                            <Block>
-                                <div className="block-horiz">
-                                    <ComboBoxEx
-                                        onChange={(o) => { console.log(o); }}
-                                        list = {combo_list1}
-                                        select={3}
-                                        style={{
-                                            width: 100,
-                                            height: 43,
-                                        }}
-                                        styleOuter={{ lineHeight: '43px' }}
-                                        addClass={'wd-clamp'}
-                                        hideBtnOnSelect = {true}
-                                    />
-                                    <Edit id="tttt" style={{ width: 100, height: 43 }} onKeyPress={(o) => {
-                                        console.log(o);
-                                    }}>text from child</Edit>
-                                    <Edit id="tt90" style={{ width: 90, height: 43 }} onKeyPress={(o) => {
-                                        console.log(o);
-                                    }}>90</Edit>
-                                    <Edit id="tt20"
-                                        style={{ width: 20, height: 43 }} addClass={'wd-clamp'}
-                                        type='number' min={0} max={10} step={1} onKeyPress={(o) => {
-                                            console.log(o);
-                                        }}>20</Edit>
-                                    <Edit id="tt30" style={{ width: 30, height: 43 }} addClass={'wd-clamp'} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
-                                        console.log(o);
-                                    }}>30</Edit>
-
-                                    <Edit id="tt40" style={{ width: 40, height: 43 }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
-                                        console.log(o);
-                                    }}>40</Edit>
-                                    <Edit id="tt50" style={{ width: 50, height: 43 }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
-                                        console.log(o);
-                                    }}>50</Edit>
-                                </div>
-                            </Block>
-
-                            <Block>
-                                <ComboBoxEx
-                                    id='cb3'
-                                    onChange={this.onChangeCombo}
+                                    onChange={(o) => { console.log(o); }}
                                     list = {combo_list3}
-                                    select={'cb3' in comboSelect ? comboSelect.cb3 : false}
-                                    ItemComponent={ComboItemIcon}
-                                    onGetItemClass={getItemClass}
+                                    listClasses={listClasses3}
+                                    disable={{ dim: true }}
+                                    select={3}
+                                    style={{ width: 100 }}
+                                    clamp={150}
                                 />
-                            </Block>
-                            <Block>
-                                <Label caption="comboboxex" style={{ color: 'red' }}>
-                                    <ComboBoxEx
-                                        list = {combo_list2}
-                                        ItemComponent={ComboItemIcon}
-                                        onGetItemClass={getItemClass}
-                                    />
-                                </Label>
-                            </Block>
-                            <Block>
-                                <Label caption="disabled">
-                                    <ComboBoxEx list = {combo_list2} select={1} disabled={true}/>
-                                </Label>
-                            </Block>
-                            <Block>
-                                <Label caption="outer url">
-                                    <ComboBoxEx
-                                        listClasses={listClasses4}
-                                        list = {combo_list4}
-                                        select={1}
-                                    />
-                                </Label>
-                            </Block>
-                            <Block>
-                                <Label caption="outer _src_">
-                                    <ComboBoxEx
-                                        list = {combo_list5}
-                                        srcPath={'./media/combo_32/'}
-                                        addClassItem={'wd-cb32-src'}
-                                        select={-1}
-                                    />
-                                </Label>
-                            </Block>
-                        </Head>
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="Dialog">
-                            <Block>
-                                {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
-                            </Block>
-                        </Head>
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="Btn">
-                            <Block>
-                                <Btn>button</Btn>
-                                <Btn addClass="wd-danger" hint="wd-danger hint">wd-danger</Btn>
-                                <Btn addClass="wd-primary">wd-primary</Btn>
-                                <Btn addClass="wd-transparent">wd-transparent</Btn>
-                                <Btn addClass="wd-primary pic-bag">pic</Btn>
-                            </Block>
-                        </Head>
-
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption={'BtnIcon'}>
-                            <Block>
-                                <Btn>left</Btn>
-                                <BtnIcon>button presed test</BtnIcon>
+                                <Edit id="ttt" style={{ width: 100 }} disable={{ dim: true }} onKeyPress={(o) => {
+                                    console.log(o);
+                                }}> text from child</Edit>
                                 <BtnIcon
                                     hint = "icon"
-                                    IconComponent={Icon}
-                                    icon={iEdit}
-                                    addClass="wd-danger"
-                                    iconClass="demo-bi-color"
-                                >ok</BtnIcon>
-                                <BtnIcon
-                                    hint = "icon "
-                                    IconComponent={FontAwesomeIcon}
                                     icon={faAddressBook}
                                     addClass="wd-danger"
                                     iconClass="demo-bi-color"
                                 >ok</BtnIcon>
-                                <Btn>standart</Btn>
-                                <BtnIcon addClass="wd-primary">cancel</BtnIcon>
-                                <BtnIcon>story</BtnIcon>
-                                <BtnIcon icon={faCaretDown} style={{ width: '100px' }} hint="no text"/>
-                                <BtnIcon addClass="wd-green">save</BtnIcon>
-                            </Block>
-                        </Head>
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="Edit">
-                            <Block> <Edit id="tt" style={{ fontSize: '1.2em' }} onKeyPress={(o) => {
-                                console.log(o);
-                            }}>text from child</Edit></Block>
-                            <Block> <Edit type="password" placeholder="set password" style={{ height: 18, minHeight: 18 }}/></Block>
-                            <Block> <Edit autoFocus value="text from value, and hint" title="title prop (hint deeprecated)"/></Block>
-
-                            <Block> <Edit
-                                id = 'edNeed'
-                                value = {values.edNeed}
-                                onChange = {this.onChangeEx}
-                                hint="обязательный ввод"
-                                placeholder="need text.."
-                                required={true}
-                                maxLength={10}
-                            />
-                            </Block>
-                            <Block> <Edit value="readonly" readonly={1} /></Block>
-                            <Block> <Edit value="disabled" disabled={1} visible={true}/></Block>
-                            <Block> <Edit id="edph" placeholder="set text" value={values.edph} onChange={this.onChangeEx}/></Block>
-                            <Block> <Label caption="label" id="myEdit100">
-                                <Edit id="myEdit100" value={values.myEdit100} onChange={this.onChangeEx}/>
-                            </Label></Block>
-                            <Block> <Label caption="pass" id="pass"><Edit id="pass" type="password" value="set text" /></Label></Block>
-                            <Block> <Label caption="readonly" id="ronl"><Edit id="ronl" value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
-                            <Block> <Label caption="range" id="rng" ><Edit id="rng" value={5} type='number' min={0} max={10} step={1}/></Label></Block>
-
-                        </Head>
-
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption = "TableFixed">
-                            <Block>
-                                <Btn onClick={this.onTableClear}>clear</Btn>
-                                <Btn onClick={this.onTableFill}>fill</Btn>
-                                <Btn onClick={() => { this.setState({ tableHeader: false }); }}>header no</Btn>
-                                <Btn onClick={() => { this.setState({ tableHeader: 'text' }); }}>header cap</Btn>
-                                <Btn onClick={() => { this.setState({ tableHeader: true }); }}>header fields</Btn>
-                                <Btn onClick={() => { this.setState({ tableHeight: 200 }); }}>H=200</Btn>
-                                <Btn onClick={() => { this.setState({ tableHeight: 500 }); }}>H=500</Btn>
-                                <Btn onClick={() => { this.setState((prev) => ({ tableFooter: (prev.tableFooter ? false : 'end') })); }}>footer</Btn>
-                            </Block>
-
-                            <Block addClass="container-for-table-fixed" style={{ height: tableHeight }} hide={false} >
-                                <TableFixed
-                                    id='tab1'
-                                    fields={fields}
-                                    data={table}
-                                    onClick={this.onClickTableFixed}
-                                    header={tableHeader}
-                                    footer={tableFooter}
-                                    select={tableSelect}
+                                <Btn> left</Btn>
+                            </div>
+                        </Block>
+                        <Block>
+                            <div className="block-horiz">
+                                <ComboBoxEx
+                                    onChange={(o) => { console.log(o); }}
+                                    list = {combo_list3}
+                                    disable={{ dim: true }}
+                                    select={3}
+                                    style={{ width: 100, height: 43, textAlign: 'center' }}
+                                    clamp={150}
+                                    hideBtnOnSelect = {true}
                                 />
+                                <Edit id="tttt" style={{ width: 100, height: 43 }} disable={{ dim: true }} onKeyPress={(o) => {
+                                    console.log(o);
+                                }}>text from child</Edit>
+                                <Edit id="tt90" style={{ width: 90, height: 43 }} disable={{ dim: true }} onKeyPress={(o) => {
+                                    console.log(o);
+                                }}>90</Edit>
+                                <Edit id="tt20" style={{ width: 20, height: 43 }} disable={{ dim: true }} clamp={50} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                    console.log(o);
+                                }}>20</Edit>
+                                <Edit id="tt30" style={{ width: 30, height: 43 }} disable={{ dim: true }} clamp={50} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                    console.log(o);
+                                }}>30</Edit>
 
-                            </Block>
-                            {/*
-                        <Block addClass="container-for-table-fixed"style={{ height: 540 }}>
+                                <Edit id="tt40" style={{ width: 40, height: 43 }} disable={{ dim: true }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                    console.log(o);
+                                }}>40</Edit>
+                                <Edit id="tt50" style={{ width: 50, height: 43 }} disable={{ dim: true }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                    console.log(o);
+                                }}>50</Edit>
+                            </div>
+                        </Block>
+
+                        <Block>
+                            <ComboBoxEx
+                                onChange={(o) => { console.log(o); }}
+                                list = {combo_list3}
+                                listClasses={listClasses3}
+                                disable={{ dim: true }}
+                                select={3}
+                            />
+                        </Block>
+                        <Block>
+                            <Label caption="comboboxex" style={{ color: 'red' }}>
+                                <ComboBoxEx list = {combo_list2} disable={{ dim: false }} addClassItem={'wd-cb32-src'}/>
+                            </Label>
+                        </Block>
+                        <Block>
+                            <Label caption="disabled">
+                                <ComboBoxEx list = {combo_list2} disable={{ dim: false }} select={1} disabled={'true'}/>
+                            </Label>
+                        </Block>
+                        <Block>
+                            <Label caption="outer url">
+                                <ComboBoxEx
+                                    listClasses={listClasses4}
+                                    list = {combo_list4}
+                                    disable={{ dim: false }}
+                                    select={1}
+
+                                />
+                            </Label>
+                        </Block>
+                        <Block>
+                            <Label caption="outer _src_">
+                                <ComboBoxEx
+                                    list = {combo_list5}
+                                    srcPath={'./media/combo_32/'}
+                                    addClassItem={'wd-cb32-src'}
+                                    disable={{ dim: false }}
+                                    select={-1}
+
+                                />
+                            </Label>
+                        </Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Dialog">
+                        <Block>
+                            {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
+                        </Block>
+                    </Head>
+
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Icon">
+                        <Block>
+                            <Icon icon={iEdit} addClass="icon-custom"/>
+                            <Icon icon={iEdit16}/>
+                            <Icon icon={'uncknown'} addClass="icon-custom"/>
+                        </Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Text">
+                        <Block>
+                            <Text
+                                style={{ height: 70 }}
+                                placeholder="rows:4 cols:15 len:60  "
+                                hint="hint"
+                                value={textValue2}
+                                onChange={(o) => { this.setState({ textValue2: o.value }); }}
+                                rows={4}
+                                cols={15}
+                            />
+                        </Block>
+                        <Block>
+                            <Text
+                                style={{ height: 30 }}
+                                maxLength={20}
+                                placeholder="set text, max 20 len.."
+                                hint="hint"
+                                value={textValue}
+                                onChange={(o) => { this.setState({ textValue: o.value }); }}
+                                required={true}
+                            />
+                        </Block>
+                        <Block>
+                            <Text
+                                readonly={true}
+                                hint="readonly"
+                                value= "readonly"
+                            />
+                        </Block>
+                        <Block>
+                            <Text
+                                disabled={1}
+                                value="disabled"
+                                resize={true}
+                            />
+                        </Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Fonts">
+                        <Block>
+                            {fontsName.map((name, key) => <div key={key} className="font-line"><div>{name}</div><div className={`font-${name}`}>Короткий текст для примера.</div></div>)}
+                        </Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="CheckBox">
+                        <Block> <CheckBox checked={true}/></Block>
+                        <Block> <Label caption='check'><CheckBox id="ckb1" onChange={(o) => { console.log(o); }}/></Label></Block>
+                        <Block> <Label caption='on change'><Btn onClick={() => { this.setState({ checked: 0 }); }} >on change false</Btn></Label></Block>
+                        <Block> <Label caption='on change'><CheckBox checked={this.state.checked} asRadio={1} onChange={() => { this.setState({ checked: 1 }); }}/></Label></Block>
+                        <Block> <Label caption='disabled'><CheckBox id="ckb-disabled" checked={true} onChange={(o) => { console.log(o); }} disabled={true}/></Label></Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption = "TableFixed">
+                        <Block>
+                            <Btn onClick={this.onTableClear}>clear</Btn>
+                            <Btn onClick={this.onTableFill}>fill</Btn>
+                        </Block>
+
+                        <Block addClass="table-fixed-height">
                             <TableFixed
-                                id='tab2'
-                                fields={table_long2.fields}
-                                data={table_long2.data}
+                                fields={fields}
+                                data={table}
                                 onClick={this.onClickTableFixed}
                             />
                         </Block>
-                    */}
-                        </Head>
-
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="Text">
-                            <Block>
-                                <Text
-                                    style={{ height: 70, width: '100%' }}
-                                    placeholder="rows:4 cols:15 len:60"
-                                    title="rows:4 cols:15 len:60"
-                                    value={textValue2}
-                                    onChange={(o) => { this.setState({ textValue2: o.value }); }}
-                                    rows={4}
-                                    cols={15}
-                                />
-                            </Block>
-                            <Block>
-                                <Text
-                                    style={{ height: 30 }}
-                                    maxLength={20}
-                                    placeholder="set text, max 20 len.."
-                                    title="set text, max 20 len.."
-                                    value={textValue}
-                                    onChange={(o) => { this.setState({ textValue: o.value }); }}
-                                    required={true}
-                                />
-                            </Block>
-                            <Block>
-                                <Text
-                                    readonly={true}
-                                    title="readonly"
-                                    value= "readonly"
-                                />
-                            </Block>
-                            <Block>
-                                <Text
-                                    disabled={1}
-                                    value="disabled"
-                                    resize={true}
-                                />
-                            </Block>
-                        </Head>
-
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="Modal">
-                            <Block>
-                                <Btn onClick={() => { this.setState({ modalShow: true }); }} >show1</Btn>
-                                { <Modal
-                                    id="test-modal1"
-                                    visible={this.state.modalShow}
-                                    onClickShadow={() => {
-                                        this.setState({ modalShow: false });
-                                    }}
-                                >
-                                    <div
-                                        style={{
-                                            position: 'absolute',
-                                            left: 100,
-                                            top: 100,
-                                            width: 200,
-                                            height: 200,
-                                            border: '1px solid navy',
-                                            background: 'gray',
-                                        }}>
-                                        <Btn onClick={() => { this.setState({ modalShow2: true }); }} >show2</Btn>
-
-                                    </div>
-
-                                </Modal>
-                                }
-                            </Block>
-                            <Block>
-                                <Btn onClick={() => { this.setState({ modalShow2: true }); }} >show2</Btn>
-                                { <Modal
-                                    id="test-modal2"
-                                    visible={this.state.modalShow2}
-                                    onClickShadow={() => {
-                                        this.setState({ modalShow2: false });
-                                    }}
-                                >
-                                    <div
-                                        style={{
-                                            position: 'absolute',
-                                            left: 100,
-                                            top: 100,
-                                            width: 200,
-                                            height: 200,
-                                            border: '1px solid navy',
-                                            background: 'gray',
-                                        }}>
-                                        <Btn onClick={() => { this.setState({ modalShow: true }); }} >show1</Btn>
-
-                                    </div>
-
-                                </Modal>
-                                }
-                            </Block>
-                        </Head>
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="CheckBox">
-                            <Block> <CheckBox id="ch1" checked={values.ch1} onChange={this.onChangeEx}/></Block>
-                            <Block> <Label id="ckb1" caption='check'><CheckBox id="ckb1" checked={values.ckb1} onChange={this.onChangeEx}/></Label></Block>
-                            <Block> <Label caption='on change'><Btn onClick={() => { this.setState({ checked: 0 }); }} >on change false</Btn></Label></Block>
-                            <Block> <Label caption='on change'><CheckBox checked={this.state.checked} onChange={() => { this.setState({ checked: 1 }); }}/></Label></Block>
-                            <Block> <Label id="ckb-disabled" caption='disabled'><CheckBox id="ckb-disabled" checked={true} onChange={(o) => { console.log(o); }} disabled={true}/></Label></Block>
-                        </Head>
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="Icon">
-                            <Block>
-                                <Icon icon={iEdit} addClass="icon-custom"/>
-                                <Icon icon={iEdit16}/>
-                                <Icon icon={'uncknown'} addClass="icon-custom"/>
-                            </Block>
-                        </Head>
-
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="Fonts">
-                            <Block>
-                                {fontsName.map((name, key) => <div key={key} className="font-line"><div>{name}</div><div className={`font-${name}`}>Короткий текст для примера.</div></div>)}
-                            </Block>
-                        </Head>
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                    </div>
-
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption = "ComboBox">
+                        <Block> <ComboBox /></Block>
+                        <Block> <Label caption="combobox"><ComboBox disable={{ dim: false }}/></Label></Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Btn">
+                        <Block>
+                            <Btn>button</Btn>
+                            <Btn addClass="wd-danger" hint="wd-danger hint">wd-danger</Btn>
+                            <Btn addClass="wd-primary">wd-primary</Btn>
+                            <Btn addClass="wd-transparent">wd-transparent</Btn>
+                            <Btn addClass="wd-primary pic-bag">pic</Btn>
+                        </Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Table">
+                        <Block> <Table onClick={this.onClickTable}/></Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Modal">
+                        <Block>
+                            <Btn onClick={() => { this.setState({ modalShow: true }); }} >show</Btn>
+                            {this.state.modalShow
+                        && <Modal
+                            onClickShadow={() => {
+                                this.setState({ modalShow: false });
+                            }}
+                        >
+                            <div
+                                style={{
+                                    position: 'absolute',
+                                    left: 100,
+                                    top: 100,
+                                    width: 200,
+                                    height: 200,
+                                    border: '1px solid navy',
+                                    background: 'gray',
+                                }}>
+                                <Btn >btn on modal 1</Btn>
+                                <Btn >btn on modal 2</Btn>
+                            </div>
+                        </Modal>
+                            }
+                        </Block>
+                    </Head>
                 </div>
                 {
 
@@ -769,7 +625,7 @@ class App extends React.Component {
                         && <div className="test-place-table">
                             <div className="test-box1">box1</div>
                             <div className="test-box2">
-                                <TableFixed id={'tab3'} {...table_long2} onClick={this.onClickTableFixed}/>
+                                <TableFixed {...table_long2} onClick={this.onClickTableFixed}/>
                             </div>
                         </div>
 
@@ -779,8 +635,15 @@ class App extends React.Component {
                         {name === 'custom' && <Btn id="ex-btn-2" onClick={() => { this.setState({ customLeft: 300, customTop: 300 }); }}>move</Btn>}
                     </ModalDialog>)
                 }
+                {/* <ModalDialog
+                    {...this.dialogEx}
+                    visible={dialogEx}
+                >
+                    {this.dialogEx.msg}
+            </ModalDialog> */}
 
-                <div id="wd-modal" style={{ position: 'absolute', left: 0, top: 0 }}>
+                <div id="wd-modal" >
+
                 </div>
             </div>
         );
