@@ -316,7 +316,7 @@ class App extends React.Component {
         };
         return (
             <div className={`${this.state.theme} ${this.state.size}`}>
-                <div className="wd-nav-left">
+                <div className="wd-nav-top">
                     <NavBar Logo={() => <NavLogo>logo</NavLogo>}>
                         <div>
                             <span>{'theme'} </span>
@@ -324,9 +324,9 @@ class App extends React.Component {
                             <Btn onClick={this.setDarkTheme} >dark</Btn>
                         </div>
                         <Edit placeholder='search'/>
-                        <NavItem>item1</NavItem>
-
-                        <NavMenu caption="menu" viewAs='list/popup' >
+                        <NavItem>Item1</NavItem>
+                        <NavItem addClass="wd-nav-item-stretch" />
+                        <NavMenu caption="menu" viewAs='list/panel' >
                             <NavItem>item2</NavItem>
                             <NavMenu caption="sub-1" viewAs="list/popup" >
                                 <div>Item3</div>
@@ -340,8 +340,6 @@ class App extends React.Component {
                             <div style={{ height: 100 }}>item7</div>
                             <NavItem>item8</NavItem>
                         </NavMenu>
-
-                        <NavItem>end</NavItem>
 
                     </NavBar>
 

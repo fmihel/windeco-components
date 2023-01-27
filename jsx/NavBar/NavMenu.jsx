@@ -90,8 +90,8 @@ function NavMenu({
                 {...((showAs === 'popup' && area.height > 0) ? { height: 1.1 * area.height } : {})}
                 draggable ={false}
                 resizable = {false}
-                stickOffY = {32}
-                stickOffX = {-32}
+                // stickOffY = {32}
+                // stickOffX = {-32}
             >
                 <div ref={frame}>
                     {children.map((it, key) => ((isNavItem(it.type) || isNavMenu(it.type)) ? it : <NavItem key={key}>{it}</NavItem>))}
