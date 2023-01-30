@@ -1,19 +1,27 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ModalDialog from '../ModalDialog/ModalDialog.jsx';
-import global from '../global.js';
-import screen from '../Utils/screen.js';
 import onResizeScreen from '../Utils/onResizeScreen.js';
 import NavItem, { isNavItem } from './NavItem.jsx';
-import Gap from '../Gap/Gap.jsx';
 import Collapse from '../Collapse/Collapse.jsx';
-import areaDOM from '../Utils/areaDOM';
 import size from '../Utils/size';
+import isMobile from '../Utils/isMobile';
+import global from '../global';
+
+let menuCloseRoutines = [];
+export const collapseMenus = (p = undefined) => {
+    if (p === undefined) {
+        menuCloseRoutines.reverse().map((close) => close());
+    } else if (p.add) {
+        menuCloseRoutines.push(p.add);
+    } else if (p.remove) {
+        menuCloseRoutines = menuCloseRoutines.filter((close) => close != p.remove);
+    }
+};
 
 export function isNavMenu(o) {
     return typeof o === 'function' && (o.name === 'NavMenu' || o._originalClass === 'NavMenu');
 }
 
-const isMobile = () => screen().width <= global.wd_max_mobile_width;
 const getViewAs = (viewAs, mobile) => {
     const out = viewAs.split('/');
     return (out.length > 1 && !mobile) ? out[1] : out[0];
@@ -32,15 +40,27 @@ function NavMenu({
     const frame = useRef(null);
 
     useEffect(() => {
+        const close = () => { setExpand(false); };
+        collapseMenus({ add: close });
+        return () => {
+            collapseMenus({ remove: close });
+        };
+    }, []);
+
+    useEffect(() => {
         const resize = () => {
-            setMobile(isMobile());
+            const current = isMobile();
+            if (current !== mobile) {
+                setMobile(current);
+                setExpand(false);
+            }
         };
         const removeResizeScreen = onResizeScreen(resize);
         resize();
         return () => {
             removeResizeScreen();
         };
-    }, []);
+    }, [mobile]);
 
     useEffect(() => {
         setShowAs(getViewAs(viewAs, mobile));
@@ -48,7 +68,9 @@ function NavMenu({
 
     useEffect(() => {
         if (expand && showAs === 'popup' && frame.current) {
-            setArea(size(frame.current));
+            const newArea = size(frame.current);
+            newArea.height += global.wd_gap * 3;
+            setArea(newArea);
         }
     }, [frame, showAs, expand]);
 
@@ -78,6 +100,7 @@ function NavMenu({
             </div>
             {((showAs === 'popup') || showAs === 'panel')
             && <ModalDialog
+                addClass={'wd-nav-dialog'}
                 visible = {expand}
                 opacityShadow={0}
                 header={false}
@@ -87,9 +110,11 @@ function NavMenu({
                 {...((showAs === 'panel' || dom.current) ? { align: 'stickTo' } : { align: 'custom' })}
                 {...(showAs === 'panel' ? { stickAlign: 'screen-right-all' } : {})}
                 {...((showAs === 'popup' && dom.current) ? { stickTo: dom.current, stickAlign: 'popup' } : {})}
-                {...((showAs === 'popup' && area.height > 0) ? { height: 1.1 * area.height } : {})}
+                {...((showAs === 'popup' && area.height > 0) ? { height: area.height } : {})}
                 draggable ={false}
                 resizable = {false}
+                style={{ opacity: (showAs === 'popup' && area.height === 0 ? 0 : 1) }}
+
             >
                 <div ref={frame} >
                     {children.map((it, key) => ((isNavItem(it.type) || isNavMenu(it.type)) ? it : <NavItem key={key}>{it}</NavItem>))}

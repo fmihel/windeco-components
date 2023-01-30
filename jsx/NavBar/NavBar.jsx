@@ -1,6 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import NavItem, { isNavItem } from './NavItem.jsx';
 import { isNavMenu } from './NavMenu.jsx';
+import onResizeScreen from '../Utils/onResizeScreen';
+import isMobile from '../Utils/isMobile';
+
+let _collapse = [];
+export const collapse = (p = undefined) => {
+    if (p === undefined) {
+        _collapse.map((close) => close());
+    } else if (p.add) {
+        _collapse.push(p.add);
+    } else if (p.remove) {
+        _collapse = _collapse.filter((it) => it === p.remove);
+    }
+};
 
 function NavBar({
     Logo = undefined,
@@ -9,10 +22,36 @@ function NavBar({
     style = NavBar.global.style,
     children,
 }) {
+    const [mobile, setMobile] = useState(isMobile());
     const [itemsState, setItemsState] = useState('close');
     const toggleMenu = () => {
         setItemsState(itemsState === 'close' ? 'open' : 'close');
     };
+    useEffect(() => {
+        const close = () => {
+            setItemsState('close');
+        };
+        collapse({ add: close });
+
+        return () => {
+            collapse({ remove: close });
+        };
+    }, []);
+
+    useEffect(() => {
+        const resize = () => {
+            const current = isMobile();
+            if (current !== mobile) {
+                setMobile(current);
+                setItemsState('close');
+            }
+        };
+        const removeResizeScreen = onResizeScreen(resize);
+        resize();
+        return () => {
+            removeResizeScreen();
+        };
+    }, [mobile]);
 
     return (
         <div

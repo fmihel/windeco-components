@@ -28,9 +28,9 @@ import Edit from '../jsx/Edit/Edit.jsx';
 import List from '../jsx/List/List.jsx';
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
-import NavBar from '../jsx/NavBar/NavBar.jsx';
+import NavBar, { collapse } from '../jsx/NavBar/NavBar.jsx';
 import NavLogo from '../jsx/NavBar/NavLogo.jsx';
-import NavMenu from '../jsx/NavBar/NavMenu.jsx';
+import NavMenu, { collapseMenus } from '../jsx/NavBar/NavMenu.jsx';
 import NavItem from '../jsx/NavBar/NavItem.jsx';
 import Collapse from '../jsx/Collapse/Collapse.jsx';
 
@@ -323,16 +323,23 @@ class App extends React.Component {
                             <Btn onClick={this.setLightTheme} >light</Btn>
                             <Btn onClick={this.setDarkTheme} >dark</Btn>
                         </div>
+                        <Btn onClick={() => { collapseMenus(); }}>collapsing</Btn>
+                        <Btn onClick={() => { collapse(); }}>collapse</Btn>
+
                         <Edit placeholder='search'/>
                         <NavItem>Item1</NavItem>
-                        <NavItem>Item2</NavItem>
+                        <NavMenu caption="file" viewAs='list/popup'>
+                            <NavItem>save</NavItem>
+                            <NavItem>save as</NavItem>
+
+                        </NavMenu>
                         <NavItem addClass="wd-nav-item-stretch" />
-                        <NavMenu caption="menu" viewAs='list/popup' >
+                        <NavMenu caption="menu" viewAs='list/panel'>
                             <NavItem>item2</NavItem>
                             <NavMenu caption="sub-1" viewAs="list/popup" >
                                 <div>Item3</div>
                                 <Edit placeholder='search'/>
-                                <div>Item4</div>
+                                <div >Item4</div>
                                 <div>Item5</div>
                             </NavMenu>
                             <NavItem>item5</NavItem>

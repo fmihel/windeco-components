@@ -31,6 +31,7 @@ function ModalDialog({
     resizable = false,
     className = ModalDialog.global.className,
     addClass = ModalDialog.global.addClass,
+    style = { ...ModalDialog.global.style },
     children,
 
 }) {
@@ -148,7 +149,9 @@ function ModalDialog({
 
         ><>
                 <div
-                    style={{ ...pos, ...size }}
+                    style={{
+                        ...ModalDialog.global.style, ...style, ...pos, ...size,
+                    }}
                     className={`${className} ${addClass}`}
                     onMouseDown={mouseDown}
                 >
@@ -200,6 +203,7 @@ function ModalDialog({
 ModalDialog.global = {
     className: 'wd-dialog',
     addClass: '',
+    style: {},
     left: 0,
     top: 0,
     width: 300,

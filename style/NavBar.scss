@@ -125,7 +125,6 @@
         line-height: $size;
         padding-left: $gap;
         padding-right: $gap;
-        
     }
     .wd-nav-top{
         .wd-nav-item{
@@ -178,8 +177,14 @@
         }
         &[as='popup']{
             >div[it='nav-menu-head'] >div[it='nav-menu-btn']{ 
-                transform: rotate(-90deg) !important;
+                //transform: rotate(-90deg) !important;
             }
+        }
+    }
+    
+    .wd-nav-dialog{
+        .wd-dialog-content{
+            overflow: hidden;
         }
     }
     .wd-nav-top{
