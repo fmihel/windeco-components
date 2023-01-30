@@ -176,6 +176,11 @@
                 transform: rotate(180deg);
             }
         }
+        &[as='popup']{
+            >div[it='nav-menu-head'] >div[it='nav-menu-btn']{ 
+                transform: rotate(-90deg) !important;
+            }
+        }
     }
     .wd-nav-top{
         .wd-nav-menu{

@@ -61,18 +61,31 @@ class ModalDialogAPI {
                 const abs = absPos(dom);
                 out.left = abs.x + abs.w / 2 - width / 2 + stickOffX;
                 out.top = abs.y + abs.h + stickOffY;
-                if (out.left + out.width > scr.w) out.left = scr.w - out.width;
+                if (out.left + out.width > scr.width) out.left = scr.width - out.width;
                 if (out.left < 0) out.left = 0;
-                if (out.top + out.height > scr.h) out.top = abs.y - out.height - stickOffY;
+                if (out.top + out.height > scr.height) out.top = abs.y - out.height - stickOffY;
                 if (out.top < 0) out.top = 0;
             } else if (stickAlign === 'left') { // left
                 const abs = absPos(dom);
                 out.left = abs.x + abs.w + stickOffX;
                 out.top = abs.y + stickOffY;
-                if (out.left + out.width > scr.w) out.left = abs.x - out.width - stickOffX;
+                if ((out.left + out.width) > scr.width) out.left = abs.x - out.width - stickOffX;
                 if (out.left < 0) out.left = 0;
-                if (out.top + out.height > scr.h) out.top = abs.y - out.height;
+                if (out.top + out.height > scr.height) out.top = abs.y - out.height;
                 if (out.top < 0) out.top = 0;
+            } else if (stickAlign === 'popup') {
+                const abs = absPos(dom);
+                out.left = abs.x + abs.w + stickOffX;
+                out.top = abs.y + stickOffY;
+                if ((out.left + out.width) > scr.width) out.left = abs.x - out.width - stickOffX;
+                if (out.left < 0) out.left = 0;
+                if (out.top + out.height > scr.height) out.top = abs.y - out.height;
+
+                if (out.top < 32) {
+                    out.top = abs.y + abs.h + stickOffY;
+                    out.left = abs.x + stickOffX;
+                    if (out.left + out.width > scr.width) out.left = scr.width - out.width;
+                }
             } else if (stickAlign === 'screen-right-all') {
                 out.left = scr.width - width;
                 out.width = width;

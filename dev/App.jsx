@@ -325,8 +325,9 @@ class App extends React.Component {
                         </div>
                         <Edit placeholder='search'/>
                         <NavItem>Item1</NavItem>
+                        <NavItem>Item2</NavItem>
                         <NavItem addClass="wd-nav-item-stretch" />
-                        <NavMenu caption="menu" viewAs='list/panel' >
+                        <NavMenu caption="menu" viewAs='list/popup' >
                             <NavItem>item2</NavItem>
                             <NavMenu caption="sub-1" viewAs="list/popup" >
                                 <div>Item3</div>
@@ -337,10 +338,10 @@ class App extends React.Component {
                             <NavItem>item5</NavItem>
                             <NavItem>item6</NavItem>
                             <NavItem>item7</NavItem>
-                            <div style={{ height: 100 }}>item7</div>
-                            <NavItem>item8</NavItem>
+                            <div >item8</div>
+                            <NavItem>item9</NavItem>
                         </NavMenu>
-                        <NavItem/>
+
                     </NavBar>
 
                     <div className='content wd-scrollbar'>

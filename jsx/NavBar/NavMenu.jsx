@@ -66,7 +66,7 @@ function NavMenu({
 
     return (
         <>
-            <div className='wd-nav-menu' ref={dom} it="nav-menu" {...(expand ? { expand: 'expand' } : {})}>
+            <div className='wd-nav-menu' ref={dom} it="nav-menu" {...(expand ? { expand: 'expand' } : {})} as={showAs}>
                 <div it="nav-menu-head" onClick={toggle}>
                     <div>{caption}</div>
                     <div it="nav-menu-btn"></div>
@@ -86,14 +86,12 @@ function NavMenu({
                 onClickShadow={close}
                 {...((showAs === 'panel' || dom.current) ? { align: 'stickTo' } : { align: 'custom' })}
                 {...(showAs === 'panel' ? { stickAlign: 'screen-right-all' } : {})}
-                {...((showAs === 'popup' && dom.current) ? { stickTo: dom.current, stickAlign: 'left' } : {})}
+                {...((showAs === 'popup' && dom.current) ? { stickTo: dom.current, stickAlign: 'popup' } : {})}
                 {...((showAs === 'popup' && area.height > 0) ? { height: 1.1 * area.height } : {})}
                 draggable ={false}
                 resizable = {false}
-                // stickOffY = {32}
-                // stickOffX = {-32}
             >
-                <div ref={frame}>
+                <div ref={frame} >
                     {children.map((it, key) => ((isNavItem(it.type) || isNavMenu(it.type)) ? it : <NavItem key={key}>{it}</NavItem>))}
                 </div>
             </ModalDialog>
@@ -103,4 +101,10 @@ function NavMenu({
 }
 
 NavMenu._originalClass = 'NavMenu';
+NavMenu.global = {
+    className: 'wd-nav-menu',
+    addClass: '',
+    style: {},
+};
+
 export default NavMenu;
