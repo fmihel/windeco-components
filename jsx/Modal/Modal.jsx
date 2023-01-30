@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
+import scr from '../Utils/screen';
 
 let _root;
 function getRoot() {
@@ -18,8 +19,8 @@ function Modal({
     opacityShadow = Modal.global.opacityShadow,
     children,
 }) {
-    const screenSize = () => ({ width: window.innerWidth, height: window.innerHeight });
-    const [screen, setScreen] = useState(screenSize());
+    const screenSize = () => { const s = scr(); s.width -= 1; s.height -= 1; return s; };
+    const [screen, setScreen] = useState(scr());
     const [element] = useState(document.createElement('div'));
     const moveTop = () => { element.parentElement.insertBefore(element, null); };
 

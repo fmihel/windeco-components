@@ -29,11 +29,23 @@ class ModalDialogAPI {
         margin = {
             left: 0, right: 0, top: 0, bottom: 0,
         },
+        mobile = false,
     }) {
         const scr = screen();
 
+        if (mobile) {
+            console.log('mobile', scr);
+            return {
+                left: 5,
+                top: 5,
+                width: scr.width - 11,
+                height: scr.height - 11,
+
+            };
+        }
         if (align === 'stretch') {
             const cmargin = ModalDialogAPI.margin(margin);
+
             return {
                 left: cmargin.left,
                 top: cmargin.top,

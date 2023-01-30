@@ -373,6 +373,13 @@ class App extends React.Component {
                             </Block>
                         </Head>
                         {/*--------------------------------------------------------------------------------------------------*/}
+                        <Head caption="Dialog">
+                            <Block>
+                                {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
+                            </Block>
+                        </Head>
+
+                        {/*--------------------------------------------------------------------------------------------------*/}
 
                         <Head caption="List">
 
@@ -534,12 +541,6 @@ class App extends React.Component {
                                         select={-1}
                                     />
                                 </Label>
-                            </Block>
-                        </Head>
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="Dialog">
-                            <Block>
-                                {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
                             </Block>
                         </Head>
                         {/*--------------------------------------------------------------------------------------------------*/}

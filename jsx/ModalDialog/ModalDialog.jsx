@@ -5,6 +5,7 @@ import api from './ModalDialogAPI';
 import Btn from '../Btn/Btn.jsx';
 import mousePos from '../Utils/mouse';
 import onResizeScreen from '../Utils/onResizeScreen.js';
+import isMobile from '../Utils/isMobile.js';
 
 function ModalDialog({
     id,
@@ -32,6 +33,7 @@ function ModalDialog({
     className = ModalDialog.global.className,
     addClass = ModalDialog.global.addClass,
     style = { ...ModalDialog.global.style },
+    mobility = true, // учитывать мобильный вид
     children,
 
 }) {
@@ -45,6 +47,7 @@ function ModalDialog({
     const [mouseState, setMouseState] = useState(false);
     const [off, setOff] = useState({ x: 0, y: 0 });
     const [userModif, setUserModif] = useState(false);
+    const [mobile, setMobile] = useState(isMobile());
 
     let footers = [];
     if (Array.isArray(footer)) {
@@ -54,7 +57,10 @@ function ModalDialog({
     }
     useEffect(() => {
         const resize = (first = false) => {
-            if (!userModif) {
+            const ismobile = isMobile();
+            setMobile(ismobile);
+
+            if (!userModif || (mobility && ismobile)) {
                 const newPos = api.updatePos({
                     first,
                     pos: { ...pos, ...size },
@@ -68,6 +74,7 @@ function ModalDialog({
                     stickOffY,
                     stickAlign,
                     margin,
+                    mobile: mobility ? ismobile : false,
                 });
 
                 setPos({ left: newPos.left, top: newPos.top });
@@ -80,7 +87,7 @@ function ModalDialog({
         return () => {
             removeResize();
         };
-    }, [visible, left, top, width, height, align, stickTo, stickOffX, stickOffY, stickAlign, margin, userModif]);
+    }, [visible, left, top, width, height, align, stickTo, stickOffX, stickOffY, stickAlign, margin, userModif, mobility]);
 
     useEffect(() => {
         const mouseMove = () => {
@@ -183,7 +190,7 @@ function ModalDialog({
                         </div>
                     }
                 </div>
-                {resizable
+                {resizable && !mobile
                 && <div className="wd-dialog-resize"
                     style={{
                         left: pos.left + size.width,
