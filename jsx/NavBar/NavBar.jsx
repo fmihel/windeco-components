@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import NavItem, { isNavItem } from './NavItem.jsx';
 import { isNavMenu } from './NavMenu.jsx';
 import onResizeScreen from '../Utils/onResizeScreen';
-import isMobile from '../Utils/isMobile';
+import isCompact from '../Utils/isCompact';
 
 let _collapse = [];
 export const collapse = (p = undefined) => {
@@ -22,7 +22,7 @@ function NavBar({
     style = NavBar.global.style,
     children,
 }) {
-    const [mobile, setMobile] = useState(isMobile());
+    const [compact, setCompact] = useState(isCompact());
     const [itemsState, setItemsState] = useState('close');
     const toggleMenu = () => {
         setItemsState(itemsState === 'close' ? 'open' : 'close');
@@ -40,9 +40,9 @@ function NavBar({
 
     useEffect(() => {
         const resize = () => {
-            const current = isMobile();
-            if (current !== mobile) {
-                setMobile(current);
+            const current = isCompact();
+            if (current !== compact) {
+                setCompact(current);
                 setItemsState('close');
             }
         };
@@ -51,7 +51,7 @@ function NavBar({
         return () => {
             removeResizeScreen();
         };
-    }, [mobile]);
+    }, [compact]);
 
     return (
         <div

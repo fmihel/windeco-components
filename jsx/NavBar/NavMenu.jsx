@@ -4,7 +4,7 @@ import onResizeScreen from '../Utils/onResizeScreen.js';
 import NavItem, { isNavItem } from './NavItem.jsx';
 import Collapse from '../Collapse/Collapse.jsx';
 import size from '../Utils/size';
-import isMobile from '../Utils/isMobile';
+import isCompact from '../Utils/isCompact';
 import global from '../global';
 
 let menuCloseRoutines = [];
@@ -49,7 +49,7 @@ function NavMenu({
 
     useEffect(() => {
         const resize = () => {
-            const current = isMobile();
+            const current = isCompact();
             if (current !== mobile) {
                 setMobile(current);
                 setExpand(false);

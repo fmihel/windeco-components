@@ -5,7 +5,7 @@ import api from './ModalDialogAPI';
 import Btn from '../Btn/Btn.jsx';
 import mousePos from '../Utils/mouse';
 import onResizeScreen from '../Utils/onResizeScreen.js';
-import isMobile from '../Utils/isMobile.js';
+import isCompact from '../Utils/isCompact.js';
 
 function ModalDialog({
     id,
@@ -47,7 +47,7 @@ function ModalDialog({
     const [mouseState, setMouseState] = useState(false);
     const [off, setOff] = useState({ x: 0, y: 0 });
     const [userModif, setUserModif] = useState(false);
-    const [mobile, setMobile] = useState(isMobile());
+    const [compact, setCompact] = useState(isCompact());
 
     let footers = [];
     if (Array.isArray(footer)) {
@@ -57,10 +57,10 @@ function ModalDialog({
     }
     useEffect(() => {
         const resize = (first = false) => {
-            const ismobile = isMobile();
-            setMobile(ismobile);
+            const iscompact = isCompact();
+            setCompact(iscompact);
 
-            if (!userModif || (mobility && ismobile)) {
+            if (!userModif || (mobility && iscompact)) {
                 const newPos = api.updatePos({
                     first,
                     pos: { ...pos, ...size },
@@ -74,7 +74,7 @@ function ModalDialog({
                     stickOffY,
                     stickAlign,
                     margin,
-                    mobile: mobility ? ismobile : false,
+                    mobile: mobility ? iscompact : false,
                 });
 
                 setPos({ left: newPos.left, top: newPos.top });
@@ -190,7 +190,7 @@ function ModalDialog({
                         </div>
                     }
                 </div>
-                {resizable && !mobile
+                {resizable && !compact
                 && <div className="wd-dialog-resize"
                     style={{
                         left: pos.left + size.width,

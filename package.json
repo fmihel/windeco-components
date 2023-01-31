@@ -38,6 +38,7 @@
     "prop-types": "^15.7.2"
   },
   "dependencies": {
+    "mobile-detect": "^1.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

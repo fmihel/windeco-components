@@ -3,7 +3,7 @@ import abs from '../Utils/abs';
 import Modal from '../Modal/Modal.jsx';
 import ComboList from './ComboList.jsx';
 import ComboItem from './ComboItem.jsx';
-import isMobile from '../Utils/isMobile';
+import isCompact from '../Utils/isCompact';
 import onResizeScreen from '../Utils/onResizeScreen';
 
 function ComboBox({
@@ -38,23 +38,23 @@ function ComboBox({
     const [open, setOpen] = useState(false);
     const [btnOpenShow, setBtnOpenShow] = useState(!hideBtnOnSelect);
     const [focused, setFocused] = useState(false);
-    const [mobile, setMobile] = useState(isMobile());
+    const [compact, setCompact] = useState(isCompact());
     const ref = useRef(null);
     const [size, setSize] = useState({
         left: 0, top: 0, width: 0, height: 0,
     });
     useEffect(() => {
         const resize = () => {
-            const ismobile = isMobile();
-            if (ismobile !== mobile) {
-                setMobile(ismobile);
+            const iscompact = isCompact();
+            if (iscompact !== compact) {
+                setCompact(iscompact);
             }
         };
         const removeResize = onResizeScreen(resize);
         return () => {
             removeResize();
         };
-    }, [mobile]);
+    }, [compact]);
 
     useEffect(() => {
         if (open) {
@@ -165,7 +165,7 @@ function ComboBox({
                     onClick={change}
                     onGetItemClass = {onGetItemClass}
                     ItemComponent={ItemComponent}
-                    mobile = {mobile}
+                    mobile = {compact}
                 />
             </Modal>}
         </>
