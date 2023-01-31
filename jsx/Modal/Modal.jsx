@@ -53,11 +53,13 @@ function Modal({
         <div
             id = {id}
             className={`${className}`}
+
+            {...(visible ? { state: 'show' } : { state: 'hide' })}
             style={{
                 position: 'absolute',
                 left: 0,
                 top: 0,
-                ...(visible ? {} : { display: 'none' }),
+
             }}
         >
             {enableShadow
@@ -82,7 +84,7 @@ Modal.global = {
     idRoot: 'wd-modal',
     className: 'wd-modal',
     classShadow: 'wd-shadow',
-    opacityShadow: false,
+    opacityShadow: 0.4,
 };
 
 export default Modal;

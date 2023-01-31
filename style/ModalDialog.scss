@@ -22,7 +22,11 @@
     $radius:var(--wd-radius);
     $md-color:var(--md-color);
     $md-color-hover:var(--md-color-hover);
-
+    [state="show"]{
+        >.wd-dialog{
+            animation: 0.5s show-dialog ease;
+        }    
+    }
     .wd-dialog{
         border:1px solid $border;
         border-radius: $radius;
@@ -134,5 +138,11 @@
     }
 
 }
+
+@keyframes show-dialog {
+    from { transform: scale(0.98) }
+    to {  transform: scale(1)}
+  }
+
 
 @include define();

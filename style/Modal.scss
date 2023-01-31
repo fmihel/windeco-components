@@ -4,13 +4,19 @@
 @mixin define($args...){
 
     .wd-shadow{
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgb(0, 0, 0);
         position: absolute;
     } 
 
     .wd-modal{
-        
+        &[state='hide']{
+            display: none;
+        }
+        &[state='show']{
+            display: 'block';
+        }
     }    
 }
+
 
 @include define();

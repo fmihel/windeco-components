@@ -139,7 +139,7 @@ class ModalDialogAPI {
             out.left = margin;
             out.width = scr.width - margin * 2 - 2;
         } else {
-            out.width = scr.width * width / 100;
+            out.width = (scr.width * width) / 100;
             out.left = (scr.width - out.width) / 2;
         }
 

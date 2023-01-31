@@ -320,7 +320,7 @@ class App extends React.Component {
         };
         return (
             <div className={`${this.state.theme} ${this.state.size}`}>
-                <div className="wd-nav-top">
+                <div className="wd-nav-left">
                     <NavBar Logo={() => <NavLogo>logo</NavLogo>}>
                         <div>
                             <span>{'theme'} </span>
