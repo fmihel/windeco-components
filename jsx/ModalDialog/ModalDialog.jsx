@@ -6,6 +6,7 @@ import Btn from '../Btn/Btn.jsx';
 import mousePos from '../Utils/mouse';
 import onResizeScreen from '../Utils/onResizeScreen.js';
 import isCompact from '../Utils/isCompact.js';
+import ModalDialogAPI from './ModalDialogAPI';
 
 function ModalDialog({
     id,
@@ -25,6 +26,7 @@ function ModalDialog({
     top = ModalDialog.global.top, // for align = custom
     width = ModalDialog.global.width, // for align = custom,stickTo
     height = ModalDialog.global.height, // for align = custom,stickTo
+    mobile = { top: 30 }, // false,large,middle,small,{center||top||bottom:<percent size>}
     classShadow = Modal.global.classShadow,
     opacityShadow = Modal.global.opacityShadow,
     enableShadow = true,
@@ -33,7 +35,6 @@ function ModalDialog({
     className = ModalDialog.global.className,
     addClass = ModalDialog.global.addClass,
     style = { ...ModalDialog.global.style },
-    mobility = true, // учитывать мобильный вид
     children,
 
 }) {
@@ -59,9 +60,14 @@ function ModalDialog({
         const resize = (first = false) => {
             const iscompact = isCompact();
             setCompact(iscompact);
-
-            if (!userModif || (mobility && iscompact)) {
-                const newPos = api.updatePos({
+            let newPos;
+            if (mobile !== false && iscompact) {
+                const mobObject = api.mobileToObject(mobile);
+                newPos = api.updatePosMobile(mobObject.pos, mobObject.size, mobObject.width);
+                setPos({ left: newPos.left, top: newPos.top });
+                setSize({ width: newPos.width, height: newPos.height });
+            } else if (!userModif) {
+                newPos = api.updatePos({
                     first,
                     pos: { ...pos, ...size },
                     left,
@@ -74,9 +80,7 @@ function ModalDialog({
                     stickOffY,
                     stickAlign,
                     margin,
-                    mobile: mobility ? iscompact : false,
                 });
-
                 setPos({ left: newPos.left, top: newPos.top });
                 setSize({ width: newPos.width, height: newPos.height });
             }
@@ -87,7 +91,7 @@ function ModalDialog({
         return () => {
             removeResize();
         };
-    }, [visible, left, top, width, height, align, stickTo, stickOffX, stickOffY, stickAlign, margin, userModif, mobility]);
+    }, [visible, left, top, width, height, align, stickTo, stickOffX, stickOffY, stickAlign, userModif]);
 
     useEffect(() => {
         const mouseMove = () => {

@@ -1,6 +1,8 @@
 import absPos from '../Utils/abs';
 import screen from '../Utils/screen';
 import DOM from '../Utils/DOM';
+import isMobile from '../Utils/isMobile';
+import global from '../global';
 
 class ModalDialogAPI {
     static margin(margin) {
@@ -29,19 +31,9 @@ class ModalDialogAPI {
         margin = {
             left: 0, right: 0, top: 0, bottom: 0,
         },
-        mobile = false,
     }) {
         const scr = screen();
 
-        if (mobile) {
-            return {
-                left: 5,
-                top: 5,
-                width: scr.width - 11,
-                height: scr.height - 11,
-
-            };
-        }
         if (align === 'stretch') {
             const cmargin = ModalDialogAPI.margin(margin);
 
@@ -110,6 +102,58 @@ class ModalDialogAPI {
         return {
             left: 10, top: 10, width: 200, height: 200,
         };
+    }
+
+    /** преобразование многотипизированного параетра mobile в объект
+     *  значения mobile
+     *  large , middle , small, {top|center|bottom:INT,[width:INT]}
+     *  @returns { {pos,size,width} }
+     */
+    static mobileToObject(mobile) {
+        if (mobile === 'large') {
+            return { pos: 'center', size: 100, width: 100 };
+        } if (mobile === 'middle') {
+            return { pos: 'center', size: 60, width: 100 };
+        } if (mobile === 'small') {
+            return { pos: 'center', size: 30, width: 80 };
+        } if (mobile === false) {
+            return { pos: false, size: false, width: false };
+        }
+        const pos = Object.keys(mobile).find((it) => ['center', 'top', 'bottom'].indexOf(it) !== -1);
+        return {
+            pos,
+            size: mobile[pos],
+            width: mobile.width || 100,
+        };
+    }
+
+    static updatePosMobile(pos, size, width) {
+        const out = {
+            left: 0, top: 0, width: 0, height: 0,
+        };
+
+        const scr = screen();
+        const margin = (scr.width * 1) / 100;
+
+        if (width === 100 || isMobile() || scr.width < global.wd_min_mobile_width) {
+            out.left = margin;
+            out.width = scr.width - margin * 2 - 2;
+        } else {
+            out.width = scr.width * width / 100;
+            out.left = (scr.width - out.width) / 2;
+        }
+
+        out.height = size === 100 ? (scr.height - 2 * margin - 2) : (scr.height * size) / 100;
+
+        if (pos === 'center') {
+            out.top = size === 100 ? margin : (scr.height - out.height) / 2;
+        } else if (pos === 'top') {
+            out.top = margin;
+        } else if (pos === 'bottom') {
+            out.top = scr.height - out.height - margin;
+        }
+
+        return out;
     }
 
     static getFooterParam(key, paramName, footer) {

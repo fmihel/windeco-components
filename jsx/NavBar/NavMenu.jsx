@@ -34,7 +34,7 @@ function NavMenu({
 }) {
     const [expand, setExpand] = useState(expanded !== undefined ? expanded : false);
     const [showAs, setShowAs] = useState(viewAs);
-    const [mobile, setMobile] = useState(false);
+    const [compact, setCompact] = useState(false);
     const [area, setArea] = useState({ width: 0, height: 0 });
     const dom = useRef(null);
     const frame = useRef(null);
@@ -50,8 +50,8 @@ function NavMenu({
     useEffect(() => {
         const resize = () => {
             const current = isCompact();
-            if (current !== mobile) {
-                setMobile(current);
+            if (current !== compact) {
+                setCompact(current);
                 setExpand(false);
             }
         };
@@ -60,11 +60,11 @@ function NavMenu({
         return () => {
             removeResizeScreen();
         };
-    }, [mobile]);
+    }, [compact]);
 
     useEffect(() => {
-        setShowAs(getViewAs(viewAs, mobile));
-    }, [viewAs, mobile]);
+        setShowAs(getViewAs(viewAs, compact));
+    }, [viewAs, compact]);
 
     useEffect(() => {
         if (expand && showAs === 'popup' && frame.current) {

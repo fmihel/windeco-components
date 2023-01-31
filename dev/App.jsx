@@ -87,6 +87,7 @@ class App extends React.Component {
                 ...defaultDialogParam,
                 header: 'text in header',
                 msg: 'common simple dialog',
+                mobile: { top: 30 },
             },
 
             table: {
@@ -94,6 +95,7 @@ class App extends React.Component {
                 header: 'table',
                 msg: '|--|',
                 resizable: true,
+                mobile: 'large',
             },
 
             'with btns': {
@@ -101,6 +103,7 @@ class App extends React.Component {
                 // header: 'text in header',
                 msg: 'common simple dialog',
                 footer: ['ok', 'cancel'],
+                mobile: { bottom: 40 },
             },
 
             stickTo: {
@@ -113,6 +116,7 @@ class App extends React.Component {
                 height: 150,
                 width: 300,
                 draggable: false,
+                mobile: { center: 30, width: 80 },
             },
 
             stickAndDrag: {
