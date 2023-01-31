@@ -6,7 +6,6 @@ import Btn from '../Btn/Btn.jsx';
 import mousePos from '../Utils/mouse';
 import onResizeScreen from '../Utils/onResizeScreen.js';
 import isCompact from '../Utils/isCompact.js';
-import ModalDialogAPI from './ModalDialogAPI';
 
 function ModalDialog({
     id,

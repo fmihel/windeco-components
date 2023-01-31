@@ -2,26 +2,27 @@ import React from 'react';
 import screen from '../Utils/screen';
 import ComboItem from './ComboItem.jsx';
 import global from '../global';
+import ModalDialogAPI from '../ModalDialog/ModalDialogAPI';
 
 function listPos({
     left, top, width, height, mobile,
 }) {
+    const scr = screen();
+    if (mobile) {
+        return ModalDialogAPI.updatePosMobile('center', 50, 100);
+        // out.left = global.wd_gap * 2;
+        // out.top = global.wd_gap * 2;
+        // out.width = scr.width - global.wd_gap * 4;
+        // out.height = scr.height - global.wd_gap * 4;
+    }
     const out = {
         left, top, width, height,
     };
-    const scr = screen();
-    if (mobile) {
-        out.left = global.wd_gap * 2;
-        out.top = global.wd_gap * 2;
-        out.width = scr.width - global.wd_gap * 4;
-        out.height = scr.height - global.wd_gap * 4;
+    out.height = 150;
+    if (out.top + height + out.height > scr.height) {
+        out.top -= out.height + 3;
     } else {
-        out.height = 150;
-        if (out.top + height + out.height > scr.height) {
-            out.top -= out.height + 3;
-        } else {
-            out.top = top + height + 1;
-        }
+        out.top = top + height + 1;
     }
     return out;
 }
