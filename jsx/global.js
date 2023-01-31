@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
-export default class global {
-    static wd_max_mobile_width = 900;
+const global = {
+    wd_max_mobile_width: 900,
+    wd_gap: 5,
+};
 
-    static wd_gap = 5;
-}
+export default global;

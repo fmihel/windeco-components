@@ -1,19 +1,27 @@
 import React from 'react';
 import screen from '../Utils/screen';
 import ComboItem from './ComboItem.jsx';
+import global from '../global';
 
 function listPos({
-    left, top, width, height,
+    left, top, width, height, mobile,
 }) {
     const out = {
         left, top, width, height,
     };
-    out.height = 150;
     const scr = screen();
-    if (out.top + height + out.height > scr.height) {
-        out.top -= out.height + 3;
+    if (mobile) {
+        out.left = global.wd_gap * 2;
+        out.top = global.wd_gap * 2;
+        out.width = scr.width - global.wd_gap * 4;
+        out.height = scr.height - global.wd_gap * 4;
     } else {
-        out.top = top + height + 1;
+        out.height = 150;
+        if (out.top + height + out.height > scr.height) {
+            out.top -= out.height + 3;
+        } else {
+            out.top = top + height + 1;
+        }
     }
     return out;
 }
@@ -33,6 +41,7 @@ function ComboList({
     ItemComponent = ComboItem,
     onGetItemClass = undefined,
     onClick = undefined,
+    mobile = (false),
 }) {
     return (
         <div
@@ -43,6 +52,7 @@ function ComboList({
                     top,
                     width,
                     height,
+                    mobile,
                 }),
             }}
         >

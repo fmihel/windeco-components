@@ -3,6 +3,8 @@ import abs from '../Utils/abs';
 import Modal from '../Modal/Modal.jsx';
 import ComboList from './ComboList.jsx';
 import ComboItem from './ComboItem.jsx';
+import isMobile from '../Utils/isMobile';
+import onResizeScreen from '../Utils/onResizeScreen';
 
 function ComboBox({
     id,
@@ -36,17 +38,36 @@ function ComboBox({
     const [open, setOpen] = useState(false);
     const [btnOpenShow, setBtnOpenShow] = useState(!hideBtnOnSelect);
     const [focused, setFocused] = useState(false);
+    const [mobile, setMobile] = useState(isMobile());
     const ref = useRef(null);
     const [size, setSize] = useState({
         left: 0, top: 0, width: 0, height: 0,
     });
+    useEffect(() => {
+        const resize = () => {
+            const ismobile = isMobile();
+            if (ismobile !== mobile) {
+                setMobile(ismobile);
+            }
+        };
+        const removeResize = onResizeScreen(resize);
+        return () => {
+            removeResize();
+        };
+    }, [mobile]);
 
     useEffect(() => {
         if (open) {
+            const out = {
+                left: 0, top: 0, width: 0, height: 0,
+            };
+
             const area = abs(ref.current);
-            setSize({
-                left: area.x, top: area.y, width: area.w, height: area.h,
-            });
+            out.left = area.x;
+            out.top = area.y;
+            out.width = area.w;
+            out.height = area.h;
+            setSize(out);
         }
     }, [open]);
 
@@ -144,6 +165,7 @@ function ComboBox({
                     onClick={change}
                     onGetItemClass = {onGetItemClass}
                     ItemComponent={ItemComponent}
+                    mobile = {mobile}
                 />
             </Modal>}
         </>

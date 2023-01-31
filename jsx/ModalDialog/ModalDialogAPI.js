@@ -34,7 +34,6 @@ class ModalDialogAPI {
         const scr = screen();
 
         if (mobile) {
-            console.log('mobile', scr);
             return {
                 left: 5,
                 top: 5,
