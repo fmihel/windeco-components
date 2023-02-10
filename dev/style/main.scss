@@ -131,5 +131,12 @@ body{
             align-self: auto;
         }
     }
+    @each $font,$type in $wd-fonts-family{
+        //@debug $font;
+        .font-#{$font}{
+            font-family:  font-family($font);    
+        }
+    }
+    
 
 }

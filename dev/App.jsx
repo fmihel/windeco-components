@@ -324,7 +324,7 @@ class App extends React.Component {
         };
         return (
             <div>
-                <div className="wd-nav-top">
+                <div className="wd-nav-left">
                     <NavBar Logo={() => <NavLogo>logo</NavLogo>}>
                         <div>
                             <span>{'theme'} </span>
@@ -336,7 +336,7 @@ class App extends React.Component {
 
                         <Edit placeholder='search'/>
                         <NavItem>Item1</NavItem>
-                        <NavMenu caption="file" viewAs='list/popup'>
+                        <NavMenu caption="file" viewAs='list'>
                             <NavItem>save</NavItem>
                             <NavItem>save as</NavItem>
 
