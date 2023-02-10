@@ -1,0 +1,26 @@
+@use 'sass:meta';
+@import './vars.scss';
+
+.wd-container{
+    display: flex;
+    
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;    
+    
+    flex-direction: column;
+    @media screen and (min-width: $wd-max-mobile-width) {
+        flex-direction: row;
+    }        
+}
+
+.wd-row,.wd-row-1{
+    order: 0;
+    flex: 1 1 auto;
+    align-self: auto;
+    border: 1px dotted limegreen;
+}
+
+
+

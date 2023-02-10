@@ -34,6 +34,7 @@ import NavMenu, { collapseMenus } from '../jsx/NavBar/NavMenu.jsx';
 import NavItem from '../jsx/NavBar/NavItem.jsx';
 import Collapse from '../jsx/Collapse/Collapse.jsx';
 import isMobile from '../jsx/Utils/isMobile';
+import '../style/Container.scss';
 
 import {
     table_long2, table_long,
@@ -360,6 +361,20 @@ class App extends React.Component {
                     </NavBar>
 
                     <div className='content wd-scrollbar'>
+                        {/*--------------------------------------------------------------------------------------------------*/}
+                        <Head caption="Container">
+                            <Block>
+                                <div className="wd-container">
+                                    <div className="wd-row">
+                                        row1
+                                    </div>
+                                    <div className="wd-row">
+                                        row2
+                                    </div>
+
+                                </div>
+                            </Block>
+                        </Head>
                         {/*--------------------------------------------------------------------------------------------------*/}
                         <Head caption="Collapse">
                             <Block>
