@@ -100,10 +100,12 @@
         border:1px solid $border;
         position: absolute;
         overflow-x: hidden;
-        overflow-y: auto;        
+        overflow-y: auto;  
+
         .wd-combo-item{
             max-height: $size;
             height: $size;
+
             &:hover{
                 background-color: $hover;
                 color:$color-hover;
@@ -117,6 +119,19 @@
             }
         }
     }
+    .mobile .wd-combo-list{
+        animation: 0.5s combo-scale ease;
+        padding: $gap;
+        .wd-combo-item{
+            //border-bottom: 1px solid $border;
+            border-radius: 3px;
+            &:nth-child(2n+1){
+                background-color: $hover;
+
+            }        
+        }
+    }
+    
     .wd-combo-item{
         text-indent: $gap;
         line-height: $size;
@@ -139,6 +154,11 @@
         // ----------------------------
     };
 
+    .mobile .wd-combo-shadow{
+        background-color: black;
+        opacity: 0.8;
+    }
+
 }
 
 .wd-clamp{
@@ -155,6 +175,11 @@
         margin-left: -50px;
     }
 
+}
+
+@keyframes combo-scale {
+    from { transform: scale(1,0.9) }
+    to {  transform: scale(1,1)}
 }
 
 

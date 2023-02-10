@@ -33,6 +33,7 @@ import NavLogo from '../jsx/NavBar/NavLogo.jsx';
 import NavMenu, { collapseMenus } from '../jsx/NavBar/NavMenu.jsx';
 import NavItem from '../jsx/NavBar/NavItem.jsx';
 import Collapse from '../jsx/Collapse/Collapse.jsx';
+import isMobile from '../jsx/Utils/isMobile';
 
 import {
     table_long2, table_long,
@@ -46,6 +47,8 @@ import theme from '../jsx/Utils/theme';
 // [iEdit]: './media/edit.png',
 // [iEdit16]: { path: './media/edit16.png' },
 // });
+
+theme.addClass(isMobile() ? 'mobile' : '');
 
 class App extends React.Component {
     constructor(p) {
@@ -192,8 +195,9 @@ class App extends React.Component {
 
         };
         this.state = {
-            theme: storage.get('theme-style', { default: 'dark' }),
-            size: storage.get('theme-size', { default: 'normal' }),
+            // theme: storage.get('theme-style', { default: 'dark' }),
+            // size: storage.get('theme-size', { default: 'normal' }),
+            // mobile: isMobile() ? 'mobile' : '',
             checked: 0,
             dialog: false, // 'table',
             dialogEx: false,
@@ -319,8 +323,8 @@ class App extends React.Component {
             return '';
         };
         return (
-            <div className={`${this.state.theme} ${this.state.size}`}>
-                <div className="wd-nav-left">
+            <div>
+                <div className="wd-nav-top">
                     <NavBar Logo={() => <NavLogo>logo</NavLogo>}>
                         <div>
                             <span>{'theme'} </span>

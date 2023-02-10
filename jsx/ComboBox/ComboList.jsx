@@ -3,6 +3,7 @@ import screen from '../Utils/screen';
 import ComboItem from './ComboItem.jsx';
 import global from '../global';
 import ModalDialogAPI from '../ModalDialog/ModalDialogAPI';
+import isMobile from '../Utils/isMobile';
 
 function listPos({
     left, top, width, height, mobile,
@@ -42,7 +43,6 @@ function ComboList({
     ItemComponent = ComboItem,
     onGetItemClass = undefined,
     onClick = undefined,
-    mobile = (false),
 }) {
     return (
         <div
@@ -53,7 +53,7 @@ function ComboList({
                     top,
                     width,
                     height,
-                    mobile,
+                    mobile: isMobile(),
                 }),
             }}
         >

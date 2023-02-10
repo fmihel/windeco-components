@@ -16,13 +16,21 @@ function NavItem({
     const click = () => {
         if (onClick) onClick({ link });
     };
+    const text = () => {
+        if (caption) {
+            return typeof caption === 'string' ? <span it="cap">{caption}</span> : caption;
+        } if (children) {
+            return typeof children === 'string' ? <span it="cap">{children}</span> : children;
+        }
+        return '';
+    };
     return (
         <div
             className={ `${className} ${addClass}`}
             style={{ ...NavItem.global.style, ...style }}
             onClick={click}
         >
-            {caption || children || ''}
+            {text()}
         </div>
     );
 }

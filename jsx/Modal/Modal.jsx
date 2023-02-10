@@ -17,9 +17,10 @@ function Modal({
     classShadow = Modal.global.classShadow,
     onClickShadow = undefined,
     opacityShadow = Modal.global.opacityShadow,
+    attr = {},
     children,
 }) {
-    const screenSize = () => { const s = scr(); s.width -= 1; s.height -= 1; return s; };
+    const screenSize = () => { const s = scr(); /* s.width -= 1; s.height -= 1; */ return s; };
     const [screen, setScreen] = useState(scr());
     const [element] = useState(document.createElement('div'));
     const moveTop = () => { element.parentElement.insertBefore(element, null); };
@@ -61,14 +62,15 @@ function Modal({
                 top: 0,
 
             }}
+            {...attr}
         >
             {enableShadow
             && <div
                 className={`${classShadow}`}
                 style={{
                     position: 'absolute',
-                    left: 0,
-                    top: 0,
+                    left: -1,
+                    top: -1,
                     ...screen,
                     ...(opacityShadow === false ? {} : { opacity: opacityShadow }),
                 }}

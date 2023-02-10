@@ -32,7 +32,7 @@ function ModalDialog({
     draggable = true, // work with align = custom || stickTo
     resizable = false,
     className = ModalDialog.global.className,
-    addClass = ModalDialog.global.addClass,
+    addClass = ModalDialog.global.addClass || 'wd-dialog-scale',
     style = { ...ModalDialog.global.style },
     children,
 

@@ -16,7 +16,6 @@ class Theme {
 
             if (idx >= 0) {
                 out = themes[idx];
-
                 return true;
             }
 
@@ -53,10 +52,27 @@ class Theme {
 
         const clear = html.className.split(' ').filter((name) => (!(themes.indexOf(name) >= 0))).join(' ').trim();
         if (theme !== this.default) {
-            html.className = (clear ? ' ' : '') + theme;
+            html.className = clear + (clear ? ' ' : '') + theme;
         } else {
             html.className = clear;
         }
+    }
+
+    addClass(name) {
+        const html = document.documentElement;
+        if (html.className.split(' ').indexOf(name) === -1) {
+            html.className = `${html.className.trim()} ${name}`;
+        }
+    }
+
+    removeClass(name) {
+        const html = document.documentElement;
+        html.className = html.className.split(' ').filter((it) => (it !== name)).join(' ').trim();
+    }
+
+    haveClass(name) {
+        const html = document.documentElement;
+        return html.className.split(' ').indexOf(name) >= 0;
     }
 }
 

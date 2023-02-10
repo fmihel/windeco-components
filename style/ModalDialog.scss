@@ -23,8 +23,14 @@
     $md-color:var(--md-color);
     $md-color-hover:var(--md-color-hover);
     [state="show"]{
-        >.wd-dialog{
-            animation: 0.5s show-dialog ease;
+        >.wd-dialog-slide-from-right{
+            animation: 0.5s dialog-slide-from-right ease;
+        }    
+        >.wd-dialog-slide-from-top{
+            animation: 0.5s dialog-slide-from-top ease;
+        }    
+        >.wd-dialog-scale{
+            animation: 0.5s dialog-scale ease;
         }    
     }
     .wd-dialog{
@@ -139,10 +145,19 @@
 
 }
 
-@keyframes show-dialog {
-    from { transform: scale(0.98) }
-    to {  transform: scale(1)}
-  }
+@keyframes dialog-slide-from-right {
+    from { transform: translate(50%) }
+    to {  transform: tramslate(0%)}
+}
 
+@keyframes dialog-slide-from-top {
+    from { transform: translate(0%,-2%) }
+    to {  transform: tramslate(0%,0%)}
+}
+
+@keyframes dialog-scale {
+    from { transform: scale(0.99) }
+    to {  transform: scale(1)}
+}
 
 @include define();

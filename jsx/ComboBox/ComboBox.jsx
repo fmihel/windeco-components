@@ -38,7 +38,6 @@ function ComboBox({
     const [open, setOpen] = useState(false);
     const [btnOpenShow, setBtnOpenShow] = useState(!hideBtnOnSelect);
     const [focused, setFocused] = useState(false);
-    const [mobile, setMobile] = useState(isMobile());
     const ref = useRef(null);
     const [size, setSize] = useState({
         left: 0, top: 0, width: 0, height: 0,
@@ -153,7 +152,7 @@ function ComboBox({
             {(!disabled) && <Modal
                 visible = {open}
                 onClickShadow={closeList}
-                opacityShadow={mobile ? 1 : 0}
+                classShadow='wd-combo-shadow'
             >
                 <ComboList
                     className={classNameList}
@@ -167,7 +166,6 @@ function ComboBox({
                     onClick={change}
                     onGetItemClass = {onGetItemClass}
                     ItemComponent={ItemComponent}
-                    mobile = {mobile}
                 />
             </Modal>}
         </>
