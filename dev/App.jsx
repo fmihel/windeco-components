@@ -35,7 +35,8 @@ import NavItem from '../jsx/NavBar/NavItem.jsx';
 import Collapse from '../jsx/Collapse/Collapse.jsx';
 import isMobile from '../jsx/Utils/isMobile';
 import '../style/Container.scss';
-
+import Container from '../jsx/Container/Container.jsx';
+import Col from '../jsx/Container/Col.jsx';
 import {
     table_long2, table_long,
     combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4, combo_list5,
@@ -346,7 +347,7 @@ class App extends React.Component {
                         <NavMenu caption="menu" viewAs='list/panel'>
                             <NavItem>item2</NavItem>
                             <NavMenu caption="sub-1" viewAs="list/popup" >
-                                <div>Item3</div>
+                                <NavItem>Item3</NavItem>
                                 <Edit placeholder='search'/>
                                 <div >Item4</div>
                                 <div>Item5</div>
@@ -364,15 +365,45 @@ class App extends React.Component {
                         {/*--------------------------------------------------------------------------------------------------*/}
                         <Head caption="Container">
                             <Block>
-                                <div className="wd-container">
-                                    <div className="wd-row">
+                                <Container className="wd-container-row">
+                                    <Col className="wd-col-margin hide-on-compact"/>
+                                    <Col>
                                         row1
-                                    </div>
-                                    <div className="wd-row">
+                                    </Col>
+                                    <Col className="wd-col-margin  hide-on-compact"/>
+                                    <Col>
                                         row2
-                                    </div>
+                                    </Col>
+                                </Container>
+                                <Container style={{ height: 2 }}/>
+                                <Container>
+                                    <Col>
+                                        row1
+                                    </Col>
+                                    <Col className="wd-col-margin"/>
+                                    <Col>
+                                        row2
+                                    </Col>
+                                </Container>
+                                <Container style={{ height: 2 }}/>
+                                <Container>
+                                    <Col>
+                                        row1
+                                    </Col>
+                                    <Col className="wd-col-margin"/>
+                                    <Col className="wd-col-1">
+                                        row2
+                                    </Col>
+                                    <Col className="wd-col-margin"/>
+                                    <Col className="wd-col-2">
+                                        row2
+                                    </Col>
+                                    <Col className="wd-col-margin"/>
+                                    <Col>
+                                        row3
+                                    </Col>
+                                </Container>
 
-                                </div>
                             </Block>
                         </Head>
                         {/*--------------------------------------------------------------------------------------------------*/}

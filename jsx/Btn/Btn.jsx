@@ -7,7 +7,7 @@ export default function Btn({
     onClick = undefined,
     className = Btn.global.className,
     addClass = Btn.global.addClass,
-    style = Btn.global.style,
+    style = { ...Btn.global.style },
     hint = false,
     title = false,
     children,

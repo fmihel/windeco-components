@@ -169,5 +169,22 @@ $wd-bootstrap-vars:(
 }
 
 
+@mixin on-compact{
+    @media screen and (max-width: $wd-max-mobile-width) {
+        @content;
+    }
+}
+
+@mixin on-fullscreen{
+    @media screen and (min-width: $wd-max-mobile-width) {
+        @content;
+    }
+}
+
+.hide-on-compact{
+    @include on-compact{
+        display: none !important;
+    }
+}
 
 

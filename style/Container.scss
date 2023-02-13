@@ -9,18 +9,45 @@
     align-content: stretch;
     align-items: stretch;    
     
-    flex-direction: column;
-    @media screen and (min-width: $wd-max-mobile-width) {
-        flex-direction: row;
-    }        
+    flex-direction: row;
+    @include on-compact{
+        flex-direction: column;
+    }
 }
-
-.wd-row,.wd-row-1{
-    order: 0;
+.wd-container-row{
+    display: flex;
+    
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;    
+    
+    flex-direction: row;
+}
+.wd-col{
     flex: 1 1 auto;
-    align-self: auto;
+    //min-height: var(--wd-size);
     border: 1px dotted limegreen;
 }
 
+.wd-col-margin{
+    flex: 0 1 auto;
+    //border: 1px dotted limegreen;
+    
+    width: var(--wd-margin);
+    height: var(--wd-margin);
+    @include on-compact{
+        //flex: 1 1 auto;
+    }
 
+}
 
+.wd-col-1{
+    border: 1px dotted limegreen;
+    min-width:10%;
+}
+
+.wd-col-2{
+    border: 1px dotted limegreen;
+    min-width:20%;
+}
