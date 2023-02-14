@@ -223,5 +223,16 @@ $wd-cbex-border-focus:$wd-ctrl-border-focus !default;
        
 
     }
+} 
+
+.wd-cbex-list-slide{
+    animation: 0.1s cbex-list-slide ease;
 }
+
+
+@keyframes cbex-list-slide {
+    from { transform:  scaleY(70%) translateY(-20%)}
+    to {  transform:  scaleY(100%) translateY(0%)}
+}
+
 
