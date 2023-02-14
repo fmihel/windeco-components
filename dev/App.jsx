@@ -204,6 +204,7 @@ class App extends React.Component {
             textValue2: '',
             customLeft: 100,
             customTop: 100,
+            expandCombo: false,
 
         };
     }
@@ -321,67 +322,20 @@ class App extends React.Component {
                         </Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption="Edit">
-                        <Block> <Edit id="tt" style={{ fontSize: '1.2em' }}onKeyPress={(o) => {
-                            console.log(o);
-                        }}> text from child</Edit></Block>
-                        <Block> <Edit type="password" placeholder="set password" disable={{ dim: true }} style={{ height: 18 }}/></Block>
-                        <Block> <Edit autoFocus value="text from value, and hint" hint="hint prop"/></Block>
-                        <Block> <Edit
-                            value=""
-                            hint="обязательный ввод"
-                            placeholder="need text.."
-                            required={true}
-                            maxLength={10}
-                            onInit={(component) => { this.EditRequired = component; }}
-                            onKeyDown={(o) => { console.log('down', o); }}
-                            onKeyUp={(o) => { console.log('up', o); }}
-                        />
-                        </Block>
-                        <Block> <Edit value="disabled" disabled={1} /></Block>
-                        <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
-                        <Block> <Label caption="label" id="myEdit100"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
-                        <Block> <Label caption="pass" id="pass"><Edit type="password" value="set text" disable={{ dim: true }}/></Label></Block>
-                        <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
-                        <Block> <Label caption="range"><Edit value={5} dim={''} type='number' min={1} max={10} step={1}/></Label></Block>
-                        <Block> <Btn onClick={() => { this.EditRequired.focus(); }}>focus to required</Btn></Block>
-                    </Head>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-                    <Head caption={'BtnIcon'}>
-                        <Block>
-                            <Btn>left</Btn>
-                            <BtnIcon>button presed test</BtnIcon>
-                            <BtnIcon
-                                hint = "icon"
-                                IconComponent={Icon}
-                                icon={iEdit}
-                                addClass="wd-danger"
-                                iconClass="demo-bi-color"
-                            >ok</BtnIcon>
-                            <BtnIcon
-                                hint = "icon "
-                                IconComponent={FontAwesomeIcon}
-                                icon={faAddressBook}
-                                addClass="wd-danger"
-                                iconClass="demo-bi-color"
-                            >ok</BtnIcon>
-                            <Btn>standart</Btn>
-                            <BtnIcon addClass="wd-primary">cancel</BtnIcon>
-                            <BtnIcon>story</BtnIcon>
-                            <BtnIcon icon={faCaretDown} style={{ width: '100px' }} hint="no text"/>
-                            <BtnIcon addClass="wd-green">save</BtnIcon>
-                        </Block>
-                    </Head>
-                    {/*--------------------------------------------------------------------------------------------------*/}
-
                     <Head caption="ComboBoxEx">
                         <Block>
-                            <ComboBoxEx
-                                style={{ height: 18 }}
-                                onChange={(o) => { console.log(o); }}
-                                list = {combo_list1}
-                                required={true}
-                            />
+                            <div className="block-horiz">
+                                <ComboBoxEx
+                                    style={{ height: 18, width: '80%' }}
+                                    onChange={(o) => { console.log(o); this.setState({ expandCombo: false }); }}
+                                    onClose={() => { this.setState({ expandCombo: false }); }}
+                                    list = {combo_list1}
+                                    required={true}
+
+                                    expand = {this.state.expandCombo}
+                                />
+                                <Btn onClick={() => { this.setState({ expandCombo: true }); }}>expand</Btn>
+                            </div>
                         </Block>
                         <Block>
                             <div className="block-horiz">
@@ -483,6 +437,59 @@ class App extends React.Component {
                         </Block>
                     </Head>
                     {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption="Edit">
+                        <Block> <Edit id="tt" style={{ fontSize: '1.2em' }}onKeyPress={(o) => {
+                            console.log(o);
+                        }}> text from child</Edit></Block>
+                        <Block> <Edit type="password" placeholder="set password" disable={{ dim: true }} style={{ height: 18 }}/></Block>
+                        <Block> <Edit autoFocus value="text from value, and hint" hint="hint prop"/></Block>
+                        <Block> <Edit
+                            value=""
+                            hint="обязательный ввод"
+                            placeholder="need text.."
+                            required={true}
+                            maxLength={10}
+                            onInit={(component) => { this.EditRequired = component; }}
+                            onKeyDown={(o) => { console.log('down', o); }}
+                            onKeyUp={(o) => { console.log('up', o); }}
+                        />
+                        </Block>
+                        <Block> <Edit value="disabled" disabled={1} /></Block>
+                        <Block> <Edit placeholder="set text" disable={{ dim: true }}/></Block>
+                        <Block> <Label caption="label" id="myEdit100"><Edit value="set text" disable={{ dim: true }}/></Label></Block>
+                        <Block> <Label caption="pass" id="pass"><Edit type="password" value="set text" disable={{ dim: true }}/></Label></Block>
+                        <Block> <Label caption="readonly"><Edit value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
+                        <Block> <Label caption="range"><Edit value={5} dim={''} type='number' min={1} max={10} step={1}/></Label></Block>
+                        <Block> <Btn onClick={() => { this.EditRequired.focus(); }}>focus to required</Btn></Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+                    <Head caption={'BtnIcon'}>
+                        <Block>
+                            <Btn>left</Btn>
+                            <BtnIcon>button presed test</BtnIcon>
+                            <BtnIcon
+                                hint = "icon"
+                                IconComponent={Icon}
+                                icon={iEdit}
+                                addClass="wd-danger"
+                                iconClass="demo-bi-color"
+                            >ok</BtnIcon>
+                            <BtnIcon
+                                hint = "icon "
+                                IconComponent={FontAwesomeIcon}
+                                icon={faAddressBook}
+                                addClass="wd-danger"
+                                iconClass="demo-bi-color"
+                            >ok</BtnIcon>
+                            <Btn>standart</Btn>
+                            <BtnIcon addClass="wd-primary">cancel</BtnIcon>
+                            <BtnIcon>story</BtnIcon>
+                            <BtnIcon icon={faCaretDown} style={{ width: '100px' }} hint="no text"/>
+                            <BtnIcon addClass="wd-green">save</BtnIcon>
+                        </Block>
+                    </Head>
+                    {/*--------------------------------------------------------------------------------------------------*/}
+
                     <Head caption="Dialog">
                         <Block>
                             {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}

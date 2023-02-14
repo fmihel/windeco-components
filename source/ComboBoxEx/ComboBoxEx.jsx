@@ -21,7 +21,7 @@ export default class ComboBoxEx extends React.Component {
     constructor(p) {
         super(p);
         this.state = {
-            visibleList: false,
+            _visibleList: false,
             pos: {
                 left: 0,
                 top: 0,
@@ -33,7 +33,18 @@ export default class ComboBoxEx extends React.Component {
             mouseOnCombo: false,
         };
 
-        binds(this, 'openList', 'closeList', 'onChange', 'onKeyDown', 'onFocusOut', 'onCreateList', 'onMouseMove', 'onMouseLeave', 'onFocusIn');
+        // binds(this, 'openList', 'closeList', 'onChange', 'onKeyDown', 'onFocusOut', 'onCreateList', 'onMouseMove', 'onMouseLeave', 'onFocusIn');
+        this.openList = this.openList.bind(this);
+        this.closeList = this.closeList.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.onKeyDown = this.onKeyDown.bind(this);
+        this.onFocusOut = this.onFocusOut.bind(this);
+        this.onCreateList = this.onCreateList.bind(this);
+        this.onMouseMove = this.onMouseMove.bind(this);
+        this.onMouseLeave = this.onMouseLeave.bind(this);
+        this.onFocusIn = this.onFocusIn.bind(this);
+        this.visibleList = this.visibleList.bind(this);
+
         this.ref = React.createRef();
         this.refFocus = React.createRef();
         this.refValue = React.createRef();
@@ -59,7 +70,7 @@ export default class ComboBoxEx extends React.Component {
 
     openList() {
         if (ut.False(this.props.disabled)) {
-            this.setState({ visibleList: true });
+            this.setState({ _visibleList: true });
             this._reculcWordWidth();
             this.definePosition(true);
             this.createTimer();
@@ -67,8 +78,11 @@ export default class ComboBoxEx extends React.Component {
     }
 
     closeList() {
-        this.setState({ visibleList: false, mouseOnCombo: false });
+        this.setState({ _visibleList: false, mouseOnCombo: false });
         this.destroyTimer();
+        if (this.props.onClose) {
+            this.props.onClose({ id: this.props.id });
+        }
     }
 
     createTimer() {
@@ -124,7 +138,7 @@ export default class ComboBoxEx extends React.Component {
     }
 
     definePosition(forced = false, setState = true) {
-        if (forced || this.state.visibleList) {
+        if (forced || this.visibleList()) {
             const oldPos = this.state.pos;
             const abs = JX.abs(this.refFocus.current);
             const newPos = { ...abs };
@@ -166,7 +180,7 @@ export default class ComboBoxEx extends React.Component {
             o.preventDefault();
         }
         if ([34, 33, 40, 38, 13].indexOf(o.keyCode) >= 0) {
-            if (!this.state.visibleList) {
+            if (!this.visibleList()) {
                 this.openList();
             } else {
                 this.list.KeyHandle({ keyCode: o.keyCode });
@@ -213,6 +227,11 @@ export default class ComboBoxEx extends React.Component {
         if (!this.state.mouseOnCombo) this.setState({ mouseOnCombo: true });
     }
 
+    visibleList() {
+        // return this.state._visibleList || this.props.expand;
+        return this.state._visibleList;
+    }
+
     componentDidMount() {
         // разовый вызов после первого рендеринга
 
@@ -241,6 +260,9 @@ export default class ComboBoxEx extends React.Component {
                 });
             }
         }
+        if (prevProps.expand !== this.props.expand && this.props.expand) {
+            this.openList();
+        }
     }
 
     _getSelect() {
@@ -255,9 +277,9 @@ export default class ComboBoxEx extends React.Component {
         const {
             idFieldName, placeholder, disable, dim, labelName,
             addClass, addClassItem, list, maxListHeight, listClasses: listClassesProps, style, required,
-            hideBtnOnSelect, srcPath, clamp,
+            hideBtnOnSelect, srcPath, clamp, expand,
         } = this.props;
-        const { visibleList, pos, mouseOnCombo } = this.state;
+        const { pos, mouseOnCombo } = this.state;
         const name = (labelName ? { id: labelName } : {});
         let value = '';
         let addClassValue = '';
@@ -298,7 +320,7 @@ export default class ComboBoxEx extends React.Component {
                 minWidth: bgSize,
             };
         }
-        if (!noSelect && hideBtnOnSelect && !mouseOnCombo && !visibleList) {
+        if (!noSelect && hideBtnOnSelect && !mouseOnCombo && !this.visibleList()) {
             btnStyle.display = 'none';
         }
 
@@ -362,7 +384,7 @@ export default class ComboBoxEx extends React.Component {
                     {dim}
                 </div>
                 }
-                {visibleList
+                {(this.visibleList())
                 && <Modal onClickShadow={this.closeList}>
                     <ComboBoxListEx
                         parentPos={pos}
@@ -389,6 +411,7 @@ ComboBoxEx.defaultProps = {
     idFieldName: 'id',
     dim: 'm',
     onChange: undefined,
+    onClose: undefined,
     placeholder: '-выбрать-',
     maxListHeight: 300,
     maxListWidth: 'auto', // 'fixed' || 'auto'
@@ -431,4 +454,5 @@ ComboBoxEx.defaultProps = {
     hideBtnOnSelect: false, // скрывать кнопку раскрытия, если выбран элемент
     srcPath: '',
     clamp: 0, // если ширина меньше указанногов clamp то при раскрытии
+    expand: false,
 };
