@@ -1,6 +1,6 @@
 {
   "name": "fmihel-windeco-components",
-  "version": "1.36.1",
+  "version": "2.0.0-beta.0",
   "description": "components for orders windeco",
   "main": "dist/windeco-components.js",
   "scripts": {
@@ -9,10 +9,10 @@
     "build-dist": "webpack --config webpack.config.dist.js",
     "build": "rm -rf dist && webpack --prod",
     "git-push": "git push origin main && git push origin main --tag",
-    "npm-publish-patch": "npm run build && npm version patch && npm publish && npm run git-push",
-    "npm-publish-minor": "npm run build && npm version minor && npm publish && npm run git-push",
-    "npm-publish-major": "npm run build && npm version major && npm publish && npm run git-push",
-    "copy-to": "bash copy-to"
+    "npm-publish-patch": "npm run build && npm version patch && npm publish",
+    "npm-publish-minor": "npm run build && npm version minor && npm publish",
+    "npm-publish-major": "npm run build && npm version major && npm publish",
+    "npm-publish-beta": "npm run build && npm publish  --tag beta"
   },
   "repository": {
     "type": "git",
