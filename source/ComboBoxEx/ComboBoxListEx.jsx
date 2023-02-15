@@ -176,7 +176,7 @@ export default class ComboBoxListEx extends React.Component {
 
         return (
             <div
-                className="wd-combobox-ex-list wd-cbex-list-slide"
+                className="wd-combobox-ex-list"
                 style={style}
                 ref = {this.ref}
             >

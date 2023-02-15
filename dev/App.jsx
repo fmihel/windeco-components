@@ -226,7 +226,7 @@ class App extends React.Component {
     }
 
     onTheme(o) {
-        storage.set('theme-style', o.currentTarget.id);
+        storage.set('theme-style', o.currentTarget.id); q;
         this.setState({ theme: o.currentTarget.id });
     }
 
