@@ -52,7 +52,8 @@ function NavBar({
             removeResizeScreen();
         };
     }, [compact]);
-
+    //console.log('children',children,Array.isArray(children));
+    let childs = Array.isArray(children)?children:[children];
     return (
         <div
             it='navbar'
@@ -65,7 +66,7 @@ function NavBar({
                 <div it="nav-btn-close" className="wd-nav-btn" onClick={toggleMenu}>&#8801;</div>
             </div>
             <div it={'nav-items'} className="wd-scrollbar">
-                {children.map((it, key) => ((isNavItem(it.type) || isNavMenu(it.type)) ? it : <NavItem key={key}>{it}</NavItem>))}
+                {childs.map((it, key) => ((isNavItem(it.type) || isNavMenu(it.type)) ? it : <NavItem key={key}>{it}</NavItem>))}
             </div>
         </div>
     );

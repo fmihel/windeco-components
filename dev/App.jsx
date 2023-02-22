@@ -328,11 +328,15 @@ class App extends React.Component {
             <div>
                 <div className="wd-nav-left">
                     <NavBar Logo={() => <NavLogo>logo</NavLogo>}>
+
                         <div>
                             <span>{'theme'} </span>
                             <Btn onClick={this.setLightTheme} >light</Btn>
                             <Btn onClick={this.setDarkTheme} >dark</Btn>
                         </div>
+                        
+                        
+                        {/*
                         <Btn onClick={() => { collapseMenus(); }}>collapsing</Btn>
                         <Btn onClick={() => { collapse(); }}>collapse</Btn>
 
@@ -358,7 +362,7 @@ class App extends React.Component {
                             <div >item8</div>
                             <NavItem>item9</NavItem>
                         </NavMenu>
-
+*/}
                     </NavBar>
 
                     <div className='content wd-scrollbar'>
