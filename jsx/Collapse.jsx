@@ -1,7 +1,7 @@
 import React, {
     useEffect, useRef, useState,
 } from 'react';
-import collapse from './collapse';
+import collapse from './Collapse/collapse';
 
 export default function Collapse({
     className = Collapse.global.className,

@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import abs from '../Utils/abs';
-import Modal from '../Modal/Modal.jsx';
-import ComboList from './ComboList.jsx';
-import ComboItem from './ComboItem.jsx';
+import abs from './Utils/abs';
+import Modal from './Modal.jsx';
+import ComboList from './ComboBox/ComboList.jsx';
+import ComboItem from './ComboBox/ComboItem.jsx';
 
 function ComboBox({
     id,

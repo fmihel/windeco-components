@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 // import _ from 'lodash';
 // import { throttle } from 'lodash';
-import Header from './Header.jsx';
-import Table from './Table.jsx';
-import { culcWidths, haveScrollBar, isWidthsEmpty } from './utils';
-import DOM from '../Utils/DOM';
-import getId from '../Utils/getId';
-import getSize from '../Utils/size';
+import Header from './TableFixed/Header.jsx';
+import Table from './TableFixed/Table.jsx';
+import { culcWidths, haveScrollBar, isWidthsEmpty } from './TableFixed/utils.js';
+import DOM from './Utils/DOM.js';
+import getId from './Utils/getId.js';
+import getSize from './Utils/size.js';
 
 function TableFixed({
     id = getId(),

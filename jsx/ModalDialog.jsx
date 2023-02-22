@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
-import Modal from '../Modal/Modal.jsx';
-import api from './ModalDialogAPI';
-import Btn from '../Btn/Btn.jsx';
-import mousePos from '../Utils/mouse';
-import onResizeScreen from '../Utils/onResizeScreen.js';
-import isCompact from '../Utils/isCompact.js';
+import Modal from './Modal.jsx';
+import api from './ModalDialog/ModalDialogAPI.js';
+import Btn from './Btn.jsx';
+import mousePos from './Utils/mouse.js';
+import onResizeScreen from './Utils/onResizeScreen.js';
+import isCompact from './Utils/isCompact.js';
 
 function ModalDialog({
     id,

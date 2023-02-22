@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import ModalDialog from '../ModalDialog/ModalDialog.jsx';
+import ModalDialog from '../ModalDialog.jsx';
 import onResizeScreen from '../Utils/onResizeScreen.js';
 import NavItem, { isNavItem } from './NavItem.jsx';
-import Collapse from '../Collapse/Collapse.jsx';
+import Collapse from '../Collapse.jsx';
 import size from '../Utils/size';
 import isCompact from '../Utils/isCompact';
 import global from '../global';

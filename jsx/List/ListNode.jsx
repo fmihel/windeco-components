@@ -1,5 +1,5 @@
 import React from 'react';
-import Collapse from '../Collapse/Collapse.jsx';
+import Collapse from '../Collapse.jsx';
 
 export default function ListNode({
     className = ListNode.global.className,

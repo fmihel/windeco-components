@@ -1,15 +1,16 @@
-import REdit from './Edit/Edit.jsx';
-import RBtn from './Btn/Btn.jsx';
-import RCheckBox from './CheckBox/CheckBox.jsx';
-import RLabel from './Label/Label.jsx';
-import RModalDialog from './ModalDialog/ModalDialog.jsx';
-import RTableFixed from './TableFixed/TableFixed.jsx';
-import RModal from './Modal/Modal.jsx';
-import RComboBox from './ComboBox/ComboBox.jsx';
-import RBtnIcon from './BtnIcon/BtnIcon.jsx';
-import RText from './Text/Text.jsx';
-import RIcon from './Icon/Icon.jsx';
+import REdit from './Edit.jsx';
+import RBtn from './Btn.jsx';
+import RCheckBox from './CheckBox.jsx';
+import RLabel from './Label.jsx';
+import RModalDialog from './ModalDialog.jsx';
+import RTableFixed from './TableFixed.jsx';
+import RModal from './Modal.jsx';
+import RComboBox from './ComboBox.jsx';
+import RBtnIcon from './BtnIcon.jsx';
+import RText from './Text.jsx';
+import RIcon from './Icon.jsx';
 import RList from './List/List.jsx';
+import RGroup from './Group.jsx';
 
 export default {
     Edit: REdit,
@@ -24,6 +25,7 @@ export default {
     Text: RText,
     Icon: RIcon,
     List: RList,
+    Group: RGroup,
 };
 
 export const ComboBox = RComboBox;
@@ -38,3 +40,4 @@ export const BtnIcon = RBtnIcon;
 export const Text = RText;
 export const Icon = RIcon;
 export const List = RList;
+export const Group = RGroup;

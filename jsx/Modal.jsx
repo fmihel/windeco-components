@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import scr from '../Utils/screen';
+import scr from './Utils/screen';
 
 let _root;
 function getRoot() {

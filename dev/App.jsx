@@ -12,19 +12,19 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { iEdit, iEdit16 } from './global';
-import Btn from '../jsx/Btn/Btn.jsx';
-import BtnIcon from '../jsx/BtnIcon/BtnIcon.jsx';
-import ComboBoxEx from '../jsx/ComboBox/ComboBox.jsx';
+import Btn from '../jsx/Btn.jsx';
+import BtnIcon from '../jsx/BtnIcon.jsx';
+import ComboBoxEx from '../jsx/ComboBox.jsx';
 import ComboItemIcon from '../jsx/ComboBox/ComboItemIcon.jsx';
 
-import CheckBox from '../jsx/CheckBox/CheckBox.jsx';
-import Label from '../jsx/Label/Label.jsx';
-import TableFixed from '../jsx/TableFixed/TableFixed.jsx';
-import ModalDialog from '../jsx/ModalDialog/ModalDialog.jsx';
-import Modal from '../jsx/Modal/Modal.jsx';
-import Text from '../jsx/Text/Text.jsx';
-import Icon from '../jsx/Icon/Icon.jsx';
-import Edit from '../jsx/Edit/Edit.jsx';
+import CheckBox from '../jsx/CheckBox.jsx';
+import Label from '../jsx/Label.jsx';
+import TableFixed from '../jsx/TableFixed.jsx';
+import ModalDialog from '../jsx/ModalDialog.jsx';
+import Modal from '../jsx/Modal.jsx';
+import Text from '../jsx/Text.jsx';
+import Icon from '../jsx/Icon.jsx';
+import Edit from '../jsx/Edit.jsx';
 import List from '../jsx/List/List.jsx';
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
@@ -32,10 +32,10 @@ import NavBar, { collapse } from '../jsx/NavBar/NavBar.jsx';
 import NavLogo from '../jsx/NavBar/NavLogo.jsx';
 import NavMenu, { collapseMenus } from '../jsx/NavBar/NavMenu.jsx';
 import NavItem from '../jsx/NavBar/NavItem.jsx';
-import Collapse from '../jsx/Collapse/Collapse.jsx';
+import Collapse from '../jsx/Collapse.jsx';
 import isMobile from '../jsx/Utils/isMobile';
 import '../style/Container.scss';
-import Container from '../jsx/Container/Container.jsx';
+import Container from '../jsx/Container.jsx';
 import Col from '../jsx/Container/Col.jsx';
 import {
     table_long2, table_long,
@@ -336,7 +336,6 @@ class App extends React.Component {
                         </div>
                         
                         
-                        {/*
                         <Btn onClick={() => { collapseMenus(); }}>collapsing</Btn>
                         <Btn onClick={() => { collapse(); }}>collapse</Btn>
 
@@ -362,7 +361,7 @@ class App extends React.Component {
                             <div >item8</div>
                             <NavItem>item9</NavItem>
                         </NavMenu>
-*/}
+
                     </NavBar>
 
                     <div className='content wd-scrollbar'>
