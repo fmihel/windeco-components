@@ -4,7 +4,7 @@ import global from '../jsx/global';
 import BtnIcon from '../jsx/BtnIcon.jsx';
 import Icon from '../jsx/Icon.jsx';
 
-global.wd_max_mobile_width = 900;
+global.wd_large_width = 900;
 
 BtnIcon.global = {
     ...BtnIcon.global,

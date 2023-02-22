@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import NavItem, { isNavItem } from './NavItem.jsx';
-import { isNavMenu } from './NavMenu.jsx';
-import onResizeScreen from '../Utils/onResizeScreen';
-import isCompact from '../Utils/isCompact';
+import NavItem, { isNavItem } from './NavBar/NavItem.jsx';
+import { isNavMenu } from './NavBar/NavMenu.jsx';
+import onResizeScreen from './Utils/onResizeScreen.js';
+import isCompact from './Utils/isCompact.js';
 
 let _collapse = [];
 export const collapse = (p = undefined) => {

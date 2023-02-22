@@ -10,7 +10,7 @@
     align-items: stretch;    
     
     flex-direction: row;
-    @include on-compact{
+    @include on-middle{
         flex-direction: column;
     }
 }
@@ -36,9 +36,6 @@
     
     width: var(--wd-margin);
     height: var(--wd-margin);
-    @include on-compact{
-        //flex: 1 1 auto;
-    }
 
 }
 

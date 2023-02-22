@@ -28,7 +28,7 @@ import Edit from '../jsx/Edit.jsx';
 import List from '../jsx/List/List.jsx';
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
-import NavBar, { collapse } from '../jsx/NavBar/NavBar.jsx';
+import NavBar, { collapse } from '../jsx/NavBar.jsx';
 import NavLogo from '../jsx/NavBar/NavLogo.jsx';
 import NavMenu, { collapseMenus } from '../jsx/NavBar/NavMenu.jsx';
 import NavItem from '../jsx/NavBar/NavItem.jsx';
@@ -368,12 +368,18 @@ class App extends React.Component {
                         {/*--------------------------------------------------------------------------------------------------*/}
                         <Head caption="Container">
                             <Block>
+                                <Container>
+                                    <Col>col1</Col>
+                                    <Col>col2</Col>
+                                    <Col>col3</Col>
+                                </Container>
+                                
                                 <Container className="wd-container-row">
-                                    <Col className="wd-col-margin hide-on-compact"/>
+                                    <Col className="wd-col-margin hide-on-small"/>
                                     <Col>
                                         row1
                                     </Col>
-                                    <Col className="wd-col-margin  hide-on-compact"/>
+                                    <Col className="wd-col-margin  hide-on-small"/>
                                     <Col>
                                         row2
                                     </Col>
@@ -406,7 +412,7 @@ class App extends React.Component {
                                         row3
                                     </Col>
                                 </Container>
-
+        
                             </Block>
                         </Head>
                         {/*--------------------------------------------------------------------------------------------------*/}
