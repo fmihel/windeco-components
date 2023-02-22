@@ -173,19 +173,19 @@ $wd-bootstrap-vars:(
 }
 
 @mixin on-large{
-    @media screen and (max-width: $wd-large-width) {
+    @media screen and (width >= $wd-large-width) {
         @content;
     }
 }
 
 @mixin on-middle{
-    @media screen and (max-width: $wd-middle-width) {
+    @media screen and ( $wd-small-width < width < $wd-large-width) {
         @content;
     }
 }
 
 @mixin on-small{
-    @media screen and (max-width: $wd-small-width) {
+    @media screen and ( width <= $wd-small-width) {
         @content;
     }
 }
