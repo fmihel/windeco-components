@@ -369,9 +369,9 @@ class App extends React.Component {
                         <Head caption="Container">
                             <Block>
                                 <Container>
-                                    <Col>col1</Col>
-                                    <Col>col2</Col>
-                                    <Col>col3</Col>
+                                    <Col><Edit/></Col>
+                                    <Col><Btn>press</Btn></Col>
+                                    
                                 </Container>
                                 
                                 <Container className="wd-container-row">
