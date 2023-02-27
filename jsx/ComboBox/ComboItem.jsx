@@ -2,7 +2,7 @@ import React from 'react';
 
 function ComboItem({
     title = false,
-    className = 'wd-combo-item',
+    className = '',
     onClick = undefined,
     data = {},
     disabled = false,
@@ -18,6 +18,7 @@ function ComboItem({
     };
     return (
         <div
+            type='combo-item'
             className={`${className} ${onGetItemClass ? onGetItemClass(data) : ''}`}
             onClick={click}
             title={title || ''}

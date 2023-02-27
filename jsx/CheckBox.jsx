@@ -4,7 +4,7 @@ function CheckBox({
     id,
     checked = false,
     className = CheckBox.global.className,
-    addClass = CheckBox.global.addClass,
+    addClass = '',//! deprecated 
     onChange = undefined,
     style = CheckBox.global.style,
     hint = false,
@@ -12,6 +12,8 @@ function CheckBox({
     disabled = false,
     visible = true,
 }) {
+    if (addClass!=='')
+        console.warn(`CheckBox.addClass is deprecated, use className = ${addClass}`); 
     const change = ({ target }) => {
         if (!disabled) {
             if (onChange) {
@@ -21,9 +23,10 @@ function CheckBox({
     };
     return (
         <input
-            id={id}
-            className={`${className} ${addClass}`}
-            type="checkbox"
+            type="checkbox"    
+            {...(id ? {id}:{})}
+            {...(className || addClass ? {className:`${className} ${addClass}`}:{})}
+            
             onChange = {change}
             checked = {checked}
             style={{
@@ -31,14 +34,13 @@ function CheckBox({
                 ...style,
                 ...(visible ? {} : { display: 'none' }),
             }}
-            title={title || hint || ''}
+            {...(title || hint ? {title:title || hint}:{})}
         />
     );
 }
 
 CheckBox.global = {
-    className: 'wd-checkbox',
-    addClass: '',
+    className: '',
     style: {},
 };
 

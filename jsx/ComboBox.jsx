@@ -7,9 +7,8 @@ import ComboItem from './ComboBox/ComboItem.jsx';
 function ComboBox({
     id,
     className = ComboBox.global.className,
-    addClass = ComboBox.global.addClass,
-    classNameList = ComboBox.global.classNameList,
-    addClassList = ComboBox.global.addClassList,
+    addClass = '',
+    classList = ComboBox.global.classList,
     style = ComboBox.global.style,
     styleOuter = {},
     styleItem = {},
@@ -30,6 +29,9 @@ function ComboBox({
     ItemComponent = ComboBox.global.ItemComponent,
 
 }) {
+    if (addClass!=='')
+        console.warn(`ComboBox.addClass is deprecated, use className = ${addClass}`);
+
     const selected = list.find((item) => (item[aliasId] == select));
     const selectCaption = selected ? selected[aliasCaption] : false;
 
@@ -80,6 +82,8 @@ function ComboBox({
         setOpen(false);
         if (onChange) {
             onChange({ id, data });
+        }else{
+            console.warn('ComboBox.onChange not set, define it..')
         }
     };
     const getItemClass = () => {
@@ -121,9 +125,9 @@ function ComboBox({
     return (
         <>
             <div
-                id={id}
-
-                className={`${className} ${addClass}`}
+                type='combo'
+                {...(id ? {id}:{})}
+                {...(className || addClass ? {className:`${className} ${addClass}`}:{})}
                 style={{ ...ComboBox.global.style, ...style }}
                 onClick = {click}
                 ref = {ref}
@@ -153,8 +157,7 @@ function ComboBox({
                 classShadow='wd-combo-shadow'
             >
                 <ComboList
-                    className={classNameList}
-                    addClass={addClassList}
+                    className={classList}
                     styleItem={styleItem}
                     list = {list}
                     {...size}
@@ -171,10 +174,8 @@ function ComboBox({
 }
 
 ComboBox.global = {
-    className: 'wd-combo',
-    addClass: '',
-    classNameList: 'wd-combo-list',
-    addClassList: 'wd-scrollbar',
+    className: '',
+    classList: 'wd-scrollbar',
     placeholder: '- выбрать -',
     style: {},
 

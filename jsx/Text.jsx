@@ -4,7 +4,7 @@ function Text({
     id,
     value = '',
     className = Text.global.className,
-    addClass = Text.global.addClass,
+    addClass = '',
     style = Text.global.style,
     placeholder = Text.global.placeholder,
     disabled = false,
@@ -18,7 +18,9 @@ function Text({
     onChange = undefined,
 
 }) {
-    const text = 'TextEx';
+    if (addClass!=='')
+        console.warn(`Text.addClass is deprecated, use className = ${addClass}`);
+
 
     const prepare = (aText, dom) => {
         if (rows > 0 && aText.length > 0 && cols > 0) {
@@ -56,12 +58,15 @@ function Text({
     const change = ({ currentTarget }) => {
         if (onChange) {
             onChange({ id, value: prepare(currentTarget.value, currentTarget) });
+        }else{
+            console.warn('Text.onChange not set, define it.');
         }
     };
     return (
         <textarea
-            id={id}
-            className={`${className} ${addClass}`}
+            type='memo'
+            {...(id ? {id}:{})}
+            {...(className || addClass ? {className:`${className} ${addClass}`}:{})}            
             style={{
                 ...Text.global.style,
                 ...(resize ? {} : { resize: 'none' }),
@@ -73,17 +78,14 @@ function Text({
             {...((required && !value) ? { required: true } : { })}
             {...(title ? { title } : { })}
             {...(maxLength > 0 ? { maxLength } : { })}
-            placeholder={placeholder || ''}
+            {...(placeholder ? { placeholder } : {})}
             onChange={change}
-        >
-            {text}
-        </textarea>
+        />
     );
 }
 
 Text.global = {
-    className: 'wd-text',
-    addClass: 'wd-scrollbar',
+    className: 'wd-scrollbar',
     style: {},
     placeholder: '',
 

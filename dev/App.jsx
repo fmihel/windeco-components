@@ -168,12 +168,12 @@ class App extends React.Component {
                         onClick(o) {
                             console.log(o);
                         },
-                        addClass: 'wd-primary',
+                        className: 'wd-primary',
                     },
                     cancel: {
                         id: 'cancel-btn',
                         caption: 'отмена',
-                        addClass: 'wd-transparent',
+                        className: 'wd-transparent',
                     },
                 },
                 align: 'stickTo',
@@ -547,7 +547,7 @@ class App extends React.Component {
                                         list = {combo_list3}
                                         select={'cb2' in comboSelect ? comboSelect.cb2 : false}
                                         style={{ width: 100 }}
-                                        addClass={'wd-clamp'}
+                                        className={'wd-clamp'}
                                     />
                                     <Edit id="ttt" style={{ width: 100 }} onKeyPress={(o) => {
                                         console.log(o);
@@ -572,7 +572,7 @@ class App extends React.Component {
                                             height: 43,
                                         }}
                                         styleOuter={{ lineHeight: '43px' }}
-                                        addClass={'wd-clamp'}
+                                        className={'wd-clamp'}
                                         hideBtnOnSelect = {true}
                                     />
                                     <Edit id="tttt" style={{ width: 100, height: 43 }} onKeyPress={(o) => {
@@ -582,11 +582,11 @@ class App extends React.Component {
                                         console.log(o);
                                     }}>90</Edit>
                                     <Edit id="tt20"
-                                        style={{ width: 20, height: 43 }} addClass={'wd-clamp'}
+                                        style={{ width: 20, height: 43 }} className={'wd-clamp'}
                                         type='number' min={0} max={10} step={1} onKeyPress={(o) => {
                                             console.log(o);
                                         }}>20</Edit>
-                                    <Edit id="tt30" style={{ width: 30, height: 43 }} addClass={'wd-clamp'} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                    <Edit id="tt30" style={{ width: 30, height: 43 }} className={'wd-clamp'} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
                                         console.log(o);
                                     }}>30</Edit>
 
@@ -817,9 +817,9 @@ class App extends React.Component {
                         {/*--------------------------------------------------------------------------------------------------*/}
                         <Head caption="Icon">
                             <Block>
-                                <Icon icon={iEdit} addClass="icon-custom"/>
+                                <Icon icon={iEdit} className="icon-custom"/>
                                 <Icon icon={iEdit16}/>
-                                <Icon icon={'uncknown'} addClass="icon-custom"/>
+                                <Icon icon={'uncknown'} className="icon-custom"/>
                             </Block>
                         </Head>
 

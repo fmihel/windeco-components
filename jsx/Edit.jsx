@@ -10,7 +10,7 @@ function Edit({
     onKeyDown = undefined,
 
     className = Edit.global.className,
-    addClass = Edit.global.addClass,
+    addClass = '',
     style = Edit.global.style,
 
     placeholder = '',
@@ -28,12 +28,16 @@ function Edit({
 
     children,
 }) {
+    if (addClass!=='')
+        console.warn(`Edit.addClass is deprecated, use className = ${addClass}`);
+
     const [focused, setFocused] = useState(false);
 
     const change = (o) => {
-        console.log('change', value);
         if (onChange) {
             onChange({ id, value: o.target.value });
+        }else{
+            console.warn('Edit.onChange not set, define it..')
         }
     };
     const keyevent = (o, callback) => {
@@ -74,8 +78,10 @@ function Edit({
     }
     return (
         <input
-            id={id}
-            type={_type}
+            type={_type}    
+            {...(id ? {id}:{})}
+            {...(className || addClass ? {className:`${className} ${addClass}`}:{})}
+            
             value={val}
             onChange={change}
             onKeyUp={keyup}
@@ -88,22 +94,20 @@ function Edit({
                 ...style,
                 ...(visible ? {} : { display: 'none' }),
             }}
-            className={`${className} ${addClass}`}
-            placeholder={placeholder}
+            {...(placeholder ? { placeholder } : {})}
             {...(disabled ? { disabled: true } : {})}
             {...(readonly ? { readOnly: 'readonly' } : {})}
             {...((required && `${val}`.length === 0) ? { required: true } : {})}
 
             {...props}
-            title = {title || hint || ''}
+            {...(title || hint ? {title:title || hint}:{})}
 
         />
     );
 }
 
 Edit.global = {
-    className: 'wd-edit',
-    addClass: '',
+    className: '',
     style: {},
 };
 

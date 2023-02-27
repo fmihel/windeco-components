@@ -4,16 +4,20 @@ import React from 'react';
 function Group({
     id,
     className = Group.global.className,
-    addClass = Group.global.addClass,
+    addClass = '',
     style = Group.global.style,
     caption = '',
     children,
 
 }) {
+    if (addClass!=='')
+        console.warn(`Group.addClass is deprecated, use className = ${addClass}`);
+
     return (
         <div
+            type='group'
             {...(id ? { id } : {})}
-            className={`${className} ${addClass}`}
+            {...(className || addClass ? {className:`${className} ${addClass}`}:{})}
             style={{ ...Group.global.style, ...style }}
         >
             { (caption) && <div><span>{caption}</span></div>}
@@ -23,8 +27,7 @@ function Group({
 }
 
 Group.global = {
-    className: 'wd-group',
-    addClass: '',
+    className: '',
     style: {},
 };
 export default Group;

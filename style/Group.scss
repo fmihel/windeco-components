@@ -21,7 +21,7 @@
     $size:var(--wd-size);
     $g-color:var(--g-color);
 
-    .wd-group{
+    [type=group]{
         //overflow: hidden;
         box-shadow:   0 3px 6px 0 rgba(0, 0, 0, 0.07);
         min-height: $size;

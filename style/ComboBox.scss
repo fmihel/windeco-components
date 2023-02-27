@@ -35,7 +35,7 @@
     $radius:var(--wd-radius);
     $placeholder:var(--cb-placeholder);
 
-    .wd-combo{
+    [type=combo]{
         height:$size;
         width:100%;
         background-color: $bg;
@@ -94,7 +94,7 @@
         }        
     
     }
-    .wd-combo-list{
+    [type=combo-list]{
         background-color: $bg;
         color:$color;
         border:1px solid $border;
@@ -102,7 +102,7 @@
         overflow-x: hidden;
         overflow-y: auto;  
 
-        .wd-combo-item{
+        [type=combo-item]{
             max-height: $size;
             height: $size;
 
@@ -119,10 +119,10 @@
             }
         }
     }
-    .mobile .wd-combo-list{
+    .mobile [type=combo-list]{
         animation: 0.5s combo-scale ease;
         padding: $gap;
-        .wd-combo-item{
+        [type=combo-item]{
             //border-bottom: 1px solid $border;
             border-radius: 3px;
             &:nth-child(2n+1){
@@ -132,7 +132,7 @@
         }
     }
     
-    .wd-combo-item{
+    [type=combo-item]{
         text-indent: $gap;
         line-height: $size;
         white-space: nowrap;

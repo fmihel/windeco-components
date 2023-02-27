@@ -11,7 +11,7 @@
     $gap:var(--wd-gap);
     $required:rgba(var(--wd-alert-rgb), 0.1);
 
-    .wd-text{
+    [type=memo]{
         background-color: $bg;
         color: $color;
         outline: none;

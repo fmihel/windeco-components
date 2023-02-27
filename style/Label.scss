@@ -6,7 +6,7 @@
     $gap:var(--wd-gap);
     $color:var(--wd-label);
     $margin:$wd-margin;
-    .wd-label{
+    [type=label]{
         margin-bottom:$margin;
         display: flex;
         flex-direction: row;

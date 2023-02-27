@@ -6,7 +6,7 @@ import Btn from './Btn.jsx';
 import mousePos from './Utils/mouse.js';
 import onResizeScreen from './Utils/onResizeScreen.js';
 import isCompact from './Utils/isCompact.js';
-
+import Error from './Error/Error.jsx';
 function ModalDialog({
     id,
     visible = true,
@@ -32,11 +32,14 @@ function ModalDialog({
     draggable = true, // work with align = custom || stickTo
     resizable = false,
     className = ModalDialog.global.className,
-    addClass = ModalDialog.global.addClass || 'wd-dialog-scale',
+    addClass = '',
     style = { ...ModalDialog.global.style },
     children,
 
 }) {
+    if (addClass!=='')
+        console.warn(`ModalDialog.addClass is deprecated, use className = ${addClass}`);
+    
     const [pos, setPos] = useState({
         left, top,
     });
@@ -159,33 +162,34 @@ function ModalDialog({
 
         ><>
                 <div
+                    type="dialog"
                     style={{
                         ...ModalDialog.global.style, ...style, ...pos, ...size,
                     }}
-                    className={`${className} ${addClass}`}
+                    {...(className || addClass ? {className:`${className} ${addClass}`}:{})}
                     onMouseDown={mouseDown}
                 >
                     {(header)
-                    && <div className="wd-dialog-header">
-                        <div className="wd-dialog-caption">
+                    && <div type="dialog-header">
+                        <div type="dialog-caption">
                             {header}
                         </div>
                         {(onClickHeaderClose)
-                        && <div className="wd-dialog-close-btn" onClick={onClickHeaderClose}>
+                        && <div type="dialog-close-btn" onClick={onClickHeaderClose}>
                         &#10006;
                         </div>}
 
                     </div>
                     }
-                    <div className="wd-dialog-content">
+                    <div type="dialog-content">
                         {children}
                     </div>
                     {(footers.length > 0)
-                        && <div className="wd-dialog-footer">
+                        && <div type="dialog-footer">
                             {footers.map((key) => <Btn
                                 id={api.getFooterParam(key, 'id', footer)}
                                 key={key} onClick={() => clickFooterBtn(key)}
-                                className={api.getFooterParam(key, 'addClass', footer)}
+                                className={api.getFooterParam(key, 'className', footer)}
                             >
                                 {api.getFooterParam(key, 'caption', footer)}
                             </Btn>)
@@ -194,7 +198,7 @@ function ModalDialog({
                     }
                 </div>
                 {resizable && !compact
-                && <div className="wd-dialog-resize"
+                && <div type="dialog-resize"
                     style={{
                         left: pos.left + size.width,
                         top: pos.top + size.height,
@@ -211,8 +215,7 @@ function ModalDialog({
 }
 
 ModalDialog.global = {
-    className: 'wd-dialog',
-    addClass: '',
+    className: 'wd-dialog-scale',
     style: {},
     left: 0,
     top: 0,

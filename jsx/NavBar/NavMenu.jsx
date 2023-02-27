@@ -100,7 +100,7 @@ function NavMenu({
             </div>
             {((showAs === 'popup') || showAs === 'panel')
             && <ModalDialog
-                addClass={`wd-nav-dialog ${showAs === 'panel' ? 'wd-dialog-slide-from-right' : ''}`}
+                className={`wd-nav-dialog ${showAs === 'panel' ? 'wd-dialog-slide-from-right' : ''}`}
                 visible = {expand}
                 opacityShadow={0}
                 header={false}

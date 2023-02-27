@@ -38,7 +38,11 @@
         }
     }
 
-    .wd-edit{
+    input[type=number],
+    input[type=text],
+    input[type=password],
+    input[type=email],
+    input[type=url]{
         height:$size;
             
         font-size:$font-size;

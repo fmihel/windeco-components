@@ -5,14 +5,18 @@ function Label({
     labelName,
     caption = 'label',
     className = Label.global.className,
-    addClass = Label.global.addClass,
+    addClass = '',
     style = Label.global.style,
     children,
 
 }) {
+    if (addClass!=='')
+        console.warn(`Label.addClass is deprecated, use className = ${addClass}`);
+
     return (
         <div
-            className={`${className} ${addClass}`}
+            type='label'
+            {...(className || addClass ? {className:`${className} ${addClass}`}:{})}
         >
             <label
                 htmlFor={id || labelName}
@@ -26,8 +30,7 @@ function Label({
 }
 
 Label.global = {
-    className: 'wd-label',
-    addClass: '',
+    className: '',
     style: {},
 };
 

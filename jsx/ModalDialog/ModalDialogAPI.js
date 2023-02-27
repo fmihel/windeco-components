@@ -162,7 +162,7 @@ class ModalDialogAPI {
             id: undefined,
             caption: key,
             onClick: undefined,
-            addClass: '',
+            className: '',
         };
         if (!Array.isArray(footer)) {
             if (typeof footer[key] === 'function') {

@@ -33,7 +33,7 @@
             animation: 0.5s dialog-scale ease;
         }    
     }
-    .wd-dialog{
+    [type=dialog]{
         border:1px solid $border;
         border-radius: $radius;
         background-color:$bg;
@@ -56,7 +56,7 @@
             align-self: auto;
         }
 
-        .wd-dialog-header{
+        [type=dialog-header]{
             min-height: calc( $size * 1.2 );
             color:$md-color;
 
@@ -75,7 +75,7 @@
                 flex: 0 1 auto;
                 align-self: auto;
             }
-            .wd-dialog-caption{
+            [type=dialog-caption]{
                 font-size: calc( $font-size * 1.3 );
                 font-weight: bold;
                 flex: 1 1 auto;
@@ -83,7 +83,7 @@
                 line-height: $size;
                 
             }
-            .wd-dialog-close-btn{
+            [type=dialog-close-btn]{
                 border-radius: 12px;
                 height:calc( $size * 0.8 );
                 width:calc( $size * 0.8 );
@@ -98,14 +98,14 @@
                 }
             }
         }
-        .wd-dialog-content{
+        [type=dialog-content]{
             padding: $gap;
 
             flex: 1 1 auto;
             overflow: auto;
             
         }
-        .wd-dialog-footer{
+        [type=dialog-footer]{
             min-height: calc( $size * 1.2 );
     
             display: flex;
@@ -121,7 +121,7 @@
             }
         }
     }
-    .wd-dialog-resize{
+    [type=dialog-resize]{
         position: absolute;
         width: 0px;
         height: 0px;

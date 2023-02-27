@@ -34,7 +34,7 @@ function ComboList({
     top = 0,
     width = 100,
     height = 100,
-    className = 'wd-combo-list',
+    className = '',
     addClass = '',
     styleItem = {},
     aliasId = 'id',
@@ -44,8 +44,12 @@ function ComboList({
     onGetItemClass = undefined,
     onClick = undefined,
 }) {
+    if (addClass!=='')
+        console.warn(`ComboList.addClass is deprecated, use className = ${addClass}`);
+
     return (
         <div
+            type='combo-list'
             className={`${className} ${addClass}`}
             style = {{
                 ...listPos({
