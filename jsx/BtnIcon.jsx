@@ -4,7 +4,7 @@ function BtnIcon({
     id,
     value,
     onClick = undefined,
-    addClass = BtnIcon.global.addClass,
+    addClass = '',
     className = BtnIcon.global.className,
     iconClass = BtnIcon.global.iconClass,
     IconComponent = BtnIcon.global.IconComponent,
@@ -14,13 +14,17 @@ function BtnIcon({
     style = {},
     children,
 }) {
+    if (addClass!=='')
+        console.warn(`BtnIcon.addClass is deprecated, use className = "${addClass}"`);
+
     return (
         <div
-            id={id}
+            type="btn-icon"
+            {...(id ? {id}:{})}
+            {...(className || addClass ? {className:`${className} ${addClass}`}:{})}
             onClick={onClick}
-            className={`${className} ${addClass}`}
             tabIndex={0}
-            title = {title || hint || ''}
+            {...(title || hint ? {title:title || hint}:{})}
             style={{ ...BtnIcon.global.style, ...style }}
         >
 
@@ -36,8 +40,7 @@ function BtnIcon({
 BtnIcon.global = {
     IconComponent: undefined,
     style: {},
-    addClass: '',
-    className: 'wd-btn-icon',
+    className: '',
 
 };
 

@@ -185,7 +185,7 @@ function ModalDialog({
                             {footers.map((key) => <Btn
                                 id={api.getFooterParam(key, 'id', footer)}
                                 key={key} onClick={() => clickFooterBtn(key)}
-                                addClass={api.getFooterParam(key, 'addClass', footer)}
+                                className={api.getFooterParam(key, 'addClass', footer)}
                             >
                                 {api.getFooterParam(key, 'caption', footer)}
                             </Btn>)

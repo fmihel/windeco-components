@@ -24,7 +24,7 @@
     $margin:var(--wd-margin);
     $radius:var(--wd-radius);
 
-    .wd-btn{
+    [type="button"]{
         min-height: $size;
         height:$size;
         cursor: pointer;

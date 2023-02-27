@@ -366,6 +366,43 @@ class App extends React.Component {
 
                     <div className='content wd-scrollbar'>
                         {/*--------------------------------------------------------------------------------------------------*/}
+                        <Head caption = "TableFixed">
+                            <Block>
+                                <Btn onClick={this.onTableClear}>clear</Btn>
+                                <Btn onClick={this.onTableFill}>fill</Btn>
+                                <Btn onClick={() => { this.setState({ tableHeader: false }); }}>header no</Btn>
+                                <Btn onClick={() => { this.setState({ tableHeader: 'text' }); }}>header cap</Btn>
+                                <Btn onClick={() => { this.setState({ tableHeader: true }); }}>header fields</Btn>
+                                <Btn onClick={() => { this.setState({ tableHeight: 200 }); }}>H=200</Btn>
+                                <Btn onClick={() => { this.setState({ tableHeight: 500 }); }}>H=500</Btn>
+                                <Btn onClick={() => { this.setState((prev) => ({ tableFooter: (prev.tableFooter ? false : 'end') })); }}>footer</Btn>
+                            </Block>
+
+                            <Block addClass="container-for-table-fixed2" style={{ height: tableHeight }} hide={false} >
+                                <TableFixed
+                                    id='tab1'
+                                    fields={fields}
+                                    data={table}
+                                    onClick={this.onClickTableFixed}
+                                    /*header={tableHeader}
+                                    footer={tableFooter}
+                                    select={tableSelect}*/
+                                />
+
+                            </Block>
+                            {/*
+                        <Block addClass="container-for-table-fixed"style={{ height: 540 }}>
+                            <TableFixed
+                                id='tab2'
+                                fields={table_long2.fields}
+                                data={table_long2.data}
+                                onClick={this.onClickTableFixed}
+                            />
+                        </Block>
+                    */}
+                        </Head>
+
+                        {/*--------------------------------------------------------------------------------------------------*/}
                         <Head caption="Container">
                             <Block>
                                 <Container>
@@ -518,9 +555,9 @@ class App extends React.Component {
                                     <BtnIcon
                                         hint = "icon"
                                         icon={faAddressBook}
-                                        addClass="wd-danger"
+                                        className="wd-danger"
                                         iconClass="demo-bi-color"
-                                    >ok</BtnIcon>
+                                    >send</BtnIcon>
                                     <Btn> left</Btn>
                                 </div>
                             </Block>
@@ -610,10 +647,10 @@ class App extends React.Component {
                         <Head caption="Btn">
                             <Block>
                                 <Btn>button</Btn>
-                                <Btn addClass="wd-danger" hint="wd-danger hint">wd-danger</Btn>
-                                <Btn addClass="wd-primary">wd-primary</Btn>
-                                <Btn addClass="wd-transparent">wd-transparent</Btn>
-                                <Btn addClass="wd-primary pic-bag">pic</Btn>
+                                <Btn className="wd-danger" hint="wd-danger hint">wd-danger</Btn>
+                                <Btn className="wd-primary">wd-primary</Btn>
+                                <Btn className="wd-transparent">wd-transparent</Btn>
+                                <Btn className="wd-primary pic-bag">pic</Btn>
                             </Block>
                         </Head>
 
@@ -626,21 +663,21 @@ class App extends React.Component {
                                     hint = "icon"
                                     IconComponent={Icon}
                                     icon={iEdit}
-                                    addClass="wd-danger"
+                                    className="wd-danger"
                                     iconClass="demo-bi-color"
                                 >ok</BtnIcon>
                                 <BtnIcon
                                     hint = "icon "
                                     IconComponent={FontAwesomeIcon}
                                     icon={faAddressBook}
-                                    addClass="wd-danger"
+                                    className="wd-danger"
                                     iconClass="demo-bi-color"
                                 >ok</BtnIcon>
                                 <Btn>standart</Btn>
-                                <BtnIcon addClass="wd-primary">cancel</BtnIcon>
+                                <BtnIcon className="wd-primary">cancel</BtnIcon>
                                 <BtnIcon>story</BtnIcon>
                                 <BtnIcon icon={faCaretDown} style={{ width: '100px' }} hint="no text"/>
-                                <BtnIcon addClass="wd-green">save</BtnIcon>
+                                <BtnIcon className="wd-green">save</BtnIcon>
                             </Block>
                         </Head>
                         {/*--------------------------------------------------------------------------------------------------*/}
@@ -673,42 +710,6 @@ class App extends React.Component {
 
                         </Head>
 
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption = "TableFixed">
-                            <Block>
-                                <Btn onClick={this.onTableClear}>clear</Btn>
-                                <Btn onClick={this.onTableFill}>fill</Btn>
-                                <Btn onClick={() => { this.setState({ tableHeader: false }); }}>header no</Btn>
-                                <Btn onClick={() => { this.setState({ tableHeader: 'text' }); }}>header cap</Btn>
-                                <Btn onClick={() => { this.setState({ tableHeader: true }); }}>header fields</Btn>
-                                <Btn onClick={() => { this.setState({ tableHeight: 200 }); }}>H=200</Btn>
-                                <Btn onClick={() => { this.setState({ tableHeight: 500 }); }}>H=500</Btn>
-                                <Btn onClick={() => { this.setState((prev) => ({ tableFooter: (prev.tableFooter ? false : 'end') })); }}>footer</Btn>
-                            </Block>
-
-                            <Block addClass="container-for-table-fixed" style={{ height: tableHeight }} hide={false} >
-                                <TableFixed
-                                    id='tab1'
-                                    fields={fields}
-                                    data={table}
-                                    onClick={this.onClickTableFixed}
-                                    header={tableHeader}
-                                    footer={tableFooter}
-                                    select={tableSelect}
-                                />
-
-                            </Block>
-                            {/*
-                        <Block addClass="container-for-table-fixed"style={{ height: 540 }}>
-                            <TableFixed
-                                id='tab2'
-                                fields={table_long2.fields}
-                                data={table_long2.data}
-                                onClick={this.onClickTableFixed}
-                            />
-                        </Block>
-                    */}
-                        </Head>
 
                         {/*--------------------------------------------------------------------------------------------------*/}
                         <Head caption="Text">

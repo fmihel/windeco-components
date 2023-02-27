@@ -7,9 +7,10 @@ import { culcWidths, haveScrollBar, isWidthsEmpty } from './TableFixed/utils.js'
 import DOM from './Utils/DOM.js';
 import getId from './Utils/getId.js';
 import getSize from './Utils/size.js';
+import Error from './Error/Error.jsx';
 
 function TableFixed({
-    id = getId(),
+    id = undefined,
     classNameHoriz = TableFixed.global.classNameHoriz,
     classNameVert = TableFixed.global.classNameVert,
     addClassHoriz = TableFixed.global.addClassHoriz,
@@ -28,11 +29,14 @@ function TableFixed({
     onClick = undefined,
 
 }) {
+    if (id === undefined){
+        return <Error msg="TableFixed: need set id=XXX"/>
+    }
     const [size, setSize] = useState({ width: 0, height: 0 });
     const [widths, setWidths] = useState([]);
     const [border, setBorder] = useState('');
     const ref = useRef(null);
-
+    
     useEffect(() => {
         const tableDOM = DOM(`#table-${id}`);
         if (tableDOM) {

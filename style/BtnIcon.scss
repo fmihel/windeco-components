@@ -24,7 +24,7 @@
     $radius:var(--wd-radius);
 
 
-    .wd-btn-icon{
+    [type="btn-icon"]{
         height:$size;
         cursor: pointer;
         background-color: $bg;

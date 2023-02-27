@@ -6,27 +6,29 @@ export default function Btn({
     value,
     onClick = undefined,
     className = Btn.global.className,
-    addClass = Btn.global.addClass,
+    addClass = '',// deprecated
     style = { ...Btn.global.style },
     hint = false,
     title = false,
     children,
 }) {
+    if (addClass!=='')
+        console.warn(`Btn.addClass is deprecated, use className = ${addClass}`);
     return (
         <input
             type="button"
-            id={id}
-            value={value || children}
+            {...(id ? {id}:{})}
+            {...(className || addClass ? {className:`${className} ${addClass}`}:{})}
+            value={value || children || ''}
             onClick={onClick}
-            className={ `${className} ${addClass}`}
-            title={title || hint || ''}
+            {...(title || hint ? {title:title || hint}:{})}
             style={{ ...Btn.global.style, ...style }}
+
         />
     );
 }
 
 Btn.global = {
-    className: 'wd-btn',
-    addClass: '',
+    className: '',
     style: {},
 };

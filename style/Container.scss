@@ -8,9 +8,9 @@
     justify-content: flex-start;
     align-content: stretch;
     align-items: stretch;    
-    
-    flex-direction: row;
-    @include on-middle{
+
+    flex-direction: row;    
+    @include on-small{
         flex-direction: column;
     }
 }
@@ -27,7 +27,7 @@
 .wd-col{
     flex: 1 1 auto;
     //min-height: var(--wd-size);
-    border: 1px dotted limegreen;
+    //border: 1px dotted limegreen;
 }
 
 .wd-col-margin{
