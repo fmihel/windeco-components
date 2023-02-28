@@ -22,7 +22,8 @@ function Data({
                     {data.map((row) => (
                         <TR
                             key = {row[aliasId]}
-                            data = {row}
+                            row = {row}
+                            data={data}
                             fields = {fields}
                             aliasId={aliasId}
                             select={(select.findIndex((ID) => row[aliasId] == ID) >= 0)}

@@ -2,6 +2,7 @@ import React from 'react';
 import TD from './TD.jsx';
 
 function TR({
+    row = {},
     data = [],
     fields = [], // []
     aliasId = 'ID',
@@ -9,13 +10,14 @@ function TR({
     onClick = undefined,
 }) {
     return (
-        <tr id={data[aliasId]} {...(select ? { select: 'true' } : {})}>
+        <tr id={row[aliasId]} {...(select ? { select: 'true' } : {})}>
             {fields.map((field) => (
                 <TD
                     key = {field.name}
                     name={field.name}
-                    value={data[field.name]}
-                    rowData = {data}
+                    value={row[field.name]}
+                    rowData = {row}
+                    data={data}
                     aliasId={aliasId}
                     style={{
                         ...field.style,

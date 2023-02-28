@@ -271,7 +271,7 @@ class App extends React.Component {
 
     onClickTable(o) {
         console.log(o);
-        o.sender.select(o.row);
+        // o.sender.select(o.row);
     }
 
     onClickTableFixed(o) {
@@ -373,7 +373,7 @@ class App extends React.Component {
                                     id='tab3'
                                     fields={fields}
                                     data={table}
-                                    onClick={this.onClickTableFixed}
+                                    onClick={this.onClickTable}
                                     header={tableHeader}
                                     footer={tableFooter}
                                     select={tableSelect}

@@ -15,21 +15,26 @@ function Table({
     onClick = undefined,
 
 }) {
-    const haveData = (Array.isArray(data) && data.length > 0);
     return (
+
         <table
             type="table"
             {...(className ? { className } : {})}
             {...(id ? { id } : {})}
         >
-            {(header !== false) && <THead fields={fields}/>}
-            {(haveData) && <TBody
+            {(header !== false) && <THead fields={fields} header={header}/>}
+            {<TBody
                 data={data}
                 fields={fields}
                 aliasId={aliasId}
+                noData={noData}
+                footer = {footer}
+                select={select}
+                onClick = {onClick}
             />}
 
         </table>
+
     );
 }
 

@@ -7,11 +7,12 @@ function TD({
     style = {},
     name = '',
     onClick = undefined,
+    data = [],
 }) {
     const click = () => {
         if (onClick) {
             onClick({
-                col: name, value, row: rowData, aliasId,
+                col: name, value, row: rowData, aliasId, data,
             });
         }
     };

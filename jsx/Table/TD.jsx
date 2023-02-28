@@ -6,11 +6,12 @@ function TD({
     fieldName,
     value,
     onClick,
+    aliasId,
 }) {
     const click = () => {
         if (onClick) {
             onClick({
-                fieldName, value, row, data,
+                col: fieldName, value, row, data, aliasId,
             });
         }
     };

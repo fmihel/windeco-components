@@ -80,7 +80,7 @@
                 }
                 &:first-child{
                     td{
-                        border-top: 0px;
+                        //border-top: 0px;
                     }    
                 }
                 td{
@@ -90,7 +90,12 @@
                     }
                 }
             }
-
+            [footer]{
+                text-align: center;
+            }
+            [nodata]{
+                text-align: center;
+            }
         }
 
 

@@ -6,9 +6,13 @@ function TR({
     data = [],
     fields = [],
     onClick,
+    select = false,
+    aliasId,
 }) {
     return (
-        <tr>
+        <tr
+            {...(select ? { select: '' } : {})}
+        >
             {fields.map((field, i) => <TD
                 key = {field.name}
                 data = {data}
@@ -16,6 +20,7 @@ function TR({
                 fieldName = {field.name}
                 value = {row[field.name]}
                 onClick = {onClick}
+                aliasId = {aliasId}
             />)}
         </tr>
     );
