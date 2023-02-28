@@ -1,13 +1,11 @@
 import React from 'react';
 import TR from './TR.jsx';
 
-function Table({
+function Data({
     id,
     data = [],
     aliasId,
     fields,
-    className = 'wd-table-fixed',
-    addClass = '',
     style = {},
     footer = false,
     select = [],
@@ -17,9 +15,8 @@ function Table({
         <>
             <table
                 id={`table-${id}`}
-                className={`${className} ${addClass}`}
                 style={{ ...style }}
-                table='true'
+                data=''
             >
                 <tbody>
                     {data.map((row) => (
@@ -41,4 +38,4 @@ function Table({
     );
 }
 
-export default Table;
+export default Data;

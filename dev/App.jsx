@@ -334,8 +334,7 @@ class App extends React.Component {
                             <Btn onClick={this.setLightTheme} >light</Btn>
                             <Btn onClick={this.setDarkTheme} >dark</Btn>
                         </div>
-                        
-                        
+
                         <Btn onClick={() => { collapseMenus(); }}>collapsing</Btn>
                         <Btn onClick={() => { collapse(); }}>collapse</Btn>
 
@@ -384,9 +383,9 @@ class App extends React.Component {
                                     fields={fields}
                                     data={table}
                                     onClick={this.onClickTableFixed}
-                                    /*header={tableHeader}
+                                    header={tableHeader}
                                     footer={tableFooter}
-                                    select={tableSelect}*/
+                                    select={tableSelect}
                                 />
 
                             </Block>
@@ -408,9 +407,9 @@ class App extends React.Component {
                                 <Container>
                                     <Col><Edit/></Col>
                                     <Col><Btn>press</Btn></Col>
-                                    
+
                                 </Container>
-                                
+
                                 <Container className="wd-container-row">
                                     <Col className="wd-col-margin hide-on-small"/>
                                     <Col>
@@ -449,7 +448,7 @@ class App extends React.Component {
                                         row3
                                     </Col>
                                 </Container>
-        
+
                             </Block>
                         </Head>
                         {/*--------------------------------------------------------------------------------------------------*/}
@@ -709,7 +708,6 @@ class App extends React.Component {
                             <Block> <Label caption="range" id="rng" ><Edit id="rng" value={5} type='number' min={0} max={10} step={1}/></Label></Block>
 
                         </Head>
-
 
                         {/*--------------------------------------------------------------------------------------------------*/}
                         <Head caption="Text">

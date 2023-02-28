@@ -5,13 +5,17 @@ import collapse from './Collapse/collapse';
 
 export default function Collapse({
     className = Collapse.global.className,
-    addClass = Collapse.global.addClass,
+    addClass = '',
     style = Collapse.global.style,
     expand = true,
     delay = Collapse.global.delay,
     attr = {},
     children,
 }) {
+    if (addClass !== '') {
+        console.warn(`Collapse.addClass is deprecated, use className = ${addClass}`);
+    }
+
     const dom = useRef(null);
     const [position, setPosition] = useState('fixed');
     const [show, setShow] = useState(false);
@@ -62,7 +66,6 @@ export default function Collapse({
 }
 Collapse.global = {
     className: '',
-    addClass: '',
     style: {},
     delay: 100,
 

@@ -6,7 +6,7 @@ import Btn from './Btn.jsx';
 import mousePos from './Utils/mouse.js';
 import onResizeScreen from './Utils/onResizeScreen.js';
 import isCompact from './Utils/isCompact.js';
-import Error from './Error/Error.jsx';
+
 function ModalDialog({
     id,
     visible = true,
@@ -37,9 +37,8 @@ function ModalDialog({
     children,
 
 }) {
-    if (addClass!=='')
-        console.warn(`ModalDialog.addClass is deprecated, use className = ${addClass}`);
-    
+    if (addClass !== '') console.warn(`ModalDialog.addClass is deprecated, use className = ${addClass}`);
+
     const [pos, setPos] = useState({
         left, top,
     });
@@ -166,7 +165,7 @@ function ModalDialog({
                     style={{
                         ...ModalDialog.global.style, ...style, ...pos, ...size,
                     }}
-                    {...(className || addClass ? {className:`${className} ${addClass}`}:{})}
+                    {...(className || addClass ? { className: `${className} ${addClass}` } : {})}
                     onMouseDown={mouseDown}
                 >
                     {(header)

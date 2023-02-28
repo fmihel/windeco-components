@@ -28,16 +28,16 @@ function Edit({
 
     children,
 }) {
-    if (addClass!=='')
+    if (addClass !== '') {
         console.warn(`Edit.addClass is deprecated, use className = ${addClass}`);
-
+    }
     const [focused, setFocused] = useState(false);
 
     const change = (o) => {
         if (onChange) {
             onChange({ id, value: o.target.value });
-        }else{
-            console.warn('Edit.onChange not set, define it..')
+        } else {
+            console.warn('Edit.onChange not set, define it..');
         }
     };
     const keyevent = (o, callback) => {
@@ -78,10 +78,10 @@ function Edit({
     }
     return (
         <input
-            type={_type}    
-            {...(id ? {id}:{})}
-            {...(className || addClass ? {className:`${className} ${addClass}`}:{})}
-            
+            type={_type}
+            {...(id ? { id } : {})}
+            {...(className || addClass ? { className: `${className} ${addClass}` } : {})}
+
             value={val}
             onChange={change}
             onKeyUp={keyup}
@@ -100,7 +100,7 @@ function Edit({
             {...((required && `${val}`.length === 0) ? { required: true } : {})}
 
             {...props}
-            {...(title || hint ? {title:title || hint}:{})}
+            {...(title || hint ? { title: title || hint } : {})}
 
         />
     );

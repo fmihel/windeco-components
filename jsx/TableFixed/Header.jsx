@@ -2,8 +2,6 @@ import React from 'react';
 
 function Header({
     id,
-    className,
-    addClass,
     type, // 'fields' : 'caption'
     caption,
     fields,
@@ -13,8 +11,7 @@ function Header({
     return (
         <table
             id={`header-${id}`}
-            className={`${className} ${addClass}`}
-            header="true"
+            header=""
         >
             <thead>
                 <tr>
