@@ -20,6 +20,7 @@ import ComboItemIcon from '../jsx/ComboBox/ComboItemIcon.jsx';
 import CheckBox from '../jsx/CheckBox.jsx';
 import Label from '../jsx/Label.jsx';
 import TableFixed from '../jsx/TableFixed.jsx';
+import Table from '../jsx/Table.jsx';
 import ModalDialog from '../jsx/ModalDialog.jsx';
 import Modal from '../jsx/Modal.jsx';
 import Text from '../jsx/Text.jsx';
@@ -364,6 +365,33 @@ class App extends React.Component {
                     </NavBar>
 
                     <div className='content wd-scrollbar'>
+                        {/*--------------------------------------------------------------------------------------------------*/}
+                        <Head caption = "Table">
+
+                            <Block hide={false} >
+                                <Table
+                                    id='tab3'
+                                    fields={fields}
+                                    data={table}
+                                    onClick={this.onClickTableFixed}
+                                    header={tableHeader}
+                                    footer={tableFooter}
+                                    select={tableSelect}
+                                />
+
+                            </Block>
+                            {/*
+                        <Block addClass="container-for-table-fixed"style={{ height: 540 }}>
+                            <TableFixed
+                                id='tab2'
+                                fields={table_long2.fields}
+                                data={table_long2.data}
+                                onClick={this.onClickTableFixed}
+                            />
+                        </Block>
+                    */}
+                        </Head>
+
                         {/*--------------------------------------------------------------------------------------------------*/}
                         <Head caption = "TableFixed">
                             <Block>

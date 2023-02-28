@@ -1,0 +1,104 @@
+@use "sass:meta";
+@import './vars.scss';
+@import './ScrollBar.scss';
+
+@mixin define(){
+    $themes:$wd-themes;
+    $colors:$wd-color;
+    
+    @each $theme in $themes{
+        #{getThemingRootClass($theme)}{
+           --tf-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:-20%))};
+           --tf-header-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:-20%))};
+           --tf-select-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$light:50%,$dark:20%))};
+        };
+    };
+
+    $size:2rem;
+    $outline:'none';
+
+    $bg:var(--wd-transparent);
+    $color:var(--wd-color);
+    $border:var(--wd-border);
+    $sep:'yes';
+
+    $header:var(--wd-header);
+    $header-color:var(--wd-header-color);
+    $header-border:var(--wd-border);
+    $header-sep:'yes';//yes / none
+
+    $font-size:var(--wd-font-size);
+    $gap:var(--wd-gap);
+
+    $select:var(--wd-select);
+    $select-color:var(--tf-select-color);
+
+    [type=table]{
+    
+        box-sizing: border-box;
+        border-collapse: collapse;
+        background-color: $bg;
+        color: $color;
+
+        tr{
+            min-height: $size;
+            height: $size;
+        }
+        
+        thead{  
+            background-color: $header;
+            color:$header-color;
+            th{
+                border: 1px solid $header-border;
+                @if($header-sep=='none'){
+                    border-right-color: rgba(0,0,0,0);
+                }
+                overflow: hidden;
+                &:first-child{
+                }
+                &:last-child{
+                    border-right-color: $header-border;
+                }
+
+            }
+        }
+        
+        tbody{
+            td{
+                border: 1px solid $border;
+                @if($sep == 'none'){
+                    border-left-color:rgba(0,0,0,0);
+                    border-right-color:rgba(0,0,0,0);
+                }
+                padding-left: $gap;
+            }
+            tr{
+                @include transition(background-color 0.2s,color 0.2s);
+                &[select]{
+                    background-color: $select;
+                    color: $select-color;
+                }
+                &:first-child{
+                    td{
+                        border-top: 0px;
+                    }    
+                }
+                td{
+                    &:first-child{
+                    }
+                    &:last-child{
+                    }
+                }
+            }
+
+        }
+
+
+        table{
+    
+        
+        }
+    }
+}
+
+@include define();

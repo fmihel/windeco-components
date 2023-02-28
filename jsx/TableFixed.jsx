@@ -10,9 +10,6 @@ import Error from './Error/Error.jsx';
 
 function TableFixed({
     id = undefined,
-    classNameHoriz = TableFixed.global.classNameHoriz,
-    classNameVert = TableFixed.global.classNameVert,
-
     className = TableFixed.global.className,
 
     aliasId = TableFixed.global.aliasId,
