@@ -12,6 +12,7 @@ function Table({
     noData = Table.global.noData,
     footer = Table.global.footer,
     select = [],
+    style = { ...Table.global.style },
     onClick = undefined,
 
 }) {
@@ -21,6 +22,7 @@ function Table({
             type="table"
             {...(className ? { className } : {})}
             {...(id ? { id } : {})}
+            style={{ ...Table.global.style, ...style }}
         >
             {(header !== false) && <THead fields={fields} header={header}/>}
             {<TBody
@@ -44,6 +46,7 @@ Table.global = {
     header: true, // string true false
     noData: 'no data', // string or false
     footer: 'end', // string ot false
+    style: {},
 };
 
 export default Table;

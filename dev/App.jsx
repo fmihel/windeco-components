@@ -271,7 +271,7 @@ class App extends React.Component {
 
     onClickTable(o) {
         console.log(o);
-        // o.sender.select(o.row);
+        this.setState({ tableSelect: [o.row[o.aliasId]] });
     }
 
     onClickTableFixed(o) {
@@ -377,6 +377,7 @@ class App extends React.Component {
                                     header={tableHeader}
                                     footer={tableFooter}
                                     select={tableSelect}
+                                    style={{ width: '100%' }}
                                 />
 
                             </Block>

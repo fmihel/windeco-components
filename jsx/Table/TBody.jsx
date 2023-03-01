@@ -11,6 +11,7 @@ function TBody({
     onClick,
 }) {
     const haveData = (Array.isArray(data) && data.length > 0);
+
     return (
         <tbody>
             {(haveData) && data.map((row, i) => <TR
@@ -18,7 +19,7 @@ function TBody({
                 data = {data}
                 row={row}
                 fields={fields}
-                select={aliasId in row && select.find((id) => id == row[aliasId])}
+                select={aliasId in row && select.findIndex((id) => `${id}` === `${row[aliasId]}`) > -1}
                 onClick={onClick}
                 aliasId = {aliasId}
             />)}
