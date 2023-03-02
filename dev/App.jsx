@@ -45,6 +45,8 @@ import {
 } from './data.js';
 import map from '../jsx/Utils/map';
 import theme from '../jsx/Utils/theme';
+import NavBar2, { NavItem2 } from '../jsx/NavBar2.jsx';
+import '../style/NavBar2.scss';
 
 // Icon.icons({
 // [iEdit]: './media/edit.png',
@@ -327,7 +329,48 @@ class App extends React.Component {
         };
         return (
             <div>
-                <div className="wd-nav-left">
+                <div className="wp">
+                    <NavBar2>
+                        <NavItem2>upper</NavItem2>
+                        <NavItem2 caption="menu">
+                            <NavItem2>in menu1</NavItem2>
+                            <NavItem2 caption="menu 2">
+                                <NavItem2>text4</NavItem2>
+                                <NavItem2>text5</NavItem2>
+                                <NavItem2>text5</NavItem2>
+                                <NavItem2 caption="menu 3">
+                                    <NavItem2>text5</NavItem2>
+                                    <NavItem2>text5</NavItem2>
+                                </NavItem2>
+                            </NavItem2>
+                        </NavItem2>
+                        <NavItem2>text3</NavItem2>
+                        <NavItem2>text3</NavItem2>
+                        <NavItem2>text3</NavItem2>
+                        <NavItem2>text3</NavItem2>
+                        <NavItem2>text3</NavItem2>
+                        <NavItem2>text3</NavItem2>
+                        <NavItem2 caption="menu 2">
+                            <NavItem2>text4</NavItem2>
+                            <NavItem2>text5</NavItem2>
+                            <NavItem2>text5</NavItem2>
+                            <NavItem2 caption="menu 3">
+                                <NavItem2>text5</NavItem2>
+                                <NavItem2 caption="menu 2">
+                                    <NavItem2>text4</NavItem2>
+                                    <NavItem2>text5</NavItem2>
+                                    <NavItem2>text5</NavItem2>
+                                    <NavItem2 caption="menu 3">
+                                        <NavItem2>text5</NavItem2>
+                                        <NavItem2>text5</NavItem2>
+                                    </NavItem2>
+                                </NavItem2>
+                            </NavItem2>
+                        </NavItem2>
+                    </NavBar2>
+
+                    {/* <div className="wd-nav-left"> */}
+                    {/*
                     <NavBar Logo={() => <NavLogo>logo</NavLogo>}>
 
                         <div>
@@ -340,7 +383,7 @@ class App extends React.Component {
                         <Btn onClick={() => { collapse(); }}>collapse</Btn>
 
                         <Edit placeholder='search'/>
-                        <NavItem>Item1</NavItem>
+                        <NavItem caption="Item1"></NavItem>
                         <NavMenu caption="file" viewAs='list'>
                             <NavItem>save</NavItem>
                             <NavItem>save as</NavItem>
@@ -363,8 +406,16 @@ class App extends React.Component {
                         </NavMenu>
 
                     </NavBar>
-
-                    <div className='content wd-scrollbar'>
+                    */}
+                    <div className='wp-content wd-scrollbar'>
+                        {/* <div className='content wd-scrollbar'> */}
+                        {/*--------------------------------------------------------------------------------------------------*/}
+                        <Head caption = "NavBar2">
+                            <Block hide={false} >
+                                <div className="wp">
+                                </div>
+                            </Block>
+                        </Head>
                         {/*--------------------------------------------------------------------------------------------------*/}
                         <Head caption = "Table">
 

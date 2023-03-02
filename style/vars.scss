@@ -177,6 +177,11 @@ $wd-bootstrap-vars:(
         @content;
     }
 }
+@mixin not-large{
+    @media screen and (width < $wd-large-width) {
+        @content;
+    }
+}
 
 @mixin on-middle{
     @media screen and ( $wd-small-width < width < $wd-large-width) {
@@ -190,11 +195,19 @@ $wd-bootstrap-vars:(
     }
 }
 
+@mixin not-small{
+    @media screen and ( width > $wd-small-width) {
+        @content;
+    }
+}
+
+
 .hide-on-large{
     @include on-large{
         display: none !important;
     }
 }
+
 
 .hide-on-middle{
     @include on-middle{
@@ -207,6 +220,7 @@ $wd-bootstrap-vars:(
         display: none !important;
     }
 }
+
 
 
 /*
