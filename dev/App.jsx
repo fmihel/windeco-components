@@ -327,9 +327,15 @@ class App extends React.Component {
         };
         return (
             <div>
-                <div className="wp">
-                    <NavBar>
+                <div className="nav-container-middle">
+                    <NavBar Logo="demo">
                         <NavItem caption="upper"/>
+                        <div style={{ paddingTop: 5, paddingBottom: 5 }}>
+                            <span>{'theme'} </span>
+                            <Btn onClick={this.setLightTheme} >light</Btn>
+                            <Btn onClick={this.setDarkTheme} >dark</Btn>
+                        </div>
+
                         <NavItem caption="menu">
                             <NavItem caption="item 1"/>
                             <div style={{ padding: 5 }}>
@@ -338,7 +344,6 @@ class App extends React.Component {
                                 </Label>
 
                             </div>
-
                             <NavItem caption="menu 2">
                                 <NavItem caption="item 2"/>
                                 <NavItem caption="item 3"/>
@@ -406,12 +411,20 @@ class App extends React.Component {
 
                     </NavBar>
                     */}
-                    <div className='wp-content wd-scrollbar'>
+                    <div className='nav-content '>
                         {/* <div className='content wd-scrollbar'> */}
                         {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption = "NavBar2">
+                        <Head caption = "NavBar">
                             <Block hide={false} >
-                                <div className="wp">
+                                <div className="nav-container">
+                                    <NavBar style={{ border: '1px dashed #344050' }}>
+                                        <NavItem/>
+                                        <NavItem caption="menu">
+                                            <NavItem/>
+                                            <NavItem/>
+                                        </NavItem>
+                                        <NavItem/>
+                                    </NavBar>
                                 </div>
                             </Block>
                         </Head>

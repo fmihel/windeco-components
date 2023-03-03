@@ -1,36 +1,37 @@
 @use "sass:meta";
 @import './vars.scss';
 
-.wp{
-    height: 100%;
+@each $name,$width in $wd-widths{
+    .nav-container-#{$name}{ 
+        height: 100%;
 
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-content: stretch;
-    align-items: stretch;
-    
-    flex-direction: row;    
-    @include less-large{
-        flex-direction: column;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: stretch;
         
-    }
-    .wp-content{
-        //border:1px dashed green;
-        flex:1 1 auto;
-        overflow: auto;
+        flex-direction: row;
+        
+        @include less-than($name){
+            flex-direction: column;
+        }
+        .nav-content{
+            flex:1 1 auto;
+            overflow: auto;
+            @include wd-scrollbar();
+        }
     }
 }
+
 
 @mixin define(){
     $size:var(--wd-size);
     $gap:var(--wd-gap);
     $size-item:calc(var(--wd-size)*0.8);
     
-
     [navbar]{
         //border:1px dashed yellowgreen;
-        padding: $gap;
 
         display: flex;
         flex-wrap: nowrap;
@@ -39,39 +40,43 @@
         align-items: stretch;       
         flex-direction: column;    
 
-        [panel]{
-            min-height: calc($size*2);
-            
+        [nav-panel]{
+
             display: flex;
             flex-wrap: nowrap;
             justify-content: flex-start;
             align-content: stretch;
-            align-items: stretch;       
+            align-items: center;       
             flex-direction: row;
         }
 
         [nav-btn]{
-            display: none;
-            @include less-large{
-                display: block;
+            min-height: $size;
+            min-width: $size;
+            font-size:2rem;
+            text-align: center;
+            cursor:pointer;
+            @include more-large{
+                display: none;
             }
         }
 
-        [empty-place]{
-            @include less-large{
-                flex:1 1 auto;
+        [nav-empty]{
+            flex:1 1 auto;
+            @include more-large{
+                display:none;
             }
         }
         
         [nav-menu]{
             min-width:200px;
+            overflow: auto;        
             @include less-large{
                 height:0px;
-                overflow: auto;        
             }
             &[expand]{
-                height:auto;
-                min-height: auto;
+                height:auto !important;
+                min-height: auto !important;
             }
             @include less-large{
                 /*
@@ -91,9 +96,9 @@
             overflow: hidden;
 
             //&:not(:last-child){
-            [caption]{
-                border-bottom:1px solid rgba(gray,1);
-            }
+            //[caption]{
+                //border-bottom:1px solid rgba(gray,1);
+            //}
             //}
             [nav-item]{
                 padding-left:16px;
@@ -101,15 +106,49 @@
             
             &[opened]{
                 >[caption]{
-                    color:lime;
+                    color:var(--wd-highlight);
                 }
-                //animation: 0.1s nav-open ease;
             }
         }
 
+
     }
 
+
+    .wd-navbar{
+        padding: $gap;        
+    }        
+    @each $name,$width in $wd-widths{
+        .nav-container-#{$name}{ 
+            [navbar]{
+                [nav-btn]{
+                    display: block;
+                    @include more-than($name){
+                        display: none !important;
+                    }
+                }
+                [nav-empty]{
+                    @include more-than($name){
+                        display:none !important;
+                    }
+                }
+                [nav-menu]{
+                    height:auto;
+                    @include less-than($name){
+                        height:0px;
+                    }                    
+                }
+            }
+        }
+    }
+    
+    .wd-nav-logo{
+        min-height: calc($size*1.5);
+        line-height: calc($size*1.5);
+    }
+    
 }
+
 
 @keyframes nav-open {
     from { height:24px; }

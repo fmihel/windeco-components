@@ -15,12 +15,12 @@ $wd-padding:$wd-gap;
 $wd-radius:0.25rem;
 $wd-font-size:14px !default;
 $wd-font-family:font-family('verdana') !default;
-$wd-max-mobile-width:900px;
-$wd-min-mobile-width:700px;
 
 $wd-large-width:900px;
 $wd-middle-width:700px;
 $wd-small-width:500px;
+
+$wd-widths:('small':$wd-small-width,'middle':$wd-middle-width,'large':$wd-small-width);
 
 $wd-bg:('light':#EDF2F9,'dark':#0B1727) !default;
 $wd-color:('light':#83909F,'dark':#9DA9BB) !default;
@@ -190,6 +190,26 @@ $wd-bootstrap-vars:(
     }
 }
 
+
+@mixin more-large{
+    @media screen and (width > $wd-large-width) {
+        @content;
+    }
+}
+
+@mixin more-middle{
+    @media screen and ( width > $wd-middle-width) {
+        @content;
+    }
+}
+
+@mixin more-small{
+    @media screen and ( width > $wd-small-width) {
+        @content;
+    }
+}
+
+
 .hide-less-large{
     @include less-large{
         display: none !important;
@@ -209,25 +229,57 @@ $wd-bootstrap-vars:(
 }
 
 
-
-/*
-@mixin on-compact{
-    @media screen and (max-width: $wd-max-mobile-width) {
-        @content;
+.hide-more-large{
+    @include more-large{
+        display: none !important;
     }
 }
 
-@mixin on-fullscreen{
-    @media screen and (min-width: $wd-max-mobile-width) {
-        @content;
+.hide-more-middle{
+    @include more-middle{
+        display: none !important;
     }
 }
 
-.hide-on-compact{
-    @include on-compact{
+.hide-more-small{
+    @include more-small{
         display: none !important;
     }
 }
 
 
-*/
+@mixin less-than($name){
+    @if ($name == 'large'){
+        @include less-large{
+            @content;
+        }
+    }@else if($name == 'middle'){
+        @include less-middle{
+            @content;
+        }
+    }@else if($name == 'small'){
+        @include less-small{
+            @content;
+        }
+    }@else{
+        @error 'not define code for width'+$name; 
+    }
+}
+
+@mixin more-than($name){
+    @if ($name == 'large'){
+        @include more-large{
+            @content;
+        }
+    }@else if($name == 'middle'){
+        @include more-middle{
+            @content;
+        }
+    }@else if($name == 'small'){
+        @include more-small{
+            @content;
+        }
+    }@else{
+        @error 'not define code for width'+$name; 
+    }
+}
