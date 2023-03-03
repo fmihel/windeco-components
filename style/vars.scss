@@ -172,51 +172,38 @@ $wd-bootstrap-vars:(
     }
 }
 
-@mixin on-large{
-    @media screen and (width >= $wd-large-width) {
-        @content;
-    }
-}
-@mixin not-large{
-    @media screen and (width < $wd-large-width) {
+@mixin less-large{
+    @media screen and (width <= $wd-large-width) {
         @content;
     }
 }
 
-@mixin on-middle{
-    @media screen and ( $wd-small-width < width < $wd-large-width) {
+@mixin less-middle{
+    @media screen and ( width <= $wd-middle-width) {
         @content;
     }
 }
 
-@mixin on-small{
+@mixin less-small{
     @media screen and ( width <= $wd-small-width) {
         @content;
     }
 }
 
-@mixin not-small{
-    @media screen and ( width > $wd-small-width) {
-        @content;
-    }
-}
-
-
-.hide-on-large{
-    @include on-large{
+.hide-less-large{
+    @include less-large{
         display: none !important;
     }
 }
 
-
-.hide-on-middle{
-    @include on-middle{
+.hide-less-middle{
+    @include less-middle{
         display: none !important;
     }
 }
 
-.hide-on-small{
-    @include on-small{
+.hide-less-small{
+    @include less-small{
         display: none !important;
     }
 }

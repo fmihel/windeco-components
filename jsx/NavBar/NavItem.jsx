@@ -1,45 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Collapse from '../Collapse.jsx';
 
-export function isNavItem(o) {
-    return typeof o === 'function' && (o.name === 'NavItem' || o._originalClass === 'NavItem');
-}
 function NavItem({
-    caption = undefined,
-    link,
-    className = NavItem.global.className,
-    addClass = NavItem.global.addClass,
-    style = NavItem.global.style,
-    onClick = undefined,
+    id,
+    caption,
     children,
-
+    onClick,
 }) {
+    const [open, setOpen] = useState(false);
     const click = () => {
-        if (onClick) onClick({ link });
-    };
-    const text = () => {
-        if (caption) {
-            return typeof caption === 'string' ? <span it="cap">{caption}</span> : caption;
-        } if (children) {
-            return typeof children === 'string' ? <span it="cap">{children}</span> : children;
+        if (children) {
+            const newOpen = !open;
+            setOpen(newOpen);
+            if (onClick) onClick({ id, open: newOpen, caption });
         }
-        return '';
     };
+
     return (
-        <div
-            className={ `${className} ${addClass}`}
-            style={{ ...NavItem.global.style, ...style }}
-            onClick={click}
-        >
-            {text()}
+        <div nav-item="" {...(open ? { opened: '' } : {})}>
+            <div caption="" onClick={click}>{caption || 'item'}</div>
+            {(children) && <Collapse expand={open} attr={{ childs: '' }}>
+                {children}
+            </Collapse>
+            }
         </div>
     );
 }
-NavItem._originalClass = 'NavItem';
 
-NavItem.global = {
-    className: 'wd-nav-item',
-    addClass: '',
-    style: {},
+// NavItem._className='NavItem';
 
-};
 export default NavItem;

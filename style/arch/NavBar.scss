@@ -1,0 +1,236 @@
+@use 'sass:meta';
+@import './vars.scss';
+
+
+@mixin define(){
+    $themes:$wd-themes;
+    $hovers:$wd-high;
+    $hovers-color:$wd-color;
+
+    @each $theme in $themes{
+        #{getThemingRootClass($theme)}{
+            //--nav-bg-hover:#{meta.inspect(blendColors($colors:$hovers,$theme:$theme,$level:-5%))};
+            --nav-color-hover:#{meta.inspect(blendColors($colors:$hovers-color,$theme:$theme,$level:-30%))};
+        }   
+    }
+
+    $size:var(--wd-size);
+    $panel-height:calc($size*1.5);
+    $bg:var(--wd-deep);
+    $color:var(--wd-color);
+    $orange:var(--wd-orange);
+    $border:var(--wd-border);
+    $gap:var(--wd-gap);
+    $mobile-width:$wd-large-width;
+    $tick:$wd-tick;
+    $invert:50%;//var(--cb-invert);
+
+    .wd-nav-left{
+
+        @include display-flex-vert-stretch();    
+        @media screen and (min-width: $mobile-width) {
+            flex-direction: row;
+        }    
+        overflow: hidden;
+    }
+    
+    .wd-nav-top{
+        @include display-flex-vert-stretch();
+        overflow: hidden;
+    
+        >div[it='navbar']{
+    
+            @include display-flex-vert-stretch();
+            @media screen and (min-width: $mobile-width) {
+                flex-direction: row;
+            }
+    
+            >div[it='nav-items']{
+                display:block;
+                @media screen and (min-width: $mobile-width) {
+                    @include display-flex-horiz-stretch();
+                }
+            }
+        }
+    }
+    
+    div[it='navbar']{
+        @include display-flex-vert-stretch();
+        >div[it='nav-panel']{
+            min-height: $panel-height;
+            @include display-flex-horiz-center();
+            >div[it='nav-logo']{
+                @include stretch();
+                line-height: $panel-height;   
+            }
+            >div[it='nav-btn-close']{
+                width: $panel-height;
+                @media screen and (min-width: $mobile-width) {
+                    display: none;
+                }
+            }
+        }
+
+        @include transition(height 0.4s);
+        
+        >div[it='nav-items']{
+            overflow-x: hidden;
+            overflow-y: auto;
+            @include stretch(); 
+        }
+    
+        &[state='open']{
+            height: 90% !important;
+            @media screen and (min-width: $mobile-width) {
+                height: auto !important;
+            }
+        }
+
+        &[state='close']{
+            height: $panel-height !important;
+            @media screen and (min-width: $mobile-width) {
+                height: auto !important;
+            }
+        }
+        
+    }//navbar
+
+    div[it='nav-menu']{
+        overflow: hidden;
+        div{
+            &[it='nav-menu-head']{
+                @include display-flex-horiz-stretch();
+                >div{
+                    &:nth-child(1){
+                        @include stretch();
+                    }
+                    &:nth-child(2){
+                        width: $size;
+                    }
+                }
+            }
+            &[it='nav-menu-items']{
+                @include stretch();
+                padding-left: $size;
+            }
+        }
+
+
+        //@include transition(height 0.4s);
+        //height: 0px;
+        &[expand='expand']{
+            height: auto;                       
+        }
+    }
+
+    .wd-nav-btn{
+        text-align: center;
+        line-height: $panel-height;
+        cursor: pointer;
+    }
+
+    //-------------------------------------------------    
+    .wd-nav-item{
+        min-height: $size;
+        line-height: $size;
+        padding-left: $gap;
+        padding-right: $gap;
+        [it='cap']{
+            display: block;
+            width: 100%;
+            &:hover{
+                cursor: pointer;
+                color: var(--nav-color-hover);
+                text-shadow: 0px 0px 1px var(--nav-color-hover);
+            }
+        }
+    }
+    .wd-nav-top{
+        .wd-nav-item{
+            @media screen and (min-width: $mobile-width) {
+                @include display-flex-center(column);
+            }            
+        }
+    }
+    .wd-nav-item-stretch{
+        min-height: 0px !important;
+        height: 0px;
+        @include stretch();
+
+        @media screen and (max-width: $mobile-width) {
+            @include no-stretch();
+        }
+    }
+    //-------------------------------------------------    
+    .wd-nav-menu{
+        min-height: $size;
+        //border-bottom: 1px dashed $border;
+
+        >div{
+            &[it='nav-menu-head']{
+            line-height: $size;
+
+            padding-left: $gap;
+            padding-right: $gap;
+            
+                >div[it='nav-menu-btn']{
+                    width: $size;
+                    background-image: url($tick); 
+                    background-repeat: no-repeat, no-repeat;
+                    background-position: center;
+                    filter:invert($invert);                
+                }
+                &:hover{
+                    cursor: pointer;
+                    color: var(--nav-color-hover);
+                    text-shadow: 0px 0px 1px var(--nav-color-hover);                    
+                }
+            }
+            &[it='nav-menu-items']{
+                >div{
+                    &:last-child{
+                        border-color: rgba(0,0,0,0) !important;
+                    }
+                }    
+            }
+        }
+        &[expand='expand']{
+            >div[it='nav-menu-head'] >div[it='nav-menu-btn']{ 
+                transform: rotate(180deg);
+            }
+        }
+        &[as='popup']{
+            >div[it='nav-menu-head'] >div[it='nav-menu-btn']{ 
+                //transform: rotate(-90deg) !important;
+            }
+        }
+    }
+    
+    .wd-nav-dialog{
+        .wd-dialog-content{
+            overflow: hidden;
+        }
+    }
+    .wd-nav-top{
+        .wd-nav-menu{
+            @media screen and (min-width: $mobile-width) {
+                @include display-flex-center(column);
+            }            
+        }
+    }
+    //-------------------------------------------------    
+
+    .wd-nav-logo{
+        min-height: $panel-height;
+        line-height: $panel-height;
+        min-width: calc($size*3);
+        padding-left: $gap;
+        font-size: 1.2rem;
+        color:$orange;
+        text-shadow: 1px 1px 2px $orange;
+    }
+
+}
+
+@include define();
+

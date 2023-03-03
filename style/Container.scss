@@ -10,7 +10,7 @@
     align-items: stretch;    
 
     flex-direction: row;    
-    @include on-small{
+    @include less-small{
         flex-direction: column;
     }
 }

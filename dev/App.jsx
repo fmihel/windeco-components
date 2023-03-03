@@ -29,9 +29,9 @@ import Edit from '../jsx/Edit.jsx';
 import List from '../jsx/List/List.jsx';
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
-import NavBar, { collapse } from '../jsx/NavBar.jsx';
-import NavLogo from '../jsx/NavBar/NavLogo.jsx';
-import NavMenu, { collapseMenus } from '../jsx/NavBar/NavMenu.jsx';
+import NavBar from '../jsx/NavBar.jsx';
+// import NavLogo from '../jsx/NavBar/NavLogo.jsx';
+// import NavMenu, { collapseMenus } from '../jsx/NavBar/NavMenu.jsx';
 import NavItem from '../jsx/NavBar/NavItem.jsx';
 import Collapse from '../jsx/Collapse.jsx';
 import isMobile from '../jsx/Utils/isMobile';
@@ -45,8 +45,6 @@ import {
 } from './data.js';
 import map from '../jsx/Utils/map';
 import theme from '../jsx/Utils/theme';
-import NavBar2, { NavItem2 } from '../jsx/NavBar2.jsx';
-import '../style/NavBar2.scss';
 
 // Icon.icons({
 // [iEdit]: './media/edit.png',
@@ -330,44 +328,45 @@ class App extends React.Component {
         return (
             <div>
                 <div className="wp">
-                    <NavBar2>
-                        <NavItem2>upper</NavItem2>
-                        <NavItem2 caption="menu">
-                            <NavItem2>in menu1</NavItem2>
-                            <NavItem2 caption="menu 2">
-                                <NavItem2>text4</NavItem2>
-                                <NavItem2>text5</NavItem2>
-                                <NavItem2>text5</NavItem2>
-                                <NavItem2 caption="menu 3">
-                                    <NavItem2>text5</NavItem2>
-                                    <NavItem2>text5</NavItem2>
-                                </NavItem2>
-                            </NavItem2>
-                        </NavItem2>
-                        <NavItem2>text3</NavItem2>
-                        <NavItem2>text3</NavItem2>
-                        <NavItem2>text3</NavItem2>
-                        <NavItem2>text3</NavItem2>
-                        <NavItem2>text3</NavItem2>
-                        <NavItem2>text3</NavItem2>
-                        <NavItem2 caption="menu 2">
-                            <NavItem2>text4</NavItem2>
-                            <NavItem2>text5</NavItem2>
-                            <NavItem2>text5</NavItem2>
-                            <NavItem2 caption="menu 3">
-                                <NavItem2>text5</NavItem2>
-                                <NavItem2 caption="menu 2">
-                                    <NavItem2>text4</NavItem2>
-                                    <NavItem2>text5</NavItem2>
-                                    <NavItem2>text5</NavItem2>
-                                    <NavItem2 caption="menu 3">
-                                        <NavItem2>text5</NavItem2>
-                                        <NavItem2>text5</NavItem2>
-                                    </NavItem2>
-                                </NavItem2>
-                            </NavItem2>
-                        </NavItem2>
-                    </NavBar2>
+                    <NavBar>
+                        <NavItem caption="upper"/>
+                        <NavItem caption="menu">
+                            <NavItem caption="item 1"/>
+                            <div style={{ padding: 5 }}>
+                                <Label id = "ed1">
+                                    <Edit id='ed1'/>
+                                </Label>
+
+                            </div>
+
+                            <NavItem caption="menu 2">
+                                <NavItem caption="item 2"/>
+                                <NavItem caption="item 3"/>
+                                <NavItem caption="menu 4">
+                                    <NavItem caption="item 4"/>
+                                    <NavItem caption="item 5"/>
+                                </NavItem>
+                            </NavItem>
+                        </NavItem>
+                        <NavItem caption="item 6"/>
+                        <NavItem caption="menu 5">
+                            <NavItem caption="item 7"/>
+                            <NavItem caption="item 8"/>
+                            <NavItem caption="item 9"/>
+                            <NavItem caption="menu 6">
+                                <NavItem caption="item 15"/>
+                                <NavItem caption="menu 7">
+                                    <NavItem caption="item 10"/>
+                                    <NavItem caption="item 11"/>
+                                    <NavItem caption="item 12"/>
+                                    <NavItem caption="item 13">
+                                        <NavItem caption="menu 8"/>
+                                        <NavItem caption="item 14"/>
+                                    </NavItem>
+                                </NavItem>
+                            </NavItem>
+                        </NavItem>
+                    </NavBar>
 
                     {/* <div className="wd-nav-left"> */}
                     {/*
@@ -491,11 +490,11 @@ class App extends React.Component {
                                 </Container>
 
                                 <Container className="wd-container-row">
-                                    <Col className="wd-col-margin hide-on-small"/>
+                                    <Col className="wd-col-margin hide-less-small"/>
                                     <Col>
                                         row1
                                     </Col>
-                                    <Col className="wd-col-margin  hide-on-small"/>
+                                    <Col className="wd-col-margin  hide-less-small"/>
                                     <Col>
                                         row2
                                     </Col>
