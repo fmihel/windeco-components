@@ -67,6 +67,7 @@ class App extends React.Component {
         this.onChangeCombo = this.onChangeCombo.bind(this);
         this.setLightTheme = this.setLightTheme.bind(this);
         this.setDarkTheme = this.setDarkTheme.bind(this);
+        this.navSelect = this.navSelect.bind(this);
         // общие параметры для диалогов
         const defaultDialogParam = {
             header: false,
@@ -225,8 +226,11 @@ class App extends React.Component {
             listSetup: {
                 2: { expand: true, active: true },
             },
+            navActive: false,
             collapseExpand: false,
         };
+
+        NavItem.global.onClick = this.navSelect;
     }
 
     OpenDialogEx() {
@@ -309,10 +313,15 @@ class App extends React.Component {
         }
     }
 
+    navSelect(o) {
+        console.log(o);
+        this.setState({ navActive: o.id });
+    }
+
     render() {
         const {
             fields, table, textValue, textValue2, customLeft, customTop, values, comboSelect,
-            tableHeader, tableHeight, tableFooter, tableSelect, listSetup, collapseExpand,
+            tableHeader, tableHeight, tableFooter, tableSelect, listSetup, collapseExpand, navActive,
         } = this.state;
         const dialogs = Object.keys(this.dialogs);
         const fontsName = Object.keys(fonts);
@@ -325,11 +334,16 @@ class App extends React.Component {
             }
             return '';
         };
+        const nav = (id) => ({
+            id,
+            caption: id,
+            ...id === navActive ? { active: true } : {},
+        });
         return (
             <div>
-                <div className="nav-container-middle">
+                <div className="nav-container-large">
                     <NavBar Logo="demo">
-                        <NavItem caption="upper"/>
+                        <NavItem caption="upper" {...nav('upper')}/>
                         <div style={{ paddingTop: 5, paddingBottom: 5 }}>
                             <span>{'theme'} </span>
                             <Btn onClick={this.setLightTheme} >light</Btn>
@@ -337,7 +351,7 @@ class App extends React.Component {
                         </div>
 
                         <NavItem caption="menu">
-                            <NavItem caption="item 1"/>
+                            <NavItem {...nav('item1')} />
                             <div style={{ padding: 5 }}>
                                 <Label id = "ed1">
                                     <Edit id='ed1'/>
@@ -345,11 +359,11 @@ class App extends React.Component {
 
                             </div>
                             <NavItem caption="menu 2">
-                                <NavItem caption="item 2"/>
-                                <NavItem caption="item 3"/>
+                                <NavItem {...nav('item 2')}/>
+                                <NavItem {...nav('item 3')}/>
                                 <NavItem caption="menu 4">
-                                    <NavItem caption="item 4"/>
-                                    <NavItem caption="item 5"/>
+                                    <NavItem {...nav('item 5')}/>
+                                    <NavItem {...nav('item 6')}/>
                                 </NavItem>
                             </NavItem>
                         </NavItem>
@@ -411,7 +425,7 @@ class App extends React.Component {
 
                     </NavBar>
                     */}
-                    <div className='nav-content '>
+                    <div className='nav-content wd-scrollbar'>
                         {/* <div className='content wd-scrollbar'> */}
                         {/*--------------------------------------------------------------------------------------------------*/}
                         <Head caption = "NavBar">

@@ -12,23 +12,80 @@
         align-items: stretch;
         
         flex-direction: row;
-        
         @include less-than($name){
             flex-direction: column;
         }
-        .nav-content{
-            flex:1 1 auto;
-            overflow: auto;
-            @include wd-scrollbar();
-        }
     }
+    
+}
+
+.nav-content{
+    flex:1 1 auto;
+    overflow: auto;
 }
 
 
 @mixin define(){
+    $themes:$wd-themes;
+    $hovers:$wd-high;
+    $hovers-color:$wd-color;
+
+    @each $theme in $themes{
+        #{getThemingRootClass($theme)}{
+            //--nav-bg-hover:#{meta.inspect(blendColors($colors:$hovers,$theme:$theme,$level:-5%))};
+            --nav-color-hover:#{meta.inspect(blendColors($colors:$hovers-color,$theme:$theme,$level:-30%))};
+        }   
+    }
+
     $size:var(--wd-size);
     $gap:var(--wd-gap);
     $size-item:calc(var(--wd-size)*0.8);
+    $tick:$wd-tick;
+
+    .wd-navbar{
+        min-width:150px;
+        padding: $gap;
+        [nav-menu]{
+            overflow: hidden;
+        }        
+        [nav-item]{
+            min-height:$size;
+            line-height: $size;
+            overflow: hidden;
+            [nav-item]{
+                padding-left:calc($size*0.5);
+            }
+            [caption]{
+                &:hover{
+                    color: var(--nav-color-hover);
+                    //text-shadow: 0px 0px 1px var(--nav-color-hover);
+                }
+                [img]{
+                    width: $size;
+                    background-image: url($tick); 
+                    background-repeat: no-repeat, no-repeat;
+                    background-position: center;
+                    filter:invert(50%);                
+                    transition: transform 0.2s;
+                }
+            }
+            &[opened]{
+                >[caption]{
+                    //color:var(--wd-highlight);
+                    //text-shadow: 0px 0px 0.5px var(--wd-highlight);
+                    [img]{
+                        transform: rotate(180deg);   
+                    }
+                }
+            }
+            &[active]{
+                >[caption]{
+                    color:var(--wd-highlight);
+                    //text-shadow: 0px 0px 0.5px var(--wd-highlight);
+                }
+            }
+        }
+    }
     
     [navbar]{
         //border:1px dashed yellowgreen;
@@ -69,7 +126,7 @@
         }
         
         [nav-menu]{
-            min-width:200px;
+            
             overflow: auto;        
             @include less-large{
                 height:0px;
@@ -78,7 +135,7 @@
                 height:auto !important;
                 min-height: auto !important;
             }
-            @include less-large{
+            //@include less-large{
                 /*
                 position: absolute;
                 right:0px;
@@ -87,37 +144,25 @@
                 height: 100%;
                 width:0px;
                 */
-            }
+            //}
         }
 
-        [nav-item]{
-            min-height:$size;
-            line-height: $size;
-            overflow: hidden;
-
-            //&:not(:last-child){
-            //[caption]{
-                //border-bottom:1px solid rgba(gray,1);
-            //}
-            //}
-            [nav-item]{
-                padding-left:16px;
-            }
-            
-            &[opened]{
-                >[caption]{
-                    color:var(--wd-highlight);
-                }
+        [caption]{
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-content: stretch;
+            align-items: stretch;       
+            flex-direction: row;
+            [text]{
+                flex: 1 1 auto;
             }
         }
-
-
     }
 
 
-    .wd-navbar{
-        padding: $gap;        
-    }        
+    
+    
     @each $name,$width in $wd-widths{
         .nav-container-#{$name}{ 
             [navbar]{

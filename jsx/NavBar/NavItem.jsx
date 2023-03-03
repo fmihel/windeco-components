@@ -5,20 +5,34 @@ function NavItem({
     id,
     caption,
     children,
-    onClick,
+    active = false,
+    onClick = NavItem.global.onClick,
+
 }) {
     const [open, setOpen] = useState(false);
     const click = () => {
+        let newOpen = open;
         if (children) {
-            const newOpen = !open;
+            newOpen = !open;
             setOpen(newOpen);
-            if (onClick) onClick({ id, open: newOpen, caption });
+        }
+        if (onClick) {
+            onClick({
+                id, open: newOpen, caption, active,
+            });
         }
     };
 
     return (
-        <div nav-item="" {...(open ? { opened: '' } : {})}>
-            <div caption="" onClick={click}>{caption || 'item'}</div>
+        <div
+            nav-item=""
+            {...(open ? { opened: '' } : {})}
+            {...(active ? { active: '' } : {})}
+        >
+            <div caption="" onClick={click}>
+                <div text="" >{caption || 'item'}</div>
+                {(children) && <div img=""/>}
+            </div>
             {(children) && <Collapse expand={open} attr={{ childs: '' }}>
                 {children}
             </Collapse>
@@ -28,5 +42,8 @@ function NavItem({
 }
 
 // NavItem._className='NavItem';
+NavItem.global = {
+    onClick: undefined,
 
+};
 export default NavItem;
