@@ -20,6 +20,7 @@
 }
 
 .nav-content{
+    //border: 1px dashed red;
     flex:1 1 auto;
     overflow: auto;
 }
@@ -43,10 +44,12 @@
     $tick:$wd-tick;
 
     .wd-navbar{
-        min-width:150px;
-        padding: $gap;
+        min-width:250px;
+        
         [nav-menu]{
             overflow: hidden;
+            padding-left: $gap;
+            padding-right: $gap;
         }        
         [nav-item]{
             min-height:$size;
@@ -89,7 +92,11 @@
     
     [navbar]{
         //border:1px dashed yellowgreen;
-
+        @include less-large{
+            max-height: 80%;
+        }
+        
+        
         display: flex;
         flex-wrap: nowrap;
         justify-content: flex-start;
@@ -127,7 +134,9 @@
         
         [nav-menu]{
             
-            overflow: auto;        
+            overflow: auto;
+            @include wd-scrollbar();        
+
             @include less-large{
                 height:0px;
             }
@@ -166,6 +175,12 @@
     @each $name,$width in $wd-widths{
         .nav-container-#{$name}{ 
             [navbar]{
+                @include more-than($name){
+                    max-height: none !important;
+                }
+                @include less-than($name){
+                    max-height: 80%;
+                }
                 [nav-btn]{
                     display: block;
                     @include more-than($name){
@@ -190,14 +205,10 @@
     .wd-nav-logo{
         min-height: calc($size*1.5);
         line-height: calc($size*1.5);
+        padding-left: $gap;
+        padding-right: $gap;
     }
     
-}
-
-
-@keyframes nav-open {
-    from { height:24px; }
-    to {  height:48px; }
 }
 
 
