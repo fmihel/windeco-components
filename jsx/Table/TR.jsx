@@ -8,10 +8,12 @@ function TR({
     onClick,
     select = false,
     aliasId,
+    aliasAttr,
 }) {
     return (
         <tr
             {...(select ? { select: '' } : {})}
+            {...row[aliasAttr]}
         >
             {fields.map((field, i) => <TD
                 key = {field.name}
@@ -21,6 +23,7 @@ function TR({
                 value = {row[field.name]}
                 onClick = {onClick}
                 aliasId = {aliasId}
+
             />)}
         </tr>
     );

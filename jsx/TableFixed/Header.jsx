@@ -21,6 +21,7 @@ function Header({
                             style={{
                                 ...(i < widths.length ? { width: widths[i], maxWidth: widths[i] } : {}),
                             }}
+                            {...(field.title ? { title: field.title } : {})}
                         >
                             {field.caption}
                         </th>))

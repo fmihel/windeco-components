@@ -5,6 +5,7 @@ function Data({
     id,
     data = [],
     aliasId,
+    aliasAttr,
     fields,
     style = {},
     footer = false,
@@ -26,6 +27,7 @@ function Data({
                             data={data}
                             fields = {fields}
                             aliasId={aliasId}
+                            aliasAttr={aliasAttr}
                             select={(select.findIndex((ID) => row[aliasId] == ID) >= 0)}
                             onClick={onClick}
                         />

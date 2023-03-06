@@ -4,6 +4,7 @@ function TH({
     data = [],
     fieldName,
     caption,
+    title,
     onClick,
 }) {
     const click = () => {
@@ -13,7 +14,7 @@ function TH({
             });
         }
     };
-    return (<th onClick={click}>{caption}</th>);
+    return (<th onClick={click} {...(title ? { title } : {})}>{caption}</th>);
 }
 
 export default TH;

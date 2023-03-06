@@ -10,3 +10,11 @@
     filter: invert(1);
 }
 
+
+.wd-table,.wd-table-fixed{
+    [high]{
+        #NAME{
+            color:red;
+        }
+    }
+}

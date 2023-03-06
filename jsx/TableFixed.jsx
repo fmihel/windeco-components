@@ -13,6 +13,7 @@ function TableFixed({
     className = TableFixed.global.className,
 
     aliasId = TableFixed.global.aliasId,
+    aliasAttr = TableFixed.global.aliasAttr,
     data = [],
     fields = [],
     header = true, /// / string true false
@@ -108,6 +109,7 @@ function TableFixed({
                 && <Data
                     id={id}
                     aliasId={aliasId}
+                    aliasAttr={aliasAttr}
                     data={data}
                     fields={fields}
                     footer={footer}
@@ -129,6 +131,7 @@ function TableFixed({
 TableFixed.global = {
     className: 'wd-table-fixed',
     aliasId: 'ID',
+    aliasAttr: '-attr-',
     header: true, // string true false
     noData: 'no data', // string or false
     footer: 'end', // string ot false

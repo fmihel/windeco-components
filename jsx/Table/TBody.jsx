@@ -5,6 +5,7 @@ function TBody({
     data = [],
     fields = [],
     aliasId = 'ID',
+    aliasAttr = '-attr-',
     noData = 'no data',
     footer = 'end',
     select = [],
@@ -22,6 +23,7 @@ function TBody({
                 select={aliasId in row && select.findIndex((id) => `${id}` === `${row[aliasId]}`) > -1}
                 onClick={onClick}
                 aliasId = {aliasId}
+                aliasAttr = {aliasAttr}
             />)}
             {(!haveData && noData !== false) && <tr><td nodata='' colSpan={fields.length}>{noData}</td></tr>}
             {(haveData && footer !== false) && <tr><td footer='' colSpan={fields.length}>{footer}</td></tr>}

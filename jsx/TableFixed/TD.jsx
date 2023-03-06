@@ -17,7 +17,7 @@ function TD({
         }
     };
     return (
-        <td style={style } onClick={click}>{value}</td>
+        <td style={style } onClick={click} id={name}>{value}</td>
     );
 }
 

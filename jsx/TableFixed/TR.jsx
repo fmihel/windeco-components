@@ -6,11 +6,16 @@ function TR({
     data = [],
     fields = [], // []
     aliasId = 'ID',
+    aliasAttr = '-attr-',
     select = false,
     onClick = undefined,
 }) {
     return (
-        <tr id={row[aliasId]} {...(select ? { select: 'true' } : {})}>
+        <tr
+            id={row[aliasId]}
+            {...(select ? { select: 'true' } : {})}
+            {...row[aliasAttr]}
+        >
             {fields.map((field) => (
                 <TD
                     key = {field.name}

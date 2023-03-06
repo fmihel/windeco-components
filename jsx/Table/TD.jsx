@@ -16,7 +16,10 @@ function TD({
         }
     };
     return (
-        <td onClick={click}>
+        <td
+            onClick={click}
+            id={fieldName}
+        >
             {value}
         </td>
     );

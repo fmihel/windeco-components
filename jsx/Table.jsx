@@ -6,6 +6,7 @@ function Table({
     id,
     className = Table.global.className,
     aliasId = Table.global.aliasId,
+    aliasAttr = Table.global.aliasAttr,
     data = [],
     fields = [],
     header = true, /// / string true false
@@ -29,6 +30,7 @@ function Table({
                 data={data}
                 fields={fields}
                 aliasId={aliasId}
+                aliasAttr={aliasAttr}
                 noData={noData}
                 footer = {footer}
                 select={select}
@@ -43,6 +45,7 @@ function Table({
 Table.global = {
     className: 'wd-table',
     aliasId: 'ID',
+    aliasAttr: '-attr-',
     header: true, // string true false
     noData: 'no data', // string or false
     footer: 'end', // string ot false

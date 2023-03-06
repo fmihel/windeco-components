@@ -7,6 +7,8 @@ function NavItem({
     children,
     active = false,
     open = false,
+    style = { ...NavItem.global.style },
+    className = NavItem.global.className,
     onClick = NavItem.global.onClick,
 
 }) {
@@ -26,6 +28,8 @@ function NavItem({
 
     return (
         <div
+            {...className ? { className } : {}}
+            style = {{ ...NavItem.global.style, ...style }}
             nav-item=""
             {...(opened ? { opened: '' } : {})}
             {...(active ? { active: '' } : {})}
@@ -45,6 +49,8 @@ function NavItem({
 // NavItem._className='NavItem';
 NavItem.global = {
     onClick: undefined,
+    className: '',
+    style: {},
 
 };
 export default NavItem;

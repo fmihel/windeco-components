@@ -7,6 +7,7 @@ function THead({
     header,
     onClick,
 }) {
+    console.log(fields);
     return (
         <thead>
             <tr>
@@ -16,6 +17,7 @@ function THead({
                     data = {data}
                     fieldName = {field.name}
                     caption = {field.caption}
+                    title = {field.title}
                     onClick = {onClick}
                 />)}
 
