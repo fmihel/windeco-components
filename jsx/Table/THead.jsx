@@ -7,7 +7,6 @@ function THead({
     header,
     onClick,
 }) {
-    console.log(fields);
     return (
         <thead>
             <tr>
