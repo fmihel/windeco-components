@@ -206,7 +206,8 @@
         min-height: calc($size*1.5);
         line-height: calc($size*1.5);
         padding-left: $gap;
-        padding-right: $gap;
+        padding-right: $gap;    
+        color:var(--wd-orange);
     }
     
 }

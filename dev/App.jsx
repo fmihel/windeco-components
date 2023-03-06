@@ -226,7 +226,7 @@ class App extends React.Component {
             listSetup: {
                 2: { expand: true, active: true },
             },
-            navActive: false,
+            navActive: 'item1',
             collapseExpand: false,
         };
 
@@ -350,7 +350,7 @@ class App extends React.Component {
                             <Btn onClick={this.setDarkTheme} >dark</Btn>
                         </div>
 
-                        <NavItem caption="menu">
+                        <NavItem caption="menu" open={true}>
                             <NavItem {...nav('item1')} />
                             <div style={{ padding: 5 }}>
                                 <Label id = "ed1">

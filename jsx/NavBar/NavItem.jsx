@@ -6,19 +6,20 @@ function NavItem({
     caption,
     children,
     active = false,
+    open = false,
     onClick = NavItem.global.onClick,
 
 }) {
-    const [open, setOpen] = useState(false);
+    const [opened, setOpened] = useState(open);
     const click = () => {
-        let newOpen = open;
+        let current = opened;
         if (children) {
-            newOpen = !open;
-            setOpen(newOpen);
+            current = !opened;
+            setOpened(current);
         }
         if (onClick) {
             onClick({
-                id, open: newOpen, caption, active,
+                id, open: current, caption, active,
             });
         }
     };
@@ -26,14 +27,14 @@ function NavItem({
     return (
         <div
             nav-item=""
-            {...(open ? { opened: '' } : {})}
+            {...(opened ? { opened: '' } : {})}
             {...(active ? { active: '' } : {})}
         >
             <div caption="" onClick={click}>
                 <div text="" >{caption || 'item'}</div>
                 {(children) && <div img=""/>}
             </div>
-            {(children) && <Collapse expand={open} attr={{ childs: '' }}>
+            {(children) && <Collapse expand={opened} attr={{ childs: '' }}>
                 {children}
             </Collapse>
             }
