@@ -9,6 +9,8 @@ function TR({
     aliasAttr = '-attr-',
     select = false,
     onClick = undefined,
+    onDraw = undefined,
+
 }) {
     return (
         <tr
@@ -29,6 +31,7 @@ function TR({
                         ...('width' in field ? { width: field.width } : {}),
                     }}
                     onClick={onClick}
+                    onDraw={onDraw}
 
                 />))}
         </tr>

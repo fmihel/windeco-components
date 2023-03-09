@@ -11,6 +11,7 @@ function Data({
     footer = false,
     select = [],
     onClick = undefined,
+    onDraw = undefined,
 }) {
     return (
         <>
@@ -30,6 +31,7 @@ function Data({
                             aliasAttr={aliasAttr}
                             select={(select.findIndex((ID) => row[aliasId] == ID) >= 0)}
                             onClick={onClick}
+                            onDraw={onDraw}
                         />
                     ))}
                 </tbody>

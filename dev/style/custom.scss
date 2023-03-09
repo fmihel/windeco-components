@@ -12,6 +12,17 @@
 
 
 .wd-table,.wd-table-fixed{
+    #btn-del{
+        font-size:0.8rem;
+        display:none;
+        max-height: 16px !important;
+        min-height: auto;
+    }
+    [select]{
+        #btn-del{
+            display:block;
+        }
+    }
     [high]{
         #NAME{
             color:red;

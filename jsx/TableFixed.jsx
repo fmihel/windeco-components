@@ -21,6 +21,7 @@ function TableFixed({
     footer = TableFixed.global.footer,
     select = [],
     onClick = undefined,
+    onDraw = undefined,
 
 }) {
     if (id === undefined) {
@@ -115,6 +116,7 @@ function TableFixed({
                     footer={footer}
                     select={select}
                     onClick={onClick}
+                    onDraw={onDraw}
                 />
                 }
                 {(data.length === 0 && noData)

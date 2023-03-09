@@ -6,6 +6,7 @@ function TR({
     data = [],
     fields = [],
     onClick,
+    onDraw,
     select = false,
     aliasId,
     aliasAttr,
@@ -22,6 +23,7 @@ function TR({
                 fieldName = {field.name}
                 value = {row[field.name]}
                 onClick = {onClick}
+                onDraw = {onDraw}
                 aliasId = {aliasId}
 
             />)}

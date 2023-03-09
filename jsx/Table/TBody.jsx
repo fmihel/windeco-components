@@ -10,6 +10,7 @@ function TBody({
     footer = 'end',
     select = [],
     onClick,
+    onDraw,
 }) {
     const haveData = (Array.isArray(data) && data.length > 0);
 
@@ -22,8 +23,10 @@ function TBody({
                 fields={fields}
                 select={aliasId in row && select.findIndex((id) => `${id}` === `${row[aliasId]}`) > -1}
                 onClick={onClick}
+                onDraw={onDraw}
                 aliasId = {aliasId}
                 aliasAttr = {aliasAttr}
+
             />)}
             {(!haveData && noData !== false) && <tr><td nodata='' colSpan={fields.length}>{noData}</td></tr>}
             {(haveData && footer !== false) && <tr><td footer='' colSpan={fields.length}>{footer}</td></tr>}

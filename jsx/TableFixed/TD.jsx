@@ -7,6 +7,7 @@ function TD({
     style = {},
     name = '',
     onClick = undefined,
+    onDraw = undefined,
     data = [],
 }) {
     const click = () => {
@@ -17,7 +18,21 @@ function TD({
         }
     };
     return (
-        <td style={style } onClick={click} id={name}>{value}</td>
+        <td
+            style={style}
+            onClick={click}
+            id={name}
+        >
+            {onDraw ? onDraw({
+                sender: 'td',
+                col: name,
+                value,
+                row: rowData,
+                data,
+                aliasId,
+            }) : value}
+
+        </td>
     );
 }
 

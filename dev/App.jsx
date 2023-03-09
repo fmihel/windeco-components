@@ -470,6 +470,10 @@ class App extends React.Component {
                                     footer={tableFooter}
                                     select={tableSelect}
                                     style={{ width: '100%' }}
+                                    onDraw={({ value, col }) => {
+                                        if (col === 'AGE') return <div style={{ display: 'flex', alignItems: 'center' }}><div style={{ flex: '1 1 auto' }}>{value}</div><Btn id="btn-del">del</Btn></div>;
+                                        return value;
+                                    }}
                                 />
 
                             </Block>
@@ -507,6 +511,11 @@ class App extends React.Component {
                                     header={tableHeader}
                                     footer={tableFooter}
                                     select={tableSelect}
+                                    onDraw={({ value, col }) => {
+                                        if (col === 'AGE') return <div style={{ display: 'flex', alignItems: 'center' }}><div style={{ flex: '1 1 auto' }}>{value}</div><Btn id="btn-del">del</Btn></div>;
+                                        return value;
+                                    }}
+
                                 />
 
                             </Block>

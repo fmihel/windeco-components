@@ -6,6 +6,7 @@ function TD({
     fieldName,
     value,
     onClick,
+    onDraw,
     aliasId,
 }) {
     const click = () => {
@@ -20,7 +21,14 @@ function TD({
             onClick={click}
             id={fieldName}
         >
-            {value}
+            {onDraw ? onDraw({
+                sender: 'td',
+                col: fieldName,
+                value,
+                row,
+                data,
+                aliasId,
+            }) : value}
         </td>
     );
 }

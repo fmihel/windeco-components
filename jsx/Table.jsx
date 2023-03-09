@@ -15,6 +15,7 @@ function Table({
     select = [],
     style = { ...Table.global.style },
     onClick = undefined,
+    onDraw = undefined,
 
 }) {
     return (
@@ -35,6 +36,7 @@ function Table({
                 footer = {footer}
                 select={select}
                 onClick = {onClick}
+                onDraw = {onDraw}
             />}
 
         </table>
