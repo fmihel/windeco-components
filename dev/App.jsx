@@ -196,6 +196,15 @@ class App extends React.Component {
                 resizable: false,
                 draggable: false,
             },
+            center: {
+                ...defaultDialogParam,
+                align: 'center',
+                msg: 'align center',
+                // width: 200,
+                // height: 200,
+                resizable: false,
+                draggable: false,
+            },
 
         };
         this.state = {
@@ -428,6 +437,12 @@ class App extends React.Component {
                     <div className='nav-content wd-scrollbar'>
                         {/* <div className='content wd-scrollbar'> */}
                         {/*--------------------------------------------------------------------------------------------------*/}
+                        <Head caption="Dialog">
+                            <Block>
+                                {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
+                            </Block>
+                        </Head>
+                        {/*--------------------------------------------------------------------------------------------------*/}
                         <Head caption = "NavBar">
                             <Block hide={false} >
                                 <div className="nav-container">
@@ -575,12 +590,6 @@ class App extends React.Component {
                                     <div>item4</div>
                                     <div>item5</div>
                                 </Collapse>
-                            </Block>
-                        </Head>
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="Dialog">
-                            <Block>
-                                {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
                             </Block>
                         </Head>
 

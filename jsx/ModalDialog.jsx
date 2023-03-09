@@ -15,7 +15,7 @@ function ModalDialog({
     onClickFooterBtn = undefined,
     header = false,
     footer = undefined,
-    align = 'stretch', // stretch, custom,stickTo
+    align = 'stretch', // stretch, custom,stickTo,center
     stickTo = undefined, // DOM  | string
     stickAlign = 'bottom', // bottom | left | screen-right-all
     stickOffX = 0,
@@ -25,7 +25,7 @@ function ModalDialog({
     top = ModalDialog.global.top, // for align = custom
     width = ModalDialog.global.width, // for align = custom,stickTo
     height = ModalDialog.global.height, // for align = custom,stickTo
-    mobile = { top: 30 }, // false,large,middle,small,{center||top||bottom:<percent size>}
+    mobile = 'small', // false,large,middle,small,{center||top||bottom:<percent size>}
     classShadow = Modal.global.classShadow,
     opacityShadow = Modal.global.opacityShadow,
     enableShadow = true,

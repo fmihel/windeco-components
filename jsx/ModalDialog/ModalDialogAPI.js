@@ -97,6 +97,13 @@ class ModalDialogAPI {
             }
 
             return out;
+        } if (align === 'center') {
+            return {
+                left: (scr.width - width) / 2,
+                top: (scr.height - height) / 2,
+                width,
+                height,
+            };
         }
 
         return {
@@ -110,13 +117,15 @@ class ModalDialogAPI {
      *  @returns { {pos,size,width} }
      */
     static mobileToObject(mobile) {
+        const scr = screen();
         if (mobile === 'large') {
             return { pos: 'center', size: 100, width: 100 };
         } if (mobile === 'middle') {
             return { pos: 'center', size: 60, width: 100 };
         } if (mobile === 'small') {
-            return { pos: 'center', size: 30, width: 80 };
-        } if (mobile === false) {
+            return { pos: 'center', size: 40, width: 80 };
+        }
+        if (mobile === false) {
             return { pos: false, size: false, width: false };
         }
         const pos = Object.keys(mobile).find((it) => ['center', 'top', 'bottom'].indexOf(it) !== -1);
