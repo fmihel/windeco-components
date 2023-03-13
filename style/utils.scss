@@ -246,3 +246,22 @@ $wd-fonts-family:(
     }
     @return color.change($color:$out,$alpha:$alpha); 
 };
+
+// ф-ция определения значения в зависимостит от темы  
+//  Ex:
+//    @each $theme in $wd-themes{
+//        #{getThemingRootClass($theme)}{
+//            --hov:#{meta.inspect(def($theme,$light:white,$dark:#293A4F) )};
+//            --bg2:#{meta.inspect(blendColors($colors:$wd-color,$theme:$theme ,$level:52%))};
+//        };
+//    }; 
+@function def($theme,$args...){
+    $last:'';
+    @each $name, $mean in meta.keywords($args) {
+        @if ($name==$theme){
+            @return $mean;
+        };
+        $last:$mean;
+    }
+    @return $last;
+}

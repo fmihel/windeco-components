@@ -52,6 +52,7 @@
             padding-right: $gap;
         }        
         [nav-item]{
+            cursor:default;
             min-height:$size;
             line-height: $size;
             overflow: hidden;
