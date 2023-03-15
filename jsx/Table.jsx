@@ -15,6 +15,7 @@ function Table({
     select = [],
     style = { ...Table.global.style },
     onClick = undefined,
+    onDoubleClick = undefined,
     onDraw = undefined,
 
 }) {
@@ -36,6 +37,7 @@ function Table({
                 footer = {footer}
                 select={select}
                 onClick = {onClick}
+                onDoubleClick = {onDoubleClick}
                 onDraw = {onDraw}
             />}
 

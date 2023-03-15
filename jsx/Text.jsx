@@ -2,9 +2,10 @@ import React from 'react';
 
 function Text({
     id,
-    value = '',
+    value = undefined,
     className = Text.global.className,
     addClass = '',
+    attr = {},
     style = Text.global.style,
     placeholder = Text.global.placeholder,
     disabled = false,
@@ -16,11 +17,10 @@ function Text({
     rows = 0,
     cols = 0,
     onChange = undefined,
+    children,
 
 }) {
-    if (addClass!=='')
-        console.warn(`Text.addClass is deprecated, use className = ${addClass}`);
-
+    if (addClass !== '') console.warn(`Text.addClass is deprecated, use className = ${addClass}`);
 
     const prepare = (aText, dom) => {
         if (rows > 0 && aText.length > 0 && cols > 0) {
@@ -58,27 +58,28 @@ function Text({
     const change = ({ currentTarget }) => {
         if (onChange) {
             onChange({ id, value: prepare(currentTarget.value, currentTarget) });
-        }else{
+        } else {
             console.warn('Text.onChange not set, define it.');
         }
     };
     return (
         <textarea
             type='memo'
-            {...(id ? {id}:{})}
-            {...(className || addClass ? {className:`${className} ${addClass}`}:{})}            
+            {...(id ? { id } : {})}
+            {...(className || addClass ? { className: `${className} ${addClass}` } : {})}
             style={{
                 ...Text.global.style,
                 ...(resize ? {} : { resize: 'none' }),
                 ...style,
             }}
-            value={value}
+            value={value || children}
             {...(disabled ? { disabled: true } : { })}
             {...(readonly ? { readOnly: true } : { })}
             {...((required && !value) ? { required: true } : { })}
             {...(title ? { title } : { })}
             {...(maxLength > 0 ? { maxLength } : { })}
             {...(placeholder ? { placeholder } : {})}
+            {...attr}
             onChange={change}
         />
     );

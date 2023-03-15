@@ -443,6 +443,48 @@ class App extends React.Component {
                             </Block>
                         </Head>
                         {/*--------------------------------------------------------------------------------------------------*/}
+                        <Head caption="Text">
+                            <Block>
+                                <Text
+                                    style={{ height: 70, width: '100%' }}
+                                    placeholder="rows:4 cols:15 len:60"
+                                    title="rows:4 cols:15 len:60"
+                                    value={textValue2}
+                                    onChange={(o) => { this.setState({ textValue2: o.value }); }}
+                                    rows={4}
+                                    cols={15}
+                                />
+                            </Block>
+                            <Block>
+                                <Text
+                                    style={{ height: 30 }}
+                                    maxLength={20}
+                                    placeholder="set text, max 20 len.."
+                                    title="set text, max 20 len.."
+
+                                    onChange={(o) => { this.setState({ textValue: o.value }); }}
+                                    required={true}
+                                >{textValue}</Text>
+                            </Block>
+                            <Block>
+                                <Text
+                                    readonly={true}
+                                    title="readonly"
+                                >
+                                    {'readonly'}
+                                </Text>
+                            </Block>
+                            <Block>
+                                <Text
+                                    disabled={1}
+                                    value="disabled"
+                                    resize={true}
+                                />
+                            </Block>
+                        </Head>
+
+                        {/*--------------------------------------------------------------------------------------------------*/}
+
                         <Head caption = "NavBar">
                             <Block hide={false} >
                                 <div className="nav-container">
@@ -466,6 +508,7 @@ class App extends React.Component {
                                     fields={fields}
                                     data={table}
                                     onClick={this.onClickTable}
+                                    onDoubleClick={(o) => { console.log('double', o); }}
                                     header={tableHeader}
                                     footer={tableFooter}
                                     select={tableSelect}
@@ -832,47 +875,6 @@ class App extends React.Component {
                             <Block> <Label caption="range" id="rng" ><Edit id="rng" value={5} type='number' min={0} max={10} step={1}/></Label></Block>
 
                         </Head>
-
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="Text">
-                            <Block>
-                                <Text
-                                    style={{ height: 70, width: '100%' }}
-                                    placeholder="rows:4 cols:15 len:60"
-                                    title="rows:4 cols:15 len:60"
-                                    value={textValue2}
-                                    onChange={(o) => { this.setState({ textValue2: o.value }); }}
-                                    rows={4}
-                                    cols={15}
-                                />
-                            </Block>
-                            <Block>
-                                <Text
-                                    style={{ height: 30 }}
-                                    maxLength={20}
-                                    placeholder="set text, max 20 len.."
-                                    title="set text, max 20 len.."
-                                    value={textValue}
-                                    onChange={(o) => { this.setState({ textValue: o.value }); }}
-                                    required={true}
-                                />
-                            </Block>
-                            <Block>
-                                <Text
-                                    readonly={true}
-                                    title="readonly"
-                                    value= "readonly"
-                                />
-                            </Block>
-                            <Block>
-                                <Text
-                                    disabled={1}
-                                    value="disabled"
-                                    resize={true}
-                                />
-                            </Block>
-                        </Head>
-
                         {/*--------------------------------------------------------------------------------------------------*/}
                         <Head caption="Modal">
                             <Block>

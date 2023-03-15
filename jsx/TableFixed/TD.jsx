@@ -7,6 +7,7 @@ function TD({
     style = {},
     name = '',
     onClick = undefined,
+    onDoubleClick = undefined,
     onDraw = undefined,
     data = [],
 }) {
@@ -17,10 +18,18 @@ function TD({
             });
         }
     };
+    const doubleClick = () => {
+        if (onDoubleClick) {
+            onDoubleClick({
+                col: name, value, row: rowData, aliasId, data,
+            });
+        }
+    };
     return (
         <td
             style={style}
             onClick={click}
+            onDoubleClick={doubleClick}
             id={name}
         >
             {onDraw ? onDraw({

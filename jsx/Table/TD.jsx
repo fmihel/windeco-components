@@ -6,6 +6,7 @@ function TD({
     fieldName,
     value,
     onClick,
+    onDoubleClick,
     onDraw,
     aliasId,
 }) {
@@ -16,9 +17,18 @@ function TD({
             });
         }
     };
+    const doubleClick = () => {
+        if (onDoubleClick) {
+            onDoubleClick({
+                col: fieldName, value, row, data, aliasId,
+            });
+        }
+    };
     return (
         <td
             onClick={click}
+            onDoubleClick= {doubleClick}
+
             id={fieldName}
         >
             {onDraw ? onDraw({

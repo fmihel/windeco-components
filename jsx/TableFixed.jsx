@@ -21,6 +21,7 @@ function TableFixed({
     footer = TableFixed.global.footer,
     select = [],
     onClick = undefined,
+    onDoubleClick = undefined,
     onDraw = undefined,
 
 }) {
@@ -116,6 +117,7 @@ function TableFixed({
                     footer={footer}
                     select={select}
                     onClick={onClick}
+                    onDoubleClick={onDoubleClick}
                     onDraw={onDraw}
                 />
                 }

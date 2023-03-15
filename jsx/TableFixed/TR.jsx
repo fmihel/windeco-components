@@ -9,6 +9,7 @@ function TR({
     aliasAttr = '-attr-',
     select = false,
     onClick = undefined,
+    onDoubleClick = undefined,
     onDraw = undefined,
 
 }) {
@@ -31,6 +32,7 @@ function TR({
                         ...('width' in field ? { width: field.width } : {}),
                     }}
                     onClick={onClick}
+                    onDoubleClick={onDoubleClick}
                     onDraw={onDraw}
 
                 />))}
