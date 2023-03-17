@@ -45,7 +45,7 @@ import {
 } from './data.js';
 import map from '../jsx/Utils/map';
 import theme from '../jsx/Utils/theme';
-
+import navbar from '../jsx/Utils/navbar';
 // Icon.icons({
 // [iEdit]: './media/edit.png',
 // [iEdit16]: { path: './media/edit16.png' },
@@ -351,8 +351,14 @@ class App extends React.Component {
         return (
             <div>
                 <div className="nav-container-large">
-                    <NavBar Logo="demo">
-                        <NavItem caption="upper" {...nav('upper')}/>
+                    <NavBar Logo="demo" id="nav1">
+                        <NavItem
+                            caption="upper"
+                            {...nav('upper')}
+                            onClick={() => {
+                                navbar('nav1').close();
+                            }}
+                        />
                         <div style={{ paddingTop: 5, paddingBottom: 5 }}>
                             <span>{'theme'} </span>
                             <Btn onClick={this.setLightTheme} >light</Btn>
@@ -437,6 +443,32 @@ class App extends React.Component {
                     <div className='nav-content wd-scrollbar'>
                         {/* <div className='content wd-scrollbar'> */}
                         {/*--------------------------------------------------------------------------------------------------*/}
+
+                        <Head caption = "NavBar">
+                            <Block>
+                                <Btn onClick={() => {
+                                    navbar('nav2').close();
+                                }}>collapse</Btn>
+                                <Btn onClick={() => {
+                                    navbar('nav2').open();
+                                }}>expand</Btn>
+                            </Block>
+                            <Block hide={false} >
+                                <div className="nav-container">
+                                    <NavBar style={{ border: '1px dashed #344050' }} id="nav2">
+                                        <NavItem/>
+                                        <NavItem caption="menu">
+                                            <NavItem/>
+                                            <NavItem/>
+                                        </NavItem>
+                                        <NavItem/>
+                                    </NavBar>
+                                </div>
+                            </Block>
+                        </Head>
+
+                        {/*--------------------------------------------------------------------------------------------------*/}
+
                         <Head caption="Dialog">
                             <Block>
                                 {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
@@ -483,22 +515,6 @@ class App extends React.Component {
                             </Block>
                         </Head>
 
-                        {/*--------------------------------------------------------------------------------------------------*/}
-
-                        <Head caption = "NavBar">
-                            <Block hide={false} >
-                                <div className="nav-container">
-                                    <NavBar style={{ border: '1px dashed #344050' }}>
-                                        <NavItem/>
-                                        <NavItem caption="menu">
-                                            <NavItem/>
-                                            <NavItem/>
-                                        </NavItem>
-                                        <NavItem/>
-                                    </NavBar>
-                                </div>
-                            </Block>
-                        </Head>
                         {/*--------------------------------------------------------------------------------------------------*/}
                         <Head caption = "Table">
 

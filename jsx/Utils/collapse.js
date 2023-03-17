@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
-import getsize from '../Utils/size';
-import timer from '../Utils/timer';
+import getsize from './size';
+import timer from './timer';
 
 function collapse({
     dom,
