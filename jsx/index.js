@@ -9,7 +9,7 @@ import RComboBox from './ComboBox.jsx';
 import RBtnIcon from './BtnIcon.jsx';
 import RText from './Text.jsx';
 import RIcon from './Icon.jsx';
-import RList from './List/List.jsx';
+import RList from './List.jsx';
 import RGroup from './Group.jsx';
 
 export default {
