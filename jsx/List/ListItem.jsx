@@ -2,13 +2,10 @@ import React from 'react';
 import Gap from '../Gap/Gap.jsx';
 
 export default function ListItem({
-    id,
     caption,
-    data,
     level,
     childs,
     className = ListItem.global.className,
-    addClass = ListItem.global.addClass,
     active = false,
     expand = false,
     onClick = undefined,
@@ -18,23 +15,22 @@ export default function ListItem({
     return (
         <Gap
             count ={level}
-            addClass={`${className} ${addClass}`}
+            addClass={`${className} `}
             attr={{
-                ...(active ? { active: 'true' } : {}),
-                ...(expand ? { expand: 'true' } : {}),
+                ...(active ? { active: '' } : {}),
+                ...(expand ? { expand: '' } : {}),
             }}
             onClick={onClick}
             onDoubleClick={onDoubleClick}
         >
-            <div is='caption'>
+            <div caption=''>
                 {caption}
             </div>
-            {(childs && childs.length > 0) && <div is='icon'></div>}
+            {(childs && childs.length > 0) && <div icon=''></div>}
         </Gap>
     );
 }
 
 ListItem.global = {
     className: 'wd-list-item',
-    addClass: '',
 };

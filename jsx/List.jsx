@@ -1,16 +1,11 @@
 import React from 'react';
-import ListItem from './ListItem.jsx';
-import ListNode from './ListNode.jsx';
+import ListItem from './List/ListItem.jsx';
+import ListNode from './List/ListNode.jsx';
 
 function List({
     id = undefined,
     className = List.global.className,
-    addClass = List.global.addClass,
     style = List.global.style,
-
-    classNameNode = ListNode.global.className,
-    addClassNode = ListNode.global.addClass,
-    styleNode = ListNode.global.style,
 
     list = [],
     ItemComponent = List.global.ItemComponent,
@@ -25,24 +20,15 @@ function List({
 }) {
     return (
         <div
+            list = {''}
             {...(id ? { id } : {})}
-            className={`${className} ${addClass}`}
+            className={`${className}`}
             style={{
                 ...List.global.style,
                 ...style,
             }}
         >
             <ListNode
-                className = {classNameNode}
-                addClass = {addClassNode}
-                style = {styleNode}
-
-                classNameList = {className}
-                addClassList = {addClass}
-                styleList={{
-                    ...List.global.style,
-                    ...style,
-                }}
 
                 list = {list}
                 aliasChilds = {aliasChilds}
@@ -59,7 +45,6 @@ function List({
 }
 List.global = {
     className: 'wd-list',
-    addClass: '',
     style: {},
 
     ItemComponent: ListItem,

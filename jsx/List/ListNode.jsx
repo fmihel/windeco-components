@@ -2,13 +2,6 @@ import React from 'react';
 import Collapse from '../Collapse.jsx';
 
 export default function ListNode({
-    className = ListNode.global.className,
-    addClass = ListNode.global.addClass,
-    style = ListNode.global.style,
-
-    classNameList,
-    addClassList,
-    styleList,
 
     list,
     aliasChilds,
@@ -31,13 +24,9 @@ export default function ListNode({
 
                 return (
                     <div
+                        list-node = {''}
                         key={aid}
                         id={aid}
-                        className={`${className} ${addClass}`}
-                        style={{
-                            ...ListNode.global.style,
-                            ...style,
-                        }}
                     >
                         <ItemComponent
                             id={aid}
@@ -53,20 +42,14 @@ export default function ListNode({
                         {(childs.length > 0)
                         && <Collapse
                             expand = {expand}
-                            className = {classNameList}
-                            addClass = {addClassList}
-                            style={styleList}
+                            attr={{
+                                list: '',
+                            }}
 
                         >
                             <ListNode
+                                list-node = {''}
                                 level={level + 1}
-                                className = {className}
-                                addClass = {addClass}
-                                style={style}
-
-                                classNameList = {classNameList}
-                                addClassList = {addClassList}
-                                styleList={styleList}
 
                                 list = {childs}
                                 ItemComponent ={ItemComponent}
@@ -89,7 +72,4 @@ export default function ListNode({
 }
 
 ListNode.global = {
-    className: 'wd-node',
-    addClass: '',
-    style: {},
 };

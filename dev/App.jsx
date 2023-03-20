@@ -26,7 +26,7 @@ import Modal from '../jsx/Modal.jsx';
 import Text from '../jsx/Text.jsx';
 import Icon from '../jsx/Icon.jsx';
 import Edit from '../jsx/Edit.jsx';
-import List from '../jsx/List/List.jsx';
+import List from '../jsx/List.jsx';
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
 import NavBar from '../jsx/NavBar.jsx';
@@ -444,6 +444,56 @@ class App extends React.Component {
                         {/* <div className='content wd-scrollbar'> */}
                         {/*--------------------------------------------------------------------------------------------------*/}
 
+                        <Head caption="List">
+
+                            <Block>
+                                <List
+                                    list={
+                                        [
+                                            { id: 1, caption: 'item-1' },
+                                            {
+                                                id: 2,
+                                                caption: 'item-2',
+                                                childs: [
+                                                    { id: 21, caption: 'item-21' },
+                                                    {
+                                                        id: 22,
+                                                        caption: 'item-22',
+                                                        childs: [
+                                                            { id: 221, caption: 'item-221' },
+                                                            {
+                                                                id: 222,
+                                                                caption: 'item-222',
+                                                                childs: [
+                                                                    { id: 2221, caption: 'item-2221' },
+                                                                    { id: 2222, caption: 'item-2222' },
+                                                                    { id: 2223, caption: 'item-2223' },
+
+                                                                ],
+                                                            },
+                                                            { id: 223, caption: 'item-223' },
+                                                        ],
+                                                    },
+                                                    { id: 23, caption: 'item-23' },
+                                                ],
+                                            },
+                                            { id: 3, caption: 'item-3' },
+                                        ]}
+                                    setup={listSetup}
+                                    onClick={(o) => {
+                                        this.setState({
+                                            listSetup: {
+                                                ...map(listSetup, (val) => ({ ...val, active: false })),
+                                                [o.id]: { ...listSetup[o.id], active: true, expand: !(listSetup[o.id] && listSetup[o.id].expand) },
+                                            },
+                                        });
+                                    }}
+                                />
+                            </Block>
+                        </Head>
+
+                        {/*--------------------------------------------------------------------------------------------------*/}
+
                         <Head caption = "NavBar">
                             <Block>
                                 <Btn onClick={() => {
@@ -661,55 +711,6 @@ class App extends React.Component {
                             </Block>
                         </Head>
 
-                        {/*--------------------------------------------------------------------------------------------------*/}
-
-                        <Head caption="List">
-
-                            <Block>
-                                <List
-                                    list={
-                                        [
-                                            { id: 1, caption: 'item-1' },
-                                            {
-                                                id: 2,
-                                                caption: 'item-2',
-                                                childs: [
-                                                    { id: 21, caption: 'item-21' },
-                                                    {
-                                                        id: 22,
-                                                        caption: 'item-22',
-                                                        childs: [
-                                                            { id: 221, caption: 'item-221' },
-                                                            {
-                                                                id: 222,
-                                                                caption: 'item-222',
-                                                                childs: [
-                                                                    { id: 2221, caption: 'item-2221' },
-                                                                    { id: 2222, caption: 'item-2222' },
-                                                                    { id: 2223, caption: 'item-2223' },
-
-                                                                ],
-                                                            },
-                                                            { id: 223, caption: 'item-223' },
-                                                        ],
-                                                    },
-                                                    { id: 23, caption: 'item-23' },
-                                                ],
-                                            },
-                                            { id: 3, caption: 'item-3' },
-                                        ]}
-                                    setup={listSetup}
-                                    onClick={(o) => {
-                                        this.setState({
-                                            listSetup: {
-                                                ...map(listSetup, (val) => ({ ...val, active: false })),
-                                                [o.id]: { ...listSetup[o.id], active: true, expand: !(listSetup[o.id] && listSetup[o.id].expand) },
-                                            },
-                                        });
-                                    }}
-                                />
-                            </Block>
-                        </Head>
                         {/*--------------------------------------------------------------------------------------------------*/}
                         <Head caption="ComboBoxEx">
                             <Block>

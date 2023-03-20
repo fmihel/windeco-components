@@ -28,7 +28,7 @@
     $tick:$wd-tick;
     $invert:50%;//var(--cb-invert);
 
-    .wd-list{
+    [list]{
         box-sizing: border-box;
         overflow: hidden;
         
@@ -56,11 +56,11 @@
             }
         }
         >div{
-            &[is='caption']{
+            &[caption]{
                 @include stretch();
                 overflow: hidden;    
             }
-            &[is='icon']{
+            &[icon]{
                 width: $size;
                 min-width: $size;
                 background-image: url($tick); 
@@ -70,9 +70,9 @@
                 
             }
         }
-        &[expand='true']{
+        &[expand]{
             >div{
-                &[is='icon']{
+                &[icon]{
                     transform: rotate(180deg);
                 }
             }
