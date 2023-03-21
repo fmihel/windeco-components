@@ -53,6 +53,9 @@ import navbar from '../jsx/Utils/navbar';
 
 theme.addClass(isMobile() ? 'mobile' : '');
 
+const CustomHead = () => (<div>
+    <span>text</span><Btn>press</Btn>
+</div>);
 class App extends React.Component {
     constructor(p) {
         super(p);
@@ -108,6 +111,7 @@ class App extends React.Component {
             'with btns': {
                 ...defaultDialogParam,
                 // header: 'text in header',
+                header: <CustomHead/>,
                 msg: 'common simple dialog',
                 footer: ['ok', 'cancel'],
                 mobile: { bottom: 40 },

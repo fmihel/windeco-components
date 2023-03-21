@@ -151,8 +151,8 @@
 }
 
 @keyframes dialog-slide-from-top {
-    from { transform: translate(0%,-2%) }
-    to {  transform: tramslate(0%,0%)}
+    from { transform: translateY(-5px) ; opacity:0.5 }
+    to {  transform: tramslateY(0px) ; opacity:1}
 }
 
 @keyframes dialog-scale {

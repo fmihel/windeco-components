@@ -16,7 +16,6 @@ function Modal({
     enableShadow = true,
     classShadow = Modal.global.classShadow,
     onClickShadow = undefined,
-    opacityShadow = Modal.global.opacityShadow,
     attr = {},
     children,
 }) {
@@ -72,7 +71,7 @@ function Modal({
                     left: -1,
                     top: -1,
                     ...screen,
-                    ...(opacityShadow === false ? {} : { opacity: opacityShadow }),
+                    // ...(opacityShadow === false ? {} : { opacity: opacityShadow }),
                 }}
                 onClick={onClickShadow}
             />}
@@ -86,7 +85,6 @@ Modal.global = {
     idRoot: 'wd-modal',
     className: 'wd-modal',
     classShadow: 'wd-shadow',
-    opacityShadow: 0.4,
 };
 
 export default Modal;

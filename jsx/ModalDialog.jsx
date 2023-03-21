@@ -50,6 +50,8 @@ function ModalDialog({
     const [off, setOff] = useState({ x: 0, y: 0 });
     const [userModif, setUserModif] = useState(false);
     const [compact, setCompact] = useState(isCompact());
+    const [visibility, setVisibility] = useState('hidden');
+    // onst [visibility, setVisibility] = useState('visible');
 
     let footers = [];
     if (Array.isArray(footer)) {
@@ -57,6 +59,7 @@ function ModalDialog({
     } else if (typeof footer === 'object') {
         footers = Object.keys(footer);
     }
+
     useEffect(() => {
         const resize = (first = false) => {
             const iscompact = isCompact();
@@ -126,6 +129,13 @@ function ModalDialog({
         };
     }, [visible, mouseState, off]);
 
+    useEffect(() => {
+        if (visible) {
+            if (visibility === 'hidden') {
+                setVisibility('visible');
+            }
+        } else if (visibility === 'visible') { setVisibility('hidden'); }
+    }, [visible, pos]);
     const mouseDown = ({ button }) => {
         if ((align === 'custom' || align === 'stickTo')
         && draggable && button === 0) {
@@ -155,7 +165,6 @@ function ModalDialog({
             id={id}
             visible={visible}
             classShadow= {classShadow}
-            opacityShadow={opacityShadow}
             enableShadow={enableShadow}
             onClickShadow={onClickShadow}
 
@@ -163,7 +172,7 @@ function ModalDialog({
                 <div
                     type="dialog"
                     style={{
-                        ...ModalDialog.global.style, ...style, ...pos, ...size,
+                        ...ModalDialog.global.style, ...style, ...pos, ...size, visibility,
                     }}
                     {...(className || addClass ? { className: `${className} ${addClass}` } : {})}
                     onMouseDown={mouseDown}
@@ -214,14 +223,13 @@ function ModalDialog({
 }
 
 ModalDialog.global = {
-    className: 'wd-dialog-scale',
+    className: 'wd-dialog-slide-from-top',
+    classShadow: 'wd-shadow',
     style: {},
     left: 0,
     top: 0,
     width: 300,
     height: 100,
-    classShadow: 'wd-shadow',
-    opacityShadow: false,
 
 };
 export default ModalDialog;
