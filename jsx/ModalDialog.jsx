@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import Modal from './Modal.jsx';
 import api from './ModalDialog/ModalDialogAPI.js';
@@ -6,6 +6,7 @@ import Btn from './Btn.jsx';
 import mousePos from './Utils/mouse.js';
 import onResizeScreen from './Utils/onResizeScreen.js';
 import isCompact from './Utils/isCompact.js';
+import abs from './Utils/abs.js';
 
 function ModalDialog({
     id,
@@ -27,7 +28,6 @@ function ModalDialog({
     height = ModalDialog.global.height, // for align = custom,stickTo
     mobile = 'small', // false,large,middle,small,{center||top||bottom:<percent size>}
     classShadow = Modal.global.classShadow,
-    opacityShadow = Modal.global.opacityShadow,
     enableShadow = true,
     draggable = true, // work with align = custom || stickTo
     resizable = false,
@@ -52,7 +52,7 @@ function ModalDialog({
     const [compact, setCompact] = useState(isCompact());
     const [visibility, setVisibility] = useState('hidden');
     // onst [visibility, setVisibility] = useState('visible');
-
+    const refHeader = useRef();
     let footers = [];
     if (Array.isArray(footer)) {
         footers = footer;
@@ -140,9 +140,19 @@ function ModalDialog({
         if ((align === 'custom' || align === 'stickTo')
         && draggable && button === 0) {
             const mouse = mousePos();
-            setOff({ x: mouse.x - pos.left, y: mouse.y - pos.top });
-            setMouseState('move');
-            if (!userModif) setUserModif(true);
+            let need = true;
+            if (draggable === 'header') {
+                if (refHeader.current) {
+                    const areaHeader = abs(refHeader.current);
+                    need = ((mouse.x >= areaHeader.x && mouse.x <= areaHeader.x + areaHeader.w)
+                            && (mouse.y >= areaHeader.y && mouse.y <= areaHeader.y + areaHeader.h));
+                } else need = false;
+            }
+            if (need) {
+                setOff({ x: mouse.x - pos.left, y: mouse.y - pos.top });
+                setMouseState('move');
+                if (!userModif) setUserModif(true);
+            }
         }
     };
     const mouseDownResize = () => {
@@ -178,7 +188,7 @@ function ModalDialog({
                     onMouseDown={mouseDown}
                 >
                     {(header)
-                    && <div type="dialog-header">
+                    && <div type="dialog-header" ref= {refHeader}>
                         <div type="dialog-caption">
                             {header}
                         </div>

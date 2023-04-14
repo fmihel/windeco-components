@@ -139,7 +139,7 @@ class App extends React.Component {
                 stickTo: '#dialog-btn-stickAndDrag',
                 height: 150,
                 width: 300,
-                draggable: true, // by default true
+                draggable: 'header', // by default true
                 resizable: true,
                 onShow() {
                     console.log('show dialog');
