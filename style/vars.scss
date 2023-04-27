@@ -4,7 +4,108 @@
 @use "sass:map";
 @use 'sass:meta';
 @use "sass:color";
-@import './utils.scss'; 
+ 
+@debug render;
+
+:root {
+    --v2-wd-size:32px;
+    --v2-wd-gap:5px;
+    --v2-wd-margin:2px;
+    --v2-wd-padding:var(--v2-wd-gap);
+    --v2-wd-radius:0.25rem;
+    --v2-wd-font-size:14px ;
+    //--v2-wd-font-family:meta.inspect(font-family('verdana'));
+    --v2-wd-font-family:font-family('verdana');
+    
+
+    --v2-wd-hovering:0.95;
+    
+    --v2-wd-red:#ff0000;
+    --v2-wd-green:#008b14;
+    --v2-wd-blue:#0D6EFD;
+    --v2-wd-orange:#FF8A00;
+
+    
+    --v2-wd-primary:#0D6EFD;
+    --v2-wd-high:#fdfdfd;    
+    --v2-wd-secondary:#fdfdfd;    
+    --v2-wd-success:#008b14;
+    --v2-wd-danger:#C32F3D;
+    --v2-wd-highlight:#2C7BE5;
+    --v2-wd-warning:var(--v2-wd-orange);    
+
+
+    --v2-wd-bg:#EDF2F9;
+    --v2-wd-color:#83909F;
+    
+    --v2-wd-label:#5E6E82;
+    --v2-wd-border:#D8E2EF;
+    --v2-wd-outline:#CADEF8;
+    --v2-wd-hover:#e9ecf1;
+    --v2-wd-select:#2C7BE5;
+    --v2-wd-header:#EDF2F9;
+    --v2-wd-deep:#FFFFFF;
+    --v2-wd-high:#fdfdfd;
+    --v2-wd-transparent:rgba(0,0,0,0);
+    --v2-wd-block:#FFFFFF;
+    --v2-wd-alert:#ff0000;
+    --v2-wd-url:var(--v2-wd-highlight);
+    --v2-wd-info:var(--v2-wd-url);
+
+}
+
+:root.dark{
+    --v2-wd-hovering:1.2;
+
+    --v2-wd-primary:#0E639C;
+    --v2-wd-high:#2d353e;    
+    --v2-wd-secondary:#fdfdfd;
+    --v2-wd-success:#017711;
+    --v2-wd-danger:#632323;
+    --v2-wd-highlight:lime;
+    --v2-wd-warning:var(--v2-wd-orange);    
+
+
+    --v2-wd-bg:#0B1727;
+    --v2-wd-color:#9DA9BB;
+
+    --v2-wd-label:#9DA9BB;
+    --v2-wd-border:#344050;
+    --v2-wd-outline:#0E639C;
+    --v2-wd-hover:#38414B;
+    --v2-wd-select:#2C7BE5;
+    --v2-wd-header:#232E3C;
+    --v2-wd-deep:#0B1727;
+    --v2-wd-high:#2d353e;
+    --v2-wd-transparent:rgba(0,0,0,0);
+    --v2-wd-block:#162231;
+    --v2-wd-alert:#ff0000;
+    --v2-wd-url:var(--v2-wd-highlight);
+    --v2-wd-info:var(--v2-wd-url);
+
+}
+
+$wd-bootstrap-vars2:(
+    'primary':var(--v2-wd-primary),
+    'secondary':var(--v2-wd-secondary),
+    'success':var(--v2-wd-success),
+    'danger':var(--v2-wd-danger),
+    'warning':var(--v2-wd-warning),
+    'info':var(--v2-wd-info),
+);
+
+
+@each $key,$color in $wd-bootstrap-vars2{
+    .wd-#{$key}{
+        background-color:$color !important;
+        &.wd-flat{
+            background-color:rgba(0,0,0,0) !important;
+            border: 1px solid $color;
+            color: $color;
+        }
+    }
+}
+
 
 $wd-size:32px;
 $wd-themes:('light','dark') !default;
@@ -110,6 +211,7 @@ $wd-bootstrap-vars:(
 );
 
 
+
 @function getThemingRootClass($theme){
      @return if($theme!=$wd-default-theme,':root.'+$theme,':root');
 }
@@ -123,27 +225,29 @@ $wd-bootstrap-vars:(
             $g:color.green($acolor);
             $b:color.blue($acolor);
 
-            --wd-#{$key}:#{meta.inspect($acolor)};
+           --wd-#{$key}:#{meta.inspect($acolor)};
             --wd-#{$key}-rgb:#{meta.inspect($r)},#{meta.inspect($g)},#{meta.inspect($b)} ;
         }
 
         @each $key,$val in $wd-vars{
             --wd-#{$key}:#{meta.inspect($val)};    
         }    
-        @each $key,$colors in $wd-bootstrap-vars{
-            .wd-#{$key},.wd-btn-#{$key}{
-                background-color: map-get($colors,#{$name}) !important;
-                color:contrast(map-get($colors,#{$name}),$alpha:0.8) !important;
-                border-color: blendColors($colors:$colors,$theme:$name,$level:-5%) !important;
-            }
-            .wd-btn-#{$key}{
-                &:hover{
-                    background-color:blendColors($colors:$colors,$theme:$name,$level:-5%) !important;
-                    color:contrast(map-get($colors,#{$name}),$alpha:1) !important;
-                }
-            }
-        }
         
+        //@each $key,$colors in $wd-bootstrap-vars{
+        //    .wd-#{$key},.wd-btn-#{$key}{
+        //        background-color: map-get($colors,#{$name}) !important;
+        //        color:contrast(map-get($colors,#{$name}),$alpha:0.8) !important;
+        //        border-color: blendColors($colors:$colors,$theme:$name,$level:-5%) !important;
+        //    }
+        //    .wd-btn-#{$key}{
+        //        &:hover{
+        //            background-color:blendColors($colors:$colors,$theme:$name,$level:-5%) !important;
+        //            color:contrast(map-get($colors,#{$name}),$alpha:1) !important;
+        //        }
+        //    }
+        //}
+        
+        /*
         .wd-danger{
             background-color: map-get($wd-danger,#{$name}) !important;
             //color:blendColors($colors:$wd-danger,$theme:$name,$light:60%,$dark:60%) !important;
@@ -169,117 +273,7 @@ $wd-bootstrap-vars:(
              }
 
         }
+        */
     }
 }
 
-@mixin less-large{
-    @media screen and (width <= $wd-large-width) {
-        @content;
-    }
-}
-
-@mixin less-middle{
-    @media screen and ( width <= $wd-middle-width) {
-        @content;
-    }
-}
-
-@mixin less-small{
-    @media screen and ( width <= $wd-small-width) {
-        @content;
-    }
-}
-
-
-@mixin more-large{
-    @media screen and (width > $wd-large-width) {
-        @content;
-    }
-}
-
-@mixin more-middle{
-    @media screen and ( width > $wd-middle-width) {
-        @content;
-    }
-}
-
-@mixin more-small{
-    @media screen and ( width > $wd-small-width) {
-        @content;
-    }
-}
-
-
-.hide-less-large{
-    @include less-large{
-        display: none !important;
-    }
-}
-
-.hide-less-middle{
-    @include less-middle{
-        display: none !important;
-    }
-}
-
-.hide-less-small{
-    @include less-small{
-        display: none !important;
-    }
-}
-
-
-.hide-more-large{
-    @include more-large{
-        display: none !important;
-    }
-}
-
-.hide-more-middle{
-    @include more-middle{
-        display: none !important;
-    }
-}
-
-.hide-more-small{
-    @include more-small{
-        display: none !important;
-    }
-}
-
-
-@mixin less-than($name){
-    @if ($name == 'large'){
-        @include less-large{
-            @content;
-        }
-    }@else if($name == 'middle'){
-        @include less-middle{
-            @content;
-        }
-    }@else if($name == 'small'){
-        @include less-small{
-            @content;
-        }
-    }@else{
-        @error 'not define code for width'+$name; 
-    }
-}
-
-@mixin more-than($name){
-    @if ($name == 'large'){
-        @include more-large{
-            @content;
-        }
-    }@else if($name == 'middle'){
-        @include more-middle{
-            @content;
-        }
-    }@else if($name == 'small'){
-        @include more-small{
-            @content;
-        }
-    }@else{
-        @error 'not define code for width'+$name; 
-    }
-}

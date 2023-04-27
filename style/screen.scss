@@ -1,0 +1,112 @@
+
+@mixin less-large{ 
+    @media screen and (width <= $wd-large-width) {
+        @content;
+    }
+}
+
+@mixin less-middle{
+    @media screen and ( width <= $wd-middle-width) {
+        @content;
+    }
+}
+
+@mixin less-small{
+    @media screen and ( width <= $wd-small-width) {
+        @content;
+    }
+}
+
+
+@mixin more-large{
+    @media screen and (width > $wd-large-width) {
+        @content;
+    }
+}
+
+@mixin more-middle{
+    @media screen and ( width > $wd-middle-width) {
+        @content;
+    }
+}
+
+@mixin more-small{
+    @media screen and ( width > $wd-small-width) {
+        @content;
+    }
+}
+
+
+.hide-less-large{
+    @include less-large{
+        display: none !important;
+    }
+}
+
+.hide-less-middle{
+    @include less-middle{
+        display: none !important;
+    }
+}
+
+.hide-less-small{
+    @include less-small{
+        display: none !important;
+    }
+}
+
+
+.hide-more-large{
+    @include more-large{
+        display: none !important;
+    }
+}
+
+.hide-more-middle{
+    @include more-middle{
+        display: none !important;
+    }
+}
+
+.hide-more-small{
+    @include more-small{
+        display: none !important;
+    }
+}
+
+
+@mixin less-than($name){
+    @if ($name == 'large'){
+        @include less-large{
+            @content;
+        }
+    }@else if($name == 'middle'){
+        @include less-middle{
+            @content;
+        }
+    }@else if($name == 'small'){
+        @include less-small{
+            @content;
+        }
+    }@else{
+        @error 'not define code for width'+$name; 
+    }
+}
+
+@mixin more-than($name){
+    @if ($name == 'large'){
+        @include more-large{
+            @content;
+        }
+    }@else if($name == 'middle'){
+        @include more-middle{
+            @content;
+        }
+    }@else if($name == 'small'){
+        @include more-small{
+            @content;
+        }
+    }@else{
+        @error 'not define code for width'+$name; 
+    }
+}

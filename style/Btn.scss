@@ -1,22 +1,11 @@
 @use "sass:meta";
-@import './vars.scss';
 
 @mixin define(){
-    $themes:$wd-themes;
-    $hovers:$wd-high;
-    $hovers-color:$wd-color;
 
-    @each $theme in $themes{
-        #{getThemingRootClass($theme)}{
-            --btn-bg-hover:#{meta.inspect(blendColors($colors:$hovers,$theme:$theme,$level:-5%))};
-            --btn-color-hover:#{meta.inspect(blendColors($colors:$hovers-color,$theme:$theme,$level:-20%))};
-        }   
-    }
-
-
-    $size:var(--wd-size);
+    $size:var(--v2-wd-size);
     $bg:var(--wd-high);
-    $color:var(--wd-color);
+    $color:var(--v2-wd-color);
+    
     $border:var(--wd-border);
     $outline:var(--wd-outline);
     $margin:var(--wd-margin);
@@ -24,12 +13,14 @@
     $margin:var(--wd-margin);
     $radius:var(--wd-radius);
 
-    [type="button"]{
+    input[type=button]{
         min-height: $size;
         height:$size;
         cursor: pointer;
+
         background-color: $bg;
         color: $color;
+        
         border:1px solid $border;
 
         box-sizing: border-box;
@@ -48,11 +39,19 @@
             outline: 2px solid $outline;
         }
         &:hover{
-            background-color:var(--btn-bg-hover);
-            color:var(--btn-color-hover);
+            filter: brightness(var(--v2-wd-hovering));
         }
 
+        &.wd-flat{
+            background: rgba(0,0,0,0) !important;
+            &:hover{
+                background-color: $bg !important;
+                filter: brightness(var(--v2-wd-hovering));
+            }
+    
+        }
     }
+
 
 }
 

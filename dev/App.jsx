@@ -13,31 +13,31 @@ import {
 
 import { iEdit, iEdit16 } from './global';
 import Btn from '../jsx/Btn.jsx';
-import BtnIcon from '../jsx/BtnIcon.jsx';
-import ComboBoxEx from '../jsx/ComboBox.jsx';
-import ComboItemIcon from '../jsx/ComboBox/ComboItemIcon.jsx';
+// import BtnIcon from '../jsx/BtnIcon.jsx';
+// import ComboBoxEx from '../jsx/ComboBox.jsx';
+// import ComboItemIcon from '../jsx/ComboBox/ComboItemIcon.jsx';
 
-import CheckBox from '../jsx/CheckBox.jsx';
-import Label from '../jsx/Label.jsx';
-import TableFixed from '../jsx/TableFixed.jsx';
-import Table from '../jsx/Table.jsx';
-import ModalDialog from '../jsx/ModalDialog.jsx';
-import Modal from '../jsx/Modal.jsx';
-import Text from '../jsx/Text.jsx';
-import Icon from '../jsx/Icon.jsx';
-import Edit from '../jsx/Edit.jsx';
-import List from '../jsx/List.jsx';
+// import CheckBox from '../jsx/CheckBox.jsx';
+// import Label from '../jsx/Label.jsx';
+// import TableFixed from '../jsx/TableFixed.jsx';
+// import Table from '../jsx/Table.jsx';
+// import ModalDialog from '../jsx/ModalDialog.jsx';
+// import Modal from '../jsx/Modal.jsx';
+// import Text from '../jsx/Text.jsx';
+// import Icon from '../jsx/Icon.jsx';
+// import Edit from '../jsx/Edit.jsx';
+// import List from '../jsx/List.jsx';
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
 import NavBar from '../jsx/NavBar.jsx';
 // import NavLogo from '../jsx/NavBar/NavLogo.jsx';
 // import NavMenu, { collapseMenus } from '../jsx/NavBar/NavMenu.jsx';
 import NavItem from '../jsx/NavBar/NavItem.jsx';
-import Collapse from '../jsx/Collapse.jsx';
+// import Collapse from '../jsx/Collapse.jsx';
 import isMobile from '../jsx/Utils/isMobile';
-import '../style/Container.scss';
-import Container from '../jsx/Container.jsx';
-import Col from '../jsx/Container/Col.jsx';
+// import '../style/Container.scss';
+// import Container from '../jsx/Container.jsx';
+// import Col from '../jsx/Container/Col.jsx';
 import {
     table_long2, table_long,
     combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4, combo_list5,
@@ -374,6 +374,7 @@ class App extends React.Component {
         return (
             <div>
                 <div className="nav-container-large">
+
                     <NavBar Logo="demo" id="nav1">
                         <NavItem
                             caption="upper"
@@ -391,9 +392,6 @@ class App extends React.Component {
                         <NavItem caption="menu" open={true}>
                             <NavItem {...nav('item1')} />
                             <div style={{ padding: 5 }}>
-                                <Label id = "ed1">
-                                    <Edit id='ed1'/>
-                                </Label>
 
                             </div>
                             <NavItem caption="menu 2">
@@ -472,6 +470,10 @@ class App extends React.Component {
                                 <Btn>button</Btn>
                                 <Btn className="wd-danger" hint="wd-danger hint">wd-danger</Btn>
                                 <Btn className="wd-primary">wd-primary</Btn>
+                                <Btn className="wd-flat">wd-flat</Btn>
+                                <Btn className="wd-primary wd-flat">wd-primary</Btn>
+
+                                <Btn className="wd-danger wd-flat" hint="wd-danger flat">wd-danger</Btn>
                                 <Btn className="wd-transparent">wd-transparent</Btn>
                                 <Btn className="wd-primary pic-bag">pic</Btn>
                             </Block>

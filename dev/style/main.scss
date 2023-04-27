@@ -1,10 +1,14 @@
 //@import '../../style/all.scss';
 @import '../../style/vars.scss';
+@import '../../style/utils.scss';
+@import '../../style/screen.scss';
+
 @import './custom.scss';
 @import '../../style/ctrls.scss';
 @import './pics.scss';
-@import './test-place.scss';
+@import './test-place.scss'; 
 @import './icons.scss';
+@import '../jsx/Block.scss';
 
 
 *{
@@ -36,8 +40,8 @@ body{
     border:1px solid rgba(0,0,0,0);
     box-sizing: border-box;
 
-    background-color:var(--wd-bg);
-    color: var(--wd-color);
+    background-color:var(--v2-wd-bg);
+    color: var(--v2-wd-color);
 
     >div{
 

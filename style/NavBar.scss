@@ -1,5 +1,4 @@
 @use "sass:meta";
-@import './vars.scss';
 
 @each $name,$width in $wd-widths{
     .nav-container-#{$name}{ 

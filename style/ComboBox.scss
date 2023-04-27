@@ -1,6 +1,6 @@
 @use "sass:meta";
 @use "sass:math";
-@import './vars.scss';
+//@import './vars.scss';
 
 @mixin define(){
     $themes:$wd-themes;

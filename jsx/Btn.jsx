@@ -6,22 +6,19 @@ export default function Btn({
     value,
     onClick = undefined,
     className = Btn.global.className,
-    addClass = '',// deprecated
     style = { ...Btn.global.style },
     hint = false,
     title = false,
     children,
 }) {
-    if (addClass!=='')
-        console.warn(`Btn.addClass is deprecated, use className = ${addClass}`);
     return (
         <input
             type="button"
-            {...(id ? {id}:{})}
-            {...(className || addClass ? {className:`${className} ${addClass}`}:{})}
+            {...(id ? { id } : {})}
+            {...(className ? { className: `${className}` } : {})}
             value={value || children || ''}
             onClick={onClick}
-            {...(title || hint ? {title:title || hint}:{})}
+            {...(title || hint ? { title: title || hint } : {})}
             style={{ ...Btn.global.style, ...style }}
 
         />

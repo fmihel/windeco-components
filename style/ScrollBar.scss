@@ -1,5 +1,4 @@
 @use "sass:meta";
-@import './vars.scss';
 
 
 @each $theme in $wd-themes{
@@ -8,7 +7,6 @@
        --wdsc-sb-hover:#{meta.inspect(blendColors($colors:$wd-color,$theme:$theme ,$level:30%))};
     };
 };
-
 
 
 @mixin wd-scrollbar(
