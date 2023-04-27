@@ -265,3 +265,10 @@ $wd-fonts-family:(
     }
     @return $last;
 }
+
+@function map-get-def($map,$name,$default){
+    @if(map-has-key($map: $map, $key: $name)){
+        @return map-get($map,$name);
+    }
+    @return $default;
+}

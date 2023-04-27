@@ -3,15 +3,15 @@
 @mixin define(){
 
     $size:var(--v2-wd-size);
-    $bg:var(--wd-high);
+    $bg:var(--v2-wd-high);
     $color:var(--v2-wd-color);
     
-    $border:var(--wd-border);
-    $outline:var(--wd-outline);
-    $margin:var(--wd-margin);
-    $font-size:var(--wd-font-size);
-    $margin:var(--wd-margin);
-    $radius:var(--wd-radius);
+    $border:var(--v2-wd-border);
+    $outline:var(--v2-wd-outline);
+    $margin:var(--v2-wd-margin);
+    $font-size:var(--v2-wd-font-size);
+    $margin:var(--v2-wd-margin);
+    $radius:var(--v2-wd-radius);
 
     input[type=button]{
         min-height: $size;

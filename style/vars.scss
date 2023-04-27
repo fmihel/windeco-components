@@ -4,10 +4,31 @@
 @use "sass:map";
 @use 'sass:meta';
 @use "sass:color";
- 
-@debug render;
 
-:root {
+@mixin generator($maps,$theme : ''){
+    $defaults:(
+        'size':32px,
+        'primary':#0D6EFD,
+        'danger':#C32F3D
+    );
+    $bootsrap:(
+        'primary',
+        'danger'
+    );
+    
+    @each $var,$default in $defaults{
+        @if (map-has-key($map: $maps, $key: $var)){
+            --v2-wd-#{$var}:map-get($map: $maps, $key:$var );
+        }@else{
+            --v2-wd-#{$var}:$default;
+        }
+    }
+        
+}
+:root { 
+    --v2-wd-bg:#EDF2F9;
+    --v2-wd-color:#83909F;
+
     --v2-wd-size:32px;
     --v2-wd-gap:5px;
     --v2-wd-margin:2px;
@@ -27,16 +48,17 @@
 
     
     --v2-wd-primary:#0D6EFD;
+    --v2-wd-danger:#C32F3D;
     --v2-wd-high:#fdfdfd;    
     --v2-wd-secondary:#fdfdfd;    
     --v2-wd-success:#008b14;
-    --v2-wd-danger:#C32F3D;
     --v2-wd-highlight:#2C7BE5;
     --v2-wd-warning:var(--v2-wd-orange);    
 
+    --v2-wd-primary-contrast:var(--v2-wd-color);
+    --v2-wd-primary-contrast:var(--v2-wd-color);
 
-    --v2-wd-bg:#EDF2F9;
-    --v2-wd-color:#83909F;
+
     
     --v2-wd-label:#5E6E82;
     --v2-wd-border:#D8E2EF;
@@ -85,23 +107,34 @@
 
 }
 
-$wd-bootstrap-vars2:(
-    'primary':var(--v2-wd-primary),
-    'secondary':var(--v2-wd-secondary),
-    'success':var(--v2-wd-success),
-    'danger':var(--v2-wd-danger),
-    'warning':var(--v2-wd-warning),
-    'info':var(--v2-wd-info),
+$wd-bootstrap-maps:(
+    'primary':('bg':var(--v2-wd-primary)),
+    'danger':('bg':var(--v2-wd-danger)),
+    //'secondary':var(--v2-wd-secondary),
+    //'success':var(--v2-wd-success),
+    //'warning':var(--v2-wd-warning),
+    //'info':var(--v2-wd-info),
 );
 
 
-@each $key,$color in $wd-bootstrap-vars2{
+@each $key,$map in $wd-bootstrap-maps{
     .wd-#{$key}{
-        background-color:$color !important;
+        @if(map-has-key($map: $map, $key:'bg' )){
+            background-color: map-get($map,'bg')  !important;
+        }
+        @if(map-has-key($map: $map, $key:'color' )){
+            color: map-get($map,'color')  !important;
+        }
         &.wd-flat{
-            background-color:rgba(0,0,0,0) !important;
-            border: 1px solid $color;
-            color: $color;
+            //background-color:rgba(0,0,0,0) !important;
+            @if(map-has-key($map: $map, $key:'bg' )){
+                border: 1px solid  map-get($map,'bg');
+            }
+            @if(map-has-key($map: $map, $key:'flat' )){
+                color:map-get($map,'flat');
+            }@else{
+                color: map-get($map,'bg')  !important;
+            }
         }
     }
 }
@@ -210,7 +243,11 @@ $wd-bootstrap-vars:(
     'dark':$wd-dark,
 );
 
-
+:root{
+    @each $key,$val in $wd-vars{
+        --wd-#{$key}:#{meta.inspect($val)};    
+    }
+}
 
 @function getThemingRootClass($theme){
      @return if($theme!=$wd-default-theme,':root.'+$theme,':root');
@@ -219,19 +256,19 @@ $wd-bootstrap-vars:(
 @each $name in $wd-themes{
     #{getThemingRootClass($name)}{
         
-        @each $key,$map in $wd-maps{
-            $acolor:map-get($map:$map, $key:$name );
-            $r:color.red($acolor);
-            $g:color.green($acolor);
-            $b:color.blue($acolor);
+        //@each $key,$map in $wd-maps{
+        //    $acolor:map-get($map:$map, $key:$name );
+        //    $r:color.red($acolor);
+        //   $g:color.green($acolor);
+        //    $b:color.blue($acolor);
 
-           --wd-#{$key}:#{meta.inspect($acolor)};
-            --wd-#{$key}-rgb:#{meta.inspect($r)},#{meta.inspect($g)},#{meta.inspect($b)} ;
-        }
+           //--wd-#{$key}:#{meta.inspect($acolor)};
+            //--wd-#{$key}-rgb:#{meta.inspect($r)},#{meta.inspect($g)},#{meta.inspect($b)} ;
+        //}
 
-        @each $key,$val in $wd-vars{
-            --wd-#{$key}:#{meta.inspect($val)};    
-        }    
+        //@each $key,$val in $wd-vars{
+        //    --wd-#{$key}:#{meta.inspect($val)};    
+        //}    
         
         //@each $key,$colors in $wd-bootstrap-vars{
         //    .wd-#{$key},.wd-btn-#{$key}{
