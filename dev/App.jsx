@@ -352,6 +352,25 @@ class App extends React.Component {
             caption: id,
             ...id === navActive ? { active: true } : {},
         });
+
+        const enabled = {
+            Btn: true,
+            BtnIcon: false,
+            List: false,
+            NavBar: false,
+            Dialog: false,
+            Text: false,
+            Table: false,
+            TableFixed: false,
+            Container: false,
+            Collapse: false,
+            ComboBox: false,
+            Edit: false,
+            Modal: false,
+            CheckBox: false,
+            Icon: false,
+            Fonts: false,
+        };
         return (
             <div>
                 <div className="nav-container-large">
@@ -447,8 +466,48 @@ class App extends React.Component {
                     <div className='nav-content wd-scrollbar'>
                         {/* <div className='content wd-scrollbar'> */}
                         {/*--------------------------------------------------------------------------------------------------*/}
-
-                        <Head caption="List">
+                        {enabled.Btn
+                        && <Head caption="Btn">
+                            <Block>
+                                <Btn>button</Btn>
+                                <Btn className="wd-danger" hint="wd-danger hint">wd-danger</Btn>
+                                <Btn className="wd-primary">wd-primary</Btn>
+                                <Btn className="wd-transparent">wd-transparent</Btn>
+                                <Btn className="wd-primary pic-bag">pic</Btn>
+                            </Block>
+                        </Head>
+                        }
+                        {/*--------------------------------------------------------------------------------------------------*/}
+                        {enabled.BtnIcon
+                        && <Head caption={'BtnIcon'}>
+                            <Block>
+                                <Btn>left</Btn>
+                                <BtnIcon>button presed test</BtnIcon>
+                                <BtnIcon
+                                    hint = "icon"
+                                    IconComponent={Icon}
+                                    icon={iEdit}
+                                    className="wd-danger"
+                                    iconClass="demo-bi-color"
+                                >ok</BtnIcon>
+                                <BtnIcon
+                                    hint = "icon "
+                                    IconComponent={FontAwesomeIcon}
+                                    icon={faAddressBook}
+                                    className="wd-danger"
+                                    iconClass="demo-bi-color"
+                                >ok</BtnIcon>
+                                <Btn>standart</Btn>
+                                <BtnIcon className="wd-primary">cancel</BtnIcon>
+                                <BtnIcon>story</BtnIcon>
+                                <BtnIcon icon={faCaretDown} style={{ width: '100px' }} hint="no text"/>
+                                <BtnIcon className="wd-green">save</BtnIcon>
+                            </Block>
+                        </Head>
+                        }
+                        {/*--------------------------------------------------------------------------------------------------*/}
+                        {enabled.List
+                        && <Head caption="List">
 
                             <Block>
                                 <List
@@ -495,10 +554,10 @@ class App extends React.Component {
                                 />
                             </Block>
                         </Head>
-
+                        }
                         {/*--------------------------------------------------------------------------------------------------*/}
-
-                        <Head caption = "NavBar">
+                        {enabled.NavBar
+                        && <Head caption = "NavBar">
                             <Block>
                                 <Btn onClick={() => {
                                     navbar('nav2').close();
@@ -520,16 +579,18 @@ class App extends React.Component {
                                 </div>
                             </Block>
                         </Head>
-
+                        }
                         {/*--------------------------------------------------------------------------------------------------*/}
-
-                        <Head caption="Dialog">
+                        {enabled.Dialog
+                        && <Head caption="Dialog">
                             <Block>
                                 {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
                             </Block>
                         </Head>
+                        }
                         {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="Text">
+                        {enabled.Text
+                        && <Head caption="Text">
                             <Block>
                                 <Text
                                     style={{ height: 70, width: '100%' }}
@@ -568,9 +629,10 @@ class App extends React.Component {
                                 />
                             </Block>
                         </Head>
-
+                        }
                         {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption = "Table">
+                        {enabled.Table
+                        && <Head caption = "Table">
 
                             <Block hide={false} >
                                 <Table
@@ -601,9 +663,10 @@ class App extends React.Component {
                         </Block>
                     */}
                         </Head>
-
+                        }
                         {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption = "TableFixed">
+                        {enabled.TableFixed
+                        && <Head caption = "TableFixed">
                             <Block>
                                 <Btn onClick={this.onTableClear}>clear</Btn>
                                 <Btn onClick={this.onTableFill}>fill</Btn>
@@ -643,9 +706,10 @@ class App extends React.Component {
                         </Block>
                     */}
                         </Head>
-
+                        }
                         {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="Container">
+                        {enabled.Container
+                        && <Head caption="Container">
                             <Block>
                                 <Container>
                                     <Col><Edit/></Col>
@@ -694,8 +758,10 @@ class App extends React.Component {
 
                             </Block>
                         </Head>
+                        }
                         {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="Collapse">
+                        {enabled.Collapse
+                        && <Head caption="Collapse">
                             <Block>
 
                                 <Btn style={{ marginBottom: 5 }}onClick={() => { this.setState({ collapseExpand: !collapseExpand }); }}>{collapseExpand ? 'expand=true' : 'expand=false'}</Btn>
@@ -714,9 +780,10 @@ class App extends React.Component {
                                 </Collapse>
                             </Block>
                         </Head>
-
+                        }
                         {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="ComboBoxEx">
+                        {enabled.ComboBox
+                        && <Head caption="ComboBoxEx">
                             <Block>
                                 <ComboBoxEx
                                     id='cb1'
@@ -830,45 +897,10 @@ class App extends React.Component {
                                 </Label>
                             </Block>
                         </Head>
+                        }
                         {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="Btn">
-                            <Block>
-                                <Btn>button</Btn>
-                                <Btn className="wd-danger" hint="wd-danger hint">wd-danger</Btn>
-                                <Btn className="wd-primary">wd-primary</Btn>
-                                <Btn className="wd-transparent">wd-transparent</Btn>
-                                <Btn className="wd-primary pic-bag">pic</Btn>
-                            </Block>
-                        </Head>
-
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption={'BtnIcon'}>
-                            <Block>
-                                <Btn>left</Btn>
-                                <BtnIcon>button presed test</BtnIcon>
-                                <BtnIcon
-                                    hint = "icon"
-                                    IconComponent={Icon}
-                                    icon={iEdit}
-                                    className="wd-danger"
-                                    iconClass="demo-bi-color"
-                                >ok</BtnIcon>
-                                <BtnIcon
-                                    hint = "icon "
-                                    IconComponent={FontAwesomeIcon}
-                                    icon={faAddressBook}
-                                    className="wd-danger"
-                                    iconClass="demo-bi-color"
-                                >ok</BtnIcon>
-                                <Btn>standart</Btn>
-                                <BtnIcon className="wd-primary">cancel</BtnIcon>
-                                <BtnIcon>story</BtnIcon>
-                                <BtnIcon icon={faCaretDown} style={{ width: '100px' }} hint="no text"/>
-                                <BtnIcon className="wd-green">save</BtnIcon>
-                            </Block>
-                        </Head>
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="Edit">
+                        {enabled.Edit
+                        && <Head caption="Edit">
                             <Block> <Edit id="tt" style={{ fontSize: '1.2em' }} onKeyPress={(o) => {
                                 console.log(o);
                             }}>text from child</Edit></Block>
@@ -896,8 +928,10 @@ class App extends React.Component {
                             <Block> <Label caption="range" id="rng" ><Edit id="rng" value={5} type='number' min={0} max={10} step={1}/></Label></Block>
 
                         </Head>
+                        }
                         {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="Modal">
+                        {enabled.Modal
+                        && <Head caption="Modal">
                             <Block>
                                 <Btn onClick={() => { this.setState({ modalShow: true }); }} >show1</Btn>
                                 { <Modal
@@ -951,36 +985,42 @@ class App extends React.Component {
                                 }
                             </Block>
                         </Head>
+                        }
                         {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="CheckBox">
+                        {enabled.CheckBox
+                        && <Head caption="CheckBox">
                             <Block> <CheckBox id="ch1" checked={values.ch1} onChange={this.onChangeEx}/></Block>
                             <Block> <Label id="ckb1" caption='check'><CheckBox id="ckb1" checked={values.ckb1} onChange={this.onChangeEx}/></Label></Block>
                             <Block> <Label caption='on change'><Btn onClick={() => { this.setState({ checked: 0 }); }} >on change false</Btn></Label></Block>
                             <Block> <Label caption='on change'><CheckBox checked={this.state.checked} onChange={() => { this.setState({ checked: 1 }); }}/></Label></Block>
                             <Block> <Label id="ckb-disabled" caption='disabled'><CheckBox id="ckb-disabled" checked={true} onChange={(o) => { console.log(o); }} disabled={true}/></Label></Block>
                         </Head>
+                        }
                         {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="Icon">
+                        {enabled.Icon
+                        && <Head caption="Icon">
                             <Block>
                                 <Icon icon={iEdit} className="icon-custom"/>
                                 <Icon icon={iEdit16}/>
                                 <Icon icon={'uncknown'} className="icon-custom"/>
                             </Block>
                         </Head>
-
+                        }
                         {/*--------------------------------------------------------------------------------------------------*/}
-                        <Head caption="Fonts">
+                        {enabled.Fonts
+                        && <Head caption="Fonts">
                             <Block>
                                 {fontsName.map((name, key) => <div key={key} className="font-line"><div>{name}</div><div className={`font-${name}`}>Короткий текст для примера.</div></div>)}
                             </Block>
                         </Head>
+                        }
                         {/*--------------------------------------------------------------------------------------------------*/}
                     </div>
 
                 </div>
-                {
 
-                    dialogs.map((name) => <ModalDialog
+                {enabled.Dialog
+                    && dialogs.map((name) => <ModalDialog
                         key={name}
                         id={name}
                         {...this.dialogs[name]}
