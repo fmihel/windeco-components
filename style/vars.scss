@@ -4,107 +4,36 @@
 @use "sass:map";
 @use 'sass:meta';
 @use "sass:color";
+@import './genCssVar.scss';
 
-@mixin generator($maps,$theme : ''){
-    $defaults:(
-        'size':32px,
-        'primary':#0D6EFD,
-        'danger':#C32F3D
-    );
-    $bootsrap:(
-        'primary',
-        'danger'
-    );
-    
-    @each $var,$default in $defaults{
-        @if (map-has-key($map: $maps, $key: $var)){
-            --v2-wd-#{$var}:map-get($map: $maps, $key:$var );
-        }@else{
-            --v2-wd-#{$var}:$default;
-        }
-    }
-        
-}
 :root { 
-    --v2-wd-bg:#EDF2F9;
-    --v2-wd-color:#83909F;
-
-    --v2-wd-size:32px;
-    --v2-wd-gap:5px;
-    --v2-wd-margin:2px;
-    --v2-wd-padding:var(--v2-wd-gap);
-    --v2-wd-radius:0.25rem;
-    --v2-wd-font-size:14px ;
-    //--v2-wd-font-family:meta.inspect(font-family('verdana'));
-    --v2-wd-font-family:font-family('verdana');
-    
-
-    --v2-wd-hovering:0.95;
-    
-    --v2-wd-red:#ff0000;
-    --v2-wd-green:#008b14;
-    --v2-wd-blue:#0D6EFD;
-    --v2-wd-orange:#FF8A00;
-
-    
-    --v2-wd-primary:#0D6EFD;
-    --v2-wd-danger:#C32F3D;
-    --v2-wd-high:#fdfdfd;    
-    --v2-wd-secondary:#fdfdfd;    
-    --v2-wd-success:#008b14;
-    --v2-wd-highlight:#2C7BE5;
-    --v2-wd-warning:var(--v2-wd-orange);    
-
-    --v2-wd-primary-contrast:var(--v2-wd-color);
-    --v2-wd-primary-contrast:var(--v2-wd-color);
-
-
-    
-    --v2-wd-label:#5E6E82;
-    --v2-wd-border:#D8E2EF;
-    --v2-wd-outline:#CADEF8;
-    --v2-wd-hover:#e9ecf1;
-    --v2-wd-select:#2C7BE5;
-    --v2-wd-header:#EDF2F9;
-    --v2-wd-deep:#FFFFFF;
-    --v2-wd-high:#fdfdfd;
-    --v2-wd-transparent:rgba(0,0,0,0);
-    --v2-wd-block:#FFFFFF;
-    --v2-wd-alert:#ff0000;
-    --v2-wd-url:var(--v2-wd-highlight);
-    --v2-wd-info:var(--v2-wd-url);
-
+    @include genCssVar();
 }
 
 :root.dark{
-    --v2-wd-hovering:1.2;
-
-    --v2-wd-primary:#0E639C;
-    --v2-wd-high:#2d353e;    
-    --v2-wd-secondary:#fdfdfd;
-    --v2-wd-success:#017711;
-    --v2-wd-danger:#632323;
-    --v2-wd-highlight:lime;
-    --v2-wd-warning:var(--v2-wd-orange);    
-
-
-    --v2-wd-bg:#0B1727;
-    --v2-wd-color:#9DA9BB;
-
-    --v2-wd-label:#9DA9BB;
-    --v2-wd-border:#344050;
-    --v2-wd-outline:#0E639C;
-    --v2-wd-hover:#38414B;
-    --v2-wd-select:#2C7BE5;
-    --v2-wd-header:#232E3C;
-    --v2-wd-deep:#0B1727;
-    --v2-wd-high:#2d353e;
-    --v2-wd-transparent:rgba(0,0,0,0);
-    --v2-wd-block:#162231;
-    --v2-wd-alert:#ff0000;
-    --v2-wd-url:var(--v2-wd-highlight);
-    --v2-wd-info:var(--v2-wd-url);
-
+    @include genCssVar((
+        'bg':#0B1727,
+        'color':#9DA9BB,
+        'hovering':1.2,
+        'primary':#0E639C,
+        'high':#2d353e, 
+        'secondary':#fdfdfd,
+        'success':#017711,
+        'danger':#632323,
+        'highlight':lime,
+        'label':#9DA9BB,
+        'border':#344050,
+        'outline':#0E639C,
+        'hover':#38414B,
+        'select':#2C7BE5,
+        'header':#232E3C,
+        'deep':#0B1727,
+        'transparent':rgba(0,0,0,0),
+        'block':#162231,
+        'alert':#ff0000,
+        'url':lime,
+        'info':lime,
+    ),'dark');
 }
 
 $wd-bootstrap-maps:(
