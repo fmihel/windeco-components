@@ -36,6 +36,8 @@
     ),'dark');
 }
 
+@debug 'bg', get-var('bgs');
+
 $wd-bootstrap-maps:(
     'primary':('bg':var(--v2-wd-primary)),
     'danger':('bg':var(--v2-wd-danger)),
@@ -177,6 +179,8 @@ $wd-bootstrap-vars:(
         --wd-#{$key}:#{meta.inspect($val)};    
     }
 }
+
+
 
 @function getThemingRootClass($theme){
      @return if($theme!=$wd-default-theme,':root.'+$theme,':root');

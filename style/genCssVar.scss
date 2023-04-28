@@ -3,14 +3,33 @@
 @use "sass:map";
 
 $global-themes-vars:();
-//map-set($global-themes-vars,'test',900);    
 
+@function setToGlobalThemesVars($name:'',$data:()){
+
+    $global-themes-vars:map-merge($global-themes-vars,(#{$name}:$data));
+    @return $global-themes-vars;
+}
 @mixin genCssVar($maps:(),$theme:'light'){
     $themeVars:();
 
     $defaults:(
+        'primary':#0D6EFD,
+        'secondary':#6C757D,
+        'success':#008b14,
+        'danger':#C32F3D,
+        'warning':#FF8A00,
+        'info':#2C7BE5,
+        'light':#EDF2F9,
+        'dark':#0B1727,
+
+        'red':#ff0000,
+        'green':#008b14,
+        'blue':#0D6EFD,
+        'orange':#FF8A00,
+
         'bg':#EDF2F9,
         'color':#83909F,
+        
         'size':32px,
         'gap':5px,
         'margin':2px,
@@ -22,20 +41,8 @@ $global-themes-vars:();
     
         'hovering':0.95,
         
-        'red':#ff0000,
-        'green':#008b14,
-        'blue':#0D6EFD,
-        'orange':#FF8A00,
-    
-        
-        'primary':#0D6EFD,
-        'danger':#C32F3D,
-        'high':#fdfdfd,   
-        'secondary':#fdfdfd,
-        'success':#008b14,
         'highlight':#2C7BE5,
-        'warning':#FF8A00,
-    
+        'high':#fdfdfd,   
         'label':#5E6E82,
         'border':#D8E2EF,
         'outline':#CADEF8,
@@ -47,20 +54,30 @@ $global-themes-vars:();
         'block':#FFFFFF,
         'alert':#ff0000,
         'url':#2C7BE5,
-        'info':#2C7BE5,
         );
 
     @each $varName,$defaultValue in $defaults{
         //@debug $defaultValue;
-        @if (map-has-key($map: $maps, $key: $varName)){
-            --v2-wd-#{$varName}:#{map-get($map: $maps, $key:$varName )};
-        } @else {
-            --v2-wd-#{$varName}:#{$defaultValue};
-        }
+        $value:if(map-has-key($map: $maps, $key: $varName),#{map-get($map: $maps, $key:$varName )},#{$defaultValue});
+        --v2-wd-#{$varName}:#{$value};
+        $themeVars:map-merge($themeVars,(#{$varName}:$value));    
     };
 
-    //map.set($themes,$theme,$themeVars);
+    $global-themes-vars:map-merge($global-themes-vars,(#{$theme}:$themeVars)) !global;
     
-    
+}
 
+@function get-var($name,$theme:'light',$default:''){
+    @if( map-has-key($map: $global-themes-vars, $key: $theme)){
+        $theme:map-get($map:$global-themes-vars,$key:$theme);
+        @if( map-has-key($map: $theme, $key: $name)){
+            @return map-get($map:$theme,$key:$name);
+        }@else{
+            @warn 'can`t find var '+$name;    
+        }
+    }@else{
+        @warn 'can`t find theme '+$theme;
+    }
+
+    @return $default;
 }
