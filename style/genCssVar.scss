@@ -4,11 +4,8 @@
 
 $global-themes-vars:();
 
-@function setToGlobalThemesVars($name:'',$data:()){
 
-    $global-themes-vars:map-merge($global-themes-vars,(#{$name}:$data));
-    @return $global-themes-vars;
-}
+
 @mixin genCssVar($maps:(),$theme:'light'){
     $themeVars:();
 
@@ -27,6 +24,25 @@ $global-themes-vars:();
         'blue':#0D6EFD,
         'orange':#FF8A00,
 
+        'primary-color':#e8edf3,
+        'danger-color':#e8edf3,
+        'warning-color':#e8edf3,
+        'secondary-color':#e8edf3,
+        'success-color':#e8edf3,
+        'info-color':#e8edf3,
+        'light-color':#0B1727,
+        'dark-color':#e8edf3,
+
+
+        'primary-flat-color':#2b92d7,
+        'danger-flat-color':#C32F3D,
+        'secondary-flat-color':#6C757D,
+        'success-flat-color':#008b14,
+        'warning-flat-color':#FF8A00,
+        'info-flat-color':#2C7BE5,
+        'light-flat-color':#83909F,
+        'dark-flat-color':#0B1727,
+
         'bg':#EDF2F9,
         'color':#83909F,
         
@@ -37,7 +53,6 @@ $global-themes-vars:();
         'radius':0.25rem,
         'font-size':14px ,
         'font-family':meta.inspect(font-family('verdana')),
-        //'font-family':font-family('verdana'),
     
         'hovering':0.95,
         
@@ -57,14 +72,12 @@ $global-themes-vars:();
         );
 
     @each $varName,$defaultValue in $defaults{
-        //@debug $defaultValue;
         $value:if(map-has-key($map: $maps, $key: $varName),#{map-get($map: $maps, $key:$varName )},#{$defaultValue});
         --v2-wd-#{$varName}:#{$value};
         $themeVars:map-merge($themeVars,(#{$varName}:$value));    
     };
 
     $global-themes-vars:map-merge($global-themes-vars,(#{$theme}:$themeVars)) !global;
-    
 }
 
 @function get-var($name,$theme:'light',$default:''){

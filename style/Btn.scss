@@ -1,6 +1,14 @@
 @use "sass:meta";
 
 @mixin define(){
+    
+    @each $theme,$vars in $global-themes-vars{
+        @debug $theme;
+        //#{getThemingRootClass($theme)}{
+        //   --ed-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:-20%))};
+        //   --ed-placeholder:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$light:20%,$dark:-40%))};
+        //};
+    };
 
     $size:var(--v2-wd-size);
     $bg:var(--v2-wd-high);
@@ -20,7 +28,6 @@
 
         background-color: $bg;
         color: $color;
-        
         border:1px solid $border;
 
         box-sizing: border-box;

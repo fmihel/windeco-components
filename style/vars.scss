@@ -12,17 +12,20 @@
 
 :root.dark{
     @include genCssVar((
+        'primary':#0E639C,
+        'secondary':#6C757D,
+        'success':#017711,
+        'danger':#632323,
+        'info':#2C7BE5,
+        'dark-flat-color':#9DA9BB,
+
         'bg':#0B1727,
         'color':#9DA9BB,
         'hovering':1.2,
-        'primary':#0E639C,
-        'high':#2d353e, 
-        'secondary':#fdfdfd,
-        'success':#017711,
-        'danger':#632323,
         'highlight':lime,
         'label':#9DA9BB,
         'border':#344050,
+        'high':#2d353e, 
         'outline':#0E639C,
         'hover':#38414B,
         'select':#2C7BE5,
@@ -32,40 +35,32 @@
         'block':#162231,
         'alert':#ff0000,
         'url':lime,
-        'info':lime,
     ),'dark');
 }
 
 @debug 'bg', get-var('bgs');
 
 $wd-bootstrap-maps:(
-    'primary':('bg':var(--v2-wd-primary)),
-    'danger':('bg':var(--v2-wd-danger)),
-    //'secondary':var(--v2-wd-secondary),
-    //'success':var(--v2-wd-success),
-    //'warning':var(--v2-wd-warning),
-    //'info':var(--v2-wd-info),
+    'primary',
+    'danger',
+    'secondary',
+    'success',
+    'warning',
+    'info',
+    'light',
+    'dark',
 );
 
 
-@each $key,$map in $wd-bootstrap-maps{
+@each $key in $wd-bootstrap-maps{
     .wd-#{$key}{
-        @if(map-has-key($map: $map, $key:'bg' )){
-            background-color: map-get($map,'bg')  !important;
-        }
-        @if(map-has-key($map: $map, $key:'color' )){
-            color: map-get($map,'color')  !important;
-        }
+        //background-color:   !important;
+        background-color: var(--v2-wd-#{$key}) !important;
+        color: var(--v2-wd-#{$key}-color) !important;
         &.wd-flat{
-            //background-color:rgba(0,0,0,0) !important;
-            @if(map-has-key($map: $map, $key:'bg' )){
-                border: 1px solid  map-get($map,'bg');
-            }
-            @if(map-has-key($map: $map, $key:'flat' )){
-                color:map-get($map,'flat');
-            }@else{
-                color: map-get($map,'bg')  !important;
-            }
+            background-color:rgba(0,0,0,0) !important;
+            border: 1px solid  var(--v2-wd-#{$key}) !important;
+            color: var(--v2-wd-#{$key}-flat-color) !important;
         }
     }
 }

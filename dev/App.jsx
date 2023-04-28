@@ -18,14 +18,14 @@ import Btn from '../jsx/Btn.jsx';
 // import ComboItemIcon from '../jsx/ComboBox/ComboItemIcon.jsx';
 
 // import CheckBox from '../jsx/CheckBox.jsx';
-// import Label from '../jsx/Label.jsx';
 // import TableFixed from '../jsx/TableFixed.jsx';
 // import Table from '../jsx/Table.jsx';
 // import ModalDialog from '../jsx/ModalDialog.jsx';
 // import Modal from '../jsx/Modal.jsx';
 // import Text from '../jsx/Text.jsx';
 // import Icon from '../jsx/Icon.jsx';
-// import Edit from '../jsx/Edit.jsx';
+import Label from '../jsx/Label.jsx';
+import Edit from '../jsx/Edit.jsx';
 // import List from '../jsx/List.jsx';
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
@@ -365,7 +365,7 @@ class App extends React.Component {
             Container: false,
             Collapse: false,
             ComboBox: false,
-            Edit: false,
+            Edit: true,
             Modal: false,
             CheckBox: false,
             Icon: false,
@@ -468,12 +468,24 @@ class App extends React.Component {
                         && <Head caption="Btn">
                             <Block>
                                 <Btn>button</Btn>
-                                <Btn className="wd-danger" hint="wd-danger hint">wd-danger</Btn>
                                 <Btn className="wd-primary">wd-primary</Btn>
+                                <Btn className="wd-danger" hint="wd-danger hint">wd-danger</Btn>
+                                <Btn className="wd-secondary">wd-secondary</Btn>
+                                <Btn className="wd-success" hint="wd-danger hint">wd-success</Btn>
+                                <Btn className="wd-warning">wd-warning</Btn>
+                                <Btn className="wd-info">wd-info</Btn>
+                                <Btn className="wd-light">wd-light</Btn>
+                                <Btn className="wd-dark">wd-dark</Btn>
                                 <Btn className="wd-flat">wd-flat</Btn>
                                 <Btn className="wd-primary wd-flat">wd-primary</Btn>
+                                <Btn className="wd-danger wd-flat" hint="wd-danger hint">wd-danger</Btn>
+                                <Btn className="wd-secondary wd-flat">wd-secondary</Btn>
+                                <Btn className="wd-success wd-flat" hint="wd-danger hint">wd-success</Btn>
+                                <Btn className="wd-warning wd-flat">wd-warning</Btn>
+                                <Btn className="wd-info wd-flat">wd-info</Btn>
+                                <Btn className="wd-light wd-flat">wd-light</Btn>
+                                <Btn className="wd-dark wd-flat">wd-dark</Btn>
 
-                                <Btn className="wd-danger wd-flat" hint="wd-danger flat">wd-danger</Btn>
                                 <Btn className="wd-transparent">wd-transparent</Btn>
                                 <Btn className="wd-primary pic-bag">pic</Btn>
                             </Block>
