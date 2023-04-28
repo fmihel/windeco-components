@@ -3,7 +3,7 @@
 @use "sass:map";
 
 $global-themes-vars:();
-map-set($global-themes-vars,'test',900);    
+//map-set($global-themes-vars,'test',900);    
 
 @mixin genCssVar($maps:(),$theme:'light'){
     $themeVars:();
