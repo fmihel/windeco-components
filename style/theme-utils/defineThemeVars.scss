@@ -1,0 +1,11 @@
+@mixin defineThemeVars($maps:(),$theme:$wd-default-theme){
+    $themeVars:();
+
+    @each $varName,$defaultValue in $defaults{
+        $value:if(map-has-key($map: $maps, $key: $varName),#{map-get($map: $maps, $key:$varName )},#{$defaultValue});
+        --v2-wd-#{$varName}:#{$value};
+        $themeVars:map-merge($themeVars,(#{$varName}:$value));    
+    };
+
+    $global-themes-vars:map-merge($global-themes-vars,(#{$theme}:$themeVars)) !global;
+}

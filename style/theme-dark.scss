@@ -1,0 +1,27 @@
+:root.dark{
+    @include defineThemeVars((
+        'primary':#0E639C,
+        'secondary':#6C757D,
+        'success':#017711,
+        'danger':#632323,
+        'info':#2C7BE5,
+        'dark-flat-color':#9DA9BB,
+
+        'bg':#0B1727,
+        'color':#9DA9BB,
+        'hovering':1.2,
+        'highlight':lime,
+        'label':#9DA9BB,
+        'border':#344050,
+        'high':#2d353e, 
+        'outline':#0E639C,
+        'hover':#38414B,
+        'select':#2C7BE5,
+        'header':#232E3C,
+        'deep':#0B1727,
+        'transparent':rgba(0,0,0,0),
+        'block':#162231,
+        'alert':#ff0000,
+        'url':lime,
+    ),'dark');
+}

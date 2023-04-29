@@ -1,10 +1,10 @@
 
 
 @mixin define($args...){
-    $size:var(--wd-size);
-    $gap:var(--wd-gap);
-    $color:var(--wd-label);
-    $margin:$wd-margin;
+    $size:var(--v2-wd-size);
+    $gap:var(--v2-wd-gap);
+    $color:var(--v2-wd-label);
+    $margin:var(--v2-wd-margin);
     [type=label]{
         margin-bottom:$margin;
         display: flex;

@@ -11,7 +11,7 @@ $path:'./media/icons/';
     filter:invert($invert);
 }
 
-@each $name in $wd-themes{
+@each $name,$vars in $global-themes-vars{
     .#{$name}{
         $invert:100%;
         @if($name=='light'){

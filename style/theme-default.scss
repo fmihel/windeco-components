@@ -1,0 +1,100 @@
+@use "sass:map";
+@use 'sass:meta';
+@use "sass:color";
+@import './theme-utils/index.scss';
+
+
+$wd-default-theme:'light';
+$global-themes-vars:();
+
+$defaults:(   
+    'primary':#0D6EFD,
+    'secondary':#6C757D,
+    'success':#008b14,
+    'danger':#C32F3D,
+    'warning':#FF8A00,
+    'info':#2C7BE5,
+    'light':#EDF2F9,
+    'dark':#0B1727,
+
+    'red':#ff0000,
+    'green':#008b14,
+    'blue':#0D6EFD,
+    'orange':#FF8A00,
+
+    'primary-color':#e8edf3,
+    'danger-color':#e8edf3,
+    'warning-color':#e8edf3,
+    'secondary-color':#e8edf3,
+    'success-color':#e8edf3,
+    'info-color':#e8edf3,
+    'light-color':#0B1727,
+    'dark-color':#e8edf3,
+
+    'primary-flat-color':#2b92d7,
+    'danger-flat-color':#C32F3D,
+    'secondary-flat-color':#6C757D,
+    'success-flat-color':#008b14,
+    'warning-flat-color':#FF8A00,
+    'info-flat-color':#2C7BE5,
+    'light-flat-color':#83909F,
+    'dark-flat-color':#0B1727,
+
+    'bg':#EDF2F9,
+    'color':#83909F,
+
+    'size':32px,
+    'gap':5px,
+    'margin':2px,
+    'padding':2px,
+    'radius':0.25rem,
+    'font-size':14px,
+    'font-family':meta.inspect(font-family('verdana')),
+    'large-width':900px,
+    'middle-width':700px,
+    'small-width':500px,
+
+    'hovering':0.95,
+
+    'highlight':#2C7BE5,
+    'high':#fdfdfd,
+    'label':#5E6E82,
+    'border':#D8E2EF,
+    'outline':#CADEF8,
+    'hover':#e9ecf1,
+    'select':#2C7BE5,
+    'header':#EDF2F9,
+    'deep':#FFFFFF,
+    'transparent':rgba(0, 0, 0, 0),
+    'block':#FFFFFF,
+    'alert':#ff0000,
+    'url':#2C7BE5,
+);
+
+// define default theme 
+:root { 
+    @include defineThemeVars();
+}
+
+$wd-bootstrap-maps:(
+    'primary',
+    'danger',
+    'secondary',
+    'success',
+    'warning',
+    'info',
+    'light',
+    'dark',
+);
+
+@each $key in $wd-bootstrap-maps{
+    .wd-#{$key}{
+        background-color: var(--v2-wd-#{$key}) !important;
+        color: var(--v2-wd-#{$key}-color) !important;
+        &.wd-flat{
+            background-color:rgba(0,0,0,0) !important;
+            border: 1px solid  var(--v2-wd-#{$key}) !important;
+            color: var(--v2-wd-#{$key}-flat-color) !important;
+        }
+    }
+}

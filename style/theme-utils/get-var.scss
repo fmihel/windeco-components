@@ -1,0 +1,13 @@
+@function get-var($name,$theme:$wd-default-theme,$default:''){
+    @if( map-has-key($map: $global-themes-vars, $key: $theme)){
+        $theme:map-get($map:$global-themes-vars,$key:$theme);
+        @if( map-has-key($map: $theme, $key: $name)){
+            @return map-get($map:$theme,$key:$name);
+        }@else{
+            @warn 'can`t find var '+$name;    
+        }
+    }@else{
+        @warn 'can`t find theme '+$theme;
+    }
+    @return $default;
+}

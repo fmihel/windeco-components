@@ -1,0 +1,3 @@
+@function getThemingRootClass($theme){
+    @return if($theme!=$wd-default-theme,':root.'+$theme,':root');
+}
