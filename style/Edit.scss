@@ -20,7 +20,8 @@
     $outline:var(--v2-wd-outline);
     $border:var(--v2-wd-border);
     $gap:var(--v2-wd-gap);
-    $required:var(--v2-wd-danger);
+    //$required:var(--v2-wd-danger);
+    $required:rgba(var(--v2-wd-danger-rgb), 0.1);
     $margin:var(--v2-wd-margin);
     $radius:var(--v2-wd-radius);
     $placeholder:var(--ed-placeholder);
@@ -75,7 +76,7 @@
             //border:1px solid $required !important;
             //background-size: $size*0.5;
             background-color:$required !important;
-            border:1px solid $required !important;
+            //border:1px solid $required !important;
         }
 
         &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */

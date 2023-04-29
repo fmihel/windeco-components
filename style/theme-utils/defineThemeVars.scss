@@ -13,17 +13,26 @@
         };
     };
 
-    @if (map-has-key($map: $defaults, $key:'colors-to-rgb' )){
-        $colors:map-get($map:$defaults,$key:'colors-to-rgb');
+ 
 
-        @each $varName in $colors{
-            $acolor:map-get($map:$defaults, $key:$varName );
-            $r:color.red($acolor);
-            $g:color.green($acolor);
-            $b:color.blue($acolor);
-            //--wd-#{$key}:#{meta.inspect($acolor)};
-            --v2-wd-#{$varName}-rgb:#{meta.inspect($r)},#{meta.inspect($g)},#{meta.inspect($b)} ;
-        }
+    $colors:();
+    @if (map-has-key($map: $defaults, $key:'colors-to-rgb' )){
+        $colors:join($colors,map-get($map:$defaults,$key:'colors-to-rgb'));
+    }
+
+    @if (map-has-key($map: $maps, $key:'colors-to-rgb' )){
+        $colors:join($colors,map-get($map:$maps,$key:'colors-to-rgb'));
+    }
+
+    @debug $colors;
+
+    @each $varName in $colors{
+        $acolor:map-get($map:$defaults, $key:$varName );
+        $r:color.red($acolor);
+        $g:color.green($acolor);
+        $b:color.blue($acolor);
+        //--wd-#{$key}:#{meta.inspect($acolor)};
+        --v2-wd-#{$varName}-rgb:#{meta.inspect($r)},#{meta.inspect($g)},#{meta.inspect($b)} ;
     }
 
     $global-themes-vars:map-merge($global-themes-vars,(#{$theme}:$themeVars)) !global;
