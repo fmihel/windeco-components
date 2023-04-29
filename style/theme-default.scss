@@ -69,6 +69,22 @@ $defaults:(
     'block':#FFFFFF,
     'alert':#ff0000,
     'url':#2C7BE5,
+
+    'colors-to-rgb':(
+        'primary',
+        'secondary',
+        'success',
+        'danger',
+        'warning',
+        'info',
+        'light',
+        'dark',
+    
+        'red',
+        'green',
+        'blue',
+        'orange',
+    )
 );
 
 // define default theme 
