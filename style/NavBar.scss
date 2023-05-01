@@ -135,7 +135,7 @@
         [nav-menu]{
             
             overflow: auto;
-            //@include wd-scrollbar();        
+            @include wd-scrollbar();        
 
             @include less-large{
                 height:0px;

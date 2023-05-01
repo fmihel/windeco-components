@@ -1,17 +1,17 @@
 @use "sass:meta";
 
 
-@each $theme in $wd-themes{
-    #{getThemingRootClass($theme)}{
-       --wdsc-sb-thumb:#{meta.inspect(blendColors($colors:$wd-color,$theme:$theme ,$level:40%))};
-       --wdsc-sb-hover:#{meta.inspect(blendColors($colors:$wd-color,$theme:$theme ,$level:30%))};
-    };
-};
+//@each $theme in $wd-themes{
+//    #{getThemingRootClass($theme)}{
+//       --wdsc-sb-thumb:#{meta.inspect(blendColors($colors:$wd-color,$theme:$theme ,$level:40%))};
+//       --wdsc-sb-hover:#{meta.inspect(blendColors($colors:$wd-color,$theme:$theme ,$level:30%))};
+//    };
+//};
 
 
 @mixin wd-scrollbar(
-    $bg:var(--wd-transparent),
-    $size:calc( var(--wd-size) * 0.4),
+    $bg:var(--v2-wd-transparent),
+    $size:calc( var(--v2-wd-size) * 0.4),
     $thumb:var(--wdsc-sb-thumb),
     $hover:var(--wdsc-sb-hover),
 )
