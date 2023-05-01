@@ -1,3 +1,5 @@
+$wd-widths:('small':--v2-wd-small-width,'middle':--v2-wd-middle-width,'large':--v2-wd-small-width);
+
 
 @mixin less-large{ 
     @media screen and (width <= var(--v2-wd-large-width)) {

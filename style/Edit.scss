@@ -16,15 +16,14 @@
     $size:var(--v2-wd-size);
     $font-size:var(--v2-wd-font-size);
     $bg:var(--v2-wd-deep);
-    $color:var(--ed-color);
+    $color:var(--v2-wd-color);
     $outline:var(--v2-wd-outline);
     $border:var(--v2-wd-border);
     $gap:var(--v2-wd-gap);
-    //$required:var(--v2-wd-danger);
     $required:rgba(var(--v2-wd-danger-rgb), 0.1);
     $margin:var(--v2-wd-margin);
     $radius:var(--v2-wd-radius);
-    $placeholder:var(--ed-placeholder);
+    $placeholder:rgba(var(--v2-wd-color-rgb), 0.5);
 
     input[type=number]{
         &::-webkit-inner-spin-button,
