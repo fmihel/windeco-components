@@ -4,11 +4,16 @@
 
 @mixin defineThemeVars($maps:(),$theme:$wd-default-theme){
     $themeVars:();
-
+    @debug $theme , $wd-default-theme;
     @each $varName,$defaultValue in $defaults{
+    
         @if ($varName != 'colors-to-rgb'){
             $value:if(map-has-key($map: $maps, $key: $varName),#{map-get($map: $maps, $key:$varName )},#{$defaultValue});
-            --v2-wd-#{$varName}:#{$value};
+        
+            @if($theme == $wd-default-theme or #{$value} != #{$defaultValue}){
+                //@debug $varName, $value, $defaultValue, $theme == $wd-default-theme ,'or', $value != $defaultValue;
+                --v2-wd-#{$varName}:#{$value};
+            }
             $themeVars:map-merge($themeVars,(#{$varName}:$value));
         };
     };
@@ -24,7 +29,7 @@
         $colors:join($colors,map-get($map:$maps,$key:'colors-to-rgb'));
     }
 
-    @debug $colors;
+    //@debug $colors;
 
     @each $varName in $colors{
         $acolor:map-get($map:$defaults, $key:$varName );
