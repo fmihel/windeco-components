@@ -20,7 +20,7 @@ import BtnIcon from '../jsx/BtnIcon.jsx';
 import CheckBox from '../jsx/CheckBox.jsx';
 // import TableFixed from '../jsx/TableFixed.jsx';
 import Table from '../jsx/Table.jsx';
-// import ModalDialog from '../jsx/ModalDialog.jsx';
+import ModalDialog from '../jsx/ModalDialog.jsx';
 import Modal from '../jsx/Modal.jsx';
 import Text from '../jsx/Text.jsx';
 import Icon from '../jsx/Icon.jsx';
@@ -358,7 +358,7 @@ class App extends React.Component {
             BtnIcon: true,
             List: false,
             NavBar: false,
-            Dialog: false,
+            Dialog: true,
             Text: true,
             Table: true,
             TableFixed: false,
@@ -1046,7 +1046,7 @@ class App extends React.Component {
                         && <div className="test-place-table">
                             <div className="test-box1">box1</div>
                             <div className="test-box2">
-                                <TableFixed id={'tab3'} {...table_long2} onClick={this.onClickTableFixed}/>
+                                {/* <TableFixed id={'tab3'} {...table_long2} onClick={this.onClickTableFixed}/> */}
                             </div>
                         </div>
 

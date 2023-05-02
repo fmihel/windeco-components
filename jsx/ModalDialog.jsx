@@ -32,13 +32,10 @@ function ModalDialog({
     draggable = true, // work with align = custom || stickTo
     resizable = false,
     className = ModalDialog.global.className,
-    addClass = '',
     style = { ...ModalDialog.global.style },
     children,
 
 }) {
-    if (addClass !== '') console.warn(`ModalDialog.addClass is deprecated, use className = ${addClass}`);
-
     const [pos, setPos] = useState({
         left, top,
     });
@@ -180,30 +177,30 @@ function ModalDialog({
 
         ><>
                 <div
-                    type="dialog"
+                    modal-dialog={''}
                     style={{
                         ...ModalDialog.global.style, ...style, ...pos, ...size, visibility,
                     }}
-                    {...(className || addClass ? { className: `${className} ${addClass}` } : {})}
+                    {...(className ? { className: `${className}` } : {})}
                     onMouseDown={mouseDown}
                 >
                     {(header)
-                    && <div type="dialog-header" ref= {refHeader}>
-                        <div type="dialog-caption">
+                    && <div dialog-header='' ref= {refHeader}>
+                        <div dialog-caption=''>
                             {header}
                         </div>
                         {(onClickHeaderClose)
-                        && <div type="dialog-close-btn" onClick={onClickHeaderClose}>
+                        && <div dialog-close-btn='' onClick={onClickHeaderClose}>
                         &#10006;
                         </div>}
 
                     </div>
                     }
-                    <div type="dialog-content">
+                    <div dialog-content=''>
                         {children}
                     </div>
                     {(footers.length > 0)
-                        && <div type="dialog-footer">
+                        && <div dialog-footer=''>
                             {footers.map((key) => <Btn
                                 id={api.getFooterParam(key, 'id', footer)}
                                 key={key} onClick={() => clickFooterBtn(key)}
@@ -216,7 +213,7 @@ function ModalDialog({
                     }
                 </div>
                 {resizable && !compact
-                && <div type="dialog-resize"
+                && <div dialog-resize=''
                     style={{
                         left: pos.left + size.width,
                         top: pos.top + size.height,

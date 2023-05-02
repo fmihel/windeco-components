@@ -1,6 +1,5 @@
 :root.dark{
     @include defineThemeVars((
-        'theme':'dark',
         'primary':#0E639C,
         'secondary':#6C757D,
         'success':#017711,
@@ -10,6 +9,7 @@
 
         'bg':#0B1727,
         'color':#9DA9BB,
+        'color-high':#D8E2EF,
         'hovering':1.2,
         'highlight':lime,
         'label':#9DA9BB,

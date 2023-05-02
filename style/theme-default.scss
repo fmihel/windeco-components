@@ -8,7 +8,6 @@ $wd-default-theme:'light';
 $global-themes-vars:();
 
 $defaults:(
-    'theme':'light',   
     'primary':#0D6EFD,
     'secondary':#6C757D,
     'success':#008b14,
@@ -42,7 +41,8 @@ $defaults:(
     'dark-flat-color':#0B1727,
 
     'bg':#EDF2F9,
-    'color':#83909F,
+    'color':#5E6E82,
+    'color-high':#344050,
 
     'size':32px,
     'gap':5px,
