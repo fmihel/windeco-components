@@ -1,35 +1,35 @@
 @use "sass:meta";
 
 @mixin define(){
-    $themes:$wd-themes;
-    $colors:$wd-color;
+    //$themes:$wd-themes;
+    //$colors:$wd-color;
     
-    @each $theme in $themes{
-        #{getThemingRootClass($theme)}{
-           --tf-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:-20%))};
-           --tf-header-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:-20%))};
-           --tf-select-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$light:50%,$dark:20%))};
-        };
-    };
+    //@each $theme in $themes{
+    //    #{getThemingRootClass($theme)}{
+    //       --tf-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:-20%))};
+    //       --tf-header-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:-20%))};
+    //       --tf-select-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$light:50%,$dark:20%))};
+    //    };
+    //};
 
     $size:2rem;
     $outline:'none';
 
-    $bg:var(--wd-transparent);
-    $color:var(--wd-color);
-    $border:var(--wd-border);
+    $bg:var(--v2-wd-transparent);
+    $color:var(--v2-wd-color);
+    $border:var(--v2-wd-border);
     $sep:'yes';
 
-    $header:var(--wd-header);
-    $header-color:var(--wd-header-color);
-    $header-border:var(--wd-border);
+    $header:var(--v2-wd-header);
+    $header-color:var(--v2-wd-header-color);
+    $header-border:var(--v2-wd-border);
     $header-sep:'yes';
 
-    $font-size:var(--wd-font-size);
-    $gap:var(--wd-gap);
+    $font-size:var(--v2-wd-font-size);
+    $gap:var(--v2-wd-gap);
 
-    $select:var(--wd-select);
-    $select-color:var(--tf-select-color);
+    $select:var(--v2-wd-select);
+    $select-color:var(--v2-wd-select-color);
 
     .wd-table-fixed-vert{
     }
@@ -45,7 +45,13 @@
             height: 100%;
             overflow: hidden;
     
-            @include display-flex-vert-stretch();
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-content: stretch;
+            align-items: stretch;
+
             @include wd-scrollbar();
         }
 

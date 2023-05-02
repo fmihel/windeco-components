@@ -18,7 +18,7 @@ import ComboBoxEx from '../jsx/ComboBox.jsx';
 import ComboItemIcon from '../jsx/ComboBox/ComboItemIcon.jsx';
 
 import CheckBox from '../jsx/CheckBox.jsx';
-// import TableFixed from '../jsx/TableFixed.jsx';
+import TableFixed from '../jsx/TableFixed.jsx';
 import Table from '../jsx/Table.jsx';
 import ModalDialog from '../jsx/ModalDialog.jsx';
 import Modal from '../jsx/Modal.jsx';
@@ -361,7 +361,7 @@ class App extends React.Component {
             Dialog: true,
             Text: true,
             Table: true,
-            TableFixed: false,
+            TableFixed: true,
             Container: false,
             Collapse: false,
             ComboBox: true,
@@ -1046,7 +1046,7 @@ class App extends React.Component {
                         && <div className="test-place-table">
                             <div className="test-box1">box1</div>
                             <div className="test-box2">
-                                {/* <TableFixed id={'tab3'} {...table_long2} onClick={this.onClickTableFixed}/> */}
+                                <TableFixed id={'tab3'} {...table_long2} onClick={this.onClickTableFixed}/>
                             </div>
                         </div>
 
