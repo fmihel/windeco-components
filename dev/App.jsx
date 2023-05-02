@@ -13,7 +13,7 @@ import {
 
 import { iEdit, iEdit16 } from './global';
 import Btn from '../jsx/Btn.jsx';
-// import BtnIcon from '../jsx/BtnIcon.jsx';
+import BtnIcon from '../jsx/BtnIcon.jsx';
 // import ComboBoxEx from '../jsx/ComboBox.jsx';
 // import ComboItemIcon from '../jsx/ComboBox/ComboItemIcon.jsx';
 
@@ -23,7 +23,7 @@ import Btn from '../jsx/Btn.jsx';
 // import ModalDialog from '../jsx/ModalDialog.jsx';
 // import Modal from '../jsx/Modal.jsx';
 // import Text from '../jsx/Text.jsx';
-// import Icon from '../jsx/Icon.jsx';
+import Icon from '../jsx/Icon.jsx';
 import Label from '../jsx/Label.jsx';
 import Edit from '../jsx/Edit.jsx';
 // import List from '../jsx/List.jsx';
@@ -355,7 +355,7 @@ class App extends React.Component {
 
         const enabled = {
             Btn: true,
-            BtnIcon: false,
+            BtnIcon: true,
             List: false,
             NavBar: false,
             Dialog: false,
@@ -368,7 +368,7 @@ class App extends React.Component {
             Edit: true,
             Modal: false,
             CheckBox: false,
-            Icon: false,
+            Icon: true,
             Fonts: false,
         };
         return (
@@ -496,12 +496,12 @@ class App extends React.Component {
                         && <Head caption={'BtnIcon'}>
                             <Block>
                                 <Btn>left</Btn>
-                                <BtnIcon>button presed test</BtnIcon>
+                                <BtnIcon className="wd-primary wd-flat">button presed test</BtnIcon>
                                 <BtnIcon
                                     hint = "icon"
                                     IconComponent={Icon}
                                     icon={iEdit}
-                                    className="wd-danger"
+                                    className="wd-danger wd-flat"
                                     iconClass="demo-bi-color"
                                 >ok</BtnIcon>
                                 <BtnIcon
