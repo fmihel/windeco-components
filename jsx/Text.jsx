@@ -62,20 +62,20 @@ function Text({
             console.warn('Text.onChange not set, define it.');
         }
     };
+    const val = value || children;
     return (
         <textarea
-            type='memo'
-            {...(id ? { id } : {})}
+            w {...(id ? { id } : {})}
             {...(className || addClass ? { className: `${className} ${addClass}` } : {})}
             style={{
                 ...Text.global.style,
                 ...(resize ? {} : { resize: 'none' }),
                 ...style,
             }}
-            value={value || children}
+            value={val}
             {...(disabled ? { disabled: true } : { })}
             {...(readonly ? { readOnly: true } : { })}
-            {...((required && !value) ? { required: true } : { })}
+            {...((required && `${val}`.length === 0) ? { required: true } : { })}
             {...(title ? { title } : { })}
             {...(maxLength > 0 ? { maxLength } : { })}
             {...(placeholder ? { placeholder } : {})}

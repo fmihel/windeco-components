@@ -10,13 +10,14 @@
 
 
 @mixin wd-scrollbar(
-    $bg:var(--v2-wd-transparent),
+    $bg:var(--v2-wd-high),
     $size:calc( var(--v2-wd-size) * 0.4),
-    $thumb:var(--wdsc-sb-thumb),
-    $hover:var(--wdsc-sb-hover),
+    $thumb:rgba(var(--v2-wd-secondary-rgb),0.3),
+    $hover:rgba(var(--v2-wd-secondary-rgb),0.5),
 )
 {
-
+    
+    
     &::-webkit-scrollbar-track{
         background-color: $bg;
         border-right:1px solid $bg;
@@ -32,17 +33,17 @@
         background-color:$thumb;
         border:1px solid $thumb;
         
-        //border-radius: 24px;
-        //border-radius: 24px;
-        
-    }
-    &::-webkit-scrollbar-thumb{
+        //@include transition(background-color 2s);        
         &:hover{
-            
+            //@include transition(background-color 2s);        
             background-color:$hover;
             border:1px solid $hover;
         }
     }
+    &::-webkit-scrollbar-corner{
+        background-color:$bg
+    }
+    
 }
 
 @mixin define(){

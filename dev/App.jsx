@@ -22,7 +22,7 @@ import BtnIcon from '../jsx/BtnIcon.jsx';
 // import Table from '../jsx/Table.jsx';
 // import ModalDialog from '../jsx/ModalDialog.jsx';
 // import Modal from '../jsx/Modal.jsx';
-// import Text from '../jsx/Text.jsx';
+import Text from '../jsx/Text.jsx';
 import Icon from '../jsx/Icon.jsx';
 import Label from '../jsx/Label.jsx';
 import Edit from '../jsx/Edit.jsx';
@@ -359,7 +359,7 @@ class App extends React.Component {
             List: false,
             NavBar: false,
             Dialog: false,
-            Text: false,
+            Text: true,
             Table: false,
             TableFixed: false,
             Container: false,
