@@ -19,7 +19,7 @@ import BtnIcon from '../jsx/BtnIcon.jsx';
 
 import CheckBox from '../jsx/CheckBox.jsx';
 // import TableFixed from '../jsx/TableFixed.jsx';
-// import Table from '../jsx/Table.jsx';
+import Table from '../jsx/Table.jsx';
 // import ModalDialog from '../jsx/ModalDialog.jsx';
 // import Modal from '../jsx/Modal.jsx';
 import Text from '../jsx/Text.jsx';
@@ -360,7 +360,7 @@ class App extends React.Component {
             NavBar: false,
             Dialog: false,
             Text: true,
-            Table: false,
+            Table: true,
             TableFixed: false,
             Container: false,
             Collapse: false,
