@@ -2,20 +2,21 @@
 //@import './vars.scss';
 
 @mixin define(){
-    $themes:$wd-themes;
-    $icons:$wd-cross;
+    //$themes:$wd-themes;
+    //$icons:$wd-cross;
 
-    @each $theme in $themes{
-        #{getThemingRootClass($theme)} {
-            --chk-url:url(#{map-get($icons,$theme)});
-        }   
-    }
+    //@each $theme in $themes{
+    //    #{getThemingRootClass($theme)} {
+    //        --chk-url:url(#{map-get($icons,$theme)});
+    //    }   
+    //}
     
-    $size:$wd-size;
-    $bg:var(--wd-bg);
-    $border:var(--wd-border);
-    $outline:var(--wd-outline);
-    $icon-hover:$cross-opacity;
+    $size:var(--v2-wd-size);
+    $bg:var(--v2-wd-bg);
+    $border:var(--v2-wd-border);
+    $outline:var(--v2-wd-outline);
+    $icon-hover:var(--v2-wd-cross-hover);
+    $icon:var(--v2-wd-cross);
 
     input[type=checkbox] {
         -webkit-appearance: none;
@@ -24,26 +25,25 @@
         background-color: $bg;
         border: 1px solid $border;
 
-        width: $size*0.7;
-        max-width: $size*0.7;
-        height: $size*0.7;
-        max-height: $size*0.7;
+        width: calc($size*0.7);
+        max-width: calc($size*0.7);
+        height: calc($size*0.7);
+        max-height: calc($size*0.7);
         margin:0px;
 
         cursor: pointer;        
 
         &:checked{
-            //background-image:url($icon);
-            background-size: $size*0.5;
+            background-size: calc($size*0.5);
             background-position: center center;
             background-repeat: no-repeat;
-            background-image:var(--chk-url);
+            background-image:$icon;
 
         }
         &:not(:checked){
             &:hover{
-                background-image:url($icon-hover);
-                background-size: $size*0.5;
+                background-image:$icon-hover;
+                background-size: calc($size*0.5);
                 background-position: center center;
                 background-repeat: no-repeat;
             }

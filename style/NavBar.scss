@@ -41,7 +41,7 @@
     $size:var(--v2-wd-size);
     $gap:var(--v2-wd-gap);
     $size-item:calc(var(--v2-wd-size)*0.8);
-    $tick:$wd-tick;
+    $tick:var(--v2-wd-tick);
 
     .wd-navbar{
         min-width:250px;
@@ -66,7 +66,7 @@
                 }
                 [img]{
                     width: $size;
-                    background-image: url($tick); 
+                    background-image:$tick; 
                     background-repeat: no-repeat, no-repeat;
                     background-position: center;
                     filter:invert(50%);                

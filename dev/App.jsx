@@ -17,7 +17,7 @@ import BtnIcon from '../jsx/BtnIcon.jsx';
 // import ComboBoxEx from '../jsx/ComboBox.jsx';
 // import ComboItemIcon from '../jsx/ComboBox/ComboItemIcon.jsx';
 
-// import CheckBox from '../jsx/CheckBox.jsx';
+import CheckBox from '../jsx/CheckBox.jsx';
 // import TableFixed from '../jsx/TableFixed.jsx';
 // import Table from '../jsx/Table.jsx';
 // import ModalDialog from '../jsx/ModalDialog.jsx';
@@ -367,7 +367,7 @@ class App extends React.Component {
             ComboBox: false,
             Edit: true,
             Modal: false,
-            CheckBox: false,
+            CheckBox: true,
             Icon: true,
             Fonts: false,
         };

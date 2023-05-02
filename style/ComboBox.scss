@@ -22,7 +22,7 @@
     $bg:var(--wd-deep);
     $color:var(--cb-color);
     $invert:50%;//var(--cb-invert);
-    $tick:$wd-tick;
+    $tick:var(--v2-wd-tick);
     $border:var(--wd-border);
     $required:rgba(var(--wd-alert-rgb), 0.1);
 
