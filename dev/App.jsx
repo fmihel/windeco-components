@@ -21,7 +21,7 @@ import CheckBox from '../jsx/CheckBox.jsx';
 // import TableFixed from '../jsx/TableFixed.jsx';
 import Table from '../jsx/Table.jsx';
 // import ModalDialog from '../jsx/ModalDialog.jsx';
-// import Modal from '../jsx/Modal.jsx';
+import Modal from '../jsx/Modal.jsx';
 import Text from '../jsx/Text.jsx';
 import Icon from '../jsx/Icon.jsx';
 import Label from '../jsx/Label.jsx';
@@ -366,7 +366,7 @@ class App extends React.Component {
             Collapse: false,
             ComboBox: false,
             Edit: true,
-            Modal: false,
+            Modal: true,
             CheckBox: true,
             Icon: true,
             Fonts: false,
@@ -989,8 +989,8 @@ class App extends React.Component {
                                             top: 100,
                                             width: 200,
                                             height: 200,
-                                            border: '1px solid navy',
-                                            background: 'gray',
+                                            border: '1px solid red',
+                                            background: 'silver',
                                         }}>
                                         <Btn onClick={() => { this.setState({ modalShow: true }); }} >show1</Btn>
 
