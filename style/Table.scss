@@ -31,7 +31,7 @@
     $select:var(--v2-wd-select);
     $select-color:var(--v2-wd-select-color);
 
-    [type=table]{
+    table{
     
         box-sizing: border-box;
         border-collapse: collapse;
@@ -98,11 +98,6 @@
             }
         }
 
-
-        table{
-    
-        
-        }
     }
 }
 

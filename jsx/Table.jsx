@@ -22,7 +22,6 @@ function Table({
     return (
 
         <table
-            type="table"
             {...(className ? { className } : {})}
             {...(id ? { id } : {})}
             style={{ ...Table.global.style, ...style }}
@@ -47,7 +46,7 @@ function Table({
 }
 
 Table.global = {
-    className: 'wd-table',
+    className: '',
     aliasId: 'ID',
     aliasAttr: '-attr-',
     header: true, // string true false

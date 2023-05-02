@@ -651,6 +651,7 @@ class App extends React.Component {
                             <Block hide={false} >
                                 <Table
                                     id='tab3'
+                                    className="wd-table"
                                     fields={fields}
                                     data={table}
                                     onClick={this.onClickTable}
