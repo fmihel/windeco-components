@@ -35,7 +35,6 @@ function ComboList({
     width = 100,
     height = 100,
     className = '',
-    addClass = '',
     styleItem = {},
     aliasId = 'id',
     aliasCaption = 'caption',
@@ -44,13 +43,10 @@ function ComboList({
     onGetItemClass = undefined,
     onClick = undefined,
 }) {
-    if (addClass!=='')
-        console.warn(`ComboList.addClass is deprecated, use className = ${addClass}`);
-
     return (
         <div
-            type='combo-list'
-            className={`${className} ${addClass}`}
+            combo-list=''
+            className={`${className}`}
             style = {{
                 ...listPos({
                     left,

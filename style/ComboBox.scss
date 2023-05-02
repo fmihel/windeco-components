@@ -1,41 +1,40 @@
 @use "sass:meta";
 @use "sass:math";
-//@import './vars.scss';
 
 @mixin define(){
-    $themes:$wd-themes;
-    $colors:$wd-color;
+    //$themes:$wd-themes;
+    //$colors:$wd-color;
     //$inverts:('light':60%,'dark':30%);
-    @each $theme in $themes{
-        #{getThemingRootClass($theme)} {
+    //@each $theme in $themes{
+        //#{getThemingRootClass($theme)} {
             
-           --cb-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:-20%))};
-           --cb-color-hover:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:-50%))};
-           --cb-placeholder:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$light:20%,$dark:-40%))};
+        //   --cb-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:-20%))};
+        //   --cb-color-hover:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:-50%))};
+        //   --cb-placeholder:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$light:20%,$dark:-40%))};
            //--cb-invert:#{meta.inspect(map-get($map:$inverts,$key:$theme))};
            //@debug $inverts  map-get($map:$inverts,$key:$theme);
-        }
-    }
+        //}
+    //}
     
-    $size:$wd-size;
-    $gap:$wd-gap;
-    $bg:var(--wd-deep);
-    $color:var(--cb-color);
+    $size:var(--v2-wd-size);
+    $gap:var(--v2-wd-gap);
+    $bg:var(--v2-wd-deep);
+    $color:var(--v2-wd-color);
     $invert:50%;//var(--cb-invert);
     $tick:var(--v2-wd-tick);
-    $border:var(--wd-border);
-    $required:rgba(var(--wd-alert-rgb), 0.1);
+    $border:var(--v2-wd-border);
+    $required:rgba(var(--v2-wd-danger-rgb), 0.1);
 
-    $outline:var(--wd-outline);    
-    $font-size:var(--wd-font-size);
+    $outline:var(--v2-wd-outline);    
+    $font-size:var(--v2-wd-font-size);
     
-    $hover:var(--wd-hover);
-    $color-hover:var(--cb-color-hover);
-    $margin:var(--wd-margin);
-    $radius:var(--wd-radius);
-    $placeholder:var(--cb-placeholder);
+    $hover:var(--v2-wd-hover);
+    $color-hover:var(--v2-hover-color);
+    $margin:var(--v2-wd-margin);
+    $radius:var(--v2-wd-radius);
+    $placeholder:rgba(var(--v2-wd-color-rgb), 0.5);
 
-    [type=combo]{
+    [combo]{
         height:$size;
         width:100%;
         background-color: $bg;
@@ -55,20 +54,26 @@
             margin-right:$margin;
         };
 
-        @include display-flex-horiz-stretch();
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: stretch;
+
 
         outline: 0px solid rgba(0,0,0,0);
         @include transition(outline-color 0.4s);
 
         >*{
             &:nth-child(1) {
-                @include stretch();
-                line-height:$size * 0.9;
+                flex:1 1 auto;
+                line-height:calc($size * 0.9);
             }
             &:nth-child(2) {
                 min-width: $size;
                 width: $size;
-                background-image: url($tick); 
+                background-image: $tick; 
                 background-repeat: no-repeat, no-repeat;
                 background-position: center;
                 filter:invert($invert);
@@ -88,13 +93,13 @@
             opacity: 0.4;
         }
         &[required]{
-            border:1px solid $required !important;
+            //border:1px solid $required !important;
             background-color:$required !important;
 
         }        
     
     }
-    [type=combo-list]{
+    [combo-list]{
         background-color: $bg;
         color:$color;
         border:1px solid $border;
@@ -102,7 +107,8 @@
         overflow-x: hidden;
         overflow-y: auto;  
 
-        [type=combo-item]{
+        animation: 0.1s cbex-list-slide ease;
+        [combo-item]{
             max-height: $size;
             height: $size;
 
@@ -119,10 +125,10 @@
             }
         }
     }
-    .mobile [type=combo-list]{
+    .mobile [combo-list]{
         animation: 0.5s combo-scale ease;
         padding: $gap;
-        [type=combo-item]{
+        [combo-item]{
             //border-bottom: 1px solid $border;
             border-radius: 3px;
             &:nth-child(2n+1){
@@ -132,7 +138,7 @@
         }
     }
     
-    [type=combo-item]{
+    [combo-item]{
         text-indent: $gap;
         line-height: $size;
         white-space: nowrap;
@@ -142,13 +148,19 @@
             color: $placeholder;
         }
         // for ComboItemIcon -------
-        @include display-flex-horiz-stretch();
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: stretch;
+        
         >div{
             &:nth-child(1) {
-                @include no-stretch();
+                flex:0 1 auto;
             }                
             &:nth-child(2) {
-                @include stretch();
+                flex:1 1 auto;
             }                
         }
         // ----------------------------
@@ -183,6 +195,10 @@
 }
 
 
+@keyframes cbex-list-slide {
+    from { transform:  scaleY(70%) translateY(-20%)}
+    to {  transform:  scaleY(100%) translateY(0%)}
+}
 
 
 @include define();

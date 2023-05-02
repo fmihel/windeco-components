@@ -18,7 +18,7 @@ function ComboItem({
     };
     return (
         <div
-            type='combo-item'
+            combo-item=''
             className={`${className} ${onGetItemClass ? onGetItemClass(data) : ''}`}
             onClick={click}
             title={title || ''}

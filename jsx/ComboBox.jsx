@@ -7,7 +7,6 @@ import ComboItem from './ComboBox/ComboItem.jsx';
 function ComboBox({
     id,
     className = ComboBox.global.className,
-    addClass = '',
     classList = ComboBox.global.classList,
     style = ComboBox.global.style,
     styleOuter = {},
@@ -29,9 +28,6 @@ function ComboBox({
     ItemComponent = ComboBox.global.ItemComponent,
 
 }) {
-    if (addClass!=='')
-        console.warn(`ComboBox.addClass is deprecated, use className = ${addClass}`);
-
     const selected = list.find((item) => (item[aliasId] == select));
     const selectCaption = selected ? selected[aliasCaption] : false;
 
@@ -82,8 +78,8 @@ function ComboBox({
         setOpen(false);
         if (onChange) {
             onChange({ id, data });
-        }else{
-            console.warn('ComboBox.onChange not set, define it..')
+        } else {
+            console.warn('ComboBox.onChange not set, define it..');
         }
     };
     const getItemClass = () => {
@@ -125,9 +121,9 @@ function ComboBox({
     return (
         <>
             <div
-                type='combo'
-                {...(id ? {id}:{})}
-                {...(className || addClass ? {className:`${className} ${addClass}`}:{})}
+                combo=''
+                {...(id ? { id } : {})}
+                {...(className ? { className: `${className}` } : {})}
                 style={{ ...ComboBox.global.style, ...style }}
                 onClick = {click}
                 ref = {ref}

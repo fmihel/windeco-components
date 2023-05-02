@@ -14,8 +14,8 @@ import {
 import { iEdit, iEdit16 } from './global';
 import Btn from '../jsx/Btn.jsx';
 import BtnIcon from '../jsx/BtnIcon.jsx';
-// import ComboBoxEx from '../jsx/ComboBox.jsx';
-// import ComboItemIcon from '../jsx/ComboBox/ComboItemIcon.jsx';
+import ComboBoxEx from '../jsx/ComboBox.jsx';
+import ComboItemIcon from '../jsx/ComboBox/ComboItemIcon.jsx';
 
 import CheckBox from '../jsx/CheckBox.jsx';
 // import TableFixed from '../jsx/TableFixed.jsx';
@@ -364,7 +364,7 @@ class App extends React.Component {
             TableFixed: false,
             Container: false,
             Collapse: false,
-            ComboBox: false,
+            ComboBox: true,
             Edit: true,
             Modal: true,
             CheckBox: true,

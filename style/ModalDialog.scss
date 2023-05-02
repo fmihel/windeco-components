@@ -20,7 +20,6 @@
     $font-size:var(--v2-wd-font-size);
     $radius:var(--v2-wd-radius);
     $md-color:var(--v2-wd-color-high);
-    $md-color-hover:var(--md-color-hover);
     
     [state="show"]{
         >.wd-dialog-slide-from-right{
@@ -92,8 +91,7 @@
                 text-align: center;
                 color:$color;
                 &:hover{
-                    color:b$md-color-hover;
-                    font-size:1.1em;
+                    font-size:1.2em;
                     cursor:pointer;
                 }
             }
