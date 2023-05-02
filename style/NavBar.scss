@@ -1,6 +1,7 @@
 @use "sass:meta";
 
 @each $name,$width in $wd-widths{
+    
     .nav-container-#{$name}{ 
         height: 100%;
 
@@ -11,7 +12,7 @@
         align-items: stretch;
         
         flex-direction: row;
-        @include less-than($name){
+        @include less-than(#{$name}){
             flex-direction: column;
         }
     }
@@ -175,26 +176,26 @@
     @each $name,$width in $wd-widths{
         .nav-container-#{$name}{ 
             [navbar]{
-                @include more-than($name){
+                @include more-than(#{$name}){
                     max-height: none !important;
                 }
-                @include less-than($name){
+                @include less-than(#{$name}){
                     max-height: 80%;
                 }
                 [nav-btn]{
                     display: block;
-                    @include more-than($name){
+                    @include more-than(#{$name}){
                         display: none !important;
                     }
                 }
                 [nav-empty]{
-                    @include more-than($name){
+                    @include more-than(#{$name}){
                         display:none !important;
                     }
                 }
                 [nav-menu]{
                     height:auto;
-                    @include less-than($name){
+                    @include less-than(#{$name}){
                         height:0px;
                     }                    
                 }

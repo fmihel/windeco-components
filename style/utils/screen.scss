@@ -1,39 +1,43 @@
-$wd-widths:('small':--v2-wd-small-width,'middle':--v2-wd-middle-width,'large':--v2-wd-small-width);
+$wd-large-width:900px;
+$wd-middle-width:700px;
+$wd-small-width:500px;
+
+$wd-widths:('small':$wd-small-width,'middle':$wd-middle-width,'large':$wd-small-width);
 
 
 @mixin less-large{ 
-    @media screen and (width <= var(--v2-wd-large-width)) {
+    @media screen and (width <= $wd-large-width) {
         @content;
     }
 }
 
 @mixin less-middle{
-    @media screen and ( width <= var(--v2-wd-middle-width)) {
+    @media screen and ( width <= $wd-middle-width) {
         @content;
     }
 }
 
 @mixin less-small{
-    @media screen and ( width <= var(--v2-wd-small-width)) {
+    @media screen and ( width <= $wd-small-width) {
         @content;
     }
 }
 
 
 @mixin more-large{
-    @media screen and (width > var(--v2-wd-large-width)) {
+    @media screen and (width > $wd-large-width) {
         @content;
     }
 }
 
 @mixin more-middle{
-    @media screen and ( width > var(--v2-wd-middle-width)) {
+    @media screen and ( width > $wd-middle-width) {
         @content;
     }
 }
 
 @mixin more-small{
-    @media screen and ( width > var(--v2-wd-small-width)) {
+    @media screen and ( width > $wd-small-width) {
         @content;
     }
 }
@@ -78,6 +82,7 @@ $wd-widths:('small':--v2-wd-small-width,'middle':--v2-wd-middle-width,'large':--
 
 
 @mixin less-than($name){
+    
     @if ($name == 'large'){
         @include less-large{
             @content;

@@ -1,10 +1,11 @@
 .block-head{
+    margin-right:var(--v2-wd-gap);
     .b-caption{
         font-weight:bold;
-        margin-top:10px;
+        margin-top:15px;
         padding-top:10px;
         padding-bottom:10px;
-        border-top:1px dashed rgb(156, 156, 156);
+        //border-top:1px dashed rgb(156, 156, 156);
    
     }
     .b-child{

@@ -467,7 +467,7 @@ class App extends React.Component {
                         {enabled.Btn
                         && <Head caption="Btn">
                             <Block>
-                                <Btn>button</Btn>
+                                <Btn id="btn-test" >button</Btn>
                                 <Btn className="wd-primary">wd-primary</Btn>
                                 <Btn className="wd-danger" hint="wd-danger hint">wd-danger</Btn>
                                 <Btn className="wd-secondary">wd-secondary</Btn>

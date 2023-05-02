@@ -1,8 +1,6 @@
 @import '../../style/theme-default.scss';
 @import '../../style/theme-dark.scss';
 
-//@import '../../style/utils.scss';
-
 @import './custom.scss';
 @import '../../style/ScrollBar.scss';
 @import '../../style/Btn.scss';
@@ -14,6 +12,7 @@
 @import './test-place.scss'; 
 @import './icons.scss';
 @import '../jsx/Block.scss';
+@import '../jsx/Head.scss';
 
 
 *{
@@ -148,4 +147,10 @@ body{
     }
     
 
+}
+
+#btn-test{
+    @include less-large{
+        color:red !important;
+    }
 }
