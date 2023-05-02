@@ -65,7 +65,7 @@ function Text({
     const val = value || children;
     return (
         <textarea
-            w {...(id ? { id } : {})}
+            {...(id ? { id } : {})}
             {...(className || addClass ? { className: `${className} ${addClass}` } : {})}
             style={{
                 ...Text.global.style,
