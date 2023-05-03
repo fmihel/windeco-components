@@ -22,6 +22,7 @@ function Table({
     return (
 
         <table
+            table=''
             {...(className ? { className } : {})}
             {...(id ? { id } : {})}
             style={{ ...Table.global.style, ...style }}

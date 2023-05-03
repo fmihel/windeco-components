@@ -31,8 +31,12 @@ function TableFixed({
     const [size, setSize] = useState({ width: 0, height: 0 });
     const [widths, setWidths] = useState([]);
     const [border, setBorder] = useState('');
-    const ref = useRef(null);
+    const [updater, setUpdater] = useState(0);
 
+    const ref = useRef(null);
+    const updateWidths = () => {
+        setUpdater(updater + 1);
+    };
     useEffect(() => {
         const tableDOM = DOM(`#table-${id}`);
         if (tableDOM) {
@@ -47,10 +51,11 @@ function TableFixed({
         } else if (typeof header === 'string') {
             setWidths([size.width]);
         } else {
-            const newWidths = fields.map(() => size.width / fields.length);
+            const midWidth = size.width / fields.length;
+            const newWidths = fields.map(() => midWidth);
             setWidths(newWidths);
         }
-    }, [data, fields, ref, id, size, header]);
+    }, [data, fields, ref, id, size, header, updater, select]);
 
     useEffect(() => {
         const tableDOM = DOM(`#table-${id}`);
@@ -86,10 +91,23 @@ function TableFixed({
             newObserv.disconnect();
         };
     }, [ref, header, data]);
+
+    const click = (o) => {
+        if (onClick) {
+            onClick(o);
+        }
+        updateWidths();
+    };
+    const dblclick = (o) => {
+        if (onDoubleClick) {
+            onDoubleClick(o);
+        }
+        updateWidths();
+    };
     return (
         <div
             id = {id}
-            type='table-fixed'
+            table-fixed=''
             container = 'horiz'
             {...(className ? { className } : {})}
             ref = {ref}
@@ -116,8 +134,8 @@ function TableFixed({
                     fields={fields}
                     footer={footer}
                     select={select}
-                    onClick={onClick}
-                    onDoubleClick={onDoubleClick}
+                    onClick={click}
+                    onDoubleClick={dblclick}
                     onDraw={onDraw}
                 />
                 }

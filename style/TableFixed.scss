@@ -23,7 +23,7 @@
     $header:var(--v2-wd-header);
     $header-color:var(--v2-wd-header-color);
     $header-border:var(--v2-wd-border);
-    $header-sep:'yes';
+    $header-sep:'none';
 
     $font-size:var(--v2-wd-font-size);
     $gap:var(--v2-wd-gap);
@@ -33,7 +33,7 @@
 
     .wd-table-fixed-vert{
     }
-    [type=table-fixed]{
+    [table-fixed]{
         &[container=horiz]{
             @if ($outline != 'none'){
                 margin-top:1px;
@@ -140,7 +140,7 @@
                     padding-left: $gap;
                 }
                 tr{
-                    @include transition(background-color 0.2s,color 0.2s);
+                    //@include transition(background-color 0.2s,color 0.2s);
                     &[select]{
                         background-color: $select;
                         color: $select-color;

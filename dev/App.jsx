@@ -492,6 +492,85 @@ class App extends React.Component {
                         </Head>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
+                        {enabled.Table
+                        && <Head caption = "Table">
+
+                            <Block hide={false} >
+                                <Table
+                                    id='tab3'
+                                    className="wd-table"
+                                    fields={fields}
+                                    data={table}
+                                    onClick={this.onClickTable}
+                                    onDoubleClick={(o) => { console.log('double', o); }}
+                                    header={tableHeader}
+                                    footer={tableFooter}
+                                    select={tableSelect}
+                                    style={{ width: '100%' }}
+                                    onDraw={({ value, col }) => {
+                                        if (col === 'AGE') return <div style={{ display: 'flex', alignItems: 'center' }}><div style={{ flex: '1 1 auto' }}>{value}</div><Btn id="btn-del">del</Btn></div>;
+                                        return value;
+                                    }}
+                                />
+
+                            </Block>
+                            {/*
+                        <Block addClass="container-for-table-fixed"style={{ height: 540 }}>
+                            <TableFixed
+                                id='tab2'
+                                fields={table_long2.fields}
+                                data={table_long2.data}
+                                onClick={this.onClickTableFixed}
+                            />
+                        </Block>
+                    */}
+                        </Head>
+                        }
+                        {/*--------------------------------------------------------------------------------------------------*/}
+                        {enabled.TableFixed
+                        && <Head caption = "TableFixed">
+                            <Block>
+                                <Btn onClick={this.onTableClear}>clear</Btn>
+                                <Btn onClick={this.onTableFill}>fill</Btn>
+                                <Btn onClick={() => { this.setState({ tableHeader: false }); }}>header no</Btn>
+                                <Btn onClick={() => { this.setState({ tableHeader: 'text' }); }}>header cap</Btn>
+                                <Btn onClick={() => { this.setState({ tableHeader: true }); }}>header fields</Btn>
+                                <Btn onClick={() => { this.setState({ tableHeight: 200 }); }}>H=200</Btn>
+                                <Btn onClick={() => { this.setState({ tableHeight: 500 }); }}>H=500</Btn>
+                                <Btn onClick={() => { this.setState((prev) => ({ tableFooter: (prev.tableFooter ? false : 'end') })); }}>footer</Btn>
+                            </Block>
+
+                            <Block addClass="container-for-table-fixed2" style={{ height: tableHeight }} hide={false} >
+                                <TableFixed
+                                    id='tab1'
+                                    fields={fields}
+                                    data={table}
+                                    onClick={this.onClickTableFixed}
+                                    header={tableHeader}
+                                    footer={tableFooter}
+                                    select={tableSelect}
+                                    onDraw={({ value, col }) => {
+                                        if (col === 'AGE') return <div style={{ display: 'flex', alignItems: 'center' }}><div style={{ flex: '1 1 auto' }}>{value}</div><Btn id="btn-del">del</Btn></div>;
+                                        return value;
+                                    }}
+
+                                />
+
+                            </Block>
+                            {/*
+                        <Block addClass="container-for-table-fixed"style={{ height: 540 }}>
+                            <TableFixed
+                                id='tab2'
+                                fields={table_long2.fields}
+                                data={table_long2.data}
+                                onClick={this.onClickTableFixed}
+                            />
+                        </Block>
+                    */}
+                        </Head>
+                        }
+
+                        {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.BtnIcon
                         && <Head caption={'BtnIcon'}>
                             <Block>
@@ -642,84 +721,6 @@ class App extends React.Component {
                                     resize={true}
                                 />
                             </Block>
-                        </Head>
-                        }
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        {enabled.Table
-                        && <Head caption = "Table">
-
-                            <Block hide={false} >
-                                <Table
-                                    id='tab3'
-                                    className="wd-table"
-                                    fields={fields}
-                                    data={table}
-                                    onClick={this.onClickTable}
-                                    onDoubleClick={(o) => { console.log('double', o); }}
-                                    header={tableHeader}
-                                    footer={tableFooter}
-                                    select={tableSelect}
-                                    style={{ width: '100%' }}
-                                    onDraw={({ value, col }) => {
-                                        if (col === 'AGE') return <div style={{ display: 'flex', alignItems: 'center' }}><div style={{ flex: '1 1 auto' }}>{value}</div><Btn id="btn-del">del</Btn></div>;
-                                        return value;
-                                    }}
-                                />
-
-                            </Block>
-                            {/*
-                        <Block addClass="container-for-table-fixed"style={{ height: 540 }}>
-                            <TableFixed
-                                id='tab2'
-                                fields={table_long2.fields}
-                                data={table_long2.data}
-                                onClick={this.onClickTableFixed}
-                            />
-                        </Block>
-                    */}
-                        </Head>
-                        }
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        {enabled.TableFixed
-                        && <Head caption = "TableFixed">
-                            <Block>
-                                <Btn onClick={this.onTableClear}>clear</Btn>
-                                <Btn onClick={this.onTableFill}>fill</Btn>
-                                <Btn onClick={() => { this.setState({ tableHeader: false }); }}>header no</Btn>
-                                <Btn onClick={() => { this.setState({ tableHeader: 'text' }); }}>header cap</Btn>
-                                <Btn onClick={() => { this.setState({ tableHeader: true }); }}>header fields</Btn>
-                                <Btn onClick={() => { this.setState({ tableHeight: 200 }); }}>H=200</Btn>
-                                <Btn onClick={() => { this.setState({ tableHeight: 500 }); }}>H=500</Btn>
-                                <Btn onClick={() => { this.setState((prev) => ({ tableFooter: (prev.tableFooter ? false : 'end') })); }}>footer</Btn>
-                            </Block>
-
-                            <Block addClass="container-for-table-fixed2" style={{ height: tableHeight }} hide={false} >
-                                <TableFixed
-                                    id='tab1'
-                                    fields={fields}
-                                    data={table}
-                                    onClick={this.onClickTableFixed}
-                                    header={tableHeader}
-                                    footer={tableFooter}
-                                    select={tableSelect}
-                                    onDraw={({ value, col }) => {
-                                        if (col === 'AGE') return <div style={{ display: 'flex', alignItems: 'center' }}><div style={{ flex: '1 1 auto' }}>{value}</div><Btn id="btn-del">del</Btn></div>;
-                                        return value;
-                                    }}
-
-                                />
-
-                            </Block>
-                            {/*
-                        <Block addClass="container-for-table-fixed"style={{ height: 540 }}>
-                            <TableFixed
-                                id='tab2'
-                                fields={table_long2.fields}
-                                data={table_long2.data}
-                                onClick={this.onClickTableFixed}
-                            />
-                        </Block>
-                    */}
                         </Head>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
