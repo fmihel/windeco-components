@@ -390,9 +390,6 @@ class App extends React.Component {
 
                         <NavItem caption="menu" open={true}>
                             <NavItem {...nav('item1')} />
-                            <div style={{ padding: 5 }}>
-
-                            </div>
                             <NavItem caption="menu 2">
                                 <NavItem {...nav('item 2')}/>
                                 <NavItem {...nav('item 3')}/>

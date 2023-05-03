@@ -46,7 +46,7 @@ function NavBar({
 }
 
 NavBar.global = {
-    className: 'wd-navbar',
+    className: '',
     style: {},
 };
 

@@ -27,23 +27,13 @@
 
 
 @mixin define(){
-    //$themes:$wd-themes;
-    //$hovers:$wd-high;
-    //$hovers-color:$wd-color;
-
-    //@each $theme in $themes{
-    //    #{getThemingRootClass($theme)}{
-            //--nav-bg-hover:#{meta.inspect(blendColors($colors:$hovers,$theme:$theme,$level:-5%))};
-            //--nav-color-hover:#{meta.inspect(blendColors($colors:$hovers-color,$theme:$theme,$level:-30%))};
-    //    }   
-    //}
 
     $size:var(--v2-wd-size);
     $gap:var(--v2-wd-gap);
     $size-item:calc(var(--v2-wd-size)*0.8);
     $tick:var(--v2-wd-tick);
 
-    .wd-navbar{
+    [navbar]{
         min-width:250px;
         
         [nav-menu]{
@@ -61,8 +51,10 @@
             }
             [caption]{
                 &:hover{
-                    color: var(--nav-color-hover);
-                    //text-shadow: 0px 0px 1px var(--nav-color-hover);
+                    cursor: pointer;
+                    color: var(--v2-wd-color-high);
+                    transition: color 0.1s;
+                    //text-shadow: 0px 0px 0.3px var(--v2-wd-color-high);
                 }
                 [img]{
                     width: $size;
@@ -84,8 +76,9 @@
             }
             &[active]{
                 >[caption]{
-                    color:var(--wd-highlight);
-                    //text-shadow: 0px 0px 0.5px var(--wd-highlight);
+                    color:var(--v2-wd-url);
+                    transition: color 0.1s,text-shadow 0.1s;
+                    //text-shadow: 0px 0px 0.7px var(--v2-wd-url);
                 }
             }
         }
