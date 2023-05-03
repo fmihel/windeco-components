@@ -3,7 +3,6 @@ import React from 'react';
 function Gap({
     count,
     className = Gap.global.className,
-    addClass = Gap.global.addClass,
     style = Gap.global.style,
     attr = {},
     onClick = undefined,
@@ -11,11 +10,11 @@ function Gap({
     children,
 
 }) {
-    // console.log('level', count, Array(count).fill('').map(() => 's'));
     return (
         <div
-            it={'wd-gap'}
-            className={`${className} ${addClass}`}
+            gap=''
+            {...(className ? { className: `${className}` } : {})}
+
             style={{
                 ...Gap.global.style,
                 ...style,
@@ -24,14 +23,13 @@ function Gap({
             onClick={onClick}
             onDoubleClick={onDoubleClick}
         >
-            {Array(count).fill('').map((it, i) => <div key={i} gap={'gap'}></div>)}
+            {Array(count).fill('').map((it, i) => <div key={i} gap='' ></div>)}
             {children}
         </div>);
 }
 
 Gap.global = {
     className: '',
-    addClass: '',
     style: {},
 
 };

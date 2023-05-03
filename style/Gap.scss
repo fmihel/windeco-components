@@ -1,9 +1,14 @@
-@import './utils.scss';
 
-div[it='wd-gap']{
-    @include display-flex-horiz-stretch();
+[gap]{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+
     >div[gap]{
-            width:$wd-size;
-            min-width: $wd-size;
+            width:var(--v2-wd-size);
+            min-width:var(--v2-wd-size);
     }
 }

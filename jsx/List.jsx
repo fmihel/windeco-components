@@ -22,14 +22,13 @@ function List({
         <div
             list = {''}
             {...(id ? { id } : {})}
-            className={`${className}`}
+            {...(className ? { className: `${className}` } : {})}
             style={{
                 ...List.global.style,
                 ...style,
             }}
         >
             <ListNode
-
                 list = {list}
                 aliasChilds = {aliasChilds}
                 aliasId = {aliasId}
@@ -44,7 +43,7 @@ function List({
     );
 }
 List.global = {
-    className: 'wd-list',
+    className: '',
     style: {},
 
     ItemComponent: ListItem,

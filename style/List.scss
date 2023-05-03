@@ -2,29 +2,29 @@
 @import './Gap.scss';
 
 @mixin define(){
-    $themes:$wd-themes;
-    $hovers:$wd-high;
-    $hovers-color:$wd-color;
+    //$themes:$wd-themes;
+    //$hovers:$wd-high;
+    //$hovers-color:$wd-color;
 
-    @each $theme in $themes{
-        #{getThemingRootClass($theme)}{
+    //@each $theme in $themes{
+    //    #{getThemingRootClass($theme)}{
             //--btn-bg-hover:#{meta.inspect(blendColors($colors:$hovers,$theme:$theme,$level:-5%))};
             //-btn-color-hover:#{meta.inspect(blendColors($colors:$hovers-color,$theme:$theme,$level:-20%))};
-        }   
-    }
+    //    }   
+    //}
 
-    $size:var(--wd-size);
-    $bg:var(--wd-high);
-    $color:var(--wd-color);
-    $highlight:var(--wd-highlight);
-    $border:var(--wd-border);
-    $outline:var(--wd-outline);
-    $margin:var(--wd-margin);
-    $font-size:var(--wd-font-size);
-    $margin:var(--wd-margin);
-    $radius:var(--wd-radius);
-    $gap:$wd-gap;
-    $tick:$wd-tick;
+    $size:var(--v2-wd-size);
+    $bg:var(--v2-wd-high);
+    $color:var(--v2-wd-color);
+    $highlight:var(--v2-wd-highlight);
+    $border:var(--v2-wd-border);
+    $outline:var(--v2-wd-outline);
+    $margin:var(--v2-wd-margin);
+    $font-size:var(--v2-wd-font-size);
+    $margin:var(--v2-wd-margin);
+    $radius:var(--v2-wd-radius);
+    $gap:var(--v2-wd-gap);
+    $tick:var(--v2-wd-tick);
     $invert:50%;//var(--cb-invert);
 
     [list]{
@@ -56,13 +56,14 @@
         }
         >div{
             &[caption]{
-                @include stretch();
+                flex: 1 1 auto;
+
                 overflow: hidden;    
             }
             &[icon]{
                 width: $size;
                 min-width: $size;
-                background-image: url($tick); 
+                background-image: $tick; 
                 background-repeat: no-repeat, no-repeat;
                 background-position: center;
                 filter:invert($invert);                

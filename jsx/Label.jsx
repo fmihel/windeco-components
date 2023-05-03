@@ -5,18 +5,14 @@ function Label({
     labelName,
     caption = 'label',
     className = Label.global.className,
-    addClass = '',
     style = Label.global.style,
     children,
 
 }) {
-    if (addClass!=='')
-        console.warn(`Label.addClass is deprecated, use className = ${addClass}`);
-
     return (
         <div
             type='label'
-            {...(className || addClass ? {className:`${className} ${addClass}`}:{})}
+            {...(className ? { className: `${className}` } : {})}
         >
             <label
                 htmlFor={id || labelName}

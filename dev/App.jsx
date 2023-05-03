@@ -26,7 +26,7 @@ import Text from '../jsx/Text.jsx';
 import Icon from '../jsx/Icon.jsx';
 import Label from '../jsx/Label.jsx';
 import Edit from '../jsx/Edit.jsx';
-// import List from '../jsx/List.jsx';
+import List from '../jsx/List.jsx';
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
 import NavBar from '../jsx/NavBar.jsx';
@@ -356,8 +356,7 @@ class App extends React.Component {
         const enabled = {
             Btn: true,
             BtnIcon: true,
-            List: false,
-            NavBar: false,
+            List: true,
             Dialog: true,
             Text: true,
             Table: true,
@@ -369,7 +368,7 @@ class App extends React.Component {
             Modal: true,
             CheckBox: true,
             Icon: true,
-            Fonts: false,
+            Fonts: true,
         };
         return (
             <div>
@@ -492,6 +491,57 @@ class App extends React.Component {
                         </Head>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
+                        {enabled.List
+                        && <Head caption="List">
+
+                            <Block>
+                                <List
+                                    list={
+                                        [
+                                            { id: 1, caption: 'item-1' },
+                                            {
+                                                id: 2,
+                                                caption: 'item-2',
+                                                childs: [
+                                                    { id: 21, caption: 'item-21' },
+                                                    {
+                                                        id: 22,
+                                                        caption: 'item-22',
+                                                        childs: [
+                                                            { id: 221, caption: 'item-221' },
+                                                            {
+                                                                id: 222,
+                                                                caption: 'item-222',
+                                                                childs: [
+                                                                    { id: 2221, caption: 'item-2221' },
+                                                                    { id: 2222, caption: 'item-2222' },
+                                                                    { id: 2223, caption: 'item-2223' },
+
+                                                                ],
+                                                            },
+                                                            { id: 223, caption: 'item-223' },
+                                                        ],
+                                                    },
+                                                    { id: 23, caption: 'item-23' },
+                                                ],
+                                            },
+                                            { id: 3, caption: 'item-3' },
+                                        ]}
+                                    setup={listSetup}
+                                    onClick={(o) => {
+                                        this.setState({
+                                            listSetup: {
+                                                ...map(listSetup, (val) => ({ ...val, active: false })),
+                                                [o.id]: { ...listSetup[o.id], active: true, expand: !(listSetup[o.id] && listSetup[o.id].expand) },
+                                            },
+                                        });
+                                    }}
+                                />
+                            </Block>
+                        </Head>
+                        }
+
+                        {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Table
                         && <Head caption = "Table">
 
@@ -595,56 +645,6 @@ class App extends React.Component {
                                 <BtnIcon>story</BtnIcon>
                                 <BtnIcon icon={faCaretDown} style={{ width: '100px' }} hint="no text"/>
                                 <BtnIcon className="wd-green">save</BtnIcon>
-                            </Block>
-                        </Head>
-                        }
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        {enabled.List
-                        && <Head caption="List">
-
-                            <Block>
-                                <List
-                                    list={
-                                        [
-                                            { id: 1, caption: 'item-1' },
-                                            {
-                                                id: 2,
-                                                caption: 'item-2',
-                                                childs: [
-                                                    { id: 21, caption: 'item-21' },
-                                                    {
-                                                        id: 22,
-                                                        caption: 'item-22',
-                                                        childs: [
-                                                            { id: 221, caption: 'item-221' },
-                                                            {
-                                                                id: 222,
-                                                                caption: 'item-222',
-                                                                childs: [
-                                                                    { id: 2221, caption: 'item-2221' },
-                                                                    { id: 2222, caption: 'item-2222' },
-                                                                    { id: 2223, caption: 'item-2223' },
-
-                                                                ],
-                                                            },
-                                                            { id: 223, caption: 'item-223' },
-                                                        ],
-                                                    },
-                                                    { id: 23, caption: 'item-23' },
-                                                ],
-                                            },
-                                            { id: 3, caption: 'item-3' },
-                                        ]}
-                                    setup={listSetup}
-                                    onClick={(o) => {
-                                        this.setState({
-                                            listSetup: {
-                                                ...map(listSetup, (val) => ({ ...val, active: false })),
-                                                [o.id]: { ...listSetup[o.id], active: true, expand: !(listSetup[o.id] && listSetup[o.id].expand) },
-                                            },
-                                        });
-                                    }}
-                                />
                             </Block>
                         </Head>
                         }

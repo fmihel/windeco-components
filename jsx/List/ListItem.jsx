@@ -15,7 +15,7 @@ export default function ListItem({
     return (
         <Gap
             count ={level}
-            addClass={`${className} `}
+            className={`${className} `}
             attr={{
                 ...(active ? { active: '' } : {}),
                 ...(expand ? { expand: '' } : {}),
