@@ -1,7 +1,5 @@
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useRef, useState } from 'react';
-import Collapse from './Collapse.jsx';
-// import getId from './Utils/getId.js';
 import DefaultLogo from './NavBar/NavLogo.jsx';
 import { navbars } from './Utils/navbar.js';
 
