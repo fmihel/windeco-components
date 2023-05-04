@@ -21,15 +21,19 @@
     $sep:'yes';
 
     $header:var(--v2-wd-header);
-    $header-color:var(--v2-wd-color);
+    $header-color:var(--v2-wd-color-high);
     $header-border:var(--v2-wd-border);
-    $header-sep:'yes';//yes / none
+    $header-sep:'none';//yes / none
 
     $font-size:var(--v2-wd-font-size);
     $gap:var(--v2-wd-gap);
 
     $select:var(--v2-wd-select);
     $select-color:var(--v2-wd-select-color);
+    $toggle:var(--v2-wd-toggle);
+    
+    $hover:var(--v2-wd-hover);
+    $hover-color:var(--v2-wd-hover-color);
 
     [table]{
     
@@ -74,9 +78,18 @@
             }
             tr{
                 //@include transition(background-color 0.2s,color 0.2s);
+                &:hover{
+                    //color:$hover-color !important;
+                    //background-color: $hover !important;
+                }
+                &:not(:last-child){
+                    &:nth-child(2n){
+                        //background-color: $toggle;
+                    }
+                }
                 &[select]{
-                    background-color: $select;
-                    color: $select-color;
+                    background-color: $select !important;
+                    color: $select-color !important;
                 }
                 &:first-child{
                     td{

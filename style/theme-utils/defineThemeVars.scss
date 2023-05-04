@@ -4,7 +4,7 @@
 
 @mixin defineThemeVars($maps:(),$theme:$wd-default-theme){
     $themeVars:();
-    @debug $theme , $wd-default-theme;
+    //@debug $theme , $wd-default-theme;
     @each $varName,$defaultValue in $defaults{
     
         @if ($varName != 'colors-to-rgb'){

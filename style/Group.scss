@@ -2,23 +2,23 @@
 @use "sass:math";
 
 @mixin define(){
-    $themes:$wd-themes;
-    $colors:$wd-color;
-    @each $theme in $themes{
-        #{getThemingRootClass($theme)}{
-           --g-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:-20%))};
-        };
-    };
+    //$themes:$wd-themes;
+    //$colors:$wd-color;
+    //@each $theme in $themes{
+//        #{getThemingRootClass($theme)}{
+           //--g-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:-20%))};
+        //};
+    //};
 
-    $bg:var(--wd-block);  
-    $fone:var(--wd-bg);
-    $color:var(--wd-color);
-    $border:var(--wd-border);
-    $font-size:var(--wd-font-size);
-    $gap:var(--wd-gap);
-    $radius:var(--wd-radius);
-    $size:var(--wd-size);
-    $g-color:var(--g-color);
+    $bg:var(--v2-wd-block);  
+    $fone:var(--v2-wd-bg);
+    $color:var(--v2-wd-color);
+    $border:var(--v2-wd-border);
+    $font-size:var(--v2-wd-font-size);
+    $gap:var(--v2-wd-gap);
+    $radius:var(--v2-wd-radius);
+    $size:var(--v2-wd-size);
+    $g-color:var(--v2-color-high);
 
     [type=group]{
         //overflow: hidden;
@@ -45,12 +45,19 @@
             border-radius: $radius;
         }
         
-        @include display-flex-vert-stretch();
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: stretch;    
+    
         >*{
 
             $pos:'up';
             &:nth-child(1){
-                @include no-stretch();
+                flex:0 1 auto;
+
                 @if ($pos=='up'){
                     //font-size: 0.8rem;
                     max-height:0;
@@ -83,7 +90,7 @@
                 padding: $gap;
                 padding-left: calc($gap * 2);
 
-                @include stretch();
+                flex:1 1 auto;
             }
         }
     }
