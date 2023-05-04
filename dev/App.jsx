@@ -8,7 +8,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
-    faAddressBook, faCaretDown,
+    faAddressBook, faAddressCard, faAdjust, faCaretDown,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { iEdit, iEdit16 } from './global';
@@ -494,8 +494,12 @@ class App extends React.Component {
                         && <Group caption="group1">
                             <Block >
                                 <Btn id="btn-test " >button</Btn>
+                                <Btn className='wd-flat'>button</Btn>
                                 <Btn className="wd-primary wd-flat no-border">wd-primary</Btn>
                                 <Btn className="wd-danger" hint="wd-danger hint">wd-danger</Btn>
+                                <BtnIcon icon={faAddressCard} hint="no text" className="wd-flat no-border">icon</BtnIcon>
+                                <BtnIcon icon={faAddressCard} hint="no text" className="wd-success">icon</BtnIcon>
+                                <BtnIcon icon={faAdjust} hint="no text" className="wd-warning wd-flat">icon</BtnIcon>
                             </Block>
                         </Group>
                         }

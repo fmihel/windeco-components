@@ -92,6 +92,15 @@
                 min-width:calc($size/2);
             }
         }
+
+        &.wd-flat{
+            background: rgba(0,0,0,0) !important;
+            &:hover{
+                background-color: $bg !important;
+                filter: brightness(var(--v2-wd-hovering));
+            }
+    
+        }    
     }
 
 }
