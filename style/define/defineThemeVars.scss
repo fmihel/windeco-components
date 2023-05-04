@@ -33,6 +33,10 @@
 
     @each $varName in $colors{
         $acolor:map-get($map:$defaults, $key:$varName );
+        @if (map-has-key($map:$maps,$key:$varName)){
+            $acolor:map-get($map:$maps, $key:$varName );
+        }
+        
         $r:color.red($acolor);
         $g:color.green($acolor);
         $b:color.blue($acolor);

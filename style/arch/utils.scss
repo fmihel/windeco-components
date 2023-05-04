@@ -1,0 +1,274 @@
+@use "sass:meta";
+@use "sass:math";
+@use "sass:color";
+@use "sass:map";
+@use "sass:string";
+
+// @include display-flex-horiz-stretch();
+@mixin display-flex-horiz-stretch(){
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+}
+// @include display-flex-vert-stretch();
+@mixin display-flex-vert-stretch {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;    
+}
+
+// @include display-flex-horiz-center();
+@mixin display-flex-horiz-center(){
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: center;
+}
+
+// @include display-flex-vert-center();
+@mixin display-flex-vert-center(){
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: center;
+}
+
+// @include display-flex-center();
+@mixin display-flex-center($direction:row){
+    display: flex;
+    flex-direction: $direction;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: stretch;
+    align-items: center;
+}
+
+// @include stretch();
+@mixin stretch($side:1){
+    flex: $side 1 auto;
+}
+
+// @include no-stretch();
+@mixin no-stretch(){
+    flex: 0 1 auto;
+}
+
+//@include transparent-border();
+@mixin transparent-border{
+    border:1px solid rgba(0,0,0,0); 
+}
+
+//@include transition(margin 0.2s);
+@mixin transition($x...){
+    -webkit-transition: $x;
+    -moz-transition: $x;
+    -ms-transition: $x;
+    -o-transition: $x;
+    transition: $x;
+}
+
+
+$wd-fonts-family:(
+    'arial':'Arial, sans-serif',
+    'arial-black':'Arial Black, sans-serif',
+    'comic':'Comic Sans MS, cursive',
+    'courier':'Courier New, monospace',
+    'franklin':'Franklin Gothic Medium, sans-serif',
+    'gothic':'Franklin Gothic Medium, sans-serif',
+    'georgia':'Georgia, serif',
+    'impact':'Impact, sans-serif',
+    'lucida':'Lucida Console, monospace',
+    'console':'Lucida Console, monospace',
+    'ms':'Microsoft Sans Serif, sans-serif',
+    'palatino':'Palatino Linotype, serif',
+    'sylfaen':'Sylfaen, serif',
+    'tahoma':'Tahoma, sans-serif',
+    'times':'Times New Roman, serif',
+    'trebuchet':'Trebuchet MS, sans-serif',
+    'verdana':'Verdana, sans-serif',
+    'roboto':'Roboto, sans-serif'
+);
+
+//@include font-family('arial');
+@function font-family($name:'roboto'){
+
+    @if map_has_key($wd-fonts-family,$name) {
+        @return #{map-get($wd-fonts-family, $name)};
+    }@else{
+        @debug --------------------------------------;
+        @warn 'font not exists ' $name ' set roboto';
+        @debug --------------------------------------;
+        @return #{map-get($wd-fonts-family, 'roboto')};
+        
+    }
+
+}
+
+@function blendColor($color:white,$theme:'dark',$args...){
+    $level:0;
+    $debug:'none';
+
+    @each $name, $mean in meta.keywords($args) {
+        @if ($name=='debug'){$debug:$mean;};
+        @if ($name=='theme'){$theme:$mean;};
+        @if ($name==$theme){$level:$mean};
+        @if ($name=='level'){
+            $level:$mean;
+            @if($theme=='dark'){
+                @if ($level>0){
+                    $level:-$level;
+                }@else{
+                    $level:math.abs($level);
+                }
+            }
+        };
+        @if ($name=='map'){
+            @each $key,$val in $mean{
+                @if($key==$theme){
+                    $level:$val;
+                }
+            }
+        }
+    }
+    @if( $level!=0 and string.index(#{$level},'%')==null){
+        @return $level;
+    }
+
+
+    //$color:map-get($colors,$theme);
+
+    @if($level==0){
+        @return $color;
+    };
+
+
+    @if ($level<0){
+        @if($debug!='none'){
+            @debug '<0' $level $color;
+        }
+            //@return color.change($color,$blackness:math.abs($level));
+        @return darken($color,math.abs($level));
+    }@else{
+        @if($debug!='none'){
+            @debug '>0' $level $color;
+        }
+            //@return color.change($color,$lightness:$level);
+        @return lighten($color,$level);
+    };
+    
+    @return $color;
+
+}
+//blendColors($colors:('light':red,'dark':blue),$theme:'dark',$light:5%,$dark:10%);
+//blendColors($colors:('light':red,'dark':blue),$theme:'dark',$light:yellow,$dark:-5%);
+//blendColors($colors:('light':red,'dark':blue),$theme:'dark',$level:5%);
+//blendColors($colors:('light':red,'dark':blue),$theme:'dark',$map:('light':yellow,'dark:-5%));
+//blendColors($colors:$XXXX,$theme:'dark',$light:5%,$dark:10%)
+@function blendColors($args...){
+    $colors:('light':#0D6EFD,'dark':#0E639C);
+    $theme:'dark';
+    $level:0;
+    $debug:'none';
+    @each $name, $mean in meta.keywords($args) {
+        @if ($name=='debug'){$debug:$mean;};
+        @if ($name=='theme'){$theme:$mean;};
+        @if ($name=='colors'){$colors:$mean;}; 
+        @if ($name==$theme){$level:$mean};
+        @if ($name=='level'){
+            $level:$mean;
+            @if($theme=='dark'){
+                @if ($level>0){
+                    $level:-$level;
+                }@else{
+                    $level:math.abs($level);
+                }
+            }
+        };
+        @if ($name=='map'){
+            @each $key,$val in $mean{
+                @if($key==$theme){
+                    $level:$val;
+                }
+            }
+        }
+    }
+    @if( $level!=0 and string.index(#{$level},'%')==null){
+        @return $level;
+    }
+
+    $color:map-get($colors,$theme);
+    
+    @if($level==0){
+        @return $color;
+    };
+
+    @if ($level<0){
+        //@return color.change($color,$blackness:math.abs($level));
+    
+        @return darken($color,math.abs($level));
+    }@else{
+        //@return color.change($color,$lightness:$level);
+        @return lighten($color,$level);
+    };
+    
+    @return $color;
+
+   
+}
+
+@function contrast-component($component){
+    $mid: 255 * 0.5;
+    @if($component>$mid){
+        @return 0;
+    }@else{
+        @return 255;
+    }
+};
+
+@function contrast($color,$light:white,$dark:black,$alpha:1){
+    
+    $out:$dark;
+    $r:contrast-component(color.red($color));
+    $g:contrast-component(color.green($color));
+    $b:contrast-component(color.blue($color));
+    @if (($r+$g+$b)*0.33 > 255 * 0.5){
+        $out:$light
+    }
+    @return color.change($color:$out,$alpha:$alpha); 
+};
+
+// ф-ция определения значения в зависимостит от темы  
+//  Ex:
+//    @each $theme in $wd-themes{
+//        #{getThemingRootClass($theme)}{
+//            --hov:#{meta.inspect(def($theme,$light:white,$dark:#293A4F) )};
+//            --bg2:#{meta.inspect(blendColors($colors:$wd-color,$theme:$theme ,$level:52%))};
+//        };
+//    }; 
+@function def($theme,$args...){
+    $last:'';
+    @each $name, $mean in meta.keywords($args) {
+        @if ($name==$theme){
+            @return $mean;
+        };
+        $last:$mean;
+    }
+    @return $last;
+}
+
+@function map-get-def($map,$name,$default){
+    @if(map-has-key($map: $map, $key: $name)){
+        @return map-get($map,$name);
+    }
+    @return $default;
+}

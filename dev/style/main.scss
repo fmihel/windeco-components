@@ -1,7 +1,9 @@
 @import '../../style/theme-default.scss';
 @import '../../style/theme-dark.scss';
+@import '../../style/utils.scss';
 
 @import './custom.scss';
+/*
 @import '../../style/ScrollBar.scss';
 @import '../../style/Icon.scss';
 @import '../../style/Btn.scss';
@@ -16,8 +18,10 @@
 @import '../../style/ModalDialog.scss';
 @import '../../style/ComboBox.scss';
 @import '../../style/List.scss';
+@import '../../style/Group.scss';
+*/
+@import '../../style/ctrls.scss';
 
-//@import '../../style/ctrls.scss';
 @import './pics.scss';
 @import './test-place.scss'; 
 @import './icons.scss';

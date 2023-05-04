@@ -1,8 +1,7 @@
 @use "sass:map";
 @use 'sass:meta';
 @use "sass:color";
-@import './utils/index.scss';
-@import './theme-utils/index.scss';
+@import './define/index.scss';
 
 $wd-default-theme:'light';
 $global-themes-vars:();
@@ -50,7 +49,6 @@ $defaults:(
     'padding':2px,
     'radius':0.25rem,
     'font-size':14px,
-    //'font-family':meta.inspect(font-family('verdana')),
     'font-family':font-family('verdana'),
 
     'hovering':0.95,
@@ -72,6 +70,7 @@ $defaults:(
     'url':#2C7BE5,
     
     'toggle':#e9edf1,    
+    'group':#FFFFFF,
 
     'colors-to-rgb':(
         'primary',
@@ -88,8 +87,8 @@ $defaults:(
         'blue',
         'orange',
         'color',
-        'bg'
-
+        'bg',
+        'border'
     )
 );
 

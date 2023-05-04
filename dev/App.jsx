@@ -30,6 +30,7 @@ import List from '../jsx/List.jsx';
 import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
 import NavBar from '../jsx/NavBar.jsx';
+import Group from '../jsx/Group.jsx';
 // import NavLogo from '../jsx/NavBar/NavLogo.jsx';
 // import NavMenu, { collapseMenus } from '../jsx/NavBar/NavMenu.jsx';
 import NavItem from '../jsx/NavBar/NavItem.jsx';
@@ -369,6 +370,7 @@ class App extends React.Component {
             CheckBox: true,
             Icon: true,
             Fonts: true,
+            Group: true,
         };
         return (
             <div>
@@ -461,7 +463,7 @@ class App extends React.Component {
                         {/* <div className='content wd-scrollbar'> */}
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Btn
-                        && <Head caption="Btn">
+                        && <Group caption="Btn">
                             <Block>
                                 <Btn id="btn-test" >button</Btn>
                                 <Btn className="wd-primary">wd-primary</Btn>
@@ -485,11 +487,21 @@ class App extends React.Component {
                                 <Btn className="wd-transparent">wd-transparent</Btn>
                                 <Btn className="wd-primary pic-bag">pic</Btn>
                             </Block>
-                        </Head>
+                        </Group>
+                        }
+                        {/*--------------------------------------------------------------------------------------------------*/}
+                        {enabled.Group
+                        && <Group caption="group1">
+                            <Block >
+                                <Btn id="btn-test " >button</Btn>
+                                <Btn className="wd-primary wd-flat no-border">wd-primary</Btn>
+                                <Btn className="wd-danger" hint="wd-danger hint">wd-danger</Btn>
+                            </Block>
+                        </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.List
-                        && <Head caption="List">
+                        && <Group caption="List">
 
                             <Block>
                                 <List
@@ -535,12 +547,12 @@ class App extends React.Component {
                                     }}
                                 />
                             </Block>
-                        </Head>
+                        </Group>
                         }
 
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Table
-                        && <Head caption = "Table">
+                        && <Group caption = "Table">
 
                             <Block hide={false} >
                                 <Table
@@ -571,11 +583,11 @@ class App extends React.Component {
                             />
                         </Block>
                     */}
-                        </Head>
+                        </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.TableFixed
-                        && <Head caption = "TableFixed">
+                        && <Group caption = "TableFixed">
                             <Block>
                                 <Btn onClick={this.onTableClear}>clear</Btn>
                                 <Btn onClick={this.onTableFill}>fill</Btn>
@@ -614,12 +626,12 @@ class App extends React.Component {
                             />
                         </Block>
                     */}
-                        </Head>
+                        </Group>
                         }
 
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.BtnIcon
-                        && <Head caption={'BtnIcon'}>
+                        && <Group caption={'BtnIcon'}>
                             <Block>
                                 <Btn>left</Btn>
                                 <BtnIcon className="wd-primary wd-flat">button presed test</BtnIcon>
@@ -643,11 +655,11 @@ class App extends React.Component {
                                 <BtnIcon icon={faCaretDown} style={{ width: '100px' }} hint="no text"/>
                                 <BtnIcon className="wd-green">save</BtnIcon>
                             </Block>
-                        </Head>
+                        </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.NavBar
-                        && <Head caption = "NavBar">
+                        && <Group caption = "NavBar">
                             <Block>
                                 <Btn onClick={() => {
                                     navbar('nav2').close();
@@ -668,19 +680,19 @@ class App extends React.Component {
                                     </NavBar>
                                 </div>
                             </Block>
-                        </Head>
+                        </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Dialog
-                        && <Head caption="Dialog">
+                        && <Group caption="Dialog">
                             <Block>
                                 {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
                             </Block>
-                        </Head>
+                        </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Text
-                        && <Head caption="Text">
+                        && <Group caption="Text">
                             <Block>
                                 <Text
                                     style={{ height: 70, width: '100%' }}
@@ -718,11 +730,11 @@ class App extends React.Component {
                                     resize={true}
                                 />
                             </Block>
-                        </Head>
+                        </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Container
-                        && <Head caption="Container">
+                        && <Group caption="Container">
                             <Block>
                                 <Container>
                                     <Col><Edit/></Col>
@@ -770,11 +782,11 @@ class App extends React.Component {
                                 </Container>
 
                             </Block>
-                        </Head>
+                        </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Collapse
-                        && <Head caption="Collapse">
+                        && <Group caption="Collapse">
                             <Block>
 
                                 <Btn style={{ marginBottom: 5 }}onClick={() => { this.setState({ collapseExpand: !collapseExpand }); }}>{collapseExpand ? 'expand=true' : 'expand=false'}</Btn>
@@ -792,11 +804,11 @@ class App extends React.Component {
                                     <div>item5</div>
                                 </Collapse>
                             </Block>
-                        </Head>
+                        </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.ComboBox
-                        && <Head caption="ComboBoxEx">
+                        && <Group caption="ComboBoxEx">
                             <Block>
                                 <ComboBoxEx
                                     id='cb1'
@@ -909,11 +921,11 @@ class App extends React.Component {
                                     />
                                 </Label>
                             </Block>
-                        </Head>
+                        </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Edit
-                        && <Head caption="Edit">
+                        && <Group caption="Edit">
                             <Block> <Edit id="tt" style={{ fontSize: '1.2em' }} onKeyPress={(o) => {
                                 console.log(o);
                             }}>text from child</Edit></Block>
@@ -940,11 +952,11 @@ class App extends React.Component {
                             <Block> <Label caption="readonly" id="ronl"><Edit id="ronl" value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
                             <Block> <Label caption="range" id="rng" ><Edit id="rng" value={5} type='number' min={0} max={10} step={1}/></Label></Block>
 
-                        </Head>
+                        </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Modal
-                        && <Head caption="Modal">
+                        && <Group caption="Modal">
                             <Block>
                                 <Btn onClick={() => { this.setState({ modalShow: true }); }} >show1</Btn>
                                 { <Modal
@@ -997,35 +1009,35 @@ class App extends React.Component {
                                 </Modal>
                                 }
                             </Block>
-                        </Head>
+                        </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.CheckBox
-                        && <Head caption="CheckBox">
+                        && <Group caption="CheckBox">
                             <Block> <CheckBox id="ch1" checked={values.ch1} onChange={this.onChangeEx}/></Block>
                             <Block> <Label id="ckb1" caption='check'><CheckBox id="ckb1" checked={values.ckb1} onChange={this.onChangeEx}/></Label></Block>
                             <Block> <Label caption='on change'><Btn onClick={() => { this.setState({ checked: 0 }); }} >on change false</Btn></Label></Block>
                             <Block> <Label caption='on change'><CheckBox checked={this.state.checked} onChange={() => { this.setState({ checked: 1 }); }}/></Label></Block>
                             <Block> <Label id="ckb-disabled" caption='disabled'><CheckBox id="ckb-disabled" checked={true} onChange={(o) => { console.log(o); }} disabled={true}/></Label></Block>
-                        </Head>
+                        </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Icon
-                        && <Head caption="Icon">
+                        && <Group caption="Icon">
                             <Block>
                                 <Icon icon={iEdit} className="icon-custom"/>
                                 <Icon icon={iEdit16}/>
                                 <Icon icon={'uncknown'} className="icon-custom"/>
                             </Block>
-                        </Head>
+                        </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Fonts
-                        && <Head caption="Fonts">
+                        && <Group caption="Fonts">
                             <Block>
                                 {fontsName.map((name, key) => <div key={key} className="font-line"><div>{name}</div><div className={`font-${name}`}>Короткий текст для примера.</div></div>)}
                             </Block>
-                        </Head>
+                        </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
                     </div>

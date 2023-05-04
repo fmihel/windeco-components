@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import global from '../jsx/global';
 import BtnIcon from '../jsx/BtnIcon.jsx';
 import Icon from '../jsx/Icon.jsx';
+import Group from '../jsx/Group.jsx';
 
 global.wd_large_width = 900;
 
@@ -25,5 +26,13 @@ Icon.global = {
         [iEdit]: { path: './media/edit.png', addClass: 'wd-icon' },
         [iEdit16]: { path: './media/edit16.png' },
 
+    },
+};
+
+Group.global = {
+    ...Group.global,
+    style: {
+        ...Group.global.style,
+        marginTop: 20,
     },
 };
