@@ -494,7 +494,7 @@ class App extends React.Component {
                         && <Group caption="group1">
                             <Block >
                                 <Btn id="btn-test" >button</Btn>
-                                <Btn className='wd-flat'>button</Btn>
+                                <BtnIcon className='wd-flat'>button</BtnIcon>
                                 <Btn className="wd-primary wd-flat no-border">wd-primary</Btn>
                                 <Btn className="wd-danger" hint="wd-danger hint">wd-danger</Btn>
                                 <BtnIcon icon={faAddressCard} hint="no text" className="wd-flat no-border">icon</BtnIcon>
