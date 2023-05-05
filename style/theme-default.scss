@@ -19,29 +19,15 @@ $defaults:(
     'red':#ff0000,
     'green':#008b14,
     'blue':#0D6EFD,
+    'white':#FFFFFF,
+    'black':#000000,
+    'gray':#808080,
     'orange':#FF8A00,
-
-    'primary-color':#e8edf3,
-    'danger-color':#e8edf3,
-    'warning-color':#e8edf3,
-    'secondary-color':#e8edf3,
-    'success-color':#e8edf3,
-    'info-color':#e8edf3,
-    'light-color':#0B1727,
-    'dark-color':#e8edf3,
-
-    'primary-flat-color':#2b92d7,
-    'danger-flat-color':#C32F3D,
-    'secondary-flat-color':#6C757D,
-    'success-flat-color':#008b14,
-    'warning-flat-color':#FF8A00,
-    'info-flat-color':#2C7BE5,
-    'light-flat-color':#83909F,
-    'dark-flat-color':#0B1727,
 
     'bg':#EDF2F9,
     'color':#5E6E82,
     'color-high':#282f38,
+    'color-down':#e8edf3,
 
     'size':32px,
     'gap':5px,
@@ -85,6 +71,9 @@ $defaults:(
         'red',
         'green',
         'blue',
+        'white',
+        'black',
+        'gray',
         'orange',
         'color',
         'bg',
@@ -116,11 +105,13 @@ $wd-bootstrap-maps:(
 @each $key in $wd-bootstrap-maps{
     .wd-#{$key}{
         background-color: var(--v2-wd-#{$key}) !important;
-        color: var(--v2-wd-#{$key}-color) !important;
+        @if (#{$key} !='light'){
+            color: var(--v2-wd-color-down) !important;
+        }
         &.wd-flat{
             background-color:rgba(0,0,0,0) !important;
-            border: 1px solid  var(--v2-wd-#{$key}) !important;
-            color: var(--v2-wd-#{$key}-flat-color) !important;
+            //border: 1px solid  var(--v2-wd-#{$key}) !important;
+            color: var(--v2-wd-#{$key}) !important;
         }
     }
 }

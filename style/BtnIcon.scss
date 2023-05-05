@@ -63,8 +63,8 @@
 
         &:hover{
             filter: brightness(var(--v2-wd-hovering));
-            //background-color:var(--btn-bg-hover);
-            //color:var(--btn-color-hover);
+            background-color:var(--btn-bg-hover);
+            color:var(--btn-color-hover);
         }
 
         >div{

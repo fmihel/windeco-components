@@ -1,11 +1,10 @@
 :root.dark{
     @include defineThemeVars((
-        'primary':#0E639C,
+        'primary':#2381c1,
         'secondary':#6C757D,
         'success':#017711,
-        'danger':#632323,
+        'danger':#F85149,
         'info':#2C7BE5,
-        'dark-flat-color':#9DA9BB,
 
         'bg':#0B1727,
         'color':#9DA9BB,
@@ -26,7 +25,7 @@
         'alert':#ff0000,
         'url':lime,
 
-        'toggle':#232F3F,            
+        'toggle':#192534,            
         'group':#121E2E,
     ),'dark');
 

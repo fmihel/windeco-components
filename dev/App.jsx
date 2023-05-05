@@ -493,7 +493,7 @@ class App extends React.Component {
                         {enabled.Group
                         && <Group caption="group1">
                             <Block >
-                                <Btn id="btn-test " >button</Btn>
+                                <Btn id="btn-test" >button</Btn>
                                 <Btn className='wd-flat'>button</Btn>
                                 <Btn className="wd-primary wd-flat no-border">wd-primary</Btn>
                                 <Btn className="wd-danger" hint="wd-danger hint">wd-danger</Btn>
