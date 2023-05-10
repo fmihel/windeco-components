@@ -1,4 +1,5 @@
 @use "sass:meta";
+@import './utils/transition.scss';
 
 @mixin define(){
     
@@ -14,7 +15,8 @@
     $margin:var(--v2-wd-margin);
     $radius:var(--v2-wd-radius);
 
-    input[type=button]{
+    //input[type=button]{
+    .wd-btn{
         min-height: $size;
         height:$size;
         cursor: pointer;
@@ -43,9 +45,9 @@
         }
 
         &.wd-flat{
-            background: rgba(0,0,0,0) !important;
+            background: rgba(0,0,0,0) ;
             &:hover{
-                background-color: $bg !important;
+                background-color: $bg ;
                 filter: brightness(var(--v2-wd-hovering));
             }
         }

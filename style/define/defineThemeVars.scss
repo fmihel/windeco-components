@@ -2,6 +2,10 @@
 @use 'sass:meta';
 @use "sass:color";
 
+$wd-default-theme:'light';
+$global-themes-vars:();
+
+
 @mixin defineThemeVars($maps:(),$theme:$wd-default-theme){
     $themeVars:();
     //@debug $theme , $wd-default-theme;

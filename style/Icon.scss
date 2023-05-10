@@ -3,7 +3,7 @@
 @mixin define(){
     $size:var(--v2-wd-size);
 
-    [type=icon]{
+    .wd-icon{
         outline: none;
         width:$size;
         height:$size;

@@ -42,9 +42,7 @@ export default function ListNode({
                         {(childs.length > 0)
                         && <Collapse
                             expand = {expand}
-                            attr={{
-                                list: '',
-                            }}
+                            attr = {{ list: '' }}
 
                         >
                             <ListNode

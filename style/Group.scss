@@ -18,7 +18,7 @@
     $size:var(--v2-wd-size);
     $g-color:var(--v2-color-high);
 
-    [group]{
+    .wd-group{
         //overflow: hidden;
         box-shadow:   0 3px 6px 0 rgba(0, 0, 0, 0.07);
         min-height: $size;
@@ -28,7 +28,7 @@
 
         border:1px solid  $border;
         font-size: $font-size;
-        margin: $gap;
+        //margin: $gap;
         border-radius: $radius;
         
         display: flex;

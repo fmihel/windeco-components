@@ -1,10 +1,11 @@
 import React from 'react';
 
+const definingCssClass = 'wd-text';
+
 function Text({
     id,
     value = undefined,
     className = Text.global.className,
-    addClass = '',
     attr = {},
     style = Text.global.style,
     placeholder = Text.global.placeholder,
@@ -20,8 +21,6 @@ function Text({
     children,
 
 }) {
-    if (addClass !== '') console.warn(`Text.addClass is deprecated, use className = ${addClass}`);
-
     const prepare = (aText, dom) => {
         if (rows > 0 && aText.length > 0 && cols > 0) {
             // console.log('at', { selectionStart: dom.selectionStart });
@@ -66,7 +65,8 @@ function Text({
     return (
         <textarea
             {...(id ? { id } : {})}
-            {...(className || addClass ? { className: `${className} ${addClass}` } : {})}
+            className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
+
             style={{
                 ...Text.global.style,
                 ...(resize ? {} : { resize: 'none' }),

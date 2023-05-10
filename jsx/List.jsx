@@ -2,6 +2,8 @@ import React from 'react';
 import ListItem from './List/ListItem.jsx';
 import ListNode from './List/ListNode.jsx';
 
+const definingCssClass = 'wd-list';
+
 function List({
     id = undefined,
     className = List.global.className,
@@ -20,9 +22,8 @@ function List({
 }) {
     return (
         <div
-            list = {''}
             {...(id ? { id } : {})}
-            {...(className ? { className: `${className}` } : {})}
+            className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
             style={{
                 ...List.global.style,
                 ...style,

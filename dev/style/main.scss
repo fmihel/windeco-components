@@ -1,7 +1,6 @@
-@import '../../style/theme-default.scss';
-@import '../../style/theme-dark.scss';
-@import '../../style/utils.scss';
-
+@import '../../style/index.scss';
+@import '../../style/utils/font-family.scss';
+@import '../../style/utils/no-border.scss';
 @import './custom.scss';
 /*
 @import '../../style/ScrollBar.scss';
@@ -20,7 +19,7 @@
 @import '../../style/List.scss';
 @import '../../style/Group.scss';
 */
-@import '../../style/ctrls.scss';
+//@import '../../style/ctrls.scss';
 
 @import './pics.scss';
 @import './test-place.scss'; 

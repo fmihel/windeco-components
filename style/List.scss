@@ -2,16 +2,6 @@
 @import './Gap.scss';
 
 @mixin define(){
-    //$themes:$wd-themes;
-    //$hovers:$wd-high;
-    //$hovers-color:$wd-color;
-
-    //@each $theme in $themes{
-    //    #{getThemingRootClass($theme)}{
-            //--btn-bg-hover:#{meta.inspect(blendColors($colors:$hovers,$theme:$theme,$level:-5%))};
-            //-btn-color-hover:#{meta.inspect(blendColors($colors:$hovers-color,$theme:$theme,$level:-20%))};
-    //    }   
-    //}
 
     $size:var(--v2-wd-size);
     $bg:var(--v2-wd-high);
@@ -27,14 +17,11 @@
     $tick:var(--v2-wd-tick);
     $invert:50%;//var(--cb-invert);
 
-    [list]{
+    .wd-list,[list]{
         box-sizing: border-box;
         overflow: hidden;
-        
-        >div{
-            //@include display-flex-horiz-stretch();
-        }
     }
+    
     .wd-list-item{
         min-height: $size;
         height:$size;

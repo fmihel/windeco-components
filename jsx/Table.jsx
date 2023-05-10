@@ -2,6 +2,8 @@ import React from 'react';
 import THead from './Table/THead.jsx';
 import TBody from './Table/TBody.jsx';
 
+const definingCssClass = 'wd-table';
+
 function Table({
     id,
     className = Table.global.className,
@@ -22,8 +24,7 @@ function Table({
     return (
 
         <table
-            table=''
-            {...(className ? { className } : {})}
+            className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
             {...(id ? { id } : {})}
             style={{ ...Table.global.style, ...style }}
         >

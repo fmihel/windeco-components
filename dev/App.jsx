@@ -479,7 +479,7 @@ class App extends React.Component {
                                 <Btn className="wd-danger wd-flat" hint="wd-danger hint">wd-danger</Btn>
                                 <Btn className="wd-secondary wd-flat">wd-secondary</Btn>
                                 <Btn className="wd-success wd-flat" hint="wd-danger hint">wd-success</Btn>
-                                <Btn className="wd-warning wd-flat">wd-warning</Btn>
+                                <Btn className="wd-warning wd-flat no-border">wd-warning</Btn>
                                 <Btn className="wd-info wd-flat">wd-info</Btn>
                                 <Btn className="wd-light wd-flat">wd-light</Btn>
                                 <Btn className="wd-dark wd-flat">wd-dark</Btn>
@@ -490,19 +490,14 @@ class App extends React.Component {
                         </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
-                        {enabled.Group
-                        && <Group caption="group1">
-                            <Block >
-                                <Btn id="btn-test" >button</Btn>
-                                <BtnIcon className='wd-flat'>button</BtnIcon>
-                                <Btn className="wd-primary wd-flat no-border">wd-primary</Btn>
-                                <Btn className="wd-danger" hint="wd-danger hint">wd-danger</Btn>
-                                <BtnIcon icon={faAddressCard} hint="no text" className="wd-flat no-border">icon</BtnIcon>
-                                <BtnIcon icon={faAddressCard} hint="no text" className="wd-success">icon</BtnIcon>
-                                <BtnIcon icon={faAdjust} hint="no text" className="wd-warning wd-flat">icon</BtnIcon>
+                        {enabled.Dialog
+                        && <Group caption="Dialog">
+                            <Block>
+                                {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
                             </Block>
                         </Group>
                         }
+
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.List
                         && <Group caption="List">
@@ -555,13 +550,100 @@ class App extends React.Component {
                         }
 
                         {/*--------------------------------------------------------------------------------------------------*/}
+                        {enabled.Edit
+                        && <Group caption="Edit">
+                            <Block> <Edit id="tt" style={{ fontSize: '1.2em' }} onKeyPress={(o) => {
+                                console.log(o);
+                            }}>text from child</Edit></Block>
+                            <Block> <Edit type="password" placeholder="set password" style={{ height: 18, minHeight: 18 }}/></Block>
+                            <Block> <Edit autoFocus value="text from value, and hint" title="title prop (hint deeprecated)"/></Block>
+
+                            <Block> <Edit
+                                id = 'edNeed'
+                                value = {values.edNeed}
+                                onChange = {this.onChangeEx}
+                                hint="обязательный ввод"
+                                placeholder="need text.."
+                                required={true}
+                                maxLength={10}
+                            />
+                            </Block>
+                            <Block> <Edit value="readonly" readonly={1} /></Block>
+                            <Block> <Edit value="disabled" disabled={1} visible={true}/></Block>
+                            <Block> <Edit id="edph" placeholder="set text" value={values.edph} onChange={this.onChangeEx}/></Block>
+                            <Block> <Label caption="label" id="myEdit100">
+                                <Edit id="myEdit100" value={values.myEdit100} onChange={this.onChangeEx}/>
+                            </Label></Block>
+                            <Block> <Label caption="pass" id="pass"><Edit id="pass" type="password" value="set text" /></Label></Block>
+                            <Block> <Label caption="readonly" id="ronl"><Edit id="ronl" value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
+                            <Block> <Label caption="range" id="rng" ><Edit id="rng" value={5} type='number' min={0} max={10} step={1}/></Label></Block>
+
+                        </Group>
+                        }
+                        {/*--------------------------------------------------------------------------------------------------*/}
+                        {enabled.Text
+                        && <Group caption="Text">
+                            <Block>
+                                <Text
+                                    style={{ height: 70, width: '100%' }}
+                                    placeholder="rows:4 cols:15 len:60"
+                                    title="rows:4 cols:15 len:60"
+                                    value={textValue2}
+                                    onChange={(o) => { this.setState({ textValue2: o.value }); }}
+                                    rows={4}
+                                    cols={15}
+                                />
+                            </Block>
+                            <Block>
+                                <Text
+                                    style={{ height: 30 }}
+                                    maxLength={20}
+                                    placeholder="set text, max 20 len.."
+                                    title="set text, max 20 len.."
+
+                                    onChange={(o) => { this.setState({ textValue: o.value }); }}
+                                    required={true}
+                                >{textValue}</Text>
+                            </Block>
+                            <Block>
+                                <Text
+                                    readonly={true}
+                                    title="readonly"
+                                >
+                                    {'readonly'}
+                                </Text>
+                            </Block>
+                            <Block>
+                                <Text
+                                    disabled={1}
+                                    value="disabled"
+                                    resize={true}
+                                />
+                            </Block>
+                        </Group>
+                        }
+                        {/*--------------------------------------------------------------------------------------------------*/}
+
+                        {enabled.Group
+                        && <Group caption="group1">
+                            <Block >
+                                <Btn id="btn-test" >button</Btn>
+                                <BtnIcon className='wd-flat'>button</BtnIcon>
+                                <Btn id="btn-my-btn" className="wd-my-btn no-border">my-btn</Btn>
+                                <Btn className="wd-primary wd-flat no-border">wd-primary</Btn>
+                                <Btn className="wd-danger" hint="wd-danger hint">wd-danger</Btn>
+                                <BtnIcon icon={faAddressCard} hint="no text" className="wd-flat no-border">icon</BtnIcon>
+                                <BtnIcon icon={faAddressCard} hint="no text" className="wd-success">icon</BtnIcon>
+                                <BtnIcon icon={faAdjust} hint="no text" className="wd-warning wd-flat">icon</BtnIcon>
+                            </Block>
+                        </Group>
+                        }
+                        {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Table
                         && <Group caption = "Table">
-
                             <Block hide={false} >
                                 <Table
                                     id='tab3'
-                                    className="wd-table"
                                     fields={fields}
                                     data={table}
                                     onClick={this.onClickTable}
@@ -575,7 +657,6 @@ class App extends React.Component {
                                         return value;
                                     }}
                                 />
-
                             </Block>
                             {/*
                         <Block addClass="container-for-table-fixed"style={{ height: 540 }}>
@@ -613,7 +694,11 @@ class App extends React.Component {
                                     footer={tableFooter}
                                     select={tableSelect}
                                     onDraw={({ value, col }) => {
-                                        if (col === 'AGE') return <div style={{ display: 'flex', alignItems: 'center' }}><div style={{ flex: '1 1 auto' }}>{value}</div><Btn id="btn-del">del</Btn></div>;
+                                        if (col === 'AGE') {
+                                            return (
+                                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                                    <div style={{ flex: '1 1 auto' }}>{value}</div><Btn id="btn-del">del</Btn></div>);
+                                        }
                                         return value;
                                     }}
 
@@ -683,56 +768,6 @@ class App extends React.Component {
                                         <NavItem/>
                                     </NavBar>
                                 </div>
-                            </Block>
-                        </Group>
-                        }
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        {enabled.Dialog
-                        && <Group caption="Dialog">
-                            <Block>
-                                {dialogs.map((name, key) => <Btn id={`dialog-btn-${name}`} key={key} onClick={() => { this.OpenDialog(name); }} value={name}/>)}
-                            </Block>
-                        </Group>
-                        }
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        {enabled.Text
-                        && <Group caption="Text">
-                            <Block>
-                                <Text
-                                    style={{ height: 70, width: '100%' }}
-                                    placeholder="rows:4 cols:15 len:60"
-                                    title="rows:4 cols:15 len:60"
-                                    value={textValue2}
-                                    onChange={(o) => { this.setState({ textValue2: o.value }); }}
-                                    rows={4}
-                                    cols={15}
-                                />
-                            </Block>
-                            <Block>
-                                <Text
-                                    style={{ height: 30 }}
-                                    maxLength={20}
-                                    placeholder="set text, max 20 len.."
-                                    title="set text, max 20 len.."
-
-                                    onChange={(o) => { this.setState({ textValue: o.value }); }}
-                                    required={true}
-                                >{textValue}</Text>
-                            </Block>
-                            <Block>
-                                <Text
-                                    readonly={true}
-                                    title="readonly"
-                                >
-                                    {'readonly'}
-                                </Text>
-                            </Block>
-                            <Block>
-                                <Text
-                                    disabled={1}
-                                    value="disabled"
-                                    resize={true}
-                                />
                             </Block>
                         </Group>
                         }
@@ -925,37 +960,6 @@ class App extends React.Component {
                                     />
                                 </Label>
                             </Block>
-                        </Group>
-                        }
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        {enabled.Edit
-                        && <Group caption="Edit">
-                            <Block> <Edit id="tt" style={{ fontSize: '1.2em' }} onKeyPress={(o) => {
-                                console.log(o);
-                            }}>text from child</Edit></Block>
-                            <Block> <Edit type="password" placeholder="set password" style={{ height: 18, minHeight: 18 }}/></Block>
-                            <Block> <Edit autoFocus value="text from value, and hint" title="title prop (hint deeprecated)"/></Block>
-
-                            <Block> <Edit
-                                id = 'edNeed'
-                                value = {values.edNeed}
-                                onChange = {this.onChangeEx}
-                                hint="обязательный ввод"
-                                placeholder="need text.."
-                                required={true}
-                                maxLength={10}
-                            />
-                            </Block>
-                            <Block> <Edit value="readonly" readonly={1} /></Block>
-                            <Block> <Edit value="disabled" disabled={1} visible={true}/></Block>
-                            <Block> <Edit id="edph" placeholder="set text" value={values.edph} onChange={this.onChangeEx}/></Block>
-                            <Block> <Label caption="label" id="myEdit100">
-                                <Edit id="myEdit100" value={values.myEdit100} onChange={this.onChangeEx}/>
-                            </Label></Block>
-                            <Block> <Label caption="pass" id="pass"><Edit id="pass" type="password" value="set text" /></Label></Block>
-                            <Block> <Label caption="readonly" id="ronl"><Edit id="ronl" value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
-                            <Block> <Label caption="range" id="rng" ><Edit id="rng" value={5} type='number' min={0} max={10} step={1}/></Label></Block>
-
                         </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}

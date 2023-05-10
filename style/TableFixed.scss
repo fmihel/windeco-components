@@ -1,16 +1,6 @@
 @use "sass:meta";
 
 @mixin define(){
-    //$themes:$wd-themes;
-    //$colors:$wd-color;
-    
-    //@each $theme in $themes{
-    //    #{getThemingRootClass($theme)}{
-    //       --tf-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:-20%))};
-    //       --tf-header-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:-20%))};
-    //       --tf-select-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$light:50%,$dark:20%))};
-    //    };
-    //};
 
     $size:2rem;
     $outline:'none';
@@ -33,7 +23,7 @@
 
     .wd-table-fixed-vert{
     }
-    [table-fixed]{
+    .wd-table-fixed{
         &[container=horiz]{
             @if ($outline != 'none'){
                 margin-top:1px;

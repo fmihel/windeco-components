@@ -1,16 +1,6 @@
 @use "sass:meta";
 
 @mixin define(){
-    //$themes:$wd-themes;
-    //$colors:$wd-color;
-    
-    //@each $theme in $themes{
-    //    #{getThemingRootClass($theme)}{
-    //       --tf-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:-20%))};
-    //       --tf-header-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$level:-20%))};
-    //       --tf-select-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$light:50%,$dark:20%))};
-    //    };
-    //};
 
     $size:2rem;
     $outline:'none';
@@ -35,7 +25,7 @@
     $hover:var(--v2-wd-hover);
     $hover-color:var(--v2-wd-hover-color);
 
-    [table]{
+    .wd-table{
     
         box-sizing: border-box;
         border-collapse: collapse;
@@ -88,8 +78,8 @@
                     }
                 }
                 &[select]{
-                    background-color: $select !important;
-                    color: $select-color !important;
+                    background-color: $select ;
+                    color: $select-color ;
                 }
                 &:first-child{
                     td{

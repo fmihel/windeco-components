@@ -1,5 +1,7 @@
 import React from 'react';
 
+const definingCssClass = 'wd-label';
+
 function Label({
     id,
     labelName,
@@ -11,8 +13,7 @@ function Label({
 }) {
     return (
         <div
-            type='label'
-            {...(className ? { className: `${className}` } : {})}
+            className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
         >
             <label
                 htmlFor={id || labelName}

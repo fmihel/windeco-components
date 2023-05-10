@@ -1,5 +1,7 @@
 import React from 'react';
 
+const definingCssClass = 'wd-checkbox';
+
 function CheckBox({
     id,
     checked = false,
@@ -22,7 +24,7 @@ function CheckBox({
         <input
             type="checkbox"
             {...(id ? { id } : {})}
-            {...(className ? { className: `${className}` } : {})}
+            className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
 
             onChange = {change}
             checked = {checked}

@@ -4,6 +4,8 @@ import Modal from './Modal.jsx';
 import ComboList from './ComboBox/ComboList.jsx';
 import ComboItem from './ComboBox/ComboItem.jsx';
 
+const definingCssClass = 'wd-combo';
+
 function ComboBox({
     id,
     className = ComboBox.global.className,
@@ -123,7 +125,7 @@ function ComboBox({
             <div
                 combo=''
                 {...(id ? { id } : {})}
-                {...(className ? { className: `${className}` } : {})}
+                className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
                 style={{ ...ComboBox.global.style, ...style }}
                 onClick = {click}
                 ref = {ref}

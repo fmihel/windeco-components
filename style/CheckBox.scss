@@ -18,7 +18,8 @@
     $icon-hover:var(--v2-wd-cross-hover);
     $icon:var(--v2-wd-cross);
 
-    input[type=checkbox] {
+    //input[type=checkbox] {
+    .wd-checkbox{
         -webkit-appearance: none;
         -moz-appearance: none;
         
@@ -51,16 +52,8 @@
         &:focus{
             outline:2px solid $outline;
         }
-}
+    }
 
-    //@each $theme in $themes{
-    //    :root.#{$theme} input[type=checkbox]{
-    //        &:checked{
-    //            background-image:url(#{map-get($icons,$theme)});
-    //        }
-//
-//        }
-//    } 
 }
 
 @include define();

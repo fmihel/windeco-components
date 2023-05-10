@@ -1,6 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 
+const definingCssClass = 'wd-group';
+
 function Group({
     id,
     className = Group.global.className,
@@ -12,7 +14,7 @@ function Group({
         <div
             group=''
             {...(id ? { id } : {})}
-            {...(className ? { className: `${className}` } : {})}
+            className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
             style={{ ...Group.global.style, ...style }}
         >
             { (caption)

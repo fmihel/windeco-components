@@ -1,6 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 
+const definingCssClass = 'wd-btn';
+
 export default function Btn({
     id = undefined,
     value,
@@ -15,7 +17,7 @@ export default function Btn({
         <input
             type="button"
             {...(id ? { id } : {})}
-            {...(className ? { className: `${className}` } : {})}
+            className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
             value={value || children || ''}
             onClick={onClick}
             {...(title || hint ? { title: title || hint } : {})}

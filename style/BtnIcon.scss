@@ -1,16 +1,7 @@
 @use "sass:meta";
+@import './utils/transition.scss';
 
 @mixin define(){
-   // $themes:$wd-themes;
-   // $hovers:$wd-high;
-   // $hovers-color:$wd-color;
-
-    //@each $theme in $themes{
-    //    #{getThemingRootClass($theme)} {
-            //--btn-bg-hover:#{meta.inspect(blendColors($colors:$hovers,$theme:$theme,$level:-5%))};
-            //--btn-color-hover:#{meta.inspect(blendColors($colors:$hovers-color,$theme:$theme,$level:-20%))};
-    //    }   
-    //}
 
     $size:var(--v2-wd-size);
     $bg:var(--v2-wd-high); 
@@ -23,7 +14,8 @@
     $radius:var(--v2-wd-radius);
 
 
-    [type="btn-icon"]{
+    //[type="btn-icon"]{
+    .wd-btn-icon{
         height:$size;
         cursor: pointer;
         background-color: $bg;
@@ -92,9 +84,9 @@
         }
 
         &.wd-flat{
-            background: rgba(0,0,0,0) !important;
+            background: rgba(0,0,0,0);
             &:hover{
-                background-color: $bg !important;
+                background-color: $bg;
                 filter: brightness(var(--v2-wd-hovering));
             }
     

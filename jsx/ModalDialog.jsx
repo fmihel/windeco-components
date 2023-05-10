@@ -8,6 +8,8 @@ import onResizeScreen from './Utils/onResizeScreen.js';
 import isCompact from './Utils/isCompact.js';
 import abs from './Utils/abs.js';
 
+const definingCssClass = 'wd-modal-dialog';
+
 function ModalDialog({
     id,
     visible = true,
@@ -177,11 +179,11 @@ function ModalDialog({
 
         ><>
                 <div
-                    modal-dialog={''}
+
                     style={{
                         ...ModalDialog.global.style, ...style, ...pos, ...size, visibility,
                     }}
-                    {...(className ? { className: `${className}` } : {})}
+                    className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
                     onMouseDown={mouseDown}
                 >
                     {(header)

@@ -23,8 +23,8 @@ Icon.global = {
     ...Icon.global,
     icons: {
         ...Icon.global.icons,
-        [iEdit]: { path: './media/edit.png', addClass: 'wd-icon' },
-        [iEdit16]: { path: './media/edit16.png' },
+        [iEdit]: { path: './media/edit.png' },
+        [iEdit16]: { path: './media/edit16.png', className: 'wd-icon-custom' },
 
     },
 };

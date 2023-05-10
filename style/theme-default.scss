@@ -1,10 +1,9 @@
 @use "sass:map";
 @use 'sass:meta';
 @use "sass:color";
-@import './define/index.scss';
+@import './define/defineThemeVars.scss';
 
-$wd-default-theme:'light';
-$global-themes-vars:();
+
 
 $defaults:(
     'primary':#0D6EFD,
@@ -104,14 +103,14 @@ $wd-bootstrap-maps:(
 
 @each $key in $wd-bootstrap-maps{
     .wd-#{$key}{
-        background-color: var(--v2-wd-#{$key}) !important;
+        background-color: var(--v2-wd-#{$key});
         @if (#{$key} !='light'){
-            color: var(--v2-wd-color-down) !important;
+            color: var(--v2-wd-color-down);
         }
         &.wd-flat{
-            background-color:rgba(0,0,0,0) !important;
+            background-color:rgba(0,0,0,0);
             //border: 1px solid  var(--v2-wd-#{$key}) !important;
-            color: var(--v2-wd-#{$key}) !important;
+            color: var(--v2-wd-#{$key});
         }
     }
 }

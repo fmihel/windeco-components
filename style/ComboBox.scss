@@ -1,5 +1,6 @@
 @use "sass:meta";
 @use "sass:math";
+@import './utils/transition.scss';
 
 @mixin define(){
     //$themes:$wd-themes;
@@ -34,7 +35,7 @@
     $radius:var(--v2-wd-radius);
     $placeholder:rgba(var(--v2-wd-color-rgb), 0.5);
 
-    [combo]{
+    .wd-combo{
         height:$size;
         width:100%;
         background-color: $bg;

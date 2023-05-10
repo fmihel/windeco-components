@@ -8,6 +8,8 @@ import DOM from './Utils/DOM.js';
 import getSize from './Utils/size.js';
 import Error from './Error/Error.jsx';
 
+const definingCssClass = 'wd-table-fixed';
+
 function TableFixed({
     id = undefined,
     className = TableFixed.global.className,
@@ -107,9 +109,8 @@ function TableFixed({
     return (
         <div
             id = {id}
-            table-fixed=''
             container = 'horiz'
-            {...(className ? { className } : {})}
+            className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
             ref = {ref}
         >
             {(header)
@@ -151,7 +152,7 @@ function TableFixed({
 }
 
 TableFixed.global = {
-    className: 'wd-table-fixed',
+    className: '',
     aliasId: 'ID',
     aliasAttr: '-attr-',
     header: true, // string true false

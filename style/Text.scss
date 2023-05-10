@@ -1,12 +1,1 @@
-@use "sass:meta";
-
-@mixin define(){
-    $size:var(--v2-wd-size);
-
-    [type=memo]{
-        box-sizing: border-box;
-        min-height:$size;
-    }
-}
-
-@include define();
+//@include './Edit.scss';

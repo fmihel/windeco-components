@@ -1,17 +1,8 @@
 @use "sass:meta";
+@import './utils/transition.scss';
 
 
 @mixin define(){
-
-    //$themes:$wd-themes;
-    //$colors:$wd-color;
-    
-    @each $theme,$colors in $global-themes-vars{
-        //#{getThemingRootClass(#{$theme})}{
-           //--ed-color:#{meta.inspect(blendColors($colors:$colors,$theme:$theme ,$level:-20%))};
-           //--ed-placeholder:#{meta.inspect(blendColors($colors:$colors,$theme:$theme,$light:20%,$dark:-40%))};
-        //};
-    };
 
     $size:var(--v2-wd-size);
     $font-size:var(--v2-wd-font-size);
@@ -36,12 +27,16 @@
             height: 100%;
         }
     }
+    /*
     textarea,
     input[type=number],
     input[type=text],
     input[type=password],
     input[type=email],
-    input[type=url]{
+    input[type=url]
+    */
+    .wd-text,
+    .wd-edit{
         height:$size;
             
         font-size:$font-size;
@@ -74,7 +69,7 @@
             //background-position-y: center;
             //border:1px solid $required !important;
             //background-size: $size*0.5;
-            background-color:$required !important;
+            background-color:$required;
             //border:1px solid $required !important;
         }
 

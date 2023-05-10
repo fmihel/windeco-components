@@ -1,5 +1,6 @@
 import React from 'react';
 
+const definingCssClass = 'wd-btn-icon';
 function BtnIcon({
     id,
     value,
@@ -17,7 +18,7 @@ function BtnIcon({
         <div
             type="btn-icon"
             {...(id ? { id } : {})}
-            {...(className ? { className: `${className}` } : {})}
+            className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
             onClick={onClick}
             tabIndex={0}
             {...(title || hint ? { title: title || hint } : {})}

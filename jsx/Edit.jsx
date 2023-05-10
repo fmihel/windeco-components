@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+const definingCssClass = 'wd-edit';
+
 function Edit({
     id,
     value,
@@ -10,7 +12,6 @@ function Edit({
     onKeyDown = undefined,
 
     className = Edit.global.className,
-    addClass = '',
     style = Edit.global.style,
 
     placeholder = '',
@@ -28,9 +29,6 @@ function Edit({
 
     children,
 }) {
-    if (addClass !== '') {
-        console.warn(`Edit.addClass is deprecated, use className = ${addClass}`);
-    }
     const [focused, setFocused] = useState(false);
 
     const change = (o) => {
@@ -80,7 +78,7 @@ function Edit({
         <input
             type={_type}
             {...(id ? { id } : {})}
-            {...(className || addClass ? { className: `${className} ${addClass}` } : {})}
+            className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
 
             value={val}
             onChange={change}
