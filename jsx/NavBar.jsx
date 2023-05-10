@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import DefaultLogo from './NavBar/NavLogo.jsx';
 import { navbars } from './Utils/navbar.js';
 
+const definingCssClass = 'wd-navbar';
+
 function NavBar({
     id,
     className = NavBar.global.className,
@@ -25,9 +27,9 @@ function NavBar({
     };
     const typeLogo = typeof Logo;
     return (
-        <div navbar=""
+        <div
             {...id ? { id } : {}}
-            {...className ? { className } : {}}
+            className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
             style={{ ...NavBar.global.style, ...style }}
             ref = {ref}
         >

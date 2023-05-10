@@ -463,7 +463,7 @@ class App extends React.Component {
                         {/* <div className='content wd-scrollbar'> */}
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Btn
-                        && <Group caption="Btn">
+                        && <Group caption="Btn" className='wd-secondary'>
                             <Block>
                                 <Btn id="btn-test" >button</Btn>
                                 <Btn className="wd-primary">wd-primary</Btn>

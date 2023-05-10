@@ -1,7 +1,7 @@
 import scheme:
 
 1) All
-@import '<COMPONENT-PATH>/style/all.scss'
+@import '<COMPONENT-PATH>/style/index.scss'
 
 
 
