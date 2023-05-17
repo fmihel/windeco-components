@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import DefaultLogo from './NavBar/NavLogo.jsx';
 import { navbars } from './Utils/navbar.js';
+import Collapse from './Collapse.jsx';
 
 const definingCssClass = 'wd-navbar';
 
@@ -31,6 +32,7 @@ function NavBar({
             {...id ? { id } : {}}
             className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
             style={{ ...NavBar.global.style, ...style }}
+            {...(!collapse ? { expand: '' } : {})}
             ref = {ref}
         >
             <div nav-panel="">
@@ -40,7 +42,7 @@ function NavBar({
                 <div nav-empty=""></div>
                 <div nav-btn="" onClick={navBtnClick}>&#8801;</div>
             </div>
-            <div nav-menu="" {...(!collapse ? { expand: '' } : {})}>
+            <div nav-menu="" >
                 {childs}
             </div>
         </div>
