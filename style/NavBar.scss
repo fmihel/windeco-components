@@ -49,6 +49,11 @@
             max-height: 80%;
         }
         
+        [nav-menu]{
+            overflow: hidden;
+            padding-left: $gap;
+            padding-right: $gap;
+        }        
         [nav-item]{
             cursor:default;
             min-height:$size;
@@ -121,29 +126,19 @@
                 display:none;
             }
         }
-        height: auto;
-        &[expand] {
-            //border:1px solid red;
-            //animation: 1s open-menu ease;
-            height: 100%;
-            [nav-menu]{
-                height:100%;
-                //min-height: auto !important;
-                //border: 1px solid red;
-                //animation: 1s open-menu ease;
-            }
-        }
+        
         [nav-menu]{
-            padding-left: $gap;
-            padding-right: $gap;            
+            
             overflow: auto;
-
             @include wd-scrollbar();        
 
             @include less-large{
                 height:0px;
             }
-            
+            &[expand]{
+                height:auto !important;
+                min-height: auto !important;
+            }
             //@include less-large{
                 /*
                 position: absolute;
@@ -209,12 +204,7 @@
         padding-right: $gap;    
         color:var(--wd-orange);
     }
-
-    @keyframes open-menu {
-        from { transform: translateY(-100%) }
-        to {  transform: translateY(-50%)}
-    }
-        
+    
 }
 
 

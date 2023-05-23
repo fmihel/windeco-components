@@ -10,10 +10,4 @@ import redux from 'REDUX';
 import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
 
-createRoot(document.getElementById('app')).render(
-    <React.StrictMode>
-        <Provider store={redux.store}>
-            <App />
-        </Provider>
-    </React.StrictMode>,
-);
+createRoot(document.getElementById('app')).render(<Provider store={redux.store}><App /></Provider>);
