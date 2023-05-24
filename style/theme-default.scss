@@ -7,7 +7,7 @@
 
 $defaults:(
     'primary':#0D6EFD,
-    'secondary':#6C757D,
+    'secondary':#868e94,
     'success':#008b14,
     'danger':#C32F3D,
     'warning':#FF8A00,
@@ -50,7 +50,7 @@ $defaults:(
     'header':#dee5ef,
     'deep':#FFFFFF,
     'transparent':rgba(0, 0, 0, 0),
-    'block':#F9FAFD,
+    'block':#f4f6f7,
     'alert':#ff0000,
     'url':#2C7BE5,
     
@@ -112,5 +112,12 @@ $wd-bootstrap-maps:(
             //border: 1px solid  var(--v2-wd-#{$key}) !important;
             color: var(--v2-wd-#{$key});
         }
+        &.only-text{
+            color: var(--v2-wd-#{$key});
+        }
     }
+    .wd-#{$key}-color{
+        color: var(--v2-wd-#{$key});
+    }
+    
 }

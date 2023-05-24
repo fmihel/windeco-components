@@ -51,6 +51,9 @@
                 filter: brightness(var(--v2-wd-hovering));
             }
         }
+        &.only-text{
+            background-color: $bg;
+        }
 
         
         

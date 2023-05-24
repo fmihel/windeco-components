@@ -8,7 +8,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
-    faAddressBook, faAddressCard, faAdjust, faCaretDown,
+    faAddressBook, faAddressCard, faAdjust, faCaretDown, faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { iEdit, iEdit16 } from './global';
@@ -474,6 +474,7 @@ class App extends React.Component {
                                 <Btn className="wd-info">wd-info</Btn>
                                 <Btn className="wd-light">wd-light</Btn>
                                 <Btn className="wd-dark">wd-dark</Btn>
+                                <br/><br/>
                                 <Btn className="wd-flat">wd-flat</Btn>
                                 <Btn className="wd-primary wd-flat">wd-primary</Btn>
                                 <Btn className="wd-danger wd-flat" hint="wd-danger hint">wd-danger</Btn>
@@ -483,6 +484,15 @@ class App extends React.Component {
                                 <Btn className="wd-info wd-flat">wd-info</Btn>
                                 <Btn className="wd-light wd-flat">wd-light</Btn>
                                 <Btn className="wd-dark wd-flat">wd-dark</Btn>
+                                <br/><br/>
+                                <Btn className="wd-primary only-text">wd-primary</Btn>
+                                <Btn className="wd-danger only-text" hint="wd-danger hint">wd-danger</Btn>
+                                <Btn className="wd-secondary-color">wd-secondary</Btn>
+                                <Btn className="wd-success-color" hint="wd-danger hint">wd-success</Btn>
+                                <Btn className="wd-warning-color">wd-warning</Btn>
+                                <Btn className="wd-info-color">wd-info</Btn>
+                                <Btn className="wd-light-color">wd-light</Btn>
+                                <Btn className="wd-dark-color">wd-dark</Btn>
 
                                 <Btn className="wd-transparent">wd-transparent</Btn>
                                 <Btn className="wd-primary pic-bag">pic</Btn>
@@ -490,6 +500,28 @@ class App extends React.Component {
                         </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
+                        {enabled.Group
+                        && <Group caption="group1">
+                            <Block >
+                                <Btn id="btn-test" >button</Btn>
+                                <BtnIcon className='wd-flat'>button</BtnIcon>
+                                <Btn id="btn-my-btn" className="wd-my-btn no-border">my-btn</Btn>
+                                <Btn className="wd-primary wd-flat no-border">wd-primary</Btn>
+                                <Btn className="wd-danger" hint="wd-danger hint">wd-danger</Btn>
+                                <BtnIcon icon={faAddressCard} hint="no text" className="wd-flat no-border">icon</BtnIcon>
+                                <BtnIcon icon={faAddressCard} hint="no text" className="wd-success">icon</BtnIcon>
+                                <BtnIcon icon={faAdjust} hint="no text" className="wd-warning wd-flat">icon</BtnIcon>
+                                <br/><br/>
+                                <BtnIcon icon={faAddressCard} hint="no text" className="wd-primary-color">icon</BtnIcon>
+                                <BtnIcon icon={faAddressCard} hint="no text" className="wd-success-color">icon</BtnIcon>
+                                <BtnIcon icon={faAdjust} hint="no text" className="wd-warning only-text">icon</BtnIcon>
+                                <BtnIcon icon={faTrashAlt} hint="no text" className="wd-danger-color">icon</BtnIcon>
+
+                            </Block>
+                        </Group>
+                        }
+                        {/*--------------------------------------------------------------------------------------------------*/}
+
                         {enabled.Dialog
                         && <Group caption="Dialog">
                             <Block>
@@ -624,21 +656,6 @@ class App extends React.Component {
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
 
-                        {enabled.Group
-                        && <Group caption="group1">
-                            <Block >
-                                <Btn id="btn-test" >button</Btn>
-                                <BtnIcon className='wd-flat'>button</BtnIcon>
-                                <Btn id="btn-my-btn" className="wd-my-btn no-border">my-btn</Btn>
-                                <Btn className="wd-primary wd-flat no-border">wd-primary</Btn>
-                                <Btn className="wd-danger" hint="wd-danger hint">wd-danger</Btn>
-                                <BtnIcon icon={faAddressCard} hint="no text" className="wd-flat no-border">icon</BtnIcon>
-                                <BtnIcon icon={faAddressCard} hint="no text" className="wd-success">icon</BtnIcon>
-                                <BtnIcon icon={faAdjust} hint="no text" className="wd-warning wd-flat">icon</BtnIcon>
-                            </Block>
-                        </Group>
-                        }
-                        {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Table
                         && <Group caption = "Table">
                             <Block hide={false} >
