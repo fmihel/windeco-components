@@ -18,6 +18,12 @@
             flex-direction: column;
         }
     }
+    .mobile{
+        .nav-container-#{$name}{ 
+            flex-direction: column;
+        }
+    }
+
     
 }
 
@@ -34,6 +40,19 @@
     $gap:var(--v2-wd-gap);
     $size-item:calc(var(--v2-wd-size)*0.8);
     $tick:var(--v2-wd-tick);
+    .mobile{
+        .wd-navbar{
+            [nav-menu]{
+                height:0px;
+            }
+            [nav-btn]{
+                display: block;
+            }
+            [nav-empty]{
+                display: block;
+            }
+        }
+    }
 
     .wd-navbar{
         min-width:250px;
@@ -49,11 +68,6 @@
             max-height: 80%;
         }
         
-        [nav-menu]{
-            overflow: hidden;
-            padding-left: $gap;
-            padding-right: $gap;
-        }        
         [nav-item]{
             cursor:default;
             min-height:$size;
@@ -129,6 +143,8 @@
         
         [nav-menu]{
             
+            padding-left: $gap;
+            padding-right: $gap;
             overflow: auto;
             @include wd-scrollbar();        
 
