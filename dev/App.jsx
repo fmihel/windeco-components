@@ -264,21 +264,23 @@ class App extends React.Component {
     }
 
     setLightTheme() {
+        storage.set('theme', 'light');
         theme.set('light');
     }
 
     setDarkTheme() {
+        storage.set('theme', 'dark');
         theme.set('dark');
     }
 
     onTheme(o) {
-        storage.set('theme-style', o.currentTarget.id);
-        this.setState({ theme: o.currentTarget.id });
+        // storage.set('theme-style', o.currentTarget.id);
+        // this.setState({ theme: o.currentTarget.id });
     }
 
     onSize(o) {
-        storage.set('theme-size', o.currentTarget.id);
-        this.setState({ size: o.currentTarget.id });
+        // storage.set('theme-size', o.currentTarget.id);
+        // this.setState({ size: o.currentTarget.id });
     }
 
     undefTheme(o) {
@@ -330,6 +332,11 @@ class App extends React.Component {
     navSelect(o) {
         console.log(o);
         this.setState({ navActive: o.id });
+    }
+
+    componentDidMount() {
+        // разовый вызов после первого рендеринга
+        theme.set(storage.get('theme', { default: 'light' }));
     }
 
     render() {
