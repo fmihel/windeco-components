@@ -68,7 +68,8 @@
             align-self: auto;
             margin-left:1px;
             margin-right:1px;
-            &:first-child(){
+            
+            &[icon]{
                 min-height:calc($size * 0.5);
                 min-width:calc($size * 0.5);
 
@@ -83,11 +84,13 @@
                     max-height: calc($size * 0.5);
                 }
             }
-            &:last-child(){
-                min-width:calc($size/2);
-            }
+            
             &[between]{
                 width:calc(var(--v2-wd-gap) * 0.5);
+            }
+
+            &[value]{
+                min-width:calc($size/2);
             }
         }
 

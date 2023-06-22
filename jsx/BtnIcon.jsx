@@ -39,13 +39,13 @@ function BtnIcon({
             {...attr}
         >
             {(showIcon)
-                && <div {...(iconClass ? { className: iconClass } : {})}>
+                && <div icon='' {...(iconClass ? { className: iconClass } : {})}>
                     {IconComponent && icon && <IconComponent icon={icon}/>}
                 </div>
             }
             {(between && showIcon && showText) && <div between=''></div>}
             {(showText)
-                && <div >{value || children}</div>
+                && <div value=''>{value || children}</div>
             }
         </div>
     );
