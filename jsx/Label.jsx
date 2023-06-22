@@ -8,8 +8,8 @@ function Label({
     caption = 'label',
     className = Label.global.className,
     style = Label.global.style,
+    attr = {},
     children,
-
 }) {
     return (
         <div
@@ -18,6 +18,7 @@ function Label({
             <label
                 htmlFor={id || labelName}
                 style={{ ...Label.global.style, ...style }}
+                {...attr}
             >
                 {caption}
             </label>

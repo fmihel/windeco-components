@@ -71,6 +71,7 @@ class App extends React.Component {
         this.setLightTheme = this.setLightTheme.bind(this);
         this.setDarkTheme = this.setDarkTheme.bind(this);
         this.navSelect = this.navSelect.bind(this);
+        this.onBtnClick = this.onBtnClick.bind(this);
         // общие параметры для диалогов
         const defaultDialogParam = {
             header: false,
@@ -333,6 +334,10 @@ class App extends React.Component {
         this.setState({ navActive: o.id });
     }
 
+    onBtnClick(o) {
+        console.log(o);
+    }
+
     componentDidMount() {
         // разовый вызов после первого рендеринга
         theme.set(storage.get('theme', { default: 'light' }));
@@ -471,7 +476,8 @@ class App extends React.Component {
                         {enabled.Btn
                         && <Group caption="Btn" >
                             <Block>
-                                <Btn id="btn-test" >button</Btn>
+                                <Btn id="btn-test" disabled={true} onClick={this.onBtnClick}>disabled</Btn>
+                                <Btn id="btn-test-2" onClick={this.onBtnClick}>button</Btn>
                                 <Btn className="wd-primary">wd-primary</Btn>
                                 <Btn className="wd-danger" hint="wd-danger hint">wd-danger</Btn>
                                 <Btn className="wd-secondary">wd-secondary</Btn>
@@ -518,8 +524,12 @@ class App extends React.Component {
                                 <BtnIcon icon={faAddressCard} hint="no text" className="wd-success">icon</BtnIcon>
                                 <BtnIcon icon={faAdjust} hint="no text" className="wd-warning wd-flat">icon</BtnIcon>
                                 <br/><br/>
-                                <BtnIcon icon={faAddressCard} hint="no text" className="wd-primary-color">icon</BtnIcon>
+                                <BtnIcon icon={faAddressCard} hint="no text" className="wd-primary-color" attr={{ disabled: true }} onClick={this.onBtnClick}>disabled</BtnIcon>
+                                <BtnIcon icon={faAddressCard} hint="no text" className="wd-primary-color" onClick={this.onBtnClick}>icon</BtnIcon>
+                                <BtnIcon icon={faAddressCard} hint="no text" className="wd-primary-color" onClick={this.onBtnClick}/>
+                                <BtnIcon hint="no icon" className="wd-primary-color" onClick={this.onBtnClick}>text</BtnIcon>
                                 <BtnIcon icon={faAddressCard} hint="no text" className="wd-success-color">icon</BtnIcon>
+                                <BtnIcon icon={faAddressCard} hint="no text" className="wd-success-color" between={false}>noBetween</BtnIcon>
                                 <BtnIcon icon={faAdjust} hint="no text" className="wd-warning only-text">icon</BtnIcon>
                                 <BtnIcon icon={faTrashAlt} hint="no text" className="wd-danger-color">icon</BtnIcon>
 

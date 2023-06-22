@@ -10,6 +10,7 @@ function NavBar({
     className = NavBar.global.className,
     style = { ...NavBar.global.style },
     Logo = undefined,
+    attr = {},
     children,
 }) {
     const [collapse, setCollapse] = useState(true);
@@ -32,6 +33,7 @@ function NavBar({
             className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
             style={{ ...NavBar.global.style, ...style }}
             ref = {ref}
+            {...attr}
         >
             <div nav-panel="">
                 {typeLogo === 'string' && <DefaultLogo caption={Logo}/>}

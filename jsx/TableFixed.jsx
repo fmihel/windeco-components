@@ -25,6 +25,7 @@ function TableFixed({
     onClick = undefined,
     onDoubleClick = undefined,
     onDraw = undefined,
+    attr = {},
 
 }) {
     if (id === undefined) {
@@ -112,6 +113,7 @@ function TableFixed({
             container = 'horiz'
             className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
             ref = {ref}
+            {...attr}
         >
             {(header)
                 && <Header

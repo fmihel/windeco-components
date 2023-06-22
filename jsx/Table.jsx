@@ -19,6 +19,7 @@ function Table({
     onClick = undefined,
     onDoubleClick = undefined,
     onDraw = undefined,
+    attr = {},
 
 }) {
     return (
@@ -27,6 +28,7 @@ function Table({
             className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
             {...(id ? { id } : {})}
             style={{ ...Table.global.style, ...style }}
+            {...attr}
         >
             {(header !== false) && <THead fields={fields} header={header}/>}
             {<TBody

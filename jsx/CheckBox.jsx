@@ -11,6 +11,7 @@ function CheckBox({
     hint = false,
     title = false,
     disabled = false,
+    attr = {},
     visible = true,
 }) {
     const change = ({ target }) => {
@@ -34,6 +35,7 @@ function CheckBox({
                 ...(visible ? {} : { display: 'none' }),
             }}
             {...(title || hint ? { title: title || hint } : {})}
+            {...attr}
         />
     );
 }

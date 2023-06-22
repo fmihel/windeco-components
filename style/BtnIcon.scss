@@ -56,7 +56,12 @@
         &:hover{
             filter: brightness(var(--v2-wd-hovering));
         }
-
+        &[disabled]{
+            opacity: 0.6;
+            &:hover{
+                filter:none;
+            }
+        }
         >div{
             order: 0;
             flex: 0 1 auto;
@@ -80,6 +85,9 @@
             }
             &:last-child(){
                 min-width:calc($size/2);
+            }
+            &[between]{
+                width:calc(var(--v2-wd-gap) * 0.5);
             }
         }
 

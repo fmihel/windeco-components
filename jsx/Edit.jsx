@@ -26,7 +26,7 @@ function Edit({
     step = undefined, // for type = range or number
     minLength = 0,
     maxLength = 0,
-
+    attr = {},
     children,
 }) {
     const [focused, setFocused] = useState(false);
@@ -99,7 +99,7 @@ function Edit({
 
             {...props}
             {...(title || hint ? { title: title || hint } : {})}
-
+            {...attr}
         />
     );
 }

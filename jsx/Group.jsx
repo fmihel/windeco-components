@@ -8,6 +8,7 @@ function Group({
     className = Group.global.className,
     style = Group.global.style,
     caption = '',
+    attr = {},
     children,
 }) {
     return (
@@ -16,6 +17,7 @@ function Group({
             {...(id ? { id } : {})}
             className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
             style={{ ...Group.global.style, ...style }}
+            {...attr}
         >
             { (caption)
                 && <div group-caption=''>

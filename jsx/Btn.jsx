@@ -11,6 +11,8 @@ export default function Btn({
     style = { ...Btn.global.style },
     hint = false,
     title = false,
+    disabled = false,
+    attr = {},
     children,
 }) {
     return (
@@ -22,7 +24,8 @@ export default function Btn({
             onClick={onClick}
             {...(title || hint ? { title: title || hint } : {})}
             style={{ ...Btn.global.style, ...style }}
-
+            disabled = {disabled}
+            {...attr}
         />
     );
 }

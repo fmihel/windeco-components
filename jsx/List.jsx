@@ -15,7 +15,7 @@ function List({
     aliasId = List.global.aliasId,
     aliasCaption = List.global.aliasCaption,
     aliasChilds = List.global.aliasChilds,
-
+    attr = {},
     setup = {},
     onClick = undefined,
     onDoubleClick = undefined,
@@ -28,6 +28,7 @@ function List({
                 ...List.global.style,
                 ...style,
             }}
+            {...attr}
         >
             <ListNode
                 list = {list}

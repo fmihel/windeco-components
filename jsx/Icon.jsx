@@ -9,6 +9,7 @@ export default function Icon({
     onClick = undefined,
     style = Icon.global.style,
     icons = Icon.global.icons,
+    attr = {},
 }) {
     return (
         <img
@@ -16,6 +17,7 @@ export default function Icon({
             className={definingCssClass + (className ? ` ${className}` : '') + ((icons[icon] && icons[icon].className) ? ` ${icons[icon].className}` : '')}
             onClick={onClick}
             style={ { ...style } }
+            {...attr}
         />
     );
 }

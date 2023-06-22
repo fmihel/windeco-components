@@ -54,6 +54,12 @@
         &.only-text{
             background-color: $bg;
         }
+        &[disabled]{
+            opacity: 0.6;
+            &:hover{
+                filter: none;
+            }
+        }
 
         
         

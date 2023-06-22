@@ -12,24 +12,41 @@ function BtnIcon({
     hint = '',
     title = '',
     style = {},
+    disabled = false,
+    between = true,
+    attr = {},
+
     children,
+
 }) {
+    const doClick = (o) => {
+        if (!disabled && !attr.disabled && onClick) {
+            onClick(o);
+        }
+    };
+    const showIcon = (iconClass || (IconComponent && icon));
+    const showText = (value || children);
     return (
         <div
             type="btn-icon"
             {...(id ? { id } : {})}
             className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
-            onClick={onClick}
-            tabIndex={0}
+            onClick={doClick}
+            {...(!disabled && !attr.disabled ? { tabIndex: 0 } : {})}
             {...(title || hint ? { title: title || hint } : {})}
             style={{ ...BtnIcon.global.style, ...style }}
+            disabled = {disabled}
+            {...attr}
         >
-
-            <div style = {{ display: (iconClass || (IconComponent && icon)) ? 'block' : 'none' }}className={`${iconClass ? ` ${iconClass}` : ''}`}>
-                {IconComponent && icon && <IconComponent icon={icon}/>}
-            </div>
-
-            <div style={{ display: (value || children) ? 'block' : 'none' }}>{value || children}</div>
+            {(showIcon)
+                && <div {...(iconClass ? { className: iconClass } : {})}>
+                    {IconComponent && icon && <IconComponent icon={icon}/>}
+                </div>
+            }
+            {(between && showIcon && showText) && <div between=''></div>}
+            {(showText)
+                && <div >{value || children}</div>
+            }
         </div>
     );
 }
@@ -38,6 +55,7 @@ BtnIcon.global = {
     IconComponent: undefined,
     style: {},
     className: '',
+    iconClass: '',
 
 };
 
