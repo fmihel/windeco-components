@@ -27,7 +27,6 @@ import Icon from '../jsx/Icon.jsx';
 import Label from '../jsx/Label.jsx';
 import Edit from '../jsx/Edit.jsx';
 import List from '../jsx/List.jsx';
-import Head from './jsx/Head.jsx';
 import Block from './jsx/Block.jsx';
 import NavBar from '../jsx/NavBar.jsx';
 import Group from '../jsx/Group.jsx';
@@ -470,7 +469,7 @@ class App extends React.Component {
                         {/* <div className='content wd-scrollbar'> */}
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Btn
-                        && <Group caption="Btn" className='wd-secondary'>
+                        && <Group caption="Btn" >
                             <Block>
                                 <Btn id="btn-test" >button</Btn>
                                 <Btn className="wd-primary">wd-primary</Btn>
