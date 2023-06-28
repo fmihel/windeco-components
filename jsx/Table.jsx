@@ -9,6 +9,7 @@ function Table({
     className = Table.global.className,
     aliasId = Table.global.aliasId,
     aliasAttr = Table.global.aliasAttr,
+    aliasSep = Table.global.aliasSep,
     data = [],
     fields = [],
     header = true, /// / string true false
@@ -36,6 +37,7 @@ function Table({
                 fields={fields}
                 aliasId={aliasId}
                 aliasAttr={aliasAttr}
+                aliasSep={aliasSep}
                 noData={noData}
                 footer = {footer}
                 select={select}
@@ -53,6 +55,7 @@ Table.global = {
     className: '',
     aliasId: 'ID',
     aliasAttr: '-attr-',
+    aliasSep: '-sep-',
     header: true, // string true false
     noData: 'no data', // string or false
     footer: 'end', // string ot false

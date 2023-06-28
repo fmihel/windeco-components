@@ -11,25 +11,40 @@ function TR({
     select = false,
     aliasId,
     aliasAttr,
+    aliasSep,
 }) {
     return (
-        <tr
-            {...(select ? { select: '' } : {})}
-            {...row[aliasAttr]}
-        >
-            {fields.map((field, i) => <TD
-                key = {field.name}
-                data = {data}
-                row = {row}
-                fieldName = {field.name}
-                value = {row[field.name]}
-                onClick = {onClick}
-                onDoubleClick={onDoubleClick}
-                onDraw = {onDraw}
-                aliasId = {aliasId}
+        <>
+            {(aliasSep in row)
+            && <tr
+                {...(aliasId in row ? { id: row[aliasId] } : {})}
+                {...row[aliasAttr]}
+                sep={''}
+            >
+                <td colSpan={fields.length}>{row[aliasSep]}</td>
+            </tr>
+            }
+            {!(aliasSep in row)
+            && <tr
 
-            />)}
-        </tr>
+                {...(aliasId in row ? { id: row[aliasId] } : {})}
+                {...(select ? { select: '' } : {})}
+                {...row[aliasAttr]}
+            >
+                {fields.map((field, i) => <TD
+                    key = {field.name}
+                    data = {data}
+                    row = {row}
+                    fieldName = {field.name}
+                    value = {row[field.name]}
+                    onClick = {onClick}
+                    onDoubleClick={onDoubleClick}
+                    onDraw = {onDraw}
+                    aliasId = {aliasId}
+
+                />)}
+            </tr>}
+        </>
     );
 }
 

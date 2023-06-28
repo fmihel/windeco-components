@@ -39,7 +39,7 @@ import isMobile from '../jsx/Utils/isMobile';
 // import Container from '../jsx/Container.jsx';
 // import Col from '../jsx/Container/Col.jsx';
 import {
-    table_long2, table_long,
+    table_long2, table_long, table_long3,
     combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4, combo_list5,
     icons,
 } from './data.js';
@@ -512,6 +512,40 @@ class App extends React.Component {
                         </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
+
+                        {enabled.Table
+                        && <Group caption = "Table">
+                            <Block hide={false} >
+                                <Table
+                                    id='tab3'
+                                    fields={table_long3.fields}
+                                    data={table_long3.data}
+                                    onClick={this.onClickTable}
+                                    onDoubleClick={(o) => { console.log('double', o); }}
+                                    header={tableHeader}
+                                    footer={tableFooter}
+                                    select={tableSelect}
+                                    style={{ width: '100%' }}
+                                    onDraw={({ value, col }) => {
+                                        if (col === 'AGE') return <div style={{ display: 'flex', alignItems: 'center' }}><div style={{ flex: '1 1 auto' }}>{value}</div><Btn id="btn-del">del</Btn></div>;
+                                        return value;
+                                    }}
+                                />
+                            </Block>
+                            {/*
+                        <Block addClass="container-for-table-fixed"style={{ height: 540 }}>
+                            <TableFixed
+                                id='tab2'
+                                fields={table_long2.fields}
+                                data={table_long2.data}
+                                onClick={this.onClickTableFixed}
+                            />
+                        </Block>
+                    */}
+                        </Group>
+                        }
+
+                        {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Group
                         && <Group caption="group1">
                             <Block >
@@ -668,39 +702,6 @@ class App extends React.Component {
                                     resize={true}
                                 />
                             </Block>
-                        </Group>
-                        }
-                        {/*--------------------------------------------------------------------------------------------------*/}
-
-                        {enabled.Table
-                        && <Group caption = "Table">
-                            <Block hide={false} >
-                                <Table
-                                    id='tab3'
-                                    fields={fields}
-                                    data={table}
-                                    onClick={this.onClickTable}
-                                    onDoubleClick={(o) => { console.log('double', o); }}
-                                    header={tableHeader}
-                                    footer={tableFooter}
-                                    select={tableSelect}
-                                    style={{ width: '100%' }}
-                                    onDraw={({ value, col }) => {
-                                        if (col === 'AGE') return <div style={{ display: 'flex', alignItems: 'center' }}><div style={{ flex: '1 1 auto' }}>{value}</div><Btn id="btn-del">del</Btn></div>;
-                                        return value;
-                                    }}
-                                />
-                            </Block>
-                            {/*
-                        <Block addClass="container-for-table-fixed"style={{ height: 540 }}>
-                            <TableFixed
-                                id='tab2'
-                                fields={table_long2.fields}
-                                data={table_long2.data}
-                                onClick={this.onClickTableFixed}
-                            />
-                        </Block>
-                    */}
                         </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}

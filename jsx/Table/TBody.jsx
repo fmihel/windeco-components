@@ -6,6 +6,7 @@ function TBody({
     fields = [],
     aliasId = 'ID',
     aliasAttr = '-attr-',
+    aliasSep = '-sep-',
     noData = 'no data',
     footer = 'end',
     select = [],
@@ -18,7 +19,7 @@ function TBody({
     return (
         <tbody>
             {(haveData) && data.map((row, i) => <TR
-                key = {(aliasId in row) ? row[aliasId] : i}
+                key = { aliasId in row ? row[aliasId] : i}
                 data = {data}
                 row={row}
                 fields={fields}
@@ -28,6 +29,7 @@ function TBody({
                 onDraw={onDraw}
                 aliasId = {aliasId}
                 aliasAttr = {aliasAttr}
+                aliasSep={ aliasSep }
 
             />)}
             {(!haveData && noData !== false) && <tr><td nodata='' colSpan={fields.length}>{noData}</td></tr>}
