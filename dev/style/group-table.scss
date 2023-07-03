@@ -1,0 +1,11 @@
+.group-table{
+    max-height: 400px;
+    [group-content]{
+        padding-left: var(--v2-wd-size);
+        padding-right: var(--v2-wd-size);
+        padding-top:0px ;
+        overflow: auto;
+        @include wd-scrollbar();
+
+    }
+}

@@ -20,6 +20,7 @@ import ComboItemIcon from '../jsx/ComboBox/ComboItemIcon.jsx';
 import CheckBox from '../jsx/CheckBox.jsx';
 import TableFixed from '../jsx/TableFixed.jsx';
 import Table from '../jsx/Table.jsx';
+import TableFlyHead from '../jsx/TableFlyHead.jsx';
 import ModalDialog from '../jsx/ModalDialog.jsx';
 import Modal from '../jsx/Modal.jsx';
 import Text from '../jsx/Text.jsx';
@@ -46,6 +47,7 @@ import {
 import map from '../jsx/Utils/map';
 import theme from '../jsx/Utils/theme';
 import navbar from '../jsx/Utils/navbar';
+
 // Icon.icons({
 // [iEdit]: './media/edit.png',
 // [iEdit16]: { path: './media/edit16.png' },
@@ -514,8 +516,9 @@ class App extends React.Component {
                         {/*--------------------------------------------------------------------------------------------------*/}
 
                         {enabled.Table
-                        && <Group caption = "Table">
-                            <Block hide={false} >
+                        && <Group caption = "Table" className="group-table">
+                            <div style={{ height: 300, border: '1px dashed red' }}></div>
+                            <TableFlyHead>
                                 <Table
                                     id='tab3'
                                     fields={table_long3.fields}
@@ -531,7 +534,40 @@ class App extends React.Component {
                                         return value;
                                     }}
                                 />
-                            </Block>
+                            </TableFlyHead>
+                            <Table
+                                id='tab33'
+                                fields={table_long3.fields}
+                                data={table_long3.data}
+                                onClick={this.onClickTable}
+                                onDoubleClick={(o) => { console.log('double', o); }}
+                                header={tableHeader}
+                                footer={tableFooter}
+                                select={tableSelect}
+                                style={{ width: '100%' }}
+                                onDraw={({ value, col }) => {
+                                    if (col === 'AGE') return <div style={{ display: 'flex', alignItems: 'center' }}><div style={{ flex: '1 1 auto' }}>{value}</div><Btn id="btn-del">del</Btn></div>;
+                                    return value;
+                                }}
+                            />
+                            <TableFlyHead cap="tab34">
+                                <Table
+                                    id='tab34'
+                                    fields={table_long3.fields}
+                                    data={table_long3.data}
+                                    onClick={this.onClickTable}
+                                    onDoubleClick={(o) => { console.log('double', o); }}
+                                    header={tableHeader}
+                                    footer={tableFooter}
+                                    select={tableSelect}
+                                    style={{ width: '100%' }}
+                                    onDraw={({ value, col }) => {
+                                        if (col === 'AGE') return <div style={{ display: 'flex', alignItems: 'center' }}><div style={{ flex: '1 1 auto' }}>{value}</div><Btn id="btn-del">del</Btn></div>;
+                                        return value;
+                                    }}
+                                />
+                            </TableFlyHead>
+
                             {/*
                         <Block addClass="container-for-table-fixed"style={{ height: 540 }}>
                             <TableFixed
@@ -542,6 +578,7 @@ class App extends React.Component {
                             />
                         </Block>
                     */}
+                            <div style={{ height: 500, border: '1px dashed red' }}></div>
                         </Group>
                         }
 
