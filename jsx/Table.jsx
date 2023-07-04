@@ -2,7 +2,7 @@ import React from 'react';
 import THead from './Table/THead.jsx';
 import TBody from './Table/TBody.jsx';
 
-const definingCssClass = 'wd-table';
+export const definingCssClass = 'wd-table';
 
 function Table({
     id,

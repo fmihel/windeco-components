@@ -517,8 +517,8 @@ class App extends React.Component {
 
                         {enabled.Table
                         && <Group caption = "Table" className="group-table">
-                            <div style={{ height: 300, border: '1px dashed red' }}></div>
-                            <TableFlyHead>
+
+                            <TableFlyHead className="hide-field">
                                 <Table
                                     id='tab3'
                                     fields={table_long3.fields}

@@ -8,4 +8,11 @@
         @include wd-scrollbar();
 
     }
+
+    .hide-field{
+        table{
+        #NAME{
+            color:red;
+        }}
+    }
 }
