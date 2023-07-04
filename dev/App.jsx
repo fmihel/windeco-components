@@ -521,6 +521,7 @@ class App extends React.Component {
                             <TableFlyHead className="hide-field">
                                 <Table
                                     id='tab3'
+                                    // className="hide-field"
                                     fields={table_long3.fields}
                                     data={table_long3.data}
                                     onClick={this.onClickTable}
@@ -550,7 +551,7 @@ class App extends React.Component {
                                     return value;
                                 }}
                             />
-                            <TableFlyHead cap="tab34">
+                            <TableFlyHead >
                                 <Table
                                     id='tab34'
                                     fields={table_long3.fields}

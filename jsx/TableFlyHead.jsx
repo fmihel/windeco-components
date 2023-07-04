@@ -5,10 +5,13 @@ import React, {
 import parentDOM from './Utils/parentDOM';
 import childDOM from './Utils/childDOM';
 import absPos from './Utils/abs';
-import Table, { definingCssClass } from './Table.jsx';
+import Table, { definingCssClass as definingCssClassTable } from './Table.jsx';
+
+export const definingCssClass = 'wd-table-fly-head';
 
 function TableFlyHead({
-    className = Table.global.className,
+    className = '',
+    classNameHead = Table.global.className,
     children,
 }) {
     const [pos, setPos] = useState({ left: 0, top: 0 });
@@ -98,11 +101,11 @@ function TableFlyHead({
         <>
             <div
                 ref={refHead}
-                className={`wd-table-fly-head${className ? ` ${className}` : ''}`}
-                style={{ ...pos }}
+                className={`${definingCssClass}${className ? ` ${className}` : ''}`}
+                style={{ ...pos, position: 'relative' }}
             >
                 <table
-                    className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
+                    className={`${definingCssClassTable}${classNameHead ? ` ${classNameHead}` : ''}`}
                     style={{ width }}>
                     <thead>
                         <tr>
