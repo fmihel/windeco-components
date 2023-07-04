@@ -38,7 +38,7 @@ class Theme {
 
                 if (index >= this.themes.length) index = 0;
 
-                theme = this.thems[index];
+                theme = this.themes[index];
             }
         }
 
