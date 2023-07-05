@@ -18,11 +18,12 @@ function TableFlyHead({
     children,
 }) {
     const [display, setDisplay] = useState(false);
-
     const [heads, setHeads] = useState([]);
     const [width, setWidth] = useState(false);
+
     const ref = useRef();
     const refHead = useRef();
+
     const tableDOM = () => {
         if (ref && ref.current) {
             return childDOM(ref.current)[0];
@@ -89,9 +90,12 @@ function TableFlyHead({
         cloneHeader();
         //---------------------------------
         const container = parentDOM(ref.current);
-        container.addEventListener('scroll', updatePos);
+        const scroll = () => {
+            updatePos();
+        };
+        container.addEventListener('scroll', scroll);
         const removeScroll = () => {
-            container.removeEventListener('scroll', updatePos);
+            container.removeEventListener('scroll', scroll);
         };
         return () => {
             removeScroll();
