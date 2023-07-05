@@ -10,18 +10,21 @@ import Table, { definingCssClass as definingCssClassTable } from './Table.jsx';
 export const definingCssClass = 'wd-table-fly-head';
 
 function TableFlyHead({
+    caption = '',
     className = '',
     classNameHead = Table.global.className,
+    classNameCaption = TableFlyHead.global.classNameCaption,
+    footerHeight = TableFlyHead.global.footerHeight,
     children,
 }) {
-    const [pos, setPos] = useState({ left: 0, top: 0 });
+    const [display, setDisplay] = useState(false);
+
     const [heads, setHeads] = useState([]);
     const [width, setWidth] = useState(false);
-
     const ref = useRef();
     const refHead = useRef();
     const tableDOM = () => {
-        if (ref) {
+        if (ref && ref.current) {
             return childDOM(ref.current)[0];
         }
         return undefined;
@@ -43,22 +46,35 @@ function TableFlyHead({
             })));
         }
     };
-    const updatePos = () => {
-        const tabFrame = ref.current;
-        const container = parentDOM(tabFrame);
-        const absTab = absPos(tabFrame);
-        const absContainer = absPos(container);
-        if (absTab.y < absContainer.y && absTab.y + absTab.h > absContainer.y) {
-            const childs = childDOM(container);
-            let off = 0;
-            childs.find((child) => {
-                if (child === refHead.current) {
-                    return true;
-                } off += absPos(child).h;
-            });
-            setPos({ left: 0, top: container.scrollTop - off });
-        } else {
-            setPos({ left: 0, top: 0, display: 'none' });
+
+    const getPos = () => {
+        if (ref && ref.current) {
+            const tabFrame = ref.current;
+            const container = parentDOM(tabFrame);
+            const absTab = absPos(tabFrame);
+            const absContainer = absPos(container);
+            if (absTab.y < absContainer.y && absTab.y + (absTab.h - footerHeight) > absContainer.y) {
+                const childs = childDOM(container);
+                let off = 0;
+                childs.find((child) => {
+                    if (child === refHead.current) {
+                        return true;
+                    } off += absPos(child).h;
+                });
+                return { left: 0, top: container.scrollTop - off, display: true };
+            }
+        }
+        return { left: 0, top: 0, display: false };
+    };
+    const updatePos = (newPos = false) => {
+        if (refHead && refHead.current) {
+            const current = newPos || getPos();
+            if (current.display && `${current.top}px` !== refHead.current.style.top) {
+                refHead.current.style.top = `${current.top}px`;
+            }
+            if (!(refHead.current.style.display === 'none') !== current.display) {
+                setDisplay(current.display);
+            }
         }
     };
     const updateSize = () => {
@@ -68,6 +84,7 @@ function TableFlyHead({
             clientHeight: o.dom.clientHeight,
         })));
     };
+
     useEffect(() => {
         cloneHeader();
         //---------------------------------
@@ -76,19 +93,32 @@ function TableFlyHead({
         const removeScroll = () => {
             container.removeEventListener('scroll', updatePos);
         };
-        //---------------------------------
-        updatePos();
         return () => {
             removeScroll();
         };
     }, [ref, refHead]);
+
+    // useEffect(() => {
+    //     cloneHeader();
+    //     const container = parentDOM(ref.current);
+    //     const h = setInterval(() => {
+    //         updatePos();
+    //         setScrollTop(container.scrollTop);
+    //     }, 10);
+    //     return () => {
+    //         clearInterval(h);
+    //     };
+    // }, [ref, refHead]);
 
     useEffect(() => {
         const observ = new ResizeObserver(() => {
             const table = tableDOM();
             if (table && table.clientWidth !== width) {
                 setWidth(table.clientWidth);
-                if (width !== false) updateSize();
+                if (width !== false) {
+                    updateSize();
+                    updatePos();
+                }
             }
         });
         observ.observe(ref.current);
@@ -99,11 +129,16 @@ function TableFlyHead({
     }, [heads, width, ref]);
     return (
         <>
+            {(caption && !display) && <div caption='' className={classNameCaption} >{caption}</div>}
+            <div ref = {ref} className={className}>{children}</div>
             <div
                 ref={refHead}
                 className={`${definingCssClass}${className ? ` ${className}` : ''}`}
-                style={{ ...pos, position: 'relative' }}
+                style={{
+                    ...(display ? {} : { display: 'none' }), position: 'relative',
+                }}
             >
+                {(caption) && <div caption='' className={classNameCaption}>{caption}</div>}
                 <table
                     className={`${definingCssClassTable}${classNameHead ? ` ${classNameHead}` : ''}`}
                     style={{ width }}>
@@ -124,9 +159,13 @@ function TableFlyHead({
                 </table>
 
             </div>
-            <div ref = {ref} className={className}>{children}</div>
+
         </>
     );
 }
+TableFlyHead.global = {
+    footerHeight: 64,
+    classNameCaption: 'wd-table-fly-caption',
+};
 
 export default TableFlyHead;

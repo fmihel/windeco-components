@@ -518,9 +518,13 @@ class App extends React.Component {
                         {enabled.Table
                         && <Group caption = "Table" className="group-table">
 
-                            <TableFlyHead className="hide-field">
+                            <TableFlyHead
+                                className="hide-field"
+                                caption = 'Fly header ---'
+                            >
                                 <Table
                                     id='tab3'
+
                                     // className="hide-field"
                                     fields={table_long3.fields}
                                     data={table_long3.data}
@@ -536,21 +540,25 @@ class App extends React.Component {
                                     }}
                                 />
                             </TableFlyHead>
-                            <Table
-                                id='tab33'
-                                fields={table_long3.fields}
-                                data={table_long3.data}
-                                onClick={this.onClickTable}
-                                onDoubleClick={(o) => { console.log('double', o); }}
-                                header={tableHeader}
-                                footer={tableFooter}
-                                select={tableSelect}
-                                style={{ width: '100%' }}
-                                onDraw={({ value, col }) => {
-                                    if (col === 'AGE') return <div style={{ display: 'flex', alignItems: 'center' }}><div style={{ flex: '1 1 auto' }}>{value}</div><Btn id="btn-del">del</Btn></div>;
-                                    return value;
-                                }}
-                            />
+
+                            <TableFlyHead >
+                                <Table
+                                    id='tab33'
+                                    fields={table_long3.fields}
+                                    data={table_long3.data}
+                                    onClick={this.onClickTable}
+                                    onDoubleClick={(o) => { console.log('double', o); }}
+                                    header={tableHeader}
+                                    footer={tableFooter}
+                                    select={tableSelect}
+                                    style={{ width: '100%' }}
+                                    onDraw={({ value, col }) => {
+                                        if (col === 'AGE') return <div style={{ display: 'flex', alignItems: 'center' }}><div style={{ flex: '1 1 auto' }}>{value}</div><Btn id="btn-del">del</Btn></div>;
+                                        return value;
+                                    }}
+                                />
+                            </TableFlyHead>
+
                             <TableFlyHead >
                                 <Table
                                     id='tab34'
@@ -579,7 +587,7 @@ class App extends React.Component {
                             />
                         </Block>
                     */}
-                            <div style={{ height: 500, border: '1px dashed red' }}></div>
+                            <div style={{ height: 1000, border: '1px dashed red' }}></div>
                         </Group>
                         }
 
