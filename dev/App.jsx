@@ -20,7 +20,6 @@ import ComboItemIcon from '../jsx/ComboBox/ComboItemIcon.jsx';
 import CheckBox from '../jsx/CheckBox.jsx';
 import TableFixed from '../jsx/TableFixed.jsx';
 import Table from '../jsx/Table.jsx';
-import TableFlyHead from '../jsx/TableFlyHead.jsx';
 import ModalDialog from '../jsx/ModalDialog.jsx';
 import Modal from '../jsx/Modal.jsx';
 import Text from '../jsx/Text.jsx';
@@ -47,6 +46,7 @@ import {
 import map from '../jsx/Utils/map';
 import theme from '../jsx/Utils/theme';
 import navbar from '../jsx/Utils/navbar';
+import OnResize from '../jsx/OnResize.jsx';
 
 // Icon.icons({
 // [iEdit]: './media/edit.png',
@@ -517,15 +517,16 @@ class App extends React.Component {
 
                         {enabled.Table
                         && <Group caption = "Table" className="group-table">
-
-                            <TableFlyHead
-                                className="hide-field"
-                                caption = 'Fly header ---'
+                            <OnResize
+                                debug = {true}
+                                rules={[
+                                    { width: 0, className: '' },
+                                    { width: 350, className: 'c100' },
+                                    { width: 700, className: 'c200' },
+                                ]}
                             >
                                 <Table
                                     id='tab3'
-
-                                    // className="hide-field"
                                     fields={table_long3.fields}
                                     data={table_long3.data}
                                     onClick={this.onClickTable}
@@ -539,55 +540,7 @@ class App extends React.Component {
                                         return value;
                                     }}
                                 />
-                            </TableFlyHead>
-
-                            <TableFlyHead >
-                                <Table
-                                    id='tab33'
-                                    fields={table_long3.fields}
-                                    data={table_long3.data}
-                                    onClick={this.onClickTable}
-                                    onDoubleClick={(o) => { console.log('double', o); }}
-                                    header={tableHeader}
-                                    footer={tableFooter}
-                                    select={tableSelect}
-                                    style={{ width: '100%' }}
-                                    onDraw={({ value, col }) => {
-                                        if (col === 'AGE') return <div style={{ display: 'flex', alignItems: 'center' }}><div style={{ flex: '1 1 auto' }}>{value}</div><Btn id="btn-del">del</Btn></div>;
-                                        return value;
-                                    }}
-                                />
-                            </TableFlyHead>
-
-                            <TableFlyHead >
-                                <Table
-                                    id='tab34'
-                                    fields={table_long3.fields}
-                                    data={table_long3.data}
-                                    onClick={this.onClickTable}
-                                    onDoubleClick={(o) => { console.log('double', o); }}
-                                    header={tableHeader}
-                                    footer={tableFooter}
-                                    select={tableSelect}
-                                    style={{ width: '100%' }}
-                                    onDraw={({ value, col }) => {
-                                        if (col === 'AGE') return <div style={{ display: 'flex', alignItems: 'center' }}><div style={{ flex: '1 1 auto' }}>{value}</div><Btn id="btn-del">del</Btn></div>;
-                                        return value;
-                                    }}
-                                />
-                            </TableFlyHead>
-
-                            {/*
-                        <Block addClass="container-for-table-fixed"style={{ height: 540 }}>
-                            <TableFixed
-                                id='tab2'
-                                fields={table_long2.fields}
-                                data={table_long2.data}
-                                onClick={this.onClickTableFixed}
-                            />
-                        </Block>
-                    */}
-                            <div style={{ height: 1000, border: '1px dashed red' }}></div>
+                            </OnResize>
                         </Group>
                         }
 

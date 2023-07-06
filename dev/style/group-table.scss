@@ -1,18 +1,13 @@
 .group-table{
-    max-height: 600px;
+    max-height: 400px;
     [group-content]{
-        padding-left: var(--v2-wd-size);
-        padding-right: var(--v2-wd-size);
-        padding-top:0px ;
+        padding: var(--v2-wd-size);
         overflow: auto;
         @include wd-scrollbar();
 
     }
 
-    .hide-field{
-        #NOTES{
-            color:red !important;
-            display: none;
-        }
-    }
+
+
+
 }
