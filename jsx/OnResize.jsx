@@ -1,14 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
+import abs from './Utils/abs';
 
 function Debug({
     className,
     currentClass,
 }) {
     const [width, setWidth] = useState(false);
+    const [left, setLeft] = useState(0);
+    const [top, setTop] = useState(0);
+
     const ref = useRef();
     useEffect(() => {
         const observ = new ResizeObserver(() => {
             if (ref.current) {
+                const pos = abs(ref.current);
+                setTop(pos.y);
+                setLeft(pos.x);
                 setWidth(ref.current.clientWidth);
             }
         });
@@ -17,23 +24,41 @@ function Debug({
             observ.disconnect();
         };
     }, [ref]);
-
+    const style = {
+        fontSize: '0.8rem',
+        color: 'white',
+        backgroundColor: '#993d3c',
+    };
     return (
-        <div
-            ref = {ref}
-            style={{
-                position: 'relative',
-                fontSize: '0.8rem',
-                textAlign: 'center',
-                top: -10,
-                paddingTop: 3,
-                paddingBottom: 3,
-                borderRadius: 12,
-                color: 'white',
-                backgroundColor: '#993d3c',
-            }}>
-            w:{width} class:{` ${className} ${currentClass}`}
-        </div>
+        <>
+            <div
+                ref = {ref}
+                style={{
+                    ...style,
+                    position: 'relative',
+                    textAlign: 'center',
+                    paddingTop: 3,
+                    paddingBottom: 3,
+                    borderRadius: 12,
+
+                }}>
+                w:{width} class:{` ${className} ${currentClass}`}
+            </div>
+
+            <div
+                style={{
+                    ...style,
+                    padding: 10,
+                    left: 10,
+                    top: 10,
+                    position: 'absolute',
+                    zIndex: 1000,
+                }}
+            >
+                <div>w:{width}</div>
+                <div>class:{` ${className} ${currentClass}`}</div>
+            </div>
+        </>
     );
 }
 function OnResize({

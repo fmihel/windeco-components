@@ -1,7 +1,8 @@
 .group-table{
     max-height: 400px;
     [group-content]{
-        padding: var(--v2-wd-size);
+        padding-left: var(--v2-wd-size);
+        padding-right: var(--v2-wd-size);
         overflow: auto;
         @include wd-scrollbar();
 
