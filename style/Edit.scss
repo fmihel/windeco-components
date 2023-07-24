@@ -35,9 +35,12 @@
     input[type=email],
     input[type=url]
     */
+    .wd-text{
+        padding-top: var(--v2-wd-gap);
+    }
     .wd-text,
     .wd-edit{
-        height:$size;
+        min-height:$size;
             
         font-size:$font-size;
         border:1px solid $border;

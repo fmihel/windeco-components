@@ -13,9 +13,9 @@
         flex-wrap: nowrap;
         justify-content: flex-start;
         align-content: stretch;
-        align-items: center;
+        align-items: flex-start;
 
-        height:$size;
+        min-height:$size;
 
         >*:nth-child(2){
             //flex:1 1 auto;

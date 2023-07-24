@@ -514,6 +514,86 @@ class App extends React.Component {
                         </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
+                        {enabled.Text
+                        && <Group caption="Text">
+                            <Block>
+                                <Label id='text-1'>
+                                    <Text
+                                        id='text-1'
+                                        style={{ height: 70, width: '100%' }}
+                                        placeholder="rows:4 cols:15 len:60"
+                                        title="rows:4 cols:15 len:60"
+                                        value={textValue2}
+                                        onChange={(o) => { this.setState({ textValue2: o.value }); }}
+                                        rows={4}
+                                        cols={15}
+                                    />
+                                </Label>
+                            </Block>
+                            <Block>
+                                <Text
+                                    style={{ height: 30 }}
+                                    maxLength={20}
+                                    placeholder="set text, max 20 len.."
+                                    title="set text, max 20 len.."
+
+                                    onChange={(o) => { this.setState({ textValue: o.value }); }}
+                                    required={true}
+                                >{textValue}</Text>
+                            </Block>
+                            <Block> <Label caption="label" id="myEdit100">
+                                <Edit id="myEdit100" value={values.myEdit100} onChange={this.onChangeEx}>text</Edit>
+                            </Label></Block>
+                            <Block>
+                                <Text
+                                    readonly={true}
+                                    title="readonly"
+                                >
+                                    {'readonly'}
+                                </Text>
+                            </Block>
+                            <Block>
+                                <Text
+                                    disabled={1}
+                                    value="disabled"
+                                    resize={true}
+                                />
+                            </Block>
+                        </Group>
+                        }
+                        {/*--------------------------------------------------------------------------------------------------*/}
+                        {enabled.Edit
+                        && <Group caption="Edit">
+                            <Block> <Edit id="tt" style={{ fontSize: '1.2em' }} onKeyPress={(o) => {
+                                console.log(o);
+                            }}>text from child</Edit></Block>
+                            <Block> <Edit type="password" placeholder="set password" style={{ height: 18, minHeight: 18 }}/></Block>
+                            <Block> <Edit autoFocus value="text from value, and hint" title="title prop (hint deeprecated)"/></Block>
+
+                            <Block> <Edit
+                                id = 'edNeed'
+                                value = {values.edNeed}
+                                onChange = {this.onChangeEx}
+                                hint="обязательный ввод"
+                                placeholder="need text.."
+                                required={true}
+                                maxLength={10}
+                            />
+                            </Block>
+                            <Block> <Edit value="readonly" readonly={1} /></Block>
+                            <Block> <Edit value="disabled" disabled={1} visible={true}/></Block>
+                            <Block> <Edit id="edph" placeholder="set text" value={values.edph} onChange={this.onChangeEx}/></Block>
+                            <Block> <Label caption="label" id="myEdit100">
+                                <Edit id="myEdit100" value={values.myEdit100} onChange={this.onChangeEx}/>
+                            </Label></Block>
+                            <Block> <Label caption="pass" id="pass"><Edit id="pass" type="password" value="set text" /></Label></Block>
+                            <Block> <Label caption="readonly" id="ronl"><Edit id="ronl" value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
+                            <Block> <Label caption="range" id="rng" ><Edit id="rng" value={5} type='number' min={0} max={10} step={1}/></Label></Block>
+
+                        </Group>
+                        }
+
+                        {/*--------------------------------------------------------------------------------------------------*/}
 
                         {enabled.Table
                         && <Group caption = "Table" className="group-table">
@@ -630,79 +710,6 @@ class App extends React.Component {
                         </Group>
                         }
 
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        {enabled.Edit
-                        && <Group caption="Edit">
-                            <Block> <Edit id="tt" style={{ fontSize: '1.2em' }} onKeyPress={(o) => {
-                                console.log(o);
-                            }}>text from child</Edit></Block>
-                            <Block> <Edit type="password" placeholder="set password" style={{ height: 18, minHeight: 18 }}/></Block>
-                            <Block> <Edit autoFocus value="text from value, and hint" title="title prop (hint deeprecated)"/></Block>
-
-                            <Block> <Edit
-                                id = 'edNeed'
-                                value = {values.edNeed}
-                                onChange = {this.onChangeEx}
-                                hint="обязательный ввод"
-                                placeholder="need text.."
-                                required={true}
-                                maxLength={10}
-                            />
-                            </Block>
-                            <Block> <Edit value="readonly" readonly={1} /></Block>
-                            <Block> <Edit value="disabled" disabled={1} visible={true}/></Block>
-                            <Block> <Edit id="edph" placeholder="set text" value={values.edph} onChange={this.onChangeEx}/></Block>
-                            <Block> <Label caption="label" id="myEdit100">
-                                <Edit id="myEdit100" value={values.myEdit100} onChange={this.onChangeEx}/>
-                            </Label></Block>
-                            <Block> <Label caption="pass" id="pass"><Edit id="pass" type="password" value="set text" /></Label></Block>
-                            <Block> <Label caption="readonly" id="ronl"><Edit id="ronl" value="readonly text in edit" dim={''} readonly={true}/></Label></Block>
-                            <Block> <Label caption="range" id="rng" ><Edit id="rng" value={5} type='number' min={0} max={10} step={1}/></Label></Block>
-
-                        </Group>
-                        }
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        {enabled.Text
-                        && <Group caption="Text">
-                            <Block>
-                                <Text
-                                    style={{ height: 70, width: '100%' }}
-                                    placeholder="rows:4 cols:15 len:60"
-                                    title="rows:4 cols:15 len:60"
-                                    value={textValue2}
-                                    onChange={(o) => { this.setState({ textValue2: o.value }); }}
-                                    rows={4}
-                                    cols={15}
-                                />
-                            </Block>
-                            <Block>
-                                <Text
-                                    style={{ height: 30 }}
-                                    maxLength={20}
-                                    placeholder="set text, max 20 len.."
-                                    title="set text, max 20 len.."
-
-                                    onChange={(o) => { this.setState({ textValue: o.value }); }}
-                                    required={true}
-                                >{textValue}</Text>
-                            </Block>
-                            <Block>
-                                <Text
-                                    readonly={true}
-                                    title="readonly"
-                                >
-                                    {'readonly'}
-                                </Text>
-                            </Block>
-                            <Block>
-                                <Text
-                                    disabled={1}
-                                    value="disabled"
-                                    resize={true}
-                                />
-                            </Block>
-                        </Group>
-                        }
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.TableFixed
                         && <Group caption = "TableFixed">
