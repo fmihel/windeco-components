@@ -82,7 +82,19 @@
         &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
             color: $placeholder;
         }
-    }   
+        &[error]{
+            border-color:var(--v2-wd-danger);
+            &:focus { 
+                //outline: 2px solid var(--v2-wd-danger);
+            }
+        }
+    }
+    .error-edit-msg{
+        overflow: hidden;
+        font-size: 0.8rem;
+        padding-left: var(--v2-wd-gap);
+        color:var(--v2-wd-danger);
+    }
 }
 
 @include define();

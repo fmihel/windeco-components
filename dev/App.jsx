@@ -581,9 +581,14 @@ class App extends React.Component {
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Edit
                         && <Group caption="Edit">
-                            <Block> <Edit id="tt" style={{ fontSize: '1.2em' }} onKeyPress={(o) => {
-                                console.log(o);
-                            }}>text from child</Edit></Block>
+                            <Block>
+                                <div className='wd-panel'>
+                                    <Btn>Error</Btn>
+                                </div>
+                                <Edit id="tt" style={{ fontSize: '1.2em' }} onKeyPress={(o) => {
+                                    console.log(o);
+                                }}>text from child</Edit>
+                            </Block>
                             <Block> <Edit type="password" placeholder="set password" style={{ height: 18, minHeight: 18 }}/></Block>
                             <Block> <Edit autoFocus value="text from value, and hint" title="title prop (hint deeprecated)"/></Block>
 
@@ -595,9 +600,10 @@ class App extends React.Component {
                                 placeholder="need text.."
                                 required={true}
                                 maxLength={10}
+                                error={'need text<br/>hqwdg qwj'}
                             />
                             </Block>
-                            <Block> <Edit value="readonly" readonly={1} /></Block>
+                            <Block> <Edit value="readonly" readonly={1} error={'text for error'}/></Block>
                             <Block> <Edit value="disabled" disabled={1} visible={true}/></Block>
                             <Block> <Edit id="edph" placeholder="set text" value={values.edph} onChange={this.onChangeEx}/></Block>
                             <Block> <Label caption="label" id="myEdit100">

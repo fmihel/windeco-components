@@ -18,6 +18,7 @@ function Edit({
     readonly = undefined,
     disabled = undefined,
     required = undefined,
+    error = undefined, // true or text for show error text
     title = '',
     hint = '',
     visible = true,
@@ -75,32 +76,36 @@ function Edit({
         _type = focused ? type : 'text';
     }
     return (
-        <input
-            type={_type}
-            {...(id ? { id } : {})}
-            className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
+        <>
+            <input
+                type={_type}
+                {...(id ? { id } : {})}
+                className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
 
-            value={val}
-            onChange={change}
-            onKeyUp={keyup}
-            onKeyDown={keydn}
-            // onKeyPress={keypress} deprected
-            onFocus={focus}
-            onBlur = {unfocus}
-            style={{
-                ...Edit.global.style,
-                ...style,
-                ...(visible ? {} : { display: 'none' }),
-            }}
-            {...(placeholder ? { placeholder } : {})}
-            {...(disabled ? { disabled: true } : {})}
-            {...(readonly ? { readOnly: 'readonly' } : {})}
-            {...((required && `${val}`.length === 0) ? { required: true } : {})}
+                value={val}
+                onChange={change}
+                onKeyUp={keyup}
+                onKeyDown={keydn}
+                // onKeyPress={keypress} deprected
+                onFocus={focus}
+                onBlur = {unfocus}
+                style={{
+                    ...Edit.global.style,
+                    ...style,
+                    ...(visible ? {} : { display: 'none' }),
+                }}
+                {...(placeholder ? { placeholder } : {})}
+                {...(disabled ? { disabled: true } : {})}
+                {...(readonly ? { readOnly: 'readonly' } : {})}
+                {...((required && `${val}`.length === 0) ? { required: true } : {})}
 
-            {...props}
-            {...(title || hint ? { title: title || hint } : {})}
-            {...attr}
-        />
+                {...props}
+                {...(title || hint ? { title: title || hint } : {})}
+                {...attr}
+                {...error ? { error: '' } : {}}
+            />
+            {(typeof error === 'string') && <div className="error-edit-msg" dangerouslySetInnerHTML = {{ __html: error }}></div>}
+        </>
     );
 }
 

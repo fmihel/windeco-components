@@ -22,7 +22,9 @@ function Label({
             >
                 {caption}
             </label>
-            {children}
+            <div stretch=''>
+                {children}
+            </div>
         </div>
     );
 }
