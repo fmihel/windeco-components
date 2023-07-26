@@ -36,7 +36,10 @@
     input[type=url]
     */
     .wd-text{
-        padding-top: var(--v2-wd-gap);
+        padding: var(--v2-wd-gap);
+    }
+    .wd-edit{
+        text-indent:$gap;
     }
     .wd-text,
     .wd-edit{
@@ -47,7 +50,7 @@
         border-radius: $radius;
         width:100%;
         background-color: $bg;
-        text-indent:$gap;
+        
 
         @if($margin!='none'){
             margin-right:$margin;

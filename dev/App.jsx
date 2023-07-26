@@ -30,6 +30,8 @@ import List from '../jsx/List.jsx';
 import Block from './jsx/Block.jsx';
 import NavBar from '../jsx/NavBar.jsx';
 import Group from '../jsx/Group.jsx';
+import StaticText from '../jsx/StaticText.jsx';
+
 // import NavLogo from '../jsx/NavBar/NavLogo.jsx';
 // import NavMenu, { collapseMenus } from '../jsx/NavBar/NavMenu.jsx';
 import NavItem from '../jsx/NavBar/NavItem.jsx';
@@ -565,6 +567,9 @@ class App extends React.Component {
                                 </Text>
                             </Block>
                             <Block>
+                                <StaticText className="mg" style={{ textAlign: 'center' }}>
+                                    static text out
+                                </StaticText>
                                 <Text
                                     disabled={1}
                                     value="disabled"

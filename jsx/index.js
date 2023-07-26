@@ -12,6 +12,7 @@ import RIcon from './Icon.jsx';
 import RList from './List.jsx';
 import RGroup from './Group.jsx';
 import ROnResize from './OnResize.jsx';
+import RStaticText from './StaticText.jsx';
 
 export default {
     Edit: REdit,
@@ -28,6 +29,7 @@ export default {
     List: RList,
     Group: RGroup,
     OnResize: ROnResize,
+    StaticText: RStaticText,
 };
 
 export const ComboBox = RComboBox;
@@ -44,3 +46,4 @@ export const Icon = RIcon;
 export const List = RList;
 export const Group = RGroup;
 export const OnResize = ROnResize;
+export const StaticText = RStaticText;
