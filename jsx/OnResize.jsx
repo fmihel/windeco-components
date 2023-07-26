@@ -70,6 +70,7 @@ function OnResize({
 }) {
     const ref = useRef();
     const [currentClass, setCurrentClass] = useState('');
+    const [opacity, setOpacity] = useState(0);
 
     useEffect(() => {
         const observ = new ResizeObserver(() => {
@@ -94,6 +95,7 @@ function OnResize({
                     // console.log('currentClass', currentClass, 'find', findClass);
                     setCurrentClass(findClass);
                 }
+                setOpacity(1);
             }
         });
         observ.observe(ref.current);
@@ -101,13 +103,13 @@ function OnResize({
             observ.disconnect();
         };
     }, [ref]);
-
     return (
         <div
             {...id ? { id } : {}}
             ref = {ref}
             { ...(className || currentClass) ? { className: `${className} ${currentClass}` } : ''}
-            {...debug ? { style: { border: '1px dashed #993d3c' } } : {}}
+            // {...debug ? { style: { border: '1px dashed #993d3c' } } : {}}
+            style={{ opacity, ...(debug ? { border: '1px dashed #993d3c' } : {}) } }
         >
             {debug ? <Debug currentClass={currentClass} className={className}/> : undefined}
             {children}

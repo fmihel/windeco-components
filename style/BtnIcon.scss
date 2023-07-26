@@ -16,6 +16,7 @@
 
     //[type="btn-icon"]{
     .wd-btn-icon{
+        overflow: hidden;
         height:$size;
         cursor: pointer;
         background-color: $bg;

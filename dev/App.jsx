@@ -499,17 +499,29 @@ class App extends React.Component {
                                 <Btn className="wd-light wd-flat">wd-light</Btn>
                                 <Btn className="wd-dark wd-flat">wd-dark</Btn>
                                 <br/><br/>
-                                <Btn className="wd-primary only-text">wd-primary</Btn>
-                                <Btn className="wd-danger only-text" hint="wd-danger hint">wd-danger</Btn>
-                                <Btn className="wd-secondary-color">wd-secondary</Btn>
-                                <Btn className="wd-success-color" hint="wd-danger hint">wd-success</Btn>
-                                <Btn className="wd-warning-color">wd-warning</Btn>
-                                <Btn className="wd-info-color">wd-info</Btn>
-                                <Btn className="wd-light-color">wd-light</Btn>
-                                <Btn className="wd-dark-color">wd-dark</Btn>
+                            </Block>
 
-                                <Btn className="wd-transparent">wd-transparent</Btn>
-                                <Btn className="wd-primary pic-bag">pic</Btn>
+                            <Block>
+                                <div className="wd-panel" right='' style={{ }}>
+                                    <Btn className="wd-primary only-text">wd-primary</Btn>
+                                    <Btn className="wd-danger only-text" hint="wd-danger hint">wd-danger</Btn>
+                                    <Btn className="wd-secondary-color">wd-secondary</Btn>
+                                    <Btn className="wd-success-color" hint="wd-danger hint">wd-success</Btn>
+                                    <Btn className="wd-warning-color">wd-warning</Btn>
+                                    <Btn className="wd-info-color">wd-info</Btn>
+                                    <Btn className="wd-light-color">wd-light</Btn>
+                                    <Btn className="wd-dark-color">wd-dark</Btn>
+
+                                    <Btn className="wd-transparent">wd-transparent</Btn>
+                                    <Btn className="wd-primary pic-bag">pic</Btn>
+                                </div>
+                            </Block>
+                            <Block>
+                                <div className="wd-panel" filled='' style={{ border: '1px dashed red' }}>
+                                    <div style={{ border: '1px dashed blue', width: 32 }}></div>
+                                    <div style={{ border: '1px dashed white' }} stretch='' className="mg"></div>
+                                    <div style={{ border: '1px dashed green', width: 32 }}></div>
+                                </div>
                             </Block>
                         </Group>
                         }
