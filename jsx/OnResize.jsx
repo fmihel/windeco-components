@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+    useEffect, useRef, useState, forwardRef,
+} from 'react';
 import abs from './Utils/abs';
 
 function Debug({
@@ -61,14 +63,15 @@ function Debug({
         </>
     );
 }
-function OnResize({
+const OnResize = forwardRef(({
     id = false,
     className = '',
     rules = [], // [{width,className}] [{width:0,className:'def1'},{width:100,className:'def2}] || (({width})=> { return 'className'} )
     debug = false,
+    onResize = undefined,
     children,
-}) {
-    const ref = useRef();
+}, fRef) => {
+    const ref = fRef || useRef();
     const [currentClass, setCurrentClass] = useState('');
     const [opacity, setOpacity] = useState(0);
 
@@ -96,6 +99,9 @@ function OnResize({
                     setCurrentClass(findClass);
                 }
                 setOpacity(1);
+                if (onResize) {
+                    onResize({ width });
+                }
             }
         });
         observ.observe(ref.current);
@@ -115,6 +121,6 @@ function OnResize({
             {children}
         </div>
     );
-}
+});
 
 export default OnResize;
