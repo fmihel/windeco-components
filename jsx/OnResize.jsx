@@ -108,7 +108,7 @@ const OnResize = forwardRef(({
         return () => {
             observ.disconnect();
         };
-    }, [ref]);
+    }, [ref, onResize]);
     return (
         <div
             {...id ? { id } : {}}
