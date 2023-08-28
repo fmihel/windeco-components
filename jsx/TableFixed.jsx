@@ -21,7 +21,7 @@ function TableFixed({
     header = true, /// / string true false
     noData = TableFixed.global.noData,
     footer = TableFixed.global.footer,
-    select = [],
+    select = false,
     onClick = undefined,
     onDoubleClick = undefined,
     onDraw = undefined,
@@ -34,17 +34,17 @@ function TableFixed({
     const [size, setSize] = useState({ width: 0, height: 0 });
     const [widths, setWidths] = useState([]);
     const [border, setBorder] = useState('');
-    const [updater, setUpdater] = useState(0);
 
     const ref = useRef(null);
-    const updateWidths = () => {
-        setUpdater(updater + 1);
-    };
+    const refTable = useRef(null);
+
     useEffect(() => {
-        const tableDOM = DOM(`#table-${id}`);
-        if (tableDOM) {
+        if (refTable.current) {
+            const tableDOM = refTable.current;
+
             if (header === true) {
                 const newWidths = culcWidths(tableDOM, size);
+
                 if (!isWidthsEmpty(newWidths)) {
                     setWidths(newWidths);
                 }
@@ -58,40 +58,27 @@ function TableFixed({
             const newWidths = fields.map(() => midWidth);
             setWidths(newWidths);
         }
-    }, [data, fields, ref, id, size, header, updater, select]);
+    }, [refTable, size, header, data, fields, select]);
 
     useEffect(() => {
-        const tableDOM = DOM(`#table-${id}`);
-        if (tableDOM) {
+        if (refTable.current) {
+            const tableDOM = refTable.current;
             setBorder((data.length && haveScrollBar(tableDOM, tableDOM.parentNode)) ? 'right bottom' : '');
         } else if (data.length === 0) {
             setBorder('right bottom left');
         } else {
             setBorder('');
         }
-    }, [size, data]);
+    }, [size, data, refTable]);
 
     useEffect(() => {
-        let throttle = false;
-        const resize = () => {
-            if (!throttle) {
-                throttle = true;
-                setTimeout(() => {
-                    if (ref && ref.current) {
-                        setSize(getSize(ref.current));
-                    }
-                    throttle = false;
-                }, 50);
-            }
-        };
-        const newObserv = new ResizeObserver(() => {
-            resize();
-            resize();
+        const observ = new ResizeObserver(() => {
+            setSize(getSize(ref.current));
         });
-        newObserv.observe(ref.current);
-        resize();
+        observ.observe(ref.current);
+
         return () => {
-            newObserv.disconnect();
+            observ.disconnect();
         };
     }, [ref, header, data]);
 
@@ -99,13 +86,11 @@ function TableFixed({
         if (onClick) {
             onClick(o);
         }
-        updateWidths();
     };
     const dblclick = (o) => {
         if (onDoubleClick) {
             onDoubleClick(o);
         }
-        updateWidths();
     };
     return (
         <div
@@ -136,10 +121,11 @@ function TableFixed({
                     data={data}
                     fields={fields}
                     footer={footer}
-                    select={select}
+                    select={select || []}
                     onClick={click}
                     onDoubleClick={dblclick}
                     onDraw={onDraw}
+                    ref = {refTable}
                 />
                 }
                 {(data.length === 0 && noData)
