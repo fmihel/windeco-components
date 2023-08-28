@@ -31,7 +31,12 @@ function Table({
             style={{ ...Table.global.style, ...style }}
             {...attr}
         >
-            {(header !== false) && <THead fields={fields} header={header}/>}
+            {(header !== false)
+                && <THead
+                    fields={fields}
+                    header={header}
+                    aliasAttr={aliasAttr}
+                />}
             {<TBody
                 data={data}
                 fields={fields}

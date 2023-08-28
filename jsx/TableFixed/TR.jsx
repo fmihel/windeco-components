@@ -34,7 +34,7 @@ function TR({
                     onClick={onClick}
                     onDoubleClick={onDoubleClick}
                     onDraw={onDraw}
-
+                    attrs={{ ...(field[aliasAttr] ? { ...field[aliasAttr] } : {}) }}
                 />))}
         </tr>
     );

@@ -9,6 +9,7 @@ function TD({
     onDoubleClick,
     onDraw,
     aliasId,
+    attrs,
 }) {
     const click = () => {
         if (onClick) {
@@ -28,8 +29,8 @@ function TD({
         <td
             onClick={click}
             onDoubleClick= {doubleClick}
-
             id={fieldName}
+            {...(attrs ? { ...attrs } : {})}
         >
             {onDraw ? onDraw({
                 sender: 'td',

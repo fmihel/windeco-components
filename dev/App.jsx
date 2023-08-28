@@ -529,6 +529,37 @@ class App extends React.Component {
                         </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
+
+                        {enabled.Table
+                        && <Group caption = "Table" className="group-table">
+                            <OnResize
+                                debug = {false}
+                                rules={[
+                                    { width: 0, className: '' },
+                                    { width: 350, className: 'c100' },
+                                    { width: 700, className: 'c200' },
+                                ]}
+                            >
+                                <Table
+                                    id='tab33'
+                                    fields={table_long3.fields}
+                                    data={table_long3.data}
+                                    onClick={this.onClickTable}
+                                    onDoubleClick={(o) => { console.log('double', o); }}
+                                    header={tableHeader}
+                                    footer={tableFooter}
+                                    select={tableSelect}
+                                    style={{ width: '100%' }}
+                                    onDraw={({ value, col }) => {
+                                        if (col === 'AGE') return <div style={{ display: 'flex', alignItems: 'center' }}><div style={{ flex: '1 1 auto' }}>{value}</div><Btn id="btn-del">del</Btn></div>;
+                                        return value;
+                                    }}
+                                />
+                            </OnResize>
+                        </Group>
+                        }
+
+                        {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.TableFixed
                         && <Group caption = "TableFixed">
                             <Block>

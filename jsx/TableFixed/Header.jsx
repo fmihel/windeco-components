@@ -6,6 +6,7 @@ function Header({
     caption,
     fields,
     widths,
+    aliasAttr,
 
 }) {
     return (
@@ -23,6 +24,7 @@ function Header({
                                 ...(i < widths.length ? { width: widths[i], maxWidth: widths[i] } : {}),
                             }}
                             {...(field.title ? { title: field.title } : {})}
+                            { ...(field[aliasAttr] ? { ...field[aliasAttr] } : {}) }
                         >
                             {field.caption}
                         </th>))

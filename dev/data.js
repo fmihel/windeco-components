@@ -2,7 +2,9 @@
 export const table_long = {
     fields: [
         { name: 'ID', caption: 'id', width: 50 },
-        { name: 'NAME', caption: 'name webfjhwb jhwbhwebjr bj jhwfwjerfjh', title: 'long place more' },
+        {
+            name: 'NAME', caption: 'name webfjhwb jhwbhwebjr bj jhwfwjerfjh', title: 'long place more', '-attr-': { name: '', born: '' },
+        },
         { name: 'AGE', caption: 'age', style: { color: 'red' } },
     ],
     data: [
@@ -82,7 +84,9 @@ export const table_long2 = {
 export const table_long3 = {
     fields: [
         { name: 'ID', caption: 'ID_SONG' },
-        { name: 'NAME', caption: 'name webfjhwb jhwbhwebjr bj jhwfwjerfjh', title: 'long place' },
+        {
+            name: 'NAME', caption: 'name webfjhwb jhwbhwebjr bj jhwfwjerfjh', title: 'long place', '-attr-': { name: '' },
+        },
         { name: 'AGE', caption: 'age' },
         { name: 'NOTES', caption: 'NOTES', width: 50 },
         { name: 'DATA', caption: 'data', width: 50 },

@@ -107,6 +107,7 @@ function TableFixed({
                     caption={header}
                     fields = {fields}
                     widths = {widths}
+                    aliasAttr={aliasAttr}
                 />
             }
             <div

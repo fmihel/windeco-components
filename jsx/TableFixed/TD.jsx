@@ -10,6 +10,7 @@ function TD({
     onDoubleClick = undefined,
     onDraw = undefined,
     data = [],
+    attrs,
 }) {
     const click = () => {
         if (onClick) {
@@ -31,6 +32,7 @@ function TD({
             onClick={click}
             onDoubleClick={doubleClick}
             id={name}
+            {...(attrs ? { ...attrs } : {})}
         >
             {onDraw ? onDraw({
                 sender: 'td',

@@ -6,6 +6,7 @@ function THead({
     fields = [],
     header,
     onClick,
+    aliasAttr = '',
 }) {
     return (
         <thead>
@@ -18,6 +19,7 @@ function THead({
                     caption = {field.caption}
                     title = {field.title}
                     onClick = {onClick}
+                    attrs={{ ...(field[aliasAttr] ? { ...field[aliasAttr] } : {}) }}
                 />)}
 
                 {(typeof header === 'string')
