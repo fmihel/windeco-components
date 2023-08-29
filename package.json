@@ -1,6 +1,6 @@
 {
   "name": "fmihel-windeco-components",
-  "version": "2.0.0-beta.39",
+  "version": "2.0.0-beta.40",
   "description": "components for orders windeco",
   "main": "dist/windeco-components.js",
   "scripts": {

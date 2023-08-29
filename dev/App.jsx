@@ -387,6 +387,7 @@ class App extends React.Component {
             Icon: true,
             Fonts: true,
             Group: true,
+            Head: true,
         };
         return (
             <div>
@@ -477,6 +478,20 @@ class App extends React.Component {
                     */}
                     <div className='nav-content wd-scrollbar'>
                         {/* <div className='content wd-scrollbar'> */}
+                        {/*--------------------------------------------------------------------------------------------------*/}
+                        {enabled.Head
+                        && <Group caption="Head" >
+                            <Block>
+                                <h1 className="mgtb">Header caption in size h1</h1>
+                                <h2>Header caption in size h2</h2>
+                                <h3>Header caption in size h3</h3>
+                                <h4>Header caption in size h4</h4>
+                                <h5>Header caption in size h5</h5>
+                                <h6>Header caption in size h6</h6>
+                            </Block>
+
+                        </Group>
+                        }
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Btn
                         && <Group caption="Btn" >
