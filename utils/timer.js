@@ -1,21 +1,23 @@
 /* eslint-disable array-callback-return */
 import translate from './translate';
 
-export default class timer {
-    static startTime = (new Date()).getTime();
+class TimerClass {
+    constructor() {
+        this.startTime = (new Date()).getTime();
+    }
 
-    static time() {
+    time() {
         return (new Date()).getTime();
     }
 
     // время в сек от начала сеанса
-    static sec() {
-        return timer.millisec() / 1000;
+    sec() {
+        return this.millisec() / 1000;
     }
 
     // время в мсек от начала сеанса
-    static millisec() {
-        return (timer.time() - timer.startTime);
+    millisec() {
+        return (this.time() - this.startTime);
     }
 
     /** вызывает onStep в течении timeMSec с интервалом
@@ -23,7 +25,7 @@ export default class timer {
      * с учетом прошедшего времени.
      *
     */
-    static step({
+    step({
         onStart = undefined,
         onStep = undefined,
         onStop = undefined,
@@ -33,7 +35,7 @@ export default class timer {
             // len:{from:10,to:20} (10->20)
         },
     }) {
-        const start = timer.millisec();
+        const start = this.millisec();
         const stop = start + timeMSec;
         let current = start;
 
@@ -54,7 +56,7 @@ export default class timer {
         }
 
         const interval = setInterval(() => {
-            current = timer.millisec();
+            current = this.millisec();
             _step();
             if (onStep) {
                 onStep(params);
@@ -68,3 +70,6 @@ export default class timer {
         }, deltaMSec);
     }
 }
+
+const timer = new TimerClass();
+export default timer;
