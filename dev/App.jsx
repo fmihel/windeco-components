@@ -36,7 +36,7 @@ import StaticText from '../jsx/StaticText.jsx';
 // import NavMenu, { collapseMenus } from '../jsx/NavBar/NavMenu.jsx';
 import NavItem from '../jsx/NavBar/NavItem.jsx';
 // import Collapse from '../jsx/Collapse.jsx';
-import isMobile from '../jsx/Utils/isMobile';
+import isMobile from '../utils/isMobile';
 // import '../style/Container.scss';
 // import Container from '../jsx/Container.jsx';
 // import Col from '../jsx/Container/Col.jsx';
@@ -45,9 +45,9 @@ import {
     combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4, combo_list5,
     icons,
 } from './data.js';
-import map from '../jsx/Utils/map';
-import theme from '../jsx/Utils/theme';
-import navbar from '../jsx/Utils/navbar';
+import map from '../utils/map';
+import theme from '../utils/theme';
+import navbar from '../utils/navbar';
 import OnResize from '../jsx/OnResize.jsx';
 
 // Icon.icons({

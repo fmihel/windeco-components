@@ -1,4 +1,4 @@
-import size from '../Utils/size';
+import size from '../../utils/size';
 
 export const culcWidths = (tableDOM, sizeTable) => {
     const tds = tableDOM.childNodes[0].childNodes[0].childNodes;

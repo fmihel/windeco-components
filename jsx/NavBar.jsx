@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useRef, useState } from 'react';
 import DefaultLogo from './NavBar/NavLogo.jsx';
-import { navbars } from './Utils/navbar.js';
+import { navbars } from '../utils/navbar.js';
 
 const definingCssClass = 'wd-navbar';
 

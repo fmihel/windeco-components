@@ -4,8 +4,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import Header from './TableFixed/Header.jsx';
 import Data from './TableFixed/Data.jsx';
 import { culcWidths, haveScrollBar, isWidthsEmpty } from './TableFixed/utils.js';
-import DOM from './Utils/DOM.js';
-import getSize from './Utils/size.js';
+import DOM from '../utils/DOM.js';
+import getSize from '../utils/size.js';
 import Error from './Error/Error.jsx';
 
 const definingCssClass = 'wd-table-fixed';

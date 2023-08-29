@@ -20,7 +20,7 @@ import {
     combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4, combo_list5,
     icons,
 } from './data.js';
-import map from '../jsx/Utils/map.js';
+import map from '../utils/map.js';
 
 const Navbar = lazy(() => import(/* webpackChunkName: "Navbar" */'./components/Navbar/Navbar.jsx'));
 Group.global = {

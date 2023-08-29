@@ -1,7 +1,7 @@
-import absPos from '../Utils/abs';
-import screen from '../Utils/screen';
-import DOM from '../Utils/DOM';
-import isMobile from '../Utils/isMobile';
+import absPos from '../../utils/abs';
+import screen from '../../utils/screen';
+import DOM from '../../utils/DOM';
+import isMobile from '../../utils/isMobile';
 import global from '../global';
 
 class ModalDialogAPI {

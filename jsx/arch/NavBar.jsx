@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import NavItem, { isNavItem } from './NavBar/NavItem.jsx';
 import { isNavMenu } from './NavBar/NavMenu.jsx';
-import onResizeScreen from './Utils/onResizeScreen.js';
-import isCompact from './Utils/isCompact.js';
+import onResizeScreen from '../utils/onResizeScreen.js';
+import isCompact from '../utils/isCompact.js';
 
 let _collapse = [];
 export const collapse = (p = undefined) => {
@@ -52,8 +52,8 @@ function NavBar({
             removeResizeScreen();
         };
     }, [compact]);
-    //console.log('children',children,Array.isArray(children));
-    let childs = Array.isArray(children)?children:[children];
+    // console.log('children',children,Array.isArray(children));
+    const childs = Array.isArray(children) ? children : [children];
     return (
         <div
             it='navbar'

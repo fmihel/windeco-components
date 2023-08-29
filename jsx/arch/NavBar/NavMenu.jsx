@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ModalDialog from '../ModalDialog.jsx';
-import onResizeScreen from '../Utils/onResizeScreen.js';
+import onResizeScreen from '../../utils/onResizeScreen.js';
 import NavItem, { isNavItem } from './NavItem.jsx';
 import Collapse from '../Collapse.jsx';
-import size from '../Utils/size';
-import isCompact from '../Utils/isCompact';
+import size from '../../utils/size';
+import isCompact from '../../utils/isCompact';
 import global from '../global';
 
 let menuCloseRoutines = [];

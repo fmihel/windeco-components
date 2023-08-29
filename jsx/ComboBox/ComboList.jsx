@@ -1,9 +1,9 @@
 import React from 'react';
-import screen from '../Utils/screen';
+import screen from '../../utils/screen';
 import ComboItem from './ComboItem.jsx';
 import global from '../global';
 import ModalDialogAPI from '../ModalDialog/ModalDialogAPI';
-import isMobile from '../Utils/isMobile';
+import isMobile from '../../utils/isMobile';
 
 function listPos({
     left, top, width, height, mobile,

@@ -3,10 +3,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import Modal from './Modal.jsx';
 import api from './ModalDialog/ModalDialogAPI.js';
 import Btn from './Btn.jsx';
-import mousePos from './Utils/mouse.js';
-import onResizeScreen from './Utils/onResizeScreen.js';
-import isCompact from './Utils/isCompact.js';
-import abs from './Utils/abs.js';
+import mousePos from '../utils/mouse.js';
+import onResizeScreen from '../utils/onResizeScreen.js';
+import isCompact from '../utils/isCompact.js';
+import abs from '../utils/abs.js';
 
 const definingCssClass = 'wd-modal-dialog';
 

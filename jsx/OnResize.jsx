@@ -1,7 +1,7 @@
 import React, {
     useEffect, useRef, useState, forwardRef,
 } from 'react';
-import abs from './Utils/abs';
+import abs from '../utils/abs';
 
 function Debug({
     className,

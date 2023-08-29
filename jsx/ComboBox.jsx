@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import abs from './Utils/abs';
+import abs from '../utils/abs';
 import Modal from './Modal.jsx';
 import ComboList from './ComboBox/ComboList.jsx';
 import ComboItem from './ComboBox/ComboItem.jsx';
