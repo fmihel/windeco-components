@@ -94,8 +94,8 @@ const OnResize = forwardRef(({
                         }
                     }
                 }
-                if (findClass !== false && currentClass !== findClass) {
-                    // console.log('currentClass', currentClass, 'find', findClass);
+                if (findClass !== false) {
+                    // console.log('currentClass',  'find', findClass);
                     setCurrentClass(findClass);
                 }
                 setOpacity(1);
