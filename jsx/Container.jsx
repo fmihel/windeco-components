@@ -11,18 +11,20 @@ function Container({
 }) {
     const [rows, setRows] = useState([]);
     useEffect(() => {
-        const out = [];
-        children.map((child, i) => {
-            if (i % maxCol === 0) {
-                out.push([]);
-            }
-            out[out.length - 1].push(child);
-        });
-        setRows(out);
+        if (children) {
+            const out = [];
+            (children.map ? children : [children]).map((child, i) => {
+                if (i % maxCol === 0) {
+                    out.push([]);
+                }
+                out[out.length - 1].push(child);
+            });
+            setRows(out);
+        }
     }, [children]);
     return (
         <div
-            className={ Container.global.className + className}
+            className={ `${Container.global.className} ${className}`}
             style={{ ...Container.global.style, ...style }}
             {...attr}
         >
