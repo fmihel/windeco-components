@@ -50,12 +50,14 @@ $defaults:(
     'header':#dee5ef,
     'deep':#FFFFFF,
     'transparent':rgba(0, 0, 0, 0),
-    'block':#F5F7FA,
+    //'block':#F5F7FA,
+    'block':#FDFDFD,
+
     'alert':#ff0000,
     'url':#2C7BE5,
     
     'toggle':#e9edf1,    
-    'group':#FFFFFF,
+    'group':#F5F7FA,
 
     'colors-to-rgb':(
         'primary',

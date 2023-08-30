@@ -480,7 +480,7 @@ class App extends React.Component {
                         {/* <div className='content wd-scrollbar'> */}
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Head
-                        && <Group caption="Head" >
+                        && <Group caption={<h4>Head</h4>} >
                             <Block>
                                 <h1 className="mgtb">Header caption in size h1</h1>
                                 <h2>Header caption in size h2</h2>

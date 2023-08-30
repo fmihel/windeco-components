@@ -6,8 +6,7 @@
     $bg:var(--v2-wd-group);  
     $content:var(--v2-wd-block);
 
-    $color:var(--v2-wd-color);
-    $color-high:var(--v2-wd-color-high);
+    $color-caption:var(--v2-wd-color-high);
     
 
     //$border:rgba(var(--v2-wd-border-rgb),1);
@@ -16,7 +15,6 @@
     $gap:var(--v2-wd-gap);
     $radius:var(--v2-wd-radius);
     $size:var(--v2-wd-size);
-    $g-color:var(--v2-color-high);
 
     .wd-group{
         //overflow: hidden;
@@ -24,11 +22,9 @@
         min-height: $size;
         
         background-color: $bg;
-        color: $color;
 
         border:1px solid  $border;
         font-size: $font-size;
-        //margin: $gap;
         border-radius: $radius;
         
         display: flex;
@@ -39,24 +35,23 @@
         align-items: stretch;    
         overflow: hidden;
         
-        [group-caption]{
-            font-size: 1.2rem;
+        [group=caption]{
             flex:0 1 auto;
+            font-size: 1.1rem;
             min-height: calc($size * 1.4);
             line-height: calc($size * 1.4);
             padding-left: calc($gap*2);
-            color: $color-high;
+            color: $color-caption;
+            border-bottom:1px solid rgba(var(--v2-wd-border-rgb),0.5);
             //text-shadow: 0px 0px 1px var(--v2-wd-color-high);
 
         }
-        [group-content]{
+        [group=content]{
             flex:1 1 auto;
             padding: calc($gap*2);
             min-height: calc($size * 2);
 
             background-color: $content;
-            color: $color;
-
         }
     }
 }
