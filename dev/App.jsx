@@ -38,8 +38,7 @@ import NavItem from '../jsx/NavBar/NavItem.jsx';
 // import Collapse from '../jsx/Collapse.jsx';
 import isMobile from '../utils/isMobile';
 // import '../style/Container.scss';
-// import Container from '../jsx/Container.jsx';
-// import Col from '../jsx/Container/Col.jsx';
+import Container from '../jsx/Container.jsx';
 import {
     table_long2, table_long, table_long3,
     combo_list1, combo_list2, combo_list3, listClasses3, fonts, listClasses4, combo_list4, combo_list5,
@@ -378,7 +377,7 @@ class App extends React.Component {
             Text: true,
             Table: true,
             TableFixed: true,
-            Container: false,
+            Container: true,
             Collapse: false,
             ComboBox: true,
             Edit: true,
@@ -478,6 +477,24 @@ class App extends React.Component {
                     */}
                     <div className='nav-content wd-scrollbar'>
                         {/* <div className='content wd-scrollbar'> */}
+                        {/*--------------------------------------------------------------------------------------------------*/}
+                        {enabled.Container
+                        && <Group caption="Container">
+                            <Block>
+                                <Container>
+                                    <Btn>btn1</Btn>
+                                    <Btn>btn2</Btn>
+                                    <div>div3</div>
+                                    <Edit>edit4</Edit>
+                                    <Btn>btn5</Btn>
+                                    <Btn>btn6</Btn>
+                                    <Edit>edit7</Edit>
+
+                                </Container>
+                            </Block>
+                        </Group>
+                        }
+
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Head
                         && <Group caption={<h4>Head</h4>} >
@@ -878,58 +895,6 @@ class App extends React.Component {
                                         <NavItem/>
                                     </NavBar>
                                 </div>
-                            </Block>
-                        </Group>
-                        }
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        {enabled.Container
-                        && <Group caption="Container">
-                            <Block>
-                                <Container>
-                                    <Col><Edit/></Col>
-                                    <Col><Btn>press</Btn></Col>
-
-                                </Container>
-
-                                <Container className="wd-container-row">
-                                    <Col className="wd-col-margin hide-less-small"/>
-                                    <Col>
-                                        row1
-                                    </Col>
-                                    <Col className="wd-col-margin  hide-less-small"/>
-                                    <Col>
-                                        row2
-                                    </Col>
-                                </Container>
-                                <Container style={{ height: 2 }}/>
-                                <Container>
-                                    <Col>
-                                        row1
-                                    </Col>
-                                    <Col className="wd-col-margin"/>
-                                    <Col>
-                                        row2
-                                    </Col>
-                                </Container>
-                                <Container style={{ height: 2 }}/>
-                                <Container>
-                                    <Col>
-                                        row1
-                                    </Col>
-                                    <Col className="wd-col-margin"/>
-                                    <Col className="wd-col-1">
-                                        row2
-                                    </Col>
-                                    <Col className="wd-col-margin"/>
-                                    <Col className="wd-col-2">
-                                        row2
-                                    </Col>
-                                    <Col className="wd-col-margin"/>
-                                    <Col>
-                                        row3
-                                    </Col>
-                                </Container>
-
                             </Block>
                         </Group>
                         }

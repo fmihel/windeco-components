@@ -13,6 +13,7 @@ import RGroup from './Group.jsx';
 import RStaticText from './StaticText.jsx';
 import ROnResize from './OnResize.jsx';
 import RList from './List.jsx';
+import RContainer from './Container.jsx';
 
 export default {
     Edit: REdit,
@@ -30,6 +31,7 @@ export default {
     StaticText: RStaticText,
     OnResize: ROnResize,
     List: RList,
+    Container: RContainer,
 };
 
 export const Edit = REdit;
@@ -47,3 +49,4 @@ export const Group = RGroup;
 export const StaticText = RStaticText;
 export const OnResize = ROnResize;
 export const List = RList;
+export const Container = RContainer;

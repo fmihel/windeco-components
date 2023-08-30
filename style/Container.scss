@@ -1,49 +1,9 @@
 @use 'sass:meta';
 
 .wd-container{
-    display: flex;
-    
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-content: stretch;
-    align-items: stretch;    
-
-    flex-direction: row;    
-    @include less-small{
-        flex-direction: column;
+    >div{
+        display: flex;
+        flex-wrap: wrap;
     }
 }
-.wd-container-row{
-    display: flex;
-    
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-content: stretch;
-    align-items: stretch;    
-    
-    flex-direction: row;
-}
-.wd-col{
-    flex: 1 1 auto;
-    //min-height: var(--wd-size);
-    //border: 1px dotted limegreen;
-}
 
-.wd-col-margin{
-    flex: 0 1 auto;
-    //border: 1px dotted limegreen;
-    
-    width: var(--wd-margin);
-    height: var(--wd-margin);
-
-}
-
-.wd-col-1{
-    border: 1px dotted limegreen;
-    min-width:10%;
-}
-
-.wd-col-2{
-    border: 1px dotted limegreen;
-    min-width:20%;
-}
