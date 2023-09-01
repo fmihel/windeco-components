@@ -24,6 +24,11 @@ function BtnIcon({
             onClick(o);
         }
     };
+    const doKeyDown = (o) => {
+        if (o.key === 'Enter') {
+            doClick(o);
+        }
+    };
     const showIcon = (iconClass || (IconComponent && icon));
     const showText = (value || children);
     return (
@@ -32,6 +37,7 @@ function BtnIcon({
             {...(id ? { id } : {})}
             className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
             onClick={doClick}
+            onKeyDown={doKeyDown}
             {...(!disabled && !attr.disabled ? { tabIndex: 0 } : {})}
             {...(title || hint ? { title: title || hint } : {})}
             style={{ ...BtnIcon.global.style, ...style }}

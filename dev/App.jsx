@@ -510,6 +510,36 @@ class App extends React.Component {
                         </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
+                        {enabled.BtnIcon
+                        && <Group caption={'BtnIcon'}>
+                            <Block>
+                                <Btn>left</Btn>
+                                <BtnIcon className="wd-primary wd-flat">button presed test</BtnIcon>
+                                <BtnIcon
+                                    hint = "icon"
+                                    IconComponent={Icon}
+                                    icon={iEdit}
+                                    className="wd-danger wd-flat"
+                                    iconClass="demo-bi-color"
+                                    onClick={() => { console.log('test click'); }}
+                                >ok</BtnIcon>
+                                <BtnIcon
+                                    hint = "icon "
+                                    IconComponent={FontAwesomeIcon}
+                                    icon={faAddressBook}
+                                    className="wd-danger"
+                                    iconClass="demo-bi-color"
+                                >ok</BtnIcon>
+                                <Btn>standart</Btn>
+                                <BtnIcon className="wd-primary">cancel</BtnIcon>
+                                <BtnIcon>story</BtnIcon>
+                                <BtnIcon icon={faCaretDown} style={{ width: '100px' }} hint="no text"/>
+                                <BtnIcon className="wd-green">save</BtnIcon>
+                            </Block>
+                        </Group>
+                        }
+
+                        {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Btn
                         && <Group caption="Btn" >
                             <Block>
@@ -845,34 +875,6 @@ class App extends React.Component {
                         </Group>
                         }
 
-                        {/*--------------------------------------------------------------------------------------------------*/}
-                        {enabled.BtnIcon
-                        && <Group caption={'BtnIcon'}>
-                            <Block>
-                                <Btn>left</Btn>
-                                <BtnIcon className="wd-primary wd-flat">button presed test</BtnIcon>
-                                <BtnIcon
-                                    hint = "icon"
-                                    IconComponent={Icon}
-                                    icon={iEdit}
-                                    className="wd-danger wd-flat"
-                                    iconClass="demo-bi-color"
-                                >ok</BtnIcon>
-                                <BtnIcon
-                                    hint = "icon "
-                                    IconComponent={FontAwesomeIcon}
-                                    icon={faAddressBook}
-                                    className="wd-danger"
-                                    iconClass="demo-bi-color"
-                                >ok</BtnIcon>
-                                <Btn>standart</Btn>
-                                <BtnIcon className="wd-primary">cancel</BtnIcon>
-                                <BtnIcon>story</BtnIcon>
-                                <BtnIcon icon={faCaretDown} style={{ width: '100px' }} hint="no text"/>
-                                <BtnIcon className="wd-green">save</BtnIcon>
-                            </Block>
-                        </Group>
-                        }
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.NavBar
                         && <Group caption = "NavBar">

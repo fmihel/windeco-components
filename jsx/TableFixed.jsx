@@ -73,7 +73,9 @@ function TableFixed({
 
     useEffect(() => {
         const observ = new ResizeObserver(() => {
-            setSize(getSize(ref.current));
+            if (ref && ref.current) {
+                setSize(getSize(ref.current));
+            }
         });
         observ.observe(ref.current);
 

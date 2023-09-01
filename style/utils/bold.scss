@@ -4,3 +4,15 @@
 .bold{
     @include bold();
 }
+
+@mixin no-bold(){
+    text-shadow: none;
+}
+
+.bold{
+    @include bold();
+}
+
+.no-bold{
+    @include no-bold();
+}
