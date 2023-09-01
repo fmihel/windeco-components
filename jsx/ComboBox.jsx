@@ -78,7 +78,7 @@ function ComboBox({
     };
     const change = (data) => {
         setOpen(false);
-        if (onChange) {
+        if (onChange && (select.length === 0 || data[aliasId] !== select[0])) {
             onChange({ id, data });
         } else {
             console.warn('ComboBox.onChange not set, define it..');
@@ -165,6 +165,7 @@ function ComboBox({
                     onClick={change}
                     onGetItemClass = {onGetItemClass}
                     ItemComponent={ItemComponent}
+                    select={select}
                 />
             </Modal>}
         </>

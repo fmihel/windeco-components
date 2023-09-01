@@ -1,7 +1,6 @@
 import React from 'react';
 import screen from '../../utils/screen';
 import ComboItem from './ComboItem.jsx';
-import global from '../global';
 import ModalDialogAPI from '../ModalDialog/ModalDialogAPI';
 import isMobile from '../../utils/isMobile';
 
@@ -42,6 +41,7 @@ function ComboList({
     ItemComponent = ComboItem,
     onGetItemClass = undefined,
     onClick = undefined,
+    select = false,
 }) {
     return (
         <div
@@ -67,6 +67,7 @@ function ComboList({
                         onGetItemClass={onGetItemClass}
                         disabled={aliasDisabled in item ? item[aliasDisabled] : false}
                         style={styleItem}
+                        active={select !== false && `${select}` === `${item[aliasId]}`}
                     >
                         {item[aliasCaption]}
                     </ItemComponent>

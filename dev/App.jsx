@@ -494,6 +494,122 @@ class App extends React.Component {
                             </Block>
                         </Group>
                         }
+                        {enabled.ComboBox
+                        && <Group caption="ComboBoxEx">
+                            <Block>
+                                <ComboBoxEx
+                                    id='cb1'
+                                    onChange={this.onChangeCombo}
+                                    list = {combo_list1}
+                                    select={'cb1' in comboSelect ? comboSelect.cb1 : false}
+                                    required={true}
+                                />
+                            </Block>
+                            <Block>
+                                <div className="block-horiz">
+                                    <ComboBoxEx
+                                        id='cb2'
+                                        onChange={this.onChangeCombo}
+                                        list = {combo_list3}
+                                        select={'cb2' in comboSelect ? comboSelect.cb2 : false}
+                                        style={{ width: 100 }}
+                                        className={'wd-clamp'}
+                                    />
+                                    <Edit id="ttt" style={{ width: 100 }} onKeyPress={(o) => {
+                                        console.log(o);
+                                    }}> text from child</Edit>
+                                    <BtnIcon
+                                        hint = "icon"
+                                        icon={faAddressBook}
+                                        className="wd-danger"
+                                        iconClass="demo-bi-color"
+                                    >send</BtnIcon>
+                                    <Btn> left</Btn>
+                                </div>
+                            </Block>
+                            <Block>
+                                <div className="block-horiz">
+                                    <ComboBoxEx
+                                        onChange={(o) => { console.log(o); }}
+                                        list = {combo_list1}
+                                        select={3}
+                                        style={{
+                                            width: 100,
+                                            height: 43,
+                                        }}
+                                        styleOuter={{ lineHeight: '43px' }}
+                                        className={'wd-clamp'}
+                                        hideBtnOnSelect = {true}
+                                    />
+                                    <Edit id="tttt" style={{ width: 100, height: 43 }} onKeyPress={(o) => {
+                                        console.log(o);
+                                    }}>text from child</Edit>
+                                    <Edit id="tt90" style={{ width: 90, height: 43 }} onKeyPress={(o) => {
+                                        console.log(o);
+                                    }}>90</Edit>
+                                    <Edit id="tt20"
+                                        style={{ width: 20, height: 43 }} className={'wd-clamp'}
+                                        type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                            console.log(o);
+                                        }}>20</Edit>
+                                    <Edit id="tt30" style={{ width: 30, height: 43 }} className={'wd-clamp'} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                        console.log(o);
+                                    }}>30</Edit>
+
+                                    <Edit id="tt40" style={{ width: 40, height: 43 }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                        console.log(o);
+                                    }}>40</Edit>
+                                    <Edit id="tt50" style={{ width: 50, height: 43 }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
+                                        console.log(o);
+                                    }}>50</Edit>
+                                </div>
+                            </Block>
+
+                            <Block>
+                                <ComboBoxEx
+                                    id='cb3'
+                                    onChange={this.onChangeCombo}
+                                    list = {combo_list3}
+                                    select={'cb3' in comboSelect ? comboSelect.cb3 : false}
+                                    ItemComponent={ComboItemIcon}
+                                    onGetItemClass={getItemClass}
+                                />
+                            </Block>
+                            <Block>
+                                <Label caption="comboboxex" style={{ color: 'red' }}>
+                                    <ComboBoxEx
+                                        list = {combo_list2}
+                                        ItemComponent={ComboItemIcon}
+                                        onGetItemClass={getItemClass}
+                                    />
+                                </Label>
+                            </Block>
+                            <Block>
+                                <Label caption="disabled">
+                                    <ComboBoxEx list = {combo_list2} select={1} disabled={true}/>
+                                </Label>
+                            </Block>
+                            <Block>
+                                <Label caption="outer url">
+                                    <ComboBoxEx
+                                        listClasses={listClasses4}
+                                        list = {combo_list4}
+                                        select={1}
+                                    />
+                                </Label>
+                            </Block>
+                            <Block>
+                                <Label caption="outer _src_">
+                                    <ComboBoxEx
+                                        list = {combo_list5}
+                                        srcPath={'./media/combo_32/'}
+                                        addClassItem={'wd-cb32-src'}
+                                        select={-1}
+                                    />
+                                </Label>
+                            </Block>
+                        </Group>
+                        }
 
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Head
@@ -509,6 +625,7 @@ class App extends React.Component {
 
                         </Group>
                         }
+
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.BtnIcon
                         && <Group caption={'BtnIcon'}>
@@ -923,122 +1040,6 @@ class App extends React.Component {
                         </Group>
                         }
                         {/*--------------------------------------------------------------------------------------------------*/}
-                        {enabled.ComboBox
-                        && <Group caption="ComboBoxEx">
-                            <Block>
-                                <ComboBoxEx
-                                    id='cb1'
-                                    onChange={this.onChangeCombo}
-                                    list = {combo_list1}
-                                    select={'cb1' in comboSelect ? comboSelect.cb1 : false}
-                                    required={true}
-                                />
-                            </Block>
-                            <Block>
-                                <div className="block-horiz">
-                                    <ComboBoxEx
-                                        id='cb2'
-                                        onChange={this.onChangeCombo}
-                                        list = {combo_list3}
-                                        select={'cb2' in comboSelect ? comboSelect.cb2 : false}
-                                        style={{ width: 100 }}
-                                        className={'wd-clamp'}
-                                    />
-                                    <Edit id="ttt" style={{ width: 100 }} onKeyPress={(o) => {
-                                        console.log(o);
-                                    }}> text from child</Edit>
-                                    <BtnIcon
-                                        hint = "icon"
-                                        icon={faAddressBook}
-                                        className="wd-danger"
-                                        iconClass="demo-bi-color"
-                                    >send</BtnIcon>
-                                    <Btn> left</Btn>
-                                </div>
-                            </Block>
-                            <Block>
-                                <div className="block-horiz">
-                                    <ComboBoxEx
-                                        onChange={(o) => { console.log(o); }}
-                                        list = {combo_list1}
-                                        select={3}
-                                        style={{
-                                            width: 100,
-                                            height: 43,
-                                        }}
-                                        styleOuter={{ lineHeight: '43px' }}
-                                        className={'wd-clamp'}
-                                        hideBtnOnSelect = {true}
-                                    />
-                                    <Edit id="tttt" style={{ width: 100, height: 43 }} onKeyPress={(o) => {
-                                        console.log(o);
-                                    }}>text from child</Edit>
-                                    <Edit id="tt90" style={{ width: 90, height: 43 }} onKeyPress={(o) => {
-                                        console.log(o);
-                                    }}>90</Edit>
-                                    <Edit id="tt20"
-                                        style={{ width: 20, height: 43 }} className={'wd-clamp'}
-                                        type='number' min={0} max={10} step={1} onKeyPress={(o) => {
-                                            console.log(o);
-                                        }}>20</Edit>
-                                    <Edit id="tt30" style={{ width: 30, height: 43 }} className={'wd-clamp'} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
-                                        console.log(o);
-                                    }}>30</Edit>
-
-                                    <Edit id="tt40" style={{ width: 40, height: 43 }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
-                                        console.log(o);
-                                    }}>40</Edit>
-                                    <Edit id="tt50" style={{ width: 50, height: 43 }} type='number' min={0} max={10} step={1} onKeyPress={(o) => {
-                                        console.log(o);
-                                    }}>50</Edit>
-                                </div>
-                            </Block>
-
-                            <Block>
-                                <ComboBoxEx
-                                    id='cb3'
-                                    onChange={this.onChangeCombo}
-                                    list = {combo_list3}
-                                    select={'cb3' in comboSelect ? comboSelect.cb3 : false}
-                                    ItemComponent={ComboItemIcon}
-                                    onGetItemClass={getItemClass}
-                                />
-                            </Block>
-                            <Block>
-                                <Label caption="comboboxex" style={{ color: 'red' }}>
-                                    <ComboBoxEx
-                                        list = {combo_list2}
-                                        ItemComponent={ComboItemIcon}
-                                        onGetItemClass={getItemClass}
-                                    />
-                                </Label>
-                            </Block>
-                            <Block>
-                                <Label caption="disabled">
-                                    <ComboBoxEx list = {combo_list2} select={1} disabled={true}/>
-                                </Label>
-                            </Block>
-                            <Block>
-                                <Label caption="outer url">
-                                    <ComboBoxEx
-                                        listClasses={listClasses4}
-                                        list = {combo_list4}
-                                        select={1}
-                                    />
-                                </Label>
-                            </Block>
-                            <Block>
-                                <Label caption="outer _src_">
-                                    <ComboBoxEx
-                                        list = {combo_list5}
-                                        srcPath={'./media/combo_32/'}
-                                        addClassItem={'wd-cb32-src'}
-                                        select={-1}
-                                    />
-                                </Label>
-                            </Block>
-                        </Group>
-                        }
                         {/*--------------------------------------------------------------------------------------------------*/}
                         {enabled.Modal
                         && <Group caption="Modal">

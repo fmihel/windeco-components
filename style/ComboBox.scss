@@ -113,16 +113,16 @@
             max-height: $size;
             height: $size;
 
-            &:hover{
+            &:hover:not([disabled]):not([active]){
                 background-color: $hover;
                 color:$color-hover;
             }
             &[disabled]{
-                opacity: 0.3;
-                &:hover{
-                    background-color: $bg;
-                    color:$color;
-                }                
+                color:rgba(var(--v2-wd-color-rgb),0.4);
+            }
+            &[active]{
+                color:var(--v2-wd-select-color);
+                background-color:var(--v2-wd-select);
             }
         }
     }
@@ -130,12 +130,9 @@
         animation: 0.5s combo-scale ease;
         padding: $gap;
         [combo-item]{
-            //border-bottom: 1px solid $border;
+            border-bottom: 1px solid $border;
             border-radius: 3px;
-            &:nth-child(2n+1){
-                background-color: $hover;
-
-            }        
+            
         }
     }
     
