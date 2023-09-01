@@ -13,7 +13,7 @@ function ComboItem({
     children,
 }) {
     const click = () => {
-        if (!disabled && onClick) {
+        if (!disabled && !active && onClick) {
             onClick(data);
         }
     };

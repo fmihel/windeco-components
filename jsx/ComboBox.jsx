@@ -78,7 +78,7 @@ function ComboBox({
     };
     const change = (data) => {
         setOpen(false);
-        if (onChange && (select.length === 0 || data[aliasId] !== select[0])) {
+        if (onChange) {
             onChange({ id, data });
         } else {
             console.warn('ComboBox.onChange not set, define it..');
