@@ -7,6 +7,7 @@ function TH({
     title,
     onClick,
     attrs = false,
+    width = undefined,
 }) {
     const click = () => {
         if (onClick) {
@@ -15,7 +16,15 @@ function TH({
             });
         }
     };
-    return (<th id={fieldName} onClick={click} {...(title ? { title } : {})} {...(attrs ? { ...attrs } : {})}>{caption}</th>);
+    return (<th
+        id={fieldName}
+        onClick={click}
+        {...(title ? { title } : {})}
+        {...(attrs ? { ...attrs } : {})}
+        {...(width ? { style: { width } } : {})}
+    >
+        {caption}
+    </th>);
 }
 
 export default TH;

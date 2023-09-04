@@ -20,6 +20,7 @@ function THead({
                     title = {field.title}
                     onClick = {onClick}
                     attrs={{ ...(field[aliasAttr] ? { ...field[aliasAttr] } : {}) }}
+                    width={field.width}
                 />)}
 
                 {(typeof header === 'string')

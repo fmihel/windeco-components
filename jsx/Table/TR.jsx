@@ -42,6 +42,7 @@ function TR({
                     onDraw = {onDraw}
                     aliasId = {aliasId}
                     attrs={{ ...(field[aliasAttr] ? { ...field[aliasAttr] } : {}) }}
+                    width={field.width}
                 />)}
             </tr>}
         </>

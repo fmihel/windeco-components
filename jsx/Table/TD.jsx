@@ -10,6 +10,7 @@ function TD({
     onDraw,
     aliasId,
     attrs,
+    width,
 }) {
     const click = () => {
         if (onClick) {
@@ -31,6 +32,7 @@ function TD({
             onDoubleClick= {doubleClick}
             id={fieldName}
             {...(attrs ? { ...attrs } : {})}
+            {...(width ? { style: { width } } : {})}
         >
             {onDraw ? onDraw({
                 sender: 'td',
