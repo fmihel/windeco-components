@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import THead from './Table/THead.jsx';
 import TBody from './Table/TBody.jsx';
 
 export const definingCssClass = 'wd-table';
 
-function Table({
+const Table = forwardRef(({
     id,
     className = Table.global.className,
     aliasId = Table.global.aliasId,
@@ -22,39 +22,38 @@ function Table({
     onDraw = undefined,
     attr = {},
 
-}) {
-    return (
+}, fRef) => (
 
-        <table
-            className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
-            {...(id ? { id } : {})}
-            style={{ ...Table.global.style, ...style }}
-            {...attr}
-        >
-            {(header !== false)
+    <table
+        ref = {fRef}
+        className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
+        {...(id ? { id } : {})}
+        style={{ ...Table.global.style, ...style }}
+        {...attr}
+    >
+        {(header !== false)
                 && <THead
                     fields={fields}
                     header={header}
                     aliasAttr={aliasAttr}
                 />}
-            {<TBody
-                data={data}
-                fields={fields}
-                aliasId={aliasId}
-                aliasAttr={aliasAttr}
-                aliasSep={aliasSep}
-                noData={noData}
-                footer = {footer}
-                select={select}
-                onClick = {onClick}
-                onDoubleClick = {onDoubleClick}
-                onDraw = {onDraw}
-            />}
+        {<TBody
+            data={data}
+            fields={fields}
+            aliasId={aliasId}
+            aliasAttr={aliasAttr}
+            aliasSep={aliasSep}
+            noData={noData}
+            footer = {footer}
+            select={select}
+            onClick = {onClick}
+            onDoubleClick = {onDoubleClick}
+            onDraw = {onDraw}
+        />}
 
-        </table>
+    </table>
 
-    );
-}
+));
 
 Table.global = {
     className: '',
