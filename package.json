@@ -10,9 +10,9 @@
     "build-to": "webpack --to  && npm run copy-style-to",
     "copy-style-to": "cp -r style ../../windeco/orders-test/node_modules/fmihel-windeco-components/",
     "git-push": "git push origin main && git push origin main --tag",
-    "npm-publish-patch": "npm run build && npm version patch && npm publish && npm run git-push",
-    "npm-publish-minor": "npm run build && npm version minor && npm publish && npm run git-push",
-    "npm-publish-major": "npm run build && npm version major && npm publish && npm run git-push"
+    "npm-publish-patch": "npm run build && npm version patch && npm publish",
+    "npm-publish-minor": "npm run build && npm version minor && npm publish",
+    "npm-publish-major": "npm run build && npm version major && npm publish"
   },
   "repository": {
     "type": "git",

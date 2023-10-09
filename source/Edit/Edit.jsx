@@ -191,6 +191,7 @@ export default class Edit extends React.Component {
                     title={hint}
                     onFocus={this.onFocus}
                     onBlur={this.onBlur}
+                    autoComplete= {'off'}
 
                 />
                 {!disable.dim && <div className="wd-edit-dim">{dim}</div>}

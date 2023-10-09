@@ -94,6 +94,7 @@ export default class Text extends React.Component {
                 disabled={disabled}
                 onChange={this.onChange}
                 {...prop}
+                autoComplete= {'off'}
             />
         );
     }
