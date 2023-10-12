@@ -9,6 +9,7 @@
     $bg:var(--v2-wd-deep);
     $color:var(--v2-wd-color);
     $outline:var(--v2-wd-outline);
+    $outline-width:var(--v2-wd-outline-width);
     $border:var(--v2-wd-border);
     $gap:var(--v2-wd-gap);
     $required:rgba(var(--v2-wd-danger-rgb), 0.1);
@@ -51,16 +52,17 @@
         width:100%;
         background-color: $bg;
         
+        //margin:$outline-width;
 
-        @if($margin!='none'){
-            margin-right:$margin;
-        };
+        //@if($margin!='none'){
+        //    margin-right:$margin;
+        //};
         color:$color;
 
         outline: 0px solid rgba(0,0,0,0);
         @include transition(margin 0.2s,outline-color 0.4s);
         &:focus { 
-            outline: 2px solid $outline;
+            outline: $outline-width solid $outline;
         }
 
         &[readonly]{
@@ -96,5 +98,6 @@
         color:var(--v2-wd-danger);
     }
 }
+
 
 @include define();

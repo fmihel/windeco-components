@@ -27,6 +27,7 @@
     $required:rgba(var(--v2-wd-danger-rgb), 0.1);
 
     $outline:var(--v2-wd-outline);    
+    $outline-width:var(--v2-wd-outline-width);    
     $font-size:var(--v2-wd-font-size);
     
     $hover:var(--v2-wd-hover);
@@ -51,9 +52,7 @@
         white-space: nowrap;
         overflow: hidden;
         
-        @if($margin!='none'){
-            margin-right:$margin;
-        };
+        //margin:$outline-width;
 
         display: flex;
         flex-direction: row;
@@ -88,7 +87,7 @@
             }
         }
         &:focus { 
-            outline: 2px solid $outline;
+            outline: $outline-width solid $outline;
         }
         &[disabled]{
             opacity: 0.4;

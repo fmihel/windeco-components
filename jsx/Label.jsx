@@ -4,7 +4,6 @@ const definingCssClass = 'wd-label';
 
 function Label({
     id,
-    labelName,
     caption = 'label',
     className = Label.global.className,
     style = Label.global.style,
@@ -13,16 +12,19 @@ function Label({
 }) {
     return (
         <div
+            label=''
+            style={{ ...Label.global.style, ...style }}
             className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
+            {...id ? { id: `label-${id}` } : {}}
+
         >
             <label
-                htmlFor={id || labelName}
-                style={{ ...Label.global.style, ...style }}
+                htmlFor={id}
                 {...attr}
             >
                 {caption}
             </label>
-            <div stretch=''>
+            <div labeled=''>
                 {children}
             </div>
         </div>

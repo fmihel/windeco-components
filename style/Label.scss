@@ -6,8 +6,8 @@
     $color:var(--v2-wd-label);
     $margin:var(--v2-wd-margin);
     
-    .wd-label{
-        margin-bottom:$margin;
+    [label]{
+       
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
@@ -15,12 +15,22 @@
         align-content: stretch;
         align-items: flex-start;
 
-        min-height:$size;
-
-        >*:nth-child(2){
-            //flex:1 1 auto;
-            margin-right: 0px;
+        >label{
+            overflow: hidden;
         }
+
+        >[labeled]{
+            flex:1 1 auto;
+            overflow: hidden;
+        }
+        
+
+    }
+    .wd-label{
+        //margin-bottom:$margin;
+        min-height:$size;
+        box-sizing: border-box;
+
         label{
             @if($color!='none'){
                 color:$color;
@@ -28,9 +38,16 @@
             height:$size;
             line-height: $size;
             margin-right:$gap;
-            min-width:6rem;
-            overflow: hidden;
+            min-width:7rem;
+            padding-top: var(--v2-wd-outline-width);
+            padding-bottom: var(--v2-wd-outline-width);
         }            
+
+        >[labeled]{
+            padding: calc(var(--v2-wd-outline-width));
+            
+        }
+
     }
 }
 

@@ -19,8 +19,8 @@ function Group({
             style={{ ...Group.global.style, ...style }}
             {...attr}
         >
-            { (caption) && <div group='caption'>{caption}</div>}
-            <div group='content'>{children}</div>
+            { (caption) && <div caption='' >{caption}</div>}
+            <div content='' >{children}</div>
         </div>
     );
 }
