@@ -3,6 +3,7 @@ import abs from '../utils/abs';
 import Modal from './Modal.jsx';
 import ComboList from './ComboBox/ComboList.jsx';
 import ComboItem from './ComboBox/ComboItem.jsx';
+import screen from '../utils/screen';
 
 const definingCssClass = 'wd-combo';
 
@@ -30,9 +31,8 @@ function ComboBox({
     ItemComponent = ComboBox.global.ItemComponent,
 
 }) {
-    const selected = list.find((item) => (item[aliasId] == select));
-    const selectCaption = selected ? selected[aliasCaption] : false;
-
+    const [selected, setSelected] = useState(undefined);
+    const [selectCaption, setSelectCaption] = useState(false);
     const [open, setOpen] = useState(false);
     const [btnOpenShow, setBtnOpenShow] = useState(!hideBtnOnSelect);
     const [focused, setFocused] = useState(false);
@@ -40,6 +40,17 @@ function ComboBox({
     const [size, setSize] = useState({
         left: 0, top: 0, width: 0, height: 0,
     });
+
+    useEffect(() => {
+        if (list && list.length && select !== false) {
+            const sel = list.find((item) => (item[aliasId] == select));
+            setSelected(sel);
+            setSelectCaption(sel ? sel[aliasCaption] : false);
+        } else {
+            setSelected(undefined);
+            setSelectCaption(false);
+        }
+    }, [list, select, aliasId]);
     /*
     useEffect(() => {
         const resize = () => {
@@ -66,6 +77,20 @@ function ComboBox({
             out.top = area.y;
             out.width = area.w;
             out.height = area.h;
+            const scr = screen();
+
+            if (out.width > scr.width) {
+                out.left = 1;
+                out.width = scr.width - 2;
+            } else {
+                if (out.left + out.width > scr.width) {
+                    out.left -= (out.left + out.width - scr.width);
+                }
+                if (out.left < 0) {
+                    out.left = 0;
+                }
+            }
+
             setSize(out);
         }
     }, [open]);
@@ -144,10 +169,12 @@ function ComboBox({
                     onGetItemClass = {getItemClass}
                     attr={{ state: (selected ? 'select' : 'no-select') }}
                     style={styleOuter}
+                    data={selected}
                 >
                     {selectCaption || placeholder || ''}
+
                 </ItemComponent>
-                <div style={ { ...((btnOpenShow || focused) ? {} : { display: 'none' }) }} />
+                <div style={ { ...((btnOpenShow || focused || !selected) ? {} : { display: 'none' }) }} />
             </div>
             {(!disabled) && <Modal
                 visible = {open}
