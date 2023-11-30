@@ -861,7 +861,8 @@ class App extends React.Component {
 
                                     onChange={(o) => { this.setState({ textValue: o.value }); }}
                                     required={true}
-                                >{textValue}</Text>
+                                    value={textValue}
+                                />
                             </Block>
                             <Block> <Label caption="label" id="myEdit100">
                                 <Edit id="myEdit100" value={values.myEdit100} onChange={this.onChangeEx}>text</Edit>
@@ -870,9 +871,8 @@ class App extends React.Component {
                                 <Text
                                     readonly={true}
                                     title="readonly"
-                                >
-                                    {'readonly'}
-                                </Text>
+                                    value={'readonly'}
+                                />
                             </Block>
                             <Block>
                                 <StaticText className="mg" style={{ textAlign: 'center' }}>

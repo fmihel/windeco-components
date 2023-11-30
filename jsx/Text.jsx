@@ -18,8 +18,6 @@ function Text({
     rows = 0,
     cols = 0,
     onChange = undefined,
-    children,
-
 }) {
     const prepare = (aText, dom) => {
         if (rows > 0 && aText.length > 0 && cols > 0) {
@@ -61,7 +59,7 @@ function Text({
             console.warn('Text.onChange not set, define it.');
         }
     };
-    const val = value || children;
+
     return (
         <textarea
             {...(id ? { id } : {})}
@@ -72,10 +70,10 @@ function Text({
                 ...(resize ? {} : { resize: 'none' }),
                 ...style,
             }}
-            value={val}
+            value={value}
             {...(disabled ? { disabled: true } : { })}
             {...(readonly ? { readOnly: true } : { })}
-            {...((required && `${val}`.length === 0) ? { required: true } : { })}
+            {...((required && `${value}`.trim().length === 0) ? { required: true } : { })}
             {...(title ? { title } : { })}
             {...(maxLength > 0 ? { maxLength } : { })}
             {...(placeholder ? { placeholder } : {})}
