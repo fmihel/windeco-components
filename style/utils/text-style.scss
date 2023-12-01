@@ -1,0 +1,32 @@
+//---------------------------------------------------------
+@mixin bold($color:var(--v2-wd-color)){
+    text-shadow: 0px 0px 1px $color;
+}
+[bold],.bold{
+    @include bold();
+}
+
+@mixin no-bold(){
+    text-shadow: none;
+}
+
+
+[no-bold],.no-bold{
+    @include no-bold();
+}
+
+//---------------------------------------------------------
+[align-center],.align-center{
+    text-align: center;    
+}
+[align-left],.align-left{
+    text-align: left;
+}
+[align-right],.align-right{
+    text-align: right;
+}
+
+//---------------------------------------------------------
+[italic],.italic{
+    font-style: italic;
+}

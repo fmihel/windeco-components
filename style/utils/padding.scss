@@ -1,33 +1,33 @@
-.pd{
+[pd],.pd{
     padding:var(--v2-wd-gap);
 }
 
-.pd0{
-    padding:var(--v2-wd-gap);
+[pd0],.pd0{
+    padding:0px;
 }
 
-.pdl{
+[pdl],.pdl{
     padding-left:var(--v2-wd-gap);
 }
 
-.pdr{
+[pdr],.pdr{
     padding-right:var(--v2-wd-gap);
 }
 
-.pdlr{
+[pdlr],.pdlr{
     padding-left:var(--v2-wd-gap);
     padding-right:var(--v2-wd-gap);
 }
 
-.pdt{
+[pdt],.pdt{
     padding-top:var(--v2-wd-gap);
 }
 
-.pdb{
+[pdb],.pdb{
     padding-bottom:var(--v2-wd-gap);
 }
 
-.pdtb{
+[pdtb],.pdtb{
     padding-top:var(--v2-wd-gap);
     padding-bottom:var(--v2-wd-gap);
 }

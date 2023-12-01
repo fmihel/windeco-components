@@ -35,6 +35,7 @@ function ModalDialog({
     resizable = false,
     className = ModalDialog.global.className,
     style = { ...ModalDialog.global.style },
+    attr = {},
     children,
 
 }) {
@@ -185,6 +186,7 @@ function ModalDialog({
                     }}
                     className={`${definingCssClass}${(className ? ` ${className}` : '')}`}
                     onMouseDown={mouseDown}
+                    {...attr}
                 >
                     {(header)
                     && <div dialog-header='' ref= {refHeader}>
@@ -237,7 +239,7 @@ ModalDialog.global = {
     style: {},
     left: 0,
     top: 0,
-    width: 300,
+    width: 400,
     height: 100,
 
 };
