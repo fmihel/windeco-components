@@ -7,7 +7,7 @@
     "run": "webpack-dev-server --config webpack.config.dev5.js",
     "run-bs": "webpack-dev-server --config webpack.config.bs.js",
     "build-dist": "webpack --config webpack.config.dist.js",
-    "build": "rm -rf dist && webpack --prod",
+    "build": "rm -rf dist && webpack",
     "git-push-main": "git checkout main && git push origin main && git push origin main --tag",
     "npm-publish-patch": "npm run build && npm version patch && npm publish",
     "npm-publish-minor": "npm run build && npm version minor && npm publish",

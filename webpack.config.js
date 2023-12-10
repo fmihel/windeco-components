@@ -1,19 +1,18 @@
 const path = require('path');
 
-const {defArg} = require('fmihel-server-lib');
+//const {defArg} = require('fmihel-server-lib');
 
 let remotePath = false;
 const toRemotePath = '';
-const toProduction = !toRemotePath && defArg('prod');
+//const toProduction = !toRemotePath && defArg('prod');
+const toProduction = true;
 
 
 module.exports = {
   mode: toProduction?'production':'development',
-  devtool: toProduction?'':'inline-source-map',
+  devtool: toProduction?undefined:'inline-source-map',
   entry: {
     'windeco-components':'./jsx/index.js',
-    //Btn:'./source/Btn/Btn.jsx',
-    //Edit:'./source/Edit/Edit.jsx',
   },
   output: {
     path: toRemotePath?remotePath:path.resolve(__dirname, 'dist'),
