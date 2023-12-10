@@ -1,16 +1,17 @@
 /* eslint-disable no-return-assign */
 import React, {
-    useEffect, useState, Suspense, useRef, lazy,
+    useEffect, useState, Suspense, lazy,
 } from 'react';
 import { storage } from 'fmihel-browser-lib';
 import theme from '../utils/theme';
+import ErrorBound from './groups/ErrorBound.jsx';
 
 theme.set(storage.get('theme', { default: 'light' }));
 const Fallback = () => (<div className="suspense">&#8987;</div>);
-
 const groups = [
-    { id: 'butttons', C: lazy(() => import('./groups/Buttons.jsx')) },
-    { id: 'combos', C: lazy(() => import('./groups/Combos.jsx')) },
+    { id: 'Butttons', C: lazy(() => import('./groups/Buttons.jsx')) },
+    { id: 'Combos', C: lazy(() => import('./groups/Combos.jsx')) },
+    { id: 'Edits', C: lazy(() => import('./groups/Edits.jsx')) },
 ];
 
 function App({}) {
@@ -43,7 +44,13 @@ function App({}) {
                 </select>
             </div>
             <div content=''>
-                {groups.map((it) => (('C' in it && (view === 'all' || view === it.id)) ? <Suspense key={it.id} fallback={<Fallback/>}><it.C/></Suspense> : undefined))}
+                {groups.map((it) => (('C' in it && (view === 'all' || view === it.id)) ? <Suspense
+                    key={it.id}
+                    fallback={<Fallback/>
+                    }>
+                    <ErrorBound caption={it.id}><it.C/></ErrorBound>
+
+                </Suspense> : undefined))}
             </div>
         </div>
     );

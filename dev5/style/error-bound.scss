@@ -1,0 +1,18 @@
+.error-bound{
+    border:1px solid red;
+    background-color: rgba(255, 0, 0, 0.463);
+    color: black;
+    margin: 5px;
+    padding: 5px;
+    >h2{
+        margin-bottom: 5px;
+    }
+    >div{
+        max-height: 100px;
+    }
+}
+.dark{
+    .error-bound{
+        color:white;
+    }
+}

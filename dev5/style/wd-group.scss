@@ -1,0 +1,6 @@
+.wd-group{
+    margin: var(--v2-wd-gap);
+    &:not(:first-child){
+        margin-top: 0px;
+    }
+}

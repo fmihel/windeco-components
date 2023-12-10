@@ -6,7 +6,8 @@
 @import '../../style/utils/margin.scss';
 @import '../../style/utils/stretch.scss';
 @import '../../style/utils/h.scss';
-
+@import './wd-group.scss';
+@import './error-bound.scss';
 
 *{
     box-sizing: border-box;
@@ -63,7 +64,6 @@ body{
                 overflow-y: auto;
                 overflow-x: hidden;
                 @include wd-scrollbar();
-                padding: var(--v2-wd-gap);
             }
         }
 
