@@ -1,0 +1,81 @@
+@import '../../style/index.scss';
+@import '../../style/utils/font-family.scss';
+@import '../../style/utils/no-border.scss';
+@import '../../style/utils/panel.scss';
+@import '../../style/utils/padding.scss';
+@import '../../style/utils/margin.scss';
+@import '../../style/utils/stretch.scss';
+@import '../../style/utils/h.scss';
+
+
+*{
+    box-sizing: border-box;
+    user-select: none;
+}
+
+input, select, textarea, button{
+    font-family:inherit;
+}
+
+
+html{
+    font-size:var(--v2-wd-font-size);
+    font-family: font-family('verdana'); 
+}
+
+body{
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+    #app{
+        position: absolute;
+        margin:0px;
+        padding:0px;
+        width:100%;
+        height:100%;
+        
+        border-width:0px ;
+        box-sizing: border-box;
+    
+        background-color:var(--v2-wd-bg);
+        color: var(--v2-wd-color);
+
+
+        >[frame]{
+            max-width:100%;
+            max-height:100%;
+            height:100%;
+
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-items: stretch;
+            align-content: stretch;
+
+            >[panel]{
+                flex:0 1 auto;
+                border-bottom:1px solid var(--v2-wd-border);
+                padding: var(--v2-wd-gap);
+            }
+            >[content]{
+                flex:1 1 auto;
+                overflow-y: auto;
+                overflow-x: hidden;
+                @include wd-scrollbar();
+                padding: var(--v2-wd-gap);
+            }
+        }
+
+        .block{
+            &:not(:last-child){
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+                border-bottom: 1px dashed rgba(128, 128, 128, 0.2);
+            }
+            //border-radius: 3px;
+            //padding: 5px;
+            //background-color: rgba(128, 128, 128, 0.1);
+        }
+    }    
+}

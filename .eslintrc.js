@@ -8,7 +8,7 @@ module.exports = {
     },
     // "extends": "eslint:recommended",
     extends: 'airbnb/base',
-    parser: 'babel-eslint',
+    parser: '@babel/eslint-parser',
     parserOptions: {
         ecmaFeatures: {
             jsx: true,
@@ -22,13 +22,18 @@ module.exports = {
     settings: {
         'import/resolver': {
             webpack: {
-                config: path.resolve('webpack.config.dev.js'),
+                config: path.resolve('webpack.config.dev5.js'),
             },
         },
     },
     globals: {
         $: true,
-
+        CSS_ROOT_PATH: true,
+        CSS_HASH: true,
+        CSS_LAZY_LOAD_ENABLE: true,
+        WEBPACK_MODE: true,
+        BASE_PATH: true,
+        PHP_SERVER_URL: true,
     },
     rules: {
         'no-console': 'off',
@@ -45,7 +50,7 @@ module.exports = {
         'import/no-unresolved': 'off',
         'no-underscore-dangle': 'off',
         'max-len': 'off',
-        'indent': [
+        indent: [
             'error',
             4,
         ],
@@ -53,11 +58,11 @@ module.exports = {
             'error',
             'windows',
         ],
-        'quotes': [
+        quotes: [
             'error',
             'single',
         ],
-        'semi': [
+        semi: [
             'error',
             'always',
         ],
