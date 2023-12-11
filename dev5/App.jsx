@@ -13,6 +13,7 @@ const groups = [
     { id: 'Combos', C: lazy(() => import('./groups/Combos.jsx')) },
     { id: 'Edits', C: lazy(() => import('./groups/Edits.jsx')) },
     { id: 'BtnIcons', C: lazy(() => import('./groups/BtnIcons.jsx')) },
+    { id: 'Heads', C: lazy(() => import('./groups/Heads.jsx')) },
 ];
 
 function App({}) {
