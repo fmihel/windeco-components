@@ -63,13 +63,6 @@ function Edit({
         setFocused(false);
     };
     // --------------------------------------------------------
-    const props = {};
-    if (min !== undefined) props.min = min;
-    if (max !== undefined) props.max = max;
-    if (step !== undefined) props.step = step;
-    if (minLength > 0) props.minLength = minLength;
-    if (maxLength > 0) props.maxLength = maxLength;
-    // --------------------------------------------------------
     const val = value || children || '';
     let _type = type;
     if (type === 'number') {
@@ -99,7 +92,12 @@ function Edit({
                 {...(readonly ? { readOnly: 'readonly' } : {})}
                 {...((required && `${val}`.length === 0) ? { required: true } : {})}
 
-                {...props}
+                {...min !== undefined ? { min } : {}}
+                {...max !== undefined ? { max } : {}}
+                { ...step !== undefined ? { step } : {}}
+                {...minLength > 0 ? { minLength } : {}}
+                {...maxLength > 0 ? { maxLength } : {}}
+
                 {...(title || hint ? { title: title || hint } : {})}
                 {...attr}
                 {...error ? { error: '' } : {}}
