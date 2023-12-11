@@ -1,6 +1,32 @@
 .wd-group{
-    margin: var(--v2-wd-gap);
+    margin: var(--v2-wd-size);
     &:not(:first-child){
         margin-top: 0px;
+    }
+
+}
+
+@include more-than(400px){
+    .wd-group{
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+@include more-than(700px){
+    .wd-group{
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+@include more-than(1200px){
+    .wd-group{
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+}
+@include more-than(1600px){
+    .wd-group{
+        margin-left: 20%;
+        margin-right: 20%;
     }
 }

@@ -81,39 +81,43 @@ $wd-widths:('small':$wd-small-width,'middle':$wd-middle-width,'large':$wd-small-
 }
 
 
-@mixin less-than($name){
+@mixin less-than($nameOrWidth){
     
-    @if ($name == 'large'){
+    @if ($nameOrWidth == 'large'){
         @include less-large{
             @content;
         }
-    }@else if($name == 'middle'){
+    }@else if($nameOrWidth == 'middle'){
         @include less-middle{
             @content;
         }
-    }@else if($name == 'small'){
+    }@else if($nameOrWidth == 'small'){
         @include less-small{
             @content;
         }
     }@else{
-        @error 'not define code for width'+$name; 
+        @media screen and ( width <= $nameOrWidth) {
+            @content;
+        }
     }
 }
 
-@mixin more-than($name){
-    @if ($name == 'large'){
+@mixin more-than($nameOrWidth){
+    @if ($nameOrWidth == 'large'){
         @include more-large{
             @content;
         }
-    }@else if($name == 'middle'){
+    }@else if($nameOrWidth == 'middle'){
         @include more-middle{
             @content;
         }
-    }@else if($name == 'small'){
+    }@else if($nameOrWidth == 'small'){
         @include more-small{
             @content;
         }
     }@else{
-        @error 'not define code for width'+$name; 
+        @media screen and ( width >= $nameOrWidth) {
+            @content;
+        }
     }
 }
