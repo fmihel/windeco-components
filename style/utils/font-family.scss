@@ -33,3 +33,10 @@ $wd-fonts-family:(
     }
 
 }
+
+@each $font,$type in $wd-fonts-family{
+    //@debug $font;
+    .font-#{$font}{
+        font-family:  font-family($font);    
+    }
+}
