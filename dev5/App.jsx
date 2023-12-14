@@ -19,6 +19,7 @@ const groups = [
     { id: 'Tables', C: lazy(() => import('./groups/Tables.jsx')) },
     { id: 'TableFixeds', C: lazy(() => import('./groups/TableFixeds.jsx')) },
     { id: 'Checkboxes', C: lazy(() => import('./groups/Checkboxes.jsx')) },
+    { id: 'Modals', C: lazy(() => import('./groups/Modals.jsx')) },
 ];
 
 function App({}) {
