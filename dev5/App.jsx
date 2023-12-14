@@ -20,6 +20,7 @@ const groups = [
     { id: 'TableFixeds', C: lazy(() => import('./groups/TableFixeds.jsx')) },
     { id: 'Checkboxes', C: lazy(() => import('./groups/Checkboxes.jsx')) },
     { id: 'Modals', C: lazy(() => import('./groups/Modals.jsx')) },
+    { id: 'ModalDialogs', C: lazy(() => import('./groups/ModalDialogs.jsx')) },
 ];
 
 function App({}) {
@@ -59,6 +60,8 @@ function App({}) {
                     <ErrorBound caption={it.id}><it.C/></ErrorBound>
 
                 </Suspense> : undefined))}
+                <div id="wd-modal" style={{ position: 'absolute', left: 0, top: 0 }}>
+                </div>
             </div>
         </div>
     );
