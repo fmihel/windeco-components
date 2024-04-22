@@ -7,11 +7,13 @@ function TR({
     fields = [],
     onClick,
     onDoubleClick,
+    onMouseUp,
     onDraw,
     select = false,
     aliasId,
     aliasAttr,
     aliasSep,
+    disableContextMenu,
 }) {
     return (
         <>
@@ -39,10 +41,12 @@ function TR({
                     value = {row[field.name]}
                     onClick = {onClick}
                     onDoubleClick={onDoubleClick}
+                    onMouseUp = {onMouseUp}
                     onDraw = {onDraw}
                     aliasId = {aliasId}
                     attrs={{ ...(field[aliasAttr] ? { ...field[aliasAttr] } : {}) }}
                     width={field.width}
+                    disableContextMenu ={disableContextMenu}
                 />)}
             </tr>}
         </>

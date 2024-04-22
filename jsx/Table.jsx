@@ -19,7 +19,9 @@ const Table = forwardRef(({
     style = { ...Table.global.style },
     onClick = undefined,
     onDoubleClick = undefined,
+    onMouseUp = undefined,
     onDraw = undefined,
+    disableContextMenu = undefined,
     attr = {},
 
 }, fRef) => (
@@ -48,7 +50,9 @@ const Table = forwardRef(({
             select={select}
             onClick = {onClick}
             onDoubleClick = {onDoubleClick}
+            onMouseUp = {onMouseUp}
             onDraw = {onDraw}
+            disableContextMenu ={disableContextMenu}
         />}
 
     </table>

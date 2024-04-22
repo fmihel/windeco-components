@@ -12,7 +12,9 @@ function TBody({
     select = [],
     onClick,
     onDoubleClick,
+    onMouseUp,
     onDraw,
+    disableContextMenu,
 }) {
     const haveData = (Array.isArray(data) && data.length > 0);
 
@@ -26,11 +28,12 @@ function TBody({
                 select={aliasId in row && select.findIndex((id) => `${id}` === `${row[aliasId]}`) > -1}
                 onClick={onClick}
                 onDoubleClick = {onDoubleClick}
+                onMouseUp={onMouseUp}
                 onDraw={onDraw}
                 aliasId = {aliasId}
                 aliasAttr = {aliasAttr}
                 aliasSep={ aliasSep }
-
+                disableContextMenu ={disableContextMenu}
             />)}
             {(!haveData && noData !== false) && <tr><td nodata='' colSpan={fields.length}>{noData}</td></tr>}
             {(haveData && footer !== false) && <tr><td footer='' colSpan={fields.length}>{footer}</td></tr>}

@@ -49,6 +49,11 @@ function Modal({
         };
     }, [visible]);
 
+    const hideContextMenu = (e) => {
+        e.preventDefault();
+        return false;
+    };
+
     return ReactDOM.createPortal(
         <div
             id = {id}
@@ -62,6 +67,7 @@ function Modal({
 
             }}
             {...attr}
+            onContextMenu={ hideContextMenu }
         >
             {enableShadow
             && <div
@@ -74,6 +80,7 @@ function Modal({
                     // ...(opacityShadow === false ? {} : { opacity: opacityShadow }),
                 }}
                 onClick={onClickShadow}
+                onContextMenu={ hideContextMenu }
             />}
             {children}
         </div>,
