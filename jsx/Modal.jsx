@@ -79,7 +79,7 @@ function Modal({
                     ...screen,
                     // ...(opacityShadow === false ? {} : { opacity: opacityShadow }),
                 }}
-                onClick={onClickShadow}
+                onMouseUp={onClickShadow}
                 onContextMenu={ hideContextMenu }
             />}
             {children}
