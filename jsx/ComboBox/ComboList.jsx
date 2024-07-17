@@ -5,7 +5,7 @@ import ModalDialogAPI from '../ModalDialog/ModalDialogAPI';
 import isMobile from '../../utils/isMobile';
 
 function listPos({
-    left, top, width, height, mobile,
+    left, top, width, height, mobile, itemsCount, itemHeight,
 }) {
     const scr = screen();
     if (mobile) {
@@ -18,9 +18,16 @@ function listPos({
     const out = {
         left, top, width, height,
     };
-    out.height = 150;
+    out.height = Math.max(Math.min(scr.height, (itemsCount) * (itemHeight + 1) + itemHeight / 2), height);
+
     if (out.top + height + out.height > scr.height) {
-        out.top -= out.height + 3;
+        if (out.top > scr.height / 2) {
+            out.height = Math.min(out.height, out.top) - 2;
+            out.top -= (out.height + 2);
+        } else {
+            out.top = top + height + 1;
+            out.height = scr.height - out.top;
+        }
     } else {
         out.top = top + height + 1;
     }
@@ -54,6 +61,8 @@ function ComboList({
                     width,
                     height,
                     mobile: isMobile(),
+                    itemsCount: list.length,
+                    itemHeight: 32,
                 }),
             }}
         >
