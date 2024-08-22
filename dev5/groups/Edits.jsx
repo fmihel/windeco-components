@@ -41,7 +41,7 @@ export default ({}) => {
             <Block> <Edit id="edph" placeholder="set text" value={values.edph} onChange={doChange}/></Block>
 
             <Block> <Label caption="label" id="myEdit100">
-                <Edit id="myEdit100" value={values.myEdit100} onChange={doChange}/>
+                <Edit id="myEdit100" value={values.myEdit100} onChange={doChange} error="msg"/>
             </Label></Block>
 
             <Block> <Label caption="pass" id="pass"><Edit id="pass" type="password" value="set text" /></Label></Block>

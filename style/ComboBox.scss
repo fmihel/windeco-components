@@ -141,9 +141,6 @@
         white-space: nowrap;
         overflow: hidden;
 
-        &[state="no-select"]{
-            color: $placeholder;
-        }
         // for ComboItemIcon -------
         display: flex;
         flex-direction: row;
@@ -161,6 +158,9 @@
             }                
         }
         // ----------------------------
+        &[state="no-select"]{
+            color: $placeholder;
+        }
     };
 
     .mobile .wd-combo-shadow{
