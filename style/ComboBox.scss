@@ -141,9 +141,6 @@
         white-space: nowrap;
         overflow: hidden;
 
-        &[state="no-select"]{
-            color: $placeholder;
-        }
         // for ComboItemIcon -------
         display: flex;
         flex-direction: row;
@@ -159,6 +156,10 @@
             &:nth-child(2) {
                 flex:1 1 auto;
             }                
+        }
+
+        &[state="no-select"]{
+            color: $placeholder;
         }
         // ----------------------------
     };

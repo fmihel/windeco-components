@@ -1177,7 +1177,7 @@ const mapStateToProps = (state) => ({
     // ui: state.ui,
 });
 
-App.defaultProps = {
-};
+// App.defaultProps = {
+// };
 
 export default connect(mapStateToProps)(App);
