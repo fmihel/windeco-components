@@ -67,8 +67,11 @@ module.exports = {
     mode: 'development',
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: PUBLIC_PATH,
-        port:PORT,
+        historyApiFallback: true,
+        static: {
+            directory: path.join(__dirname, 'public'),
+        },
+        port: PORT,
         liveReload: true,
     },
     plugins: [

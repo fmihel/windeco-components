@@ -1,37 +1,20 @@
-@import '../../style/index.scss';
-@import '../../style/utils/font-family.scss';
-@import '../../style/utils/no-border.scss';
-@import '../../style/utils/panel.scss';
-@import '../../style/utils/padding.scss';
-@import '../../style/utils/margin.scss';
-@import '../../style/utils/stretch.scss';
-@import '../../style/utils/h.scss';
-@import './custom.scss';
-/*
-@import '../../style/ScrollBar.scss';
-@import '../../style/Icon.scss';
-@import '../../style/Btn.scss';
-@import '../../style/BtnIcon.scss';
-@import '../../style/Edit.scss';
-@import '../../style/Label.scss';
-@import '../../style/NavBar.scss';
-@import '../../style/CheckBox.scss';
-@import '../../style/Table.scss';
-@import '../../style/TableFixed.scss';
-@import '../../style/Modal.scss';
-@import '../../style/ModalDialog.scss';
-@import '../../style/ComboBox.scss';
-@import '../../style/List.scss';
-@import '../../style/Group.scss';
-*/
-//@import '../../style/ctrls.scss';
+@use '../../style/index.scss';
+@use '../../style/utils/font-family.scss' as *;
+@use '../../style/utils/no-border.scss';
+@use '../../style/utils/panel.scss';
+@use '../../style/utils/padding.scss';
+@use '../../style/utils/margin.scss';
+@use '../../style/utils/stretch.scss';
+@use '../../style/utils/h.scss';
+@use './custom.scss';
+@use '../../style/utils/screen.scss' as *;
 
-@import './pics.scss';
-@import './test-place.scss'; 
-@import './icons.scss';
-@import '../jsx/Block.scss';
-@import '../jsx/Head.scss';
-@import './group-table.scss';
+@use './pics.scss';
+@use './test-place.scss'; 
+@use './icons.scss';
+@use '../jsx/Block.scss';
+@use '../jsx/Head.scss';
+@use './group-table.scss';
 
 
 *{

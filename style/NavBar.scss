@@ -1,6 +1,7 @@
 @use "sass:meta";
-@import './utils/screen.scss';
-@import './utils/transition.scss';
+@use './utils/screen.scss' as *;
+@use './utils/transition.scss' as *;
+@use './ScrollBar.scss' as *;
 
 @each $name,$width in $wd-widths{
     

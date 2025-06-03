@@ -1,6 +1,6 @@
 @use "sass:meta";
 @use "sass:math";
-@import './utils/transition.scss';
+@use './utils/transition.scss' as *;
 
 @mixin define(){
     //$themes:$wd-themes;

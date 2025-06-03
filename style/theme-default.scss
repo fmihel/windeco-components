@@ -1,7 +1,8 @@
 @use "sass:map";
 @use 'sass:meta';
 @use "sass:color";
-@import './define/defineThemeVars.scss';
+@use "sass:list";
+@use './define/defineThemeVars.scss';
 
 
 
@@ -82,6 +83,60 @@ $defaults:(
         'border'
     )
 );
+
+$wd-default-theme:'light';
+$global-themes-vars:();
+
+
+@mixin defineThemeVars($maps:(),$theme:$wd-default-theme){
+    $themeVars:();
+    //@debug $theme , $wd-default-theme;
+    @each $varName,$defaultValue in $defaults{
+    
+        @if ($varName != 'colors-to-rgb'){
+            $value:if(map.has-key($map: $maps, $key: $varName),#{map.get($map: $maps, $key:$varName )},#{$defaultValue});
+        
+            @if($theme == $wd-default-theme or #{$value} != #{$defaultValue}){
+                //@debug $varName, $value, $defaultValue, $theme == $wd-default-theme ,'or', $value != $defaultValue;
+                --v2-wd-#{$varName}:#{$value};
+            }
+            $themeVars:map.merge($themeVars,(#{$varName}:$value));
+        };
+    };
+
+ 
+
+    $colors:();
+    // @if (map-has-key($map: $defaults, $key:'colors-to-rgb' )){
+    @if (map.has-key($map: $defaults, $key:'colors-to-rgb' )){
+        $colors:list.join($colors,map.get($map:$defaults,$key:'colors-to-rgb'));
+    }
+
+    @if (map.has-key($map: $maps, $key:'colors-to-rgb' )){
+        $colors:list.join($colors,map-get($map:$maps,$key:'colors-to-rgb'));
+    }
+
+    //@debug $colors;
+
+    @each $varName in $colors{
+        $acolor:map.get($map:$defaults, $key:$varName );
+        @if (map.has-key($map:$maps,$key:$varName)){
+            $acolor:map.get($map:$maps, $key:$varName );
+        }
+        
+        
+        $r:color.channel($acolor, "red", $space: rgb);
+        $g:color.channel($acolor, "green", $space: rgb);
+        $b:color.channel($acolor, "blue", $space: rgb);
+        // $r:color.red($acolor);
+        // $g:color.green($acolor);
+        // $b:color.blue($acolor);
+        //--wd-#{$key}:#{meta.inspect($acolor)};
+        --v2-wd-#{$varName}-rgb:#{meta.inspect($r)},#{meta.inspect($g)},#{meta.inspect($b)} ;
+    }
+
+    $global-themes-vars:map.merge($global-themes-vars,(#{$theme}:$themeVars)) !global;
+}
 
 
 // define default theme 

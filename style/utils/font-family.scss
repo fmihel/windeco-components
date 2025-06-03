@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 $wd-fonts-family:(
     'arial':'Arial, sans-serif',
     'arial-black':'Arial Black, sans-serif',
@@ -22,13 +24,13 @@ $wd-fonts-family:(
 //@include font-family('arial');
 @function font-family($name:'roboto'){
 
-    @if map_has_key($wd-fonts-family,$name) {
-        @return #{map-get($wd-fonts-family, $name)};
+    @if map.has_key($wd-fonts-family,$name) {
+        @return #{map.get($wd-fonts-family, $name)};
     }@else{
         @debug --------------------------------------;
         @warn 'font not exists ' $name ' set roboto';
         @debug --------------------------------------;
-        @return #{map-get($wd-fonts-family, 'roboto')};
+        @return #{map.get($wd-fonts-family, 'roboto')};
         
     }
 

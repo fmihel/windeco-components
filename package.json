@@ -78,11 +78,11 @@
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.2",
     "replace-in-file-webpack-plugin": "^1.0.6",
-    "sass": "^1.49.7",
-    "sass-loader": "^9.0.3",
+    "sass": "^1.89.1",
+    "sass-loader": "^16.0.5",
     "style-loader": "^1.2.1",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.3"
+    "webpack": "^5.99.9",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.1"
   }
 }

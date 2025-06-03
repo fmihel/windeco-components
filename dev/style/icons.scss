@@ -1,4 +1,5 @@
 @use "sass:map";
+@use '../../style/theme-default.scss' as *;
 $icons:('bell','file','image','man','pen','dots') !default;
 $path:'./media/icons/';
 

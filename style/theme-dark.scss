@@ -1,3 +1,7 @@
+// @use './define/defineThemeVars.scss' as *;
+@use './theme-default.scss' as *;
+
+
 :root.dark{
     @include defineThemeVars((
         'primary':#2381c1,

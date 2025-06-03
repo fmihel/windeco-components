@@ -1,5 +1,5 @@
 @use "sass:meta";
-@import './Gap.scss';
+@use './Gap.scss' as *;
 
 @mixin define(){
 
