@@ -2,6 +2,13 @@ $wd-large-width:900px;
 $wd-middle-width:700px;
 $wd-small-width:500px;
 
+$wd-xs: 0;
+$wd-sm: 576px;//mobile
+$wd-md: 768px;
+$wd-lg: 992px;//compact
+$wd-xl: 1200px;
+$wd-xxl: 1400px;
+
 $wd-widths:('small':$wd-small-width,'middle':$wd-middle-width,'large':$wd-small-width);
 
 
@@ -115,5 +122,18 @@ $wd-widths:('small':$wd-small-width,'middle':$wd-middle-width,'large':$wd-small-
         }
     }@else{
         @error 'not define code for width'+$name; 
+    }
+}
+
+
+@mixin less($width){
+    @media (min-width:0px) and (max-width:$width){
+        @content;
+    }
+}
+
+@mixin more($width){
+    @media (min-width:$width){
+        @content;
     }
 }
