@@ -1,5 +1,8 @@
 #!/bin/bash
-toPath="D:\\work\tests\\test1\\node_modules\\fmihel-windeco-components\\" 
+# toPath="D:\\work\tests\\test1\\node_modules\\fmihel-windeco-components" 
+toPath="D:\\work\windeco\\windeco3\\node_modules\\fmihel-windeco-components" 
+
+echo "start copy to $toPath ..."
 
 src="dist" 
 rm -rf "$toPath\\$src"
@@ -8,11 +11,24 @@ cp -rf "$src" "$toPath\\$src"
 #src="source" 
 #rm -rf "$toPath\\$src"
 #cp -rf "$src" "$toPath\\$src"
-
+# ----------------------------------------------------------------------------
+src="jsx" 
+rm -rf "$toPath\\$src"
+cp -rf "$src" "$toPath\\$src"
+# ----------------------------------------------------------------------------
 src="style" 
 rm -rf "$toPath\\$src"
 cp -rf "$src" "$toPath\\$src"
+# ----------------------------------------------------------------------------
+src="utils" 
+rm -rf "$toPath\\$src"
+cp -rf "$src" "$toPath\\$src"
+# ----------------------------------------------------------------------------
+src="media" 
+rm -rf "$toPath\\$src"
+cp -rf "$src" "$toPath\\$src"
+
 
 cp -rf "package.json" "$toPath\\package.json"
 
-echo "copy to $toPath: ok"
+echo "ok."

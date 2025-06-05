@@ -1,13 +1,14 @@
 {
   "name": "fmihel-windeco-components",
-  "version": "2.0.0-beta.59",
+  "version": "2.0.0-beta.60",
   "description": "components for orders windeco",
   "main": "dist/windeco-components.js",
   "scripts": {
     "run-dev-server": "webpack-dev-server --config webpack.config.dev.js",
     "run-bs-server": "webpack-dev-server --config webpack.config.bs.js",
     "build-dist": "webpack --config webpack.config.dist.js",
-    "build": "rm -rf dist && webpack --prod",
+    "build": "rm -rf dist && webpack",
+    "copy-to": "npm run build && bash copy-to",
     "git-push-main": "git checkout main && git push origin main && git push origin main --tag",
     "npm-publish-patch": "npm run build && npm version patch && npm publish",
     "npm-publish-minor": "npm run build && npm version minor && npm publish",
