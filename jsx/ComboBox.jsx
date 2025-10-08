@@ -29,6 +29,7 @@ function ComboBox({
     aliasCaption = ComboBox.global.aliasCaption,
     aliasDisabled = ComboBox.global.aliasDisabled,
     ItemComponent = ComboBox.global.ItemComponent,
+    attr = {},
 
 }) {
     const [selected, setSelected] = useState(undefined);
@@ -162,7 +163,7 @@ function ComboBox({
                 onFocus={focus}
                 onBlur={focusOut}
                 onKeyDown={keyDown}
-
+                {...attr}
             >
                 <ItemComponent
                     title={selectCaption || ''}
