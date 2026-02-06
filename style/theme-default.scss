@@ -94,7 +94,8 @@ $global-themes-vars:();
     @each $varName,$defaultValue in $defaults{
     
         @if ($varName != 'colors-to-rgb'){
-            $value:if(map.has-key($map: $maps, $key: $varName),#{map.get($map: $maps, $key:$varName )},#{$defaultValue});
+            // $value:if(map.has-key($map: $maps, $key: $varName),#{map.get($map: $maps, $key:$varName )},#{$defaultValue});
+            $value:if( sass(map.has-key($map: $maps, $key: $varName)): #{map.get($map: $maps, $key:$varName )}; else: #{$defaultValue} );
         
             @if($theme == $wd-default-theme or #{$value} != #{$defaultValue}){
                 //@debug $varName, $value, $defaultValue, $theme == $wd-default-theme ,'or', $value != $defaultValue;
